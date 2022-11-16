@@ -9,9 +9,9 @@
 
 <script>
 import DomPurify from 'dompurify'
-import { DpIcon } from 'demosplan-ui/components'
+import { DpIcon } from '../../index'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from 'demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpTableRow',

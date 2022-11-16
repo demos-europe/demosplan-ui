@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { DpLabel } from 'demosplan-ui/components'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { DpLabel } from '../index'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpRadio',

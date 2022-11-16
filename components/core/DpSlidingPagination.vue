@@ -8,7 +8,7 @@
 </license>
 
 <script>
-import { prefixClass } from 'demosplan-ui/lib'
+import { prefixClass } from '../../lib'
 import SlidingPagination from 'vue-sliding-pagination'
 
 export default {

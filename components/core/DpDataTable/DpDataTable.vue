@@ -67,9 +67,9 @@
 </documentation>
 
 <script>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '../../../directives'
 import DomPurify from 'dompurify'
-import { DpLoading } from 'demosplan-ui/components'
+import { DpLoading } from '../../index'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import draggable from 'vuedraggable'

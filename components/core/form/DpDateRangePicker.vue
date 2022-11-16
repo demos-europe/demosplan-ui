@@ -39,7 +39,7 @@
 
 <script>
 import DpDatepicker from './DpDatepicker'
-import { formatDate } from 'demosplan-utils'
+import { formatDate } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpDateRangePicker',

@@ -27,7 +27,7 @@ Malicious code is filtered out, according to the DOMPurify [default behavior](ht
     <span v-cleanhtml="someValue">
   </div>
 </template>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '@demos-europe/demosplan-ui/directives'
 
 export default {
   name: 'MyComponent',
@@ -50,7 +50,7 @@ Malicious code is filtered out, and only p and span tags are allowed.
     <span v-cleanhtml="{ content: someValue, options: { ALLOWED_TAGS: ['p', 'span'] }">
   </div>
 </template>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '@demos-europe/demosplan-ui/directives'
 
 export default {
   name: 'MyComponent',

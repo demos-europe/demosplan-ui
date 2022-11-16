@@ -46,7 +46,7 @@ To provide the interface for dpInput all configuration attributes for the input 
 </template>
 
 <script>
-import { DpIcon, DpInput } from 'demosplan-ui/components'
+import { DpIcon, DpInput } from '../index'
 
 export default {
   name: 'DpResettableInput',

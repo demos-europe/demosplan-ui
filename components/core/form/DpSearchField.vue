@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { DpButton } from 'demosplan-ui/components'
+import { DpButton } from '../index'
 import DpResettableInput from '../DpResettableInput'
 
 export default {

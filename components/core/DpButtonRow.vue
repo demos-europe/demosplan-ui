@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { DpButton } from 'demosplan-ui/components'
+import { DpButton } from '../index'
 
 export default {
   name: 'DpButtonRow',

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '../../../directives'
 
 export default {
   name: 'DpTabs',

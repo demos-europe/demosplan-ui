@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { DpInput } from 'demosplan-ui/components'
+import { DpInput } from '../index'
 import DpModal from '../DpModal'
 import DpUploadFiles from '../DpUpload/DpUploadFiles'
 

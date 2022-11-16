@@ -51,10 +51,10 @@
 </template>
 
 <script>
-import { DpLabel } from 'demosplan-ui/components'
+import { DpLabel } from '../index'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpUploadFiles',

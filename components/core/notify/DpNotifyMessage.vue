@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpNotifyMessage',

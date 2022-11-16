@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import { checkResponse, dpApi } from 'demosplan-utils'
-import { CleanHtml } from 'demosplan-ui/directives'
-import { DpButton } from 'demosplan-ui/components'
+import { checkResponse, dpApi } from '@demos-europe/demosplan-utils'
+import { CleanHtml } from '../../directives/index'
+import { DpButton } from '../index'
 import DpCard from './DpCard'
 
 export default {

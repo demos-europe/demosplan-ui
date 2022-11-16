@@ -8,7 +8,7 @@
 </license>
 
 <script>
-import { DpLoading } from 'demosplan-ui/components'
+import { DpLoading } from '../index'
 
 export default {
   name: 'DpTextWrapper',

@@ -54,7 +54,7 @@ import BoilerplatesStore from '@DpJs/store/procedure/Boilerplates'
 import DpBoilerPlate from './DpBoilerPlate'
 import DpButtonRow from '../DpButtonRow'
 import DpModal from '../DpModal'
-import { hasOwnProp } from 'demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpBoilerPlateModal',

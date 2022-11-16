@@ -8,9 +8,9 @@
 </license>
 
 <script>
-import { DpIcon } from 'demosplan-ui/components'
+import { DpIcon } from '../index'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from 'demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-utils'
 import { renderResizeWrapper } from './lib/ResizableColumns'
 
 export default {

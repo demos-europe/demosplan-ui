@@ -28,15 +28,15 @@
 </template>
 
 <script>
-import { attributes, length } from 'demosplan-ui/shared/props'
-import { maxlengthHint } from 'demosplan-ui/utils/lengthHint'
+import { attributes, length } from '../../../shared/props'
+import { maxlengthHint } from '../../../utils/lengthHint'
 
 export default {
   name: 'DpTextArea',
 
   components: {
     DpLabel: async () => {
-      const { DpLabel } = await import('demosplan-ui/components')
+      const { DpLabel } = await import('../index')
       return DpLabel
     }
   },

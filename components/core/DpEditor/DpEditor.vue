@@ -402,9 +402,9 @@ import {
   EditorMenuBar // Renderless menubar
 } from 'tiptap'
 
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '../../../directives'
 import { createSuggestion } from './libs/editorBuildSuggestion'
-import { DpIcon } from 'demosplan-ui/components'
+import { DpIcon } from '../../index'
 import EditorCustomDelete from './libs/editorCustomDelete'
 import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'
@@ -413,8 +413,8 @@ import EditorCustomMark from './libs/editorCustomMark'
 import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
-import { maxlengthHint } from 'demosplan-ui/utils/lengthHint'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { maxlengthHint } from '../../../utils/lengthHint'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpEditor',

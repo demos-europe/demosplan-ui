@@ -7,6 +7,9 @@
 ### Bug Fixes
 - Fix path declarations to have a buildable package
 
+### Features
+- Deprecate prefixClass and prefixClassMixin
+
 ## v0.0.1 
 2022-11-15
 

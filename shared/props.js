@@ -20,7 +20,7 @@
  *      // ...define prop
  *    }
  *    // In the component...
- *    import { myProp } from 'demosplan-ui/shared/props'
+ *    import { myProp } from '@demos-europe/demosplan-ui/shared/props'
  *    props: {
  *      myProp: myProp('otherValue'),
  *    }

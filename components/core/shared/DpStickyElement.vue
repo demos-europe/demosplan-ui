@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Stickier } from 'demosplan-utils'
+import { Stickier } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpStickyElement',

@@ -48,7 +48,7 @@
 import { exactlengthHint, maxlengthHint, minlengthHint } from '../../utils/lengthHint'
 import DpLabel from '../DpLabel/DpLabel'
 import { length } from '../../shared/props'
-import { prefixClassMixin } from '../../mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpInput',

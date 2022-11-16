@@ -29,8 +29,7 @@
 </template>
 
 <script>
-import { dpApi } from 'demosplan-utils'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { dpApi, prefixClassMixin } from '@demos-europe/demosplan-utils'
 import VueOmnibox from 'vue-omnibox'
 
 export default {

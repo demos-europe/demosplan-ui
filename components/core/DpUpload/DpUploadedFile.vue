@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import { getFileInfo } from 'demosplan-utils/lib/FileInfo'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { getFileInfo } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpUploadedFile',

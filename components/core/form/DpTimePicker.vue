@@ -96,11 +96,11 @@ export default {
 
   components: {
     DpInput: async () => {
-      const { DpInput } = await import('demosplan-ui/components')
+      const { DpInput } = await import('../index')
       return DpInput
     },
     DpLabel: async () => {
-      const { DpLabel } = await import('demosplan-ui/components')
+      const { DpLabel } = await import('../index')
       return DpLabel
     },
     DpResettableInput: () => import('../DpResettableInput')

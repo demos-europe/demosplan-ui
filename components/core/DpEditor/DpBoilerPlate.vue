@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '../../../directives'
 import DpMultiselect from '../form/DpMultiselect'
 
 export default {

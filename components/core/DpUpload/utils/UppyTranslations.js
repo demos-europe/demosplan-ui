@@ -7,7 +7,7 @@
  * All rights reserved
  */
 
-import { convertSize } from 'demosplan-utils/lib/FileInfo'
+import { convertSize } from '@demos-europe/demosplan-utils'
 const de = () => {
   return {
     strings: {

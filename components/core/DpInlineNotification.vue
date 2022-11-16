@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { DpIcon } from 'demosplan-ui/components'
+import { DpIcon } from '../index'
 import lscache from 'lscache'
 
 export default {

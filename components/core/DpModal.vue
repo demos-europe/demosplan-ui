@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import { DpIcon } from 'demosplan-ui/components'
-import { prefixClassMixin } from 'demosplan-ui/mixins'
+import { DpIcon } from '../index'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
 
 export default {
   name: 'DpModal',

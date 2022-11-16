@@ -92,9 +92,9 @@
 </template>
 
 <script>
-import { formatDate, toDate } from 'demosplan-utils'
+import { formatDate, toDate } from '@demos-europe/demosplan-utils'
 import DpDatepicker from './form/DpDatepicker'
-import { DpLabel } from 'demosplan-ui/components'
+import { DpLabel } from '../index'
 import DpSelect from './form/DpSelect'
 
 export default {

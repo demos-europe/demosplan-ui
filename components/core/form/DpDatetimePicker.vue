@@ -57,7 +57,7 @@ export default {
   components: {
     DpDatepicker,
     DpLabel: async () => {
-      const { DpLabel } = await import('demosplan-ui/components')
+      const { DpLabel } = await import('../index')
       return DpLabel
     },
     DpTimePicker

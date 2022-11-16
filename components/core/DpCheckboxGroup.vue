@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { CleanHtml } from 'demosplan-ui/directives'
+import { CleanHtml } from '../../directives'
 import DpCheckbox from './form/DpCheckbox'
 
 export default {

@@ -12,10 +12,9 @@
 </template>
 
 <script>
+import { getFileTypes, hasOwnProp } from '@demos-europe/demosplan-utils'
 import { de } from './utils/UppyTranslations'
 import DragDrop from '@uppy/drag-drop'
-import { getFileTypes } from 'demosplan-utils/lib/FileInfo'
-import { hasOwnProp } from 'demosplan-utils'
 import ProgressBar from '@uppy/progress-bar'
 import Tus from '@uppy/tus'
 import Uppy from '@uppy/core'

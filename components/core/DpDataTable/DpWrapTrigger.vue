@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { DpIcon } from 'demosplan-ui/components'
+import { DpIcon } from '../index'
 
 export default {
   name: 'DpWrapTrigger',

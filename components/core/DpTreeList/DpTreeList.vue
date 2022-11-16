@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp, Stickier } from 'demosplan-utils'
+import { deepMerge, hasOwnProp, Stickier } from '@demos-europe/demosplan-utils'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'

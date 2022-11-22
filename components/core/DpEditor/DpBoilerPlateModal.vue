@@ -1,21 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!-- This component contains the UI for inserting boilerplates into a textarea
-
-    If used in combination with DpEditor.vue and its wrapper TipTapEditText.vue (as is currently the case), the
-    button to open the modal is located in TipTapEditText.vue; otherwise, you need to define it.
-
-   -->
-</documentation>
-
 <template>
   <dp-modal
     ref="boilerPlateModal"

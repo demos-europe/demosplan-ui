@@ -14,7 +14,7 @@ import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 
-export {
+export { 
   DpButton,
   DpDetails,
   DpIcon,

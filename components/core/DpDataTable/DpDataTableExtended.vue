@@ -63,8 +63,9 @@
               @click="setOrder(element.field)"
               type="button">
               <i
+                aria-hidden="true"
                 class="fa"
-                :class="(element.field === sortOrder.key) ? (sortOrder.direction < 0 ? 'fa-sort-up color--highlight' : 'fa-sort-down color--highlight') : 'fa-sort color--grey'" />
+                :class="sortIconClass(element.field)" />
             </button>
             {{ element.label }}
           </div>
@@ -298,6 +299,12 @@ export default {
       this.itemsPerPage = count
       this.currentPage = this.currentPage > this.totalPages ? this.totalPages : this.currentPage
       this.updateFields()
+    },
+
+    sortIconClass (field) {
+      const isCurrentSort = field === this.sortOrder.key
+      const sortDirectionClass = this.sortOrder.direction < 0 ? 'fa-sort-up' : 'fa-sort-down'
+      return isCurrentSort ? `${sortDirectionClass} color--highlight` : `fa-sort color--grey`
     },
 
     updateFields (items = null) {

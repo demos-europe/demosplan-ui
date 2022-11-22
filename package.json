@@ -1,9 +1,9 @@
 {
-  "name": "my-webpack-project",
+  "name": "demosplan-ui",
   "version": "1.0.0",
   "license": "MIT",
   "private": false,
-  "description": "My webpack project",
+  "description": "demosplan-ui is a vue component library",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
     "@demos-europe/demosplan-utils": "^0.0.2",

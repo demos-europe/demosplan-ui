@@ -108,7 +108,7 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
-import { DpIcon } from '../'
+import { DpIcon } from '../../'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
 import draggable from 'vuedraggable'

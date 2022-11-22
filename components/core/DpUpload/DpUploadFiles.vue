@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { DpLabel } from '../'
+import { DpLabel } from '../../'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'

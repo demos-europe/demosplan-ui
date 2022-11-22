@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { DpLabel, DpLoading } from '../'
+import { DpLabel, DpLoading } from '../../'
 import { mapMutations, mapState } from 'vuex'
 import dataTableSearch from '../DpDataTable/DataTableSearch'
 import { dpApi } from '@demos-europe/demosplan-utils'

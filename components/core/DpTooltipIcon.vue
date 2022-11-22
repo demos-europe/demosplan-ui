@@ -1,25 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-    It renders an fontawesome Icon with a tooltip
-  -->
-  <usage>
-    <dp-tooltip-icon
-      icon="fa-trash"
-      text="some translated String"
-      large="true|false (adds the class fa-lg)"
-    ></dp-tooltip-icon>
-  </usage>
-</documentation>
-
 <template>
   <i
     class="fa"

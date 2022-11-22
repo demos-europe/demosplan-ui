@@ -1,24 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-
-  The DpContextualHelp component renders an icon indicating contextual help,
-  which shows a tooltip able to handle text or html content.
-
-  -->
-  <usage>
-    <dp-contextual-help :text="Translator.trans('statements.import.hint')" />
-  </usage>
-</documentation>
-
 <script>
 export default {
   name: 'DpContextualHelp',

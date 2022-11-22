@@ -1,25 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--  This component can be used as a building block for data tables. It allows for the selection of columns, emits the
-  currently selected columns and it is able to store previous user selections in local storage.-->
-  <usage>
-    <dp-column-selector
-      :selectable-columns="[[value, label]]"
-      :initial-selection="[String]"
-      :use-local-storage="Boolean"
-      :local-storage-key="String"
-      @selection-changed="changeSelection" />
-  </usage>
-</documentation>
-
 <template>
   <dp-flyout
     :has-menu="false"

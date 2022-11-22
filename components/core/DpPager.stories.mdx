@@ -1,0 +1,16 @@
+# Pager
+
+Renders a pager with additional select to specify items per page.
+
+## Default usage
+
+```html
+<dp-pager
+  current-page="pagination.current_page"
+  total-pages="pagination.total_pages"
+  total-items="pagination.total"
+  per-page="pagination.count"
+  limits="pagination.limits"
+  @page-change="handlePageChange"
+  @size-change="handleSizeChange" />
+```

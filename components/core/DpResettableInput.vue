@@ -1,23 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-<!--
-An Inputfield wich comes with an dismiss-icon if there is some Text typed.
-
-Clicking the dismiss-"x" emits "reset".
-
-To provide the interface for dpInput all configuration attributes for the input can be passed via `inputAttributes`.
-
--->
-</documentation>
-
 <template>
   <div class="position--relative">
     <dp-input

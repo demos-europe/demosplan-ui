@@ -1,39 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-
-  The MultistepNav generates a horizontal Bar with n steps
-  the steps can be decorated with an fa-icon.
-
-  on click of an "old" step the event change-step emits the new step index.
-
-  -->
-  <usage>
-    <multistep-nav
-      @change-step="val => step = val"
-      :active-step="step"
-      :steps="[{
-           label: 'my text here',
-           icon: 'fa-some-icon',
-           title: 'In this step you can do this'
-          }, {
-           label: 'this is the second step',
-           icon: 'fa-some-other-icon',
-           title: 'In this step you can do that'
-          }, {
-           label: 'and so on'
-          }]" />
-  </usage>
-</documentation>
-
 <template>
   <nav :class="prefixClass('c-multistep')">
     <button

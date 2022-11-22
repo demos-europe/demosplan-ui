@@ -1,45 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-    This is a Wrapper for DpDataTable.
-    It comes with a sticky header where a search Bar and a pager including items-per-page are placed
-    Additional Actions can be placed in the sticky footer
-
-    !!!
-    As in DpDataTable, be aware of the data structure for header-fields and table-items.
-    the Keys in the table-Items have to match the field values of the header-fields
-    !!!
-  -->
-  <usage discription="minimal version">
-    <dp-data-table-extended
-      :header-fields="[{field, label},{field, label}]"
-      :table-items="[{fieldName}, {fieldName2}]" />
-  </usage>
-  <usage discription="all options">
-    <dp-data-table-extended
-      :header-fields="[{field, label},{field, label}]"
-      is-selectable
-      is-sortable
-      :init-items-per-page="50"
-      :items-per-page-options="[10, 50, 100, 200]"
-      :table-items="[{fieldName}, {fieldName2}]"
-      @items-selected="emitsSelectedItemIds"
-      track-by="id">
-      <template v-slot:footer>
-        <!-- Stuff for the footer -->
-      </template>
-    </dp-data-table-extended>
-  </usage>
-</documentation>
-
 <template>
   <div class="u-mt-0_5">
     <dp-sticky-element>
@@ -105,8 +63,9 @@
               @click="setOrder(element.field)"
               type="button">
               <i
+                aria-hidden="true"
                 class="fa"
-                :class="(element.field === sortOrder.key) ? (sortOrder.direction < 0 ? 'fa-sort-up color--highlight' : 'fa-sort-down color--highlight') : 'fa-sort color--grey'" />
+                :class="sortIconClass(element.field)" />
             </button>
             {{ element.label }}
           </div>
@@ -340,6 +299,12 @@ export default {
       this.itemsPerPage = count
       this.currentPage = this.currentPage > this.totalPages ? this.totalPages : this.currentPage
       this.updateFields()
+    },
+
+    sortIconClass (field) {
+      const isCurrentSort = field === this.sortOrder.key
+      const sortDirectionClass = this.sortOrder.direction < 0 ? 'fa-sort-up' : 'fa-sort-down'
+      return isCurrentSort ? `${sortDirectionClass} color--highlight` : `fa-sort color--grey`
     },
 
     updateFields (items = null) {

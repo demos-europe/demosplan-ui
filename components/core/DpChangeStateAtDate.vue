@@ -1,31 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-  This Component renders a dropdown/select with a checkbox.
-  If the checkbox is checked, the dropdown is read-only (and shows the current state)
-  and a datepicker gets active and another dropdown with the same options as the first one.
-
-  it is designed to be used for activating a time-controlled change of the options.
-  -->
-  <usage>
-    <dp-change-state-at-date
-      regular-dropdown-id="id_for_the_regular_dropdown_that_gets_send_if_the_checkbox_is_unchecked"
-      delayed-switch-dropdown-id="id_for_the_dropdown_that_gets_send_if_the_checkbox_is_checked"
-      label="trans.key"
-      date-id="id_for_the_date_input"
-      :status-options="[{ 'value': 'myValue', 'label': 'trans.key.one'}, {'value': 'anotherValue', 'label': 'trans.key.two'}]"
-      init-status="myValue"></dp-change-state-at-date>
-  </usage>
-</documentation>
-
 <template>
   <div>
     <div class="layout u-mb-0_75">

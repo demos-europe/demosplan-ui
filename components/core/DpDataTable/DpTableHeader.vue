@@ -1,14 +1,5 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <script>
-import { DpIcon } from '../index'
+import { DpIcon } from '../../index'
 import DpWrapTrigger from './DpWrapTrigger'
 import { hasOwnProp } from '@demos-europe/demosplan-utils'
 import { renderResizeWrapper } from './lib/ResizableColumns'

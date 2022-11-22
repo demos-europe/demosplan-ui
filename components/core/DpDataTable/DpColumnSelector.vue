@@ -1,16 +1,3 @@
-<documentation>
-  <!--  This component can be used as a building block for data tables. It allows for the selection of columns, emits the
-  currently selected columns and it is able to store previous user selections in local storage.-->
-  <usage>
-    <dp-column-selector
-      :selectable-columns="[[value, label]]"
-      :initial-selection="[String]"
-      :use-local-storage="Boolean"
-      :local-storage-key="String"
-      @selection-changed="changeSelection" />
-  </usage>
-</documentation>
-
 <template>
   <dp-flyout
     :has-menu="false"

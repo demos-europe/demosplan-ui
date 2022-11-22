@@ -1,0 +1,31 @@
+# Button Row
+
+This component contains a button row, currently with save and abort buttons.
+
+## Default usage
+
+```
+<dp-button-row
+  :busy="isLoading"
+  primary
+  secondary
+  @primary-action="save"
+  @secondary-action="reset" />
+```
+
+### With slot and third button
+
+```
+<dp-button-row
+  :busy="isLoading"
+  primary
+  secondary
+  @primary-action="save"
+  @secondary-action="reset">
+  <dp-button
+    class="u-ml-0_5"
+    color="secondary"
+    :text="Translator.trans('close')"
+    @click="closeAndCancel" />
+</dp-button-row>
+```

@@ -1,9 +1,3 @@
-<documentation>
-  <!--This component contains a multiselect to insert a boilerplate into a textarea
-      It receives the boilerplates as a prop.
-      -->
-</documentation>
-
 <template>
   <div>
     <!-- Select boilerplate -->

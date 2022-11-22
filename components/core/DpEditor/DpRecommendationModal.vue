@@ -1,7 +1,3 @@
-<documentation>
-  <!-- This component contains the UI for inserting recommendations into a textarea -->
-</documentation>
-
 <template>
   <dp-modal
     ref="recommendationModal"

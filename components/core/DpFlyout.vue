@@ -1,16 +1,3 @@
-<documentation>
-<!--
-
-The DpFlyout component renders a flyout that is intended to show stuff.
-
-@improve use https://popper.js.org/docs/v2/ for positioning instead of basic css - or find
-another way to make left/right offset dynamic.
-
--->
-<usage variant="TBD">
-</usage>
-</documentation>
-
 <template>
   <span
     class="o-flyout"

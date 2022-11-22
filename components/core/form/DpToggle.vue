@@ -1,11 +1,3 @@
-<documentation>
-  <!--
-    Simple Toggle component
-
-    @improve T14353 rename to DpToggle
-  -->
-</documentation>
-
 <template>
   <span
     class="toggle-wrapper"

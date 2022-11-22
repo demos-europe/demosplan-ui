@@ -1,15 +1,3 @@
-<documentation>
-  <!--
-
-  The DpContextualHelp component renders an icon indicating contextual help,
-  which shows a tooltip able to handle text or html content.
-
-  -->
-  <usage>
-    <dp-contextual-help :text="Translator.trans('statements.import.hint')" />
-  </usage>
-</documentation>
-
 <script>
 export default {
   name: 'DpContextualHelp',

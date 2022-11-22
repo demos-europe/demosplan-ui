@@ -1,7 +1,3 @@
-<documentation>
-  <!-- This component contains a button that, when clicked, makes an input field appear -->
-</documentation>
-
 <template>
   <div>
     <ul

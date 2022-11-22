@@ -1,16 +1,3 @@
-<documentation>
-  <!--
-    It renders an fontawesome Icon with a tooltip
-  -->
-  <usage>
-    <dp-tooltip-icon
-      icon="fa-trash"
-      text="some translated String"
-      large="true|false (adds the class fa-lg)"
-    ></dp-tooltip-icon>
-  </usage>
-</documentation>
-
 <template>
   <i
     class="fa"

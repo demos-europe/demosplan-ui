@@ -1,14 +1,3 @@
-<documentation>
-<!--
-An Inputfield wich comes with an dismiss-icon if there is some Text typed.
-
-Clicking the dismiss-"x" emits "reset".
-
-To provide the interface for dpInput all configuration attributes for the input can be passed via `inputAttributes`.
-
--->
-</documentation>
-
 <template>
   <div class="position--relative">
     <dp-input

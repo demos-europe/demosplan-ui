@@ -1,12 +1,3 @@
-<documentation>
-  <!-- This component initializes a SideNav instance and contains a minimal template (mostly for the closing button)
-    closing happens via data-slidebar-hide attribute; opening happens via emitted event instead of data-slidebar-show attribute
-    because sidenav may be initialized before corresponding DOM elements exist
-
-    Put content inside the default slot
-   -->
-</documentation>
-
 <template>
   <div
     class="c-slidebar u-pr-0"

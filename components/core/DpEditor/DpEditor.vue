@@ -1,32 +1,3 @@
-<documentation>
-  <!-- DpEditor component
-      - contains menubar with a number of buttons and an editor
-      - use this component without the inline-editing-wrapper TiptapEditText.vue if you want to add a text editor to a form element (as in new statement view)
-      - use this component with the inline-editing-wrapper TiptapEditText.vue if you want to save the text directly via inline-editing (as in assessment table)
-      - the editor-content component needs a prop with editor instance to work correctly
-
-      To properly set the content we have to update this.currentValue and use editor.setContent() - both actions are needed!
-      To use boilerplates we need to mount tiptap editor, where boilerplate modal is imported dynamically. The boilerplates are stored in boilerplates vuex store, which is also registered dynamically if boilerplate prop is specified.
-
-      Possible component props:
-
-      boilerPlate - add it if you want to have boilerplate button in editor menu. Prop value should be a string with boilerplate category (email/consideration/news.notes): boiler-plate="email"
-      editorId - to identify it in boilerplates modal
-      procedureId
-      hiddenInput - to send data with submit form action we sometimes need to have a hidden input with tiptap's content. If the hidden input should be added, the prop should be a string with input name (e.g. r_name),
-      obscure - set to true if you want to use the 'obscure text' button. if the permission is not activated the button will not be shown anyay
-      value - initial editor's value
-      required - determine if hidden input is required, used in with dp-validate-plugin
-      linkButton - define if a button to add links should be visible in menu
-      readonly - true/false
-      headings - determine which heading level (h1-h6) buttons should be visible in menu. It is an array with numbers , e.g. [1,2,3,4,5,6]
-      table - true/false - if tables should be supported and buttons for inserting tables should be added this prop has to be true
-
-     To use tiptap import the component dynamically: components = { DpEditor: () => import('@DpJs/components/core/DpEditor/DpEditor') } }
-
-   -->
-</documentation>
-
 <template>
   <div class="o-form__control-tiptap">
     <div

@@ -1,23 +1,3 @@
-<documentation>
-    <usage variant="Without Ajax">
-        <dp-height-limit
-            :short="shortText"
-            :full="fullText"
-            no-event
-            :element="element"
-        ></dp-height-limit>
-    </usage>
-
-    <usage variant="With Ajax">
-        <dp-height-limit
-            :short="shortText"
-            :full="fullText"
-            no-event
-            :element="element"
-        ></dp-height-limit>
-    </usage>
-</documentation>
-
 <template>
   <div class="overflow-word-break overflow-x-auto">
     <dp-text-wrapper :text="currentText !== '' ? currentText : ' '" />

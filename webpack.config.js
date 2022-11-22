@@ -18,7 +18,8 @@ const config = {
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: { '@DpJs': path.resolve(__dirname, "../client/js") }
   },
   plugins: [
     new MiniCssExtractPlugin(),

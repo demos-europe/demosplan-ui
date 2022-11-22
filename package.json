@@ -51,7 +51,7 @@
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "style-loader": "^3.3.1",
-    "vue-loader": "^17.0.1",
+    "vue-loader": "^15",
     "vue-template-compiler": "^2.7.14",
     "webpack-cli": "^5.0.0"
   },

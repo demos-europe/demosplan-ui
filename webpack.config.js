@@ -41,10 +41,10 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use: [ 
-          'vue-style-loader', 
-          stylesHandler, 
-          "css-loader", 
+        use: [
+          'vue-style-loader',
+          stylesHandler,
+          "css-loader",
           "postcss-loader"
         ],
       },

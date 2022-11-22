@@ -1,12 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <documentation>
   <!--
    This is the generic multiselect functional component for vue instances. It is a DPlan wrapper for vue-multiselect: https://github.com/shentao/vue-multiselect

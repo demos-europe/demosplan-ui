@@ -1,12 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <documentation>
 
 <!--  can toggle itself via the toggle method, but can also be toggled from outside (e.g. via a save or abort button)

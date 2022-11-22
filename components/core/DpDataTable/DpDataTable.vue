@@ -1,12 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <documentation>
   <!-- The most simple way to use DpDataTable is the following -->
   <!-- NOTICE: the elements in the items array must have a key which matches a field in the header-fields array -->

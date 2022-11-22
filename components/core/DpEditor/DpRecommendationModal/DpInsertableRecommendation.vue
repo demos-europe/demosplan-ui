@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../../directives'
+import { CleanHtml } from '../../../../'
 
 // This number is used to shorten long texts.
 const SHORT_TEXT_CHAR_LENGTH = 300

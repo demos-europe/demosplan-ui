@@ -1927,10 +1927,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@demos-europe/demosplan-utils@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@demos-europe/demosplan-utils/-/demosplan-utils-0.0.2.tgz#d5b9a7085217092d6c01fcd545eaa5bed89d4e89"
-  integrity sha512-G2MIKAy7lK6XlAfolEPi/S6h4lGnb9WK/RV4WUCu8QudLOziYCCm5D7eirj6wxD4ucBDI0VrG7rjoqD9QOAWCg==
+"@demos-europe/demosplan-utils@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@demos-europe/demosplan-utils/-/demosplan-utils-0.0.3.tgz#069413f73d54932669ee62eb995a5d13e3298a97"
+  integrity sha512-N+yWMK91g04RKEQs+rfkmYo7rkektXM3KOVO2GWSi3YGrUJOaABYcHBfOULeDxkqeamIES5t4mRotANf1Cl4gA==
   dependencies:
     axios "^0.27.2"
     qs "^6.11.0"

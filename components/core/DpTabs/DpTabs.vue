@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../directives'
+import { CleanHtml } from '../../../'
 
 export default {
   name: 'DpTabs',

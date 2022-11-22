@@ -402,7 +402,7 @@ import {
   EditorMenuBar // Renderless menubar
 } from 'tiptap'
 
-import { CleanHtml } from '../../../directives'
+import { CleanHtml } from '../../../'
 import { createSuggestion } from './libs/editorBuildSuggestion'
 import { DpIcon } from '../../index'
 import EditorCustomDelete from './libs/editorCustomDelete'

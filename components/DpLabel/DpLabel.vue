@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
+import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
 import { de } from '../shared/translations'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpLabel',

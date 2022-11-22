@@ -8,7 +8,7 @@
 </license>
 
 <script>
-import { prefixClass } from '../../lib'
+import { prefixClass } from '../../'
 import SlidingPagination from 'vue-sliding-pagination'
 
 export default {

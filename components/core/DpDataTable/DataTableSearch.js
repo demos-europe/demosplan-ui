@@ -1,13 +1,4 @@
 /**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package @demos-europe/demosplan-ui,
- * for more information see the license file.
- *
- * All rights reserved
- */
-
-/**
  *
  * @param searchterm String | is the term that should be searched
  * @param items Array | is an array of objects that should be searched

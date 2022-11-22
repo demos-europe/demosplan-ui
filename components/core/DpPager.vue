@@ -1,29 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--
-    This is a wrapper for the dp-sliding-pagination component that adds a itemsPerPage Box
-  -->
-  <usage>
-    <dp-pager
-      current-page="pagination.current_page"
-      total-pages="pagination.total_pages"
-      total-items="pagination.total"
-      per-page="pagination.count"
-      limits="pagination.limits"
-      @page-change="handlePageChange"
-      @size-change="handleSizeChange"
-    ></dp-pager>
-  </usage>
-</documentation>
-
 <template>
   <div class="c-pager__dropdown">
     <label

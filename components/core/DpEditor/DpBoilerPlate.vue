@@ -1,18 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!--This component contains a multiselect to insert a boilerplate into a textarea
-      It receives the boilerplates as a prop.
-      -->
-</documentation>
-
 <template>
   <div>
     <!-- Select boilerplate -->

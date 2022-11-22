@@ -1,12 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <template>
   <label
     :class="prefixClass(['o-form__label flex', bold ? 'weight--bold' : 'weight--normal', hints.length > 0 ? 'has-hint' : ''])"

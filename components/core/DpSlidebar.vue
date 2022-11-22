@@ -1,21 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!-- This component initializes a SideNav instance and contains a minimal template (mostly for the closing button)
-    closing happens via data-slidebar-hide attribute; opening happens via emitted event instead of data-slidebar-show attribute
-    because sidenav may be initialized before corresponding DOM elements exist
-
-    Put content inside the default slot
-   -->
-</documentation>
-
 <template>
   <div
     class="c-slidebar u-pr-0"

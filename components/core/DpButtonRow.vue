@@ -1,39 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
-<documentation>
-  <!-- This component contains a button row, currently with save and abort buttons. -->
-  <usage>
-    <dp-button-row
-      :busy="isLoading"
-      primary
-      secondary
-      @primary-action="save"
-      @secondary-action="reset" />
-  </usage>
-
-  <usage variant="with slot and third button">
-    <dp-button-row
-      :busy="isLoading"
-      primary
-      secondary
-      @primary-action="save"
-      @secondary-action="reset">
-      <dp-button
-        class="u-ml-0_5"
-        color="secondary"
-        :text="Translator.trans('close')"
-        @click="closeAndCancel" />
-    </dp-button-row>
-  </usage>
-</documentation>
-
 <template>
   <div
     :class="[`text--${align}`, $attrs.class]"

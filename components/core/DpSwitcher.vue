@@ -1,12 +1,3 @@
-<license>
-  (c) 2010-present DEMOS E-Partizipation GmbH.
-
-  This file is part of the package @demos-europe/demosplan-ui,
-  for more information see the license file.
-
-  All rights reserved
-</license>
-
 <!--
 This component is the generic switcher (toggle) component. It toggles the view/values between two states. The two options (states) are defined in parent with slots: option1 and option2.
 If the first option is checked, the data: isFirstOptionActive = true. On click the toggle method emits the 'input' event to the parent.

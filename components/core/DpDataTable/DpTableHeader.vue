@@ -8,7 +8,7 @@
 </license>
 
 <script>
-import { DpIcon } from '../index'
+import { DpIcon } from '../../'
 import DpWrapTrigger from './DpWrapTrigger'
 import { hasOwnProp } from '@demos-europe/demosplan-utils'
 import { renderResizeWrapper } from './lib/ResizableColumns'

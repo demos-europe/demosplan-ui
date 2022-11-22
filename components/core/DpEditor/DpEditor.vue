@@ -404,7 +404,7 @@ import {
 
 import { CleanHtml } from '../../../'
 import { createSuggestion } from './libs/editorBuildSuggestion'
-import { DpIcon } from '../../index'
+import { DpIcon } from '../../'
 import EditorCustomDelete from './libs/editorCustomDelete'
 import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'
@@ -414,7 +414,7 @@ import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/lengthHint'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpEditor',

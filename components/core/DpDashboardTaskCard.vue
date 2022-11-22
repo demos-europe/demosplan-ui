@@ -25,8 +25,8 @@
 
 <script>
 import { checkResponse, dpApi } from '@demos-europe/demosplan-utils'
-import { CleanHtml } from '../../directives/index'
-import { DpButton } from '../index'
+import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { DpButton } from '../'
 import DpCard from './DpCard'
 
 export default {

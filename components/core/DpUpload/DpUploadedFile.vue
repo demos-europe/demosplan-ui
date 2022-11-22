@@ -41,7 +41,7 @@
 
 <script>
 import { getFileInfo } from '@demos-europe/demosplan-utils'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpUploadedFile',

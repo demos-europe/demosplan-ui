@@ -40,7 +40,7 @@
 
 <script>
 import { hasOwnProp, SideNav } from '@demos-europe/demosplan-utils'
-import { DpIcon } from '../index'
+import { DpIcon } from '../'
 
 export default {
   name: 'DpSlidebar',

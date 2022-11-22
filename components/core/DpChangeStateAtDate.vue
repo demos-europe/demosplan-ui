@@ -94,7 +94,7 @@
 <script>
 import { formatDate, toDate } from '@demos-europe/demosplan-utils'
 import DpDatepicker from './form/DpDatepicker'
-import { DpLabel } from '../index'
+import { DpLabel } from '../'
 import DpSelect from './form/DpSelect'
 
 export default {

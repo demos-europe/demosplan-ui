@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { DpLabel } from '../index'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
+import { DpLabel } from '../../'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpSelect',

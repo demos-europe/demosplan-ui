@@ -57,7 +57,7 @@ export default {
   components: {
     DpDatepicker,
     DpLabel: async () => {
-      const { DpLabel } = await import('../index')
+      const { DpLabel } = await import('../')
       return DpLabel
     },
     DpTimePicker

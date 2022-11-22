@@ -8,7 +8,7 @@
 </license>
 
 <script>
-import { DpLoading } from '../index'
+import { DpLoading } from '../'
 
 export default {
   name: 'DpTextWrapper',

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { DpIcon } from '../index'
+import { DpIcon } from '../../'
 
 export default {
   name: 'DpWrapTrigger',

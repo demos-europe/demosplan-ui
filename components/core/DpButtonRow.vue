@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { DpButton } from '../index'
+import { DpButton } from '../'
 
 export default {
   name: 'DpButtonRow',

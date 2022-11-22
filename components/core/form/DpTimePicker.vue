@@ -96,11 +96,11 @@ export default {
 
   components: {
     DpInput: async () => {
-      const { DpInput } = await import('../index')
+      const { DpInput } = await import('../')
       return DpInput
     },
     DpLabel: async () => {
-      const { DpLabel } = await import('../index')
+      const { DpLabel } = await import('../')
       return DpLabel
     },
     DpResettableInput: () => import('../DpResettableInput')

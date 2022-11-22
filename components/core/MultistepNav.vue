@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { prefixClassMixin } from '@demos-europe/demosplan-utils/mixins'
+import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'MultistepNav',

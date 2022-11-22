@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../directives'
+import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DpMultiselect from '../form/DpMultiselect'
 
 export default {

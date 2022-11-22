@@ -46,7 +46,7 @@ To provide the interface for dpInput all configuration attributes for the input 
 </template>
 
 <script>
-import { DpIcon, DpInput } from '../index'
+import { DpIcon, DpInput } from '../'
 
 export default {
   name: 'DpResettableInput',

@@ -67,9 +67,9 @@
 </documentation>
 
 <script>
-import { CleanHtml } from '../../../directives'
+import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
-import { DpLoading } from '../../index'
+import { DpLoading } from '../../'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import draggable from 'vuedraggable'

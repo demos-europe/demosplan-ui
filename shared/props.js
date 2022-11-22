@@ -1,13 +1,4 @@
 /**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package @demos-europe/demosplan-ui,
- * for more information see the license file.
- *
- * All rights reserved
- */
-
-/**
  * Props that are shared between multiple Vue form components.
  *
  * The prop `maxlength` is implemented as a factory function with no params - actually it could also be

@@ -1,12 +1,3 @@
-/**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package @demos-europe/demosplan-ui,
- * for more information see the license file.
- *
- * All rights reserved
- */
-
 /*
  * This is the anonymize-extension for tiptap, built on the basis of tiptap bold-extension.
  * On mark-anonymize in tiptap, we wrap up the marked content in <span class='anonymize'></span> tags, and then before

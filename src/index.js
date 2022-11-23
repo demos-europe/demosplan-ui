@@ -1,8 +1,9 @@
-import { Tooltip, VPopover } from './src/directives/'
-import { CleanHtml } from './src/directives/'
-import { prefixClass } from './src/lib/'
-import { prefixClassMixin } from './src/mixins/'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './src/utils/'
+import { Tooltip, VPopover } from './directives/'
+import { CleanHtml } from './directives/'
+import { prefixClass } from './lib/'
+import { prefixClassMixin } from './mixins/'
+import { exactlengthHint, maxlengthHint, minlengthHint } from './utils/'
+import {attributes, length} from './shared/'
 import {
   DpButton,
   DpDetails,
@@ -70,7 +71,7 @@ import {
   DpVideoPlayer,
   getFileIdsByHash,
   MultistepNav
-} from './src/components/'
+} from './components/'
 
 export default {
   DpButton,

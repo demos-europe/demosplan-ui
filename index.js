@@ -1,32 +1,150 @@
-/**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package @demos-europe/demosplan-ui,
- * for more information see the license file.
- *
- * All rights reserved
- */
 import { Tooltip, VPopover } from './directives/Tooltip/Tooltip'
 import { CleanHtml } from './directives/CleanHtml/CleanHtml'
-import DpButton from './components/DpButton/DpButton'
-import DpDetails from './components/DpDetails/DpDetails'
-import DpIcon from './components/DpIcon/DpIcon'
-import DpInput from './components/DpInput/DpInput'
-import DpLabel from './components/DpLabel/DpLabel'
-import DpLoading from './components/DpLoading/DpLoading'
 import prefixClass from './lib/prefixClass'
 import prefixClassMixin from './mixins/prefixClassMixin'
 
-export {
-  CleanHtml,
+import {DpButton} from './src/components/'
+import {DpDetails} from './src/components/'
+import {DpIcon} from './src/components/'
+import {DpInput} from './src/components/'
+import {DpLabel} from './src/components/'
+import {DpLoading} from './src/components/'
+import {
+  dataTableSearch,
+  DpAccordion,
+  DpAnonymizeText,
+  DpAutocomplete,
+  DpBulkEditHeader,
+  DpButtonIcon,
+  DpButtonRow,
+  DpCard,
+  DpChangeStateAtDate,
+  DpCheckbox,
+  DpCheckboxGroup,
+  DpColumnSelector,
+  DpContextualHelp,
+  DpCopyPasteButton,
+  DpDashboardTaskCard,
+  DpDataTable,
+  DpDataTableExtended,
+  DpDatepicker,
+  DpDateRangePicker,
+  DpDatetimePicker,
+  DpEditableList,
+  DpEditor,
+  DpFlyout,
+  DpFormRow,
+  DpHeightLimit,
+  DpInlineNotification,
+  DpModal,
+  DpMultiselect,
+  DpNotifyContainer,
+  DpObscure,
+  DpPager,
+  DpProgressBar,
+  DpRadio,
+  DpRegisterFlyout,
+  DpResettableInput,
+  DpSearchField,
+  DpSelect,
+  DpSelectPageItemCount,
+  DpSkeletonBox,
+  DpSlidebar,
+  DpSlidingPagination,
+  DpSplitButton,
+  DpStickyElement,
+  DpSwitcher,
+  DpTab,
+  DpTableCard,
+  DpTableCardListHeader,
+  DpTabs,
+  DpTextArea,
+  DpTextWrapper,
+  DpTimePicker,
+  DpToggle,
+  DpToggleForm,
+  DpTooltipIcon,
+  DpTransitionExpand,
+  DpTreeList,
+  DpUploadFiles,
+  DpVideoPlayer,
+  getFileIdsByHash,
+  MultistepNav
+} from './src/components/'
+
+export default {
   DpButton,
   DpDetails,
   DpIcon,
   DpInput,
   DpLabel,
   DpLoading,
+  dataTableSearch,
+  DpAccordion,
+  DpAnonymizeText,
+  DpAutocomplete,
+  DpBulkEditHeader,
+  DpButtonIcon,
+  DpButtonRow,
+  DpCard,
+  DpChangeStateAtDate,
+  DpCheckbox,
+  DpCheckboxGroup,
+  DpColumnSelector,
+  DpContextualHelp,
+  DpCopyPasteButton,
+  DpDashboardTaskCard,
+  DpDataTable,
+  DpDataTableExtended,
+  DpDatepicker,
+  DpDateRangePicker,
+  DpDatetimePicker,
+  DpEditableList,
+  DpEditor,
+  DpFlyout,
+  DpFormRow,
+  DpHeightLimit,
+  DpInlineNotification,
+  DpModal,
+  DpMultiselect,
+  DpNotifyContainer,
+  DpObscure,
+  DpPager,
+  DpProgressBar,
+  DpRadio,
+  DpRegisterFlyout,
+  DpResettableInput,
+  DpSearchField,
+  DpSelect,
+  DpSelectPageItemCount,
+  DpSkeletonBox,
+  DpSlidebar,
+  DpSlidingPagination,
+  DpSplitButton,
+  DpStickyElement,
+  DpSwitcher,
+  DpTab,
+  DpTableCard,
+  DpTableCardListHeader,
+  DpTabs,
+  DpTextArea,
+  DpTextWrapper,
+  DpTimePicker,
+  DpToggle,
+  DpToggleForm,
+  DpTooltipIcon,
+  DpTransitionExpand,
+  DpTreeList,
+  DpUploadFiles,
+  DpVideoPlayer,
+  getFileIdsByHash,
+  MultistepNav,
+
+
+  CleanHtml,
   prefixClass,
   prefixClassMixin,
   Tooltip,
   VPopover
 }
+

@@ -12,7 +12,7 @@ function resolve (dir) {
 
 const config = {
   entry: [
-    resolve('./components/index.js')
+    resolve('./index.js')
   ],
   output: {
     path: path.resolve(__dirname, "dist"),

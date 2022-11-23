@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { attributes, length } from '../../../shared/props'
+import { attributes, length } from '../../../shared/'
 import { maxlengthHint } from '../../../utils/'
 
 export default {

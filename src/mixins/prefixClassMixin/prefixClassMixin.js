@@ -3,7 +3,7 @@
  *
  * @deprecated USe prefixClassMixin from demosplan-utils instead
  */
-import prefixClass from '../lib/prefixClass'
+import { prefixClass } from '../../lib/'
 
 export default {
   methods: {

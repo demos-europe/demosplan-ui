@@ -1,5 +1,5 @@
-import { Tooltip, VPopover } from './directives/Tooltip/Tooltip'
-import { CleanHtml } from './directives/CleanHtml/CleanHtml'
+import { Tooltip, VPopover } from './src/directives/'
+import { CleanHtml } from './src/directives/'
 import { prefixClass } from './src/lib/'
 import { prefixClassMixin } from './src/mixins/'
 import { exactlengthHint, maxlengthHint, minlengthHint } from './src/utils/'

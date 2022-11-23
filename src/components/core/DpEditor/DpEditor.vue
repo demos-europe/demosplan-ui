@@ -364,7 +364,7 @@ import {
   EditorMenuBar // Renderless menubar
 } from 'tiptap'
 
-import { CleanHtml } from '../../../'
+import { CleanHtml } from '../../../directives/'
 import { createSuggestion } from './libs/editorBuildSuggestion'
 import { DpIcon } from '../../'
 import EditorCustomDelete from './libs/editorCustomDelete'

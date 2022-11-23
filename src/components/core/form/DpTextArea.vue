@@ -20,7 +20,7 @@
 
 <script>
 import { attributes, length } from '../../../shared/props'
-import { maxlengthHint } from '../../../utils/lengthHint'
+import { maxlengthHint } from '../../../utils/'
 
 export default {
   name: 'DpTextArea',

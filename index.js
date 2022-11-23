@@ -3,6 +3,8 @@ import { CleanHtml } from './directives/CleanHtml/CleanHtml'
 import prefixClass from './lib/prefixClass'
 import prefixClassMixin from './mixins/prefixClassMixin'
 
+import { exactlengthHint, maxlengthHint, minlengthHint } from './src/utils/'
+
 import {DpButton} from './src/components/'
 import {DpDetails} from './src/components/'
 import {DpIcon} from './src/components/'
@@ -140,11 +142,14 @@ export default {
   getFileIdsByHash,
   MultistepNav,
 
-
   CleanHtml,
   prefixClass,
   prefixClassMixin,
   Tooltip,
-  VPopover
+  VPopover,
+
+  exactlengthHint,
+  maxlengthHint,
+  minlengthHint
 }
 

@@ -3,14 +3,13 @@ import { CleanHtml } from './src/directives/'
 import { prefixClass } from './src/lib/'
 import { prefixClassMixin } from './src/mixins/'
 import { exactlengthHint, maxlengthHint, minlengthHint } from './src/utils/'
-
-import {DpButton} from './src/components/'
-import {DpDetails} from './src/components/'
-import {DpIcon} from './src/components/'
-import {DpInput} from './src/components/'
-import {DpLabel} from './src/components/'
-import {DpLoading} from './src/components/'
 import {
+  DpButton,
+  DpDetails,
+  DpIcon,
+  DpInput,
+  DpLabel,
+  DpLoading,
   dataTableSearch,
   DpAccordion,
   DpAnonymizeText,
@@ -140,13 +139,11 @@ export default {
   DpVideoPlayer,
   getFileIdsByHash,
   MultistepNav,
-
   CleanHtml,
   prefixClass,
   prefixClassMixin,
   Tooltip,
   VPopover,
-
   exactlengthHint,
   maxlengthHint,
   minlengthHint

@@ -1,12 +1,13 @@
 {
-  "name": "demosplan-ui",
-  "version": "1.0.0",
+  "name": "@demos-europe/demosplan-ui",
+  "version": "0.0.2",
   "license": "MIT",
   "private": false,
-  "description": "demosplan-ui is a vue component library",
+  "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
+  "main": "./dist/demosplan-ui.umd.js",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
-    "@demos-europe/demosplan-utils": "^0.0.2",
+    "@demos-europe/demosplan-utils": "^0.0.3",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",

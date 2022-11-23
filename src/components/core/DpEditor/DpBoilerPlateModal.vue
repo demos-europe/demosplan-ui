@@ -32,7 +32,6 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import BoilerplatesStore from '@DpJs/store/procedure/Boilerplates'
 import DpBoilerPlate from './DpBoilerPlate'
 import DpButtonRow from '../DpButtonRow'
 import DpModal from '../DpModal'
@@ -129,12 +128,6 @@ export default {
   },
 
   created () {
-    const isRegistered = this.$store && hasOwnProp(this.$store.state, 'boilerplates')
-
-    if (isRegistered === false) {
-      this.$store.registerModule('boilerplates', BoilerplatesStore)
-    }
-
     if (this.getBoilerplatesRequestFired === false) {
       this.getBoilerPlates(this.procedureId)
     }

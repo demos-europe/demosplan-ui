@@ -22,8 +22,7 @@ const config = {
     },
   },
   resolve: {
-    extensions: ['.js', '.vue'],
-    alias: { '@DpJs': path.resolve(__dirname, "../client/js") }
+    extensions: ['.js', '.vue']
   },
   plugins: [
     new MiniCssExtractPlugin(),

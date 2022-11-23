@@ -1,9 +1,8 @@
+import { attributes, length } from './shared/'
+import { exactlengthHint, maxlengthHint, minlengthHint } from './utils/'
 import { Tooltip, VPopover } from './directives/'
 import { CleanHtml } from './directives/'
-import { prefixClass } from './lib/'
-import { prefixClassMixin } from './mixins/'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './utils/'
-import {attributes, length} from './shared/'
+
 import {
   DpButton,
   DpDetails,
@@ -73,7 +72,12 @@ import {
   MultistepNav
 } from './components/'
 
+import { prefixClass } from './lib/'
+import { prefixClassMixin } from './mixins/'
+
 export default {
+  attributes,
+  length,
   DpButton,
   DpDetails,
   DpIcon,

@@ -16,6 +16,10 @@ const config = {
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
+    filename: 'demosplan-ui.umd.js',
+    library: {
+      type: 'umd'
+    },
   },
   resolve: {
     extensions: ['.js', '.vue'],

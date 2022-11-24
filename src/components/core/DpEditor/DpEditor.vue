@@ -366,7 +366,7 @@ import {
 
 import { CleanHtml } from '../../../directives/'
 import { createSuggestion } from './libs/editorBuildSuggestion'
-import { DpIcon } from '../../'
+import DpIcon from '../../DpIcon/DpIcon'
 import EditorCustomDelete from './libs/editorCustomDelete'
 import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'

@@ -27,8 +27,7 @@ export default {
 
   components: {
     DpLabel: async () => {
-      const { DpLabel } = await import('../')
-      return DpLabel
+      return await import('../../DpLabel/DpLabel')
     }
   },
 

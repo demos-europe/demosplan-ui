@@ -1,32 +1,53 @@
+<license>
+(c) 2010-present DEMOS E-Partizipation GmbH.
+
+This file is part of the package @demos-europe/demosplan-ui,
+for more information see the license file.
+
+All rights reserved
+</license>
+
+<documentation>
+<!--
+An Inputfield wich comes with an dismiss-icon if there is some Text typed.
+
+Clicking the dismiss-"x" emits "reset".
+
+To provide the interface for dpInput all configuration attributes for the input can be passed via `inputAttributes`.
+
+-->
+</documentation>
+
 <template>
   <div class="position--relative">
     <dp-input
-      :id="id"
-      :data-cy="dataCy"
-      has-icon
-      :required="required"
-      v-bind="inputAttributes"
-      @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
-      @enter="$emit('enter', currentValue)"
-      @focus="$emit('focus')"
-      :pattern="pattern"
-      v-model="currentValue" />
+        :id="id"
+        :data-cy="dataCy"
+        has-icon
+        :required="required"
+        v-bind="inputAttributes"
+        @blur="$emit('blur', currentValue)"
+        @input="$emit('input', currentValue)"
+        @enter="$emit('enter', currentValue)"
+        @focus="$emit('focus')"
+        :pattern="pattern"
+        v-model="currentValue" />
     <button
-      v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default"
-      :class="buttonClass"
-      :disabled="currentValue === defaultValue"
-      @click="resetValue">
+        v-if="!inputAttributes.disabled"
+        class="btn--blank o-link--default"
+        :class="buttonClass"
+        :disabled="currentValue === defaultValue"
+        @click="resetValue">
       <dp-icon
-        icon="xmark"
-        :size="iconSize" />
+          icon="xmark"
+          :size="iconSize" />
     </button>
   </div>
 </template>
 
 <script>
-import { DpIcon, DpInput } from '../'
+import DpIcon from '../DpIcon/DpIcon'
+import DpInput from '../DpInput/DpInput'
 
 export default {
   name: 'DpResettableInput',

@@ -7,7 +7,7 @@
   "main": "./dist/demosplan-ui.umd.js",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
-    "@demos-europe/demosplan-utils": "^0.0.3",
+    "@demos-europe/demosplan-utils": "github:demos-europe/demosplan-js-utils#main",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",
@@ -44,6 +44,8 @@
     "@webpack-cli/generators": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
     "css-loader": "^6.7.2",
     "js-beautify": "^1.14.7",
     "mini-css-extract-plugin": "^2.7.0",
@@ -56,15 +58,6 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "loose": true,
-        "modules": "umd"
-      }
-    ]
-  ],
   "scripts": {
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",

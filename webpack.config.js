@@ -17,12 +17,10 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'demosplan-ui.umd.js',
-    library: {
-      type: 'umd'
-    },
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    symlinks: false
   },
   plugins: [
     new MiniCssExtractPlugin(),
@@ -37,11 +35,11 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         loader: "babel-loader",
+        exclude: /(node_modules)/
       },
       {
         test: /\.css$/i,
         use: [
-          'vue-style-loader',
           stylesHandler,
           "css-loader",
           "postcss-loader"

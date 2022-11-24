@@ -11,12 +11,13 @@ function resolve (dir) {
 }
 
 const config = {
-  entry: [
-    resolve('./src/index.js')
-  ],
+  entry: resolve('./src/index.js'),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'demosplan-ui.umd.js',
+    library: '@demos-europe/demosplan-ui',
+    libraryTarget: 'umd',
+    libraryExport: "default"
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -34,8 +35,8 @@ const config = {
       },
       {
         test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
-        exclude: /(node_modules)/
+        exclude: /(node_modules)/,
+        loader: "babel-loader"
       },
       {
         test: /\.css$/i,

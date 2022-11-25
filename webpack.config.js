@@ -17,7 +17,7 @@ const config = {
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
-    libraryExport: "default"
+    libraryExport: 'default'
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -35,20 +35,20 @@ const config = {
       },
       {
         test: /\.(js|jsx)$/i,
-        exclude: /(node_modules)/,
-        loader: "babel-loader"
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/i,
         use: [
           stylesHandler,
-          "css-loader",
-          "postcss-loader"
+          'css-loader',
+          'postcss-loader'
         ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset',
       },
     ],
   },
@@ -56,9 +56,9 @@ const config = {
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = "production";
+    config.mode = 'production';
   } else {
-    config.mode = "development";
+    config.mode = 'development';
   }
   return config;
 };

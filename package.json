@@ -62,7 +62,7 @@
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",
     "build-tokens": "node buildTokens.js",
-    "prepublish": "yarn build && yarn build-tokens",
+    "postinstall": "yarn build && yarn build-tokens",
     "storybook": "start-storybook -p 6006",
     "build": "webpack --mode=production --define-process-env-node-env=production",
     "build:dev": "webpack --mode=development",

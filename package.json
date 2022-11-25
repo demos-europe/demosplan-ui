@@ -64,7 +64,7 @@
     "build-tokens": "node buildTokens.js",
     "postinstall": "yarn build && yarn build-tokens",
     "storybook": "start-storybook -p 6006",
-    "build": "@build:prod",
+    "build": "build:prod",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch"

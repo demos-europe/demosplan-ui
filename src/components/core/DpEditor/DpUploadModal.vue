@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { DpInput } from '../../'
+import DpInput from '../../DpInput/DpInput'
 import DpModal from '../DpModal'
 import DpUploadFiles from '../DpUpload/DpUploadFiles'
 

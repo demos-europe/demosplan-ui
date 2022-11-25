@@ -19,14 +19,15 @@
       :disabled="currentValue === defaultValue"
       @click="resetValue">
       <dp-icon
-        icon="xmark"
-        :size="iconSize" />
+          icon="xmark"
+          :size="iconSize" />
     </button>
   </div>
 </template>
 
 <script>
-import { DpIcon, DpInput } from '../'
+import DpIcon from '../DpIcon/DpIcon'
+import DpInput from '../DpInput/DpInput'
 
 export default {
   name: 'DpResettableInput',

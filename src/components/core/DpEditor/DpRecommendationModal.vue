@@ -56,10 +56,11 @@
 </template>
 
 <script>
-import { DpLabel, DpLoading } from '../../'
 import { mapMutations, mapState } from 'vuex'
-import dataTableSearch from '../DpDataTable/DataTableSearch'
 import { dpApi } from '@demos-europe/demosplan-utils'
+import dataTableSearch from '../DpDataTable/DataTableSearch'
+import DpLabel from '../../DpLabel/DpLabel'
+import DpLoading from '../../DpLoading/DpLoading'
 import DpInsertableRecommendation from './DpRecommendationModal/DpInsertableRecommendation'
 import DpModal from '../DpModal'
 import DpSearchField from '../form/DpSearchField'

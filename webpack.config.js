@@ -11,18 +11,17 @@ function resolve (dir) {
 }
 
 const config = {
-  entry: [
-    resolve('./src/index.js')
-  ],
+  entry: resolve('./src/index.js'),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'demosplan-ui.umd.js',
-    library: {
-      type: 'umd'
-    },
+    library: '@demos-europe/demosplan-ui',
+    libraryTarget: 'umd',
+    libraryExport: 'default'
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    symlinks: false
   },
   plugins: [
     new MiniCssExtractPlugin(),
@@ -36,20 +35,20 @@ const config = {
       },
       {
         test: /\.(js|jsx)$/i,
-        loader: "babel-loader",
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/i,
         use: [
-          'vue-style-loader',
           stylesHandler,
-          "css-loader",
-          "postcss-loader"
+          'css-loader',
+          'postcss-loader'
         ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        type: 'asset',
       },
     ],
   },
@@ -57,9 +56,9 @@ const config = {
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = "production";
+    config.mode = 'production';
   } else {
-    config.mode = "development";
+    config.mode = 'development';
   }
   return config;
 };

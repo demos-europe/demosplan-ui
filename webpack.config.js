@@ -12,13 +12,6 @@ function resolve (dir) {
 
 const config = {
   entry: resolve('./src/index.js'),
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: 'demosplan-ui.umd.js',
-    library: '@demos-europe/demosplan-ui',
-    libraryTarget: 'umd',
-    libraryExport: 'default'
-  },
   resolve: {
     extensions: ['.js', '.vue'],
     symlinks: false
@@ -54,11 +47,39 @@ const config = {
   },
 };
 
+const esmConfig = {
+  ...config,
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: 'demosplan-ui.esm.js',
+    library: '@demos-europe/demosplan-ui',
+    libraryExport: 'default'
+  },
+}
+
+const umdConfig = {
+  ...config,
+  experiments: {
+    outputModule: true,
+  },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: 'demosplan-ui.umd.js',
+    library: {
+      type: 'module',
+      export: 'default',
+      umdNamedDefine: true,
+    }
+  },
+}
+
 module.exports = () => {
   if (isProduction) {
-    config.mode = 'production';
+    umdConfig.mode = 'production';
+    esmConfig.mode = 'production';
   } else {
-    config.mode = 'development';
+    umdConfig.mode = 'development';
+    esmConfig.mode = 'development';
   }
-  return config;
+  return [umdConfig];
 };

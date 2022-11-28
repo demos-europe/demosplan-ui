@@ -20,6 +20,18 @@ const config = {
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),
   ],
+  experiments: {
+    outputModule: true,
+  },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: 'demosplan-ui.umd.js',
+    library: {
+      type: 'module',
+      export: 'default',
+      umdNamedDefine: true,
+    }
+  },
   module: {
     rules: [
       {
@@ -47,39 +59,12 @@ const config = {
   },
 };
 
-const esmConfig = {
-  ...config,
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: 'demosplan-ui.esm.js',
-    library: '@demos-europe/demosplan-ui',
-    libraryExport: 'default'
-  },
-}
-
-const umdConfig = {
-  ...config,
-  experiments: {
-    outputModule: true,
-  },
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: 'demosplan-ui.umd.js',
-    library: {
-      type: 'module',
-      export: 'default',
-      umdNamedDefine: true,
-    }
-  },
-}
-
 module.exports = () => {
   if (isProduction) {
-    umdConfig.mode = 'production';
-    esmConfig.mode = 'production';
+    config.mode = 'production';
   } else {
-    umdConfig.mode = 'development';
-    esmConfig.mode = 'development';
+    config.mode = 'development';
   }
-  return [umdConfig];
+
+  return config;
 };

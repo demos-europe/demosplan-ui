@@ -45,6 +45,7 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DpMultiselect from '../form/DpMultiselect'
+import { Tooltip } from '../../../directives'
 
 export default {
   name: 'DpBoilerPlate',
@@ -53,7 +54,8 @@ export default {
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
+    tootip: Tooltip
   },
 
   props: {

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import Tooltip from './../../directives/Tooltip/Tooltip'
+
 export default {
   name: 'DpTooltipIcon',
 

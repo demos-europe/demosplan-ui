@@ -357,14 +357,12 @@ import {
   TableRow,
   Underline
 } from 'tiptap-extensions'
-
+import { CleanHtml, Tooltip } from '../../../directives/'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
   EditorMenuBar // Renderless menubar
 } from 'tiptap'
-
-import { CleanHtml } from '../../../directives/'
 import { createSuggestion } from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
 import EditorCustomDelete from './libs/editorCustomDelete'

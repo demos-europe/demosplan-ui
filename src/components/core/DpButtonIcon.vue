@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import Tooltip from './../../directives/Tooltip/Tooltip'
+
 export default {
   name: 'DpButtonIcon',
 
@@ -27,6 +29,10 @@ export default {
       type: String,
       required: true
     }
+  },
+
+  directives: {
+    tootip: Tooltip
   },
 
   computed: {

@@ -116,7 +116,7 @@ export default {
   },
 
   directives: {
-    tootip: Tooltip
+    tooltip: Tooltip
   },
 
   props: {

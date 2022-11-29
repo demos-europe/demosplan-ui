@@ -18,7 +18,7 @@ export default {
   },
 
   directives: {
-    tootip: Tooltip
+    tooltip: Tooltip
   },
 
   render: function (h, { props, data }) {

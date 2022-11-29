@@ -50,7 +50,7 @@ export default {
 
   directives: {
     cleanhtml: CleanHtml,
-    tootip: Tooltip
+    tooltip: Tooltip
   },
 
   props: {

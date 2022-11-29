@@ -1,5 +1,5 @@
 <script>
-import { Tooltip } from './../../directives'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'DpContextualHelp',

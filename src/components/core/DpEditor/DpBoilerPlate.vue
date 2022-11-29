@@ -43,9 +43,8 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
+import { CleanHtml, Tooltip } from '../../../directives'
 import DpMultiselect from '../form/DpMultiselect'
-import { Tooltip } from '../../../directives'
 
 export default {
   name: 'DpBoilerPlate',

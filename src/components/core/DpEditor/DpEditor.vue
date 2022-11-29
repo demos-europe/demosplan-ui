@@ -357,7 +357,7 @@ import {
   TableRow,
   Underline
 } from 'tiptap-extensions'
-import { CleanHtml, Tooltip } from '../../../directives/'
+import { CleanHtml, Tooltip } from '../../../directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
@@ -390,7 +390,8 @@ export default {
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
+    tootip: Tooltip
   },
 
   mixins: [prefixClassMixin],

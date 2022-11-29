@@ -12,17 +12,12 @@ function resolve (dir) {
 
 const config = {
   entry: resolve('./src/index.js'),
-  experiments: {
-    outputModule: true,
-  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'demosplan-ui.umd.js',
-    library: {
-      type: 'module',
-      export: 'default',
-      umdNamedDefine: true,
-    }
+    library: '@demos-europe/demosplan-ui',
+    libraryTarget: 'umd',
+    libraryExport: "default"
   },
   resolve: {
     extensions: ['.js', '.vue'],

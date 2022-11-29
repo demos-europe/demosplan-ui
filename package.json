@@ -7,7 +7,7 @@
   "main": "./dist/demosplan-ui.umd.js",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
-    "@demos-europe/demosplan-utils": "github:demos-europe/demosplan-js-utils#57b112bdfe54a0f0f870d7f46148fd9197d0e371",
+    "@demos-europe/demosplan-utils": "github:demos-europe/demosplan-js-utils#86b11570ce9287cd62457c8071cf959b1674a8bf",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",

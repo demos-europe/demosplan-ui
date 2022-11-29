@@ -12,14 +12,6 @@ function resolve (dir) {
 
 const config = {
   entry: resolve('./src/index.js'),
-  resolve: {
-    extensions: ['.js', '.vue'],
-    symlinks: false
-  },
-  plugins: [
-    new MiniCssExtractPlugin(),
-    new VueLoaderPlugin(),
-  ],
   experiments: {
     outputModule: true,
   },
@@ -32,6 +24,14 @@ const config = {
       umdNamedDefine: true,
     }
   },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    symlinks: false
+  },
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new VueLoaderPlugin(),
+  ],
   module: {
     rules: [
       {

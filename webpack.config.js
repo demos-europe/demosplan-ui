@@ -15,9 +15,11 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'demosplan-ui.umd.js',
-    library: '@demos-europe/demosplan-ui',
-    libraryTarget: 'umd',
-    libraryExport: "default"
+    library: {
+      name: '@demos-europe/demosplan-ui',
+      type: 'umd',
+      export: 'default'
+    }
   },
   resolve: {
     extensions: ['.js', '.vue'],

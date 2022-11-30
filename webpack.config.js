@@ -11,13 +11,6 @@ function resolve (dir) {
 }
 
 const config = {
-  externals: {
-    prosemirrorModel: "prosemirror-model",
-    prosemirrorBasic: "prosemirror-schema-basic",
-    prosemirrorList: "prosemirror-schema-list",
-    prosemirrorState: "prosemirror-state",
-    prosemirrorView: "prosemirror-view",
-  },
   entry: {
     'demosplan-ui.umd': {
       import: resolve('./src/index.js'),

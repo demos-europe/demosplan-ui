@@ -54,15 +54,20 @@
     "vue-template-compiler": "^2.7.14",
     "vuex": "^3.6.2",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
-  },
-  "bundledDependencies": {
+    "webpack-cli": "^5.0.0",
     "prosemirror-model": "^1.18.3",
     "prosemirror-schema-basic": "^1.2.0",
     "prosemirror-schema-list": "^1.2.2",
     "prosemirror-state": "^1.4.2",
     "prosemirror-view": "^1.29.1"
   },
+  "bundledDependencies": [
+    "prosemirror-model",
+    "prosemirror-schema-basic",
+    "prosemirror-schema-list",
+    "prosemirror-state",
+    "prosemirror-view"
+  ],
   "scripts": {
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",

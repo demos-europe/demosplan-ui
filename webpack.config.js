@@ -11,10 +11,32 @@ function resolve (dir) {
 }
 
 const config = {
-  entry: resolve('./src/index.js'),
+  entry: {
+    'demosplan-ui.umd': {
+      import: resolve('./src/index.js'),
+      dependOn: [
+        'demosplan-ui.editor',
+        'demosplan-ui.dataTable',
+        'demosplan-ui.utils',
+        'demosplan-ui.directives'
+      ]
+    },
+    'demosplan-ui.editor': {
+      import: resolve('./src/components/core/DpEditor/DpEditor.vue')
+    },
+    'demosplan-ui.dataTable': {
+      import: resolve('./src/components/core/DpDataTable/DpDataTable.vue')
+    },
+    'demosplan-ui.utils': {
+      import: resolve('./src/utils/index.js')
+    },
+    'demosplan-ui.directives': {
+      import: resolve('./src/directives/index.js')
+    }
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: 'demosplan-ui.umd.js',
+    filename: '[name].js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: "default"

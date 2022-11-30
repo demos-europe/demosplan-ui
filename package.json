@@ -56,6 +56,13 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
+  "peerDependencies": {
+    "prosemirror-model": "^1.18.3",
+    "prosemirror-schema-basic": "^1.2.0",
+    "prosemirror-schema-list": "^1.2.2",
+    "prosemirror-state": "^1.4.2",
+    "prosemirror-view": "^1.29.1"
+  },
   "scripts": {
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",

@@ -44,7 +44,7 @@ const config = {
   // },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: '[name].js',
+    filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: "default"

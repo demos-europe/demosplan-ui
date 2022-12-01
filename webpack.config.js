@@ -11,9 +11,17 @@ function resolve (dir) {
 }
 
 const config = {
-  entry: {
-    'demosplan-ui.umd': {
-      import: resolve('./src/index.js'),
+  externals: {
+    prosemirrorModel: "prosemirror-model",
+    prosemirrorBasic: "prosemirror-schema-basic",
+    prosemirrorList: "prosemirror-schema-list",
+    prosemirrorState: "prosemirror-state",
+    prosemirrorView: "prosemirror-view",
+  },
+  entry: resolve('./src/index.js'),
+  // entry: {
+  //   'demosplan-ui.umd': {
+  //     import: resolve('./src/index.js'),
     //   dependOn: [
     //     'demosplan-ui.editor',
     //     'demosplan-ui.dataTable',
@@ -32,8 +40,8 @@ const config = {
     // },
     // 'demosplan-ui.directives': {
     //   import: resolve('./src/directives/index.js')
-    }
-  },
+    // }
+  // },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: '[name].js',

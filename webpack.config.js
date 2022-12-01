@@ -17,6 +17,9 @@ const config = {
     prosemirrorList: "prosemirror-schema-list",
     prosemirrorState: "prosemirror-state",
     prosemirrorView: "prosemirror-view",
+    tiptap: "tiptap",
+    tiptapExtensions: "tiptap-extensions",
+    tiptapCommands: "tiptap-commands"
   },
   entry: resolve('./src/index.js'),
   // entry: {

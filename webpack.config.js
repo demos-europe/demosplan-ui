@@ -1,8 +1,8 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
@@ -12,45 +12,22 @@ function resolve (dir) {
 
 const config = {
   externals: {
-    prosemirrorModel: "prosemirror-model",
-    prosemirrorBasic: "prosemirror-schema-basic",
-    prosemirrorList: "prosemirror-schema-list",
-    prosemirrorState: "prosemirror-state",
-    prosemirrorView: "prosemirror-view",
-    tiptap: "tiptap",
-    tiptapExtensions: "tiptap-extensions",
-    tiptapCommands: "tiptap-commands"
+    prosemirrorModel: 'prosemirror-model',
+    prosemirrorBasic: 'prosemirror-schema-basic',
+    prosemirrorList: 'prosemirror-schema-list',
+    prosemirrorState: 'prosemirror-state',
+    prosemirrorView: 'prosemirror-view',
+    tiptap: 'tiptap',
+    tiptapExtensions: 'tiptap-extensions',
+    tiptapCommands: 'tiptap-commands'
   },
   entry: resolve('./src/index.js'),
-  // entry: {
-  //   'demosplan-ui.umd': {
-  //     import: resolve('./src/index.js'),
-    //   dependOn: [
-    //     'demosplan-ui.editor',
-    //     'demosplan-ui.dataTable',
-    //     'demosplan-ui.utils',
-    //     'demosplan-ui.directives'
-    //   ]
-    // },
-    // 'demosplan-ui.editor': {
-    //   import: resolve('./src/components/core/DpEditor/DpEditor.vue')
-    // },
-    // 'demosplan-ui.dataTable': {
-    //   import: resolve('./src/components/core/DpDataTable/DpDataTable.vue')
-    // },
-    // 'demosplan-ui.utils': {
-    //   import: resolve('./src/utils/index.js')
-    // },
-    // 'demosplan-ui.directives': {
-    //   import: resolve('./src/directives/index.js')
-    // }
-  // },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
-    libraryExport: "default"
+    libraryExport: 'default'
   },
   resolve: {
     extensions: ['.js', '.vue'],

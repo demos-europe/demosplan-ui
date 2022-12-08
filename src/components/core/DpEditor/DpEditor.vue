@@ -1,5 +1,6 @@
 <template>
   <div class="o-form__control-tiptap">
+    <h2>test</h2>
     <div
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"

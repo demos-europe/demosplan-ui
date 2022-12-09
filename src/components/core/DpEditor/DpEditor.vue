@@ -969,6 +969,11 @@ export default {
     },
 
     showLinkPrompt (command, attrs) {
+      console.log('hier wird geklickt')
+      console.log(this.$refs, 'refs')
+      console.log(this.editor.view.state, 'editor.view.state')
+      console.log(attrs, 'attrs')
+      console.log(attrs.href, 'attrs.href')
       this.linkUrl = attrs.href ? attrs.href : ''
       const selection = this.editor.view.state.tr.selection
 

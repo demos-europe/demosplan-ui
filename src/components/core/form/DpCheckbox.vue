@@ -11,6 +11,7 @@
       autocomplete="off"
       :checked="checked"
       :value="valueToSend"
+      :data-cy="dataCy !== '' ? dataCy : false"
       @change="$emit('change', $event.target.checked)"
       true-value="1"
       false-value="0">
@@ -50,6 +51,12 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     disabled: {

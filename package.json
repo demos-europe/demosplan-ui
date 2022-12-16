@@ -61,7 +61,6 @@
     "webpack-cli": "^5.0.0"
   },
   "peerDependencies": {
-    "react": "16.14.0",
     "tiptap": "^1.32.2",
     "tiptap-commands": "^1.17.0",
     "tiptap-extensions": "^1.35.2",

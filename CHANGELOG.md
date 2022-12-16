@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+- Fix `start-storybook` script by configuring Storybook to use **Webpack 5**
+
 ## v0.0.4 - 2022-12-16
 
 - Change token build hook from `postinstall` to `prepublish`

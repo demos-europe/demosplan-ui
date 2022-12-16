@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.3 - 2022-12-16
+
 - Rewrite large parts of the build process
 - Code was moved between `@demos-europe/demosplan-utils` and here for more consistency
 

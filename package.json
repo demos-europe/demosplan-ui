@@ -35,11 +35,13 @@
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
-    "@storybook/addon-actions": "6.5.13",
-    "@storybook/addon-docs": "6.5.13",
-    "@storybook/addon-essentials": "6.5.12",
-    "@storybook/addon-links": "6.5.12",
-    "@storybook/vue": "6.5.12",
+    "@storybook/addon-actions": "6.5.14",
+    "@storybook/addon-docs": "6.5.14",
+    "@storybook/addon-essentials": "6.5.14",
+    "@storybook/addon-links": "6.5.14",
+    "@storybook/builder-webpack5": "6.5.14",
+    "@storybook/manager-webpack5": "6.5.14",
+    "@storybook/vue": "6.5.14",
     "@webpack-cli/generators": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.0",
@@ -59,11 +61,11 @@
     "webpack-cli": "^5.0.0"
   },
   "peerDependencies": {
+    "react": "16.14.0",
     "tiptap": "^1.32.2",
     "tiptap-commands": "^1.17.0",
     "tiptap-extensions": "^1.35.2",
-    "vue": "^2.7.14",
-    "react": "16.14.0"
+    "vue": "^2.7.14"
   },
   "scripts": {
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",

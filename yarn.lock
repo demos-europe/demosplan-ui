@@ -1120,9 +1120,9 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@demos-europe/demosplan-utils@github:demos-europe/demosplan-js-utils#main":
+"@demos-europe/demosplan-utils@github:demos-europe/demosplan-js-utils#86b11570ce9287cd62457c8071cf959b1674a8bf":
   version "0.0.3"
-  resolved "https://codeload.github.com/demos-europe/demosplan-js-utils/tar.gz/4c47b6106b2f69e12298963dd7af44ca7c7d75cd"
+  resolved "https://codeload.github.com/demos-europe/demosplan-js-utils/tar.gz/86b11570ce9287cd62457c8071cf959b1674a8bf"
   dependencies:
     axios "^0.27.2"
     fscreen "^1.2.0"

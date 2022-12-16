@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
+import { CleanHtml, Tooltip } from '../../../directives'
 import DpMultiselect from '../form/DpMultiselect'
 
 export default {
@@ -53,7 +53,8 @@ export default {
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
+    tooltip: Tooltip
   },
 
   props: {

@@ -1,4 +1,6 @@
 <script>
+import { Tooltip } from '../../directives'
+
 export default {
   name: 'DpContextualHelp',
 
@@ -13,6 +15,10 @@ export default {
       type: String,
       required: true
     }
+  },
+
+  directives: {
+    tooltip: Tooltip
   },
 
   render: function (h, { props, data }) {

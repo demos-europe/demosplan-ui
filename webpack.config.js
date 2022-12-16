@@ -1,8 +1,8 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
@@ -13,7 +13,7 @@ function resolve (dir) {
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
@@ -60,5 +60,6 @@ module.exports = () => {
   } else {
     config.mode = 'development';
   }
+
   return config;
 };

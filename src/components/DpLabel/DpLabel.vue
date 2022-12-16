@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { CleanHtml, Tooltip } from '../../directives'
 import { de } from '../shared/translations'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
@@ -31,7 +31,8 @@ export default {
   name: 'DpLabel',
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
+    tooltip: Tooltip
   },
 
   mixins: [prefixClassMixin],

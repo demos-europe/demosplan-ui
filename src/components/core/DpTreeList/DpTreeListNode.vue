@@ -103,6 +103,7 @@ import DpIcon from '../../DpIcon/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
 import draggable from 'vuedraggable'
+import { Tooltip } from '../../../directives'
 
 export default {
   name: 'DpTreeListNode',
@@ -112,6 +113,10 @@ export default {
     DpTreeListCheckbox,
     DpTreeListToggle,
     draggable
+  },
+
+  directives: {
+    tooltip: Tooltip
   },
 
   props: {

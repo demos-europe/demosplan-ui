@@ -7,7 +7,7 @@
   "main": "./dist/demosplan-ui.umd.js",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
-    "@demos-europe/demosplan-utils": "github:demos-europe/demosplan-js-utils#86b11570ce9287cd62457c8071cf959b1674a8bf",
+    "@demos-europe/demosplan-utils": "^0",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",
@@ -33,7 +33,6 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "vuex": "^3.6.2",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@storybook/addon-actions": "6.5.13",

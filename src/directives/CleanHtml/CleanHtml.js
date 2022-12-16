@@ -9,7 +9,8 @@ import DOMPurify from 'dompurify'
  * @see https://developer.chrome.com/docs/lighthouse/best-practices/external-anchors-use-rel-noopener/
  */
 DOMPurify.addHook('afterSanitizeAttributes', function (node) {
-  if (!'target' in node) {
+  const nodeHasTarget = 'target' in node
+  if (!nodeHasTarget) {
     return
   }
   const target = node.getAttribute('target')

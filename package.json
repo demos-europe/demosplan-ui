@@ -61,9 +61,6 @@
     "vue-template-compiler": "^2.7.14"
   },
   "peerDependencies": {
-    "tiptap": "^1.32.2",
-    "tiptap-commands": "^1.17.0",
-    "tiptap-extensions": "^1.35.2",
     "vue": "^2.7.14"
   },
   "scripts": {

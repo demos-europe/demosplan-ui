@@ -31,7 +31,8 @@
     "vuedraggable": "^2.24.3",
     "vuex": "^3.6.2",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^5.0.0",
+    "style-dictionary": "^3.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -54,7 +55,6 @@
     "path": "^0.12.7",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
-    "style-dictionary": "^3.7.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
     "vue-loader": "^15",

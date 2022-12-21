@@ -36,7 +36,7 @@
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@storybook/addon-actions": "6.5.14",
-    "@storybook/addon-docs": "6.5.14",
+    "@storybook/addon-docs": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addon-links": "6.5.15",
     "@storybook/builder-webpack5": "6.5.14",

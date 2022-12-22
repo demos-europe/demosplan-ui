@@ -17,8 +17,25 @@ const config = {
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
-    libraryExport: 'default'
+    libraryExport: 'default',
+    clean: true
   },
+  externalsType: 'umd',
+  externals: [
+      '@braintree/sanitize-url',
+      '@demos-europe/demosplan-utils',
+      /^@uppy\/.+$/,
+      'dayjs',
+      'dompurify',
+      'lscache',
+      'plyr',
+      'tippy.js',
+      'uuid',
+      'v-tooltip',
+      'vue-multiselect',
+      'vuedraggable',
+      'vuex'
+  ],
   resolve: {
     extensions: ['.js', '.vue'],
     symlinks: false

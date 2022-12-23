@@ -18,6 +18,7 @@ const config = {
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: 'default',
+    globalObject: `typeof self !== 'undefined' ? self : this`,
     clean: true
   },
   externalsType: 'umd',

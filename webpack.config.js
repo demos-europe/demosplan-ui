@@ -19,7 +19,6 @@ const config = {
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: 'default',
-    globalObject: `typeof self !== 'undefined' ? self : this`,
     clean: true
   },
   externalsType: 'umd',
@@ -45,6 +44,10 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: resolve(`./bundle_analysis.html`)
+    })
   ],
   module: {
     rules: [
@@ -71,6 +74,11 @@ const config = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 };
 
 module.exports = () => {

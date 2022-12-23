@@ -12,10 +12,13 @@ function resolve (dir) {
 }
 
 const config = {
-  entry: resolve('./src/index.js'),
+  entry: {
+    // The key is used as the default chunk name within 'demosplan-ui.[name].umd.js'
+    main: resolve('./src/index.js')
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'demosplan-ui.umd.js',
+    filename: 'demosplan-ui.[name].umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: 'default',
@@ -23,20 +26,20 @@ const config = {
   },
   externalsType: 'umd',
   externals: [
-      '@braintree/sanitize-url',
-      '@demos-europe/demosplan-utils',
-      /^@uppy\/.+$/,
-      'dayjs',
-      'dompurify',
-      'lscache',
-      'plyr',
-      'tippy.js',
-      'uuid',
-      'v-tooltip',
-      'vue',
-      'vue-multiselect',
-      'vuedraggable',
-      'vuex'
+    '@braintree/sanitize-url',
+    '@demos-europe/demosplan-utils',
+    /^@uppy\/.+$/,
+    'dayjs',
+    'dompurify',
+    'lscache',
+    'plyr',
+    'tippy.js',
+    'uuid',
+    'v-tooltip',
+    'vue',
+    'vue-multiselect',
+    'vuedraggable',
+    'vuex'
   ],
   resolve: {
     extensions: ['.js', '.vue'],
@@ -74,8 +77,44 @@ const config = {
         type: 'asset',
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        tiptap: {
+          name: 'tiptap',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/](tiptap|prosemirror)/,
+          priority: 1
+        },
+        plyr: {
+          name: 'plyr',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]plyr/,
+          priority: 1
+        },
+        vueOmnibox: {
+          name: 'vueOmnibox',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]vue-omnibox/,
+          priority: 1
+        },
+        highlightJs: {
+          name: 'highlightJs',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]highlight\.js/,
+          priority: 1
+        },
+        allyDatepicker: {
+          name: 'allyDatepicker',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]a11y-datepicker/,
+          priority: 1
+        }
+      }
+    }
   }
-};
+}
 
 module.exports = () => {
   if (isProduction) {

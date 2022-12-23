@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": false,
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
-  "main": "./dist/demosplan-ui.umd.js",
+  "main": "./dist/demosplan-ui.main.umd.js",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
     "@demos-europe/demosplan-utils": "^0",

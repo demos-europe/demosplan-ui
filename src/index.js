@@ -1,9 +1,4 @@
-import { attributes, length } from './shared'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './utils'
-import { Tooltip, VPopover } from './directives'
-import { CleanHtml } from './directives'
-
-import {
+let {
   DpButton,
   DpDetails,
   DpIcon,
@@ -70,10 +65,28 @@ import {
   DpVideoPlayer,
   getFileIdsByHash,
   MultistepNav
-} from './components/'
+} = import('./components/')
 
-import { prefixClass } from './lib/'
-import { prefixClassMixin } from './mixins/'
+let {
+  CleanHtml,
+  Tooltip,
+  VPopover
+} = import('./directives')
+
+let {
+  attributes,
+  length
+} = import('./shared')
+
+let {
+  exactlengthHint,
+  maxlengthHint,
+  minlengthHint
+} = import('./utils')
+
+let { prefixClass } = import('./lib/')
+
+let { prefixClassMixin } = import('./mixins/')
 
 export default {
   attributes,
@@ -153,4 +166,3 @@ export default {
   maxlengthHint,
   minlengthHint
 }
-

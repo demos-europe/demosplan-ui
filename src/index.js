@@ -65,28 +65,28 @@ let {
   DpVideoPlayer,
   getFileIdsByHash,
   MultistepNav
-} = await import('./components/')
+} = import('./components/')
 
 let {
   CleanHtml,
   Tooltip,
   VPopover
-} = await import('./directives')
+} = import('./directives')
 
 let {
   attributes,
   length
-} = await import('./shared')
+} = import('./shared')
 
 let {
   exactlengthHint,
   maxlengthHint,
   minlengthHint
-} = await import('./utils')
+} = import('./utils')
 
-let { prefixClass } = await import('./lib/')
+let { prefixClass } = import('./lib/')
 
-let { prefixClassMixin } = await import('./mixins/')
+let { prefixClassMixin } = import('./mixins/')
 
 export default {
   attributes,

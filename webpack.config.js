@@ -33,6 +33,7 @@ const config = {
       'tippy.js',
       'uuid',
       'v-tooltip',
+      'vue',
       'vue-multiselect',
       'vuedraggable',
       'vuex'
@@ -73,11 +74,6 @@ const config = {
         type: 'asset',
       },
     ],
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
   }
 };
 

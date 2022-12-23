@@ -13,6 +13,9 @@ function resolve (dir) {
 
 const config = {
   entry: resolve('./src/index.js'),
+  experiments: {
+    topLevelAwait: true
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'demosplan-ui.umd.js',

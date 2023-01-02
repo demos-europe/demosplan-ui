@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 
+- Move modules that are also present within demosplan to externals to reduce compiled filesize
 - Fix `start-storybook` script by configuring Storybook to use **Webpack 5**
 
 ## v0.0.4 - 2022-12-16
@@ -23,4 +24,4 @@
 
 ## v0.0.1 - 2022-11-15
 
-- This is unfinished and broken. We just need a startingpoint
+- This is unfinished and broken. We just need a starting point

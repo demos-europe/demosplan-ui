@@ -53,17 +53,18 @@
         v-else
         class="min-width-25" />
     </div>
-    <draggable
-      v-model="tree"
-      v-bind="options.draggable"
-      class="list-style-none u-mb-0 u-1-of-1"
-      :disabled="hasDraggableChildren === false"
-      :group="options.dragAcrossBranches ? 'treelistgroup' : nodeId"
-      tag="ul"
-      :move="onMove"
-      @change="(action) => handleChange(action, nodeId)"
-      @end="handleDrag('end')"
-      @start="handleDrag('start')">
+    <dp-draggable
+      :drag-across-branches="options.dragAcrossBranches"
+      draggable-class="list-style-none u-mb-0 u-1-of-1"
+      draggable-tag="ul"
+      :group-id="nodeId"
+      :handle-change="handleChange"
+      :handle-drag="handleDrag"
+      :is-draggable="draggable"
+      :node-id="nodeId"
+      :on-move="onMove"
+      :opts="options.draggable"
+      v-model="tree">
       <dp-tree-list-node
         v-for="child in children"
         v-show="true === isExpanded"
@@ -80,11 +81,11 @@
         :options="options"
         :parent-id="nodeId"
         :parent-selected="isSelected"
-        @draggable-change="bubbleDraggableChange"
+        @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
         @node-selected="handleChildSelectionChange"
         @start="handleDrag('start')"
-        @tree-data-change="bubbleChangeEvent">
+        @tree:change="bubbleChangeEvent">
         <template
           v-for="slot in Object.keys($scopedSlots)"
           v-slot:[slot]="scope">
@@ -93,26 +94,26 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
-    </draggable>
+    </dp-draggable>
   </li>
 </template>
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
+import DpDraggable from '../DpDraggable'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
-import draggable from 'vuedraggable'
 import { Tooltip } from '../../../directives'
 
 export default {
   name: 'DpTreeListNode',
 
   components: {
+    DpDraggable,
     DpIcon,
     DpTreeListCheckbox,
-    DpTreeListToggle,
-    draggable
+    DpTreeListToggle
   },
 
   directives: {
@@ -280,8 +281,8 @@ export default {
         return this.children
       },
 
-      set (val) {
-        this.$emit('tree-data-change', { nodeId: this.nodeId, newOrder: val })
+      set (payload) {
+        this.$emit('tree:change', payload)
       }
     }
   },
@@ -300,11 +301,11 @@ export default {
 
   methods: {
     bubbleChangeEvent (payload) {
-      this.$emit('tree-data-change', payload)
+      this.$emit('tree:change', payload)
     },
 
     bubbleDraggableChange (payload) {
-      this.$emit('draggable-change', payload)
+      this.$emit('draggable:change', payload)
     },
 
     handleChildSelectionChange (selections) {

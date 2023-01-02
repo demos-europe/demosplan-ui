@@ -26,18 +26,17 @@
     </div>
 
     <!-- Tree List -->
-    <draggable
+    <dp-draggable
+      :drag-across-branches="opts.dragAcrossBranches"
+      draggable-class="list-style-none u-mb-0 u-1-of-1"
+      draggable-tag="ul"
+      :handle-change="handleChange"
+      :handle-drag="handleDrag"
+      :is-draggable="draggable"
+      :on-move="onMove"
+      :opts="opts.draggable"
       ref="treeList"
-      v-model="tree"
-      v-bind="opts.draggable"
-      class="list-style-none u-mb-0 u-1-of-1"
-      :disabled="false === draggable"
-      :group="true === opts.dragAcrossBranches ? 'treelistgroup' : 'noIdGiven'"
-      :move="onMove"
-      tag="ul"
-      @end="handleDrag('end')"
-      @start="handleDrag('start')"
-      @change="(action) => handleChange(action, null)">
+      v-model="tree">
       <dp-tree-list-node
         v-for="node in treeData"
         :ref="`node_${node.id}`"
@@ -53,11 +52,11 @@
         :on-move="onMove"
         :options="opts"
         :parent-selected="allElementsSelected"
-        @draggable-change="bubbleDraggableChange"
+        @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
         @node-selected="handleSelectEvent"
         @start="handleDrag('start')"
-        @tree-data-change="bubbleChangeEvent">
+        @tree:change="bubbleChangeEvent">
         <template
           v-for="slot in Object.keys($scopedSlots)"
           v-slot:[slot]="scope">
@@ -66,7 +65,7 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
-    </draggable>
+    </dp-draggable>
 
     <!-- Footer -->
     <div
@@ -82,20 +81,20 @@
 
 <script>
 import { deepMerge, hasOwnProp, Stickier } from '@demos-europe/demosplan-utils'
+import DpDraggable from '../DpDraggable'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
-import draggable from 'vuedraggable'
 import { dragHandleWidth } from './utils/constants'
 
 export default {
   name: 'DpTreeList',
 
   components: {
+    DpDraggable,
     DpTreeListCheckbox,
     DpTreeListNode,
-    DpTreeListToggle,
-    draggable
+    DpTreeListToggle
   },
 
   props: {
@@ -172,19 +171,19 @@ export default {
         return this.treeData
       },
 
-      set (val) {
-        this.$emit('tree-data-change', { nodeId: null, newOrder: val })
+      set (payload) {
+        this.$emit('tree:change', payload)
       }
     }
   },
 
   methods: {
     bubbleChangeEvent (payload) {
-      this.$emit('tree-data-change', payload)
+      this.$emit('tree:change', payload)
     },
 
     bubbleDraggableChange (payload) {
-      this.$emit('draggable-change', payload)
+      this.$emit('draggable:change', payload)
     },
 
     destroyFixedControls () {
@@ -213,7 +212,7 @@ export default {
      * @see https://github.com/SortableJS/Vue.Draggable#events
      * @param action
      * @param nodeId
-     * @emits draggable-change
+     * @emits draggable:change
      */
     handleChange (action, nodeId) {
       // The event should only be emitted if an element is moved inside or into a folder.
@@ -224,7 +223,7 @@ export default {
           newIndex: newIndex,
           parentId: nodeId
         }
-        this.$emit('draggable-change', payload)
+        this.$emit('draggable:change', payload)
       }
     },
 

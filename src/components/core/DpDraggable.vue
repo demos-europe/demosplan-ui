@@ -27,7 +27,7 @@ export default {
 
   model: {
     prop: 'contentData',
-    event: 'change'
+    event: 'data:change'
   },
 
   props: {
@@ -83,7 +83,7 @@ export default {
     handleChange: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => undefined
     },
 
     /*
@@ -92,7 +92,7 @@ export default {
     handleDrag: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => undefined
     },
 
     /*
@@ -131,7 +131,7 @@ export default {
         return this.contentData
       },
       set (val) {
-        this.$emit('change', { nodeId: this.nodeId, newOrder: val })
+        this.$emit('data:change', { nodeId: this.nodeId, newOrder: val })
       }
     }
   }

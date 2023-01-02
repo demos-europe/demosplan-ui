@@ -31,7 +31,7 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ],
   module: {
     rules: [

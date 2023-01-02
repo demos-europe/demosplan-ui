@@ -1,6 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+const bundleAnalyzer = new BundleAnalyzerPlugin({
+  analyzerMode: 'static',
+  reportFilename: resolve(`./bundle_analysis.html`)
+})
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -59,6 +65,10 @@ module.exports = () => {
     config.mode = 'production';
   } else {
     config.mode = 'development';
+  }
+
+  if (process.argv.includes('--analyze')) {
+    config.plugins.unshift(bundleAnalyzer)
   }
 
   return config;

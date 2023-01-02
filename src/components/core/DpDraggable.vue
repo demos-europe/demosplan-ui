@@ -83,7 +83,7 @@ export default {
     handleChange: {
       type: Function,
       required: false,
-      default: () => undefined
+      default: () => {}
     },
 
     /*
@@ -92,7 +92,7 @@ export default {
     handleDrag: {
       type: Function,
       required: false,
-      default: () => undefined
+      default: () => {}
     },
 
     /*

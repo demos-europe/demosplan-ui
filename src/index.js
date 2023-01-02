@@ -1,7 +1,6 @@
 import { attributes, length } from './shared'
 import { exactlengthHint, maxlengthHint, minlengthHint } from './utils'
-import { Tooltip, VPopover } from './directives'
-import { CleanHtml } from './directives'
+import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {
   DpButton,
@@ -30,6 +29,7 @@ import {
   DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpFlyout,
@@ -104,6 +104,7 @@ export default {
   DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpFlyout,

@@ -8,23 +8,29 @@
       :group="dragAcrossBranches ? 'treelistgroup' : groupId"
       :move="onMove"
       :tag="draggableTag"
-      @change="action => handleChange(action, nodeId)"@end="handleDrag('end')"
+      @change="action => handleChange(action, nodeId)"
+      @end="handleDrag('end')"
       @start="handleDrag('start')">
     <slot />
   </draggable>
 </template>
 
 <script>
+
 import draggable from 'vuedraggable'
+
 export default {
   name: 'DpDraggable',
+
   components: {
     draggable
   },
+
   model: {
     prop: 'contentData',
     event: 'change'
   },
+
   props: {
     /*
      * Content you want to display in the draggable.
@@ -33,6 +39,7 @@ export default {
       type: Array,
       required: true
     },
+
     /*
      * Set to true if items should be draggable between different lists
      */
@@ -41,6 +48,7 @@ export default {
       required: false,
       default: true
     },
+
     /*
      * Set to true, if the content should be draggable and false if not.
      */
@@ -49,6 +57,7 @@ export default {
       required: false,
       default: true
     },
+
     /*
      * Css classes that will be added to the surrounding tag
      */
@@ -57,6 +66,7 @@ export default {
       required: false,
       default: ''
     },
+
     /*
      * HTML node type of the element that draggable component create as outer element for the included slot eg 'ul'.
      */
@@ -65,6 +75,7 @@ export default {
       required: false,
       default: 'div'
     },
+
     /*
      * Id for a group in which items should be draggable
      */
@@ -73,6 +84,7 @@ export default {
       required: false,
       default: 'noIdGiven'
     },
+
     /*
      * The function to handle the draggable "change" event is passed as a prop here.
      * This way we do not run into performance issues with deeply nested lists.
@@ -81,16 +93,18 @@ export default {
     handleChange: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => undefined
     },
+
     /*
      * The function to handle the draggable "start" and "end" events is passed as a prop here.
      */
     handleDrag: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => undefined
     },
+
     /*
      * Id of the draggable node to identify items in callbacks
      */
@@ -99,6 +113,7 @@ export default {
       required: false,
       default: null
     },
+
     /*
      * Callback to be executed on move event of draggable.
      * It can be used to cancel drag by returning false.
@@ -108,6 +123,7 @@ export default {
       required: false,
       default: () => true
     },
+
     /*
      * Callback to be executed on move event of draggable.
      * It can be used to cancel drag by returning false.
@@ -118,6 +134,7 @@ export default {
       default: () => ({})
     }
   },
+
   computed: {
     content: {
       get () {

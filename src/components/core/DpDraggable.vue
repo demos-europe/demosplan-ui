@@ -3,7 +3,6 @@
       v-model="content"
       v-bind="opts"
       v-on="$listeners"
-      :class="draggableClass"
       :disabled="false === isDraggable"
       :group="dragAcrossBranches ? 'treelistgroup' : groupId"
       :move="onMove"
@@ -56,15 +55,6 @@ export default {
       type: Boolean,
       required: false,
       default: true
-    },
-
-    /*
-     * Css classes that will be added to the surrounding tag
-     */
-    draggableClass: {
-      type: [String, Object],
-      required: false,
-      default: ''
     },
 
     /*

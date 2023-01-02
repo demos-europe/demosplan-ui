@@ -55,7 +55,7 @@
     </div>
     <dp-draggable
       :drag-across-branches="options.dragAcrossBranches"
-      draggable-class="list-style-none u-mb-0 u-1-of-1"
+      class="list-style-none u-mb-0 u-1-of-1"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"

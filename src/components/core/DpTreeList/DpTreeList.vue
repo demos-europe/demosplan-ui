@@ -28,7 +28,7 @@
     <!-- Tree List -->
     <dp-draggable
       :drag-across-branches="opts.dragAcrossBranches"
-      draggable-class="list-style-none u-mb-0 u-1-of-1"
+      class="list-style-none u-mb-0 u-1-of-1"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"

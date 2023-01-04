@@ -39,7 +39,6 @@ const config = {
     /^tiptap.*$/,
     'uuid',
     'v-tooltip',
-    'vue',
     'vue-multiselect',
     'vuedraggable',
     'vuex'

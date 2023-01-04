@@ -26,7 +26,8 @@
     </div>
 
     <!-- Tree List -->
-    <dp-draggable
+    <component
+      :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="opts.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
       draggable-tag="ul"
@@ -65,7 +66,7 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
-    </dp-draggable>
+    </component>
 
     <!-- Footer -->
     <div

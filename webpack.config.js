@@ -1,6 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+const bundleAnalyzer = new BundleAnalyzerPlugin({
+  analyzerMode: 'static',
+  reportFilename: resolve(`./bundle_analysis.html`)
+})
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -17,8 +23,25 @@ const config = {
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
-    libraryExport: 'default'
+    libraryExport: 'default',
+    clean: true
   },
+  externalsType: 'umd',
+  externals: [
+    '@braintree/sanitize-url',
+    '@demos-europe/demosplan-utils',
+    /^@uppy\/.+$/,
+    'dayjs',
+    'dompurify',
+    'lscache',
+    'plyr',
+    'tippy.js',
+    'uuid',
+    'v-tooltip',
+    'vue-multiselect',
+    'vuedraggable',
+    'vuex'
+  ],
   resolve: {
     extensions: ['.js', '.vue'],
     symlinks: false
@@ -59,6 +82,10 @@ module.exports = () => {
     config.mode = 'production';
   } else {
     config.mode = 'development';
+  }
+
+  if (process.argv.includes('--analyze')) {
+    config.plugins.unshift(bundleAnalyzer)
   }
 
   return config;

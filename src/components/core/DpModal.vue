@@ -102,13 +102,20 @@ export default {
 
   methods: {
     getFocusableElements () {
-      this.focusableElements = [...this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])')].filter(el => this.isElementVisible(el))
+      const elementList = this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])')
+
+      if (elementList.length <= 0) {
+        this.focusableElements = []
+      } else {
+        this.focusableElements = [...elementList].filter(el => this.isElementVisible(el))
+      }
     },
 
     isElementVisible (el) {
       const isInDom = el.offsetParent !== null
       const style = window.getComputedStyle(el)
       const isDisplayed = style.display !== 'none' && style.opacity !== '0'
+
       return isInDom && isDisplayed
     },
 
@@ -117,6 +124,7 @@ export default {
       if (typeof modalId === 'undefined') {
         return
       }
+
       //  Check if event specifies the correct modal instance
       if (this.modalId === modalId) {
         this.toggle()
@@ -126,11 +134,13 @@ export default {
     toggle () {
       this.isOpenModal = (this.isOpenModal === false)
       this.$emit('modal:toggled', this.isOpenModal)
+
       if (this.isOpenModal === true) {
         this.lastFocusedElement = document.activeElement
         // On toggle get all focusable elements and focus the first one (after everything is rendered)
         this.$nextTick(() => {
           this.getFocusableElements()
+
           if (this.focusableElements.length > 0) {
             this.focusableElements[0].focus({ preventScroll: true })
           }
@@ -153,6 +163,7 @@ export default {
     preventScroll (toggleIn) {
       const htmlElement = document.querySelector('html')
       const bodyElement = document.querySelector('body')
+
       if (toggleIn) {
         htmlElement.style.overflow = 'hidden'
         bodyElement.style.overflowY = 'scroll'
@@ -170,6 +181,7 @@ export default {
         event.preventDefault()
         const eventTargetIndex = this.focusableElements.findIndex(el => el === event.target)
         const last = this.focusableElements.length - 1
+
         if (this.focusableElements.length < 2) {
           // Do nothing if only 1 or no elements to focus
         } else if (event.shiftKey === false && event.target === this.focusableElements[last]) {

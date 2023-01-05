@@ -36,7 +36,6 @@ const config = {
     'lscache',
     'plyr',
     'tippy.js',
-    /^tiptap.*$/,
     'uuid',
     'v-tooltip',
     'vue-multiselect',

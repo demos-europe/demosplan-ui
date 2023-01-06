@@ -16,6 +16,12 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
+const transpileNodeModules = [
+  'tiptap',
+  'tiptap-commands',
+  'tiptap-extensions',
+].map(module => resolve('node_modules/' + module))
+
 const config = {
   entry: resolve('./src/index.js'),
   output: {
@@ -59,10 +65,8 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
-        include: /node_modules\/tiptap.*/,
-        use: {
-          loader: 'babel-loader'
-        }
+        include: transpileNodeModules,
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/i,

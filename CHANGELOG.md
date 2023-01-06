@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.6 - 2023-01-06
+
 - **Breaking:** Refactor DpRadio props: bundle label related props in a single object
 - Fix DpEditor "TypeError: Class constructor cannot be invoked without 'new'"
 

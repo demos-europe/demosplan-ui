@@ -1,6 +1,10 @@
-# Change Log
+# Changelog
 
 ## UNRELEASED
+
+- Fix DpEditor "TypeError: Class constructor cannot be invoked without 'new'"
+
+## v0.0.5 - 2023-01-05
 
 - Move modules that are also present within demosplan to externals to reduce compiled filesize
 - Fix `start-storybook` script by configuring Storybook to use **Webpack 5**

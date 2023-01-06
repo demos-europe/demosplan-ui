@@ -59,7 +59,10 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        include: /node_modules\/tiptap.*/,
+        use: {
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.css$/i,

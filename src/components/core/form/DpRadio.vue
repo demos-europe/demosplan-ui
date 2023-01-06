@@ -14,8 +14,15 @@
       :data-cy="dataCy !== '' ? dataCy : false"
       @change="$emit('change', $event.target.checked)"><!--
  --><dp-label
+      v-if="label.text"
       :class="prefixClass('o-form__label')"
-      v-bind="labelProps" />
+      v-bind="{
+        bold: false,
+        text: '',
+        for: id,
+        required: required,
+        ...label,
+      }" />
   </div>
 </template>
 
@@ -74,9 +81,11 @@ export default {
     },
 
     label: {
-      type: String,
-      required: false,
-      default: ''
+      type: Object,
+      default: () => ({}),
+      validator: (prop) => {
+        return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
+      }
     },
 
     name: {
@@ -101,18 +110,6 @@ export default {
       type: String,
       required: false,
       default: '1'
-    }
-  },
-
-  computed: {
-    labelProps () {
-      return {
-        for: this.id,
-        hint: this.hint,
-        text: this.label,
-        required: this.required,
-        bold: this.bold
-      }
     }
   }
 }

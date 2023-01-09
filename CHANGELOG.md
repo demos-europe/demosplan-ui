@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+## v0.0.7 - 2023-01-09
+
+- Make sure the built package contains the correct content
+
 ## v0.0.6 - 2023-01-06
 
 - **Breaking:** Refactor DpRadio props: bundle label related props in a single object

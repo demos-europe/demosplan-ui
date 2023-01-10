@@ -18,6 +18,7 @@ import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpDatepicker from './form/DpDatepicker'
 import DpDateRangePicker from './form/DpDateRangePicker'
 import DpDatetimePicker from './form/DpDatetimePicker'
+import DpDraggable from "./DpDraggable"
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpFlyout from './DpFlyout'
@@ -80,6 +81,7 @@ export {
   DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpFlyout,

@@ -1,7 +1,6 @@
 import { attributes, length } from './shared'
 import { exactlengthHint, maxlengthHint, minlengthHint } from './utils'
-import { Tooltip, VPopover } from './directives'
-import { CleanHtml } from './directives'
+import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {
   DpButton,

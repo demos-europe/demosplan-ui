@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const DefinePlugin = require('webpack').DefinePlugin
 
 const bundleAnalyzer = new BundleAnalyzerPlugin({
   analyzerMode: 'static',
@@ -55,6 +56,9 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),
+    new DefinePlugin({
+      'process.env.FOO': 'process.env.FOO' // @see https://github.com/webpack/webpack/issues/2933
+    })
   ],
   module: {
     rules: [

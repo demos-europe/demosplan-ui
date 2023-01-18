@@ -1,7 +1,31 @@
 import { attributes, length } from './shared'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './utils'
-import { Tooltip, VPopover } from './directives'
-import { CleanHtml } from './directives'
+import { CleanHtml, Tooltip, VPopover } from './directives'
+
+import {
+  changeUrlforPager,
+  DATE_FORMAT_LONG,
+  debounce,
+  deepMerge,
+  formatDate,
+  formatBytes,
+  toggleFullscreen,
+  bindFullScreenChange,
+  unbindFullScreenChange,
+  isActiveFullScreen,
+  getAnimationEventName,
+  getScrollTop,
+  hasOwnProp,
+  hasPermission,
+  hasAllPermissions,
+  hasAnyPermissions,
+  toDate,
+  sortAlphabetically,
+  throttle,
+  uniqueArrayByObjectKey,
+  exactlengthHint,
+  maxlengthHint,
+  minlengthHint
+} from './utils'
 
 import {
   DpButton,
@@ -77,6 +101,26 @@ import { prefixClassMixin } from './mixins/'
 
 export default {
   attributes,
+  changeUrlforPager,
+  DATE_FORMAT_LONG,
+  debounce,
+  deepMerge,
+  formatDate,
+  formatBytes,
+  toggleFullscreen,
+  bindFullScreenChange,
+  unbindFullScreenChange,
+  isActiveFullScreen,
+  getAnimationEventName,
+  getScrollTop,
+  hasOwnProp,
+  hasPermission,
+  hasAllPermissions,
+  hasAnyPermissions,
+  sortAlphabetically,
+  throttle,
+  uniqueArrayByObjectKey,
+  toDate,
   length,
   DpButton,
   DpDetails,

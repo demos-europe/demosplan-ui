@@ -96,8 +96,8 @@ import {
   MultistepNav
 } from './components/'
 
+import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
 import { prefixClass } from './lib/'
-import { prefixClassMixin } from './mixins/'
 
 export default {
   attributes,
@@ -191,6 +191,9 @@ export default {
   CleanHtml,
   prefixClass,
   prefixClassMixin,
+  dpSelectAllMixin,
+  dpValidateMixin,
+  tableSelectAllItems,
   Tooltip,
   VPopover,
   exactlengthHint,

@@ -2,29 +2,29 @@ import { attributes, length } from './shared'
 import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {
+  bindFullScreenChange,
   changeUrlforPager,
   DATE_FORMAT_LONG,
   debounce,
   deepMerge,
+  exactlengthHint,
   formatDate,
   formatBytes,
-  toggleFullscreen,
-  bindFullScreenChange,
-  unbindFullScreenChange,
-  isActiveFullScreen,
   getAnimationEventName,
   getScrollTop,
   hasOwnProp,
   hasPermission,
   hasAllPermissions,
   hasAnyPermissions,
+  maxlengthHint,
+  minlengthHint,
   toDate,
+  toggleFullscreen,
+  isActiveFullScreen,
   sortAlphabetically,
   throttle,
   uniqueArrayByObjectKey,
-  exactlengthHint,
-  maxlengthHint,
-  minlengthHint
+  unbindFullScreenChange
 } from './utils'
 
 import {
@@ -102,6 +102,7 @@ import { prefixClassMixin } from './mixins/'
 export default {
   attributes,
   changeUrlforPager,
+  dataTableSearch,
   DATE_FORMAT_LONG,
   debounce,
   deepMerge,
@@ -128,7 +129,6 @@ export default {
   DpInput,
   DpLabel,
   DpLoading,
-  dataTableSearch,
   DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,

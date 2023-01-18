@@ -2,8 +2,8 @@
 
 ## UNRELEASED
 
-- Fix: Move Translator out of template
-- chore: Bump Dependenices
+- Fix: `undefined` Translator error in DpResizableImage (#66)
+- chore: Bump Dependenices (#63)
 
 ## v0.0.7 - 2023-01-09
 

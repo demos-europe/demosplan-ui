@@ -21,13 +21,12 @@
 
 <script>
 import { dpApi, prefixClassMixin } from '@demos-europe/demosplan-utils'
-import VueOmnibox from 'vue-omnibox'
 
 export default {
   name: 'DpAutocomplete',
 
   components: {
-    VueOmnibox
+    VueOmnibox: () => import('vue-omnibox')
   },
 
   mixins: [prefixClassMixin],

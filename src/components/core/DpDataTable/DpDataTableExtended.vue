@@ -105,7 +105,7 @@ import DomPurify from 'dompurify'
 import DpDataTable from './DpDataTable'
 import DpSelectPageItemCount from './DpSelectPageItemCount'
 import DpStickyElement from '../shared/DpStickyElement'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-ui'
 import SlidingPagination from 'vue-sliding-pagination'
 import { tableSelectAllItems } from '@demos-europe/demosplan-utils'
 

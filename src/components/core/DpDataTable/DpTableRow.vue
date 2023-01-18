@@ -2,7 +2,7 @@
 import DomPurify from 'dompurify'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpTableRow',

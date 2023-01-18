@@ -102,10 +102,8 @@ export default {
      * Observe changes to image wrapper to update image size
      * We have to wait for the nextTick to ensure, that the ref is set
      */
-    this.$nextTick(()=> {
-      this.observer = new ResizeObserver(e => this.updateImageDimensions(e[0].target.offsetWidth))
-      this.observer.observe(this.$refs.imagewrapper)
-    })
+    this.observer = new ResizeObserver(e => this.updateImageDimensions(e[0].target.offsetWidth))
+    this.observer.observe(this.$refs.imagewrapper)
 
     this.$root.$on('update-image:' + this.id, data => {
       this.updateAttrs(data)

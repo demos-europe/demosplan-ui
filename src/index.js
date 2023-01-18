@@ -99,6 +99,7 @@ import {
 import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
 import {
   ActionMenu,
+  addFormHiddenField,
   AnimateById,
   CharCount,
   Confirm,
@@ -108,17 +109,23 @@ import {
   Detabinator,
   dpApi,
   dpRpc,
+  FormActions,
+  FloodControlField,
   getCssVariable,
   getFileInfo,
   getFileTypes,
   handleResponseMessages,
+  highlightActiveLinks,
+  initGlobalEventListener,
   makeFormPost,
   mimeTypes,
+  removeFormHiddenField,
   prefixClass
 } from './lib/'
 
 export default {
   ActionMenu,
+  addFormHiddenField,
   AnimateById,
   attributes,
   CharCount,
@@ -132,6 +139,8 @@ export default {
   debounce,
   deepMerge,
   Detabinator,
+  FormActions,
+  FloodControlField,
   formatDate,
   formatBytes,
   toggleFullscreen,
@@ -144,6 +153,8 @@ export default {
   getFileTypes,
   getScrollTop,
   handleResponseMessages,
+  highlightActiveLinks,
+  initGlobalEventListener,
   hasOwnProp,
   hasPermission,
   hasAllPermissions,
@@ -233,5 +244,6 @@ export default {
   maxlengthHint,
   minlengthHint,
   mimeTypes,
+  removeFormHiddenField
 }
 

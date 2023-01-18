@@ -35,7 +35,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import DpBoilerPlate from './DpBoilerPlate'
 import DpButtonRow from '../DpButtonRow'
 import DpModal from '../DpModal'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpBoilerPlateModal',

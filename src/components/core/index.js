@@ -7,7 +7,6 @@ import DpButtonIcon from './DpButtonIcon'
 import DpButtonRow from './DpButtonRow'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
-import DpCheckbox from './form/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
 import DpContextualHelp from './DpContextualHelp'
@@ -69,7 +68,6 @@ export {
   DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,

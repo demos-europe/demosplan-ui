@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import DpCheckbox from '../form/DpCheckbox'
+import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpFlyout from '../DpFlyout'
 import { hasOwnProp } from '@demos-europe/demosplan-utils'
 

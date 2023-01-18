@@ -101,13 +101,19 @@ import {
   ActionMenu,
   AnimateById,
   CharCount,
+  Confirm,
+  convertSize,
   CheckableItem,
-  Detabinator,
   checkResponse,
+  Detabinator,
   dpApi,
   dpRpc,
+  getCssVariable,
+  getFileInfo,
+  getFileTypes,
   handleResponseMessages,
   makeFormPost,
+  mimeTypes,
   prefixClass
 } from './lib/'
 
@@ -116,6 +122,8 @@ export default {
   AnimateById,
   attributes,
   CharCount,
+  Confirm,
+  convertSize,
   CheckableItem,
   checkResponse,
   changeUrlforPager,
@@ -131,6 +139,9 @@ export default {
   unbindFullScreenChange,
   isActiveFullScreen,
   getAnimationEventName,
+  getCssVariable,
+  getFileInfo,
+  getFileTypes,
   getScrollTop,
   handleResponseMessages,
   hasOwnProp,
@@ -220,6 +231,7 @@ export default {
   exactlengthHint,
   makeFormPost,
   maxlengthHint,
-  minlengthHint
+  minlengthHint,
+  mimeTypes,
 }
 

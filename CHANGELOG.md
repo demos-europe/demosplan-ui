@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+- Fix: Move Translator out of template
+- chore: Bump Dependenices
+
 ## v0.0.7 - 2023-01-09
 
 - Make sure the built package contains the correct content

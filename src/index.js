@@ -97,15 +97,33 @@ import {
 } from './components/'
 
 import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
-import { prefixClass } from './lib/'
+import {
+  ActionMenu,
+  AnimateById,
+  CharCount,
+  CheckableItem,
+  Detabinator,
+  checkResponse,
+  dpApi,
+  dpRpc,
+  handleResponseMessages,
+  makeFormPost,
+  prefixClass
+} from './lib/'
 
 export default {
+  ActionMenu,
+  AnimateById,
   attributes,
+  CharCount,
+  CheckableItem,
+  checkResponse,
   changeUrlforPager,
   dataTableSearch,
   DATE_FORMAT_LONG,
   debounce,
   deepMerge,
+  Detabinator,
   formatDate,
   formatBytes,
   toggleFullscreen,
@@ -114,6 +132,7 @@ export default {
   isActiveFullScreen,
   getAnimationEventName,
   getScrollTop,
+  handleResponseMessages,
   hasOwnProp,
   hasPermission,
   hasAllPermissions,
@@ -123,6 +142,8 @@ export default {
   uniqueArrayByObjectKey,
   toDate,
   length,
+  dpApi,
+  dpRpc,
   DpButton,
   DpDetails,
   DpIcon,
@@ -197,6 +218,7 @@ export default {
   Tooltip,
   VPopover,
   exactlengthHint,
+  makeFormPost,
   maxlengthHint,
   minlengthHint
 }

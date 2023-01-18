@@ -3,7 +3,6 @@
 ## UNRELEASED
 
 - docs: add documentation for DpCheckbox
-- refactor: Move DpCheckbox to components root
 
 ## v0.0.7 - 2023-01-09
 

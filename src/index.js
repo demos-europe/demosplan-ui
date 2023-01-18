@@ -118,8 +118,11 @@ import {
   highlightActiveLinks,
   initGlobalEventListener,
   makeFormPost,
+  MatchMedia,
   mimeTypes,
+  NotificationStoreAdapter,
   removeFormHiddenField,
+  Pager,
   prefixClass
 } from './lib/'
 
@@ -232,7 +235,6 @@ export default {
   getFileIdsByHash,
   MultistepNav,
   CleanHtml,
-  prefixClass,
   prefixClassMixin,
   dpSelectAllMixin,
   dpValidateMixin,
@@ -241,9 +243,13 @@ export default {
   VPopover,
   exactlengthHint,
   makeFormPost,
+  MatchMedia,
   maxlengthHint,
   minlengthHint,
   mimeTypes,
-  removeFormHiddenField
+  NotificationStoreAdapter,
+  removeFormHiddenField,
+  Pager,
+  prefixClass,
 }
 

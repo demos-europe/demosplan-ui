@@ -11,6 +11,9 @@ import Detabinator from './Detabinator'
 import FloodControlField from './FloodControlField'
 import getCssVariable from './DpGetCssVariable'
 import initGlobalEventListener from './GlobalEventListener'
+import MatchMedia from './MatchMedia'
+import NotificationStoreAdapter from './NotificationStoreAdapter'
+import Pager from './Pager'
 import prefixClass from './prefixClass/prefixClass'
 
 export {
@@ -34,7 +37,10 @@ export {
   highlightActiveLinks,
   initGlobalEventListener,
   makeFormPost,
+  MatchMedia,
   mimeTypes,
+  NotificationStoreAdapter,
   removeFormHiddenField,
+  Pager,
   prefixClass
 }

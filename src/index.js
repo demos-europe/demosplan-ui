@@ -72,7 +72,7 @@ import {
 } from './components/'
 
 import { prefixClass } from './lib/'
-import { prefixClassMixin } from './mixins/'
+import { prefixClassMixin } from '~~/mixins'
 
 export default {
   attributes,

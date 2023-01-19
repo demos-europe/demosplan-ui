@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import { DpIcon } from '~~/components'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {

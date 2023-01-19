@@ -1,6 +1,6 @@
 <script>
 import DomPurify from 'dompurify'
-import DpIcon from '../../DpIcon/DpIcon'
+import { DpIcon } from '~~/components'
 import DpWrapTrigger from './DpWrapTrigger'
 import { hasOwnProp } from '@demos-europe/demosplan-utils'
 

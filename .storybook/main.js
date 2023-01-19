@@ -1,3 +1,5 @@
+const projectConfig = require('../webpack.config')
+
 module.exports = {
   stories: [
     "../src/components/**/*.stories.mdx",
@@ -21,7 +23,16 @@ module.exports = {
       resourceQuery: /blockType=license/,
       loader: require.resolve('./removeSFCBlockLoader.js')
     })
-    return config
+
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...projectConfig().resolve.alias
+        }
+      }
+    }
   },
 
   /**

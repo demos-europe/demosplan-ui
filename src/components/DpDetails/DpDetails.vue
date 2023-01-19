@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { CleanHtml } from '~~/directives'
 
 export default {
   name: 'DpDetails',

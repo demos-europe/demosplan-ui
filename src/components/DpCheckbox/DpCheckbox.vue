@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DpLabel from '../DpLabel/DpLabel'
+import { DpLabel } from '~~/components'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {

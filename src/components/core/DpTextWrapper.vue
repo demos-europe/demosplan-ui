@@ -1,5 +1,5 @@
 <script>
-import DpLoading from '../DpLoading/DpLoading'
+import { DpLoading } from '~~/components'
 
 export default {
   name: 'DpTextWrapper',

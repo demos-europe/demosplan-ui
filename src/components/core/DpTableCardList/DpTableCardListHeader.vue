@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import DpCheckbox from '../../DpCheckbox/DpCheckbox'
+import { DpCheckbox } from '~~/components'
 import DpStickyElement from '../shared/DpStickyElement'
 
 export default {

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import DpFlyout from '../DpFlyout/DpFlyout'
+import { DpFlyout } from '~~/components'
 
 export default {
   name: 'DpRegisterFlyout',

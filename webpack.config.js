@@ -49,6 +49,11 @@ const config = {
     'vuex'
   ],
   resolve: {
+    alias: {
+      '~~/components': path.resolve(__dirname, 'src/components/'),
+      '~~/directives': path.resolve(__dirname, 'src/directives/'),
+      '~~/mixins': path.resolve(__dirname, 'src/mixins/')
+    },
     extensions: ['.js', '.vue'],
     symlinks: false
   },

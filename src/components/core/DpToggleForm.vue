@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import DpAccordion from '../DpAccordion/DpAccordion'
+import { DpAccordion } from '~~/components'
 import { dpValidateMixin } from '@demos-europe/demosplan-utils'
 
 export default {

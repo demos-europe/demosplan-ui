@@ -37,7 +37,7 @@
 
 <script>
 import { exactlengthHint, maxlengthHint, minlengthHint } from '../../utils/'
-import DpLabel from '../DpLabel/DpLabel'
+import { DpLabel } from '~~/components'
 import { length } from '../../shared/'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 

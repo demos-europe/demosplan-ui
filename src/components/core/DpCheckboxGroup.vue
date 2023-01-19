@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
+import { CleanHtml } from '~~/directives'
+import { DpCheckbox } from '~~/components'
 
 export default {
   name: 'DpCheckboxGroup',

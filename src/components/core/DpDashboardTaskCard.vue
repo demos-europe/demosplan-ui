@@ -16,9 +16,8 @@
 
 <script>
 import { checkResponse, dpApi } from '@demos-europe/demosplan-utils'
-import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
-import DpButton from '../DpButton/DpButton'
-import DpCard from './DpCard'
+import { DpButton, DpCard } from '~~/components'
+import { CleanHtml } from '~~/directives'
 
 export default {
   name: 'DpDashboardTaskCard',

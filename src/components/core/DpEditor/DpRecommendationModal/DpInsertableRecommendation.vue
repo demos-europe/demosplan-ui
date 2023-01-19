@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { CleanHtml, Tooltip } from '../../../../directives'
+import { CleanHtml, Tooltip } from '~~/directives'
 
 // This number is used to shorten long texts.
 const SHORT_TEXT_CHAR_LENGTH = 300

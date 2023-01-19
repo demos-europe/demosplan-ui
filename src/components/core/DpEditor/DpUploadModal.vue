@@ -50,9 +50,11 @@
 </template>
 
 <script>
-import DpInput from '../../DpInput/DpInput'
-import DpModal from '../DpModal'
-import DpUploadFiles from '../DpUpload/DpUploadFiles'
+import {
+  DpInput,
+  DpModal,
+  DpUploadFiles
+} from '~~/components'
 
 export default {
   name: 'DpUploadModal',

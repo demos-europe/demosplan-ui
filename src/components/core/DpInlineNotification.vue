@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import { DpIcon } from '~~/components'
 import lscache from 'lscache'
 
 export default {

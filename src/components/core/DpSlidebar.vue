@@ -22,7 +22,7 @@
 
 <script>
 import { hasOwnProp, SideNav } from '@demos-europe/demosplan-utils'
-import DpIcon from '../DpIcon/DpIcon'
+import { DpIcon } from '~~/components'
 
 export default {
   name: 'DpSlidebar',

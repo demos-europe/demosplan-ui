@@ -34,8 +34,7 @@
 </template>
 
 <script>
-import DpMultiselect from './form/DpMultiselect'
-import DpSlidingPagination from './DpSlidingPagination'
+import { DpMultiselect, DpSlidingPagination } from '~~/components'
 
 export default {
   name: 'DpPager',

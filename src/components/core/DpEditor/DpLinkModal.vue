@@ -46,10 +46,12 @@
 </template>
 
 <script>
-import DpButtonRow from '../../DpButtonRow/DpButtonRow'
-import DpCheckbox from '../../DpCheckbox/DpCheckbox'
-import DpInput from '../../DpInput/DpInput'
-import DpModal from '../DpModal'
+import {
+  DpButtonRow,
+  DpCheckbox,
+  DpInput,
+  DpModal
+} from '~~/components'
 import { dpValidateMixin } from '@demos-europe/demosplan-utils'
 
 export default {

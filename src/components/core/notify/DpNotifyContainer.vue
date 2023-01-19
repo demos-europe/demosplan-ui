@@ -16,9 +16,8 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { hasOwnProp, prefixClassMixin } from '@demos-europe/demosplan-utils'
 import DpNotifyMessage from './DpNotifyMessage'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {
   name: 'DpNotifyContainer',

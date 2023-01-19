@@ -1,7 +1,7 @@
 <script>
-import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
+import { CleanHtml } from '~~/directives'
 import DomPurify from 'dompurify'
-import DpLoading from '../../DpLoading/DpLoading'
+import { DpLoading } from '~~/components'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import draggable from 'vuedraggable'

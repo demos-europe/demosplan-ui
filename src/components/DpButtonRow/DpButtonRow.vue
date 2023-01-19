@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import DpButton from '../DpButton/DpButton'
+import { DpButton } from '~~/components'
 
 export default {
   name: 'DpButtonRow',

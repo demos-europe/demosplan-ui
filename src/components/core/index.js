@@ -1,5 +1,4 @@
 import dataTableSearch from './DpDataTable/DataTableSearch'
-import DpAccordion from './DpAccordion'
 import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
 import DpBulkEditHeader from './DpBulkEditHeader'
@@ -60,7 +59,6 @@ import MultistepNav from './MultistepNav'
 
 export {
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,

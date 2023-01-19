@@ -13,6 +13,15 @@ import getCssVariable from './DpGetCssVariable'
 import initGlobalEventListener from './GlobalEventListener'
 import MatchMedia from './MatchMedia'
 import NotificationStoreAdapter from './NotificationStoreAdapter'
+import SideNav from './SideNav'
+import Stickier from './Stickier'
+import Sticky from './Sticky'
+import TableWrapper from './TableWrapper'
+import Tabs from './Tabs'
+import ToggleAnything from './ToggleAnything'
+import ToggleSideMenu from './ToggleSideMenu'
+import Tooltips from './Tooltips'
+import touchFriendlyUserbox from './touchFriendlyUserbox'
 import Pager from './Pager'
 import prefixClass from './prefixClass/prefixClass'
 
@@ -41,6 +50,15 @@ export {
   mimeTypes,
   NotificationStoreAdapter,
   removeFormHiddenField,
+  SideNav,
+  Stickier,
+  Sticky,
+  TableWrapper,
+  Tabs,
+  ToggleAnything,
+  ToggleSideMenu,
+  Tooltips,
+  touchFriendlyUserbox,
   Pager,
   prefixClass
 }

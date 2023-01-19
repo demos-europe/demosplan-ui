@@ -12,7 +12,6 @@ import FloodControlField from './FloodControlField'
 import getCssVariable from './DpGetCssVariable'
 import initGlobalEventListener from './GlobalEventListener'
 import MatchMedia from './MatchMedia'
-import NotificationStoreAdapter from './NotificationStoreAdapter'
 import SideNav from './SideNav'
 import Stickier from './Stickier'
 import Sticky from './Sticky'
@@ -48,7 +47,6 @@ export {
   makeFormPost,
   MatchMedia,
   mimeTypes,
-  NotificationStoreAdapter,
   removeFormHiddenField,
   SideNav,
   Stickier,

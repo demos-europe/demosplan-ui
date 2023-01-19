@@ -36,7 +36,7 @@
 
 <script>
 import DpLabel from '../../DpLabel/DpLabel'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpSelect',

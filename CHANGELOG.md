@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.8 - 2023-01-19
+
 - docs: add documentation for DpCheckbox
 - Fix: `undefined` Translator error in DpResizableImage (#66)
 - chore: Bump Dependenices (#63)

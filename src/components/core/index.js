@@ -3,7 +3,6 @@ import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
 import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButtonIcon from './DpButtonIcon'
-import DpButtonRow from './DpButtonRow'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpCheckboxGroup from './DpCheckboxGroup'
@@ -63,7 +62,6 @@ export {
   DpAutocomplete,
   DpBulkEditHeader,
   DpButtonIcon,
-  DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
   DpCheckboxGroup,

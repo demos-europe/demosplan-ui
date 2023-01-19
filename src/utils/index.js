@@ -11,6 +11,7 @@ import getScrollTop from './getScrollTop'
 import hasOwnProp from './hasOwnProp'
 import sortAlphabetically from './sortAlphabetically'
 import throttle from './throttle'
+import prefixClass from './prefixClass'
 import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
 
 export {
@@ -36,5 +37,6 @@ export {
   minlengthHint,
   sortAlphabetically,
   throttle,
+  prefixClass,
   uniqueArrayByObjectKey
 }

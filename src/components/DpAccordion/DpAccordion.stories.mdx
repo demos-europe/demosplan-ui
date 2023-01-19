@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs'
+import DpAccordion from './DpAccordion'
+
+<Meta
+    title="Components/Accordion"
+    component={DpAccordion}
+/>
+
+# Accordion
+
+The accordion component can toggle itself via the `toggle` method, but can also be toggled from outside
+(e.g. via a save or abort button) by passing the parent's open state as prop (`isOpen`) and calling
+a toggle method on the parent `@item:toggle` which toggles the parent's `isOpen` data property.
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpAccordion },
+    template: `<dp-accordion v-bind="$props" />`
+});
+
+## With toggle from outside
+
+```
+<dp-accordion
+  :is-open="isOpen"
+  :title="title"
+  @item:toggle="(open) => toggleItem(open)" />
+```

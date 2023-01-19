@@ -33,7 +33,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import DpBoilerPlate from './DpBoilerPlate'
-import DpButtonRow from '../DpButtonRow'
+import DpButtonRow from '../../DpButtonRow/DpButtonRow'
 import DpModal from '../DpModal'
 import { hasOwnProp } from '@demos-europe/demosplan-ui'
 

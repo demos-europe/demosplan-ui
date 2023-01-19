@@ -1,6 +1,19 @@
+import DpButtonRow from './DpButtonRow'
+import { Meta } from '@storybook/addon-docs'
+
+<Meta
+  title="Components/Button Row"
+  component={DpButtonRow} />
+
 # Button Row
 
 This component contains a button row, currently with save and abort buttons.
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DpButtonRow },
+  template: `<dp-button-row v-bind="$props" />`
+});
 
 ## Default usage
 

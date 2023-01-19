@@ -24,7 +24,7 @@ export default {
 
   components: {
     DpAccordion,
-    DpButtonRow: () => import('./DpButtonRow')
+    DpButtonRow: () => import('../DpButtonRow/DpButtonRow')
   },
 
   mixins: [dpValidateMixin],

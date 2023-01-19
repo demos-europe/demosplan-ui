@@ -52,7 +52,8 @@ const config = {
     alias: {
       '~~/components': path.resolve(__dirname, 'src/components/'),
       '~~/directives': path.resolve(__dirname, 'src/directives/'),
-      '~~/mixins': path.resolve(__dirname, 'src/mixins/')
+      '~~/mixins': path.resolve(__dirname, 'src/mixins/'),
+      '~~/utils': path.resolve(__dirname, 'src/utils/')
     },
     extensions: ['.js', '.vue'],
     symlinks: false

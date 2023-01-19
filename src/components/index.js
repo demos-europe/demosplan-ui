@@ -1,4 +1,5 @@
 import DpButton from './DpButton/DpButton'
+import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpDetails from './DpDetails/DpDetails'
 import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
@@ -14,7 +15,6 @@ import {
   DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,

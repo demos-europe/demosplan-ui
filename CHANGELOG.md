@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 
+- docs: add documentation for DpCheckbox
 - Fix: `undefined` Translator error in DpResizableImage (#66)
 - chore: Bump Dependenices (#63)
 

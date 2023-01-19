@@ -47,7 +47,7 @@
 
 <script>
 import DpButtonRow from '../DpButtonRow'
-import DpCheckbox from '../form/DpCheckbox'
+import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpInput from '../../DpInput/DpInput'
 import DpModal from '../DpModal'
 import { dpValidateMixin } from '@demos-europe/demosplan-utils'

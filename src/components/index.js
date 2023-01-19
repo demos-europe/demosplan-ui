@@ -1,6 +1,7 @@
 import DpButton from './DpButton/DpButton'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpDetails from './DpDetails/DpDetails'
+import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
@@ -27,7 +28,6 @@ import {
   DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFlyout,
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,

@@ -19,7 +19,6 @@ import DpDateRangePicker from './form/DpDateRangePicker'
 import DpDatetimePicker from './form/DpDatetimePicker'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpFlyout from './DpFlyout'
 import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
 import DpInlineNotification from './DpInlineNotification'
@@ -80,7 +79,6 @@ export {
   DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFlyout,
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,

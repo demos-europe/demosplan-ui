@@ -42,7 +42,7 @@
 
 <script>
 import DpIcon from '../DpIcon/DpIcon'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpModal',

@@ -25,7 +25,7 @@
 <script>
 import { CleanHtml, Tooltip } from '../../directives'
 import { de } from '../shared/translations'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpLabel',

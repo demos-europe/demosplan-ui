@@ -17,7 +17,7 @@
 
 <script>
 import DpAccordion from '../DpAccordion/DpAccordion'
-import { dpValidateMixin } from '@demos-europe/demosplan-utils'
+import { dpValidateMixin } from '@demos-europe/demosplan-ui'
 
 export default {
   name: 'DpToggleForm',

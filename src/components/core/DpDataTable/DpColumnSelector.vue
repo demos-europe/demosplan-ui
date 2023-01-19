@@ -24,7 +24,7 @@
 
 <script>
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
-import DpFlyout from '../DpFlyout'
+import DpFlyout from '../../DpFlyout/DpFlyout'
 import { hasOwnProp } from '@demos-europe/demosplan-utils'
 
 export default {

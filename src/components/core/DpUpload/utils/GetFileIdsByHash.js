@@ -1,4 +1,4 @@
-import { dpApi } from '@demos-europe/demosplan-utils'
+import { dpApi } from '@demos-europe/demosplan-ui'
 
 /**
  * Fetch File-Ids by their hashes

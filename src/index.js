@@ -126,9 +126,27 @@ import {
   prefixClass
 } from './lib/'
 
+import {
+  assignHandlerForTrigger,
+  assignHandlersForInputs,
+  assignObserver,
+  dpValidate,
+  dpValidateMultiselectDirective,
+  validateDatepicker,
+  validateEmail,
+  validateFieldset,
+  validateForm,
+  validateInput,
+  validateMultiselect,
+  validateTiptap
+} from './lib/validation/'
+
 export default {
   ActionMenu,
   addFormHiddenField,
+  assignHandlerForTrigger,
+  assignHandlersForInputs,
+  assignObserver,
   AnimateById,
   attributes,
   CharCount,
@@ -169,6 +187,8 @@ export default {
   length,
   dpApi,
   dpRpc,
+  dpValidate,
+  dpValidateMultiselectDirective,
   DpButton,
   DpDetails,
   DpIcon,
@@ -251,5 +271,12 @@ export default {
   removeFormHiddenField,
   Pager,
   prefixClass,
+  validateDatepicker,
+  validateEmail,
+  validateFieldset,
+  validateForm,
+  validateInput,
+  validateMultiselect,
+  validateTiptap
 }
 

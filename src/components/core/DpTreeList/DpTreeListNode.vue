@@ -61,7 +61,7 @@
       :group-id="nodeId"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
-      :is-draggable="draggable"
+      :is-draggable="hasDraggableChildren"
       :node-id="nodeId"
       :on-move="onMove"
       :opts="options.draggable"

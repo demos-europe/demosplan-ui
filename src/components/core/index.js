@@ -52,7 +52,7 @@ import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList/DpTreeList'
 import DpUploadFiles from './DpUpload/DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
-import { getFileIdsByHash } from './DpUpload/utils/GetFileIdsByHash'
+import { getFileIdsByHash } from '~~/components'
 import MultistepNav from './MultistepNav'
 
 export {

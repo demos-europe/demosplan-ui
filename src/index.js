@@ -1,5 +1,5 @@
 import { attributes, length } from './shared'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './utils'
+import { exactlengthHint, maxlengthHint, minlengthHint } from '~~/utils'
 import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {

@@ -373,7 +373,7 @@ import EditorCustomMark from './libs/editorCustomMark'
 import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
-import { maxlengthHint } from '../../../utils/'
+import { maxlengthHint } from '~~/utils'
 import { prefixClassMixin } from '@demos-europe/demosplan-utils'
 
 export default {

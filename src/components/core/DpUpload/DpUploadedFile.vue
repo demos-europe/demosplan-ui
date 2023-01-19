@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getFileInfo } from '@demos-europe/demosplan-utils'
+import { getFileInfo } from '@demos-europe/demosplan-ui'
 import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {

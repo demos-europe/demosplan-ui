@@ -1,4 +1,5 @@
 const projectConfig = require('../webpack.config')
+const { merge } = require('webpack-merge')
 
 module.exports = {
   stories: [
@@ -24,15 +25,19 @@ module.exports = {
       loader: require.resolve('./removeSFCBlockLoader.js')
     })
 
-    return {
-      ...config,
+    /**
+     * Custom aliases defined within webpack must also be set in storybook.
+     */
+    const resolveAlias = {
       resolve: {
-        ...config.resolve,
-        alias: {
-          ...projectConfig().resolve.alias
-        }
+        alias: projectConfig().resolve.alias
       }
     }
+
+    return merge(
+      config,
+      resolveAlias
+    )
   },
 
   /**

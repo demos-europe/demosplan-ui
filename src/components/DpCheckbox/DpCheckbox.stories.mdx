@@ -1,0 +1,117 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpCheckbox from './DpCheckbox'
+
+<Meta
+  title="Components/Checkbox"
+  component={DpCheckbox} />
+
+# Checkbox
+
+The `DpCheckbox` component renders an input of type `checkbox`. Use it for a single option that the user can turn on or
+off.
+
+In order to display several checkboxes grouped together, use `DpCheckboxGroup`. 
+It allows for defining an additional group label and have checkbox labels with normal `font-weight`.
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpCheckbox },
+    template: `<dp-checkbox v-bind="$props" />`
+});
+
+### Default
+<Canvas>
+    <Story
+        name="Default"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label'
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Disabled
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label'
+            },
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Checked
+<Canvas>
+    <Story
+        name="Checked"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label'
+            },
+            checked: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+If a checkbox is `required`, an asterisk will be added to its label.
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label'
+            },
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Hint
+<Canvas>
+    <Story
+        name="Hint"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label',
+              hint: "This is a hint"
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Tooltip
+
+The `tooltip` property adds a contextual help icon that reveals additional information on the input field when the user
+hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information, whereas
+critical information should be presented immediately.
+
+<Canvas>
+    <Story
+        name="Tooltip"
+        args={{
+            id: 'checkboxId',
+            label: {
+              text: 'Checkbox label',
+              tooltip: "This is a tooltip"
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

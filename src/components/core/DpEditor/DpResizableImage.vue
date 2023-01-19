@@ -10,7 +10,7 @@
       :alt="node.attrs.alt"
       ref="image"
       :src="node.attrs.src"
-      :title="Translator.trans('image.alt.edit.hint')"
+      :title="imageTitle"
       :width="node.attrs.width">
   </span>
 </template>
@@ -62,6 +62,7 @@ export default {
   data () {
     return {
       id: uuid(),
+      imageTitle: Translator.trans('image.alt.edit.hint'),
       observer: null,
       ratioFactor: 1
     }
@@ -97,7 +98,10 @@ export default {
   },
 
   mounted () {
-    // Observe changes to image wrapper to update image size
+    /*
+     * Observe changes to image wrapper to update image size
+     * We have to wait for the nextTick to ensure, that the ref is set
+     */
     this.observer = new ResizeObserver(e => this.updateImageDimensions(e[0].target.offsetWidth))
     this.observer.observe(this.$refs.imagewrapper)
 

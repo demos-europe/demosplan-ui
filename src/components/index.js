@@ -1,20 +1,21 @@
+import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
+import DpButtonRow from './DpButtonRow/DpButtonRow'
+import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpDetails from './DpDetails/DpDetails'
+import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import {
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
   DpButtonIcon,
-  DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
@@ -28,7 +29,6 @@ import {
   DpDraggable,
   DpEditableList,
   DpEditor,
-  DpFlyout,
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
@@ -69,19 +69,19 @@ import {
 } from './core/'
 
 export {
+  DpAccordion,
   DpButton,
+  DpButtonRow,
   DpDetails,
   DpIcon,
   DpInput,
   DpLabel,
   DpLoading,
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
   DpButtonIcon,
-  DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
   DpCheckbox,

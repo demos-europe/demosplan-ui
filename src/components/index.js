@@ -1,3 +1,4 @@
+import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
@@ -8,7 +9,6 @@ import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import {
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
@@ -68,6 +68,7 @@ import {
 } from './core/'
 
 export {
+  DpAccordion,
   DpButton,
   DpButtonRow,
   DpDetails,
@@ -76,7 +77,6 @@ export {
   DpLabel,
   DpLoading,
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,

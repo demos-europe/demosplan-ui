@@ -57,7 +57,7 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import { dpApi } from '@demos-europe/demosplan-ui'
+import { dpApi } from '../../../lib'
 import dataTableSearch from '../DpDataTable/DataTableSearch'
 import DpLabel from '../../DpLabel/DpLabel'
 import DpLoading from '../../DpLoading/DpLoading'

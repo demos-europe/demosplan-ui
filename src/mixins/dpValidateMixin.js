@@ -1,8 +1,9 @@
 /*
- * This is the dpValidate vue mixin that allows us to validate inputs in vue components. It is to be used in vue components. To use it in vanilla JS-context see: @DemosPlanCoreBundle/lib/validation/dpValidate.js
+ * This is the dpValidate vue mixin that allows us to validate inputs in vue components.
+ * It is to be used in vue components. To use it in vanilla JS-context see: src/lib/validation/dpValidate.js
  *
  * Up to date documentation and usage examples can be found here:
- * https://yaits.demos-deutschland.de/w/demosplan/frontend-documentation/frontend-validierung/
+ * https://dplan-documentation.demos-europe.eu/development/application-architecture/validation/frontend/#_1-use-as-a-vue-mixin-dpvalidatemixin-js
  */
 
 import { errorClass, scrollToVisibleElement } from '../lib/validation/utils/helpers'

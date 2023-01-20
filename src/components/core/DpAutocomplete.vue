@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { dpApi, prefixClassMixin } from '@demos-europe/demosplan-ui'
+import { dpApi } from '../../lib'
+import { prefixClassMixin } from '../../mixins'
 
 export default {
   name: 'DpAutocomplete',

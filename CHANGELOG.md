@@ -4,7 +4,7 @@
 
 ## v0.0.8 - 2023-01-20
 
-- Fix DpTreeList bulk edit: emit correct selection in DpTreeList (#73)
+- Fix DpTreeList bulk edit: emit correct selection (#73)
 
 ## v0.0.7 - 2023-01-09
 

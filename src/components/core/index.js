@@ -1,13 +1,10 @@
 import dataTableSearch from './DpDataTable/DataTableSearch'
-import DpAccordion from './DpAccordion'
 import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
 import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButtonIcon from './DpButtonIcon'
-import DpButtonRow from './DpButtonRow'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
-import DpCheckbox from './form/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
 import DpContextualHelp from './DpContextualHelp'
@@ -20,7 +17,6 @@ import DpDateRangePicker from './form/DpDateRangePicker'
 import DpDatetimePicker from './form/DpDatetimePicker'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpFlyout from './DpFlyout'
 import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
 import DpInlineNotification from './DpInlineNotification'
@@ -61,15 +57,12 @@ import MultistepNav from './MultistepNav'
 
 export {
   dataTableSearch,
-  DpAccordion,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
   DpButtonIcon,
-  DpButtonRow,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
@@ -82,7 +75,6 @@ export {
   DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFlyout,
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,

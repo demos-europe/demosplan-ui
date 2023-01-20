@@ -21,7 +21,7 @@
 
 <script>
 import { CleanHtml } from '../../directives'
-import DpCheckbox from './form/DpCheckbox'
+import DpCheckbox from '../DpCheckbox/DpCheckbox'
 
 export default {
   name: 'DpCheckboxGroup',

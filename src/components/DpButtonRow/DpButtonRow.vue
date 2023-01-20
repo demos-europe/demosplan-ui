@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { DpButton } from '..'
+import DpButton from '../DpButton/DpButton'
 
 export default {
   name: 'DpButtonRow',

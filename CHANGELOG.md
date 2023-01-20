@@ -2,9 +2,15 @@
 
 ## UNRELEASED
 
-## v0.0.8 - 2023-01-20
+## v0.0.9 - 2023-01-20
 
-- Fix DpTreeList bulk edit: emit correct selection (#73)
+- Fix DpTreeList bulk edit: emit correct selection
+
+## v0.0.8 - 2023-01-19
+
+- docs: add documentation for DpCheckbox
+- Fix: `undefined` Translator error in DpResizableImage (#66)
+- chore: Bump Dependenices (#63)
 
 ## v0.0.7 - 2023-01-09
 

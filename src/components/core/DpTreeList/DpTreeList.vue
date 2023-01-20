@@ -81,7 +81,9 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp, Stickier } from '@demos-europe/demosplan-ui'
+import { deepMerge } from '../../../utils'
+import { hasOwnProp } from '../../../utils'
+import { Stickier } from '../../../lib'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'

@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import bus from './utils/bus'
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
+import bus from './utils/bus'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'

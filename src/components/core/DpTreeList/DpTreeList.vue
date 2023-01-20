@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import bus from './utils/bus'
 import { deepMerge, hasOwnProp, Stickier } from '@demos-europe/demosplan-utils'
+import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'

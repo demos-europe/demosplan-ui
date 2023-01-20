@@ -30,7 +30,7 @@
 
 <script>
 import DpLabel from '../DpLabel/DpLabel'
-import { prefixClassMixin } from '@demos-europe/demosplan-ui'
+import { prefixClassMixin } from '../../mixins'
 
 export default {
   name: 'DpCheckbox',

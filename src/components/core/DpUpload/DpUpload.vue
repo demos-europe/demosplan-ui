@@ -3,8 +3,9 @@
 </template>
 
 <script>
-import { getFileTypes, hasOwnProp } from '@demos-europe/demosplan-ui'
 import { de } from './utils/UppyTranslations'
+import { hasOwnProp } from '../../../utils'
+import { getFileTypes } from '../../../lib'
 import DragDrop from '@uppy/drag-drop'
 import ProgressBar from '@uppy/progress-bar'
 import Tus from '@uppy/tus'

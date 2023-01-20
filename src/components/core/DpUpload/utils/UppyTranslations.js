@@ -1,4 +1,4 @@
-import { convertSize } from '@demos-europe/demosplan-ui'
+import { convertSize } from '../../../../lib'
 const de = () => {
   return {
     strings: {

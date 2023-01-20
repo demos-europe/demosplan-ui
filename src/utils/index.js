@@ -9,9 +9,9 @@ import formatBytes from './formatBytes'
 import getAnimationEventName from './getAnimationEventName'
 import getScrollTop from './getScrollTop'
 import hasOwnProp from './hasOwnProp'
+import prefixClass from './prefixClass'
 import sortAlphabetically from './sortAlphabetically'
 import throttle from './throttle'
-import prefixClass from './prefixClass'
 import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
 
 export {

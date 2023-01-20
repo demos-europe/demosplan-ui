@@ -6,6 +6,6 @@ import tableSelectAllItems from './tableSelectAllItems'
 export {
   dpSelectAllMixin,
   dpValidateMixin,
-  tableSelectAllItems,
-  prefixClassMixin
+  prefixClassMixin,
+  tableSelectAllItems
 }

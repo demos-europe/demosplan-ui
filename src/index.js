@@ -21,6 +21,7 @@ import {
   toDate,
   toggleFullscreen,
   isActiveFullScreen,
+  prefixClass,
   sortAlphabetically,
   throttle,
   uniqueArrayByObjectKey,
@@ -97,6 +98,7 @@ import {
 } from './components/'
 
 import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
+
 import {
   ActionMenu,
   addFormHiddenField,
@@ -130,8 +132,7 @@ import {
   ToggleSideMenu,
   Tooltips,
   touchFriendlyUserbox,
-  Pager,
-  prefixClass
+  Pager
 } from './lib/'
 
 import {

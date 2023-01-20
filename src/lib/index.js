@@ -22,7 +22,6 @@ import ToggleSideMenu from './ToggleSideMenu'
 import Tooltips from './Tooltips'
 import touchFriendlyUserbox from './touchFriendlyUserbox'
 import Pager from './Pager'
-import prefixClass from './prefixClass/prefixClass'
 
 export {
   ActionMenu,
@@ -57,6 +56,5 @@ export {
   ToggleSideMenu,
   Tooltips,
   touchFriendlyUserbox,
-  Pager,
-  prefixClass
+  Pager
 }

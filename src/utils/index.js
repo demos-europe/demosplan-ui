@@ -15,6 +15,7 @@ import throttle from './throttle'
 import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
 
 export {
+  bindFullScreenChange,
   changeUrlforPager,
   DATE_FORMAT_LONG,
   debounce,
@@ -23,7 +24,6 @@ export {
   formatBytes,
   formatDate,
   toggleFullscreen,
-  bindFullScreenChange,
   unbindFullScreenChange,
   isActiveFullScreen,
   toDate,

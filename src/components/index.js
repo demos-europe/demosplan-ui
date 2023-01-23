@@ -8,6 +8,7 @@ import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpRadio from './DpRadio/DpRadio'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -37,7 +38,6 @@ import {
   DpObscure,
   DpPager,
   DpProgressBar,
-  DpRadio,
   DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,

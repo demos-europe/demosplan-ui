@@ -26,7 +26,6 @@ import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
 import DpPager from './DpPager'
 import DpProgressBar from './DpProgressBar'
-import DpRadio from './form/DpRadio'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpResettableInput from './DpResettableInput'
 import DpSearchField from './form/DpSearchField'
@@ -84,7 +83,6 @@ export {
   DpObscure,
   DpPager,
   DpProgressBar,
-  DpRadio,
   DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,

@@ -4,6 +4,7 @@ import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpDatepicker from './DpDatepicker/DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
+import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
@@ -30,7 +31,6 @@ import {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatetimePicker,
   DpEditableList,
   DpEditor,
   DpFormRow,

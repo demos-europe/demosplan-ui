@@ -12,7 +12,6 @@ import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
-import DpDatetimePicker from './form/DpDatetimePicker'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpFormRow from './form/DpFormRow'
@@ -63,7 +62,6 @@ export {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatetimePicker,
   DpEditableList,
   DpEditor,
   DpFormRow,

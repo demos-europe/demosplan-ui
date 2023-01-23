@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import DpButton from '../../DpButton/DpButton'
-import DpResettableInput from '../DpResettableInput'
+import DpButton from '../DpButton/DpButton'
+import DpResettableInput from '../core/DpResettableInput'
 
 export default {
   name: 'DpSearchField',

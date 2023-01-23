@@ -28,7 +28,6 @@ import DpPager from './DpPager'
 import DpProgressBar from './DpProgressBar'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpResettableInput from './DpResettableInput'
-import DpSearchField from './form/DpSearchField'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpSlidebar from './DpSlidebar'
@@ -83,7 +82,6 @@ export {
   DpProgressBar,
   DpRegisterFlyout,
   DpResettableInput,
-  DpSearchField,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,

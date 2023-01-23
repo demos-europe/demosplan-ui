@@ -13,6 +13,7 @@ import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
+import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -45,7 +46,6 @@ import {
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
-  DpSlidingPagination,
   DpSplitButton,
   DpStickyElement,
   DpSwitcher,

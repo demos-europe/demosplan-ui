@@ -29,7 +29,6 @@ import DpSelect from './form/DpSelect'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpSlidebar from './DpSlidebar'
-import DpSlidingPagination from './DpSlidingPagination'
 import DpSplitButton from './DpSplitButton'
 import DpStickyElement from './shared/DpStickyElement'
 import DpSwitcher from './DpSwitcher'
@@ -82,7 +81,6 @@ export {
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
-  DpSlidingPagination,
   DpSplitButton,
   DpStickyElement,
   DpSwitcher,

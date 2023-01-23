@@ -9,6 +9,7 @@ import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpRadio from './DpRadio/DpRadio'
+import DpTextArea from './DpTextArea/DpTextArea'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -53,7 +54,6 @@ import {
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
-  DpTextArea,
   DpTextWrapper,
   DpTimePicker,
   DpToggle,

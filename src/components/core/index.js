@@ -41,7 +41,6 @@ import DpTab from './DpTabs/DpTab'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTabs from './DpTabs/DpTabs'
-import DpTextArea from './form/DpTextArea'
 import DpTextWrapper from './DpTextWrapper'
 import DpTimePicker from './form/DpTimePicker'
 import DpToggle from './form/DpToggle'
@@ -98,7 +97,6 @@ export {
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
-  DpTextArea,
   DpTextWrapper,
   DpTimePicker,
   DpToggle,

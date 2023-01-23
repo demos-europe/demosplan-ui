@@ -21,7 +21,6 @@ import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
 import DpInlineNotification from './DpInlineNotification'
 import DpModal from './DpModal'
-import DpMultiselect from './form/DpMultiselect'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
 import DpPager from './DpPager'
@@ -75,7 +74,6 @@ export {
   DpHeightLimit,
   DpInlineNotification,
   DpModal,
-  DpMultiselect,
   DpNotifyContainer,
   DpObscure,
   DpPager,

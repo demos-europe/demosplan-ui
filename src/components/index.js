@@ -8,6 +8,7 @@ import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpMultiselect from './DpMultiselect/DpMultiselect'
 import DpRadio from './DpRadio/DpRadio'
 import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
@@ -36,7 +37,6 @@ import {
   DpHeightLimit,
   DpInlineNotification,
   DpModal,
-  DpMultiselect,
   DpNotifyContainer,
   DpObscure,
   DpPager,

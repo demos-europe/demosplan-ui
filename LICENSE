@@ -33,8 +33,8 @@ subject to the accompanying licenses:
 ------------------------------------------------------------------------------------------
 
 
-lib/Detabinator.js
-lib/SideNav.js
+src/lib/Detabinator.js
+src/lib/SideNav.js
 
 
     Copyright 2014 Google Inc. All rights reserved.

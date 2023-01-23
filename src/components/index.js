@@ -9,6 +9,7 @@ import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpRadio from './DpRadio/DpRadio'
+import DpSelect from './DpSelect/DpSelect'
 import DpTextArea from './DpTextArea/DpTextArea'
 import {
   dataTableSearch,
@@ -42,7 +43,6 @@ import {
   DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,
-  DpSelect,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,

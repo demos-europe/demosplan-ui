@@ -14,7 +14,6 @@ import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
 import DpInlineNotification from './DpInlineNotification'
 import DpModal from './DpModal'
@@ -62,7 +61,6 @@ export {
   DpDataTableExtended,
   DpEditableList,
   DpEditor,
-  DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
   DpModal,

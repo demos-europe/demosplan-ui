@@ -7,6 +7,7 @@ import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
+import DpFormRow from './DpFormRow/DpFormRow'
 import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
@@ -35,7 +36,6 @@ import {
   DpDataTableExtended,
   DpEditableList,
   DpEditor,
-  DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
   DpModal,

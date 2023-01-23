@@ -17,6 +17,7 @@ import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
+import DpToggle from './DpToggle/DpToggle'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -56,7 +57,6 @@ import {
   DpTableCardListHeader,
   DpTabs,
   DpTextWrapper,
-  DpToggle,
   DpToggleForm,
   DpTooltipIcon,
   DpTransitionExpand,

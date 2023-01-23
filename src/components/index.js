@@ -4,18 +4,29 @@ import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
 import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
+import DpDatepicker from './DpDatepicker/DpDatepicker'
+import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
+import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
+import DpFormRow from './DpFormRow/DpFormRow'
 import DpIcon from './DpIcon/DpIcon'
 import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpMultiselect from './DpMultiselect/DpMultiselect'
 import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
+import DpRadio from './DpRadio/DpRadio'
 import DpResettableInput from './DpResettableInput/DpResettableInput'
+import DpSearchField from './DpSearchField/DpSearchField'
+import DpSelect from './DpSelect/DpSelect'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
+import DpTextArea from './DpTextArea/DpTextArea'
+import DpTimePicker from './DpTimePicker/DpTimePicker'
+import DpToggle from './DpToggle/DpToggle'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -29,19 +40,17 @@ import {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatepicker,
-  DpDateRangePicker,
-  DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFormRow,
   DpHeightLimit,
   DpModal,
-  DpMultiselect,
   DpNotifyContainer,
   DpObscure,
+  DpPager,
+  DpProgressBar,
   DpRadio,
   DpRegisterFlyout,
+  DpResettableInput,
   DpSearchField,
   DpSelect,
   DpSelectPageItemCount,
@@ -53,10 +62,7 @@ import {
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
-  DpTextArea,
   DpTextWrapper,
-  DpTimePicker,
-  DpToggle,
   DpToggleForm,
   DpTooltipIcon,
   DpTransitionExpand,

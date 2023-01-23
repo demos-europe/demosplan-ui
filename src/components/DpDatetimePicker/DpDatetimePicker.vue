@@ -37,8 +37,8 @@
 <script>
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
-import DpDatepicker from './DpDatepicker'
-import DpTimePicker from './DpTimePicker'
+import DpDatepicker from '../DpDatepicker/DpDatepicker'
+import DpTimePicker from '../DpTimePicker/DpTimePicker'
 
 dayjs.extend(customParseFormat)
 
@@ -48,7 +48,7 @@ export default {
   components: {
     DpDatepicker,
     DpLabel: async () => {
-      return await import('../../DpLabel/DpLabel')
+      return await import('../DpLabel/DpLabel')
     },
     DpTimePicker
   },

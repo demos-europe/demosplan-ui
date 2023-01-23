@@ -10,21 +10,13 @@ import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
-import DpDatepicker from './form/DpDatepicker'
-import DpDateRangePicker from './form/DpDateRangePicker'
-import DpDatetimePicker from './form/DpDatetimePicker'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
 import DpModal from './DpModal'
-import DpMultiselect from './form/DpMultiselect'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
-import DpRadio from './form/DpRadio'
 import DpRegisterFlyout from './DpRegisterFlyout'
-import DpSearchField from './form/DpSearchField'
-import DpSelect from './form/DpSelect'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpSlidebar from './DpSlidebar'
@@ -34,10 +26,7 @@ import DpTab from './DpTabs/DpTab'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTabs from './DpTabs/DpTabs'
-import DpTextArea from './form/DpTextArea'
 import DpTextWrapper from './DpTextWrapper'
-import DpTimePicker from './form/DpTimePicker'
-import DpToggle from './form/DpToggle'
 import DpToggleForm from './DpToggleForm'
 import DpTooltipIcon from './DpTooltipIcon'
 import DpTransitionExpand from './DpTransitionExpand'
@@ -60,21 +49,13 @@ export {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatepicker,
-  DpDateRangePicker,
-  DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFormRow,
   DpHeightLimit,
   DpModal,
-  DpMultiselect,
   DpNotifyContainer,
   DpObscure,
-  DpRadio,
   DpRegisterFlyout,
-  DpSearchField,
-  DpSelect,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
@@ -84,10 +65,7 @@ export {
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
-  DpTextArea,
   DpTextWrapper,
-  DpTimePicker,
-  DpToggle,
   DpToggleForm,
   DpTooltipIcon,
   DpTransitionExpand,

@@ -38,7 +38,7 @@
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
 import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import DpTimePicker from '../core/form/DpTimePicker'
+import DpTimePicker from '../DpTimePicker/DpTimePicker'
 
 dayjs.extend(customParseFormat)
 

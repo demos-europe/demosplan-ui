@@ -16,6 +16,7 @@ import DpRadio from './DpRadio/DpRadio'
 import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
 import DpTextArea from './DpTextArea/DpTextArea'
+import DpTimePicker from './DpTimePicker/DpTimePicker'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -55,7 +56,6 @@ import {
   DpTableCardListHeader,
   DpTabs,
   DpTextWrapper,
-  DpTimePicker,
   DpToggle,
   DpToggleForm,
   DpTooltipIcon,

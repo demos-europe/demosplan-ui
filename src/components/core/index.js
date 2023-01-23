@@ -36,7 +36,6 @@ import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTabs from './DpTabs/DpTabs'
 import DpTextWrapper from './DpTextWrapper'
-import DpTimePicker from './form/DpTimePicker'
 import DpToggle from './form/DpToggle'
 import DpToggleForm from './DpToggleForm'
 import DpTooltipIcon from './DpTooltipIcon'
@@ -86,7 +85,6 @@ export {
   DpTableCardListHeader,
   DpTabs,
   DpTextWrapper,
-  DpTimePicker,
   DpToggle,
   DpToggleForm,
   DpTooltipIcon,

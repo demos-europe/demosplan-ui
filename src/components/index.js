@@ -7,6 +7,7 @@ import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
+import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
@@ -32,7 +33,6 @@ import {
   DpEditor,
   DpFormRow,
   DpHeightLimit,
-  DpInlineNotification,
   DpModal,
   DpMultiselect,
   DpNotifyContainer,

@@ -17,7 +17,6 @@ import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpFormRow from './form/DpFormRow'
 import DpHeightLimit from './HeightLimit'
-import DpInlineNotification from './DpInlineNotification'
 import DpModal from './DpModal'
 import DpMultiselect from './form/DpMultiselect'
 import DpNotifyContainer from './notify/DpNotifyContainer'
@@ -71,7 +70,6 @@ export {
   DpEditor,
   DpFormRow,
   DpHeightLimit,
-  DpInlineNotification,
   DpModal,
   DpMultiselect,
   DpNotifyContainer,

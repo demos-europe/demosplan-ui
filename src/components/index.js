@@ -10,6 +10,7 @@ import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
 import {
   dataTableSearch,
@@ -36,7 +37,6 @@ import {
   DpMultiselect,
   DpNotifyContainer,
   DpObscure,
-  DpPager,
   DpRadio,
   DpRegisterFlyout,
   DpResettableInput,

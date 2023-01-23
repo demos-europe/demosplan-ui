@@ -22,7 +22,6 @@ import DpModal from './DpModal'
 import DpMultiselect from './form/DpMultiselect'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
-import DpPager from './DpPager'
 import DpRadio from './form/DpRadio'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpResettableInput from './DpResettableInput'
@@ -77,7 +76,6 @@ export {
   DpMultiselect,
   DpNotifyContainer,
   DpObscure,
-  DpPager,
   DpRadio,
   DpRegisterFlyout,
   DpResettableInput,

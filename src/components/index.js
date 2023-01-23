@@ -15,6 +15,7 @@ import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
 import DpResettableInput from './DpResettableInput/DpResettableInput'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
+import DpSplitButton from './DpSplitButton/DpSplitButton'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -46,7 +47,6 @@ import {
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
-  DpSplitButton,
   DpStickyElement,
   DpSwitcher,
   DpTab,

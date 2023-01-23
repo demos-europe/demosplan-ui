@@ -35,7 +35,7 @@ export default {
 
   components: {
     DpCheckbox,
-    DpSearchField: () => import('../form/DpSearchField'),
+    DpSearchField: () => import('../../DpSearchField/DpSearchField'),
     DpStickyElement
   },
 

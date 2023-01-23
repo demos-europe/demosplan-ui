@@ -3,7 +3,6 @@ import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {
   bindFullScreenChange,
-  changeUrlforPager,
   DATE_FORMAT_LONG,
   debounce,
   deepMerge,
@@ -145,7 +144,6 @@ export default {
   Confirm,
   convertSize,
   checkResponse,
-  changeUrlforPager,
   dataTableSearch,
   DATE_FORMAT_LONG,
   debounce,

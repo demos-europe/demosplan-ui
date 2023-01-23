@@ -10,6 +10,7 @@ import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpProgressBar from './DpProgressBar/DpProgressBar'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -36,7 +37,6 @@ import {
   DpNotifyContainer,
   DpObscure,
   DpPager,
-  DpProgressBar,
   DpRadio,
   DpRegisterFlyout,
   DpResettableInput,

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import DpDatepicker from './DpDatepicker'
+import DpDatepicker from '../DpDatepicker/DpDatepicker'
 import { formatDate } from '../../../utils'
 
 export default {

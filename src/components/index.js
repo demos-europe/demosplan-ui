@@ -2,12 +2,23 @@ import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
+import DpDatepicker from './DpDatepicker/DpDatepicker'
+import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
+import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
+import DpFormRow from './DpFormRow/DpFormRow'
 import DpIcon from './DpIcon/DpIcon'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpMultiselect from './DpMultiselect/DpMultiselect'
+import DpRadio from './DpRadio/DpRadio'
+import DpSearchField from './DpSearchField/DpSearchField'
+import DpSelect from './DpSelect/DpSelect'
+import DpTextArea from './DpTextArea/DpTextArea'
+import DpTimePicker from './DpTimePicker/DpTimePicker'
+import DpToggle from './DpToggle/DpToggle'
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -23,25 +34,17 @@ import {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatepicker,
-  DpDateRangePicker,
-  DpDatetimePicker,
   DpEditableList,
   DpEditor,
-  DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
   DpModal,
-  DpMultiselect,
   DpNotifyContainer,
   DpObscure,
   DpPager,
   DpProgressBar,
-  DpRadio,
   DpRegisterFlyout,
   DpResettableInput,
-  DpSearchField,
-  DpSelect,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
@@ -53,10 +56,7 @@ import {
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
-  DpTextArea,
   DpTextWrapper,
-  DpTimePicker,
-  DpToggle,
   DpToggleForm,
   DpTooltipIcon,
   DpTransitionExpand,

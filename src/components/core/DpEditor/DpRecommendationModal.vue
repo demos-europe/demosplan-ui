@@ -63,7 +63,7 @@ import DpLabel from '../../DpLabel/DpLabel'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpInsertableRecommendation from './DpRecommendationModal/DpInsertableRecommendation'
 import DpModal from '../DpModal'
-import DpSearchField from '../form/DpSearchField'
+import DpSearchField from '../../DpSearchField/DpSearchField'
 
 export default {
   name: 'DpRecommendationModal',

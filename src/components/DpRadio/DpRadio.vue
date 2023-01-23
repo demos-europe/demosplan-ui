@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import DpLabel from '../../DpLabel/DpLabel'
+import DpLabel from '../DpLabel/DpLabel'
 import { prefixClassMixin } from '../../../mixins'
 
 export default {

@@ -19,15 +19,15 @@
 </template>
 
 <script>
-import { attributes, length } from '../../../shared/'
-import { maxlengthHint } from '../../../utils/'
+import { attributes, length } from '../../shared'
+import { maxlengthHint } from '../../utils'
 
 export default {
   name: 'DpTextArea',
 
   components: {
     DpLabel: async () => {
-      return await import('../../DpLabel/DpLabel')
+      return await import('../DpLabel/DpLabel')
     }
   },
 

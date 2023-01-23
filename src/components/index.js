@@ -2,6 +2,7 @@ import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
+import DpDatepicker from './DpDatepicker/DpDatepicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
@@ -28,7 +29,6 @@ import {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
   DpEditableList,

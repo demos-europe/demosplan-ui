@@ -23,7 +23,6 @@ import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
 import DpRadio from './form/DpRadio'
 import DpRegisterFlyout from './DpRegisterFlyout'
-import DpResettableInput from './DpResettableInput'
 import DpSearchField from './form/DpSearchField'
 import DpSelect from './form/DpSelect'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
@@ -75,7 +74,6 @@ export {
   DpObscure,
   DpRadio,
   DpRegisterFlyout,
-  DpResettableInput,
   DpSearchField,
   DpSelect,
   DpSelectPageItemCount,

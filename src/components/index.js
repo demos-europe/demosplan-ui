@@ -13,6 +13,7 @@ import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
+import DpResettableInput from './DpResettableInput/DpResettableInput'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import {
   dataTableSearch,
@@ -40,7 +41,6 @@ import {
   DpObscure,
   DpRadio,
   DpRegisterFlyout,
-  DpResettableInput,
   DpSearchField,
   DpSelect,
   DpSelectPageItemCount,

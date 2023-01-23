@@ -92,7 +92,7 @@ export default {
     DpLabel: async () => {
       return await import('../../DpLabel/DpLabel')
     },
-    DpResettableInput: () => import('../DpResettableInput')
+    DpResettableInput: () => import('../../DpResettableInput/DpResettableInput')
   },
 
   directives: {

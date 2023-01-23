@@ -5,7 +5,6 @@ import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButtonIcon from './DpButtonIcon'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
-import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
 import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
@@ -62,7 +61,6 @@ export {
   DpButtonIcon,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckboxGroup,
   DpColumnSelector,
   DpCopyPasteButton,
   DpDashboardTaskCard,

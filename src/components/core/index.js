@@ -7,7 +7,6 @@ import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
-import DpContextualHelp from './DpContextualHelp'
 import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
@@ -65,7 +64,6 @@ export {
   DpChangeStateAtDate,
   DpCheckboxGroup,
   DpColumnSelector,
-  DpContextualHelp,
   DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,

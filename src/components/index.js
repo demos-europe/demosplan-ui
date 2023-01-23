@@ -2,6 +2,7 @@ import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
+import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpIcon from './DpIcon/DpIcon'
@@ -18,7 +19,6 @@ import {
   DpChangeStateAtDate,
   DpCheckboxGroup,
   DpColumnSelector,
-  DpContextualHelp,
   DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,

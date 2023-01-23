@@ -19,7 +19,7 @@ export default {
   name: 'DpCard',
 
   components: {
-    DpContextualHelp: () => import('./DpContextualHelp')
+    DpContextualHelp: () => import('../DpContextualHelp/DpContextualHelp')
   },
 
   props: {

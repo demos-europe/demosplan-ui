@@ -81,8 +81,7 @@
 </template>
 
 <script>
-import { deepMerge } from '../../../utils'
-import { hasOwnProp } from '../../../utils'
+import { deepMerge, hasOwnProp } from '../../../utils'
 import { Stickier } from '../../../lib'
 import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'

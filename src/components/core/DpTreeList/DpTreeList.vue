@@ -84,6 +84,7 @@
 import { deepMerge } from '../../../utils'
 import { hasOwnProp } from '../../../utils'
 import { Stickier } from '../../../lib'
+import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
@@ -138,7 +139,6 @@ export default {
     return {
       allElementsExpanded: false,
       allElementsSelected: false,
-
       /*
        * To be able to control the appearance of nodes when hovered vs. when dragged,
        * the outermost container receives an `is-dragging` class if a node is dragged.
@@ -322,6 +322,8 @@ export default {
     this.opts = deepMerge(defaults, this.options)
 
     this.initFixedControls()
+
+    bus.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { formatDate, toDate } from '@demos-europe/demosplan-utils'
+import { formatDate, toDate } from '../../utils'
 import DpDatepicker from '../DpDatepicker/DpDatepicker'
 import DpLabel from '../DpLabel/DpLabel'
 import DpSelect from '../DpSelect/DpSelect'

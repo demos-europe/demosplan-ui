@@ -4,8 +4,6 @@
  * @param {String}  classList or querySelector
  *
  * @return {String} prefixed classList
- *
- * @deprecated USe prefixClass from demosplan-utils instead
  */
 export default function prefixClass (classList = '') {
   let prefix = ''

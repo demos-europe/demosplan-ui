@@ -15,7 +15,7 @@
 
 <script>
 import DpUploadedFile from './DpUploadedFile'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadedFileList',

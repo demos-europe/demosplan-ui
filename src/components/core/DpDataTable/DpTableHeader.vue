@@ -1,7 +1,7 @@
 <script>
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '../../../utils'
 import { renderResizeWrapper } from './lib/ResizableColumns'
 
 export default {

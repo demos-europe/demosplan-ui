@@ -35,7 +35,7 @@
 
 <script>
 import DpMultiselect from '../DpMultiselect/DpMultiselect'
-import DpSlidingPagination from './DpSlidingPagination'
+import DpSlidingPagination from '../DpSlidingPagination/DpSlidingPagination'
 
 export default {
   name: 'DpPager',

@@ -5,9 +5,7 @@ import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButtonIcon from './DpButtonIcon'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
-import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
-import DpContextualHelp from './DpContextualHelp'
 import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
@@ -15,19 +13,13 @@ import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpHeightLimit from './HeightLimit'
-import DpInlineNotification from './DpInlineNotification'
 import DpModal from './DpModal'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpObscure from './DpObscure'
-import DpPager from './DpPager'
-import DpProgressBar from './DpProgressBar'
 import DpRegisterFlyout from './DpRegisterFlyout'
-import DpResettableInput from './DpResettableInput'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpSlidebar from './DpSlidebar'
-import DpSlidingPagination from './DpSlidingPagination'
-import DpSplitButton from './DpSplitButton'
 import DpStickyElement from './shared/DpStickyElement'
 import DpSwitcher from './DpSwitcher'
 import DpTab from './DpTabs/DpTab'
@@ -52,9 +44,7 @@ export {
   DpButtonIcon,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckboxGroup,
   DpColumnSelector,
-  DpContextualHelp,
   DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
@@ -62,19 +52,13 @@ export {
   DpEditableList,
   DpEditor,
   DpHeightLimit,
-  DpInlineNotification,
   DpModal,
   DpNotifyContainer,
   DpObscure,
-  DpPager,
-  DpProgressBar,
   DpRegisterFlyout,
-  DpResettableInput,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
-  DpSlidingPagination,
-  DpSplitButton,
   DpStickyElement,
   DpSwitcher,
   DpTab,

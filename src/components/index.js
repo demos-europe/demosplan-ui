@@ -2,6 +2,8 @@ import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
+import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
+import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
 import DpDatepicker from './DpDatepicker/DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
@@ -9,13 +11,19 @@ import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpFormRow from './DpFormRow/DpFormRow'
 import DpIcon from './DpIcon/DpIcon'
+import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpMultiselect from './DpMultiselect/DpMultiselect'
+import DpPager from './DpPager/DpPager'
+import DpProgressBar from './DpProgressBar/DpProgressBar'
 import DpRadio from './DpRadio/DpRadio'
+import DpResettableInput from './DpResettableInput/DpResettableInput'
 import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
+import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
+import DpSplitButton from './DpSplitButton/DpSplitButton'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
 import DpToggle from './DpToggle/DpToggle'
@@ -27,9 +35,7 @@ import {
   DpButtonIcon,
   DpCard,
   DpChangeStateAtDate,
-  DpCheckboxGroup,
   DpColumnSelector,
-  DpContextualHelp,
   DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
@@ -37,19 +43,13 @@ import {
   DpEditableList,
   DpEditor,
   DpHeightLimit,
-  DpInlineNotification,
   DpModal,
   DpNotifyContainer,
   DpObscure,
-  DpPager,
-  DpProgressBar,
   DpRegisterFlyout,
-  DpResettableInput,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,
-  DpSlidingPagination,
-  DpSplitButton,
   DpStickyElement,
   DpSwitcher,
   DpTab,

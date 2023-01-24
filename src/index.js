@@ -74,7 +74,7 @@ import {
 import { prefixClass } from './lib/'
 import { prefixClassMixin } from './mixins/'
 
-export default {
+export {
   attributes,
   length,
   DpButton,

@@ -556,6 +556,18 @@ export default {
       default: false
     },
 
+    permissionBoilerPlate: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    permissionObscureText: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     /**
      * ProcedureId is required if we want to enable boilerplates
      */
@@ -742,7 +754,7 @@ export default {
 
   computed: {
     boilerPlateEnabled () {
-      return hasPermission('area_admin_boilerplates') && Boolean(this.toolbar.boilerPlate)
+      return hasPermission(this.permissionBoilerPlate) && Boolean(this.toolbar.boilerPlate)
     },
 
     counterText () {
@@ -755,7 +767,7 @@ export default {
     },
 
     obscureEnabled () {
-      return hasPermission('feature_obscure_text') && this.toolbar.obscure
+      return hasPermission(this.permissionObscureText) && this.toolbar.obscure
     }
   },
 

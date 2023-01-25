@@ -556,18 +556,6 @@ export default {
       default: false
     },
 
-    permissionBoilerPlate: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    permissionObscureText: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     /**
      * ProcedureId is required if we want to enable boilerplates
      */
@@ -745,6 +733,7 @@ export default {
         linkButton: this.linkButton,
         listButtons: this.listButtons,
         mark: this.mark,
+        obscure: this.obscure,
         strikethrough: this.strikethrough,
         table: this.table,
         textDecoration: this.textDecoration
@@ -754,7 +743,7 @@ export default {
 
   computed: {
     boilerPlateEnabled () {
-      return hasPermission(this.permissionBoilerPlate) && Boolean(this.toolbar.boilerPlate)
+      return Boolean(this.toolbar.boilerPlate)
     },
 
     counterText () {
@@ -767,7 +756,7 @@ export default {
     },
 
     obscureEnabled () {
-      return hasPermission(this.permissionObscureText) && this.toolbar.obscure
+      return this.toolbar.obscure
     }
   },
 

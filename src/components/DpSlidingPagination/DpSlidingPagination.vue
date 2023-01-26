@@ -1,5 +1,5 @@
 <script>
-import { prefixClass } from '../../lib'
+import { prefixClass } from '../../utils'
 import SlidingPagination from 'vue-sliding-pagination'
 
 export default {

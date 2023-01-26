@@ -1,14 +1,9 @@
-import { addFormHiddenField } from '../../../index'
 import { scrollToVisibleElement } from './helpers'
 import validateForm from './validateForm'
 
 const submitAction = (form, triggerName) => {
   document.dispatchEvent(new CustomEvent('customValidationPassed', { detail: { form: form } }))
   if (typeof form.submit === 'function') {
-    if (triggerName) {
-      addFormHiddenField(form, triggerName, triggerName)
-    }
-
     form.submit()
   }
 }

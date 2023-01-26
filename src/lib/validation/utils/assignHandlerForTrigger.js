@@ -1,6 +1,20 @@
-import { addFormHiddenField } from '../../../index'
 import { scrollToVisibleElement } from './helpers'
 import validateForm from './validateForm'
+
+/**
+ *  Append hidden form field to a form
+ *  @param form DOM element
+ *  @param fieldName string
+ *  @param value string
+ */
+function addFormHiddenField (form, fieldName, value) {
+  const input = document.createElement('input')
+  const options = { type: 'hidden', name: fieldName, value: value, 'data-form-actions-added': '1' }
+  Object.keys(options).forEach(attr => {
+    input.setAttribute(attr, options[attr])
+  })
+  form.appendChild(input)
+}
 
 const submitAction = (form, triggerName) => {
   document.dispatchEvent(new CustomEvent('customValidationPassed', { detail: { form: form } }))

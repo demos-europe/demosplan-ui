@@ -1153,6 +1153,9 @@ export default {
           // Strip img tags from pasted and dropped content
           returnContent = returnContent.replace(/<img.*?>/g, '')
 
+          // Strip line break spaces, white spaces and new lines
+          returnContent = returnContent.replace(/(&nbsp;|\r|\n)/gmi, '')
+
           return returnContent
         }
       },

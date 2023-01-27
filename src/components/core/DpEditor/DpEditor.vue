@@ -890,9 +890,9 @@ export default {
 
     replaceLinebreaks (text) {
       let returnText = text
-      returnText = returnText.replace(/<\/p>[\n|\r|\s|\\n|\\r]*?<p>/g, '</p><p>')
+      returnText = returnText.replace(/<\/p>[\n|\r|\s|\\n|\\r]*?<p>/g, '</p> <p>')
       returnText = returnText.replace(/<ul>[\n|\r|\s|\\n|\\r]*?<li>/g, '<ul><li>')
-      return returnText.replace(/<\/li>[\n|\r|\s|\\n|\\r]*?<li>/g, '</li><li>')
+      return returnText.replace(/<\/li>[\n|\r|\s|\\n|\\r]*?<li>/g, '</li> <li>')
     },
 
     replacePlaceholdersWithImages (text = this.currentValue) {

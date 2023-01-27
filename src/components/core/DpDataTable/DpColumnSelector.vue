@@ -24,7 +24,7 @@
 
 <script>
 import { DpCheckbox, DpFlyout } from '~~/components'
-import { hasOwnProp } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '~~/utils'
 
 export default {
   name: 'DpColumnSelector',

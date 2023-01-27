@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+## v0.0.9 - 2023-01-23
+
+- Fix DpTreeList bulk edit: emit correct selection
+
 ## v0.0.8 - 2023-01-19
 
 - docs: add documentation for DpCheckbox

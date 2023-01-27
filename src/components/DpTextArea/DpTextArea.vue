@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { attributes, length } from '../../../shared/'
+import { attributes, length } from '../../shared/'
 import { maxlengthHint } from '~~/utils'
 
 export default {
@@ -27,7 +27,7 @@ export default {
 
   components: {
     DpLabel: async () => {
-      return await import('../../DpLabel/DpLabel')
+      return await import('~~components/DpLabel')
     }
   },
 

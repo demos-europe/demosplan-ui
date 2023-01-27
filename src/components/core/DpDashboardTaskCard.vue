@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { checkResponse, dpApi } from '@demos-europe/demosplan-utils'
+import { checkResponse, dpApi } from '~~/utils'
 import { DpButton, DpCard } from '~~/components'
 import { CleanHtml } from '~~/directives'
 

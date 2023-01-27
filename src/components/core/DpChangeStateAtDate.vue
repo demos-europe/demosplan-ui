@@ -65,7 +65,7 @@
 
 <script>
 import { DpDatepicker, DpLabel, DpSelect } from '~~/components'
-import { formatDate, toDate } from '@demos-europe/demosplan-utils'
+import { formatDate, toDate } from '~~/utils'
 
 export default {
   name: 'DpChangeStateAtDate',

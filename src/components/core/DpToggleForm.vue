@@ -17,7 +17,7 @@
 
 <script>
 import { DpAccordion } from '~~/components'
-import { dpValidateMixin } from '@demos-europe/demosplan-utils'
+import { dpValidateMixin } from '~~/mixins'
 
 export default {
   name: 'DpToggleForm',

@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import { hasOwnProp, SideNav } from '@demos-europe/demosplan-utils'
+import { hasOwnProp } from '~~/utils'
+import { SideNav } from '~~/lib'
 import { DpIcon } from '~~/components'
 
 export default {

@@ -52,7 +52,7 @@ import {
   DpInput,
   DpModal
 } from '~~/components'
-import { dpValidateMixin } from '@demos-europe/demosplan-utils'
+import { dpValidateMixin } from '~~/mixins'
 
 export default {
   name: 'DpLinkModal',

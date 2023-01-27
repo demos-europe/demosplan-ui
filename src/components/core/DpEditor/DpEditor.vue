@@ -892,6 +892,7 @@ export default {
       let returnText = text
       returnText = returnText.replace(/<\/p>[\n|\r|\s|\\n|\\r]*?<p>/g, '</p> <p>')
       returnText = returnText.replace(/<ul>[\n|\r|\s|\\n|\\r]*?<li>/g, '<ul><li>')
+      returnText = returnText.replace(/(\r|\n|\r\n|\s)/gmi, ' ')
       return returnText.replace(/<\/li>[\n|\r|\s|\\n|\\r]*?<li>/g, '</li> <li>')
     },
 

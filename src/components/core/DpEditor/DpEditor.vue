@@ -1154,7 +1154,7 @@ export default {
           returnContent = returnContent.replace(/<img.*?>/g, '')
 
           // Strip line break spaces, white spaces and new lines
-          returnContent = returnContent.replace(/(&nbsp;|\r|\n)/gmi, '')
+          returnContent = returnContent.replace(/(&nbsp;|\r|\n)/gmi, ' ')
 
           return returnContent
         }

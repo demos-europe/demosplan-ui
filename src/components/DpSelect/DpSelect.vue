@@ -36,7 +36,7 @@
 
 <script>
 import DpLabel from '../DpLabel/DpLabel'
-import { prefixClassMixin } from '../../../mixins'
+import { prefixClassMixin } from '../../mixins'
 
 export default {
   name: 'DpSelect',

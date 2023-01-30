@@ -31,7 +31,7 @@
  *  To enable highlighting of current item, drop data-actionmenu-current on an item
  *
  */
-import prefixClass from './prefixClass/prefixClass'
+import prefixClass from '../utils/prefixClass'
 
 class ActionMenu {
   constructor (actionMenuElement) {

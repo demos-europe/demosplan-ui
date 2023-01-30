@@ -98,7 +98,7 @@ export default {
     },
 
     setFile ({ hash }) {
-      this.fileUrl = Routing.generate('core_file', { hash: hash })
+      this.fileUrl = Routing.generate(this.fileRoute, { hash: hash })
       // Force-update the component so that DpModal updates and therefore check for new focusable elements
       this.$forceUpdate()
     },

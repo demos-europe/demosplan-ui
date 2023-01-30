@@ -371,7 +371,6 @@ import EditorCustomInsert from './libs/editorCustomInsert'
 import EditorCustomLink from './libs/editorCustomLink'
 import EditorCustomMark from './libs/editorCustomMark'
 import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
-import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -733,6 +732,7 @@ export default {
         linkButton: this.linkButton,
         listButtons: this.listButtons,
         mark: this.mark,
+        obscure: this.obscure,
         strikethrough: this.strikethrough,
         table: this.table,
         textDecoration: this.textDecoration
@@ -742,7 +742,7 @@ export default {
 
   computed: {
     boilerPlateEnabled () {
-      return hasPermission('area_admin_boilerplates') && Boolean(this.toolbar.boilerPlate)
+      return Boolean(this.toolbar.boilerPlate)
     },
 
     counterText () {
@@ -755,7 +755,7 @@ export default {
     },
 
     obscureEnabled () {
-      return hasPermission('feature_obscure_text') && this.toolbar.obscure
+      return this.toolbar.obscure
     }
   },
 
@@ -1053,6 +1053,7 @@ export default {
     }
 
     if (this.toolbar.obscure) {
+      const { EditorObscure } = import('./libs/editorObscure')
       extensions.push(new EditorObscure())
     }
 

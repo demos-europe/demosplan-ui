@@ -22,7 +22,7 @@ export default class EditorObscure extends Mark {
         { tag: '.u-obscure' },
         { tag: 'dp-obscure' }
       ],
-      toDOM: () => ['span', { class: (hasPermission('feature_obscure_text') ? 'u-obscure' : '') }, 0]
+      toDOM: () => ['span', { class: 'u-obscure' }, 0]
     }
   }
   /*

@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="obscureClass"
+    class="u-obscure"
     :title="Translator.trans('obscure.title')">
     <slot />
   </span>
@@ -8,13 +8,6 @@
 
 <script>
 export default {
-  name: 'DpObscure',
-
-  computed: {
-    obscureClass () {
-      return (hasPermission('feature_obscure_text')) ? 'u-obscure' : ''
-    }
-  }
-
+  name: 'DpObscure'
 }
 </script>

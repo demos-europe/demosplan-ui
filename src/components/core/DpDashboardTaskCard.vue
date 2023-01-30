@@ -41,6 +41,21 @@ export default {
     procedureId: {
       type: String,
       required: true
+    },
+
+    resourceListRoute: {
+      type: String,
+      required: true
+    },
+
+    segmentListHashUpdateRoute: {
+      type: String,
+      required: true
+    },
+
+    segmentsListRoute: {
+      type: String,
+      required: true
     }
   },
 
@@ -53,7 +68,7 @@ export default {
 
   computed: {
     userFilteredSegmentUrl () {
-      return Routing.generate('dplan_segments_list', { procedureId: this.procedureId }) + '/' + this.userHash
+      return Routing.generate(this.segmentsListRoute, { procedureId: this.procedureId }) + '/' + this.userHash
     }
   },
 
@@ -75,7 +90,7 @@ export default {
     }
 
     // Get count of segments assigned to the current user
-    const segmentUrl = Routing.generate('api_resource_list', { resourceType: 'StatementSegment' })
+    const segmentUrl = Routing.generate(this.resourceListRoute, { resourceType: 'StatementSegment' })
     dpApi.get(segmentUrl, { filter: filterQuery }, { serialize: true }).then(response => {
       this.assignedSegmentCount = response.data.data.length
     })
@@ -87,7 +102,7 @@ export default {
      * redirected response. The redirected response will contain the default filter hash, which can then be extracted
      * and used to obtain an updated filter hash.
      */
-    dpApi.get(Routing.generate('dplan_segments_list', { procedureId: this.procedureId }))
+    dpApi.get(Routing.generate(this.segmentsListRoute, { procedureId: this.procedureId }))
       .then(response => {
         const redirectUrl = response.request.responseURL
         const splitUrl = redirectUrl.split('/')
@@ -100,7 +115,7 @@ export default {
         }
 
         // Get the actual filter hash
-        const url = Routing.generate('dplan_rpc_segment_list_query_update', { queryHash })
+        const url = Routing.generate(this.segmentListHashUpdateRoute, { queryHash })
         dpApi.patch(url, {}, filterData)
           .then(response => checkResponse(response))
           .then(response => {

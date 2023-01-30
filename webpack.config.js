@@ -30,7 +30,8 @@ const config = {
     library: '@demos-europe/demosplan-ui',
     libraryTarget: 'umd',
     libraryExport: 'default',
-    clean: true
+    clean: true,
+    publicPath: ''
   },
   externalsType: 'umd',
   externals: [

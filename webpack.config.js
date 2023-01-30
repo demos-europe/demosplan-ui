@@ -72,7 +72,12 @@ const config = {
       {
         test: /\.css$/i,
         use: [
-          stylesHandler,
+          {
+            loader: stylesHandler,
+            options: {
+              publicPath: ''
+            }
+          },
           'css-loader',
           'postcss-loader'
         ],

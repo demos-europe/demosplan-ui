@@ -18,6 +18,7 @@
     <dp-upload-modal
       v-if="toolbar.imageButton"
       ref="uploadModal"
+      :file-route="fileRoute"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -411,6 +412,15 @@ export default {
      * Needed to get the correct textarea for adding boilerplates via DpBoilerPlateModal.vue
      */
     editorId: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    /**
+     * Needed to get the core_file Route, when DpEditor has imageButton attr.
+     */
+    fileRoute: {
       type: String,
       required: false,
       default: ''

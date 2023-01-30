@@ -17,6 +17,7 @@
         <dp-upload-files
           allowed-file-types="img"
           id="imageFile"
+          :file-route="fileRoute"
           :max-file-size="20 * 1024 * 1024/* 20 MiB */"
           :max-number-of-files="1"
           ref="uploader"
@@ -61,6 +62,13 @@ export default {
     DpInput,
     DpModal,
     DpUploadFiles
+  },
+
+  props: {
+    fileRoute: {
+      type: String,
+      required: true
+    }
   },
 
   data () {

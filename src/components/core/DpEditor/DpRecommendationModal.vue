@@ -57,13 +57,13 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
-import { dpApi } from '@demos-europe/demosplan-utils'
+import { dpApi } from '../../../lib'
 import dataTableSearch from '../DpDataTable/DataTableSearch'
 import DpLabel from '../../DpLabel/DpLabel'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpInsertableRecommendation from './DpRecommendationModal/DpInsertableRecommendation'
 import DpModal from '../DpModal'
-import DpSearchField from '../form/DpSearchField'
+import DpSearchField from '../../DpSearchField/DpSearchField'
 
 export default {
   name: 'DpRecommendationModal',

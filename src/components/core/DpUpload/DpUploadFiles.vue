@@ -45,7 +45,7 @@
 import DpLabel from '../../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadFiles',

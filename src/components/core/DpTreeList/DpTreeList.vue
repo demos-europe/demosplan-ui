@@ -81,8 +81,10 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp, Stickier } from '@demos-europe/demosplan-utils'
+import { deepMerge, hasOwnProp } from '../../../utils'
 import DpDraggable from '../DpDraggable'
+import { Stickier } from '../../../lib'
+import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
@@ -320,6 +322,8 @@ export default {
     this.opts = deepMerge(defaults, this.options)
 
     this.initFixedControls()
+
+    bus.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

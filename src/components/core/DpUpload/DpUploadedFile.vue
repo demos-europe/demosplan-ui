@@ -8,7 +8,7 @@
     </span>
     <span v-if="isImage">
       <img
-        :src="Routing.generate('core_file', { hash: file.hash })"
+        :src="Routing.generate(fileRoute, { hash: file.hash })"
         :aria-label="Translator.trans('image.preview')"
         width="50px">
     </span>
@@ -41,6 +41,11 @@ export default {
 
   props: {
     fileString: {
+      type: String,
+      required: true
+    },
+
+    fileRoute: {
       type: String,
       required: true
     }

@@ -7,6 +7,7 @@
       <dp-uploaded-file
         v-for="(fileString, idx) in fileStrings"
         :file-string="fileString"
+        :file-route="fileRoute"
         @file-remove="file => $emit('file-remove', file)"
         :key="idx" />
     </ul>
@@ -31,6 +32,11 @@ export default {
       type: Array,
       required: false,
       default: () => ([])
+    },
+
+    fileRoute: {
+      type: String,
+      required: true
     }
   },
 

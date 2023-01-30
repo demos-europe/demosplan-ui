@@ -22,6 +22,7 @@
 
  --><dp-uploaded-file-list
       v-if="uploadedFiles.length > 0"
+      :file-route="fileRoute"
       @file-remove="handleRemove"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1 u-mt')]"
       :files="uploadedFiles" />
@@ -86,6 +87,11 @@ export default {
       type: [Boolean, String],
       required: false,
       default: false
+    },
+
+    fileRoute: {
+      type: String,
+      required: true
     },
 
     id: {

@@ -10,6 +10,7 @@ import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
+import DpDraggable from "./DpDraggable"
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpHeightLimit from './HeightLimit'
@@ -49,6 +50,7 @@ export {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpHeightLimit,

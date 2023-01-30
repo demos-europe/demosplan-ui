@@ -916,7 +916,7 @@ export default {
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]
           const imageHeight = placeholder.match(/height=(\d*?)$/)[1]
-          return `<img src="${Routing.generate('core_file', { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
+          return `<img src="${Routing.generate(this.fileRoute, { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
         })
       } catch (e) {
         return text

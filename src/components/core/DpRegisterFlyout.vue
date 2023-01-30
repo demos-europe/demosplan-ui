@@ -15,11 +15,11 @@
     <div class="space-stack-s">
       <a
         class="display--block"
-        :href="Routing.generate('DemosPlan_citizen_registration_form')"
+        :href="Routing.generate(citizenRegisterFormRoute)"
         v-text="Translator.trans('register')" />
       <a
         class="display--block"
-        :href="Routing.generate('DemosPlan_orga_register_form')"
+        :href="Routing.generate(orgaRegisterFormRoute)"
         v-text="Translator.trans('register.orga')" />
     </div>
   </dp-flyout>
@@ -33,6 +33,18 @@ export default {
 
   components: {
     DpFlyout
+  },
+
+  props: {
+    citizenRegisterFormRoute: {
+      type: String,
+      required: true
+    },
+
+    orgaRegisterFormRoute: {
+      type: String,
+      required: true
+    }
   },
 
   mounted () {

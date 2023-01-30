@@ -36,6 +36,7 @@ const config = {
   externalsType: 'umd',
   externals: [
     '@braintree/sanitize-url',
+    '@demos-europe/demosplan-ui',
     '@demos-europe/demosplan-utils',
     /^@uppy\/.+$/,
     'dayjs',

@@ -8,6 +8,7 @@
       v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
+      :boilerplate-list-route="boilerplateListRoute"
       :procedure-id="procedureId"
       :boiler-plate-type="toolbar.boilerPlate"
       @insertBoilerPlate="text => handleInsertText(text)" />
@@ -563,6 +564,12 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    boilerplateListRoute: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     /**

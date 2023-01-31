@@ -28,7 +28,8 @@
       ref="recommendationModal"
       @insert-recommendation="text => appendText(text)"
       :procedure-id="procedureId"
-      :segment-id="segmentId" />
+      :segment-id="segmentId"
+      :similar-recommendations-route="similarRecommendationsRoute" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
         <div
@@ -566,6 +567,9 @@ export default {
       default: false
     },
 
+    /**
+     * Needed to get the 'DemosPlan_procedure_boilerplate_list' Route, when DpEditor has boilerPlate attr.
+     */
     boilerplateListRoute: {
       type: String,
       required: false,
@@ -610,6 +614,15 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+
+    /**
+     * Needed to get the 'api_resource_list' Route, when DpEditor has recommendationButton attr.
+     */
+    similarRecommendationsRoute: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     /**

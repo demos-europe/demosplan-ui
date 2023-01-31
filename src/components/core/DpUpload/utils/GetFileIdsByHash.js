@@ -7,9 +7,9 @@ import { dpApi } from '../../../../lib'
  *
  * @returns {Array<Ids>}
  */
-function getFileIdsByHash (hashes) {
+function getFileIdsByHash (hashes, route) {
   return dpApi.get(
-    Routing.generate('api_resource_list', { resourceType: 'File' }),
+    Routing.generate(route, { resourceType: 'File' }),
     {
       filter: {
         hasHash: {

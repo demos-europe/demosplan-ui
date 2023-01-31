@@ -28,15 +28,11 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'demosplan-ui.umd.js',
     library: '@demos-europe/demosplan-ui',
-    libraryTarget: 'umd',
-    libraryExport: 'default',
-    clean: true,
-    publicPath: ''
+    libraryTarget: 'window',
   },
   externalsType: 'umd',
   externals: [
     '@braintree/sanitize-url',
-    '@demos-europe/demosplan-ui',
     '@demos-europe/demosplan-utils',
     /^@uppy\/.+$/,
     'dayjs',

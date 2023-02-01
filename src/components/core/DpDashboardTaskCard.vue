@@ -38,6 +38,11 @@ export default {
       required: true
     },
 
+    filterHashUpdatedRoute: {
+      type: String,
+      required: true
+    },
+
     procedureId: {
       type: String,
       required: true
@@ -48,12 +53,7 @@ export default {
       required: true
     },
 
-    segmentListHashUpdateRoute: {
-      type: String,
-      required: true
-    },
-
-    segmentsListRoute: {
+    userFilteredRoute: {
       type: String,
       required: true
     }
@@ -68,7 +68,7 @@ export default {
 
   computed: {
     userFilteredSegmentUrl () {
-      return Routing.generate(this.segmentsListRoute, { procedureId: this.procedureId }) + '/' + this.userHash
+      return this.userFilteredRoute + '/' + this.userHash
     }
   },
 
@@ -90,7 +90,7 @@ export default {
     }
 
     // Get count of segments assigned to the current user
-    const segmentUrl = Routing.generate(this.resourceListRoute, { resourceType: 'StatementSegment' })
+    const segmentUrl = this.resourceListRoute
     dpApi.get(segmentUrl, { filter: filterQuery }, { serialize: true }).then(response => {
       this.assignedSegmentCount = response.data.data.length
     })
@@ -102,7 +102,7 @@ export default {
      * redirected response. The redirected response will contain the default filter hash, which can then be extracted
      * and used to obtain an updated filter hash.
      */
-    dpApi.get(Routing.generate(this.segmentsListRoute, { procedureId: this.procedureId }))
+    dpApi.get(this.userFilteredRoute)
       .then(response => {
         const redirectUrl = response.request.responseURL
         const splitUrl = redirectUrl.split('/')
@@ -115,7 +115,7 @@ export default {
         }
 
         // Get the actual filter hash
-        const url = Routing.generate(this.segmentListHashUpdateRoute, { queryHash })
+        const url = Routing.generate(this.filterHashUpdatedRoute, { queryHash })
         dpApi.patch(url, {}, filterData)
           .then(response => checkResponse(response))
           .then(response => {

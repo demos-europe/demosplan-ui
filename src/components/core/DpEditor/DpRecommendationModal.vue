@@ -217,7 +217,7 @@ export default {
     },
 
     fetchSimilarRecommendations () {
-      const url = Routing.generate(this.similarRecommendationsRoute, { resourceType: 'StatementSegment' })
+      const url = this.similarRecommendationsRoute
       const params = {
         include: 'parentStatement,parentStatement.procedure',
         fields: {

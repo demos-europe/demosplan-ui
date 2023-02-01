@@ -38,14 +38,6 @@ export default {
       required: true
     },
 
-    routes: {
-      type: Object,
-      required: true,
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['filterHashUpdatedRoute', 'resourceListRoute', 'userFilteredRoute'].includes(key))
-      }
-    },
-
     procedureId: {
       type: String,
       required: true
@@ -61,7 +53,7 @@ export default {
 
   computed: {
     userFilteredSegmentUrl () {
-      return this.routes.userFilteredRoute + '/' + this.userHash
+      return Routing.generate('dplan_segments_list', { procedureId: this.procedureId }) + '/' + this.userHash
     }
   },
 
@@ -83,7 +75,7 @@ export default {
     }
 
     // Get count of segments assigned to the current user
-    const segmentUrl = this.routes.resourceListRoute
+    const segmentUrl = Routing.generate('api_resource_list', { resourceType: 'StatementSegment' })
     dpApi.get(segmentUrl, { filter: filterQuery }, { serialize: true }).then(response => {
       this.assignedSegmentCount = response.data.data.length
     })
@@ -95,7 +87,7 @@ export default {
      * redirected response. The redirected response will contain the default filter hash, which can then be extracted
      * and used to obtain an updated filter hash.
      */
-    dpApi.get(this.routes.userFilteredRoute)
+    dpApi.get(Routing.generate('dplan_segments_list', { procedureId: this.procedureId }))
       .then(response => {
         const redirectUrl = response.request.responseURL
         const splitUrl = redirectUrl.split('/')
@@ -108,7 +100,7 @@ export default {
         }
 
         // Get the actual filter hash
-        const url = Routing.generate(this.routes.filterHashUpdatedRoute, { queryHash })
+        const url = Routing.generate('dplan_rpc_segment_list_query_update', { queryHash })
         dpApi.patch(url, {}, filterData)
           .then(response => checkResponse(response))
           .then(response => {

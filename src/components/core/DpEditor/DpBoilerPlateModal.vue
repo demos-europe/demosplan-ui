@@ -15,7 +15,7 @@
       <div class="flex flex-items-center u-mt">
         <a
           class="weight--bold font-size-small"
-          :href="Routing.generate(boilerplateListRoute, { procedure: procedureId })">
+          :href="boilerplateListRoute">
           {{ Translator.trans('boilerplates.edit') }} ({{ Translator.trans('view.leave.hint') }})
         </a>
         <dp-button-row

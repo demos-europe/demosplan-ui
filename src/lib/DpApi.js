@@ -73,7 +73,7 @@ dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method
  * @param {string} id
  * @return {Promise}
  */
-const dpRpc = function (method, parameters, route, id = null) {
+const dpRpc = function (method, parameters, id = null) {
   const data = {
     jsonrpc: '2.0',
     method: method,
@@ -83,7 +83,7 @@ const dpRpc = function (method, parameters, route, id = null) {
 
   return doRequest({
     method: 'post',
-    url: Routing.generate(route),
+    url: Routing.generate('rpc_generic_post'),
     data
   })
 }

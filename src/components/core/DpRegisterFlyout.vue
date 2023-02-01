@@ -15,11 +15,11 @@
     <div class="space-stack-s">
       <a
         class="display--block"
-        :href="Routing.generate(citizenRegisterFormRoute)"
+        :href="citizenRegisterFormRoute"
         v-text="Translator.trans('register')" />
       <a
         class="display--block"
-        :href="Routing.generate(orgaRegisterFormRoute)"
+        :href="orgaRegisterFormRoute"
         v-text="Translator.trans('register.orga')" />
     </div>
   </dp-flyout>

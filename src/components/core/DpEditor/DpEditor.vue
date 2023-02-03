@@ -8,7 +8,7 @@
       v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
-      :boilerplate-edit-view-route="boilerplateListRoute"
+      :boilerplate-edit-view-route="routes.boilerplateListRoute"
       :procedure-id="procedureId"
       :boiler-plate-type="toolbar.boilerPlate"
       @insertBoilerPlate="text => handleInsertText(text)" />
@@ -19,7 +19,7 @@
     <dp-upload-modal
       v-if="toolbar.imageButton"
       ref="uploadModal"
-      :file-route="fileRoute"
+      :file-route="routes.fileRoute"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -29,7 +29,7 @@
       @insert-recommendation="text => appendText(text)"
       :procedure-id="procedureId"
       :segment-id="segmentId"
-      :similar-recommendations-route="similarRecommendationsRoute" />
+      :similar-recommendations-route="routes.similarRecommendationsRoute" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
         <div
@@ -420,15 +420,6 @@ export default {
     },
 
     /**
-     * Needed to get the core_file Route, when DpEditor has imageButton attr.
-     */
-    fileRoute: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
      * Array with numbers 1-6 defining which heading-buttons we want to show
      *
      * @deprecated use toolbarItems instead
@@ -568,15 +559,6 @@ export default {
     },
 
     /**
-     * Needed to get the Route, when DpEditor has boilerPlate attr.
-     */
-    boilerplateListRoute: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
      * ProcedureId is required if we want to enable boilerplates
      */
     procedureId: {
@@ -597,6 +579,21 @@ export default {
       default: false
     },
 
+    /**
+     * Needed to get the Route, when any of these Props are enabled in the DpEditor
+     */
+    routes: {
+      type: Object,
+      required: true,
+      validator: (prop) => {
+        return Object.keys(prop).every(key => [
+            'boilerplateListRoute',
+            'fileRoute',
+            'similarRecommendationsRoute'
+        ].includes(key))
+      }
+    },
+
     segmentId: {
       type: String,
       required: false,
@@ -614,15 +611,6 @@ export default {
       required: false,
       type: Boolean,
       default: false
-    },
-
-    /**
-     * Needed to get the 'api_resource_list' Route, when DpEditor has recommendationButton attr.
-     */
-    similarRecommendationsRoute: {
-      type: String,
-      required: false,
-      default: ''
     },
 
     /**
@@ -936,7 +924,7 @@ export default {
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]
           const imageHeight = placeholder.match(/height=(\d*?)$/)[1]
-          return `<img src="${Routing.generate(this.fileRoute, { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
+          return `<img src="${Routing.generate(this.routes.fileRoute, { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
         })
       } catch (e) {
         return text

@@ -8,7 +8,7 @@
       v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
-      :boilerplate-list-route="boilerplateListRoute"
+      :boilerplate-edit-view-route="boilerplateListRoute"
       :procedure-id="procedureId"
       :boiler-plate-type="toolbar.boilerPlate"
       @insertBoilerPlate="text => handleInsertText(text)" />
@@ -568,7 +568,7 @@ export default {
     },
 
     /**
-     * Needed to get the 'DemosPlan_procedure_boilerplate_list' Route, when DpEditor has boilerPlate attr.
+     * Needed to get the Route, when DpEditor has boilerPlate attr.
      */
     boilerplateListRoute: {
       type: String,

@@ -14,8 +14,9 @@
         @boilerplate-text-added="addBoilerplateText" />
       <div class="flex flex-items-center u-mt">
         <a
-          class="weight--bold font-size-small"
-          :href="boilerplateListRoute">
+            v-if="boilerplateEditViewRoute"
+            class="weight--bold font-size-small"
+            :href="boilerplateEditViewRoute">
           {{ Translator.trans('boilerplates.edit') }} ({{ Translator.trans('view.leave.hint') }})
         </a>
         <dp-button-row
@@ -59,9 +60,13 @@ export default {
       default: ''
     },
 
-    boilerplateListRoute: {
+    /**
+     * Needed to get the Route, when DpEditor has boilerPlate attr.
+     */
+    boilerplateEditViewRoute: {
+      required: false,
       type: String,
-      required: true
+      default: ''
     },
 
     editorId: {

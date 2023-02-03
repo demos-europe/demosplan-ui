@@ -15,11 +15,11 @@
     <div class="space-stack-s">
       <a
         class="display--block"
-        :href="citizenRegisterFormRoute"
+        :href="routes.citizenRegisterFormRoute"
         v-text="Translator.trans('register')" />
       <a
         class="display--block"
-        :href="orgaRegisterFormRoute"
+        :href="routes.orgaRegisterFormRoute"
         v-text="Translator.trans('register.orga')" />
     </div>
   </dp-flyout>
@@ -36,14 +36,15 @@ export default {
   },
 
   props: {
-    citizenRegisterFormRoute: {
-      type: String,
-      required: true
-    },
-
-    orgaRegisterFormRoute: {
-      type: String,
-      required: true
+    routes: {
+      type: Object,
+      required: true,
+      validator: (prop) => {
+        return Object.keys(prop).every(key => [
+          'citizenRegisterFormRoute',
+          'orgaRegisterFormRoute'
+        ].includes(key))
+      }
     }
   },
 

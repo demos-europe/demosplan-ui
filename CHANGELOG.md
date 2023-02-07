@@ -4,7 +4,10 @@
 
 ## v0.0.9 - 2023-01-23
 
-- Fix DpTreeList bulk edit: emit correct selection
+### Fixed
+- ([#93](https://github.com/demos-europe/demosplan-ui/pull/93)) Keep empty spaces after copy/pasting from MS Word ([@hwiem](https://github.com/hwiem))
+- ([#93](https://github.com/demos-europe/demosplan-ui/pull/93)) Ensure EditorObscure is imported before using it ([@hwiem](https://github.com/hwiem))
+- ([#73](https://github.com/demos-europe/demosplan-ui/pull/73)) DpTreeList bulk edit: emit correct selection ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.0.8 - 2023-01-19
 

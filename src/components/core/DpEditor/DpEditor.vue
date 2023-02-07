@@ -371,6 +371,7 @@ import EditorCustomInsert from './libs/editorCustomInsert'
 import EditorCustomLink from './libs/editorCustomLink'
 import EditorCustomMark from './libs/editorCustomMark'
 import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
+import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -1053,7 +1054,6 @@ export default {
     }
 
     if (this.toolbar.obscure) {
-      const { EditorObscure } = import('./libs/editorObscure')
       extensions.push(new EditorObscure())
     }
 

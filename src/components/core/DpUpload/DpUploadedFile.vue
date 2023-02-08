@@ -8,7 +8,7 @@
     </span>
     <span v-if="isImage">
       <img
-        :src="Routing.generate(fileRoute, { hash: file.hash })"
+        :src="getFile(file.hash)"
         :aria-label="Translator.trans('image.preview')"
         width="50px">
     </span>
@@ -37,15 +37,12 @@ import { prefixClassMixin } from '../../../mixins'
 export default {
   name: 'DpUploadedFile',
 
+  inject: ['getFile'],
+
   mixins: [prefixClassMixin],
 
   props: {
     fileString: {
-      type: String,
-      required: true
-    },
-
-    fileRoute: {
       type: String,
       required: true
     }

@@ -22,7 +22,6 @@
 
  --><dp-uploaded-file-list
       v-if="uploadedFiles.length > 0"
-      :file-route="fileRoute"
       @file-remove="handleRemove"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1 u-mt')]"
       :files="uploadedFiles" />
@@ -59,6 +58,12 @@ export default {
 
   mixins: [prefixClassMixin],
 
+  provide () {
+    return {
+      getFile: this.getFile
+    }
+  },
+
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
@@ -90,8 +95,9 @@ export default {
     },
 
     fileRoute: {
-      type: String,
-      required: true
+      type: Object,
+      required: true,
+      default: () => ({})
     },
 
     id: {
@@ -226,6 +232,10 @@ export default {
       this.uploadedFiles.forEach(file => {
         this.removeFile(file)
       })
+    },
+
+    getFile (fileHash) {
+      return this.fileRoute.router(this.fileRoute.path, { hash: fileHash })
     },
 
     handleRemove (file) {

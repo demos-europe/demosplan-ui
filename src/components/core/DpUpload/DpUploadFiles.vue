@@ -60,7 +60,7 @@ export default {
 
   provide () {
     return {
-      getFile: this.getFile
+      getFile: this.fileRoute
     }
   },
 
@@ -95,7 +95,7 @@ export default {
     },
 
     fileRoute: {
-      type: Object,
+      type: Function,
       required: true,
       default: () => ({})
     },
@@ -232,10 +232,6 @@ export default {
       this.uploadedFiles.forEach(file => {
         this.removeFile(file)
       })
-    },
-
-    getFile (fileHash) {
-      return this.fileRoute.router(this.fileRoute.path, { hash: fileHash })
     },
 
     handleRemove (file) {

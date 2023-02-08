@@ -585,7 +585,7 @@ export default {
      */
     routes: {
       type: Object,
-      required: true,
+      default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => [
             'boilerplateListRoute',

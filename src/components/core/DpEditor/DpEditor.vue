@@ -585,6 +585,7 @@ export default {
      */
     routes: {
       type: Object,
+      required: false,
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => [

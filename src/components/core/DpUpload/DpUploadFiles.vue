@@ -60,7 +60,7 @@ export default {
 
   provide () {
     return {
-      getFile: this.fileRoute
+      getFileByHash: this.getFileByHash
     }
   },
 
@@ -94,7 +94,7 @@ export default {
       default: false
     },
 
-    fileRoute: {
+    getFileByHash: {
       type: Function,
       required: true,
       default: () => ({})

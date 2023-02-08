@@ -17,7 +17,7 @@
         <dp-upload-files
           allowed-file-types="img"
           id="imageFile"
-          :file-route="fileRoute"
+          :get-file-by-hash="getFileByHash"
           :max-file-size="20 * 1024 * 1024/* 20 MiB */"
           :max-number-of-files="1"
           ref="uploader"
@@ -65,8 +65,8 @@ export default {
   },
 
   props: {
-    fileRoute: {
-      type: Object,
+    getFileByHash: {
+      type: Function,
       required: true,
       default: () => ({})
     }
@@ -99,7 +99,7 @@ export default {
     },
 
     setFile ({ hash }) {
-      this.fileUrl = Routing.generate(this.fileRoute, { hash: hash })
+      this.fileUrl = this.getFileByHash(hash)
       // Force-update the component so that DpModal updates and therefore check for new focusable elements
       this.$forceUpdate()
     },

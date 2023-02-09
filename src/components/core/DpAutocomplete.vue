@@ -63,12 +63,6 @@ export default {
       default: () => Translator.trans('search')
     },
 
-    queryParam: {
-      type: String,
-      required: false,
-      default: 'query'
-    },
-
     route: {
       type: Function,
       required: true,
@@ -111,7 +105,8 @@ export default {
     async fetchOptions (searchString) {
       this.isLoading = true
       try {
-        const response = await dpApi.get(this.route({ ...this.additionalRouteParams, [this.queryParam]: searchString }))
+        const route = this.route(searchString)
+        const response = await dpApi.get(route)
         // Only emit results that match the current search -> prevents race conditions
         if (this.currentQuerry === searchString) this.$emit('search-changed', response)
         this.isLoading = false

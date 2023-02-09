@@ -70,8 +70,9 @@ export default {
     },
 
     route: {
-      type: String,
-      required: true
+      type: Function,
+      required: true,
+      default: () => ({})
     },
 
     value: {
@@ -110,7 +111,7 @@ export default {
     async fetchOptions (searchString) {
       this.isLoading = true
       try {
-        const response = await dpApi.get(Routing.generate(this.route, { ...this.additionalRouteParams, [this.queryParam]: searchString }))
+        const response = await dpApi.get(this.route({ ...this.additionalRouteParams, [this.queryParam]: searchString }))
         // Only emit results that match the current search -> prevents race conditions
         if (this.currentQuerry === searchString) this.$emit('search-changed', response)
         this.isLoading = false

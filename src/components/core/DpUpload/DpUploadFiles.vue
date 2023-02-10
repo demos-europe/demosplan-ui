@@ -96,8 +96,7 @@ export default {
 
     getFileByHash: {
       type: Function,
-      required: true,
-      default: () => ({})
+      required: true
     },
 
     id: {

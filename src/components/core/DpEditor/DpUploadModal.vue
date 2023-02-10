@@ -67,8 +67,7 @@ export default {
   props: {
     getFileByHash: {
       type: Function,
-      required: true,
-      default: () => ({})
+      required: true
     }
   },
 

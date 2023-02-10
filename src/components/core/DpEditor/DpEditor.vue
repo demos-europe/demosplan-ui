@@ -592,7 +592,7 @@ export default {
      */
     routes: {
       type: Object,
-      required: false,
+      required: true,
       default: () => ({}),
       validator: (prop) => {
         return typeof prop.boilerplateEditViewRoute === 'string'

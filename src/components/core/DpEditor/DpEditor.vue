@@ -595,11 +595,10 @@ export default {
       required: false,
       default: () => ({}),
       validator: (prop) => {
-        return Object.keys(prop).every(key => [
-            'boilerplateListRoute',
-            'getFileByHash',
-            'similarRecommendationsRoute'
-        ].includes(key))
+        return typeof prop.boilerplateListRoute === 'string' 
+          && typeof prop.getFileByHash === 'function'
+          && typeof prop.similarRecommendationsRoute === 'string'
+     }
       }
     },
 

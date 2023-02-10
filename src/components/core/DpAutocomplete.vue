@@ -33,12 +33,6 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
-    additionalRouteParams: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-
     height: {
       type: String,
       required: false,

@@ -29,9 +29,7 @@
     "vue-omnibox": "^0.3.7",
     "vue-sliding-pagination": "^1.3.2",
     "vuedraggable": "^2.24.3",
-    "vuex": "^3.6.2"
-  },
-  "devDependencies": {
+    "vuex": "^3.6.2",
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@storybook/addon-actions": "6.5.16",
@@ -68,9 +66,9 @@
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",
     "build-tokens": "node buildTokens.js",
-    "prepack": "yarn build && yarn build-tokens",
+    "postinstall": "yarn build && yarn build-tokens",
     "storybook": "start-storybook -p 6006",
-    "build": "yarn build:prod",
+    "build": "yarn build:dev",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch"

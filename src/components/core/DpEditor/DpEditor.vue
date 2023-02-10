@@ -8,7 +8,7 @@
       v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
-      :boilerplate-edit-view-route="routes.boilerplateListRoute"
+      :boilerplate-edit-view-route="routes.boilerplateEditViewRoute"
       :procedure-id="procedureId"
       :boiler-plate-type="toolbar.boilerPlate"
       @insertBoilerPlate="text => handleInsertText(text)" />
@@ -595,7 +595,7 @@ export default {
       required: false,
       default: () => ({}),
       validator: (prop) => {
-        return typeof prop.boilerplateListRoute === 'string' 
+        return typeof prop.boilerplateEditViewRoute === 'string'
           && typeof prop.getFileByHash === 'function'
           && typeof prop.similarRecommendationsRoute === 'string'
      }

@@ -1,7 +1,7 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
-import DpDraggable from '../pDraggable'
+import DpDraggable from '../DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'

@@ -581,7 +581,14 @@ export default {
     },
 
     /**
-     * Needed to get the Route, when any of these Props are enabled in the DpEditor
+     * boilerplateEditViewRoute: (Optional) route to a view that allows editing 
+     * boilerplates. Displayed as a link at the bottom of the boilerplate modal, if 
+     * toolbar.boilerplate is set
+     * getFileByHash: (Required) function that receives a file hash as parameter 
+     * and returns a route to that file. Used for displaying images.
+     * similarRecommendationsRoute: (Optional) route to fetch similar 
+     * recommendations (needed if toolbar.recommendationButton is set to 
+     * true)
      */
     routes: {
       type: Object,

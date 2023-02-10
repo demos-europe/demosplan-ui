@@ -61,7 +61,8 @@ export default {
     },
 
     /**
-     * Needed to get the Route, when DpEditor has boilerPlate attr.
+     * Route to a view that allows editing the available boilerplates
+     * Displayed as a link at the bottom of the modal
      */
     boilerplateEditViewRoute: {
       required: false,

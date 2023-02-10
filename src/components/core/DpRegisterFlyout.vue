@@ -15,11 +15,11 @@
     <div class="space-stack-s">
       <a
         class="display--block"
-        :href="routes.citizenRegisterFormRoute"
+        :href="Routing.generate('DemosPlan_citizen_registration_form')"
         v-text="Translator.trans('register')" />
       <a
         class="display--block"
-        :href="routes.orgaRegisterFormRoute"
+        :href="Routing.generate('DemosPlan_orga_register_form')"
         v-text="Translator.trans('register.orga')" />
     </div>
   </dp-flyout>
@@ -33,19 +33,6 @@ export default {
 
   components: {
     DpFlyout
-  },
-
-  props: {
-    routes: {
-      type: Object,
-      required: true,
-      validator: (prop) => {
-        return Object.keys(prop).every(key => [
-          'citizenRegisterFormRoute',
-          'orgaRegisterFormRoute'
-        ].includes(key))
-      }
-    }
   },
 
   mounted () {

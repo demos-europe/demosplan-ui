@@ -283,7 +283,7 @@ export default {
     },
 
     setIndeterminate () {
-      if (this.isSelectable && hasOwn(this.$refs, 'selectAll')) {
+      if (this.isSelectable) {
         this.$refs.selectAll.indeterminate = this.indeterminate
       }
     },

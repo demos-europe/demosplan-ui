@@ -592,8 +592,7 @@ export default {
      */
     routes: {
       type: Object,
-      required: false,
-      default: () => ({}),
+      required: true,
       validator: (prop) => {
         return Object.keys(prop).every(key => [
           'boilerplateEditViewRoute',

@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Do not unregister boilerplates store module beforeDestroy
+- ([#95](https://github.com/demos-europe/demosplan-ui/pull/95)) Do not unregister boilerplates store module beforeDestroy ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.10 - 2023-02-07
 

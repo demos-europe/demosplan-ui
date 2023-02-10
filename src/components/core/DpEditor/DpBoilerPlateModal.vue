@@ -131,11 +131,6 @@ export default {
     if (this.getBoilerplatesRequestFired === false) {
       this.getBoilerPlates(this.procedureId)
     }
-  },
-
-  beforeDestroy () {
-    this.$store.unregisterModule('boilerplates')
   }
-
 }
 </script>

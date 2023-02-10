@@ -5,7 +5,7 @@
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
     <dp-boiler-plate-modal
-      v-if="toolbar.boilerPlate && boilerPlateEnabled && routes.boilerplateEditViewRoute"
+      v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
       :boilerplate-edit-view-route="routes.boilerplateEditViewRoute"
@@ -17,14 +17,14 @@
       ref="linkModal"
       @insert="insertUrl" />
     <dp-upload-modal
-      v-if="toolbar.imageButton && routes.getFileByHash"
+      v-if="toolbar.imageButton"
       ref="uploadModal"
       :get-file-by-hash="routes.getFileByHash"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
     <dp-recommendation-modal
-      v-if="toolbar.recommendationButton && routes.similarRecommendationsRoute"
+      v-if="toolbar.recommendationButton"
       ref="recommendationModal"
       @insert-recommendation="text => appendText(text)"
       :procedure-id="procedureId"
@@ -592,7 +592,8 @@ export default {
      */
     routes: {
       type: Object,
-      required: true,
+      required: false,
+      default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => [
           'boilerplateEditViewRoute',

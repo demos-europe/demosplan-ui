@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#96](https://github.com/demos-europe/demosplan-ui/pull/96)) Don't load DpDraggable async in DpDataTable ([@salis-demos](https://github.com/salis-demos))
+
 ## v0.0.11 - 2023-02-10
 
 ### Fixed

@@ -1,6 +1,9 @@
 # Changelog
 
 ## UNRELEASED
+### changed
+- ([#91](https://github.com/demos-europe/demosplan-ui/pull/91)) Pass routes as props ([@ahmad-demos](https://github.com/ahmad-demos))
+
 
 ## v0.0.9 - 2023-01-23
 

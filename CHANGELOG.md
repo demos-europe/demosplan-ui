@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Fixed
+
+- Do not unregister boilerplates store module beforeDestroy
+
 ## v0.0.10 - 2023-02-07
 
 ### Fixed

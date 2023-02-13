@@ -1,6 +1,7 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
+import DpDraggable from '../DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
@@ -9,7 +10,7 @@ export default {
   name: 'DpDataTable',
 
   components: {
-    DpDraggable: () => import('../DpDraggable'),
+    DpDraggable,
     DpLoading,
     DpTableHeader,
     DpTableRow

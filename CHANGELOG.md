@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Set correct value for `aria-live` in DpNotifyContainer when document becomes visible
+- ([#100](https://github.com/demos-europe/demosplan-ui/pull/100)) Set correct value for `aria-live` in DpNotifyContainer when document becomes visible ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.12 - 2023-02-13
 

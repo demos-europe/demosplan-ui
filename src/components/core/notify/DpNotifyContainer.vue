@@ -98,7 +98,7 @@ export default {
         }
       }
 
-      document.addEventListener('visibilitychange', () => { this.isVisible = document.hidden })
+      document.addEventListener('visibilitychange', () => { this.isVisible = !document.hidden })
     },
 
     removeMessage (message) {

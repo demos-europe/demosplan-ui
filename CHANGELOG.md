@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Fixed
+
+- Set correct value for `aria-live` in DpNotifyContainer when document becomes visible
+
 ## v0.0.12 - 2023-02-13
 
 ### Fixed

@@ -229,6 +229,10 @@
       "$description": "Color tokens that are used to express brand.",
       "$todo": "Add other brand colors here. How to deal with small brand palettes? How to deal with css variables inside tokens?",
       "main": {
+        "light-4": {
+          "value": "{color.palette.blue.light-4}",
+          "themeable": true
+        },
         "light-3": {
           "value": "{color.palette.blue.light-3}",
           "themeable": true

@@ -356,6 +356,7 @@ import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'
 import EditorCustomLink from './libs/editorCustomLink'
 import EditorCustomMark from './libs/editorCustomMark'
+import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
@@ -387,10 +388,10 @@ export default {
       default: ''
     },
 
-    extension: {
-      type: Array,
+    editorInsertAtCursorPos: {
+      type: Boolean,
       required: false,
-      default: () => []
+      default: false
     },
 
     /**
@@ -987,10 +988,8 @@ export default {
       new Heading({ levels: this.toolbar.headings })
     ]
 
-    if (this.extension.length > 0) {
-      this.extension.forEach(extension => {
-        extensions.push(extension)
-      })
+    if (this.editorInsertAtCursorPos) {
+      extensions.push(new EditorInsertAtCursorPos())
     }
 
     if (this.suggestions.length > 0) {

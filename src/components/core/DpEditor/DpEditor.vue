@@ -4,13 +4,6 @@
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
-    <dp-boiler-plate-modal
-      v-if="toolbar.boilerPlate && boilerPlateEnabled"
-      ref="boilerPlateModal"
-      :editor-id="editorId"
-      :procedure-id="procedureId"
-      :boiler-plate-type="toolbar.boilerPlate"
-      @insertBoilerPlate="text => handleInsertText(text)" />
     <dp-link-modal
       v-if="toolbar.linkButton"
       ref="linkModal"
@@ -27,6 +20,9 @@
       @insert-recommendation="text => appendText(text)"
       :procedure-id="procedureId"
       :segment-id="segmentId" />
+    <slot
+        name="modal"
+        :handleInsertText="handleInsertText" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
         <div
@@ -238,17 +234,6 @@
                 <i
                   :class="prefixClass('fa fa-link')" />
               </button>
-              <!-- Add Boilerplate -->
-              <button
-                v-if="boilerPlateEnabled"
-                @click.stop="openBoilerPlateModal"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('boilerplate.insert')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-puzzle-piece')" />
-              </button>
               <!-- Insert related recommendations -->
               <button
                 v-if="toolbar.recommendationButton"
@@ -309,6 +294,7 @@
                   :class="prefixClass('fa fa-arrows-alt')"
                   aria-hidden="true" />
               </button>
+              <slot name="button" />
             </div>
           </editor-menu-bar>
           <editor-content
@@ -370,7 +356,6 @@ import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'
 import EditorCustomLink from './libs/editorCustomLink'
 import EditorCustomMark from './libs/editorCustomMark'
-import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
@@ -383,7 +368,6 @@ export default {
     DpIcon,
     EditorMenuBar,
     EditorContent,
-    DpBoilerPlateModal: () => import('./DpBoilerPlateModal'),
     DpLinkModal: () => import('./DpLinkModal'),
     DpRecommendationModal: () => import('./DpRecommendationModal'),
     DpUploadModal: () => import('./DpUploadModal')
@@ -397,24 +381,16 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
-    /**
-     * Defines which boilerplate types we want to see in modal. Possible are: consideration, email, news.notes
-     * if this property is set, the boilerPlate button appears in the tiptap editor
-     * @deprecated use toolbarItems instead
-     */
-    boilerPlate: {
-      type: [String, Array],
-      default: '',
-      required: false
-    },
-
-    /**
-     * Needed to get the correct textarea for adding boilerplates via DpBoilerPlateModal.vue
-     */
     editorId: {
       type: String,
       required: false,
       default: ''
+    },
+
+    extension: {
+      type: Array,
+      required: false,
+      default: () => []
     },
 
     /**
@@ -520,7 +496,6 @@ export default {
     /**
      * Defaults will be set in this.menu:
      * {
-     *    boilerPlate: '', # [] || 'string'
      *    headings: [], # Array of numbers 1-6
      *    imageButton: false,
      *    insertAndDelete: false,
@@ -554,15 +529,6 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    },
-
-    /**
-     * ProcedureId is required if we want to enable boilerplates
-     */
-    procedureId: {
-      type: String,
-      required: false,
-      default: ''
     },
 
     readonly: {
@@ -725,7 +691,6 @@ export default {
         ]
       },
       toolbar: Object.assign({
-        boilerPlate: this.boilerPlate,
         headings: this.headings,
         imageButton: this.imageButton,
         insertAndDelete: this.insertAndDelete,
@@ -742,10 +707,6 @@ export default {
   },
 
   computed: {
-    boilerPlateEnabled () {
-      return Boolean(this.toolbar.boilerPlate)
-    },
-
     counterText () {
       return maxlengthHint(this.hiddenInputValue.length, this.maxlength)
     },
@@ -870,10 +831,6 @@ export default {
       const linkMark = node.marks && node.marks.find(mark => mark.type.name === 'link')
 
       return linkMark
-    },
-
-    openBoilerPlateModal () {
-      this.$refs.boilerPlateModal.toggleModal()
     },
 
     openRecommendationModal () {
@@ -1030,8 +987,10 @@ export default {
       new Heading({ levels: this.toolbar.headings })
     ]
 
-    if (this.toolbar.boilerPlate) {
-      extensions.push(new EditorInsertAtCursorPos())
+    if (this.extension.length > 0) {
+      this.extension.forEach(extension => {
+        extensions.push(extension)
+      })
     }
 
     if (this.suggestions.length > 0) {

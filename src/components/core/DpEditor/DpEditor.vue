@@ -14,14 +14,9 @@
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
-    <dp-recommendation-modal
-      v-if="toolbar.recommendationButton"
-      ref="recommendationModal"
-      @insert-recommendation="text => appendText(text)"
-      :procedure-id="procedureId"
-      :segment-id="segmentId" />
     <slot
         name="modal"
+        :appendText="appendText"
         :handleInsertText="handleInsertText" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
@@ -234,15 +229,6 @@
                 <i
                   :class="prefixClass('fa fa-link')" />
               </button>
-              <!-- Insert related recommendations -->
-              <button
-                v-if="toolbar.recommendationButton"
-                @click.stop="openRecommendationModal"
-                :class="prefixClass('menubar__button')"
-                v-tooltip="Translator.trans('segment.recommendation.insert.similar')"
-                type="button">
-                <i :class="prefixClass('fa fa-lightbulb-o')" />
-              </button>
               <!-- Insert images-->
               <button
                 v-if="toolbar.imageButton"
@@ -370,7 +356,6 @@ export default {
     EditorMenuBar,
     EditorContent,
     DpLinkModal: () => import('./DpLinkModal'),
-    DpRecommendationModal: () => import('./DpRecommendationModal'),
     DpUploadModal: () => import('./DpUploadModal')
   },
 
@@ -504,7 +489,6 @@ export default {
      *    linkButton: false,
      *    listButtons: true,
      *    mark: false,
-     *    recommendationButton: false,
      *    strikethrough: false,
      *    table: false,
      *    textDecoration: true
@@ -536,18 +520,6 @@ export default {
       required: false,
       default: false,
       type: Boolean
-    },
-
-    recommendationButton: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    segmentId: {
-      type: String,
-      required: false,
-      default: ''
     },
 
     /**
@@ -832,10 +804,6 @@ export default {
       const linkMark = node.marks && node.marks.find(mark => mark.type.name === 'link')
 
       return linkMark
-    },
-
-    openRecommendationModal () {
-      this.$refs.recommendationModal.toggleModal('open')
     },
 
     openUploadModal (data) {

@@ -99,6 +99,36 @@
           "themeable": true
         }
       },
+      "teal": {
+        "light-4": {
+          "value": "#E6FBFF",
+          "themeable": true
+        },
+        "light-3": {
+          "value": "#BCEDF6",
+          "themeable": true
+        },
+        "light-2": {
+          "value": "#66CEE2",
+          "themeable": true
+        },
+        "light-1": {
+          "value": "#29ACC4",
+          "themeable": true
+        },
+        "base": {
+          "value": "#0095B0",
+          "themeable": true
+        },
+        "dark-1": {
+          "value": "#007286",
+          "themeable": true
+        },
+        "dark-2": {
+          "value": "#004F5D",
+          "themeable": true
+        }
+      },
       "green": {
         "light-4": {
           "value": "#effbef",

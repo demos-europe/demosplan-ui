@@ -220,16 +220,20 @@
         }
       },
       "magenta": {
-        "light-3": {
-          "value": "#f3ecf8",
+        "light-4": {
+          "value": "#fdedf2",
           "themeable": true
         },
-        "light-2": {
+        "light-3": {
           "value": "#fbdbe5",
           "themeable": true
         },
-        "light-1": {
+        "light-2": {
           "value": "#ff9fbd",
+          "themeable": true
+        },
+        "light-1": {
+          "value": "#e73e79",
           "themeable": true
         },
         "base": {
@@ -237,11 +241,11 @@
           "themeable": true
         },
         "dark-1": {
-          "value": "#84002e",
+          "value": "#960739",
           "themeable": true
         },
         "dark-2": {
-          "value": "#600021",
+          "value": "#650324",
           "themeable": true
         }
       }

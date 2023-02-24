@@ -101,23 +101,23 @@
       },
       "teal": {
         "light-4": {
-          "value": "#E6FBFF",
+          "value": "#e6fbff",
           "themeable": true
         },
         "light-3": {
-          "value": "#BCEDF6",
+          "value": "#bcedf6",
           "themeable": true
         },
         "light-2": {
-          "value": "#66CEE2",
+          "value": "#66cee2",
           "themeable": true
         },
         "light-1": {
-          "value": "#29ACC4",
+          "value": "#29acc4",
           "themeable": true
         },
         "base": {
-          "value": "#0095B0",
+          "value": "#0095b0",
           "themeable": true
         },
         "dark-1": {
@@ -125,7 +125,7 @@
           "themeable": true
         },
         "dark-2": {
-          "value": "#004F5D",
+          "value": "#004f5D",
           "themeable": true
         }
       },

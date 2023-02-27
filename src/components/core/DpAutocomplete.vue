@@ -33,12 +33,6 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
-    additionalRouteParams: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-
     height: {
       type: String,
       required: false,
@@ -63,14 +57,8 @@ export default {
       default: () => Translator.trans('search')
     },
 
-    queryParam: {
-      type: String,
-      required: false,
-      default: 'query'
-    },
-
-    route: {
-      type: String,
+    routeGenerator: {
+      type: Function,
       required: true
     },
 
@@ -110,7 +98,8 @@ export default {
     async fetchOptions (searchString) {
       this.isLoading = true
       try {
-        const response = await dpApi.get(Routing.generate(this.route, { ...this.additionalRouteParams, [this.queryParam]: searchString }))
+        const route = this.routeGenerator(searchString)
+        const response = await dpApi.get(route)
         // Only emit results that match the current search -> prevents race conditions
         if (this.currentQuerry === searchString) this.$emit('search-changed', response)
         this.isLoading = false

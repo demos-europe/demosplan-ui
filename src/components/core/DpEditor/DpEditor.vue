@@ -11,6 +11,7 @@
     <dp-upload-modal
       v-if="toolbar.imageButton"
       ref="uploadModal"
+      :get-file-by-hash="routes.getFileByHash"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -442,6 +443,21 @@ export default {
     },
 
     /**
+     * getFileByHash: (Optional) function that receives a file hash as parameter
+     * and returns a route to that file. Used for displaying images.
+     */
+    routes: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+      validator: (prop) => {
+        return Object.keys(prop).every(key => [
+          'getFileByHash'
+        ].includes(key))
+      }
+    },
+
+    /**
      * Pass in an Array of suggestions if you would like to use the suggestion plugin in tiptap.
      */
     suggestions: {
@@ -719,7 +735,7 @@ export default {
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]
           const imageHeight = placeholder.match(/height=(\d*?)$/)[1]
-          return `<img src="${Routing.generate('core_file', { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
+          return `<img src="${this.routes.getFileByHash(imageHash)}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
         })
       } catch (e) {
         return text

@@ -8,7 +8,7 @@
     </span>
     <span v-if="isImage">
       <img
-        :src="Routing.generate('core_file', { hash: file.hash })"
+        :src="getFileByHash(file.hash)"
         :aria-label="Translator.trans('image.preview')"
         width="50px">
     </span>
@@ -36,6 +36,8 @@ import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadedFile',
+
+  inject: ['getFileByHash'],
 
   mixins: [prefixClassMixin],
 

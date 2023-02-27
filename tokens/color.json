@@ -427,6 +427,36 @@
           "themeable":  true
         }
       },
+      "highlight": {
+        "light-4": {
+          "value": "{color.palette.red.light-4}",
+          "themeable": true
+        },
+        "light-3": {
+          "value": "{color.palette.red.light-3}",
+          "themeable": true
+        },
+        "light-2": {
+          "value": "{color.palette.red.light-2}",
+          "themeable":  true
+        },
+        "light-1": {
+          "value": "{color.palette.red.light-1}",
+          "themeable":  true
+        },
+        "base": {
+          "value": "{color.palette.red.base}",
+          "themeable":  true
+        },
+        "dark-1": {
+          "value": "{color.palette.red.dark-1}",
+          "themeable":  true
+        },
+        "dark-2": {
+          "value": "{color.palette.red.dark-2}",
+          "themeable":  true
+        }
+      },
       "main": {
         "light-4": {
           "value": "{color.palette.blue.light-4}",

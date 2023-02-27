@@ -373,21 +373,13 @@ export default {
       default: ''
     },
 
+    /**
+     * Set to true if you want to insert content at the current cursor position
+     */
     editorInsertAtCursorPos: {
       type: Boolean,
       required: false,
       default: false
-    },
-
-    /**
-     * Array with numbers 1-6 defining which heading-buttons we want to show
-     *
-     * @deprecated use toolbarItems instead
-     */
-    headings: {
-      required: false,
-      type: Array,
-      default: () => []
     },
 
     /**
@@ -400,82 +392,9 @@ export default {
       default: ''
     },
 
-    /**
-     * If true, the button to add images will be shown and the initial text will be scanned for img placeholders which will be then replaced by actual images.
-     * Inserted pictures will also be converted to placeholders on save.
-     *
-     * @deprecated use toolbarItems instead
-     */
-    imageButton: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * Enables menu buttons to mark text as deleted and inserted.
-     * The buttons will wrap the current text selection with a `del` or `ins` element,
-     * enabling users to indicate content changes in relation to a prior content version.
-     * This feature is currently only used for planning document paragraphs.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins
-     *
-     * @deprecated use toolbarItems instead
-     */
-    insertAndDelete: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * @deprecated use toolbarItems instead
-     */
-    fullscreenButton: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-
     required: {
       type: Boolean,
       required: false,
-      default: false
-    },
-
-    /**
-     * Define if a button to add links should be visible in menu
-     *
-     * @deprecated use toolbarItems instead
-     */
-    linkButton: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     * Define if a button to add ordered/unordered list should be visible in menu
-     *
-     * @deprecated use toolbarItems instead
-     */
-    listButtons: {
-      required: false,
-      type: Boolean,
-      default: true
-    },
-
-    /**
-     * Enables a menu button to highlight/mark text.
-     * This will wrap the current text selection with a `mark` element,
-     * enabling users to enrich content with a semantic element to highlight text.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark
-     *
-     * @deprecated use toolbarItems instead
-     */
-    mark: {
-      required: false,
-      type: Boolean,
       default: false
     },
 
@@ -523,19 +442,6 @@ export default {
     },
 
     /**
-     * Enables a menu button to strike out text.
-     * This will wrap the current text selection with a `s` element, enabling users
-     * to enrich content with a semantic element to mark text as no longer relevant.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
-     * @deprecated use toolbarItems instead
-     */
-    strikethrough: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
      * Pass in an Array of suggestions if you would like to use the suggestion plugin in tiptap.
      */
     suggestions: {
@@ -562,26 +468,6 @@ export default {
       },
       required: false,
       default: () => ([])
-    },
-
-    /**
-     * Set to true if you want table-insert button
-     *
-     * @deprecated use toolbarItems instead
-     */
-    table: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     * @deprecated use toolbarItems instead
-     */
-    textDecoration: {
-      type: Boolean,
-      required: false,
-      default: true
     },
 
     value: {

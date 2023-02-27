@@ -89,6 +89,11 @@ export default {
     segmentId: {
       type: String,
       required: true
+    },
+
+    similarRecommendationsRoute: {
+      type: String,
+      required: true
     }
   },
 
@@ -212,7 +217,7 @@ export default {
     },
 
     fetchSimilarRecommendations () {
-      const url = Routing.generate('api_resource_list', { resourceType: 'StatementSegment' })
+      const url = this.similarRecommendationsRoute
       const params = {
         include: 'parentStatement,parentStatement.procedure',
         fields: {

@@ -3,11 +3,13 @@
     "$todo": "Research + add 'interaction' tokens.",
     "palette": {
       "$description": "The raw hex values that other color tokens inherit from. Do not use directly.",
-      "white": {
-        "value": "#fff"
-      },
       "black": {
-        "value": "#000"
+        "value": "#000",
+        "themeable": true
+      },
+      "white": {
+        "value": "#fff",
+        "themeable": true
       },
       "neutral": {
         "$description": "Greyscale palette.",

@@ -13,27 +13,53 @@ parameters={{
 
 <!-- @TODO integrate https://github.com/UX-and-I/storybook-design-token -->
 
-# Color Tokens
+# Color tokens
 
-The demosplan-ui colors are grouped into "scale" (the raw values which should not be used directly), "brand" (for
-colors used in branded context), "message" and "status" (to communicate system state), "data" (for data visualization)
-and "interaction" (to indicate interaction). apart from "brand", colors are not meant to be themeable.
+The demosplan-ui colors are grouped into *palette* (the raw values which should not be used directly), *brand* (for
+colors used in branded context), *message* and *status* (to communicate system state), *data* (for data visualization)
+and *interaction* (to indicate interaction). Apart from *brand*, colors are not meant to be themeable.
 
-## Color scales
+## Palette colors
 
-Available color scales contain 7 steps: a base color plus 2 shades and 4 lights.
+Color palettes resemble all colors available within demosplan-ui. Available color palettes contain 7 steps:
+a base color, 2 shades and 4 lights. The colors are complemented with white, black, and neutral.
 
-## Neutrals
+## Brand colors
 
-Black, white, and greys.
+For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist. Like message, status,
+and interaction tokens, they are aliased to palette tokens.
+
+## Functional colors
+
+When building UI with a focus on functionality, not brand, the *message*, *status*, and *interaction* tokens can be utilized.
+
+### Message
+
+Message color is used to communicate system feedback. For each group, the following tokens exist:
+
+- `-bg` Background color
+- `-border` Border color
+- `-interactive` Color for links and other interactive elements
+- `-fill` Fill color for icons or other svg
+- `-text` Text color
+
+### State
+
+System state is typically communicated via icons (maybe in condensed table rows) or as colored text. For these cases,
+the following tokens can be used:
+
+- `-fill` Fill color for icons or other svg
+- `-text` Text color
+
+The tokens are to be used for elements on a white background.
 
 ## Data visualization colors
 
-The 4 distinct scales can be used for data visualizations with a defined number of needed colors that differentiate
-from each other.
+The 4 distinct data color palettes can be used for data visualizations with a defined number of needed colors
+that differentiate from each other. Like palette colors, they contain hex values.
 
 These are generated with https://colorbrewer2.org/#type=diverging&scheme=BrBG&n=8 to be colorblind safe
-and intentionally separate from other color scales.
+and intentionally separate from other color palettes.
 
 Although these colors are universally used for charts, they need to be refined into "sequential", "categorical",
 and "diverging" when appropriate. Read more if the need arises:

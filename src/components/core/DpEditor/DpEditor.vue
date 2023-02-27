@@ -8,6 +8,7 @@
       v-if="toolbar.boilerPlate && boilerPlateEnabled"
       ref="boilerPlateModal"
       :editor-id="editorId"
+      :boilerplate-edit-view-route="routes.boilerplateEditViewRoute"
       :procedure-id="procedureId"
       :boiler-plate-type="toolbar.boilerPlate"
       @insertBoilerPlate="text => handleInsertText(text)" />
@@ -18,6 +19,7 @@
     <dp-upload-modal
       v-if="toolbar.imageButton"
       ref="uploadModal"
+      :get-file-by-hash="routes.getFileByHash"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -26,7 +28,8 @@
       ref="recommendationModal"
       @insert-recommendation="text => appendText(text)"
       :procedure-id="procedureId"
-      :segment-id="segmentId" />
+      :segment-id="segmentId"
+      :similar-recommendations-route="routes.similarRecommendationsRoute" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
         <div
@@ -577,6 +580,29 @@ export default {
       default: false
     },
 
+    /**
+     * boilerplateEditViewRoute: (Optional) route to a view that allows editing 
+     * boilerplates. Displayed as a link at the bottom of the boilerplate modal, if 
+     * toolbar.boilerplate is set
+     * getFileByHash: (Optional) function that receives a file hash as parameter
+     * and returns a route to that file. Used for displaying images.
+     * similarRecommendationsRoute: (Optional) route to fetch similar 
+     * recommendations (needed if toolbar.recommendationButton is set to 
+     * true)
+     */
+    routes: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+      validator: (prop) => {
+        return Object.keys(prop).every(key => [
+          'boilerplateEditViewRoute',
+          'getFileByHash',
+          'similarRecommendationsRoute'
+        ].includes(key))
+      }
+    },
+
     segmentId: {
       type: String,
       required: false,
@@ -907,7 +933,7 @@ export default {
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]
           const imageHeight = placeholder.match(/height=(\d*?)$/)[1]
-          return `<img src="${Routing.generate('core_file', { hash: imageHash })}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
+          return `<img src="${this.routes.getFileByHash(imageHash)}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
         })
       } catch (e) {
         return text

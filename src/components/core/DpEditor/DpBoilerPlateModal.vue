@@ -14,8 +14,9 @@
         @boilerplate-text-added="addBoilerplateText" />
       <div class="flex flex-items-center u-mt">
         <a
-          class="weight--bold font-size-small"
-          :href="Routing.generate('DemosPlan_procedure_boilerplate_list', { procedure: procedureId })">
+            v-if="boilerplateEditViewRoute"
+            class="weight--bold font-size-small"
+            :href="boilerplateEditViewRoute">
           {{ Translator.trans('boilerplates.edit') }} ({{ Translator.trans('view.leave.hint') }})
         </a>
         <dp-button-row
@@ -54,6 +55,16 @@ export default {
     },
 
     boilerPlateType: {
+      required: false,
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Route to a view that allows editing the available boilerplates
+     * Displayed as a link at the bottom of the modal
+     */
+    boilerplateEditViewRoute: {
       required: false,
       type: String,
       default: ''

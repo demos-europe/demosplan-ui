@@ -58,6 +58,12 @@ export default {
 
   mixins: [prefixClassMixin],
 
+  provide () {
+    return {
+      getFileByHash: this.getFileByHash
+    }
+  },
+
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
@@ -86,6 +92,11 @@ export default {
       type: [Boolean, String],
       required: false,
       default: false
+    },
+
+    getFileByHash: {
+      type: Function,
+      required: true
     },
 
     id: {

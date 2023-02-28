@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+## v0.0.14 - 2023-02-28
+
+Same as v0.0.13, but with up-to-date build dependencies this time around.
+
 ## v0.0.13 - 2023-02-28
 
 ### Changed

@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.15 - 2023-03-01
+
 ### Changed
 
 - ([#104](https://github.com/demos-europe/demosplan-ui/pull/104)) Add slots for modal and button in DpEditor ([@gruenbergerdemos](https://github.com/gruenbergerdemos))

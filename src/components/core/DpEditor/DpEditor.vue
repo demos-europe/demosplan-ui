@@ -378,15 +378,6 @@ export default {
     },
 
     /**
-     * Set to true if you want to insert content at the current cursor position
-     */
-    editorInsertAtCursorPos: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
      * To send data with submit form action we sometimes need to have a hidden input with tiptap's content. If the
      * hidden input should be added, the prop should be a string with input name (e.g. r_name)
      */
@@ -896,9 +887,7 @@ export default {
       new Heading({ levels: this.toolbar.headings })
     ]
 
-    if (this.editorInsertAtCursorPos) {
-      extensions.push(new EditorInsertAtCursorPos())
-    }
+    extensions.push(new EditorInsertAtCursorPos())
 
     if (this.suggestions.length > 0) {
       this.suggestions.forEach(suggestionGroup => {

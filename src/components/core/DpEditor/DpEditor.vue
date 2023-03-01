@@ -367,6 +367,9 @@ export default {
 
   mixins: [prefixClassMixin],
 
+  /**
+   * Only needed for testing purposes with data-cy
+   */
   props: {
     editorId: {
       type: String,
@@ -566,15 +569,50 @@ export default {
         ]
       },
       toolbar: Object.assign({
+        /**
+         * Array with numbers 1-6 defining which heading-buttons we want to show
+         */
         headings: [],
+        /**
+         * If true, the button to add images will be shown and the initial text will be scanned for img placeholders which will be then replaced by actual images.
+         */
         imageButton: false,
+        /**
+         * Enables menu buttons to mark text as deleted and inserted.
+         * The buttons will wrap the current text selection with a `del` or `ins` element,
+         * enabling users to indicate content changes in relation to a prior content version.
+         * This feature is currently only used for planning document paragraphs.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins
+         */
         insertAndDelete: false,
         fullscreenButton: true,
+        /**
+         * Define if a button to add links should be visible in menu
+         */
         linkButton: false,
+        /**
+         * Define if a button to add ordered/unordered list should be visible in menu
+         */
         listButtons: true,
+        /**
+         * Enables a menu button to highlight/mark text.
+         * This will wrap the current text selection with a `mark` element,
+         * enabling users to enrich content with a semantic element to highlight text.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark
+         */
         mark: false,
         obscure: this.obscure,
+        /**
+         * Enables a menu button to strike out text.
+         * This will wrap the current text selection with a `s` element, enabling users
+         * to enrich content with a semantic element to mark text as no longer relevant.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
+         */
         strikethrough: false,
+        /**
+         * Set to true if you want table-insert button
+         */
         table: false,
         textDecoration: true
       }, this.toolbarItems)

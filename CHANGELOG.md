@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- ([#111](https://github.com/demos-europe/demosplan-ui/pull/91)) Fix checkbox positioning in DpTableCardListHeader ([@muellerdemos](https://github.com/muellerdemos))
+- ([#111](https://github.com/demos-europe/demosplan-ui/pull/111)) Fix checkbox positioning in DpTableCardListHeader ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.0.14 - 2023-02-28
 

@@ -4,14 +4,6 @@
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
-    <dp-boiler-plate-modal
-      v-if="toolbar.boilerPlate && boilerPlateEnabled"
-      ref="boilerPlateModal"
-      :editor-id="editorId"
-      :boilerplate-edit-view-route="routes.boilerplateEditViewRoute"
-      :procedure-id="procedureId"
-      :boiler-plate-type="toolbar.boilerPlate"
-      @insertBoilerPlate="text => handleInsertText(text)" />
     <dp-link-modal
       v-if="toolbar.linkButton"
       ref="linkModal"
@@ -23,13 +15,10 @@
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
-    <dp-recommendation-modal
-      v-if="toolbar.recommendationButton"
-      ref="recommendationModal"
-      @insert-recommendation="text => appendText(text)"
-      :procedure-id="procedureId"
-      :segment-id="segmentId"
-      :similar-recommendations-route="routes.similarRecommendationsRoute" />
+    <slot
+        name="modal"
+        :appendText="appendText"
+        :handleInsertText="handleInsertText" />
     <div :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
         <div
@@ -241,26 +230,6 @@
                 <i
                   :class="prefixClass('fa fa-link')" />
               </button>
-              <!-- Add Boilerplate -->
-              <button
-                v-if="boilerPlateEnabled"
-                @click.stop="openBoilerPlateModal"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('boilerplate.insert')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-puzzle-piece')" />
-              </button>
-              <!-- Insert related recommendations -->
-              <button
-                v-if="toolbar.recommendationButton"
-                @click.stop="openRecommendationModal"
-                :class="prefixClass('menubar__button')"
-                v-tooltip="Translator.trans('segment.recommendation.insert.similar')"
-                type="button">
-                <i :class="prefixClass('fa fa-lightbulb-o')" />
-              </button>
               <!-- Insert images-->
               <button
                 v-if="toolbar.imageButton"
@@ -312,6 +281,7 @@
                   :class="prefixClass('fa fa-arrows-alt')"
                   aria-hidden="true" />
               </button>
+              <slot name="button" />
             </div>
           </editor-menu-bar>
           <editor-content
@@ -386,9 +356,7 @@ export default {
     DpIcon,
     EditorMenuBar,
     EditorContent,
-    DpBoilerPlateModal: () => import('./DpBoilerPlateModal'),
     DpLinkModal: () => import('./DpLinkModal'),
-    DpRecommendationModal: () => import('./DpRecommendationModal'),
     DpUploadModal: () => import('./DpUploadModal')
   },
 
@@ -401,34 +369,12 @@ export default {
 
   props: {
     /**
-     * Defines which boilerplate types we want to see in modal. Possible are: consideration, email, news.notes
-     * if this property is set, the boilerPlate button appears in the tiptap editor
-     * @deprecated use toolbarItems instead
-     */
-    boilerPlate: {
-      type: [String, Array],
-      default: '',
-      required: false
-    },
-
-    /**
-     * Needed to get the correct textarea for adding boilerplates via DpBoilerPlateModal.vue
+     * Only needed for testing purposes with data-cy
      */
     editorId: {
       type: String,
       required: false,
       default: ''
-    },
-
-    /**
-     * Array with numbers 1-6 defining which heading-buttons we want to show
-     *
-     * @deprecated use toolbarItems instead
-     */
-    headings: {
-      required: false,
-      type: Array,
-      default: () => []
     },
 
     /**
@@ -441,43 +387,6 @@ export default {
       default: ''
     },
 
-    /**
-     * If true, the button to add images will be shown and the initial text will be scanned for img placeholders which will be then replaced by actual images.
-     * Inserted pictures will also be converted to placeholders on save.
-     *
-     * @deprecated use toolbarItems instead
-     */
-    imageButton: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * Enables menu buttons to mark text as deleted and inserted.
-     * The buttons will wrap the current text selection with a `del` or `ins` element,
-     * enabling users to indicate content changes in relation to a prior content version.
-     * This feature is currently only used for planning document paragraphs.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins
-     *
-     * @deprecated use toolbarItems instead
-     */
-    insertAndDelete: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * @deprecated use toolbarItems instead
-     */
-    fullscreenButton: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-
     required: {
       type: Boolean,
       required: false,
@@ -485,45 +394,8 @@ export default {
     },
 
     /**
-     * Define if a button to add links should be visible in menu
-     *
-     * @deprecated use toolbarItems instead
-     */
-    linkButton: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     * Define if a button to add ordered/unordered list should be visible in menu
-     *
-     * @deprecated use toolbarItems instead
-     */
-    listButtons: {
-      required: false,
-      type: Boolean,
-      default: true
-    },
-
-    /**
-     * Enables a menu button to highlight/mark text.
-     * This will wrap the current text selection with a `mark` element,
-     * enabling users to enrich content with a semantic element to highlight text.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark
-     *
-     * @deprecated use toolbarItems instead
-     */
-    mark: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     * Defaults will be set in this.menu:
+     * Defaults will be set in this.toolbar:
      * {
-     *    boilerPlate: '', # [] || 'string'
      *    headings: [], # Array of numbers 1-6
      *    imageButton: false,
      *    insertAndDelete: false,
@@ -531,7 +403,6 @@ export default {
      *    linkButton: false,
      *    listButtons: true,
      *    mark: false,
-     *    recommendationButton: false,
      *    strikethrough: false,
      *    table: false,
      *    textDecoration: true
@@ -559,36 +430,15 @@ export default {
       default: false
     },
 
-    /**
-     * ProcedureId is required if we want to enable boilerplates
-     */
-    procedureId: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     readonly: {
       required: false,
       default: false,
       type: Boolean
     },
 
-    recommendationButton: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
     /**
-     * boilerplateEditViewRoute: (Optional) route to a view that allows editing 
-     * boilerplates. Displayed as a link at the bottom of the boilerplate modal, if 
-     * toolbar.boilerplate is set
      * getFileByHash: (Optional) function that receives a file hash as parameter
      * and returns a route to that file. Used for displaying images.
-     * similarRecommendationsRoute: (Optional) route to fetch similar 
-     * recommendations (needed if toolbar.recommendationButton is set to 
-     * true)
      */
     routes: {
       type: Object,
@@ -596,30 +446,9 @@ export default {
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => [
-          'boilerplateEditViewRoute',
-          'getFileByHash',
-          'similarRecommendationsRoute'
+          'getFileByHash'
         ].includes(key))
       }
-    },
-
-    segmentId: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
-     * Enables a menu button to strike out text.
-     * This will wrap the current text selection with a `s` element, enabling users
-     * to enrich content with a semantic element to mark text as no longer relevant.
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
-     * @deprecated use toolbarItems instead
-     */
-    strikethrough: {
-      required: false,
-      type: Boolean,
-      default: false
     },
 
     /**
@@ -649,26 +478,6 @@ export default {
       },
       required: false,
       default: () => ([])
-    },
-
-    /**
-     * Set to true if you want table-insert button
-     *
-     * @deprecated use toolbarItems instead
-     */
-    table: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-
-    /**
-     * @deprecated use toolbarItems instead
-     */
-    textDecoration: {
-      type: Boolean,
-      required: false,
-      default: true
     },
 
     value: {
@@ -751,27 +560,57 @@ export default {
         ]
       },
       toolbar: Object.assign({
-        boilerPlate: this.boilerPlate,
-        headings: this.headings,
-        imageButton: this.imageButton,
-        insertAndDelete: this.insertAndDelete,
-        fullscreenButton: this.fullscreenButton,
-        linkButton: this.linkButton,
-        listButtons: this.listButtons,
-        mark: this.mark,
+        /**
+         * Array with numbers 1-6 defining which heading-buttons we want to show
+         */
+        headings: [],
+        /**
+         * If true, the button to add images will be shown and the initial text will be scanned for img placeholders which will be then replaced by actual images.
+         */
+        imageButton: false,
+        /**
+         * Enables menu buttons to mark text as deleted and inserted.
+         * The buttons will wrap the current text selection with a `del` or `ins` element,
+         * enabling users to indicate content changes in relation to a prior content version.
+         * This feature is currently only used for planning document paragraphs.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins
+         */
+        insertAndDelete: false,
+        fullscreenButton: true,
+        /**
+         * Define if a button to add links should be visible in menu
+         */
+        linkButton: false,
+        /**
+         * Define if a button to add ordered/unordered list should be visible in menu
+         */
+        listButtons: true,
+        /**
+         * Enables a menu button to highlight/mark text.
+         * This will wrap the current text selection with a `mark` element,
+         * enabling users to enrich content with a semantic element to highlight text.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark
+         */
+        mark: false,
         obscure: this.obscure,
-        strikethrough: this.strikethrough,
-        table: this.table,
-        textDecoration: this.textDecoration
+        /**
+         * Enables a menu button to strike out text.
+         * This will wrap the current text selection with a `s` element, enabling users
+         * to enrich content with a semantic element to mark text as no longer relevant.
+         * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s
+         */
+        strikethrough: false,
+        /**
+         * Set to true if you want table-insert button
+         */
+        table: false,
+        textDecoration: true
       }, this.toolbarItems)
     }
   },
 
   computed: {
-    boilerPlateEnabled () {
-      return Boolean(this.toolbar.boilerPlate)
-    },
-
     counterText () {
       return maxlengthHint(this.hiddenInputValue.length, this.maxlength)
     },
@@ -896,14 +735,6 @@ export default {
       const linkMark = node.marks && node.marks.find(mark => mark.type.name === 'link')
 
       return linkMark
-    },
-
-    openBoilerPlateModal () {
-      this.$refs.boilerPlateModal.toggleModal()
-    },
-
-    openRecommendationModal () {
-      this.$refs.recommendationModal.toggleModal('open')
     },
 
     openUploadModal (data) {
@@ -1056,9 +887,7 @@ export default {
       new Heading({ levels: this.toolbar.headings })
     ]
 
-    if (this.toolbar.boilerPlate) {
-      extensions.push(new EditorInsertAtCursorPos())
-    }
+    extensions.push(new EditorInsertAtCursorPos())
 
     if (this.suggestions.length > 0) {
       this.suggestions.forEach(suggestionGroup => {

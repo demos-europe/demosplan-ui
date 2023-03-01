@@ -11,10 +11,10 @@
     <!-- header with checkbox and labels-->
     <div class="layout__item border--bottom">
       <dp-checkbox
-          v-if="selectable"
-          id="selectAll"
-          class="display--inline-block width-20 u-pv-0_25"
-          @change="val => $emit('select-all', val)" /><!--
+        v-if="selectable"
+        id="selectAll"
+        class="display--inline-block width-20 u-pv-0_25"
+        @chang="val => $emit('select-all', val)" /><!--
     --><div
         class="layout__item weight--bold u-pv-0_5"
         :class="[item.classes ? item.classes : '', item.width ? item.width : '']"

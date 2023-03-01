@@ -367,10 +367,10 @@ export default {
 
   mixins: [prefixClassMixin],
 
-  /**
-   * Only needed for testing purposes with data-cy
-   */
   props: {
+    /**
+     * Only needed for testing purposes with data-cy
+     */
     editorId: {
       type: String,
       required: false,

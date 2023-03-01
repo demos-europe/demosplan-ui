@@ -400,7 +400,7 @@ export default {
     },
 
     /**
-     * Defaults will be set in this.menu:
+     * Defaults will be set in this.toolbar:
      * {
      *    headings: [], # Array of numbers 1-6
      *    imageButton: false,
@@ -566,17 +566,17 @@ export default {
         ]
       },
       toolbar: Object.assign({
-        headings: this.headings,
-        imageButton: this.imageButton,
-        insertAndDelete: this.insertAndDelete,
-        fullscreenButton: this.fullscreenButton,
-        linkButton: this.linkButton,
-        listButtons: this.listButtons,
-        mark: this.mark,
+        headings: [],
+        imageButton: false,
+        insertAndDelete: false,
+        fullscreenButton: true,
+        linkButton: false,
+        listButtons: true,
+        mark: false,
         obscure: this.obscure,
-        strikethrough: this.strikethrough,
-        table: this.table,
-        textDecoration: this.textDecoration
+        strikethrough: false,
+        table: false,
+        textDecoration: true
       }, this.toolbarItems)
     }
   },

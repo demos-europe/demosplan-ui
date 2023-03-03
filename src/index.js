@@ -136,7 +136,7 @@ import {
   validateTiptap
 } from './lib/validation/'
 
-export default {
+export {
   ActionMenu,
   assignHandlerForTrigger,
   assignHandlersForInputs,

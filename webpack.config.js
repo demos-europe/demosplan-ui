@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const env =  require('process').env
 
 const bundleAnalyzer = new BundleAnalyzerPlugin({
   analyzerMode: 'static',
@@ -22,6 +23,18 @@ const transpileNodeModules = [
   'tiptap-extensions',
 ].map(module => resolve('node_modules/' + module))
 
+const addonOutput = {
+  path: path.resolve(__dirname, "dist"),
+  publicPath: '',
+  filename: 'demosplan-ui.umd.js',
+  library: {
+    name: 'demosplan_ui',
+    type: 'var'
+  },
+  libraryExport: 'default',
+  libraryTarget: 'var'
+}
+
 const config = {
   entry: resolve('./src/index.js'),
   output: {
@@ -31,6 +44,10 @@ const config = {
     libraryTarget: 'umd',
     libraryExport: 'default',
     clean: true
+  },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    symlinks: false
   },
   externalsType: 'umd',
   externals: [
@@ -48,10 +65,6 @@ const config = {
     'vuedraggable',
     'vuex'
   ],
-  resolve: {
-    extensions: ['.js', '.vue'],
-    symlinks: false
-  },
   plugins: [
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),
@@ -84,7 +97,13 @@ const config = {
   },
 };
 
-module.exports = () => {
+module.exports = (env) => {
+  const isAddon = env.addon === 'true'
+
+  if (isAddon) {
+    config.output = addonOutput
+  }
+
   if (isProduction) {
     config.mode = 'production';
   } else {
@@ -96,4 +115,4 @@ module.exports = () => {
   }
 
   return config;
-};
+}

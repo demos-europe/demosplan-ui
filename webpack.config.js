@@ -25,7 +25,6 @@ const transpileNodeModules = [
 
 const addonOutput = {
   path: path.resolve(__dirname, "dist"),
-  publicPath: '',
   filename: 'demosplan-ui.umd.js',
   library: {
     name: 'demosplan_ui',

@@ -49,7 +49,7 @@ const config = {
     extensions: ['.js', '.vue'],
     symlinks: false
   },
-  externalsType: 'umd',
+  externalsType: 'commonjs',
   externals: [
     '@braintree/sanitize-url',
     '@demos-europe/demosplan-utils',

@@ -4,7 +4,7 @@
  * @param prop
  * @return {boolean}
  */
-export function hasOwnProp (obj, prop) {
+export default function hasOwnProp (obj, prop) {
   if (typeof obj !== 'object') {
     console.warn('Cannot check for property on a non-object, got type: ' + typeof obj)
 

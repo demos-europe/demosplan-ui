@@ -36,10 +36,6 @@ const config = {
     libraryTarget: 'umd',
     clean: true
   },
-  resolve: {
-    extensions: ['.js', '.vue'],
-    symlinks: false
-  },
   externalsType: 'commonjs',
   externals: [
     '@braintree/sanitize-url',
@@ -56,6 +52,10 @@ const config = {
     'vuedraggable',
     'vuex'
   ],
+  resolve: {
+    extensions: ['.js', '.vue'],
+    symlinks: false
+  },
   plugins: [
     new MiniCssExtractPlugin(),
     new VueLoaderPlugin(),

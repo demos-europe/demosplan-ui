@@ -74,7 +74,6 @@
     "prepack": "yarn build && yarn build-tokens",
     "storybook": "start-storybook -p 6006",
     "build": "yarn build:prod",
-    "build:addon": "webpack --env addon=true --mode=production --define-process-env-node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch"

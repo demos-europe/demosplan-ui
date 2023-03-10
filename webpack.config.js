@@ -25,7 +25,7 @@ const transpileNodeModules = [
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '',
     filename: 'demosplan-ui.umd.js',
     library: {

@@ -29,7 +29,7 @@ const config = {
     publicPath: '',
     filename: 'demosplan-ui.umd.js',
     library: {
-      name: '_demos_europe_demosplan_ui',
+      name: '__demos_europe_demosplan_ui',
       type: 'var'
     },
     libraryExport: 'default',

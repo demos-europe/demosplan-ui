@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Changed
+
+- ([#114](https://github.com/demos-europe/demosplan-ui/pull/114)) Adjust webpack config to enable the usage of demosplan-ui in addons ([@muellerdemos](https://github.com/muellerdemos))
+
 ## v0.0.15 - 2023-03-01
 
 ### Changed

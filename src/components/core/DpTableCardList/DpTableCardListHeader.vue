@@ -9,14 +9,14 @@
       @search="val => $emit('search', val)" /><!--
  --><slot name="header-buttons" />
     <!-- header with checkbox and labels-->
-    <div class="layout__item u-pv-0_5 border--bottom">
+    <div class="layout__item border--bottom">
       <dp-checkbox
         v-if="selectable"
         id="selectAll"
-        class="display--inline-block"
+        class="display--inline-block width-20 u-pv-0_25"
         @change="val => $emit('select-all', val)" /><!--
     --><div
-        class="layout__item weight--bold"
+        class="layout__item weight--bold u-pv-0_5"
         :class="[item.classes ? item.classes : '', item.width ? item.width : '']"
         v-for="(item, idx) in items"
         :key="idx">

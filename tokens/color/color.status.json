@@ -1,0 +1,53 @@
+{
+  "color": {
+    "$todo": "Research + add 'interaction' tokens.",
+    "status": {
+      "$description": "Color used to communicate state.",
+      "progress": {
+        "$description": "Use these colors to communicate that something is in progress",
+        "fill": {
+          "value": "{color.palette.blue.base}"
+        },
+        "text": {
+          "value": "{color.palette.blue.dark-1}"
+        }
+      },
+      "moved": {
+        "$description": "Use these colors to communicate something has moved.",
+        "fill": {
+          "value": "{color.palette.yellow.dark-1}"
+        },
+        "text": {
+          "value": "{color.palette.yellow.dark-2}"
+        }
+      },
+      "failed": {
+        "$description": "Use these colors to communicate that an action has failed on an item.",
+        "fill": {
+          "value": "{color.palette.red.base}"
+        },
+        "text": {
+          "value": "{color.palette.red.dark-1}"
+        }
+      },
+      "complete": {
+        "$description": "Use these colors to communicate that an action has completed, or something has been added.",
+        "fill": {
+          "value": "{color.palette.green.base}"
+        },
+        "text": {
+          "value": "{color.palette.green.dark-1}"
+        }
+      },
+      "neutral": {
+        "$description": "Use these colors if no other option applies.",
+        "fill": {
+          "value": "{color.palette.neutral.base}"
+        },
+        "text": {
+          "value": "{color.palette.neutral.dark-1}"
+        }
+      }
+    }
+  }
+}

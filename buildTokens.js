@@ -3,11 +3,12 @@ const StyleDictionary = require('style-dictionary')
 
 const prefix = 'dp-'
 
-const tokensPath = 'tokens/*.json'
+const tokensPath = 'tokens/**/*.json'
 const files = glob
   .sync(tokensPath)
   .map(filePath => filePath
     .replace('tokens/', '')
+    .replace('color/', '')
     .replace('.json', ''))
 
 StyleDictionary.registerTransform({

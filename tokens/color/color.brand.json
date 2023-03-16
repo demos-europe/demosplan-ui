@@ -5,94 +5,28 @@
       "$description": "Color used to express brand.",
       "$todo": "How to deal with css variables inside tokens?",
       "alt": {
-        "light-4": {
-          "value": "{color.palette.teal.light-4}",
-          "themeable": true
-        },
-        "light-3": {
-          "value": "{color.palette.teal.light-3}",
-          "themeable": true
-        },
-        "light-2": {
-          "value": "{color.palette.teal.light-2}",
-          "themeable":  true
-        },
-        "light-1": {
-          "value": "{color.palette.teal.light-1}",
-          "themeable":  true
-        },
-        "base": {
-          "value": "{color.palette.teal.base}",
-          "themeable":  true
-        },
-        "dark-1": {
-          "value": "{color.palette.teal.dark-1}",
-          "themeable":  true
-        },
-        "dark-2": {
-          "value": "{color.palette.teal.dark-2}",
-          "themeable":  true
-        }
+        "value": "{color.palette.teal.base}",
+        "themeable":  true
+      },
+      "alt-contrast": {
+        "value": "{color.palette.white}",
+        "themeable":  true
       },
       "highlight": {
-        "light-4": {
-          "value": "{color.palette.red.light-4}",
-          "themeable": true
-        },
-        "light-3": {
-          "value": "{color.palette.red.light-3}",
-          "themeable": true
-        },
-        "light-2": {
-          "value": "{color.palette.red.light-2}",
-          "themeable":  true
-        },
-        "light-1": {
-          "value": "{color.palette.red.light-1}",
-          "themeable":  true
-        },
-        "base": {
-          "value": "{color.palette.red.base}",
-          "themeable":  true
-        },
-        "dark-1": {
-          "value": "{color.palette.red.dark-1}",
-          "themeable":  true
-        },
-        "dark-2": {
-          "value": "{color.palette.red.dark-2}",
-          "themeable":  true
-        }
+        "value": "{color.palette.red.dark-1}",
+        "themeable":  true
+      },
+      "highlight-contrast": {
+        "value": "{color.palette.white}",
+        "themeable":  true
       },
       "main": {
-        "light-4": {
-          "value": "{color.palette.blue.light-4}",
-          "themeable": true
-        },
-        "light-3": {
-          "value": "{color.palette.blue.light-3}",
-          "themeable": true
-        },
-        "light-2": {
-          "value": "{color.palette.blue.light-2}",
-          "themeable":  true
-        },
-        "light-1": {
-          "value": "{color.palette.blue.light-1}",
-          "themeable":  true
-        },
-        "base": {
-          "value": "{color.palette.blue.base}",
-          "themeable":  true
-        },
-        "dark-1": {
-          "value": "{color.palette.blue.dark-1}",
-          "themeable":  true
-        },
-        "dark-2": {
-          "value": "{color.palette.blue.dark-2}",
-          "themeable":  true
-        }
+        "value": "{color.palette.blue.base}",
+        "themeable":  true
+      },
+      "main-contrast": {
+        "value": "{color.palette.white}",
+        "themeable":  true
       }
     }
   }

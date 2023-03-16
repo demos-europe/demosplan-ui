@@ -34,6 +34,7 @@ Same as v0.0.13, but with up-to-date build dependencies this time around.
 ### Fixed
 
 - ([#100](https://github.com/demos-europe/demosplan-ui/pull/100)) Set correct value for `aria-live` in DpNotifyContainer when document becomes visible ([@spiess-demos](https://github.com/spiess-demos))
+- ([#109](https://github.com/demos-europe/demosplan-ui/pull/109)) Remove @demos-europe/demosplan-utils as dependency ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.12 - 2023-02-13
 

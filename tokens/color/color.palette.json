@@ -1,6 +1,5 @@
 {
   "color": {
-    "$todo": "Research + add 'interaction' tokens.",
     "palette": {
       "$description": "The raw hex values that other color tokens inherit from. Do not use directly.",
       "black": {

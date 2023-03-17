@@ -19,6 +19,9 @@ StyleDictionary.registerTransform({
     if (token.path[0] === 'color' && token.path[1] === 'palette') {
       token.path.splice(1, 1)
     }
+    if (token.path[0] === 'color' && token.path[1] === 'ui') {
+      token.path.splice(1, 1)
+    }
     return prefix + token.path.join('-')
   }
 })

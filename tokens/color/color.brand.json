@@ -1,32 +1,44 @@
 {
   "color": {
-    "$todo": "Research + add 'interaction' tokens.",
     "brand": {
-      "$description": "Color used to express brand.",
-      "$todo": "How to deal with css variables inside tokens?",
-      "alt": {
-        "value": "{color.palette.teal.base}",
-        "themeable":  true
+      "$description": "Color used to express brand. Subject to theming. Use with caution!",
+      "main": {
+        "$description": "Primary color/background-color pairing.",
+        "base": {
+          "$description": "Loudest brand color. Currently reserved for header and tabs on public detail page.",
+          "value": "{color.palette.blue.base}",
+          "themeable":  true
+        },
+        "contrast": {
+          "$description": "Should pass AAA contrast check with the value of main-base.",
+          "value": "{color.palette.white}",
+          "themeable":  true
+        }
       },
-      "alt-contrast": {
-        "value": "{color.palette.white}",
-        "themeable":  true
+      "alt": {
+        "$description": "Secondary color/background-color pairing.",
+        "base": {
+          "$description": "The second most prominent brand representation in the color scheme.",
+          "value": "{color.palette.teal.base}",
+          "themeable":  true
+        },
+        "contrast": {
+          "$description": "Should pass AAA contrast check with the value of alt-base.",
+          "value": "{color.palette.white}",
+          "themeable":  true
+        }
       },
       "highlight": {
-        "value": "{color.palette.red.dark-1}",
-        "themeable":  true
-      },
-      "highlight-contrast": {
-        "value": "{color.palette.white}",
-        "themeable":  true
-      },
-      "main": {
-        "value": "{color.palette.blue.base}",
-        "themeable":  true
-      },
-      "main-contrast": {
-        "value": "{color.palette.white}",
-        "themeable":  true
+        "$description": "Brand accent color used for communicating active or focused state of interactive elements.",
+        "base": {
+          "value": "{color.palette.red.dark-1}",
+          "themeable":  true
+        },
+        "contrast": {
+          "$description": "Should pass AAA contrast check with the value of highlight-base.",
+          "value": "{color.palette.white}",
+          "themeable":  true
+        }
       }
     }
   }

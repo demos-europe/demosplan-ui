@@ -39,7 +39,6 @@ const config = {
   externalsType: 'commonjs',
   externals: [
     '@braintree/sanitize-url',
-    '@demos-europe/demosplan-utils',
     /^@uppy\/.+$/,
     'dayjs',
     'dompurify',

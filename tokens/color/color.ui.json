@@ -200,6 +200,24 @@
             "themeable": true
           }
         }
+      },
+      "text": {
+        "$description": "Color used to style text for different contexts.",
+        "marked": {
+          "$description": "Color for highlighting portions of text.",
+          "value": "{color.palette.blue.dark-2}",
+          "themeable": true
+        },
+        "marked-bg": {
+          "$description": "Background color for highlighting portions of text.",
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        },
+        "marked-bg-muted": {
+          "$description": "Background color for highlighting portions of text, that is discernible from 'marked-bg'",
+          "value": "{color.palette.blue.light-4}",
+          "themeable": true
+        }
       }
     }
   }

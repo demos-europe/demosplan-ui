@@ -124,11 +124,6 @@ export default {
         '\\'
       ]
 
-      /*
-       * For reasons i could not figure out, the for loop was needed here
-       * to reliably access the item that is looped over. When using forEach,
-       * strangely it always held the value of currentFile.
-       */
       for (let i = 0; i < reservedCharacters.length; i++) {
         if (fileName.includes(reservedCharacters[i])) {
           fileName = fileName.replace(reservedCharacters[i], '_')

@@ -15,8 +15,10 @@
     <span
       :class="prefixClass('display--inline-block u-pl-0_5')"
       style="width: calc(100% - 62px);">
-      {{ file.name }}
-      ({{ file.size }})
+      <span class="overflow-word-break">
+        {{ file.name }}
+      </span>
+      ({{ fileSize }})
       <button
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-import { getFileInfo } from '../../../lib'
+import { convertSize } from '../../../lib'
 import { prefixClassMixin } from '../../../mixins'
 
 export default {
@@ -42,20 +44,20 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
-    fileString: {
-      type: String,
+    file: {
+      type: Object,
       required: true
     }
   },
 
   computed: {
-    file () {
-      return getFileInfo(this.fileString)
-    },
-
     fileIcon () {
       const icon = this.file.mimeType === 'txt' ? 'fa-file-text-o' : 'fa-folder-o'
       return this.prefixClass('fa ' + icon)
+    },
+
+    fileSize () {
+      return convertSize('KB', this.file.size)
     },
 
     isImage () {

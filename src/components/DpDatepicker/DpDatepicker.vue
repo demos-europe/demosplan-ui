@@ -7,7 +7,7 @@
 
 <script>
 // eslint-disable-next-line import/extensions
-import Datepicker from 'a11y-datepicker/dist/index.min'
+import Datepicker from 'a11y-datepicker/dist/index.es.min'
 
 export default {
   name: 'DpDatepicker',

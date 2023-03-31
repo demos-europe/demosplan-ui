@@ -11,7 +11,7 @@
 
 ## v0.0.17 - 2023-03-23
 
-- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolveable 
+- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable 
 
 ## v0.0.16 - 2023-03-15
 

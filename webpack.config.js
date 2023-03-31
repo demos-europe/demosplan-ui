@@ -26,7 +26,7 @@ const config = {
   entry: resolve('./src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
+    publicPath: 'auto',
     filename: 'demosplan-ui.umd.js',
     library: {
       name: '__demos_europe_demosplan_ui',

@@ -304,7 +304,7 @@ export default {
     sortIconClass (field) {
       const isCurrentSort = field === this.sortOrder.key
       const sortDirectionClass = this.sortOrder.direction < 0 ? 'fa-sort-up' : 'fa-sort-down'
-      return isCurrentSort ? `${sortDirectionClass} color--highlight` : `fa-sort color--grey`
+      return isCurrentSort ? `${sortDirectionClass} color-brand-highlight` : `fa-sort color--grey`
     },
 
     updateFields (items = null) {

@@ -4,7 +4,7 @@
       "$description": "Tokens applied to individual UI components and tokens that are rather functional.",
       "interactive": {
         "$description": "Color used to indicate interactive elements.",
-        "base": {
+        "default": {
           "$description": "Default state.",
           "value": "{color.palette.blue.base}",
           "themeable": true
@@ -12,6 +12,11 @@
         "hover": {
           "$description": "Hover state.",
           "value": "{color.palette.blue.dark-1}",
+          "themeable": true
+        },
+        "hover-subtle": {
+          "$description": "Use as background to visualize hover state for bigger areas.",
+          "value": "{color.palette.neutral.light-1}",
           "themeable": true
         },
         "active": {
@@ -156,8 +161,8 @@
             "themeable": true
           }
         },
-        "moved": {
-          "$description": "Use these colors to communicate something has moved.",
+        "changed": {
+          "$description": "Use these colors to communicate something has moved or changed.",
           "fill": {
             "value": "{color.palette.yellow.dark-1}",
             "themeable": true
@@ -168,7 +173,11 @@
           }
         },
         "failed": {
-          "$description": "Use these colors to communicate that an action has failed on an item.",
+          "$description": "Use these colors to communicate that an action or validation has failed on an item.",
+          "border": {
+            "value": "{color.palette.red.base}",
+            "themeable": true
+          },
           "fill": {
             "value": "{color.palette.red.base}",
             "themeable": true
@@ -203,6 +212,21 @@
       },
       "text": {
         "$description": "Color used to style text for different contexts.",
+        "default": {
+          "$description": "Default color for text that should be readable.",
+          "value": "{color.palette.neutral.dark-2}",
+          "themeable": true
+        },
+        "muted": {
+          "$description": "Default color for text that should stand out a little less. Has sufficient contrast on white.",
+          "value": "{color.palette.neutral.base}",
+          "themeable": true
+        },
+        "on-dark": {
+          "$description": "Default color for text that has sufficient contrast on dark backgrounds.",
+          "value": "{color.palette.white}",
+          "themeable": true
+        },
         "marked": {
           "$description": "Color for highlighting portions of text.",
           "value": "{color.palette.blue.dark-2}",
@@ -213,9 +237,60 @@
           "value": "{color.palette.blue.light-3}",
           "themeable": true
         },
-        "marked-bg-muted": {
+        "inserted-bg": {
+          "$description": "Background color for inserted (ins) text.",
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        },
+        "inserted-bg-muted": {
           "$description": "Background color for highlighting portions of text, that is discernible from 'marked-bg'",
           "value": "{color.palette.blue.light-4}",
+          "themeable": true
+        },
+        "deleted-bg": {
+          "$description": "Background color for deleted (del) text.",
+          "value": "{color.palette.yellow.light-2}",
+          "themeable": true
+        },
+        "deleted-bg-muted": {
+          "$description": "Background color for deleted (del) text.",
+          "value": "{color.palette.yellow.light-3}",
+          "themeable": true
+        }
+      },
+      "selection": {
+        "$description": "Color used to visualize selected elements.",
+        "$status": "{_status.review}",
+        "text": {
+          "value": "{color.palette.blue.dark-1}",
+          "themeable": true
+        },
+        "bg": {
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        }
+      },
+      "border": {
+        "default": {
+          "$description": "Color used for borders.",
+          "value": "{color.palette.neutral.light-2}",
+          "themeable": true
+        }
+      },
+      "background": {
+        "default": {
+          "$description": "Default color used for backgrounds.",
+          "value": "{color.palette.white}",
+          "themeable": true
+        },
+        "light": {
+          "$description": "Lightest background color that is discernible on normal monitors.",
+          "value": "{color.palette.neutral.light-4}",
+          "themeable": true
+        },
+        "medium": {
+          "$description": "Medium background color for boxes etc.",
+          "value": "{color.palette.neutral.light-3}",
           "themeable": true
         }
       }

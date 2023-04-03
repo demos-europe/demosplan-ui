@@ -45,27 +45,27 @@
       }
     },
     "heading": {
-      "1": {
+      "h1": {
         "value": "{font-size.scale.6}",
         "themeable": true
       },
-      "2": {
+      "h2": {
         "value": "{font-size.scale.5}",
         "themeable": true
       },
-      "3": {
+      "h3": {
         "value": "{font-size.scale.4}",
         "themeable": true
       },
-      "4": {
+      "h4": {
         "value": "{font-size.scale.3}",
         "themeable": true
       },
-      "5": {
+      "h5": {
         "value": "{font-size.scale.2}",
         "themeable": true
       },
-      "6": {
+      "h6": {
         "value": "{font-size.scale.1}",
         "themeable": true
       }

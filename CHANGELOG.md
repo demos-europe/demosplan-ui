@@ -1,6 +1,17 @@
 # Changelog
 
 ## UNRELEASED
+## v0.0.18 - 2023-03-29
+
+- ([#139](https://github.com/demos-europe/demosplan-ui/pull/139)) REVERT: ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolveable
+
+### Fixed
+
+- ([#138](https://github.com/demos-europe/demosplan-ui/pull/138)) Uploading files whose names contained reserved characters no longer break certain endpoints. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.0.17 - 2023-03-23
+
+- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolveable 
 
 ## v0.0.16 - 2023-03-15
 

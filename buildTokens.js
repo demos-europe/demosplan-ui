@@ -10,17 +10,19 @@ const files = glob
     .replace('tokens/', '')
     .replace('color/', '')
     .replace('.json', ''))
+  // Do not render tokens only used internally
+  .filter(filePath => !filePath.startsWith('_'))
 
 StyleDictionary.registerTransform({
   name: 'name/scss',
   type: 'name',
   transformer: (token) => {
-    // "palette" within colors should not be part of the variable name.
-    if (token.path[0] === 'color' && token.path[1] === 'palette') {
+    // "palette" or "ui" within colors should not be part of the variable name.
+    if (token.path[0] === 'color' && /(palette|ui)/.test(token.path[1])) {
       token.path.splice(1, 1)
     }
-    // "ui" within colors should not be part of the variable name.
-    if (token.path[0] === 'color' && token.path[1] === 'ui') {
+    // "scale", "brand" or "heading" within fontSize tokens should not be part of the variable name.
+    if (token.path[0] === 'fontSize') {
       token.path.splice(1, 1)
     }
     return prefix + token.path.join('-')

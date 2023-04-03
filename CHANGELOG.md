@@ -1,6 +1,8 @@
 # Changelog
 
 ## UNRELEASED
+- expose DpNotifyMessage and deprecate DpNotifyContainer
+
 ## v0.0.18 - 2023-03-29
 
 - ([#139](https://github.com/demos-europe/demosplan-ui/pull/139)) REVERT: ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolveable

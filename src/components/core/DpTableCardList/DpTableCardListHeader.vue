@@ -28,6 +28,7 @@
 
 <script>
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
+import DpSearchField from '../../DpSearchField/DpSearchField'
 import DpStickyElement from '../shared/DpStickyElement'
 
 export default {
@@ -35,7 +36,7 @@ export default {
 
   components: {
     DpCheckbox,
-    DpSearchField: () => import('../../DpSearchField/DpSearchField'),
+    DpSearchField,
     DpStickyElement
   },
 

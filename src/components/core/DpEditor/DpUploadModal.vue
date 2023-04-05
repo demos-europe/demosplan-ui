@@ -2,51 +2,49 @@
   <dp-modal
     ref="uploadModal"
     content-classes="u-2-of-3-lap-up u-1-of-2-desk-up">
-    <template>
-      <h3
-        v-if="editAltTextOnly"
-        class="u-mb">
-        {{ Translator.trans('image.edit') }}
-      </h3>
-      <h3
-        v-else
-        class="u-mb">
-        {{ Translator.trans('image.insert') }}
-      </h3>
-      <div v-show="editAltTextOnly === false">
-        <dp-upload-files
-          allowed-file-types="img"
-          id="imageFile"
-          :get-file-by-hash="getFileByHash"
-          :max-file-size="20 * 1024 * 1024/* 20 MiB */"
-          :max-number-of-files="1"
-          ref="uploader"
-          :translations="{ dropHereOr: Translator.trans('form.button.upload.image', { browse: '{browse}', maxUploadSize: '20MB' }) }"
-          @upload-success="setFile" />
-      </div>
-      <dp-input
-        id="altText"
-        v-model="altText"
-        class="u-mb"
-        :label="{
-          hint: Translator.trans('image.alt.explanation'),
-          text: Translator.trans('alternative.text')
-        }" />
-      <div class="u-mt text--right width-100p space-inline-s">
-        <button
-          class="btn btn--primary"
-          type="button"
-          @click="emitAndClose()">
-          {{ Translator.trans('insert') }}
-        </button>
-        <button
-          class="btn btn--secondary"
-          type="button"
-          @click="resetAndClose()">
-          {{ Translator.trans('abort') }}
-        </button>
-      </div>
-    </template>
+    <h3
+      v-if="editAltTextOnly"
+      class="u-mb">
+      {{ Translator.trans('image.edit') }}
+    </h3>
+    <h3
+      v-else
+      class="u-mb">
+      {{ Translator.trans('image.insert') }}
+    </h3>
+    <div v-show="editAltTextOnly === false">
+      <dp-upload-files
+        allowed-file-types="img"
+        id="imageFile"
+        :get-file-by-hash="getFileByHash"
+        :max-file-size="20 * 1024 * 1024/* 20 MiB */"
+        :max-number-of-files="1"
+        ref="uploader"
+        :translations="{ dropHereOr: Translator.trans('form.button.upload.image', { browse: '{browse}', maxUploadSize: '20MB' }) }"
+        @upload-success="setFile" />
+    </div>
+    <dp-input
+      id="altText"
+      v-model="altText"
+      class="u-mb"
+      :label="{
+        hint: Translator.trans('image.alt.explanation'),
+        text: Translator.trans('alternative.text')
+      }" />
+    <div class="u-mt text--right width-100p space-inline-s">
+      <button
+        class="btn btn--primary"
+        type="button"
+        @click="emitAndClose()">
+        {{ Translator.trans('insert') }}
+      </button>
+      <button
+        class="btn btn--secondary"
+        type="button"
+        @click="resetAndClose()">
+        {{ Translator.trans('abort') }}
+      </button>
+    </div>
   </dp-modal>
 </template>
 

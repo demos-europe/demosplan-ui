@@ -51,8 +51,8 @@
         v-for="el in sortableFilteredFields"
         v-slot:[`header-${el.field}`]="element">
         <slot
-          :name="`header-${element.field}`"
-          v-bind="element">
+          v-bind="element"
+          :name="`header-${element.field}`">
           <div
             :key="element.field"
             class="o-hellip--nowrap position--relative u-pr-0_75">
@@ -72,24 +72,24 @@
         </slot>
       </template>
       <template
-        v-for="(el, i) in filteredFields"
-        v-slot:[filteredFields[i].field]="element">
+        v-for="el in filteredFields"
+        v-slot:[el.field]="element">
         <!-- table cells (TDs) -->
         <slot
-          :name="filteredFields[i].field"
-          v-bind="element" />
+          v-bind="element"
+          :name="el.field" />
       </template>
       <template v-slot:expandedContent="element">
         <!-- expanded content area -->
         <slot
-          name="expandedContent"
-          v-bind="element" />
+          v-bind="element"
+          name="expandedContent" />
       </template>
       <template v-slot:flyout="element">
         <!-- flyout content area -->
         <slot
-          name="flyout"
-          v-bind="element" />
+          v-bind="element"
+          name="flyout" />
       </template>
     </dp-data-table>
 

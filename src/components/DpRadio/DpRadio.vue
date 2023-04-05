@@ -15,14 +15,14 @@
       @change="$emit('change', $event.target.checked)"><!--
  --><dp-label
       v-if="label.text"
-      :class="prefixClass('o-form__label')"
       v-bind="{
         bold: false,
         text: '',
         for: id,
         required: required,
         ...label,
-      }" />
+      }"
+      :class="prefixClass('o-form__label')" />
   </div>
 </template>
 

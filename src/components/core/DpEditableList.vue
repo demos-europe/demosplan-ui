@@ -9,8 +9,8 @@
         data-cy="entryItem">
         <!--both v-bind below are important and should not be removed (one is for the source data to be passed from parent component, second is for when the source data (entries) is an object)-->
         <slot
-          name="list"
           v-bind="entry"
+          name="list"
           :entry="entry"
           :index="index" />
         <span

@@ -13,8 +13,8 @@
       v-for="(_, scopedSlotName) in $scopedSlots"
       v-slot:[scopedSlotName]="slotData">
       <slot
-        :name="scopedSlotName"
-        v-bind="slotData" />
+        v-bind="slotData"
+        :name="scopedSlotName" />
     </template>
   </vue-omnibox>
 </template>

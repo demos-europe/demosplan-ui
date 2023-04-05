@@ -15,15 +15,16 @@
 </template>
 
 <script>
-/**
- * @deprecated
- * import DpNotifyMessage directly and handle messages in outer component
- */
 import { mapMutations, mapState } from 'vuex'
 import DpNotifyMessage from './DpNotifyMessage'
 import { hasOwnProp } from '../../../utils'
 import { prefixClassMixin } from '../../../mixins'
 
+/**
+ * @deprecated
+ *
+ * import DpNotifyMessage directly and handle messages in outer component
+ **/
 export default {
   name: 'DpNotifyContainer',
 

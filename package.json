@@ -11,6 +11,8 @@
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",
     "@uppy/tus": "^3.0.1",
+    "@vue/compat": "^3.2.47",
+    "@vue/compiler-sfc": "^3.2.47",
     "a11y-datepicker": " ^0.9.0",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
@@ -56,19 +58,16 @@
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "style-dictionary": "^3.7.1",
-    "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
-    "vue-loader": "^15",
-    "vue-template-compiler": "^2.7.14",
+    "vue-loader": "^17.0.1",
     "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^5.0.0"
   },
   "peerDependencies": {
-    "vue": "^2.7.14"
+    "vue": "^3.2.47"
   },
   "scripts": {
-    "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",
     "build-tokens": "node buildTokens.js",
     "prepack": "yarn build && yarn build-tokens",

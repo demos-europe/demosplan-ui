@@ -1,6 +1,6 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const bundleAnalyzer = new BundleAnalyzerPlugin({
@@ -8,9 +8,7 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   reportFilename: resolve(`./bundle_analysis.html`)
 })
 
-const isProduction = process.env.NODE_ENV == 'production';
-
-const stylesHandler = MiniCssExtractPlugin.loader;
+const isProduction = process.env.NODE_ENV == 'production'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -23,6 +21,7 @@ const transpileNodeModules = [
 ].map(module => resolve('node_modules/' + module))
 
 const config = {
+  mode: isProduction ? 'production' : 'development',
   entry: resolve('./src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -37,33 +36,43 @@ const config = {
     clean: true
   },
   externalsType: 'commonjs',
-  externals: [
-    '@braintree/sanitize-url',
-    /^@uppy\/.+$/,
-    'dayjs',
-    'dompurify',
-    'lscache',
-    'plyr',
-    'tippy.js',
-    'uuid',
-    'v-tooltip',
-    'vue-multiselect',
-    'vuedraggable',
-    'vuex'
-  ],
+  // externals: [
+  //   '@braintree/sanitize-url',
+  //   /^@uppy\/.+$/,
+  //   'dayjs',
+  //   'dompurify',
+  //   'lscache',
+  //   'plyr',
+  //   'tippy.js',
+  //   'uuid',
+  //   'v-tooltip',
+  //   'vue-multiselect',
+  //   'vuedraggable',
+  //   'vuex'
+  // ],
   resolve: {
     extensions: ['.js', '.vue'],
-    symlinks: false
+    symlinks: false,
+    alias: {
+      vue: '@vue/compat'
+    }
   },
   plugins: [
-    new MiniCssExtractPlugin(),
-    new VueLoaderPlugin(),
+    // new MiniCssExtractPlugin(),
+    new VueLoaderPlugin()
   ],
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 3
+            }
+          }
+        }
       },
       {
         test: /\.(js|jsx)$/i,
@@ -74,7 +83,17 @@ const config = {
       {
         test: /\.css$/i,
         use: [
-          stylesHandler,
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                compatConfig: {
+                  MODE: 3
+                }
+              }
+            }
+          },
           'css-loader',
           'postcss-loader'
         ],
@@ -88,12 +107,6 @@ const config = {
 };
 
 module.exports = () => {
-  if (isProduction) {
-    config.mode = 'production';
-  } else {
-    config.mode = 'development';
-  }
-
   if (process.argv.includes('--analyze')) {
     config.plugins.unshift(bundleAnalyzer)
   }

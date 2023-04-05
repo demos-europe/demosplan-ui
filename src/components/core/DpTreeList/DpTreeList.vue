@@ -84,7 +84,6 @@
 import { deepMerge, hasOwnProp } from '../../../utils'
 import DpDraggable from '../../DpDraggable/DpDraggable'
 import { Stickier } from '../../../lib'
-import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
@@ -323,7 +322,7 @@ export default {
 
     this.initFixedControls()
 
-    bus.$on('checked', this.handleSelectEvent)
+    this.$root.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

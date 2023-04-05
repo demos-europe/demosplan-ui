@@ -15,11 +15,12 @@
 </template>
 
 <script>
+import DpContextualHelp from '../DpContextualHelp/DpContextualHelp'
 export default {
   name: 'DpCard',
 
   components: {
-    DpContextualHelp: () => import('../DpContextualHelp/DpContextualHelp')
+    DpContextualHelp
   },
 
   props: {

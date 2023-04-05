@@ -338,6 +338,8 @@ import {
 } from 'tiptap'
 import { createSuggestion } from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
+import DpLinkModal from './DpLinkModal'
+import DpUploadModal from './DpUploadModal'
 import EditorCustomDelete from './libs/editorCustomDelete'
 import EditorCustomImage from './libs/editorCustomImage'
 import EditorCustomInsert from './libs/editorCustomInsert'
@@ -356,8 +358,8 @@ export default {
     DpIcon,
     EditorMenuBar,
     EditorContent,
-    DpLinkModal: () => import('./DpLinkModal'),
-    DpUploadModal: () => import('./DpUploadModal')
+    DpLinkModal,
+    DpUploadModal
   },
 
   directives: {

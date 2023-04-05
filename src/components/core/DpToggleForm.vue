@@ -17,6 +17,7 @@
 
 <script>
 import DpAccordion from '../DpAccordion/DpAccordion'
+import DpButtonRow from '../DpButtonRow/DpButtonRow'
 import { dpValidateMixin } from '../../mixins'
 
 export default {
@@ -24,7 +25,7 @@ export default {
 
   components: {
     DpAccordion,
-    DpButtonRow: () => import('../DpButtonRow/DpButtonRow')
+    DpButtonRow
   },
 
   mixins: [dpValidateMixin],

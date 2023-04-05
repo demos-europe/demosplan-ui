@@ -1,7 +1,13 @@
 # Changelog
 
 ## UNRELEASED
-- ([#146](https://github.com/demos-europe/demosplan-ui/pull/146)): BREAKING: expose DpNotifyMessage and deprecate DpNotifyContainer
+
+### Changed
+- ([#146](https://github.com/demos-europe/demosplan-ui/pull/146)): Expose DpNotifyMessage and deprecate DpNotifyContainer
+
+### Fixed
+
+- ([#148](https://github.com/demos-europe/demosplan-ui/pull/148)) Replace dynamic imports with static imports to avoid race conditional bugs ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.0.18 - 2023-03-29
 

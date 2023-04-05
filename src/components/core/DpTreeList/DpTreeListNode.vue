@@ -101,7 +101,6 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
-import bus from './utils/bus'
 import DpDraggable from '../DpDraggable'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
@@ -334,7 +333,7 @@ export default {
         selectionState: selectionState
       })
 
-      bus.$emit('checked', selectionsCpy)
+      this.$root.$emit('checked', selectionsCpy)
       if (fromParent === false) {
         this.$emit('node-selected', selectionsCpy)
       }

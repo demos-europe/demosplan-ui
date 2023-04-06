@@ -78,6 +78,9 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
+import DpInput from '../DpInput/DpInput'
+import DpLabel from '../DpLabel/DpLabel'
+import DpResettableInput from '../DpResettableInput/DpResettableInput'
 import isMobile from 'ismobilejs'
 
 const DEFAULT_TIME = '00:00'
@@ -86,13 +89,9 @@ export default {
   name: 'DpTimePicker',
 
   components: {
-    DpInput: async () => {
-      return await import('../DpInput/DpInput')
-    },
-    DpLabel: async () => {
-      return await import('../DpLabel/DpLabel')
-    },
-    DpResettableInput: () => import('../DpResettableInput/DpResettableInput')
+    DpInput,
+    DpLabel,
+    DpResettableInput
   },
 
   directives: {

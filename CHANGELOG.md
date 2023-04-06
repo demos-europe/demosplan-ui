@@ -1,6 +1,7 @@
 # Changelog
 
 ## UNRELEASED
+## v0.0.19 - 2023-04-06
 
 ### Changed
 - ([#146](https://github.com/demos-europe/demosplan-ui/pull/146)): Expose DpNotifyMessage and deprecate DpNotifyContainer

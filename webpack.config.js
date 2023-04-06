@@ -36,20 +36,20 @@ const config = {
     clean: true
   },
   externalsType: 'commonjs',
-  // externals: [
-  //   '@braintree/sanitize-url',
-  //   /^@uppy\/.+$/,
-  //   'dayjs',
-  //   'dompurify',
-  //   'lscache',
-  //   'plyr',
-  //   'tippy.js',
-  //   'uuid',
-  //   'v-tooltip',
-  //   'vue-multiselect',
-  //   'vuedraggable',
-  //   'vuex'
-  // ],
+  externals: [
+    '@braintree/sanitize-url',
+    /^@uppy\/.+$/,
+    'dayjs',
+    'dompurify',
+    'lscache',
+    'plyr',
+    'tippy.js',
+    'uuid',
+    'v-tooltip',
+    'vue-multiselect',
+    'vuedraggable',
+    'vuex'
+  ],
   resolve: {
     extensions: ['.js', '.vue'],
     symlinks: false,

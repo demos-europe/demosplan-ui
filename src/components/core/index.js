@@ -16,6 +16,7 @@ import DpEditor from './DpEditor/DpEditor'
 import DpHeightLimit from './HeightLimit'
 import DpModal from './DpModal'
 import DpNotifyContainer from './notify/DpNotifyContainer'
+import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
@@ -56,6 +57,7 @@ export {
   DpHeightLimit,
   DpModal,
   DpNotifyContainer,
+  DpNotifyMessage,
   DpObscure,
   DpRegisterFlyout,
   DpSelectPageItemCount,

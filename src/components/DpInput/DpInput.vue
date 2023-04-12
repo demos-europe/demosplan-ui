@@ -27,7 +27,7 @@
       :readonly="readonly"
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
-      :size="size ? size : null"
+      :size="(size && size > 0) ? size : null"
       v-model="currentValue"
       @focus="$emit('focus')"
       @input="$emit('input', currentValue)"

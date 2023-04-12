@@ -60,7 +60,7 @@ export default {
 
     /**
      * Maximum number of files that can be uploaded.
-     * By default its a single file upload.
+     * By default, it's allowed to upload a single file.
      */
     maxNumberOfFiles: {
       type: Number,
@@ -95,6 +95,55 @@ export default {
       return b ? b.pop() : ''
     },
 
+    /**
+     * Fires immediately before a file is added to the Uppy store.
+     *
+     * The hook is used here to clean file names from characters that would
+     * break the tus endpoint. This could as well be implemented within the backend.
+     *
+     * @param currentFile
+     * @param files
+     * @return {(*&{meta: (*&{name: *}), name: *})|*}
+     * @see https://github.com/transloadit/uppy/blob/main/packages/@uppy/core/src/Uppy.js#L503
+     */
+    handleOnBeforeFileAdded (currentFile, files) {
+      let fileName = currentFile.name
+
+      /*
+       * This is not an exhaustive list - the characters have been determined
+       * simply by trying out which break or do not break the tus endpoint.
+       */
+      const reservedCharacters = [
+        '?',
+        '#',
+        '&',
+        '\'',
+        '"',
+        '/',
+        ':',
+        '\\'
+      ]
+
+      for (let i = 0; i < reservedCharacters.length; i++) {
+        if (fileName.includes(reservedCharacters[i])) {
+          fileName = fileName.replace(reservedCharacters[i], '_')
+        }
+      }
+
+      if (fileName !== currentFile.name) {
+        return {
+          ...currentFile,
+          name: fileName,
+          meta: {
+            ...currentFile.meta,
+            name: fileName
+          }
+        }
+      } else {
+        return currentFile
+      }
+    },
+
     initialize () {
       const locale = { strings: { ...de().strings, ...this.translations } }
       this.uppy = new Uppy({
@@ -106,6 +155,7 @@ export default {
           maxFileSize: this.maxFileSize,
           maxNumberOfFiles: this.maxNumberOfFiles
         },
+        onBeforeFileAdded: this.handleOnBeforeFileAdded,
         locale: locale
       })
 

@@ -22,12 +22,13 @@
 <script>
 import { dpApi } from '../../lib'
 import { prefixClassMixin } from '../../mixins'
+import VueOmnibox from 'vue-omnibox'
 
 export default {
   name: 'DpAutocomplete',
 
   components: {
-    VueOmnibox: () => import('vue-omnibox')
+    VueOmnibox
   },
 
   mixins: [prefixClassMixin],

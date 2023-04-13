@@ -21,10 +21,6 @@ StyleDictionary.registerTransform({
     if (token.path[0] === 'color' && /(palette|ui)/.test(token.path[1])) {
       token.path.splice(1, 1)
     }
-    // "scale", "brand" or "heading" within fontSize tokens should not be part of the variable name.
-    if (token.path[0] === 'fontSize') {
-      token.path.splice(1, 1)
-    }
     return prefix + token.path.join('-')
   }
 })

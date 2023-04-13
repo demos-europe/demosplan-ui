@@ -1,6 +1,5 @@
 {
   "color": {
-    "$todo": "Research + add 'interaction' tokens.",
     "data":{
       "$description": "Data visualization colors",
       "11": {

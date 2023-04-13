@@ -1,0 +1,299 @@
+{
+  "color": {
+    "ui": {
+      "$description": "Tokens applied to individual UI components and tokens that are rather functional.",
+      "interactive": {
+        "$description": "Color used to indicate interactive elements.",
+        "default": {
+          "$description": "Default state.",
+          "value": "{color.palette.blue.base}",
+          "themeable": true
+        },
+        "hover": {
+          "$description": "Hover state.",
+          "value": "{color.palette.blue.dark-1}",
+          "themeable": true
+        },
+        "hover-subtle": {
+          "$description": "Use as background to visualize hover state for bigger areas.",
+          "value": "{color.palette.neutral.light-1}",
+          "themeable": true
+        },
+        "active": {
+          "$description": "Active/pressed state.",
+          "value": "{color.palette.blue.dark-2}",
+          "themeable": true
+        },
+        "muted": {
+          "$description": "Use for interactive elements that reveal their base state on:hover of a parent element, eg. in a table row. Note that this is not to be conflated with the disabled state, which is communicated via opacity.",
+          "value": "{color.palette.neutral.light-1}",
+          "themeable": true
+        }
+      },
+      "message": {
+        "$description": "Color used to communicate feedback.",
+        "info": {
+          "$description": "Use these colors to communicate uncritical information.",
+          "bg": {
+            "value": "{color.palette.blue.light-3}",
+            "themeable": true
+          },
+          "border": {
+            "value": "{color.palette.blue.light-1}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.blue.dark-1}",
+            "themeable": true
+          },
+          "interactive": {
+            "value": "{color.palette.blue.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.blue.dark-2}",
+            "themeable": true
+          }
+        },
+        "warning": {
+          "$description": "Use these colors to noticeable communicate uncritical information.",
+          "bg": {
+            "value": "{color.palette.yellow.light-3}",
+            "themeable": true
+          },
+          "border": {
+            "value": "{color.palette.yellow.base}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.yellow.dark-2}",
+            "themeable": true
+          },
+          "interactive": {
+            "value": "{color.palette.yellow.dark-2}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.yellow.dark-2}",
+            "themeable": true
+          }
+        },
+        "severe": {
+          "$description": "Use these colors to communicate importance, danger, and immediate action.",
+          "bg": {
+            "value": "{color.palette.red.light-3}",
+            "themeable": true
+          },
+          "border": {
+            "value": "{color.palette.red.light-1}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.red.dark-1}",
+            "themeable": true
+          },
+          "interactive": {
+            "value": "{color.palette.red.dark-1}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.red.dark-2}",
+            "themeable": true
+          }
+        },
+        "success": {
+          "$description": "Use these colors to communicate successful state change.",
+          "bg": {
+            "value": "{color.palette.green.light-3}",
+            "themeable": true
+          },
+          "border": {
+            "value": "{color.palette.green.light-1}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.green.dark-1}",
+            "themeable": true
+          },
+          "interactive": {
+            "value": "{color.palette.green.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.green.dark-2}",
+            "themeable": true
+          }
+        },
+        "debug": {
+          "$description": "Use these colors to communicate information for debugging purposes.",
+          "bg": {
+            "value": "{color.palette.purple.light-3}",
+            "themeable": true
+          },
+          "border": {
+            "value": "{color.palette.purple.light-1}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.purple.dark-1}",
+            "themeable": true
+          },
+          "interactive": {
+            "value": "{color.palette.purple.dark-1}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.purple.dark-2}",
+            "themeable": true
+          }
+        }
+      },
+      "status": {
+        "$description": "Color used to communicate state.",
+        "progress": {
+          "$description": "Use these colors to communicate that something is in progress",
+          "fill": {
+            "value": "{color.palette.blue.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.blue.dark-1}",
+            "themeable": true
+          }
+        },
+        "changed": {
+          "$description": "Use these colors to communicate something has moved or changed.",
+          "fill": {
+            "value": "{color.palette.yellow.dark-1}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.yellow.dark-2}",
+            "themeable": true
+          }
+        },
+        "failed": {
+          "$description": "Use these colors to communicate that an action or validation has failed on an item.",
+          "border": {
+            "value": "{color.palette.red.base}",
+            "themeable": true
+          },
+          "fill": {
+            "value": "{color.palette.red.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.red.dark-1}",
+            "themeable": true
+          }
+        },
+        "complete": {
+          "$description": "Use these colors to communicate that an action has completed, or something has been added.",
+          "fill": {
+            "value": "{color.palette.green.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.green.dark-1}",
+            "themeable": true
+          }
+        },
+        "neutral": {
+          "$description": "Use these colors if no other option applies.",
+          "fill": {
+            "value": "{color.palette.neutral.base}",
+            "themeable": true
+          },
+          "text": {
+            "value": "{color.palette.neutral.dark-1}",
+            "themeable": true
+          }
+        }
+      },
+      "text": {
+        "$description": "Color used to style text for different contexts.",
+        "default": {
+          "$description": "Default color for text that should be readable.",
+          "value": "{color.palette.neutral.dark-2}",
+          "themeable": true
+        },
+        "muted": {
+          "$description": "Default color for text that should stand out a little less. Has sufficient contrast on white.",
+          "value": "{color.palette.neutral.base}",
+          "themeable": true
+        },
+        "on-dark": {
+          "$description": "Default color for text that has sufficient contrast on dark backgrounds.",
+          "value": "{color.palette.white}",
+          "themeable": true
+        },
+        "marked": {
+          "$description": "Color for highlighting portions of text.",
+          "value": "{color.palette.blue.dark-2}",
+          "themeable": true
+        },
+        "marked-bg": {
+          "$description": "Background color for highlighting portions of text.",
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        },
+        "inserted-bg": {
+          "$description": "Background color for inserted (ins) text.",
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        },
+        "inserted-bg-muted": {
+          "$description": "Background color for highlighting portions of text, that is discernible from 'marked-bg'",
+          "value": "{color.palette.blue.light-4}",
+          "themeable": true
+        },
+        "deleted-bg": {
+          "$description": "Background color for deleted (del) text.",
+          "value": "{color.palette.yellow.light-2}",
+          "themeable": true
+        },
+        "deleted-bg-muted": {
+          "$description": "Background color for deleted (del) text.",
+          "value": "{color.palette.yellow.light-3}",
+          "themeable": true
+        }
+      },
+      "selection": {
+        "$description": "Color used to visualize selected elements.",
+        "$status": "{_status.review}",
+        "text": {
+          "value": "{color.palette.blue.dark-1}",
+          "themeable": true
+        },
+        "bg": {
+          "value": "{color.palette.blue.light-3}",
+          "themeable": true
+        }
+      },
+      "border": {
+        "default": {
+          "$description": "Color used for borders.",
+          "value": "{color.palette.neutral.light-2}",
+          "themeable": true
+        }
+      },
+      "background": {
+        "default": {
+          "$description": "Default color used for backgrounds.",
+          "value": "{color.palette.white}",
+          "themeable": true
+        },
+        "light": {
+          "$description": "Lightest background color that is discernible on normal monitors.",
+          "value": "{color.palette.neutral.light-4}",
+          "themeable": true
+        },
+        "medium": {
+          "$description": "Medium background color for boxes etc.",
+          "value": "{color.palette.neutral.light-3}",
+          "themeable": true
+        }
+      }
+    }
+  }
+}

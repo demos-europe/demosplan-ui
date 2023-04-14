@@ -172,6 +172,15 @@ export default {
         ])
       ]
     }
+    /**
+     <td
+     v-if="isDraggable"
+     class="c-data-table__cell--narrow">
+     <dp-icon
+     class="c-data-table__drag-handle u-valign--middle"
+     icon="drag-handle" />
+     </td>
+     **/
 
     let checkboxCell = []
 
@@ -209,6 +218,25 @@ export default {
         attrs: { class: 'c-data-table__cell--narrow' }
       }, [h(checkboxElement, checkboxData)])]
     }
+    /**
+     <td class="c-data-table__cell--narrow">
+     <dp-icon
+     v-if="isLocked"
+     icon="lock"
+     v-tooltip="isLockedMessage"
+     class="u-valign--middle color--grey-light" />
+     <input
+     v-else
+     type="checkbox"
+     class="u-m-0 u-valign--middle"
+     data-cy="selectItem"
+     :name="isSelectableName || null"
+     :value="isSelectableName ? item[trackBy] : null"
+     :checked="checked"
+     @click="() => listeners.toggleSelect(item[trackBy])"
+     />
+     </td>
+     **/
 
     let flyoutCell = []
     if (hasFlyout) {
@@ -256,51 +284,48 @@ export default {
       })])]
     }
 
-    const rowContent = [
-      ...draggableCell,
-      ...checkboxCell,
-      ...fields.map((field, idx) => {
-        let txt = item[field]
-        let highlighted = null
-        const headerField = headerFields.find((hf) => hf.field === field)
-        if (searchTerm && txt) {
-          txt = DomPurify.sanitize(txt)
-          highlighted = txt.replace(searchTerm, '<span style="background-color: yellow;">$&</span>')
-          highlighted = h('span', {
-            domProps: {
-              innerHTML: highlighted
-            }
-          })
-        }
-
-        let cellAttributes = {}
-        let cellInnerElement = null
-        let cellInnerElementStyle = ''
-        if (!wrapped && typeof headerField.initialWidth !== 'undefined') {
-          cellInnerElementStyle = `width: ${headerField.initialWidth}px;`
-        }
-        if (!wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
-          cellInnerElementStyle += `max-width: ${headerField.initialMaxWidth}px;`
-        }
-        if (!wrapped && typeof headerField.initialMinWidth !== 'undefined') {
-          cellInnerElementStyle += `min-width: ${headerField.initialMinWidth}px;`
-        }
-        if (isTruncatable) {
-          cellAttributes = {
-            attrs: {
-              class: 'c-data-table__resizable',
-              'data-col-idx': `${idx}`
-            }
+    const fieldCells = fields.map((field, idx) => {
+      let txt = item[field]
+      let highlighted = null
+      const headerField = headerFields.find((hf) => hf.field === field)
+      if (searchTerm && txt) {
+        txt = DomPurify.sanitize(txt)
+        highlighted = txt.replace(searchTerm, '<span style="background-color: yellow;">$&</span>')
+        highlighted = h('span', {
+          domProps: {
+            innerHTML: highlighted
           }
-          cellInnerElement = h('div', {
-            attrs: {
-              class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
-              style: cellInnerElementStyle
-            }
-          }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])
-        }
+        })
+      }
 
-        return h('td',
+      let cellAttributes = {}
+      let cellInnerElement = null
+      let cellInnerElementStyle = ''
+      if (!wrapped && typeof headerField.initialWidth !== 'undefined') {
+        cellInnerElementStyle = `width: ${headerField.initialWidth}px;`
+      }
+      if (!wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
+        cellInnerElementStyle += `max-width: ${headerField.initialMaxWidth}px;`
+      }
+      if (!wrapped && typeof headerField.initialMinWidth !== 'undefined') {
+        cellInnerElementStyle += `min-width: ${headerField.initialMinWidth}px;`
+      }
+      if (isTruncatable) {
+        cellAttributes = {
+          attrs: {
+            class: 'c-data-table__resizable',
+            'data-col-idx': `${idx}`
+          }
+        }
+        cellInnerElement = h('div', {
+          attrs: {
+            class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
+            style: cellInnerElementStyle
+          }
+        }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])
+      }
+
+      return h('td',
           {
             ...cellAttributes,
             key: `${field}:${idx}`,
@@ -309,8 +334,15 @@ export default {
             }
           },
           [cellInnerElement || (scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || '']
-        )
-      }),
+      )
+    })
+
+
+
+    const rowContent = [
+      ...draggableCell,
+      ...checkboxCell,
+      ...fieldCells,
       ...flyoutCell,
       ...expandableCell,
       ...truncatableCell
@@ -325,16 +357,16 @@ export default {
     if (expanded && hasOwnProp(scopedSlots, 'expandedContent')) {
       const expandedContent = scopedSlots.expandedContent(item) || ''
       const expandedRow = h('tr',
-        {
-          attrs: {
-            class: `${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-content' : ''}`
+          {
+            attrs: {
+              class: `${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-content' : ''}`
+            },
+            on: {
+              mouseenter: (e) => e.target.previousSibling.classList.add('is-hovered-content'),
+              mouseleave: (e) => e.target.previousSibling.classList.remove('is-hovered-content')
+            }
           },
-          on: {
-            mouseenter: (e) => e.target.previousSibling.classList.add('is-hovered-content'),
-            mouseleave: (e) => e.target.previousSibling.classList.remove('is-hovered-content')
-          }
-        },
-        [h('td', { attrs: { colspan: rowContent.length } }, expandedContent)]
+          [h('td', { attrs: { colspan: rowContent.length } }, expandedContent)]
       )
 
       content.push(expandedRow)

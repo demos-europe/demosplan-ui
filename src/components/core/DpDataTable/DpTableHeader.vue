@@ -155,6 +155,7 @@ export default {
       }, [h(DpWrapTrigger)])]
     }
 
+    // @TODO This has to be moved to a template
     const headerCells = headerFields.map((hf, idx) => {
       const isLast = idx === (headerFields.length - 1)
       const resizeable = hasOwnProp(hf, 'resizeable') ? hf.resizeable : true
@@ -162,27 +163,80 @@ export default {
       const content = isResizable ? renderResizeWrapper(h, headerContent, idx, isLast, resizeable, hf.label, hf.tooltip) : headerContent
 
       return isResizable
-        ? content
-        : h('th', {
-          scopedSlots: {
-            [`header-${hf.field}`]: scopedSlots[`header-${hf.field}`]
-          }
-        }, headerContent)
+          ? content
+          : h('th', {
+            scopedSlots: {
+              [`header-${hf.field}`]: scopedSlots[`header-${hf.field}`]
+            }
+          }, headerContent)
     })
 
+    /**
+     <tr
+     ref="tableHeader"
+     :class="{ 'c-data-table__sticky-header': isSticky }">
+     **/
     return h('tr', {
       ref: 'tableHeader',
       attrs: isSticky
-        ? { class: 'c-data-table__sticky-header' }
-        : {}
+          ? { class: 'c-data-table__sticky-header' }
+          : {}
     }, [
       ...draggableCell,
+      /**
+       <th
+       v-if="isDraggable"
+       class="c-data-table__cell--narrow">
+       <dp-icon class="c-data-table__drag-handle" icon="drag-handle" />
+       </th>
+       **/
       ...checkboxCell,
+      /**
+       <th
+       v-if="isSelectable"
+       class="c-data-table__cell--narrow">
+       <input
+       :aria-label="translations.headerSelectHint"
+       :title="translations.headerSelectHint"
+       type="checkbox"
+       ref="selectAll"
+       @click="() => listeners.toggleSelectAll()"
+       :checked="checked"
+       :indeterminate="indeterminate"
+       data-cy="selectAll" />
+       </th>
+       **/
       ...headerCells,
+      // @todo headerCells are a bit more complex to transform than the others
       ...flyoutCell,
+      /**
+       <th v-if="hasFlyout" />
+       **/
       ...expandableCell,
+      /**
+       <th
+       v-if="isExpandable"
+       @click="() => listeners.toggleExpandAll()"
+       class="c-data-table__cell--narrow">
+       <dp-wrapp-trigger
+       :title="translations.headerExpandHint" />
+       </th>
+       **/
       ...truncatableCell
+      /**
+       <th
+       v-if="isTruncatable"
+       @click="() => listeners.toggleWrapAll()"
+       class="c-data-table__cell--narrow">
+       <dp-wrapp-trigger
+       :title="translations.headerExpandHint" />
+       </th>
+       **/
     ])
+    /**
+     </tr>
+     **/
+
   }
 }
 </script>

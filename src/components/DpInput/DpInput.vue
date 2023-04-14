@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerWidth !== '' ? prefixClass(containerWidth) : false">
+  <div :class="containerWidth !== '' ? prefixClass(containerWidth) : null">
     <dp-label
       v-if="label.text !== ''"
       v-bind="{
@@ -16,7 +16,7 @@
       :data-dp-validate-error="dataDpValidateError || null"
       :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : null"
       :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
-      :data-cy="dataCy !== '' ? dataCy : false"
+      :data-cy="dataCy !== '' ? dataCy : null"
       :aria-labelledby="ariaLabelledby"
       :maxlength="maxlength !== '' ? maxlength : null"
       :minlength="minlength !== '' ? minlength : null"

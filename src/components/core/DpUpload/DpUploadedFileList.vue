@@ -5,8 +5,8 @@
     </h4>
     <ul :class="prefixClass('o-list space-stack-xs')">
       <dp-uploaded-file
-        v-for="(fileString, idx) in fileStrings"
-        :file-string="fileString"
+        v-for="(file, idx) in files"
+        :file="file"
         @file-remove="file => $emit('file-remove', file)"
         :key="idx" />
     </ul>
@@ -15,7 +15,7 @@
 
 <script>
 import DpUploadedFile from './DpUploadedFile'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadedFileList',
@@ -31,16 +31,6 @@ export default {
       type: Array,
       required: false,
       default: () => ([])
-    }
-  },
-
-  computed: {
-    fileStrings () {
-      return this.files.map(file => {
-        let str = Object.values(file).toString()
-        str = str.replace(/,/g, ':')
-        return str
-      })
     }
   }
 }

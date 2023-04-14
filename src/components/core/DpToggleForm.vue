@@ -16,15 +16,16 @@
 </template>
 
 <script>
-import DpAccordion from './DpAccordion'
-import { dpValidateMixin } from '@demos-europe/demosplan-utils'
+import DpAccordion from '../DpAccordion/DpAccordion'
+import DpButtonRow from '../DpButtonRow/DpButtonRow'
+import { dpValidateMixin } from '../../mixins'
 
 export default {
   name: 'DpToggleForm',
 
   components: {
     DpAccordion,
-    DpButtonRow: () => import('./DpButtonRow')
+    DpButtonRow
   },
 
   mixins: [dpValidateMixin],

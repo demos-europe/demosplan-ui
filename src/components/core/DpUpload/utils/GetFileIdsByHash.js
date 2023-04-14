@@ -1,4 +1,4 @@
-import { dpApi } from '@demos-europe/demosplan-utils'
+import { dpApi } from '../../../../lib'
 
 /**
  * Fetch File-Ids by their hashes
@@ -7,9 +7,9 @@ import { dpApi } from '@demos-europe/demosplan-utils'
  *
  * @returns {Array<Ids>}
  */
-function getFileIdsByHash (hashes) {
+function getFileIdsByHash (hashes, route) {
   return dpApi.get(
-    Routing.generate('api_resource_list', { resourceType: 'File' }),
+    route,
     {
       filter: {
         hasHash: {

@@ -45,7 +45,7 @@
 import DpLabel from '../../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
-import { prefixClassMixin } from '@demos-europe/demosplan-utils'
+import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadFiles',
@@ -57,6 +57,12 @@ export default {
   },
 
   mixins: [prefixClassMixin],
+
+  provide () {
+    return {
+      getFileByHash: this.getFileByHash
+    }
+  },
 
   props: {
     /**
@@ -86,6 +92,11 @@ export default {
       type: [Boolean, String],
       required: false,
       default: false
+    },
+
+    getFileByHash: {
+      type: Function,
+      required: true
     },
 
     id: {

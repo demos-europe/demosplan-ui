@@ -1,19 +1,19 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
+import DpDraggable from '../DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
-import draggable from 'vuedraggable'
 
 export default {
   name: 'DpDataTable',
 
   components: {
+    DpDraggable,
     DpLoading,
     DpTableHeader,
-    DpTableRow,
-    draggable
+    DpTableRow
   },
 
   directives: {
@@ -553,12 +553,11 @@ export default {
     let bodyEl = 'tbody'
     let bodyData = {}
     if (self.isDraggable) {
-      bodyEl = draggable
+      bodyEl = DpDraggable
       bodyData = {
         props: {
-          tag: 'tbody',
-          value: items,
-          handle: '[data-handle]'
+          draggableTag: 'tbody',
+          contentData: items
         },
         on: {
           change: (e) => self.$emit('changed-order', e)

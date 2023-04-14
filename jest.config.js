@@ -1,6 +1,5 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-    testEnvironment: 'jsdom',
     testEnvironmentOptions: {
         customExportConditions: ['node'],
     },
@@ -16,4 +15,11 @@ module.exports = {
         '.*\\.js$': './babel-jest-transformer.js',
         '.*\\.vue$': '@vue/vue2-jest',
     },
+    verbose: true,
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1'
+    },
+    testEnvironment: "jsdom",
+    dependencyExtractor: "<rootDir>/dependencyExtractor.js",
+
 }

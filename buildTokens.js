@@ -18,7 +18,7 @@ StyleDictionary.registerTransform({
   type: 'name',
   transformer: (token) => {
     // "palette" or "ui" within colors should not be part of the variable name.
-    if (token.path[0] === 'color' && /(palette|ui)/.test(token.path[1])) {
+    if (token.path[0] === 'color') {
       token.path.splice(1, 1)
     }
     return prefix + token.path.join('-')

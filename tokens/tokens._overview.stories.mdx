@@ -28,11 +28,12 @@ Tokens are made up of the following scheme:
 <Namespace>-<Category>(-<Domain>)?-<Concept/Element>-<Variant/State>(-<Context>)?
 ```
 
-*Namespace* is always "dp", *Category* being "color", "space", or "font-size", *Domain* being "brand", "data", "ui"
-or "palette" (domain part is omitted for the sake of readability within generated variables). *Concept/Element* can be
-either a color name (in palette colors), or a concept the token applies to (like "main" in brand tokens, or "interactive"
-in ui tokens). *Variant/State* can either be a shade ("dark-2" oder "base") in palette colors, or a state (like "hover",
-or "progress"). *Context* may further specify in which context a value is intended to be used -
-`$dp-color-message-severe-interactive` should be applied to interactive elements inside messaging components that convey
-severe state, while `$dp-color-status-progress-fill` can be applied to shapes (like icons or rectangles) to communicate
-that something is in progress.
+- *Namespace* is always "dp"
+- *Category* can be "color", "space", or "font-size"
+- *Domain* can be "brand", "data", "ui" or "palette" (domain part is omitted for the sake of readability within generated variables)
+- *Concept/Element* can be either a color name (in palette colors), or a concept the token applies to (like "main" in brand tokens,
+  or "interactive" in ui tokens).
+- *Variant/State* can either be a shade ("dark-2" oder "base") in palette colors, or a state (like "hover", or "progress")
+- *Context* may further specify in which context a value is intended to be used - `$dp-color-message-severe-interactive`
+  should be applied to interactive elements inside messaging components that convey severe state, while
+  `$dp-color-status-progress-fill` can be applied to shapes (like icons or rectangles) to communicate that something is in progress.

@@ -4,7 +4,7 @@
 
 ### Changed
 
-- **Breaking**: Add color design tokens, split generated Scss into multiple files ([#108](https://github.com/demos-europe/demosplan-ui/pull/108))
+- **Breaking**: ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) Add color design tokens, split generated Scss into multiple files ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.19 - 2023-04-06
 

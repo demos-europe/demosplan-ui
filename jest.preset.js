@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: 'demosplan-utils',
+    displayName: 'demosplan-ui',
     testEnvironment: 'node',
     transform: {
         '\\.(js)$': 'babel-jest',
@@ -12,5 +12,5 @@ module.exports = {
         './lib/*.{js}',
     ],
     coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
-    coverageDirectory: "./coverage",
+    coverageDirectory: './coverage'
 }

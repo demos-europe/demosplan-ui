@@ -16,10 +16,6 @@ module.exports = {
         '.*\\.vue$': '@vue/vue2-jest',
     },
     verbose: true,
-    moduleNameMapper: {
-        '^@/(.*)$': '<rootDir>/src/$1'
-    },
-    testEnvironment: "jsdom",
-    dependencyExtractor: "<rootDir>/dependencyExtractor.js",
+    testEnvironment: "jsdom"
 
 }

@@ -17,7 +17,7 @@ StyleDictionary.registerTransform({
   name: 'name/scss',
   type: 'name',
   transformer: (token) => {
-    // "palette" or "ui" within colors should not be part of the variable name.
+    // The domain part ("palette", "ui"...) within color tokens should not be part of the variable name.
     if (token.path[0] === 'color') {
       token.path.splice(1, 1)
     }

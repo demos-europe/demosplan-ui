@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.20 - 2023-04-18
+
 ### Changed
 
 - ([#159](https://github.com/demos-europe/demosplan-ui/pull/159)) Add tooltip offset to fix positioning bug with tooltip arrow ([@spiess-demos](https://github.com/spiess-demos))

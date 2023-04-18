@@ -11,6 +11,7 @@ const tooltipConfig = {
     show: 300,
     hide: 100
   },
+  defaultOffset: 12,
   defaultTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip__arrow"></div><div class="tooltip__inner"></div></div>',
   popover: {
     defaultPlacement: 'top',

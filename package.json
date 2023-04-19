@@ -38,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
+    "@babel/preset-typescript": "^7.21.4",
     "@jest/globals": "^29.5.0",
     "@storybook/addon-actions": "6.5.16",
     "@storybook/addon-docs": "6.5.16",
@@ -46,7 +47,7 @@
     "@storybook/builder-webpack5": "6.5.16",
     "@storybook/manager-webpack5": "6.5.16",
     "@storybook/vue": "6.5.16",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.1",
     "@types/qs": "^6.9.7",
     "@vue/test-utils": "^2.2.6",
     "@vue/vue2-jest": "^27.0.0",

@@ -1,4 +1,5 @@
 import deepMerge from '../../utils/deepMerge'
+import DpLabel from "../../components/DpLabel/DpLabel";
 
 let mergedTarget
 let source = {

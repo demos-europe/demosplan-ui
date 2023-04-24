@@ -1,4 +1,3 @@
-coverage/*
 !.storybook
 tokens/scss
 

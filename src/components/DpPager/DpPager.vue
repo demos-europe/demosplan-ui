@@ -3,9 +3,12 @@
     <label
       class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal display--inline-block"
       :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
-      <span aria-hidden="true">
-        {{ Translator.trans('pager.amount.multiple.show') }}
-      </span>
+        <dp-sliding-pagination
+          v-if="totalItems > Math.min(...limits)"
+          class="display--inline-block"
+          :current="currentPage"
+          :total="totalPages || 1"
+          @page-change="handlePageChange" />
       <div
         class="display--inline-block"
         v-if="totalItems > Math.min(...limits)">
@@ -24,12 +27,6 @@
         {{ Translator.trans('pager.amount.multiple.items') }}
       </span>
     </label>
-    <dp-sliding-pagination
-      v-if="totalItems > Math.min(...limits)"
-      class="display--inline-block"
-      :current="currentPage"
-      :total="totalPages || 1"
-      @page-change="handlePageChange" />
   </div>
 </template>
 

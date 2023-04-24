@@ -7,6 +7,7 @@
           v-if="totalItems > Math.min(...limits)"
           class="display--inline-block"
           :current="currentPage"
+          :nonSlidingSize="3"
           :total="totalPages || 1"
           @page-change="handlePageChange" />
       <div

@@ -8,6 +8,8 @@
           class="display--inline-block"
           :current="currentPage"
           :nonSlidingSize="3"
+          :slidingEndingSize="1"
+          :slidingWindowSize="1"
           :total="totalPages || 1"
           @page-change="handlePageChange" />
       <div

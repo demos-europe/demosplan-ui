@@ -9,9 +9,6 @@ module.exports = {
     ],
     coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
     coverageDirectory: './coverage',
-    testEnvironmentOptions: {
-        customExportConditions: ['node'],
-    },
     moduleFileExtensions: ['js', 'ts', 'vue'],
     transform: {
         '.*\\.js$': './babel-jest-transformer.js',

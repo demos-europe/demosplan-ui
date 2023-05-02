@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.0.21 - 2023-05-02
+
 ### Changed
 
 - ([#175](https://github.com/demos-europe/demosplan-ui/pull/175)) adjust layout of DpPager ([@muellerdemos](https://github.com/muellerdemos))

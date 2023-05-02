@@ -5,6 +5,7 @@
       "themeable": true
     },
     "smallest": {
+      "$description": "Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have {rounded.small} applied as border-radius.",
       "value": "2px",
       "themeable": true
     },

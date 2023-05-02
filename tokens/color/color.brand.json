@@ -23,7 +23,7 @@
         "themeable":  true
       },
       "highlight": {
-        "$description": "Brand accent color used for communicating active or focused state of interactive elements.",
+        "$description": "Brand accent color to be used sparingly when raising awareness for important elements.",
         "value": "{color.palette.red.dark-1}",
         "themeable":  true
       },

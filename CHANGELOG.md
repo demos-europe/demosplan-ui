@@ -2,6 +2,12 @@
 
 ## UNRELEASED
 
+## v0.0.21 - 2023-05-02
+
+### Changed
+
+- ([#175](https://github.com/demos-europe/demosplan-ui/pull/175)) adjust layout of DpPager ([@muellerdemos](https://github.com/muellerdemos))
+
 ### Changed
 
 - **Breaking**: ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) Add color design tokens, split generated Scss into multiple files ([@spiess-demos](https://github.com/spiess-demos))

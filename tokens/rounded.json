@@ -1,0 +1,24 @@
+{
+  "rounded": {
+    "none": {
+      "value": "0",
+      "themeable": true
+    },
+    "smallest": {
+      "value": "2px",
+      "themeable": true
+    },
+    "small": {
+      "value": "3px",
+      "themeable": true
+    },
+    "medium": {
+      "value": "4px",
+      "themeable": true
+    },
+    "large": {
+      "value": "5px",
+      "themeable": true
+    }
+  }
+}

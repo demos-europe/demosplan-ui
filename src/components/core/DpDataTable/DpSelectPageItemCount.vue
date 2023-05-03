@@ -12,7 +12,7 @@
     <label
       for="item-count"
       class="display--inline u-mb-0">
-      {{ translations.pagerElementsPerPage }}
+      {{ labelText }}
     </label>
   </div>
 </template>
@@ -32,8 +32,8 @@ export default {
       required: true
     },
 
-    translations: {
-      type: Object,
+    labelText: {
+      type: String,
       required: true
     }
   }

@@ -99,7 +99,7 @@ export default {
      */
     trackSelection () {
       if (hasOwnProp(window, '_paq')) {
-        window._paq.push(['trackEvent', 'Column Selection', 'Segments List', this.selectedColumns])
+        window._paq.push(['trackEvent', 'Column Selection', `View: ${this.localStorageKey}`, `Selected: ${this.selectedColumns.join(', ')}`])
       }
     }
   },

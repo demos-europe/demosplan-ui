@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Refactor
+- ([#195](https://github.com/demos-europe/demosplan-ui/pull/195)) Move from Functional Component to Template in dpSelectPageItemCount ([@salisdemos](https://github.com/salisdemos))
+- ([#181](https://github.com/demos-europe/demosplan-ui/pull/181)) Move from Functional Component to Template in dpMultiselect ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.0.21 - 2023-05-02
 
 ### Changed

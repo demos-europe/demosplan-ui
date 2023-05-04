@@ -1,10 +1,15 @@
+<template>
+  <i
+    class="fa fa-question-circle"
+    :aria-label="Translator.trans('contextual.help')"
+    v-tooltip="text" />
+</template>
+
 <script>
 import { Tooltip } from '../../directives'
 
 export default {
   name: 'DpContextualHelp',
-
-  functional: true,
 
   props: {
     /**
@@ -19,21 +24,6 @@ export default {
 
   directives: {
     tooltip: Tooltip
-  },
-
-  render: function (h, { props, data }) {
-    return h('i', {
-      attrs: {
-        class: `fa fa-question-circle ${typeof data.staticClass === 'undefined' ? '' : data.staticClass}`,
-        'aria-label': Translator.trans('contextual.help')
-      },
-      directives: [
-        {
-          name: 'tooltip',
-          value: props.text
-        }
-      ]
-    })
   }
 }
 </script>

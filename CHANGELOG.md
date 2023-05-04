@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+### Refactor
+- ([#203](https://github.com/demos-europe/demosplan-ui/pull/203)) Move from Functional Component to Template in DpContextualHelp ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.0.21 - 2023-05-02
 
 ### Changed

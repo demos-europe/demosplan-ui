@@ -45,10 +45,6 @@ export default {
     prefixClass (classList) {
       return prefixClass(classList)
     }
-  },
-
-    mounted() {
-        console.log(typeof Translator, typeof Translator.trans)
-    }
+  }
 }
 </script>

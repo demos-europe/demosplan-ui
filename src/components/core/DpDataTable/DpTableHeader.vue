@@ -1,10 +1,10 @@
 <template>
-  <tr>
+  <tr
+      ref="tableHeader"
+      :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
         v-for="(hf, idx) in headerFields"
         scope="col"
-        ref="tableHeader"
-        :class="{ 'c-data-table__sticky-header': isSticky }"
         :data-col-idx="`${idx}`">
       <ResizableColumns
           v-if="isResizable"

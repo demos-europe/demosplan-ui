@@ -1,35 +1,40 @@
 <template>
   <th
-      :class="`'c-data-table__resizable' ${idx === (headerFields.length - 1)? 'u-pr-0' : ''}`"
+      :class="`'c-data-table__resizable' ${isLast? 'u-pr-0' : ''}`"
       :data-col-idx="idx"
-      v-tooltip="tooltip || label">
+      v-tooltip="headerField.tooltip || headerField.label">
     <slot/>
     <dp-resize-handle
-        v-if="headerFields.length !== idx"
-        display-icon="resizable"
+        v-if="!isLast"
+        :display-icon="isResizableColumn"
         @mousedown="e => initResize(e, idx)" />
   </th>
 </template>
 
 <script>
 import DpResizeHandle from '../DpResizeHandle'
+import { hasOwnProp } from '../../../../utils'
 
 export default {
   name: 'ResizableColumns',
 
+  components: {
+    DpResizeHandle
+  },
+
   props: {
-    isResizable: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
     idx: {
       required: true,
       type: Number
     },
-    headerFields: {
-      type: Array,
+    headerField: {
+      type: Object,
       required: true
+    },
+    isLast: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
@@ -43,6 +48,12 @@ export default {
       resize: '',
       resizeWidth: '',
       nextWidth: ''
+    }
+  },
+
+  computed: {
+    isResizableColumn () {
+      return hasOwnProp(this.headerField, 'resizeable')? this.headerField.resizeable : true
     }
   },
 
@@ -90,28 +101,4 @@ export default {
 
   }
 }
-
-const renderResizeWrapper = (h, wrapperContent, idx, isLast, resizeable, label, tooltip) => {
-  let headerClass = ''
-  if (resizeable) {
-    headerClass = 'c-data-table__resizable'
-  }
-  if (isLast) {
-    headerClass += ' u-pr-0'
-  }
-  return [h('th', {
-    attrs: {
-      'data-col-idx': idx,
-      class: headerClass
-    },
-    directives: [
-      {
-        name: 'tooltip',
-        value: tooltip || label
-      }
-    ]
-  }, [wrapperContent, ...isLast ? [] : [h(DpResizeHandle, { props: { displayIcon: resizeable }, on: { mousedown: (e) => initResize(e, idx) } })]])]
-}
-
-export { renderResizeWrapper }
 </script>

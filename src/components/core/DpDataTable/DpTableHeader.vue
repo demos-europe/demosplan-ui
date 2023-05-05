@@ -8,11 +8,10 @@
         :data-col-idx="`${idx}`">
       <ResizableColumns
           v-if="isResizable"
-          :header-fields="headerFields"
+          :is-last="headerFields.length === idx"
+          :header-field="hf"
           :idx="idx">
-        <template>
-          {{ hf.label }}
-        </template>
+        {{ hf.label }}
       </ResizableColumns>
       <template v-else>
         {{ hf.label }}
@@ -30,9 +29,11 @@
         @click="listeners.toggleExpandAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
-    <th v-if="hasFlyout"
+    <th
+        v-if="hasFlyout"
         scope="col" />
-    <th v-if="isSelectable"
+    <th
+        v-if="isSelectable"
         scope="col"
         class="c-data-table__cell--narrow">
       <input
@@ -43,7 +44,7 @@
           ref="selectAll"
           @click="$listeners.toggleSelectAll()"
           :checked="checked"
-          :indeterminate="indeterminate"/>
+          :indeterminate="indeterminate" />
     </th>
     <th v-if="isDraggable"
         scope="col"
@@ -56,7 +57,7 @@
 <script>
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import ResizableColumns from "./lib/ResizableColumns"
+import ResizableColumns from './lib/ResizableColumns'
 
 export default {
   name: 'DpTableHeader',

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid'
 export default {
   name: 'DpSelectPageItemCount',
 
@@ -29,14 +30,20 @@ export default {
       required: true
     },
 
+    labelText: {
+     type: String,
+     required: true
+    },
+
     pageCountOptions: {
       type: Array,
       required: true
     },
 
-    labelText: {
+    selectId: {
       type: String,
-      required: true
+      required: false,
+      default: () => uuid()
     }
   }
 }

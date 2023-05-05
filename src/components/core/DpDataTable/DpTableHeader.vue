@@ -1,20 +1,70 @@
+<template>
+  <tr>
+    <th
+        v-for="(hf, idx) in headerFields"
+        ref="tableHeader"
+        :class="{ 'c-data-table__sticky-header': isSticky }"
+        :data-col-idx="`${idx}`">
+      <ResizableColumns v-if="isResizable" :header-fields="headerFields" :idx="idx">
+        <template>
+          {{ hf.label }}
+        </template>
+      </ResizableColumns>
+      <template v-else>
+        {{ hf.label }}
+      </template>
+    </th>
+    <th v-if="isTruncatable"
+        class="c-data-table__cell--narrow"
+        @click="listeners.toggleWrapAll()">
+      <dp-wrap-trigger :title="translations.headerExpandHint" />
+    </th>
+    <th class="c-data-table__cell--narrow">
+      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
+    </th>
+    <th v-if="isExpandable"
+        class="c-data-table__cell--narrow"
+        @click="listeners.toggleExpandAll()">
+      <dp-wrap-trigger :title="translations.headerExpandHint" />
+    </th>
+    <th v-if="hasFlyout"></th>
+    <th v-if="isSelectable"
+        class="c-data-table__cell--narrow">
+      <input
+          :aria-label="this.translations.headerSelectHint"
+          :title="this.translations.headerSelectHint"
+          type="checkbox"
+          data-cy="selectAll"
+          ref="selectAll"
+          @click="$listeners.toggleSelectAll()"
+          :checked="checked"
+          :indeterminate="indeterminate"/>
+    </th>
+    <th v-if="isDraggable"
+        class="c-data-table__cell--narrow">
+      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
+    </th>
+  </tr>
+</template>
+
 <script>
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from '../../../utils'
-import { renderResizeWrapper } from './lib/ResizableColumns'
+import ResizableColumns from "./lib/ResizableColumns"
 
 export default {
   name: 'DpTableHeader',
-
-  functional: true,
+  components: {
+    DpIcon,
+    DpWrapTrigger,
+    ResizableColumns,
+  },
 
   props: {
     checked: {
       type: Boolean,
       required: true
     },
-
     hasFlyout: {
       type: Boolean,
       required: true
@@ -23,6 +73,12 @@ export default {
     headerFields: {
       type: Array,
       required: true
+    },
+
+    indeterminate: {
+      type: Boolean,
+      required: false,
+      default: false
     },
 
     isDraggable: {
@@ -64,125 +120,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-
-  render: function (h, { props, listeners, scopedSlots }) {
-    const {
-      checked,
-      headerFields,
-      hasFlyout,
-      indeterminate,
-      isDraggable,
-      isExpandable,
-      isResizable,
-      isSelectable,
-      isSticky,
-      isTruncatable,
-      translations
-    } = props
-
-    let draggableCell = []
-    if (isDraggable) {
-      draggableCell = [
-        h('th', {
-          attrs: {
-            class: 'c-data-table__cell--narrow'
-          }
-        }, [
-          h(DpIcon, {
-            attrs: {
-              class: 'c-data-table__drag-handle'
-            },
-            props: {
-              icon: 'drag-handle'
-            }
-          })
-        ])
-      ]
-    }
-
-    const checkboxData = {}
-    let checkboxCell = []
-    if (isSelectable) {
-      checkboxData.attrs = {
-        'aria-label': translations.headerSelectHint,
-        title: translations.headerSelectHint,
-        type: 'checkbox',
-        'data-cy': 'selectAll'
-      }
-      checkboxData.ref = 'selectAll'
-      checkboxData.on = { click: () => listeners.toggleSelectAll() }
-      checkboxData.domProps = { checked: checked, indeterminate: indeterminate }
-      checkboxCell = [h('th', {
-        attrs: {
-          class: 'c-data-table__cell--narrow'
-        }
-      }, [h('input', checkboxData)])]
-    }
-
-    let flyoutCell = []
-    if (hasFlyout) {
-      flyoutCell = [h('th')]
-    }
-
-    let expandableCell = []
-    if (isExpandable) {
-      DpWrapTrigger.attrs = {
-        title: translations.headerExpandHint
-      }
-      expandableCell = [h('th', {
-        attrs: {
-          class: 'c-data-table__cell--narrow'
-        },
-        on: {
-          click: () => listeners.toggleExpandAll()
-        }
-      }, [h(DpWrapTrigger)])]
-    }
-
-    let truncatableCell = []
-    if (isTruncatable) {
-      DpWrapTrigger.attrs = {
-        title: translations.headerExpandHint
-      }
-      truncatableCell = [h('th', {
-        attrs: {
-          class: 'c-data-table__cell--narrow'
-        },
-        on: {
-          click: () => listeners.toggleWrapAll()
-        }
-      }, [h(DpWrapTrigger)])]
-    }
-
-    const headerCells = headerFields.map((hf, idx) => {
-      const isLast = idx === (headerFields.length - 1)
-      const resizeable = hasOwnProp(hf, 'resizeable') ? hf.resizeable : true
-      const headerContent = [(scopedSlots[`header-${hf.field}`] && scopedSlots[`header-${hf.field}`](hf)) || hf.label]
-      const content = isResizable ? renderResizeWrapper(h, headerContent, idx, isLast, resizeable, hf.label, hf.tooltip) : headerContent
-
-      return isResizable
-        ? content
-        : h('th', {
-          scopedSlots: {
-            [`header-${hf.field}`]: scopedSlots[`header-${hf.field}`]
-          }
-        }, headerContent)
-    })
-
-    return h('tr', {
-      ref: 'tableHeader',
-      attrs: isSticky
-        ? { class: 'c-data-table__sticky-header' }
-        : {}
-    }, [
-      ...draggableCell,
-      ...checkboxCell,
-      ...headerCells,
-      ...flyoutCell,
-      ...expandableCell,
-      ...truncatableCell
-    ])
   }
 }
 </script>

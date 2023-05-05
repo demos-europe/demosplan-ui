@@ -24,10 +24,6 @@
         @click="listeners.toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
-    <th scope="col"
-        class="c-data-table__cell--narrow">
-      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
-    </th>
     <th v-if="isExpandable"
         scope="col"
         class="c-data-table__cell--narrow"

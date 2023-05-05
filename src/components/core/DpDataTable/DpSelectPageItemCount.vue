@@ -12,7 +12,7 @@
       </option>
     </select>
     <label
-      for="item-count"
+      :for="selectId"
       class="display--inline u-mb-0">
       {{ labelText }}
     </label>
@@ -38,12 +38,12 @@ export default {
     pageCountOptions: {
       type: Array,
       required: true
-    },
+    }
+  },
 
-    selectId: {
-      type: String,
-      required: false,
-      default: () => uuid()
+  data () {
+    return {
+      selectId: uuid()
     }
   }
 }

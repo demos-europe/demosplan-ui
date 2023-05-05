@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta
+  title="Design Tokens/Rounded"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    },
+  }} />
+
+
+# Rounded tokens
+
+The demosplan-ui Rounded tokens is the way things may be rounded in demosplan. Applied via the `border-radius` property.
+
+There are different Rounded variables, you can use any of them for the element.
+
+#### None - No radius.
+```
+$dp-rounded-none
+```
+
+#### Smallest
+available radius discernible from 0. Use this value for rounded elements inside elements that have {rounded.small} applied as border-radius.
+```
+$dp-rounded-smallest
+```
+
+#### Small
+The standard for ui elements that shall appear rounded. Use this value for form elements and other smaller ui elements. When in doubt, pick this one.
+```
+$dp-rounded-small
+```
+
+#### Medium
+The "next best" radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded.
+```
+$dp-rounded-medium
+```
+
+#### Large
+The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with, rounded elements inside it that are rounded via {rounded.small}.
+```
+$dp-rounded-large
+```
+
+## How to use and override BoxShadow tokens
+
+Rounded tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/rounded';
+```
+
+Then, tokens can be used within Scss code:
+
+```
+.segment-list-toolbar--dark & {
+    background: $dp-color-white;
+    border-radius: $dp-rounded-medium;
+}
+```

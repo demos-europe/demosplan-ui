@@ -29,7 +29,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :translations="{ pagerElementsPerPage: Translator.trans('pager.per.page') }" />
+            :label-text="Translator.trans('pager.per.page')" />
         </div>
       </div>
     </dp-sticky-element>

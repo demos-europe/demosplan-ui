@@ -2,10 +2,14 @@
   <tr>
     <th
         v-for="(hf, idx) in headerFields"
+        scope="col"
         ref="tableHeader"
         :class="{ 'c-data-table__sticky-header': isSticky }"
         :data-col-idx="`${idx}`">
-      <ResizableColumns v-if="isResizable" :header-fields="headerFields" :idx="idx">
+      <ResizableColumns
+          v-if="isResizable"
+          :header-fields="headerFields"
+          :idx="idx">
         <template>
           {{ hf.label }}
         </template>
@@ -15,20 +19,25 @@
       </template>
     </th>
     <th v-if="isTruncatable"
+        scope="col"
         class="c-data-table__cell--narrow"
         @click="listeners.toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
-    <th class="c-data-table__cell--narrow">
+    <th scope="col"
+        class="c-data-table__cell--narrow">
       <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
     </th>
     <th v-if="isExpandable"
+        scope="col"
         class="c-data-table__cell--narrow"
         @click="listeners.toggleExpandAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
-    <th v-if="hasFlyout"></th>
+    <th v-if="hasFlyout"
+        scope="col" />
     <th v-if="isSelectable"
+        scope="col"
         class="c-data-table__cell--narrow">
       <input
           :aria-label="this.translations.headerSelectHint"
@@ -41,6 +50,7 @@
           :indeterminate="indeterminate"/>
     </th>
     <th v-if="isDraggable"
+        scope="col"
         class="c-data-table__cell--narrow">
       <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
     </th>

@@ -18,7 +18,7 @@
             @input="updateFields(null)">
 
           <!-- pager -->
-          <sliding-pagination
+          <dp-sliding-pagination
             v-if="totalPages > 1"
             class="display--inline-block u-ml-0_5 u-mt-0_125"
             :current="currentPage"
@@ -29,7 +29,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :translations="{ pagerElementsPerPage: Translator.trans('pager.per.page') }" />
+            :label-text="Translator.trans('pager.per.page')" />
         </div>
       </div>
     </dp-sticky-element>
@@ -104,9 +104,9 @@ import dataTableSearch from './DataTableSearch'
 import DomPurify from 'dompurify'
 import DpDataTable from './DpDataTable'
 import DpSelectPageItemCount from './DpSelectPageItemCount'
+import DpSlidingPagination from '../../DpSlidingPagination/DpSlidingPagination'
 import DpStickyElement from '../shared/DpStickyElement'
 import { hasOwnProp } from '../../../utils'
-import SlidingPagination from 'vue-sliding-pagination'
 import { tableSelectAllItems } from '../../../mixins'
 
 export default {
@@ -115,8 +115,8 @@ export default {
   components: {
     DpDataTable,
     DpSelectPageItemCount,
-    DpStickyElement,
-    SlidingPagination
+    DpSlidingPagination,
+    DpStickyElement
   },
 
   mixins: [tableSelectAllItems],

@@ -72,13 +72,12 @@ tokens afterwards, they are as well assigned the changed values.
 // Set a new color from palette tokens for this one token:
 $dp-color-interactive-hover: $dp-color-red-dark-1;
 
-// Set a brand color to a palette color.
-$dp-color-brand-main-base: $dp-color-yellow-base;
+// Set main brand color to a palette color.
+$dp-color-main: $dp-color-yellow-base;
 
 // Import UI tokens. Only the ones that are not yet defined
-// will be assigned their default values. UI tokens that
-// are aliased to $dp-color-brand-main-base will inherit
-// the yellow defined above.
+// will be assigned their default values. UI tokens that are
+// aliased to $dp-color-main will inherit the yellow defined above.
 @import '@demos-europe/demosplan-ui/tokens/scss/color.ui';
 
 // Use tokens...

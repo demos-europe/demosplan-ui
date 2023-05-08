@@ -18,7 +18,8 @@ StyleDictionary.registerTransform({
   type: 'name',
   transformer: (token) => {
     // The domain part ("palette", "ui"...) within color tokens should not be part of the variable name.
-    if (token.path[0] === 'color') {
+    // The domain part ("scale", "heading", "ui"...) within font-size tokens should not be part of the variable name.
+    if (token.path[0] === 'color' || token.path[0] === 'font-size') {
       token.path.splice(1, 1)
     }
     return prefix + token.path.join('-')

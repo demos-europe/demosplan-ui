@@ -9,10 +9,12 @@
       <div class="u-ml-1_5">
         <button
           type="button"
-          class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb u-p-0_25"
+          class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
           @click="$emit('close')"
           data-slidebar-hide="">
-          <dp-icon icon="close" />
+          <dp-icon
+            icon="close"
+            size="large" />
         </button>
         <slot />
       </div>

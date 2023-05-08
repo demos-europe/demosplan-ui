@@ -129,9 +129,9 @@ const aliases = {
 const ICONS = mergeIconAliases(baseIcons, aliases)
 
 const SIZES = {
-  small: 20,
-  medium: 32,
-  large: 48
+  small: 16,
+  medium: 20,
+  large: 28
 }
 
 export { ICONS, SIZES }

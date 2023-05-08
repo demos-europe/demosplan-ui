@@ -1,22 +1,22 @@
 <template>
   <th
-      :class="`'c-data-table__resizable' ${isLast? 'u-pr-0' : ''}`"
-      :data-col-idx="idx"
-      v-tooltip="headerField.tooltip || headerField.label">
+    :class="`c-data-table__resizable ${isLast? 'u-pr-0' : ''}`"
+    :data-col-idx="idx"
+    v-tooltip="headerField.tooltip || headerField.label">
     <slot/>
     <dp-resize-handle
-        v-if="!isLast"
-        :display-icon="isResizableColumn"
-        @mousedown="e => initResize(e, idx)" />
+      v-if="!isLast"
+      :display-icon="isResizableColumn"
+      @mousedown="e => initResize(e, idx)" />
   </th>
 </template>
 
 <script>
-import DpResizeHandle from '../DpResizeHandle'
-import { hasOwnProp } from '../../../../utils'
+import DpResizeHandle from './DpResizeHandle'
+import { hasOwnProp } from '../../../utils'
 
 export default {
-  name: 'ResizableColumns',
+  name: 'DpResizableColumn',
 
   components: {
     DpResizeHandle
@@ -27,10 +27,12 @@ export default {
       required: true,
       type: Number
     },
+
     headerField: {
       type: Object,
       required: true
     },
+
     isLast: {
       type: Boolean,
       required: false,
@@ -96,9 +98,7 @@ export default {
       document.getElementsByTagName('body')[0].removeEventListener('mousemove', this.namedFunc)
       document.getElementsByTagName('body')[0].removeEventListener('mouseup', this.stopResize)
       document.getElementsByTagName('body')[0].classList.remove('resizing')
-    },
-
-
+    }
   }
 }
 </script>

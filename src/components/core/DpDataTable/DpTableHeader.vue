@@ -1,54 +1,55 @@
 <template>
   <tr
-      ref="tableHeader"
-      :class="{ 'c-data-table__sticky-header': isSticky }">
+    ref="tableHeader"
+    :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
-        v-for="(hf, idx) in headerFields"
-        scope="col"
-        :data-col-idx="`${idx}`">
+      v-for="(hf, idx) in headerFields"
+      scope="col"
+      :data-col-idx="`${idx}`">
       <ResizableColumns
-          v-if="isResizable"
-          :is-last="headerFields.length === idx"
-          :header-field="hf"
-          :idx="idx">
-        {{ hf.label }}
+        v-if="isResizable"
+        :is-last="headerFields.length === idx"
+        :header-field="hf"
+        :idx="idx">
+          {{ hf.label }}
       </ResizableColumns>
       <template v-else>
         {{ hf.label }}
       </template>
     </th>
     <th v-if="isTruncatable"
-        scope="col"
-        class="c-data-table__cell--narrow"
-        @click="listeners.toggleWrapAll()">
+      scope="col"
+      class="c-data-table__cell--narrow"
+      @click="listeners.toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
     <th v-if="isExpandable"
-        scope="col"
-        class="c-data-table__cell--narrow"
-        @click="listeners.toggleExpandAll()">
+      scope="col"
+      class="c-data-table__cell--narrow"
+      @click="listeners.toggleExpandAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
     <th
-        v-if="hasFlyout"
-        scope="col" />
+      v-if="hasFlyout"
+      scope="col" />
     <th
-        v-if="isSelectable"
-        scope="col"
-        class="c-data-table__cell--narrow">
+      v-if="isSelectable"
+      scope="col"
+      class="c-data-table__cell--narrow">
       <input
-          :aria-label="this.translations.headerSelectHint"
-          :title="this.translations.headerSelectHint"
-          type="checkbox"
-          data-cy="selectAll"
-          ref="selectAll"
-          @click="$listeners.toggleSelectAll()"
-          :checked="checked"
-          :indeterminate="indeterminate" />
+        :aria-label="this.translations.headerSelectHint"
+        :title="this.translations.headerSelectHint"
+        type="checkbox"
+        data-cy="selectAll"
+        ref="selectAll"
+        @click="$listeners.toggleSelectAll()"
+        :checked="checked"
+        :indeterminate="indeterminate" />
     </th>
-    <th v-if="isDraggable"
-        scope="col"
-        class="c-data-table__cell--narrow">
+    <th
+      v-if="isDraggable"
+      scope="col"
+      class="c-data-table__cell--narrow">
       <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
     </th>
   </tr>
@@ -57,10 +58,11 @@
 <script>
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import ResizableColumns from './lib/ResizableColumns'
+import ResizableColumns from './DpResizableColumn'
 
 export default {
   name: 'DpTableHeader',
+
   components: {
     DpIcon,
     DpWrapTrigger,
@@ -72,6 +74,7 @@ export default {
       type: Boolean,
       required: true
     },
+
     hasFlyout: {
       type: Boolean,
       required: true

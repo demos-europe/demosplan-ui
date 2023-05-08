@@ -375,8 +375,20 @@ export default {
       const firstRow = this.tableEl.firstChild
       const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
       tableHeaders.forEach(tableHeader => {
-        const width = tableHeader.getBoundingClientRect().width
-        tableHeader.style.width = width + 'px'
+        /**
+         * The convert of the component DpTableHeader.vue from a functional component to a template indicates,
+         * that the DOM Element structure changed, so that the tableHeaders doesnt just contains HTML elements,
+         * it contains other code parts which are not HTML elements.
+         * So you get an error, that the method getBoundingClientRect is not a function,
+         * because it needs the same dom structure as before and the belonging HTML elements.
+         * So here needs to be a check if the tableHeader.nodeName is a 'th' element for this case.
+         * A general check if the tableHeader.nodeName is an HTML element here is inconvenient,
+         * so here its okay to do the check with directly with the 'th' element.
+         */
+        if(tableHeader.nodeName === "TH") {
+          const width = tableHeader.getBoundingClientRect().width
+          tableHeader.style.width = width + 'px'
+        }
       })
 
       this.tableEl.style.tableLayout = 'fixed'

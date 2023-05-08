@@ -2,21 +2,19 @@
   <tr
     ref="tableHeader"
     :class="{ 'c-data-table__sticky-header': isSticky }">
-    <th
-      v-for="(hf, idx) in headerFields"
-      scope="col"
-      :data-col-idx="`${idx}`">
-      <ResizableColumns
+    <template v-for="(hf, idx) in headerFields">
+      <dp-resizable-column
         v-if="isResizable"
         :is-last="headerFields.length === idx"
         :header-field="hf"
         :idx="idx">
           {{ hf.label }}
-      </ResizableColumns>
-      <template v-else>
+      </dp-resizable-column>
+      <th v-else
+          scope="col">
         {{ hf.label }}
-      </template>
-    </th>
+      </th>
+    </template>
     <th v-if="isTruncatable"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -59,11 +57,13 @@
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import ResizableColumns from './DpResizableColumn'
+import DpResizableColumn from "./DpResizableColumn";
 
 export default {
   name: 'DpTableHeader',
 
   components: {
+    DpResizableColumn,
     DpIcon,
     DpWrapTrigger,
     ResizableColumns,

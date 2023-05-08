@@ -385,6 +385,8 @@ export default {
          * A general check if the tableHeader.nodeName is an HTML element here is inconvenient,
          * so here its okay to do the check with directly with the 'th' element.
          */
+        console.log(tableHeader.nodeName)
+        console.log(tableHeader.node)
         if(tableHeader.nodeName === "TH") {
           const width = tableHeader.getBoundingClientRect().width
           tableHeader.style.width = width + 'px'

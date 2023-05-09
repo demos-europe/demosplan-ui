@@ -5,6 +5,7 @@
     :class="`c-data-table__resizable ${isLast? 'u-pr-0' : ''}`"
     :data-col-idx="idx">
     <slot/>
+    <h1>123</h1>
     <dp-resize-handle
       v-if="!isLast"
       :display-icon="isResizableColumn"

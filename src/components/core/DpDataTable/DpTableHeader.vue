@@ -5,10 +5,10 @@
     <template v-for="(hf, idx) in headerFields">
       <dp-resizable-column
         v-if="isResizable"
-        v-text="hf.label"
         :is-last="headerFields.length === idx"
         :header-field="hf"
         :idx="idx">
+        {{ hf.label }}
       </dp-resizable-column>
       <th
           v-else

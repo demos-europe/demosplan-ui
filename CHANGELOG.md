@@ -8,6 +8,7 @@
 - ([#202](https://github.com/demos-europe/demosplan-ui/pull/202)) Move from Functional Component to Template in DpSlidingPagination ([@salisdemos](https://github.com/salisdemos))
 - ([#195](https://github.com/demos-europe/demosplan-ui/pull/195)) Move from Functional Component to Template in dpSelectPageItemCount ([@salisdemos](https://github.com/salisdemos))
 - ([#181](https://github.com/demos-europe/demosplan-ui/pull/181)) Move from Functional Component to Template in dpMultiselect ([@salisdemos](https://github.com/salisdemos))
+- ([#51](https://github.com/demos-europe/demosplan-ui/pull/51)) Configuration for jest tests for js files ([@elmasdemos](https://github.com/elmasdemos))
 
 ## v0.0.21 - 2023-05-02
 

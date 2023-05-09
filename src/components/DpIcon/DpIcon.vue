@@ -3,7 +3,7 @@
     class="c-icon"
     :height="pxSize"
     :width="pxSize"
-    viewBox="0 0 16 16"
+    viewBox="0 0 256 256"
     xmlns="http://www.w3.org/2000/svg">
     <path :d="path" />
   </svg>

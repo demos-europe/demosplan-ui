@@ -2,8 +2,7 @@
   <th
     v-tooltip="headerField.tooltip || headerField.label"
     ref="resizableColumn"
-    class="c-data-table__resizable"
-    :class="{ 'u-pr-0' : isLast }"
+    :class="`c-data-table__resizable ${isLast? 'u-pr-0' : ''}`"
     :data-col-idx="idx">
     <slot/>
     <dp-resize-handle

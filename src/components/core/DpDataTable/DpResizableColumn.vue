@@ -1,8 +1,10 @@
 <template>
   <th
-    :class="`c-data-table__resizable ${isLast? 'u-pr-0' : ''}`"
-    :data-col-idx="idx"
-    v-tooltip="headerField.tooltip || headerField.label">
+    v-tooltip="headerField.tooltip || headerField.label"
+    ref="resizableColumn"
+    class="c-data-table__resizable"
+    :class="{ 'u-pr-0' : isLast }"
+    :data-col-idx="idx">
     <slot/>
     <dp-resize-handle
       v-if="!isLast"
@@ -61,8 +63,7 @@ export default {
 
   methods: {
     initResize (e, idx) {
-      this.resize = document.querySelector(`th[data-col-idx='${idx}']`)
-
+      this.resize = this.$refs.resizableColumn
       this.currentHandle = this.resize.getElementsByClassName('c-data-table__resize-handle')[0]
       this.currentHandle.classList.add('is-active')
       this.nextEl = document.querySelector(`th[data-col-idx='${idx + 1}']`)
@@ -95,9 +96,9 @@ export default {
     stopResize (e) {
       this.currentHandle.classList.remove('is-active')
       this.dragStart = false
-      document.getElementsByTagName('body')[0].removeEventListener('mousemove', this.namedFunc)
-      document.getElementsByTagName('body')[0].removeEventListener('mouseup', this.stopResize)
-      document.getElementsByTagName('body')[0].classList.remove('resizing')
+      document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
+      document.querySelector('body').removeEventListener('mouseup', this.stopResize)
+      document.querySelector('body').classList.remove('resizing')
     }
   }
 }

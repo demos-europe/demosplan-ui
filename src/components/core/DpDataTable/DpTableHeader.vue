@@ -65,10 +65,9 @@ export default {
   name: 'DpTableHeader',
 
   components: {
-    DpResizableColumn,
     DpIcon,
-    DpWrapTrigger,
-    ResizableColumns,
+    DpResizableColumn,
+    DpWrapTrigger
   },
 
   props: {

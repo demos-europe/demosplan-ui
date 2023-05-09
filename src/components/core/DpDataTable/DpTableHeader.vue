@@ -5,23 +5,26 @@
     <template v-for="(hf, idx) in headerFields">
       <dp-resizable-column
         v-if="isResizable"
+        v-text="hf.label"
         :is-last="headerFields.length === idx"
         :header-field="hf"
         :idx="idx">
-          {{ hf.label }}
       </dp-resizable-column>
-      <th v-else
+      <th
+          v-else
+          v-text="hf.label"
           scope="col">
-        {{ hf.label }}
       </th>
     </template>
-    <th v-if="isTruncatable"
+    <th
+      v-if="isTruncatable"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="listeners.toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
-    <th v-if="isExpandable"
+    <th
+      v-if="isExpandable"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="listeners.toggleExpandAll()">
@@ -56,8 +59,7 @@
 <script>
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import ResizableColumns from './DpResizableColumn'
-import DpResizableColumn from "./DpResizableColumn";
+import DpResizableColumn from './DpResizableColumn'
 
 export default {
   name: 'DpTableHeader',

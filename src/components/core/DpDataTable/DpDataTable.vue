@@ -376,14 +376,9 @@ export default {
       const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
       tableHeaders.forEach(tableHeader => {
         /**
-         * The convert of the component DpTableHeader.vue from a functional component to a template indicates,
-         * that the DOM Element structure changed, so that the tableHeaders doesnt just contains HTML elements,
-         * it contains other code parts which are not HTML elements.
-         * So you get an error, that the method getBoundingClientRect is not a function,
-         * because it needs the same dom structure as before and the belonging HTML elements.
-         * So here needs to be a check if the tableHeader.nodeName is a 'th' element for this case.
-         * A general check if the tableHeader.nodeName is an HTML element here is inconvenient,
-         * so here its okay to do the check with directly with the 'th' element.
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
          */
         if(tableHeader.nodeType === 1) {
           const width = tableHeader.getBoundingClientRect().width

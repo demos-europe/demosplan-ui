@@ -3,32 +3,31 @@
     class="row"
     :class="[{ 'opacity-7': isLoading }, { 'is-expanded-row': expanded }]">
 
-    //isDraggable
-    <td v-if="isDraggable"
-        class="c-data-table__cell--narrow">
+    <td
+      v-if="isDraggable"
+      class="c-data-table__cell--narrow">
       <dp-icon icon="drag-handle" />
     </td>
 
-    //isSelectable
-    <td v-if="isSelectable"
-        class="c-data-table__cell--narrow">
+    <td
+      v-if="isSelectable"
+      class="c-data-table__cell--narrow">
       <dp-icon
-          v-if="isLocked"
-          class="u-valign--middle color--grey-light"
-          v-tooltip="isLockedMessage"
-          icon="lock" />
+        v-if="isLocked"
+        class="u-valign--middle color--grey-light"
+        v-tooltip="isLockedMessage"
+        icon="lock" />
       <input
-          v-else
-          type="checkbox"
-          class="u-m-0 u-valign--middle"
-          data-cy="selectItem"
-          :name="isSelectableName || null"
-          :value="isSelectableName ? item[trackBy] : null"
-          :checked="checked"
-          @click="$listeners.toggleSelect(item[trackBy])">
+        v-else
+        type="checkbox"
+        class="u-m-0 u-valign--middle"
+        data-cy="selectItem"
+        :name="isSelectableName || null"
+        :value="isSelectableName ? item[trackBy] : null"
+        :checked="checked"
+        @click="$listeners.toggleSelect(item[trackBy])">
     </td>
 
-    //Fields
     <template
         v-for="(field, idx) in fields"
         :key="`${field}:${idx}`">
@@ -39,44 +38,50 @@
           v-if="isTruncatable"
           :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
           :style="elementStyle(field)">
-          <slot :name="field" :item="item">
+          <slot
+            :name="field"
+            :item="item">
             <span
               v-if="searchTerm && item[field]"
-              v-html="highlight(field)" />
+              v-html="highlighted(field)" />
             <span v-else>
               {{ item[field] }}
             </span>
           </slot>
         </div>
         <template v-else>
-          <slot :name="field" :item="item" />
+          <slot
+            :name="field"
+            :item="item" />
         </template>
       </td>
     </template>
 
-    //hasFlyout
-    <td v-if="hasFlyout"
-        class="overflow-visible">
-      <slot name="flyout" :item="item" />
+    <td
+      v-if="hasFlyout"
+      class="overflow-visible">
+      <slot
+        name="flyout"
+        :item="item" />
     </td>
 
-    ///isExpandable
-    <td v-if="isExpandable"
+    <td
+      v-if="isExpandable"
       class="c-data-table__cell--narrow"
-      :class="{'is-open': expanded }"
+      :class="{ 'is-open': expanded }"
       :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
       @click="$listeners.toggleExpand(item[trackBy])">
       <dp-wrap-trigger :expanded="expanded" />
     </td>
 
-    //isTruncatable
-    <td class="c-data-table__cell--narrow"
-        :class="{'is-open': wrapped}"
-        :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
-        @click="$listeners.toggleWrap(item[trackBy])">
+    <td
+      class="c-data-table__cell--narrow"
+      :class="{'is-open': wrapped}"
+      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
+      @click="$listeners.toggleWrap(item[trackBy])">
       <dp-wrap-trigger :expanded="wrapped" />
-
     </td>
+
   </tr>
 </template>
 
@@ -217,17 +222,15 @@ export default {
 
   data () {
     return {
-      highlighted: null
     }
   },
 
   computed: {
-    highlight () {
+    highlighted () {
       return (field) => {
         let itemValue = this.item[field]
         itemValue = DomPurify.sanitize(itemValue)
-        const regex = new RegExp(this.searchTerm, 'gi')
-        this.highlighted = itemValue.replace(regex, (match) => `<span style="background-color: yellow;">${match}</span>`)
+        return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
       }
     },
     elementStyle () {

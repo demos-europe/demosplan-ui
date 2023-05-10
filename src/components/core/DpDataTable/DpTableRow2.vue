@@ -1,101 +1,13 @@
-<template>
-  <tr
-    class="row"
-    :class="[{ 'opacity-7': isLoading }, { 'is-expanded-row': expanded }]">
-
-    <td
-      v-if="isDraggable"
-      class="c-data-table__cell--narrow">
-      <dp-icon icon="drag-handle" />
-    </td>
-
-    <td
-      v-if="isSelectable"
-      class="c-data-table__cell--narrow">
-      <dp-icon
-        v-if="isLocked"
-        class="u-valign--middle color--grey-light"
-        v-tooltip="isLockedMessage"
-        icon="lock" />
-      <input
-        v-else
-        type="checkbox"
-        class="u-m-0 u-valign--middle"
-        data-cy="selectItem"
-        :name="isSelectableName || null"
-        :value="isSelectableName ? item[trackBy] : null"
-        :checked="checked"
-        @click="$listeners.toggleSelect(item[trackBy])">
-    </td>
-
-    <template
-        v-for="(field, idx) in fields"
-        :key="`${field}:${idx}`">
-      <td
-        :class="{ 'c-data-table__resizable': isTruncatable }"
-        :data-col-idx="`${idx}`">
-        <div
-          v-if="isTruncatable"
-          :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
-          :style="elementStyle(field)">
-          <slot
-            :name="field"
-            :item="item">
-            <span
-              v-if="searchTerm && item[field]"
-              v-html="highlighted(field)" />
-            <span v-else>
-              {{ item[field] }}
-            </span>
-          </slot>
-        </div>
-        <template v-else>
-          <slot
-            :name="field"
-            :item="item" />
-        </template>
-      </td>
-    </template>
-
-    <td
-      v-if="hasFlyout"
-      class="overflow-visible">
-      <slot
-        name="flyout"
-        :item="item" />
-    </td>
-
-    <td
-      v-if="isExpandable"
-      class="c-data-table__cell--narrow"
-      :class="{ 'is-open': expanded }"
-      :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
-      @click="$listeners.toggleExpand(item[trackBy])">
-      <dp-wrap-trigger :expanded="expanded" />
-    </td>
-
-    <td
-      class="c-data-table__cell--narrow"
-      :class="{'is-open': wrapped}"
-      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
-      @click="$listeners.toggleWrap(item[trackBy])">
-      <dp-wrap-trigger :expanded="wrapped" />
-    </td>
-
-  </tr>
-</template>
-
 <script>
+import DomPurify from 'dompurify'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import DomPurify from 'dompurify'
-export default {
-  name: "DpTableRow2.vue",
+import { hasOwnProp } from '../../../utils'
 
-  components: {
-    DpIcon,
-    DpWrapTrigger
-  },
+export default {
+  name: 'DpTableRow',
+
+  functional: true,
 
   props: {
     checked: {
@@ -220,37 +132,215 @@ export default {
     }
   },
 
-  data () {
-    return {
+  render: function (h, { listeners, props, scopedSlots }) {
+    const {
+      checked,
+      expanded,
+      fields,
+      hasFlyout,
+      headerFields,
+      isDraggable,
+      isExpandable,
+      isLoading,
+      isLocked,
+      isLockedMessage,
+      isSelectable,
+      isSelectableName,
+      isTruncatable,
+      item,
+      searchTerm,
+      trackBy,
+      wrapped
+    } = props
+
+    let draggableCell = []
+    if (isDraggable) {
+      draggableCell = [
+        h('td', {
+          attrs: {
+            class: 'c-data-table__cell--narrow'
+          }
+        }, [
+          h(DpIcon, {
+            attrs: {
+              class: 'c-data-table__drag-handle u-valign--middle'
+            },
+            props: {
+              icon: 'drag-handle'
+            }
+          })
+        ])
+      ]
     }
-  },
 
-  computed: {
-    highlighted () {
-      return (field) => {
-        let itemValue = this.item[field]
-        itemValue = DomPurify.sanitize(itemValue)
-        return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
+    let checkboxCell = []
+
+    if (isSelectable) {
+      let checkboxElement
+      let checkboxData
+      if (isLocked) {
+        checkboxElement = DpIcon
+        checkboxData = {
+          class: 'u-valign--middle color--grey-light',
+          props: { icon: 'lock' },
+          directives: [
+            {
+              name: 'tooltip',
+              value: isLockedMessage
+            }
+          ]
+        }
+      } else {
+        checkboxElement = 'input'
+        checkboxData = {
+          attrs: {
+            type: 'checkbox',
+            class: 'u-m-0 u-valign--middle',
+            'data-cy': 'selectItem',
+            name: isSelectableName || null,
+            value: isSelectableName ? item[trackBy] : null
+          },
+          domProps: { checked: checked },
+          on: { click: () => listeners.toggleSelect(item[trackBy]) }
+        }
       }
-    },
-    elementStyle () {
-      return (field) => {
-        const headerField = this.headerFields.find((hf) => hf.field === field)
-        let style = ''
 
-        if (!this.wrapped && typeof headerField.initialWidth !== 'undefined') {
-          style += `width: ${headerField.initialWidth}px;`
-        }
-        if (!this.wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
-          style += `max-width: ${headerField.initialMaxWidth}px;`
-        }
-        if (!this.wrapped && typeof headerField.initialMinWidth !== 'undefined') {
-          style += `min-width: ${headerField.initialMinWidth}px;`
-        }
-
-        return style
-      }
+      checkboxCell = [h('td', {
+        attrs: { class: 'c-data-table__cell--narrow' }
+      }, [h(checkboxElement, checkboxData)])]
     }
+
+    let flyoutCell = []
+    if (hasFlyout) {
+      flyoutCell = [h('td', {
+        attrs: {
+          class: 'overflow-visible'
+        },
+        scopedSlots: {
+          flyout: scopedSlots.flyout
+        }
+      }, [(scopedSlots.flyout && scopedSlots.flyout(item))])]
+    }
+
+    let expandableCell = []
+    if (isExpandable) {
+      expandableCell = [h('td', {
+        attrs: {
+          class: `c-data-table__cell--narrow ${expanded ? 'is-open' : ''}`,
+          title: Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')
+        },
+        on: {
+          click: () => listeners.toggleExpand(item[trackBy])
+        }
+      }, [h(DpWrapTrigger, {
+        props: {
+          expanded: expanded
+        }
+      })])]
+    }
+
+    let truncatableCell = []
+    if (isTruncatable) {
+      truncatableCell = [h('td', {
+        attrs: {
+          class: `c-data-table__cell--narrow ${wrapped ? 'is-open' : ''}`,
+          title: Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')
+        },
+        on: {
+          click: () => listeners.toggleWrap(item[trackBy])
+        }
+      }, [h(DpWrapTrigger, {
+        props: {
+          expanded: wrapped
+        }
+      })])]
+    }
+
+    const rowContent = [
+      ...draggableCell,
+      ...checkboxCell,
+      ...fields.map((field, idx) => {
+        let txt = item[field]
+        let highlighted = null
+        const headerField = headerFields.find((hf) => hf.field === field)
+        if (searchTerm && txt) {
+          txt = DomPurify.sanitize(txt)
+          highlighted = txt.replace(searchTerm, '<span style="background-color: yellow;">$&</span>')
+          highlighted = h('span', {
+            domProps: {
+              innerHTML: highlighted
+            }
+          })
+        }
+
+        let cellAttributes = {}
+        let cellInnerElement = null
+        let cellInnerElementStyle = ''
+        if (!wrapped && typeof headerField.initialWidth !== 'undefined') {
+          cellInnerElementStyle = `width: ${headerField.initialWidth}px;`
+        }
+        if (!wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
+          cellInnerElementStyle += `max-width: ${headerField.initialMaxWidth}px;`
+        }
+        if (!wrapped && typeof headerField.initialMinWidth !== 'undefined') {
+          cellInnerElementStyle += `min-width: ${headerField.initialMinWidth}px;`
+        }
+        if (isTruncatable) {
+          cellAttributes = {
+            attrs: {
+              class: 'c-data-table__resizable',
+              'data-col-idx': `${idx}`
+            }
+          }
+          cellInnerElement = h('div', {
+            attrs: {
+              class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
+              style: cellInnerElementStyle
+            }
+          }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])
+        }
+
+        return h('td',
+          {
+            ...cellAttributes,
+            key: `${field}:${idx}`,
+            scopedSlots: {
+              [field]: scopedSlots[field]
+            }
+          },
+          [cellInnerElement || (scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || '']
+        )
+      }),
+      ...flyoutCell,
+      ...expandableCell,
+      ...truncatableCell
+    ]
+
+    const content = [h('tr', {
+      attrs: {
+        class: `row ${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-row' : ''}`
+      }
+    }, rowContent)]
+
+    if (expanded && hasOwnProp(scopedSlots, 'expandedContent')) {
+      const expandedContent = scopedSlots.expandedContent(item) || ''
+      const expandedRow = h('tr',
+        {
+          attrs: {
+            class: `${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-content' : ''}`
+          },
+          on: {
+            mouseenter: (e) => e.target.previousSibling.classList.add('is-hovered-content'),
+            mouseleave: (e) => e.target.previousSibling.classList.remove('is-hovered-content')
+          }
+        },
+        [h('td', { attrs: { colspan: rowContent.length } }, expandedContent)]
+      )
+
+      content.push(expandedRow)
+    }
+
+    return content
   }
 }
 </script>

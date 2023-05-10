@@ -222,6 +222,7 @@ export default {
 
   data () {
     return {
+      highlight: null
     }
   },
 

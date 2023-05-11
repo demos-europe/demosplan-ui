@@ -5,7 +5,7 @@ import DpWrapTrigger from './DpWrapTrigger'
 import { hasOwnProp } from '../../../utils'
 
 export default {
-  name: 'DpTableRow',
+  name: 'DpTableRow2',
 
   functional: true,
 

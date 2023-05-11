@@ -98,7 +98,7 @@ import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
 export default {
-  name: "DpTableRow2.vue",
+  name: "DpTableRowTest.vue",
 
   components: {
     DpIcon,
@@ -225,12 +225,6 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    }
-  },
-
-  data () {
-    return {
-      highlight: null
     }
   },
 

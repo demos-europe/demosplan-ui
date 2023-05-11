@@ -56,8 +56,8 @@
             :name="field"
             :item="item" />
           <span
-              v-if="searchTerm && item[field]"
-              v-html="highlighted(field)" />
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
           <span v-else>
             {{ item[field] }}
           </span>
@@ -83,6 +83,7 @@
     </td>
 
     <td
+      v-if="isTruncatable"
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': wrapped }"
       :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"

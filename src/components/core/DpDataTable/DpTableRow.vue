@@ -39,20 +39,28 @@
           :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
           :style="elementStyle(field)">
           <slot
+            v-if="item"
             :name="field"
             :item="item">
-            <span
-              v-if="searchTerm && item[field]"
-              v-html="highlighted(field)" />
-            <span v-else>
-              {{ item[field] }}
-            </span>
           </slot>
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span v-else>
+            {{ item[field] }}
+          </span>
         </div>
         <template v-else>
           <slot
+            v-if="item"
             :name="field"
             :item="item" />
+          <span
+              v-if="searchTerm && item[field]"
+              v-html="highlighted(field)" />
+          <span v-else>
+            {{ item[field] }}
+          </span>
         </template>
       </td>
     </template>
@@ -76,7 +84,7 @@
 
     <td
       class="c-data-table__cell--narrow"
-      :class="{'is-open': wrapped}"
+      :class="{ 'is-open': wrapped }"
       :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
       @click="$listeners.toggleWrap(item[trackBy])">
       <dp-wrap-trigger :expanded="wrapped" />

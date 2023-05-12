@@ -2,13 +2,11 @@
   <tr
     class="row"
     :class="[{ 'opacity-7': isLoading }, { 'is-expanded-row': expanded }]">
-
     <td
       v-if="isDraggable"
       class="c-data-table__cell--narrow">
       <dp-icon icon="drag-handle" />
     </td>
-
     <td
       v-if="isSelectable"
       class="c-data-table__cell--narrow">
@@ -27,10 +25,9 @@
         :checked="checked"
         @click="$listeners.toggleSelect(item[trackBy])">
     </td>
-
     <template
-        v-for="(field, idx) in fields"
-        :key="`${field}:${idx}`">
+      v-for="(field, idx) in fields"
+      :key="`${field}:${idx}`">
       <td
         :class="{ 'c-data-table__resizable': isTruncatable }"
         :data-col-idx="`${idx}`">
@@ -39,32 +36,26 @@
           :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
           :style="elementStyle(field)">
           <slot
-            v-if="item"
             :name="field"
-            :item="item">
+            v-bind:item="item" >
+            <span
+              v-if="searchTerm && item[field]"
+              v-html="highlighted(field)" />
+            <span v-text="item[field]" v-else />
           </slot>
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span v-else>
-            {{ item[field] }}
-          </span>
         </div>
         <template v-else>
           <slot
-            v-if="item"
             :name="field"
-            :item="item" />
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span v-else>
-            {{ item[field] }}
-          </span>
+            v-bind:item="item">
+            <span
+              v-if="searchTerm && item[field]"
+              v-html="highlighted(field)" />
+            <span v-text="item[field]" v-else />
+          </slot>
         </template>
       </td>
     </template>
-
     <td
       v-if="hasFlyout"
       class="overflow-visible">
@@ -72,7 +63,6 @@
         name="flyout"
         :item="item" />
     </td>
-
     <td
       v-if="isExpandable"
       class="c-data-table__cell--narrow"
@@ -81,7 +71,6 @@
       @click="$listeners.toggleExpand(item[trackBy])">
       <dp-wrap-trigger :expanded="expanded" />
     </td>
-
     <td
       v-if="isTruncatable"
       class="c-data-table__cell--narrow"
@@ -90,7 +79,6 @@
       @click="$listeners.toggleWrap(item[trackBy])">
       <dp-wrap-trigger :expanded="wrapped" />
     </td>
-
   </tr>
 </template>
 
@@ -99,7 +87,7 @@ import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
 export default {
-  name: "DpTableRowTest.vue",
+  name: "DpTableRow.vue",
 
   components: {
     DpIcon,
@@ -234,6 +222,7 @@ export default {
       return (field) => {
         let itemValue = this.item[field]
         itemValue = DomPurify.sanitize(itemValue)
+
         return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
       }
     },

@@ -12,11 +12,13 @@
         :class="prefixClass('o-modal__content ' + contentClasses)"
         role="dialog">
         <button
-          :class="prefixClass('btn--blank o-link--default position--absolute u-right-0 u-p-0_5')"
+          :class="prefixClass('btn--blank o-link--default position--absolute u-right-0')"
           :aria-label="Translator.trans('close.window')"
           :title="Translator.trans('close.window')"
           @click.prevent.stop="toggle()">
-          <dp-icon icon="close" />
+          <dp-icon
+            icon="close"
+            size="large" />
         </button>
         <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
           <h2

@@ -1,7 +1,7 @@
 <template>
   <div>
     <select
-      id="item-count"
+      :id="selectId"
       class="o-form__control-select width-auto u-mr-0_25"
       @change="e => $emit('changed-count', parseInt(e.target.value))">
       <option
@@ -12,7 +12,7 @@
       </option>
     </select>
     <label
-      for="item-count"
+      :for="selectId"
       class="display--inline u-mb-0">
       {{ labelText }}
     </label>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid'
 export default {
   name: 'DpSelectPageItemCount',
 
@@ -29,14 +30,20 @@ export default {
       required: true
     },
 
+    labelText: {
+     type: String,
+     required: true
+    },
+
     pageCountOptions: {
       type: Array,
       required: true
-    },
+    }
+  },
 
-    labelText: {
-      type: String,
-      required: true
+  data () {
+    return {
+      selectId: uuid()
     }
   }
 }

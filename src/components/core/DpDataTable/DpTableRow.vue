@@ -41,7 +41,9 @@
             <span
               v-if="searchTerm && item[field]"
               v-html="highlighted(field)" />
-            <span v-text="item[field]" v-else />
+            <span
+               v-else
+               v-text="item[field]" />
           </slot>
         </div>
         <template v-else>

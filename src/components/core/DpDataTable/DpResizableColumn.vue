@@ -57,7 +57,7 @@ export default {
 
   computed: {
     isResizableColumn () {
-      return hasOwnProp(this.headerField, 'resizeable')? this.headerField.resizeable : true
+      return hasOwnProp(this.headerField, 'resizeable') ? this.headerField.resizeable : true
     }
   },
 
@@ -86,6 +86,7 @@ export default {
         const mouseMoved = cursorPos - this.cursorStart
         const newWidth = this.resizeWidth + mouseMoved
         const newNextWidth = this.nextWidth - mouseMoved
+
         if (newWidth > 25 && newNextWidth > 25) {
           this.resize.style.width = newWidth + 'px'
           this.nextEl.style.width = newNextWidth + 'px'

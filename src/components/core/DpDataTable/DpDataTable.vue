@@ -375,8 +375,15 @@ export default {
       const firstRow = this.tableEl.firstChild
       const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
       tableHeaders.forEach(tableHeader => {
-        const width = tableHeader.getBoundingClientRect().width
-        tableHeader.style.width = width + 'px'
+        /**
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
+         */
+        if(tableHeader.nodeType === 1) {
+          const width = tableHeader.getBoundingClientRect().width
+          tableHeader.style.width = width + 'px'
+        }
       })
 
       this.tableEl.style.tableLayout = 'fixed'

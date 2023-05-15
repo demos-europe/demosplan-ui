@@ -1,0 +1,17 @@
+{
+  "_status": {
+    "$description": "Token status is used internally to reflect maturity of each token.",
+    "review": {
+      "$description": "Token is being evaluated and may change over time.",
+      "value": "In Review"
+    },
+    "approved": {
+      "$description": "Token is approved to be used in production.",
+      "value": "Approved"
+    },
+    "deprecated": {
+      "$description": "Token is no longer recommended for use and may be removed.",
+      "value": "Deprecated"
+    }
+  }
+}

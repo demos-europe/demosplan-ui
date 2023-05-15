@@ -1,0 +1,24 @@
+{
+  "box-shadow": {
+    "1": {
+      "$description": "Smallest elevation. Use for Cards + Buttons.",
+      "value": "0 1px 4px rgb(0 0 0 / 22%), 0 1px 2px rgb(0 0 0 / 26%)",
+      "themeable": true
+    },
+    "2": {
+      "$description": "Medium elevation. Use for Elevated Cards + Buttons.",
+      "value": "0 4px 10px rgb(0 0 0 / 24%), 0 3px 4px rgb(0 0 0 / 25%)",
+      "themeable": true
+    },
+    "3": {
+      "$description": "Highest elevation. Use for Modals.",
+      "value": "0 8px 20px rgb(0 0 0 / 26%), 0 5px 7px rgb(0 0 0 / 24%)",
+      "themeable": true
+    },
+    "4": {
+      "$description": "Extra shadow optimized for boxes that take up 100% width or height of viewport. Use eg. for Sidebar, BottomBar.",
+      "value": "0 0 16px rgb(0 0 0 / 20%), 0 0 3px rgb(0 0 0 / 50%)",
+      "themeable": true
+    }
+  }
+}

@@ -22,51 +22,46 @@
           :translations="headerTranslations"
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll"
-          v-bind="$attrs"
-          v-on="$listeners">
-        <slot />
+          @toggle-wrap-all="toggleWrapAll">
       </dp-table-header>
       </thead>
 
-      //////////////////////<!-- ...  bodyEl not draggable... -->
-
+      <!-- ...  bodyEl not draggable... -->
 
       <tbody v-if="!isDraggable">
-      <template
-          v-if="!isLoading && items.length > 0"
-          v-for="(item, idx) in items">
-        <dp-table-row
-            :index="idx"
-            :checked="elementSelections[item[trackBy]] || false"
-            :expanded="expandedElements[item[trackBy]] || false"
-            :fields="headerFields.map(hf => hf.field)"
-            :has-flyout="hasFlyout"
-            :header-fields="headerFields"
-            :is-draggable="isDraggable"
-            :is-expandable="isExpandable"
-            :is-loading="isLoading && items.length > 0"
-            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
-            :is-resizable="isResizable"
-            :is-selectable="isSelectable"
-            :is-selectable-name="isSelectableName"
-            :is-truncatable="isTruncatable"
-            :item="item"
-            :search-term="searchTerm"
-            :track-by="trackBy"
-            :wrapped="wrappedElements[item[trackBy]] || false"
-            @toggle-expand="toggleExpand"
-            @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap"
-            v-bind="$attrs"
-            v-on="$listeners">
-          <slot />
-        </dp-table-row>
-      </template>
+        <template
+            v-if="!isLoading && items.length > 0"
+            v-for="(item, idx) in items">
+          <dp-table-row
+              :index="idx"
+              :checked="elementSelections[item[trackBy]] || false"
+              :expanded="expandedElements[item[trackBy]] || false"
+              :fields="headerFields.map(hf => hf.field)"
+              :has-flyout="hasFlyout"
+              :header-fields="headerFields"
+              :is-draggable="isDraggable"
+              :is-expandable="isExpandable"
+              :is-loading="isLoading && items.length > 0"
+              :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+              :is-locked-message="mergedTranslations.lockedForSelection"
+              :is-resizable="isResizable"
+              :is-selectable="isSelectable"
+              :is-selectable-name="isSelectableName"
+              :is-truncatable="isTruncatable"
+              :item="item"
+              :search-term="searchTerm"
+              :track-by="trackBy"
+              :wrapped="wrappedElements[item[trackBy]] || false"
+              @toggle-expand="toggleExpand"
+              @toggle-select="toggleSelect"
+              @toggle-wrap="toggleWrap">
+            <slot :name="item"
+                  v-bind:item="item" />
+          </dp-table-row>
+        </template>
       </tbody>
 
-      //////////////////// <!-- ...  bodyEl is draggable... -->
+      <!-- ...  bodyEl is draggable... -->
 
       <dp-draggable
           v-else
@@ -98,10 +93,9 @@
               :wrapped="wrappedElements[item[trackBy]] || false"
               @toggle-expand="toggleExpand"
               @toggle-select="toggleSelect"
-              @toggle-wrap="toggleWrap"
-              v-bind="$attrs"
-              v-on="$listeners">
-            <slot v-bind="$scopedSlots" />
+              @toggle-wrap="toggleWrap">
+            <slot :name="item"
+                  v-bind:item="item" />
           </dp-table-row>
         </template>
       </dp-draggable>
@@ -123,7 +117,7 @@
 
         <td
             :colspan="fields.length + (isSelectable ? 1 : 0)"
-            :class="{ 'u-pt': !isLoading }">
+            class="u-pt">
 
           <!-- ... isLoading true ... -->
 
@@ -148,10 +142,26 @@
 </template>
 
 <script>
-import DomPurify from "dompurify";
+import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
+import DomPurify from 'dompurify'
+import DpDraggable from '../DpDraggable'
+import DpLoading from '../../DpLoading/DpLoading'
+import DpTableHeader from './DpTableHeader'
+import DpTableRow from './DpTableRow'
 
 export default {
   name: "DpDataTable2",
+
+  components: {
+    DpTableRow,
+    DpTableHeader,
+    DpLoading,
+    DpDraggable
+  },
+
+  directives: {
+    cleanhtml: CleanHtml
+  },
 
   props: {
     // Adds flyout menu
@@ -359,6 +369,10 @@ export default {
 
     fields () {
       return this.headerFields.map(hf => hf.field)
+    },
+
+    headerTranslations () {
+      return this.extractTranslations(['headerSelectHint'])
     },
 
     indeterminate () {

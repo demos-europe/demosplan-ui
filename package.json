@@ -81,7 +81,7 @@
     "vue": "^2.7.14"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build-storybook": "build-storybook",
     "build-tokens": "node buildTokens.js",

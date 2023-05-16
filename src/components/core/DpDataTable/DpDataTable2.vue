@@ -23,39 +23,46 @@
             @toggle-expand-all="toggleExpandAll"
             @toggle-select-all="toggleSelectAll"
             @toggle-wrap-all="toggleWrapAll">
+          <template v-slot:[field]="item" v-for="field in fields">
+            <slot :name="`header-${field}`" v-bind:item="item" />
+          </template>
         </dp-table-header>
       </thead>
 
       <!-- ...  bodyEl not draggable... -->
 
       <tbody v-if="!isDraggable">
-        <template
-            v-if="!isLoading && items.length > 0"
-            v-for="(item, idx) in items">
-          <dp-table-row
-              :index="idx"
-              :checked="elementSelections[item[trackBy]] || false"
-              :expanded="expandedElements[item[trackBy]] || false"
-              :fields="headerFields.map(hf => hf.field)"
-              :has-flyout="hasFlyout"
-              :header-fields="headerFields"
-              :is-draggable="isDraggable"
-              :is-expandable="isExpandable"
-              :is-loading="isLoading && items.length > 0"
-              :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-              :is-locked-message="mergedTranslations.lockedForSelection"
-              :is-resizable="isResizable"
-              :is-selectable="isSelectable"
-              :is-selectable-name="isSelectableName"
-              :is-truncatable="isTruncatable"
-              :item="item"
-              :search-term="searchTerm"
-              :track-by="trackBy"
-              :wrapped="wrappedElements[item[trackBy]] || false"
-              @toggle-expand="toggleExpand"
-              @toggle-select="toggleSelect"
-              @toggle-wrap="toggleWrap" />
-        </template>
+      <template
+          v-if="!isLoading && items.length > 0"
+          v-for="(item, idx) in items">
+        <dp-table-row
+            :index="idx"
+            :checked="elementSelections[item[trackBy]] || false"
+            :expanded="expandedElements[item[trackBy]] || false"
+            :fields="fields"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-loading="isLoading && items.length > 0"
+            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-selectable-name="isSelectableName"
+            :is-truncatable="isTruncatable"
+            :item="item"
+            :search-term="searchTerm"
+            :track-by="trackBy"
+            :wrapped="wrappedElements[item[trackBy]] || false"
+            @toggle-expand="toggleExpand"
+            @toggle-select="toggleSelect"
+            @toggle-wrap="toggleWrap">
+          <template v-slot:[field]="item" v-for="field in fields">
+            <slot :name="field" v-bind:item="item" />
+          </template>
+        </dp-table-row>
+      </template>
       </tbody>
 
       <!-- ...  bodyEl is draggable... -->
@@ -94,7 +101,7 @@
         </template>
       </dp-draggable>
 
-      //////////////////////////// <!-- ... noResultsData ... -->
+      <!-- ... noResultsData ... -->
 
       <template v-if="searchTermSet">
         <td :colspan="fields.length + (isSelectable ? 1 : 0)"
@@ -103,7 +110,7 @@
         </td>
       </template>
 
-      //////////////////////////// <!-- ... noEntriesItem ... -->
+      <!-- ... noEntriesItem ... -->
 
       <!-- ... if no role items available ... -->
 

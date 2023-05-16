@@ -2,8 +2,8 @@
   <div>
     <table ref="tableEl" :class="tableClass">
       <colgroup v-if="headerFields.filter(field => field.colClass).length > 0">
-        <col v-for="field in headerFields" :class="field.colClass" />
         <col v-if="isDraggable || isSelectable" />
+        <col v-for="field in headerFields" :class="field.colClass" />
         <col v-if="hasFlyout || isExpandable || isTruncatable" />
       </colgroup>
 

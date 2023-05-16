@@ -2,6 +2,8 @@
 
 ## UNRELEASED
 
+## v0.1 - 2023-05-16
+
 ### Changed
 - ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking:** Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
 - ([#205](https://github.com/demos-europe/demosplan-ui/pull/205)) Move from Functional Component to Template in DpTableHeader ([@elmasdemos](https://github.com/elmasdemos))

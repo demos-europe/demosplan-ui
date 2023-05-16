@@ -23,7 +23,7 @@
         :name="isSelectableName || null"
         :value="isSelectableName ? item[trackBy] : null"
         :checked="checked"
-        @click="$listeners.toggleSelect(item[trackBy])">
+        @click="toggleSelect(item[trackBy])">
     </td>
     <template
       v-for="(field, idx) in fields"
@@ -70,7 +70,7 @@
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': expanded }"
       :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
-      @click="$listeners.toggleExpand(item[trackBy])">
+      @click="toggleExpand(item[trackBy])">
       <dp-wrap-trigger :expanded="expanded" />
     </td>
     <td
@@ -78,7 +78,7 @@
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': wrapped }"
       :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
-      @click="$listeners.toggleWrap(item[trackBy])">
+      @click="toggleWrap(item[trackBy])">
       <dp-wrap-trigger :expanded="wrapped" />
     </td>
   </tr>
@@ -245,6 +245,17 @@ export default {
 
         return style
       }
+    }
+  },
+  methods: {
+    toggleSelect (id) {
+      this.$emit('toggle-select', id)
+    },
+    toggleWrap (id) {
+      this.$emit('toggle-wrap', id)
+    },
+    toggleExpand (id) {
+      this.$emit('toggle-expand', id)
     }
   }
 }

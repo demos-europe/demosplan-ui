@@ -8,22 +8,22 @@
       </colgroup>
 
       <thead>
-      <dp-table-header
-          :checked="allSelected"
-          :has-flyout="hasFlyout"
-          :header-fields="headerFields"
-          :indeterminate="indeterminate"
-          :is-draggable="isDraggable"
-          :is-expandable="isExpandable"
-          :is-resizable="isResizable"
-          :is-selectable="isSelectable"
-          :is-sticky="hasStickyHeader"
-          :is-truncatable="isTruncatable"
-          :translations="headerTranslations"
-          @toggle-expand-all="toggleExpandAll"
-          @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll">
-      </dp-table-header>
+        <dp-table-header
+            :checked="allSelected"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :indeterminate="indeterminate"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-sticky="hasStickyHeader"
+            :is-truncatable="isTruncatable"
+            :translations="headerTranslations"
+            @toggle-expand-all="toggleExpandAll"
+            @toggle-select-all="toggleSelectAll"
+            @toggle-wrap-all="toggleWrapAll">
+        </dp-table-header>
       </thead>
 
       <!-- ...  bodyEl not draggable... -->
@@ -54,10 +54,7 @@
               :wrapped="wrappedElements[item[trackBy]] || false"
               @toggle-expand="toggleExpand"
               @toggle-select="toggleSelect"
-              @toggle-wrap="toggleWrap">
-            <slot :name="item"
-                  v-bind:item="item" />
-          </dp-table-row>
+              @toggle-wrap="toggleWrap" />
         </template>
       </tbody>
 
@@ -93,10 +90,7 @@
               :wrapped="wrappedElements[item[trackBy]] || false"
               @toggle-expand="toggleExpand"
               @toggle-select="toggleSelect"
-              @toggle-wrap="toggleWrap">
-            <slot :name="item"
-                  v-bind:item="item" />
-          </dp-table-row>
+              @toggle-wrap="toggleWrap" />
         </template>
       </dp-draggable>
 

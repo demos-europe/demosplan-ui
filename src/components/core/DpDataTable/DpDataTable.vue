@@ -38,7 +38,6 @@
           <dp-table-row
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
-            :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
             :has-flyout="hasFlyout"
             :header-fields="headerFields"
@@ -62,6 +61,14 @@
               <slot :name="field" v-bind:item="item" />
             </template>
           </dp-table-row>
+<!--          <dp-table-row-extended
+              :row-content="item"
+              :expanded="expandedElements[item[trackBy]] || false"
+              :is-loading="isLoading && items.length > 0">
+            <template v-slot:[`expandedContent`]="item">
+              <slot :name="`expandedContent`" v-bind:item="item" />
+            </template>
+          </dp-table-row-extended>-->
         </template>
       </tbody>
 
@@ -151,11 +158,13 @@ import DpDraggable from '../DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
+import DpTableRowExtended from './DpTableRowExtended.vue'
 
 export default {
   name: "DpDataTable",
 
   components: {
+    DpTableRowExtended,
     DpTableRow,
     DpTableHeader,
     DpLoading,

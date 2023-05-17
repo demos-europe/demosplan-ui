@@ -24,7 +24,7 @@
           @toggle-select-all="toggleSelectAll"
           @toggle-wrap-all="toggleWrapAll">
           <template v-slot:[`header-${field}`]="item" v-for="field in fields">
-            <slot :name="`header-${field}`" v-bind:item="item" />
+            <slot :name="`header-${field}`" v-bind="item" />
           </template>
         </dp-table-header>
       </thead>
@@ -58,7 +58,7 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template v-slot:[field]="item" v-for="field in fields">
-              <slot :name="field" v-bind:item="item" />
+              <slot :name="field" v-bind="item" />
             </template>
           </dp-table-row>
 <!--          <dp-table-row-extended
@@ -66,7 +66,7 @@
               :expanded="expandedElements[item[trackBy]] || false"
               :is-loading="isLoading && items.length > 0">
             <template v-slot:[`expandedContent`]="item">
-              <slot :name="`expandedContent`" v-bind:item="item" />
+              <slot :name="`expandedContent`" v-bind="item" />
             </template>
           </dp-table-row-extended>-->
         </template>
@@ -106,7 +106,7 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template v-slot:[field]="item" v-for="field in fields">
-              <slot :name="field" v-bind:item="item" />
+              <slot :name="field" v-bind="item" />
             </template>
           </dp-table-row>
         </template>

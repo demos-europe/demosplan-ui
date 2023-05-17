@@ -37,7 +37,7 @@
           :style="elementStyle(field)">
           <slot
             :name="field"
-            v-bind:item="item" >
+            v-bind="item" >
             <span
               v-if="searchTerm && item[field]"
               v-html="highlighted(field)" />
@@ -49,7 +49,7 @@
         <template v-else>
           <slot
             :name="field"
-            v-bind:item="item">
+            v-bind="item">
             <span
               v-if="searchTerm && item[field]"
               v-html="highlighted(field)" />
@@ -63,7 +63,7 @@
       class="overflow-visible">
       <slot
         name="flyout"
-        :item="item" />
+        v-bind="item" />
     </td>
     <td
       v-if="isExpandable"

@@ -1,15 +1,3 @@
-<!--<template>
-  <table>
-    <dp-table-row v-for="items">
-
-    </dp-table-row>
-    <template v-for="items">
-      <dp-table-row></dp-table-row>
-      <dp-table-row-expanded v-if="item.isExpanded"></dp-table-row-expanded>
-    </template>
-  </table>
-</template>-->
-
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'

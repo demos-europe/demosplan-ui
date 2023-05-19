@@ -1,10 +1,16 @@
 <template>
   <div>
-    <table ref="tableEl" :class="tableClass">
-      <colgroup v-if="headerFields.filter(field => field.colClass).length > 0">
+    <table
+      ref="tableEl"
+      :class="tableClass">
+      <colgroup
+          ref="colgroup"
+          v-if="headerFields.filter(field => field.colClass).length > 0">
         <col v-if="isDraggable || isSelectable" />
         <col v-for="field in headerFields" :class="field.colClass" />
-        <col v-if="hasFlyout || isExpandable || isTruncatable" />
+        <col v-if="hasFlyout" />
+        <col v-if="isExpandable" />
+        <col v-if="isTruncatable" />
       </colgroup>
 
       <thead>
@@ -58,17 +64,30 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template v-slot:[field]="item" v-for="field in fields">
-              <slot :name="field" v-bind="item" />
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
             </template>
           </dp-table-row>
-<!--          <dp-table-row-extended
-              :row-content="item"
-              :expanded="expandedElements[item[trackBy]] || false"
-              :is-loading="isLoading && items.length > 0">
-            <template v-slot:[`expandedContent`]="item">
-              <slot :name="`expandedContent`" v-bind="item" />
-            </template>
-          </dp-table-row-extended>-->
+
+          <!-- ...  DpTableRowExpanded ... -->
+
+          <tr
+            v-if="expandedElements[item[trackBy]] || false"
+            :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
+            <td
+              :class="`${isLoading ? 'opacity-7' : ''}`"
+              :colspan="colGroupLength">
+              <slot
+                name="expandedContent"
+                v-bind="item" />
+            </td>
+          </tr>
         </template>
       </tbody>
 
@@ -106,9 +125,30 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template v-slot:[field]="item" v-for="field in fields">
-              <slot :name="field" v-bind="item" />
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
             </template>
           </dp-table-row>
+
+          <!-- ...  DpTableRowExpanded ... -->
+
+          <tr
+              v-if="expandedElements[item[trackBy]] || false"
+              :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
+            <td
+                :class="`${isLoading ? 'opacity-7' : ''}`"
+                :colspan="colGroupLength">
+              <slot
+                  name="expandedContent"
+                  v-bind="item" />
+            </td>
+          </tr>
         </template>
       </dp-draggable>
 
@@ -377,6 +417,15 @@ export default {
       } else {
         return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.items.length
       }
+    },
+
+    colGroupLength () {
+      const colgroupElement = this.$refs.colgroup
+      if (colgroupElement) {
+        const colCount = colgroupElement.children.length;
+        return colCount
+      }
+      return null
     },
 
     fields () {

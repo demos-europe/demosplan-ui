@@ -1,12 +1,13 @@
 <template>
-  <tr v-if="expanded && $slots.expandedContent">
+  <tr class="is-expanded-content">
     <td
-        :class="`${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-content' : ''}`"
-        @mouseenter="addHoveredClass"
-        @mouseleave="removeHoveredClass"
-        :colspan="rowContent.length"
-    >
-      {{ $slots.expandedContent }}
+      :class="`${ isLoading ? 'opacity-7' : '' }`"
+      @mouseenter="addHoveredClass"
+      @mouseleave="removeHoveredClass"
+      :colspan="colGroupLength">
+      <slot
+        name="expandedContent"
+        v-bind="item" />
     </td>
   </tr>
 </template>
@@ -16,9 +17,17 @@ export default {
   name: 'DpTableRowExtended',
 
   props: {
-    expanded: Boolean,
     isLoading: Boolean,
-    rowContent: Array
+  },
+
+  computed: {
+    colGroupLength () {
+      const colgroupElement = this.$refs.colgroupRef
+      if (colgroupElement) {
+        return colgroupElement.children.length
+      }
+      return null
+    }
   },
 
   methods: {

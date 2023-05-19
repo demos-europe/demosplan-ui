@@ -2,37 +2,12 @@
   <tr
     ref="tableHeader"
     :class="{ 'c-data-table__sticky-header': isSticky }">
-    <template v-for="(hf, idx) in headerFields">
-      <dp-resizable-column
-        v-if="isResizable"
-        :is-last="headerFields.length === idx"
-        :header-field="hf"
-        :idx="idx">
-        {{ hf.label }}
-      </dp-resizable-column>
-      <th
-          v-else
-          v-text="hf.label"
-          scope="col">
-      </th>
-    </template>
     <th
-      v-if="isTruncatable"
+      v-if="isDraggable"
       scope="col"
-      class="c-data-table__cell--narrow"
-      @click="listeners.toggleWrapAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
+      class="c-data-table__cell--narrow">
+      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
     </th>
-    <th
-      v-if="isExpandable"
-      scope="col"
-      class="c-data-table__cell--narrow"
-      @click="listeners.toggleExpandAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
-    </th>
-    <th
-      v-if="hasFlyout"
-      scope="col" />
     <th
       v-if="isSelectable"
       scope="col"
@@ -43,15 +18,40 @@
         type="checkbox"
         data-cy="selectAll"
         ref="selectAll"
-        @click="$listeners.toggleSelectAll()"
+        @click="toggleSelectAll()"
         :checked="checked"
         :indeterminate="indeterminate" />
     </th>
+    <template v-for="(hf, idx) in headerFields">
+      <dp-resizable-column
+        v-if="isResizable"
+        :is-last="headerFields.length === idx"
+        :header-field="hf"
+        :idx="idx">
+        {{ hf.label }}
+      </dp-resizable-column>
+      <th
+        v-else
+        v-text="hf.label"
+        scope="col">
+      </th>
+    </template>
     <th
-      v-if="isDraggable"
+      v-if="hasFlyout"
+      scope="col" />
+    <th
+      v-if="isExpandable"
       scope="col"
-      class="c-data-table__cell--narrow">
-      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
+      class="c-data-table__cell--narrow"
+      @click="toggleExpandAll()">
+      <dp-wrap-trigger :title="translations.headerExpandHint" />
+    </th>
+    <th
+      v-if="isTruncatable"
+      scope="col"
+      class="c-data-table__cell--narrow"
+      @click="toggleWrapAll()">
+      <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
   </tr>
 </template>
@@ -130,6 +130,18 @@ export default {
     translations: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    toggleSelectAll () {
+      this.$emit('toggle-select-all')
+    },
+    toggleWrapAll () {
+      this.$emit('toggle-wrap-all')
+    },
+    toggleExpandAll () {
+      this.$emit('toggle-expand-all')
     }
   }
 }

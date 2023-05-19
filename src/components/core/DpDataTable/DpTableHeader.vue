@@ -34,6 +34,7 @@
         v-else
         v-text="hf.label"
         scope="col">
+        <slot :name="`header-${hf.label}`" v-bind="item" />
       </th>
     </template>
     <th

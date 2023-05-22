@@ -186,13 +186,11 @@ import DpDraggable from '../DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
-import DpTableRowExtended from './DpTableRowExtended.vue'
 
 export default {
   name: "DpDataTable",
 
   components: {
-    DpTableRowExtended,
     DpTableRow,
     DpTableHeader,
     DpLoading,

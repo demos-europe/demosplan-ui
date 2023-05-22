@@ -29,8 +29,8 @@
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
           @toggle-wrap-all="toggleWrapAll">
-          <template v-slot:[`header-${field}`]="item" v-for="field in fields">
-            <slot :name="`header-${field}`" v-bind="item" />
+          <template v-slot:[`header-${field}`] v-for="field in fields">
+            <slot :name="`header-${field}`" />
           </template>
         </dp-table-header>
       </thead>

@@ -175,7 +175,7 @@ import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 
 export default {
-  name: "DpDataTable",
+  name: 'DpDataTable',
 
   components: {
     DpTableRow,

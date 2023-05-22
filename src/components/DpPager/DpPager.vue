@@ -16,12 +16,12 @@
         class="display--inline-block"
         v-if="totalItems > Math.min(...limits)">
         <dp-multiselect
-          class="display--inline-block"
           v-model="itemsPerPage"
-          @select="handleSizeChange"
+          class="display--inline-block"
+          :options="filteredLimits"
           :searchable="false"
           selected-label=""
-          :options="filteredLimits" />
+          @select="handleSizeChange"/>
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">

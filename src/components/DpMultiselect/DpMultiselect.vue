@@ -13,7 +13,6 @@
         :deselect-group-label="deselectGroupLabel"
         :tag-placeholder="Translator.trans('tag.create')"
         :track-by="trackBy"
-        :placeholder="Translator.trans('choose')"
         v-dp-validate-multiselect="required">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}

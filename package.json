@@ -1,6 +1,6 @@
 {
   "name": "@demos-europe/demosplan-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "private": false,
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
@@ -87,7 +87,7 @@
     "build-tokens": "node buildTokens.js",
     "prepack": "yarn build && yarn build-tokens",
     "storybook": "start-storybook -p 6006",
-    "build": "yarn build:prod",
+    "build": "yarn test && yarn build:prod",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "watch": "webpack --watch"

@@ -6,7 +6,7 @@
       v-if="isDraggable"
       scope="col"
       class="c-data-table__cell--narrow">
-      <dp-icon class="c-data-table__drag-handle" :icon="drag-handle" />
+      <dp-icon class="c-data-table__drag-handle" icon="drag-handle" />
     </th>
     <th
       v-if="isSelectable"

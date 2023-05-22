@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+### Fixed
+- Remove duplicated prefix from space tokens ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.1 - 2023-05-16
 
 ### Changed

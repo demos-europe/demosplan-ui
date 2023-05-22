@@ -2,7 +2,6 @@
   <div>
     <vue-multiselect
         :value="value"
-        @input="newVal => $emit('input', newVal)"
         :options="options"
         :label="label"
         :multiple="multiple"
@@ -14,7 +13,9 @@
         :tag-placeholder="Translator.trans('tag.create')"
         :track-by="trackBy"
         :placeholder="Translator.trans('choose')"
-        v-dp-validate-multiselect="required">
+        v-dp-validate-multiselect="required"
+        @input="newVal => $emit('input', newVal)"
+        @select="newVal => $emit('select', newVal)">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}
       </template>

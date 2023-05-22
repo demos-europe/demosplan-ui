@@ -7,9 +7,10 @@
     :aria-hidden="busy"
     v-on="$listeners">
     <!-- @slot By default, the slot displays the button text. Use to render additional markup, e.g. an icon. -->
-    <slot>
-      <span v-text="text" />
-    </slot>
+    <slot v-if="!!(this.$slots.default || [])[0]" />
+    <span
+        v-else
+        v-text="text" />
   </component>
 </template>
 

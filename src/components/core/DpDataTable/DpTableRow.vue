@@ -294,7 +294,7 @@ export default {
           }
           cellInnerElement = h('div', {
             attrs: {
-              class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
+              class: `${wrapped ? 'c-data-table__resizable--wrapped break-words' : 'c-data-table__resizable--truncated break-words'}`,
               style: cellInnerElementStyle
             }
           }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])

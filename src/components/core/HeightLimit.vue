@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-word-break overflow-x-auto">
+  <div class="break-words overflow-x-auto">
     <dp-text-wrapper :text="currentText !== '' ? currentText : ' '" />
 
     <button

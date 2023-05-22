@@ -3,12 +3,12 @@
     class="c-loading"
     :class="{
       'c-loading--overlay': overlay,
-      'flex flex-items-center space-inline-xs': !overlay
+      'flex items-center space-inline-xs': !overlay
     }"
     @click.prevent="">
     <div
       v-if="overlay"
-      class="c-loading__inner flex flex-items-center space-inline-xs">
+      class="c-loading__inner flex items-center space-inline-xs">
       <span class="c-loading__spinner" />
       <span
         v-if="!hideLabel"

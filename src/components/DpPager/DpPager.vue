@@ -54,8 +54,8 @@ export default {
 
     totalItems: {
       required: false,
-      type: String,
-      default: '1'
+      type: Number,
+      default: 1
     },
 
     totalPages: {
@@ -66,8 +66,8 @@ export default {
 
     perPage: {
       required: false,
-      type: String,
-      default: '1'
+      type: Number,
+      default: 1
     },
 
     limits: {

@@ -4,7 +4,7 @@
       class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal display--inline-block"
       :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
         <dp-sliding-pagination
-          v-if="Number(totalItems) > Math.min(...limits)"
+          v-if="totalItems > Math.min(...limits)"
           class="display--inline-block"
           :current="currentPage"
           :nonSlidingSize="3"
@@ -14,7 +14,7 @@
           @page-change="handlePageChange" />
       <div
         class="display--inline-block"
-        v-if="Number(totalItems) > Math.min(...limits)">
+        v-if="totalItems > Math.min(...limits)">
         <dp-multiselect
           class="display--inline-block"
           v-model="itemsPerPage"
@@ -85,9 +85,9 @@ export default {
 
   computed: {
     filteredLimits () {
-      const filtered = this.limits.filter(limit => Number(limit) <= Number(this.totalItems))
+      const filtered = this.limits.filter(limit => limit <= this.totalItems)
 
-      if (filtered.length < this.limits.length && Number(this.totalItems) > filtered[filtered.length - 1]) {
+      if (filtered.length < this.limits.length && this.totalItems > filtered[filtered.length - 1]) {
         filtered.push(this.totalItems)
       }
 

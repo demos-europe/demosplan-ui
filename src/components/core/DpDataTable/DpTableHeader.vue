@@ -18,7 +18,7 @@
         type="checkbox"
         data-cy="selectAll"
         ref="selectAll"
-        @click="toggleSelectAll()"
+        @click="$listeners.toggleSelectAll()"
         :checked="checked"
         :indeterminate="indeterminate" />
     </th>
@@ -44,14 +44,14 @@
       v-if="isExpandable"
       scope="col"
       class="c-data-table__cell--narrow"
-      @click="toggleExpandAll()">
+      @click="$listeners.toggleExpandAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
     <th
       v-if="isTruncatable"
       scope="col"
       class="c-data-table__cell--narrow"
-      @click="toggleWrapAll()">
+      @click="$listeners.toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
   </tr>

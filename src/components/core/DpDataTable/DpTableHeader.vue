@@ -28,13 +28,16 @@
         :is-last="headerFields.length === idx"
         :header-field="hf"
         :idx="idx">
-        {{ hf.label }}
+        <slot :name="`header-${hf.field}`">
+          <span v-if="hf.label" v-text="hf.label" />
+        </slot>
       </dp-resizable-column>
       <th
         v-else
-        v-text="hf.label"
         scope="col">
-        <slot :name="`header-${hf.field}`" />
+        <slot :name="`header-${hf.field}`">
+          <span v-if="hf.label" v-text="hf.label" />
+        </slot>
       </th>
     </template>
     <th

@@ -79,7 +79,7 @@ export default {
 
   data () {
     return {
-      itemsPerPage: Number(this.perPage) <= Number(this.totalItems) ? this.perPage : this.totalItems
+      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems
     }
   },
 

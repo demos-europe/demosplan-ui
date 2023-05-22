@@ -54,8 +54,8 @@ export default {
 
     totalItems: {
       required: false,
-      type: String,
-      default: '1'
+      type: Number,
+      default: 1
     },
 
     totalPages: {
@@ -66,8 +66,8 @@ export default {
 
     perPage: {
       required: false,
-      type: String,
-      default: '1'
+      type: Number,
+      default: 1
     },
 
     limits: {
@@ -79,7 +79,7 @@ export default {
 
   data () {
     return {
-      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems
+      itemsPerPage: this.perPage <= this.totalItems ? this.perPage.toString() : this.totalItems.toString()
     }
   },
 

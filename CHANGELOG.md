@@ -2,6 +2,11 @@
 
 ## UNRELEASED
 
+## v0.1.1 - 2023-05-22
+
+**NOTE:** This release contains a slightly different changelog for v0.1. than the one that was published before.
+Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed until after the release.
+
 ### Fixed
 - Remove duplicated prefix from space tokens ([@spiess-demos](https://github.com/spiess-demos))
 

@@ -85,7 +85,7 @@ export default {
 
   computed: {
     filteredLimits () {
-      const filtered = this.limits.filter(limit => limit <= Number(this.totalItems))
+      const filtered = this.limits.filter(limit => Number(limit) <= Number(this.totalItems))
 
       if (filtered.length < this.limits.length && Number(this.totalItems) > filtered[filtered.length - 1]) {
         filtered.push(this.totalItems)

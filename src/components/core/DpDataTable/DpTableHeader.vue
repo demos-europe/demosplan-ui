@@ -6,7 +6,9 @@
       v-if="isDraggable"
       scope="col"
       class="c-data-table__cell--narrow">
-      <dp-icon class="c-data-table__drag-handle" icon="drag-handle" />
+      <dp-icon
+        class="c-data-table__drag-handle"
+        icon="drag-handle" />
     </th>
     <th
       v-if="isSelectable"
@@ -19,8 +21,7 @@
         data-cy="selectAll"
         ref="selectAll"
         @click="$listeners.toggleSelectAll()"
-        :checked="checked"
-        :indeterminate="indeterminate" />
+        :checked="checked" />
     </th>
     <template v-for="(hf, idx) in headerFields">
       <dp-resizable-column
@@ -138,15 +139,15 @@ export default {
   },
 
   methods: {
-    toggleSelectAll () {
-      this.$emit('toggle-select-all')
-    },
-    toggleWrapAll () {
-      this.$emit('toggle-wrap-all')
-    },
-    toggleExpandAll () {
-      this.$emit('toggle-expand-all')
+    setIndeterminateState () {
+      if (this.$refs.selectAll && this.indeterminate) {
+        this.$refs.selectAll.indeterminate = this.indeterminate
+      }
     }
+  },
+
+  mounted() {
+    this.setIndeterminateState()
   }
 }
 </script>

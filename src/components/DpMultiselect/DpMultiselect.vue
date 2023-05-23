@@ -15,8 +15,13 @@
       :track-by="trackBy"
       :value="value"
       v-dp-validate-multiselect="required"
+      @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
-      @select="newVal => $emit('select', newVal)">
+      @open="newVal => $emit('open', newVal)"
+      @remove="newVal => $emit('remove', newVal)"
+      @search-change="newVal => $emit('search-change', newVal)"
+      @select="newVal => $emit('select', newVal)"
+      @tag="newVal => $emit('tag', newVal)">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}
       </template>

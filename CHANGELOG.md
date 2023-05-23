@@ -2,10 +2,27 @@
 
 ## UNRELEASED
 
+### Fixed
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Allow number as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add event listener for select for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add prop for searchable for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Show buttons for select all and unselect all only if option for multiple is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.1.1 - 2023-05-22
+
+**NOTE:** This release contains a slightly different changelog for v0.1. than the one that was published before.
+Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed until after the release.
+
+### Fixed
+- Remove duplicated prefix from space tokens ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.1 - 2023-05-16
 
 ### Changed
-- ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking:** Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
+- ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) **Breaking**: Add design tokens, split generated Scss into multiple files ([@ahmad-demos](https://github.com/ahmad-demos), [@spiess-demos](https://github.com/spiess-demos))
+- ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking**: Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
 - ([#205](https://github.com/demos-europe/demosplan-ui/pull/205)) Move from Functional Component to Template in DpTableHeader ([@elmasdemos](https://github.com/elmasdemos))
 - ([#203](https://github.com/demos-europe/demosplan-ui/pull/203)) Move from Functional Component to Template in DpContextualHelp ([@salisdemos](https://github.com/salisdemos))
 - ([#202](https://github.com/demos-europe/demosplan-ui/pull/202)) Move from Functional Component to Template in DpSlidingPagination ([@salisdemos](https://github.com/salisdemos))
@@ -19,10 +36,6 @@
 ### Changed
 
 - ([#175](https://github.com/demos-europe/demosplan-ui/pull/175)) adjust layout of DpPager ([@muellerdemos](https://github.com/muellerdemos))
-
-### Changed
-
-- **Breaking**: ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) Add color design tokens, split generated Scss into multiple files ([@ahmad-demos](https://github.com/ahmad-demos), [@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.20 - 2023-04-18
 

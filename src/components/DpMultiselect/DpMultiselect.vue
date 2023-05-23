@@ -26,11 +26,15 @@
       </template>
 
       <template v-slot:option="props">
-        <slot name="option" />
+        <slot
+          :propsOption="props"
+          name="option" />
       </template>
 
       <template v-slot:tag="props">
-        <slot name="tag" />
+        <slot
+          :propsTag="props"
+          name="tag" />
       </template>
 
       <!-- put more slots here -->

@@ -141,7 +141,7 @@ export default {
     },
 
     value: {
-      type: [String, Number],
+      type: [String, Number, Array, Object],
       required: false,
       default: ''
     }

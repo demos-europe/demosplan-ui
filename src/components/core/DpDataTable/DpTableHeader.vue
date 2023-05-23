@@ -146,7 +146,7 @@ export default {
 
   methods: {
     setIndeterminate () {
-      if (this.$refs.selectAll) {
+      if (this.isSelectable) {
         this.$refs.selectAll.indeterminate = this.indeterminate
       }
     }

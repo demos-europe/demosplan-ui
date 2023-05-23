@@ -26,7 +26,7 @@
       </template>
 
       <template v-slot:option="props">
-        <slot name="options" />
+        <slot name="option" />
       </template>
 
       <template v-slot:tag="props">

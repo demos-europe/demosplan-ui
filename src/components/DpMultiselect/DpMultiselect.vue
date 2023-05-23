@@ -1,20 +1,22 @@
 <template>
   <div>
     <vue-multiselect
-        :value="value"
-        @input="newVal => $emit('input', newVal)"
-        :options="options"
-        :label="label"
-        :multiple="multiple"
-        :select-label="selectLabel"
-        :select-group-label="selectGroupLabel"
-        :selected-label="selectedLabel"
-        :deselect-label="deselectLabel"
-        :deselect-group-label="deselectGroupLabel"
-        :tag-placeholder="Translator.trans('tag.create')"
-        :track-by="trackBy"
-        :placeholder="Translator.trans('choose')"
-        v-dp-validate-multiselect="required">
+      :deselect-group-label="deselectGroupLabel"
+      :deselect-label="deselectLabel"
+      :label="label"
+      :multiple="multiple"
+      :options="options"
+      :placeholder="Translator.trans('choose')"
+      :searchable="searchable"
+      :select-group-label="selectGroupLabel"
+      :select-label="selectLabel"
+      :selected-label="selectedLabel"
+      :tag-placeholder="Translator.trans('tag.create')"
+      :track-by="trackBy"
+      :value="value"
+      v-dp-validate-multiselect="required"
+      @input="newVal => $emit('input', newVal)"
+      @select="newVal => $emit('select', newVal)">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}
       </template>
@@ -33,7 +35,9 @@
 
       <!-- put more slots here -->
 
-      <template v-slot:beforeList="props">
+      <template
+        v-if="multiple"
+        v-slot:beforeList="props">
         <div class="border-bottom">
           <button
               class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
@@ -100,6 +104,12 @@ export default {
       default: false
     },
 
+    searchable: {
+      required: false,
+      type: Boolean,
+      default: true
+    },
+
     selectionControls: {
       required: false,
       type: Boolean,
@@ -131,7 +141,7 @@ export default {
     },
 
     value: {
-      type: String,
+      type: [String, Number],
       required: false,
       default: ''
     }

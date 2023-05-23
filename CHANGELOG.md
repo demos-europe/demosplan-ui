@@ -2,6 +2,14 @@
 
 ## UNRELEASED
 
+### Fixed
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Allow number as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add event listener for select for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add prop for searchable for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Show buttons for select all and unselect all only if option for multiple is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.1.1 - 2023-05-22
 
 **NOTE:** This release contains a slightly different changelog for v0.1. than the one that was published before.

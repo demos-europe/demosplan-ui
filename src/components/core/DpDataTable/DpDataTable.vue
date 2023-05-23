@@ -249,10 +249,6 @@ export default {
   watch: {
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
-    },
-
-    indeterminate () {
-      this.setIndeterminate()
     }
   },
 
@@ -280,12 +276,6 @@ export default {
     forceElementSelections (itemsStatusObject) {
       this.elementSelections = itemsStatusObject
       this.selectedElements = this.filterElementSelections()
-    },
-
-    setIndeterminate () {
-      if (this.isSelectable) {
-        this.$refs.selectAll.indeterminate = this.indeterminate
-      }
     },
 
     resetSelection () {
@@ -412,7 +402,6 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
-    this.setIndeterminate()
   },
 
   render: function (h) {

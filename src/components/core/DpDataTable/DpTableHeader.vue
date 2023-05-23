@@ -138,16 +138,22 @@ export default {
     }
   },
 
+  watch: {
+    indeterminate () {
+      this.setIndeterminate()
+    }
+  },
+
   methods: {
-    setIndeterminateState () {
-      if (this.$refs.selectAll && this.indeterminate) {
+    setIndeterminate () {
+      if (this.$refs.selectAll) {
         this.$refs.selectAll.indeterminate = this.indeterminate
       }
     }
   },
 
   mounted() {
-    this.setIndeterminateState()
+    this.setIndeterminate()
   }
 }
 </script>

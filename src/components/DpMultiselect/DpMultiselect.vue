@@ -27,13 +27,13 @@
 
       <template v-slot:option="props">
         <slot
-          :propsOption="props"
+          :props="props"
           name="option" />
       </template>
 
       <template v-slot:tag="props">
         <slot
-          :propsTag="props"
+          :props="props"
           name="tag" />
       </template>
 

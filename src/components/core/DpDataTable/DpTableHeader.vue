@@ -152,7 +152,7 @@ export default {
     }
   },
 
-  mounted() {
+  beforeUpdate() {
     this.setIndeterminate()
   }
 }

@@ -29,7 +29,6 @@ import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTabs from './DpTabs/DpTabs'
 import DpTextWrapper from './DpTextWrapper'
 import DpToggleForm from './DpToggleForm'
-import DpTooltipIcon from './DpTooltipIcon'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList/DpTreeList'
 import DpUploadFiles from './DpUpload/DpUploadFiles'
@@ -69,7 +68,6 @@ export {
   DpTabs,
   DpTextWrapper,
   DpToggleForm,
-  DpTooltipIcon,
   DpTransitionExpand,
   DpTreeList,
   DpUploadFiles,

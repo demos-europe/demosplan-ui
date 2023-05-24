@@ -11,6 +11,7 @@ import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpFormRow from './DpFormRow/DpFormRow'
+import DpHeightLimit from './DpHeightLimit/DpHeightLimit'
 import DpIcon from './DpIcon/DpIcon'
 import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
@@ -48,7 +49,6 @@ import {
   DpDraggable,
   DpEditableList,
   DpEditor,
-  DpHeightLimit,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,

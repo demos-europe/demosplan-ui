@@ -12,7 +12,6 @@ import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpDraggable from "./DpDraggable"
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpHeightLimit from './HeightLimit'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
@@ -47,7 +46,6 @@ export {
   DpDraggable,
   DpEditableList,
   DpEditor,
-  DpHeightLimit,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,

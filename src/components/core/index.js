@@ -2,7 +2,6 @@ import dataTableSearch from './DpDataTable/DataTableSearch'
 import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
 import DpBulkEditHeader from './DpBulkEditHeader'
-import DpButtonIcon from './DpButtonIcon'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
@@ -38,7 +37,6 @@ export {
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
-  DpButtonIcon,
   DpCard,
   DpChangeStateAtDate,
   DpColumnSelector,

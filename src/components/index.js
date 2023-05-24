@@ -1,5 +1,6 @@
 import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
+import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
@@ -37,7 +38,6 @@ import {
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
-  DpButtonIcon,
   DpCard,
   DpChangeStateAtDate,
   DpColumnSelector,

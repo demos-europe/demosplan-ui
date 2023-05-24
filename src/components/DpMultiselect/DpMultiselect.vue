@@ -1,6 +1,7 @@
 <template>
   <div>
     <vue-multiselect
+      :close-on-select="closeOnSelect"
       :deselect-group-label="deselectGroupLabel"
       :deselect-label="deselectLabel"
       :label="label"
@@ -80,6 +81,12 @@ export default {
   },
 
   props: {
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     deselectLabel: {
       type: String,
       required: false,

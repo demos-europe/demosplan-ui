@@ -15,6 +15,7 @@ import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
+import DpModal from './DpModal/DpModal'
 import DpMultiselect from './DpMultiselect/DpMultiselect'
 import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
@@ -46,7 +47,6 @@ import {
   DpEditableList,
   DpEditor,
   DpHeightLimit,
-  DpModal,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,

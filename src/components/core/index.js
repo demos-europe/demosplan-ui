@@ -14,7 +14,6 @@ import DpDraggable from "./DpDraggable"
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
 import DpHeightLimit from './HeightLimit'
-import DpModal from './DpModal'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
@@ -53,7 +52,6 @@ export {
   DpEditableList,
   DpEditor,
   DpHeightLimit,
-  DpModal,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,

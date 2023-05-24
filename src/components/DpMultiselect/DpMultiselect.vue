@@ -1,6 +1,7 @@
 <template>
   <div>
     <vue-multiselect
+      :close-on-select="closeOnSelect"
       :deselect-group-label="deselectGroupLabel"
       :deselect-label="deselectLabel"
       :label="label"
@@ -15,8 +16,13 @@
       :track-by="trackBy"
       :value="value"
       v-dp-validate-multiselect="required"
+      @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
-      @select="newVal => $emit('select', newVal)">
+      @open="newVal => $emit('open', newVal)"
+      @remove="newVal => $emit('remove', newVal)"
+      @search-change="newVal => $emit('search-change', newVal)"
+      @select="newVal => $emit('select', newVal)"
+      @tag="newVal => $emit('tag', newVal)">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}
       </template>
@@ -26,31 +32,37 @@
       </template>
 
       <template v-slot:option="props">
-        <slot name="options" />
+        <slot
+          :props="props"
+          name="option" />
       </template>
 
       <template v-slot:tag="props">
-        <slot name="tag" />
+        <slot
+          :props="props"
+          name="tag" />
       </template>
 
       <!-- put more slots here -->
 
       <template
-        v-if="multiple"
+        v-if="selectionControls"
         v-slot:beforeList="props">
         <div class="border-bottom">
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              type="button"
-              :disabled="value.length === options.length === 0"
-              @click="$emit('select-all')">
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === options.length === 0"
+            type="button"
+            v-text="Translator.trans('select.all')"
+            @click="$emit('select-all')">
           </button>
 
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              type="button"
-              :disabled="value.length === 0"
-              @click="$emit('unselect-all')">
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === 0"
+            type="button"
+            v-text="Translator.trans('unselect.all')"
+            @click="$emit('unselect-all')">
           </button>
         </div>
       </template>
@@ -69,6 +81,12 @@ export default {
   },
 
   props: {
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     deselectLabel: {
       type: String,
       required: false,
@@ -141,7 +159,7 @@ export default {
     },
 
     value: {
-      type: [String, Number],
+      type: [String, Number, Array, Object],
       required: false,
       default: ''
     }

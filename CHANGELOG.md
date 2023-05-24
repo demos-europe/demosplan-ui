@@ -3,12 +3,11 @@
 ## UNRELEASED
 
 ### Fixed
-- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Allow number as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add event listener for select for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-
-### Changed
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Allow number, array and object as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/237)) Add event listener for all events in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add prop for searchable for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Show buttons for select all and unselect all only if option for multiple is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Show buttons for select all and unselect all only if selectionControls is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Bind props to slots, so they are available for parent ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## v0.1.1 - 2023-05-22
 

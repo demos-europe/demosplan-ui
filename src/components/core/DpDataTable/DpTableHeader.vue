@@ -15,8 +15,8 @@
       scope="col"
       class="c-data-table__cell--narrow">
       <input
-        :aria-label="this.translations.headerSelectHint"
-        :title="this.translations.headerSelectHint"
+        :aria-label="translations.headerSelectHint"
+        :title="translations.headerSelectHint"
         type="checkbox"
         data-cy="selectAll"
         ref="selectAll"

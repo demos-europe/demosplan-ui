@@ -21,7 +21,6 @@ import DpObscure from './DpObscure'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
-import DpSlidebar from './DpSlidebar'
 import DpStickyElement from './shared/DpStickyElement'
 import DpSwitcher from './DpSwitcher'
 import DpTab from './DpTabs/DpTab'
@@ -62,7 +61,6 @@ export {
   DpRegisterFlyout,
   DpSelectPageItemCount,
   DpSkeletonBox,
-  DpSlidebar,
   DpStickyElement,
   DpSwitcher,
   DpTab,

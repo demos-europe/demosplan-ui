@@ -25,7 +25,7 @@
 <script>
 import { hasOwnProp } from '../../utils'
 import { SideNav } from '../../lib'
-import DpIcon from '../DpIcon/DpIcon'
+import DpIcon from '../DpIcon/DpIcon.vue'
 
 export default {
   name: 'DpSlidebar',

@@ -22,6 +22,7 @@ import DpRadio from './DpRadio/DpRadio'
 import DpResettableInput from './DpResettableInput/DpResettableInput'
 import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
+import DpSlidebar from './DpSlidebar/DpSlidebar'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
 import DpTextArea from './DpTextArea/DpTextArea'
@@ -51,7 +52,6 @@ import {
   DpRegisterFlyout,
   DpSelectPageItemCount,
   DpSkeletonBox,
-  DpSlidebar,
   DpStickyElement,
   DpSwitcher,
   DpTab,

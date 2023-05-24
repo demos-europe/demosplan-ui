@@ -26,6 +26,8 @@ import DpSelect from './DpSelect/DpSelect'
 import DpSlidebar from './DpSlidebar/DpSlidebar'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
+import DpTab from './DpTabs/DpTab'
+import DpTabs from './DpTabs/DpTabs'
 import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
@@ -55,10 +57,8 @@ import {
   DpSkeletonBox,
   DpStickyElement,
   DpSwitcher,
-  DpTab,
   DpTableCard,
   DpTableCardListHeader,
-  DpTabs,
   DpTextWrapper,
   DpToggleForm,
   DpTransitionExpand,

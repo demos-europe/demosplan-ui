@@ -22,10 +22,8 @@ import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpStickyElement from './shared/DpStickyElement'
 import DpSwitcher from './DpSwitcher'
-import DpTab from './DpTabs/DpTab'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
-import DpTabs from './DpTabs/DpTabs'
 import DpTextWrapper from './DpTextWrapper'
 import DpToggleForm from './DpToggleForm'
 import DpTransitionExpand from './DpTransitionExpand'
@@ -60,10 +58,8 @@ export {
   DpSkeletonBox,
   DpStickyElement,
   DpSwitcher,
-  DpTab,
   DpTableCard,
   DpTableCardListHeader,
-  DpTabs,
   DpTextWrapper,
   DpToggleForm,
   DpTransitionExpand,

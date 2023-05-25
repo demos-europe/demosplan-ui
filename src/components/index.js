@@ -2,6 +2,7 @@ import DpAccordion from './DpAccordion/DpAccordion'
 import DpButton from './DpButton/DpButton'
 import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
+import DpCard from './DpCard/DpCard'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
 import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
@@ -39,7 +40,6 @@ import {
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,
-  DpCard,
   DpChangeStateAtDate,
   DpColumnSelector,
   DpCopyPasteButton,

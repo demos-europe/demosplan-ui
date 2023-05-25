@@ -32,6 +32,7 @@ import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
+import DpToggleForm from './DpToggleForm/DpToggleForm'
 import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
@@ -60,7 +61,6 @@ import {
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,
-  DpToggleForm,
   DpTransitionExpand,
   DpTreeList,
   DpUploadFiles,

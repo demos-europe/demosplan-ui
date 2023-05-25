@@ -21,7 +21,6 @@ import DpSwitcher from './DpSwitcher'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTextWrapper from './DpTextWrapper'
-import DpToggleForm from './DpToggleForm'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList/DpTreeList'
 import DpUploadFiles from './DpUpload/DpUploadFiles'
@@ -53,7 +52,6 @@ export {
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,
-  DpToggleForm,
   DpTransitionExpand,
   DpTreeList,
   DpUploadFiles,

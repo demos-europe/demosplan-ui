@@ -1,4 +1,5 @@
 import DpAccordion from './DpAccordion/DpAccordion'
+import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
 import DpButton from './DpButton/DpButton'
 import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
@@ -40,7 +41,6 @@ import DpToggle from './DpToggle/DpToggle'
 import {
   dataTableSearch,
   DpAnonymizeText,
-  DpAutocomplete,
   DpBulkEditHeader,
   DpChangeStateAtDate,
   DpColumnSelector,

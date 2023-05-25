@@ -1,6 +1,5 @@
 import dataTableSearch from './DpDataTable/DataTableSearch'
 import DpAnonymizeText from './DpAnonymizeText'
-import DpAutocomplete from './DpAutocomplete'
 import DpBulkEditHeader from './DpBulkEditHeader'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
@@ -31,7 +30,6 @@ import MultistepNav from './MultistepNav'
 export {
   dataTableSearch,
   DpAnonymizeText,
-  DpAutocomplete,
   DpBulkEditHeader,
   DpChangeStateAtDate,
   DpColumnSelector,

@@ -16,7 +16,6 @@ import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
-import DpSkeletonBox from './DpSkeletonBox'
 import DpStickyElement from './shared/DpStickyElement'
 import DpSwitcher from './DpSwitcher'
 import DpTableCard from './DpTableCardList/DpTableCard'
@@ -49,7 +48,6 @@ export {
   DpObscure,
   DpRegisterFlyout,
   DpSelectPageItemCount,
-  DpSkeletonBox,
   DpStickyElement,
   DpSwitcher,
   DpTableCard,

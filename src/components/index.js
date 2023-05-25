@@ -21,6 +21,7 @@ import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpModal from './DpModal/DpModal'
 import DpMultiselect from './DpMultiselect/DpMultiselect'
+import DpMultistepNav from './DpMultistepNav/DpMultistepNav'
 import DpPager from './DpPager/DpPager'
 import DpProgressBar from './DpProgressBar/DpProgressBar'
 import DpRadio from './DpRadio/DpRadio'
@@ -66,7 +67,6 @@ import {
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,
-  MultistepNav
 } from './core/'
 
 export {
@@ -105,6 +105,7 @@ export {
   DpInlineNotification,
   DpModal,
   DpMultiselect,
+  DpMultistepNav,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
@@ -136,6 +137,5 @@ export {
   DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash,
-  MultistepNav
+  getFileIdsByHash
 }

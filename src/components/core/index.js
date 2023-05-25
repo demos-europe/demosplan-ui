@@ -25,7 +25,6 @@ import DpTreeList from './DpTreeList/DpTreeList'
 import DpUploadFiles from './DpUpload/DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
 import { getFileIdsByHash } from './DpUpload/utils/GetFileIdsByHash'
-import MultistepNav from './MultistepNav'
 
 export {
   dataTableSearch,
@@ -54,6 +53,5 @@ export {
   DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash,
-  MultistepNav
+  getFileIdsByHash
 }

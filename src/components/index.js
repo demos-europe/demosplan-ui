@@ -11,6 +11,7 @@ import DpDatepicker from './DpDatepicker/DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
 import DpDetails from './DpDetails/DpDetails'
+import DpDraggable from './DpDraggable/DpDraggable'
 import DpFlyout from './DpFlyout/DpFlyout'
 import DpFormRow from './DpFormRow/DpFormRow'
 import DpHeightLimit from './DpHeightLimit/DpHeightLimit'
@@ -49,7 +50,6 @@ import {
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
-  DpDraggable,
   DpEditableList,
   DpEditor,
   DpNotifyContainer,

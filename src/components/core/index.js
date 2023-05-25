@@ -6,7 +6,6 @@ import DpButtonIcon from './DpButtonIcon'
 import DpCard from './DpCard'
 import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
-import DpCopyPasteButton from './DpCopyPasteButton'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
@@ -47,7 +46,6 @@ export {
   DpCard,
   DpChangeStateAtDate,
   DpColumnSelector,
-  DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,

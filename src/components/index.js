@@ -33,6 +33,7 @@ import DpSkeletonBox from './DpSkeletonBox/DpSkeletonBox'
 import DpSlidebar from './DpSlidebar/DpSlidebar'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
+import DpSwitcher from './DpSwitcher/DpSwitcher'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
 import DpToggleForm from './DpToggleForm/DpToggleForm'
@@ -58,7 +59,6 @@ import {
   DpRegisterFlyout,
   DpSelectPageItemCount,
   DpStickyElement,
-  DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,

@@ -1,8 +1,8 @@
 <!--
-This component is the generic switcher (toggle) component. It toggles the view/values between two states. The two options (states) are defined in parent with slots: option1 and option2.
-If the first option is checked, the data: isFirstOptionActive = true. On click the toggle method emits the 'input' event to the parent.
-
-For now the component is used in DpFragmentSwitcher component, which toggles the statements/fragments view in the assessment table.
+This component is the generic switcher (toggle) component. It toggles the view/values between two states. The two options
+(states) are defined in the parent with slots: option1 and option2.
+If the first option is checked, the data: isFirstOptionActive = true. On click the toggle method emits the 'input' event
+to the parent.
 -->
 
 <template>
@@ -12,17 +12,17 @@ For now the component is used in DpFragmentSwitcher component, which toggles the
       :id="inputId "
       @change="toggle">
     <label :for="inputId">
-      <div
+      <span
         class="o-switcher__option float--left"
         :class="{'o-switcher__option--checked': active}">
         <slot name="option1" />
-      </div>
-      <div
+      </span>
+      <span
         class="o-switcher__option float--right"
-        :class="{'o-switcher__option--checked': false === active}"
+        :class="{'o-switcher__option--checked': !active}"
         data-cy="fragmentTab">
         <slot name="option2" />
-      </div>
+      </span>
     </label>
   </div>
 </template>

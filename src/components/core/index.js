@@ -15,7 +15,6 @@ import DpObscure from './DpObscure'
 import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpStickyElement from './shared/DpStickyElement'
-import DpSwitcher from './DpSwitcher'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTextWrapper from './DpTextWrapper'
@@ -43,7 +42,6 @@ export {
   DpRegisterFlyout,
   DpSelectPageItemCount,
   DpStickyElement,
-  DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,

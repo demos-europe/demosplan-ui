@@ -4,9 +4,12 @@
 
 ### Removed
 - ([#255](https://github.com/demos-europe/demosplan-ui/pull/255)) **Breaking**: Remove DpRegisterFlyout ([@hwiem](https://github.com/hwiem))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) **Breaking**: DpButton do not support slots anymore. Use the `icon` prop instead. ([@spiess-demos](https://github.com/spiess-demos))
+
 
 ### Added
-- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) New button variant "subtle" 👻 ([@spiess-demos](https://github.com/spiess-demos))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpButton: New button variant "subtle" 👻, new props "icon", "iconAfter", "hideText" ([@spiess-demos](https://github.com/spiess-demos))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpIcon: New icons (chevron-left, chevron-right, edit) ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.1.2 - 2023-05-24
 

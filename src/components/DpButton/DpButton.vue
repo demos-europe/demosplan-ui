@@ -16,8 +16,8 @@
     </span>
     <span
       class="btn__text"
-        :class="{'hide-visually': hideText}"
-        v-text="text" />
+      :class="{'hide-visually': hideText}"
+      v-text="text" />
     <span
       v-if="iconAfter"
       class="btn__icon u-pl-0_25">

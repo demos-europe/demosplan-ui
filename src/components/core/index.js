@@ -18,7 +18,6 @@ import DpModal from './DpModal'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
-import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox'
 import DpSlidebar from './DpSlidebar'
@@ -59,7 +58,6 @@ export {
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
-  DpRegisterFlyout,
   DpSelectPageItemCount,
   DpSkeletonBox,
   DpSlidebar,

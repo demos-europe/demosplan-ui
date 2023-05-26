@@ -103,7 +103,7 @@ export default {
     },
 
     /**
-     * Text content of the button element. Can be omitted if the text content is passed via the default slot.
+     * Text content of the button element.
      */
     text: {
       required: false,

@@ -69,13 +69,14 @@ export default {
     },
 
     /**
-     * Variants of the button include `outline` (`text` to be implemented).
+     * Variants of the button. Possible values are `solid`, `outline`, and `subtle`.
      * When not specified, the default style (white on colored background) is applied.
      */
     variant: {
       required: false,
       type: String,
-      default: ''
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   },
 
@@ -90,7 +91,7 @@ export default {
         'btn',
         this.busy && 'is-busy pointer-events-none',
         ['primary', 'secondary', 'warning'].includes(this.color) && `btn--${this.color}`,
-        ['outline'].includes(this.variant) && `btn--${this.variant}`
+        ['solid', 'outline', 'subtle'].includes(this.variant) && `btn--${this.variant}`
       ]
     },
 

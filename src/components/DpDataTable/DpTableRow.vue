@@ -1,8 +1,8 @@
 <script>
 import DomPurify from 'dompurify'
-import DpIcon from '../../DpIcon/DpIcon'
+import DpIcon from '../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from '../../../utils'
+import { hasOwnProp } from '../../utils'
 
 export default {
   name: 'DpTableRow',

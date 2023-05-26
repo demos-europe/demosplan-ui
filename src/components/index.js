@@ -38,6 +38,7 @@ import DpSkeletonBox from './DpSkeletonBox/DpSkeletonBox'
 import DpSlidebar from './DpSlidebar/DpSlidebar'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
+import DpStickyElement from './DpStickyElement/DpStickyElement'
 import DpSwitcher from './DpSwitcher/DpSwitcher'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
@@ -59,7 +60,6 @@ import {
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
-  DpStickyElement,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,

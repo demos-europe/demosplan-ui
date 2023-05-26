@@ -8,7 +8,6 @@ import DpEditor from './DpEditor/DpEditor'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
-import DpStickyElement from './shared/DpStickyElement'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTextWrapper from './DpTextWrapper'
@@ -28,7 +27,6 @@ export {
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
-  DpStickyElement,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,

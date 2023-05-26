@@ -105,7 +105,7 @@ import DomPurify from 'dompurify'
 import DpDataTable from './DpDataTable'
 import DpSelectPageItemCount from './DpSelectPageItemCount'
 import DpSlidingPagination from '../DpSlidingPagination/DpSlidingPagination'
-import DpStickyElement from '../core/shared/DpStickyElement'
+import DpStickyElement from '../DpStickyElement/DpStickyElement'
 import { hasOwnProp } from '../../utils'
 import { tableSelectAllItems } from '../../mixins'
 

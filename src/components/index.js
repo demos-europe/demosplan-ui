@@ -36,11 +36,13 @@ import DpSplitButton from './DpSplitButton/DpSplitButton'
 import DpSwitcher from './DpSwitcher/DpSwitcher'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
-import DpToggleForm from './DpToggleForm/DpToggleForm'
-import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
 import DpToggle from './DpToggle/DpToggle'
+import DpToggleForm from './DpToggleForm/DpToggleForm'
+import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
+import DpTreeList from './DpTreeList/DpTreeList'
+
 import {
   dataTableSearch,
   DpAnonymizeText,
@@ -62,7 +64,6 @@ import {
   DpTableCardListHeader,
   DpTextWrapper,
   DpTransitionExpand,
-  DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,

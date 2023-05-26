@@ -18,7 +18,6 @@ import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTextWrapper from './DpTextWrapper'
 import DpTransitionExpand from './DpTransitionExpand'
-import DpTreeList from './DpTreeList/DpTreeList'
 import DpUploadFiles from './DpUpload/DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
 import { getFileIdsByHash } from './DpUpload/utils/GetFileIdsByHash'
@@ -44,7 +43,6 @@ export {
   DpTableCardListHeader,
   DpTextWrapper,
   DpTransitionExpand,
-  DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash

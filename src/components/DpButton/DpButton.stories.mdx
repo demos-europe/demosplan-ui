@@ -147,13 +147,27 @@ export const Template = (args, { argTypes }) => ({
     </Story>
 </Canvas>
 
-## Use the default slot to render additional content
+## With Icon
 <Canvas>
-    <Story
-        name="With default slot"
-        args={{
-            default: `<i class="fa fa-pencil" aria-hidden="true" /> Edit item`
-        }}>
-        {Template.bind({})}
-    </Story>
+  <Story
+    name="With Icon"
+    args={{
+      iconAfter: 'chevron-right',
+      text: 'Next'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Only Icon
+<Canvas>
+  <Story
+    name="Only Icon"
+    args={{
+      hideText: true,
+      icon: 'edit',
+      text: 'Edit item'
+    }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>

@@ -6,19 +6,43 @@
     :class="classes"
     :aria-hidden="busy"
     v-on="$listeners">
-    <!-- @slot By default, the slot displays the button text. Use to render additional markup, e.g. an icon. -->
-    <slot v-if="!!(this.$slots.default || [])[0]" />
     <span
-        v-else
+      v-if="icon"
+      class="btn__icon u-pr-0_25"
+      v-tooltip="iconTooltip">
+      <dp-icon
+        :icon="icon"
+        aria-hidden="true" />
+    </span>
+    <span
+      class="btn__text"
+        :class="{'hide-visually': hideText}"
         v-text="text" />
+    <span
+      v-if="iconAfter"
+      class="btn__icon u-pl-0_25">
+      <dp-icon
+        :icon="iconAfter"
+        aria-hidden="true" />
+    </span>
   </component>
 </template>
 
 <script>
+import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'DpButton',
+
+  components: {
+    DpIcon
+  },
+
+  directives: {
+    tooltip: Tooltip
+  },
 
   props: {
     /**
@@ -31,13 +55,23 @@ export default {
     },
 
     /**
-     * Define the color of the button. Possible values are `primary, secondary, warning`.
+     * The color of the button may be `primary`, `secondary`, or `warning`.
      */
     color: {
       required: false,
       type: String,
       default: 'primary',
       validator: (prop) => ['primary', 'secondary', 'warning'].includes(prop)
+    },
+
+    /**
+     * This may be set to true to render icon-only buttons.
+     * The `text` prop will be visually hidden in this case, keeping the button accessible.
+     */
+    hideText: {
+      required: false,
+      type: Boolean,
+      default: false
     },
 
     /**
@@ -51,7 +85,25 @@ export default {
     },
 
     /**
-     * The text content of the button element. Can be omitted if the text content is passed via the default slot.
+     * Icon that will be placed before button text.
+     */
+    icon: {
+      required: false,
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Icon that will be placed after button text.
+     */
+    iconAfter: {
+      required: false,
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Text content of the button element. Can be omitted if the text content is passed via the default slot.
      */
     text: {
       required: false,
@@ -70,8 +122,8 @@ export default {
     },
 
     /**
-     * Variants of the button. Possible values are `solid`, `outline`, and `subtle`.
-     * When not specified, the default style (white on colored background) is applied.
+     * The button may have a variant of `solid`, `outline`, and `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
      */
     variant: {
       required: false,
@@ -100,12 +152,32 @@ export default {
       return this.isButtonElement ? 'button' : 'a'
     },
 
+    /*
+     * Render a tooltip to show when hovering icon-only buttons.
+     */
+    iconTooltip () {
+      if ((this.icon || this.iconAfter) && this.hideText) {
+        return {
+          content: this.text,
+          delay: { show: 1000, hide: 200 }
+        }
+      } else {
+        return null
+      }
+    },
+
     isButtonElement () {
       return this.href === '#'
     },
 
     sanitizedHref () {
       return sanitizeUrl(this.href)
+    }
+  },
+
+  mounted () {
+    if (!(this.icon || this.iconAfter) && this.hideText) {
+      console.error(`A DpButton instance is used without icon or visible text. Consider showing something to users.`)
     }
   }
 }

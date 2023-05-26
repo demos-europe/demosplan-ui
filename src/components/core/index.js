@@ -12,7 +12,6 @@ import DpEditor from './DpEditor/DpEditor'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
-import DpRegisterFlyout from './DpRegisterFlyout'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpStickyElement from './shared/DpStickyElement'
 import DpTableCard from './DpTableCardList/DpTableCard'
@@ -39,7 +38,6 @@ export {
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
-  DpRegisterFlyout,
   DpSelectPageItemCount,
   DpStickyElement,
   DpTableCard,

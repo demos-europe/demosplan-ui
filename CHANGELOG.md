@@ -5,6 +5,9 @@
 ### Removed
 - ([#255](https://github.com/demos-europe/demosplan-ui/pull/255)) **Breaking**: Remove DpRegisterFlyout ([@hwiem](https://github.com/hwiem))
 
+### Added
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) New button variant "subtle" 👻 ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.1.2 - 2023-05-24
 
 ### Fixed

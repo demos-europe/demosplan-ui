@@ -36,7 +36,8 @@ export default {
     color: {
       required: false,
       type: String,
-      default: 'primary'
+      default: 'primary',
+      validator: (prop) => ['primary', 'secondary', 'warning'].includes(prop)
     },
 
     /**

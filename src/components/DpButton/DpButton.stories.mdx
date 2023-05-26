@@ -21,7 +21,7 @@ import DpButton from './DpButton'
       }
     },
     variant: {
-      options: ['', 'outline'],
+      options: ['solid', 'outline', 'subtle'],
       control: { type: 'select' }
     }
   }}
@@ -88,6 +88,17 @@ export const Template = (args, { argTypes }) => ({
 
 ## Variants
 
+### Solid
+<Canvas>
+  <Story
+    name="Solid"
+    args={{
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
 ### Outline
 <Canvas>
     <Story
@@ -98,6 +109,18 @@ export const Template = (args, { argTypes }) => ({
         }}>
         {Template.bind({})}
     </Story>
+</Canvas>
+
+### Subtle
+<Canvas>
+  <Story
+    name="Subtle"
+    args={{
+      variant: 'subtle',
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 ## Render a link element

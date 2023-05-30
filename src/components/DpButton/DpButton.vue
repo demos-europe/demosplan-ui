@@ -20,7 +20,8 @@
       v-text="text" />
     <span
       v-if="iconAfter"
-      class="btn__icon u-pl-0_25">
+      class="btn__icon u-pl-0_25"
+      v-tooltip="iconTooltip">
       <dp-icon
         :icon="iconAfter"
         aria-hidden="true" />

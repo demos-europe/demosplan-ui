@@ -5,32 +5,18 @@
     :href="!isButtonElement && sanitizedHref"
     :class="classes"
     :aria-hidden="busy"
+    v-tooltip="iconOnly ? text : null"
     v-on="$listeners">
+    <dp-button-icon :icon="icon" />
     <span
-      v-if="icon"
-      class="btn__icon u-pr-0_25"
-      v-tooltip="iconTooltip">
-      <dp-icon
-        :icon="icon"
-        aria-hidden="true" />
-    </span>
-    <span
-      class="btn__text"
       :class="{'hide-visually': hideText}"
       v-text="text" />
-    <span
-      v-if="iconAfter"
-      class="btn__icon u-pl-0_25"
-      v-tooltip="iconTooltip">
-      <dp-icon
-        :icon="iconAfter"
-        aria-hidden="true" />
-    </span>
+    <dp-button-icon :icon="iconAfter" />
   </component>
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import DpButtonIcon from './DpButtonIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '../../directives'
 
@@ -38,7 +24,7 @@ export default {
   name: 'DpButton',
 
   components: {
-    DpIcon
+    DpButtonIcon
   },
 
   directives: {
@@ -142,8 +128,9 @@ export default {
        * - https://stackoverflow.com/a/2933472
        */
       return [
-        'btn',
+        'btn flex-inline flex-items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
+        this.iconOnly && 'icon-only',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
         ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]
       ]
@@ -153,18 +140,8 @@ export default {
       return this.isButtonElement ? 'button' : 'a'
     },
 
-    /*
-     * Render a tooltip to show when hovering icon-only buttons.
-     */
-    iconTooltip () {
-      if ((this.icon || this.iconAfter) && this.hideText) {
-        return {
-          content: this.text,
-          delay: { show: 1000, hide: 200 }
-        }
-      } else {
-        return null
-      }
+    iconOnly () {
+      return (this.icon || this.iconAfter) && this.hideText
     },
 
     isButtonElement () {

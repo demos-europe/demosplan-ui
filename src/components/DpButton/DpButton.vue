@@ -122,7 +122,7 @@ export default {
     },
 
     /**
-     * The button may have a variant of `solid`, `outline`, and `subtle`.
+     * The button may have a variant of `solid`, `outline`, or `subtle`.
      * When not specified, the `solid` variant (white on colored background) is applied.
      */
     variant: {

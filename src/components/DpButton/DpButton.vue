@@ -143,8 +143,8 @@ export default {
       return [
         'btn',
         this.busy && 'is-busy pointer-events-none',
-        ['primary', 'secondary', 'warning'].includes(this.color) && `btn--${this.color}`,
-        ['solid', 'outline', 'subtle'].includes(this.variant) && `btn--${this.variant}`
+        ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
+        ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]
       ]
     },
 
@@ -179,6 +179,19 @@ export default {
     if (!(this.icon || this.iconAfter) && this.hideText) {
       console.error(`A DpButton instance is used without icon or visible text. Consider showing something to users.`)
     }
+  }
+}
+
+const classes = {
+  color: {
+    primary: 'btn--primary',
+    secondary: 'btn--secondary',
+    warning: 'btn--warning'
+  },
+  variant: {
+    solid: 'btn--solid',
+    outline: 'btn--outline',
+    subtle: 'btn--subtle'
   }
 }
 </script>

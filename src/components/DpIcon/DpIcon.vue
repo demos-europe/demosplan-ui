@@ -1,13 +1,13 @@
 <template>
   <svg
     class="c-icon"
-    :class="dimensionClass"
+    :class="proportionClass"
     :height="pxSize"
     :width="pxSize"
     viewBox="0 0 256 256"
     xmlns="http://www.w3.org/2000/svg">
     <path
-      ref="pathElement"
+      ref="path"
       :d="path" />
   </svg>
 </template>
@@ -35,10 +35,10 @@ export default {
   data () {
     return {
       /**
-       * To enable authors to adapt spacing to different icon dimensions,
-       * a selector is applied based on the rendered dimensions of the path element.
+       * To enable authors to adapt spacing to different icon proportions, a selector
+       * is applied based on the width/height proportions of the path element.
        */
-      dimensionClass: '',
+      proportionClass: '',
     }
   },
 
@@ -53,16 +53,16 @@ export default {
   },
 
   mounted () {
-    const w = this.$refs.pathElement.getBoundingClientRect().width
-    const h = this.$refs.pathElement.getBoundingClientRect().height
+    const w = this.$refs.path.getBoundingClientRect().width
+    const h = this.$refs.path.getBoundingClientRect().height
     const aspectRatio = w / h;
 
     if (Math.abs(aspectRatio - 1) < 0.1) {
-      this.dimensionClass = 'is-square';
+      this.proportionClass = 'square';
     } else if (aspectRatio > 1) {
-      this.dimensionClass = 'is-landscape';
+      this.proportionClass = 'landscape';
     } else {
-      this.dimensionClass = 'is-portrait';
+      this.proportionClass = 'portrait';
     }
   }
 }

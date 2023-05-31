@@ -12,7 +12,7 @@
           role="tab"
           class="btn--blank o-link--default u-pb-0_5 border--bottom"
           :class="[
-            tab.isActive ? 'color-ui-interactive border-interactive' : 'border--none color-ui-dimmed-text',
+            tab.isActive ? 'color-interactive border-interactive' : 'border--none color-text-muted',
             tabSize === 'large' ? 'font-size-larger' : 'font-size-large'
           ]"
           :aria-selected="tab.isActive"
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../../directives'
+import { CleanHtml } from '../../directives'
 
 export default {
   name: 'DpTabs',

@@ -1,118 +1,168 @@
+<template>
+  <div>
+    <vue-multiselect
+      :close-on-select="closeOnSelect"
+      :deselect-group-label="deselectGroupLabel"
+      :deselect-label="deselectLabel"
+      :label="label"
+      :multiple="multiple"
+      :options="options"
+      :placeholder="Translator.trans('choose')"
+      :searchable="searchable"
+      :select-group-label="selectGroupLabel"
+      :select-label="selectLabel"
+      :selected-label="selectedLabel"
+      :tag-placeholder="Translator.trans('tag.create')"
+      :track-by="trackBy"
+      :value="value"
+      v-dp-validate-multiselect="required"
+      @close="newVal => $emit('close', newVal)"
+      @input="newVal => $emit('input', newVal)"
+      @open="newVal => $emit('open', newVal)"
+      @remove="newVal => $emit('remove', newVal)"
+      @search-change="newVal => $emit('search-change', newVal)"
+      @select="newVal => $emit('select', newVal)"
+      @tag="newVal => $emit('tag', newVal)">
+      <template v-slot:noResult>
+        {{ Translator.trans('autocomplete.noResults') }}
+      </template>
+
+      <template v-slot:noOptions>
+        {{ Translator.trans('explanation.noentries') }}
+      </template>
+
+      <template v-slot:option="props">
+        <slot
+          :props="props"
+          name="option" />
+      </template>
+
+      <template v-slot:tag="props">
+        <slot
+          :props="props"
+          name="tag" />
+      </template>
+
+      <!-- put more slots here -->
+
+      <template
+        v-if="selectionControls"
+        v-slot:beforeList="props">
+        <div class="border-bottom">
+          <button
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === options.length === 0"
+            type="button"
+            v-text="Translator.trans('select.all')"
+            @click="$emit('select-all')">
+          </button>
+
+          <button
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === 0"
+            type="button"
+            v-text="Translator.trans('unselect.all')"
+            @click="$emit('unselect-all')">
+          </button>
+        </div>
+      </template>
+    </vue-multiselect>
+  </div>
+</template>
+
 <script>
 import VueMultiselect from 'vue-multiselect'
 
 export default {
   name: 'DpMultiselect',
 
-  functional: true,
+  components: {
+    VueMultiselect
+  },
 
   props: {
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
+    deselectLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    deselectGroupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    label: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    multiple: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+
+    options: {
+      type: Array,
+      required: true
+    },
+
     required: {
       required: false,
       type: Boolean,
       default: false
     },
 
+    searchable: {
+      required: false,
+      type: Boolean,
+      default: true
+    },
+
     selectionControls: {
       required: false,
       type: Boolean,
       default: false
+    },
+
+    selectGroupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    selectLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    selectedLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    trackBy: {
+      type: [String, null],
+      required: false,
+      default: null
+    },
+
+    value: {
+      type: [String, Number, Array, Object],
+      required: false,
+      default: ''
     }
-  },
-
-  render: function (createElement, context) {
-    const defaults = {
-      placeholder: Translator.trans('choose'),
-      selectLabel: '',
-      selectGroupLabel: '',
-      selectedLabel: '',
-      deselectLabel: '',
-      deselectGroupLabel: '',
-      tagPlaceholder: Translator.trans('tag.create')
-    }
-    context.data.attrs = { ...defaults, ...context.data.attrs }
-    if (context.props.required) {
-      context.data.directives = [
-        {
-          name: 'dp-validate-multiselect'
-        }
-      ]
-      context.data.staticClass = context.data.staticClass ? context.data.staticClass + ' is-required' : 'is-required'
-    }
-
-    const functions = {
-      noResult: () => createElement('span', Translator.trans('autocomplete.noResults')),
-      noOptions: () => createElement('span', Translator.trans('explanation.noentries'))
-    }
-
-    if (context.props.selectionControls) {
-      const menuOptions = context.data.attrs.options
-      const menuSelectedValue = context.data.model.value
-
-      // Add disabled attribute for selection Controls Buttons when click.
-      const buttonSelectAll = document.querySelector('[data-select-all]')
-      const buttonUnselectAll = document.querySelector('[data-unselect-all]')
-      if (buttonSelectAll) {
-        if (menuSelectedValue.length === menuOptions.length) {
-          buttonSelectAll.setAttribute('disabled', 'disabled')
-        } else {
-          buttonSelectAll.removeAttribute('disabled')
-        }
-      }
-
-      if (buttonUnselectAll) {
-        if (menuSelectedValue.length === 0) {
-          buttonUnselectAll.setAttribute('disabled', 'disabled')
-        } else {
-          buttonUnselectAll.removeAttribute('disabled')
-        }
-      }
-
-      functions.beforeList = () => {
-        return createElement('div', {
-          attrs: {
-            class: 'border--bottom'
-          }
-        }, [
-          createElement(
-            'button',
-            {
-              domProps: {
-                innerHTML: Translator.trans('select.all')
-              },
-              attrs: {
-                class: 'btn--blank weight--bold u-ph-0_5 u-pv-0_25',
-                type: 'button',
-                'data-select-all': ''
-              },
-              on: {
-                click: context.listeners['select-all']
-              }
-            }
-          ),
-          createElement(
-            'button',
-            {
-              domProps: {
-                innerHTML: Translator.trans('unselect.all')
-              },
-              attrs: {
-                class: 'btn--blank weight--bold u-ph-0_5 u-pv-0_25',
-                type: 'button',
-                'data-unselect-all': ''
-              },
-              on: {
-                click: context.listeners['unselect-all']
-              }
-            }
-          )
-        ])
-      }
-    }
-
-    context.data.scopedSlots = { ...context.data.scopedSlots, ...functions }
-
-    return createElement(VueMultiselect, context.data, context.children)
   }
 }
 </script>

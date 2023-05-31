@@ -7,56 +7,40 @@
  * All rights reserved
  */
 
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const path = require('path')
 
 module.exports = {
-  testEnvironment: 'jsdom',
-  testEnvironmentOptions: {
-    customExportConditions: ['node'],
-  },
-  moduleFileExtensions: ['js'],
-  transform: {
-    // '^.+\\.(js)$': 'babel-jest',
-    '.+\\.(vue)$': '@vue/vue2-jest'
-  }
-}
-
-module.exports = {
-  testEnvironment: 'jsdom',
-  testRegex: './src/tests/.*(test|spec)\\.js]?$',
+  displayName: 'demosplan-ui',
+  collectCoverage: false,
+  collectCoverageFrom: [
+      './utils/*.{js}',
+      './mixins/*.{js}',
+      './lib/*.{js}',
+  ],
+  coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
+  coverageDirectory: './coverage',
+  moduleFileExtensions: ['js', 'ts', 'vue'],
+  modulePathIgnorePatterns: [
+    './dist'
+  ],
+  testRegex: './(src|utils)/tests/.*(test|spec)\\.js]?$',
   rootDir: path.resolve(__dirname, './'),
   roots: ['./src'],
   modulePaths: ['./src'],
   moduleDirectories: [
     'node_modules'
   ],
-  moduleFileExtensions: [
-    'js',
-    'json',
-    'vue'
-  ],
-  modulePathIgnorePatterns: [
-    './dist'
-  ],
   transform: {
-    '^.+\\.js$': 'babel-jest'
+      '.*\\.js$': './babel-jest-transformer.js',
+      '.*\\.vue$': '@vue/vue2-jest',
+      '^.+\\.tsx?$': 'ts-jest',
   },
   transformIgnorePatterns: [
     'node_modules/(?!@tiptap)(.*)'
   ],
-  // Send a notification when tests fail or once when they pass
-  notifyMode: 'failure-success',
-  // reporters: [
-  //   'default',
-  //   [
-  //     'jest-junit',
-  //     {
-  //       suiteName: 'Jest Tests',
-  //       outputName: 'jenkins-build-jest.junit.xml',
-  //       outputDirectory: '.build/'
-  //     }
-  //   ]
-  // ],
+  verbose: true,
+  testEnvironment: "jsdom",
   globals: {
     '@vue/vue2-jest': {
       babelConfig: {
@@ -70,5 +54,4 @@ module.exports = {
       'node-addons'
     ]
   }
-  // setupFiles: ['./client/setup/jest/setup.js']
 }

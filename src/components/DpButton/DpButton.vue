@@ -7,16 +7,24 @@
     :aria-hidden="busy"
     v-tooltip="iconOnly ? text : null"
     v-on="$listeners">
-    <dp-button-icon :icon="icon" />
+    <dp-icon
+      v-if="icon"
+      aria-hidden="true"
+      :icon="icon"
+      size="small" />
     <span
       :class="{'hide-visually': hideText}"
       v-text="text" />
-    <dp-button-icon :icon="iconAfter" />
+    <dp-icon
+      v-if="iconAfter"
+      aria-hidden="true"
+      :icon="iconAfter"
+      size="small" />
   </component>
 </template>
 
 <script>
-import DpButtonIcon from './DpButtonIcon'
+import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '../../directives'
 
@@ -24,7 +32,7 @@ export default {
   name: 'DpButton',
 
   components: {
-    DpButtonIcon
+    DpIcon
   },
 
   directives: {

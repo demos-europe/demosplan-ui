@@ -27,7 +27,7 @@
 import { prefixClassMixin } from '../../mixins'
 
 export default {
-  name: 'MultistepNav',
+  name: 'DpMultistepNav',
 
   mixins: [prefixClassMixin],
 

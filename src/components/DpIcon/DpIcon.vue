@@ -6,9 +6,7 @@
     :width="pxSize"
     viewBox="0 0 256 256"
     xmlns="http://www.w3.org/2000/svg">
-    <path
-      ref="path"
-      :d="path" />
+    <path :d="path" />
   </svg>
 </template>
 
@@ -32,16 +30,6 @@ export default {
     }
   },
 
-  data () {
-    return {
-      /**
-       * To enable authors to adapt spacing to different icon proportions, a selector
-       * is applied based on the width/height proportions of the path element.
-       */
-      proportionClass: '',
-    }
-  },
-
   computed: {
     pxSize () {
       return SIZES[this.size]
@@ -49,20 +37,14 @@ export default {
 
     path () {
       return ICONS[this.icon].path
-    }
-  },
+    },
 
-  mounted () {
-    const w = this.$refs.path.getBoundingClientRect().width
-    const h = this.$refs.path.getBoundingClientRect().height
-    const aspectRatio = w / h;
-
-    if (Math.abs(aspectRatio - 1) < 0.1) {
-      this.proportionClass = 'square';
-    } else if (aspectRatio > 1) {
-      this.proportionClass = 'landscape';
-    } else {
-      this.proportionClass = 'portrait';
+    /**
+     * To enable authors to adapt spacing to different icon proportions, a selector
+     * is applied based on the width/height proportions of the path element.
+     */
+    proportionClass () {
+      return ICONS[this.icon].proportions
     }
   }
 }

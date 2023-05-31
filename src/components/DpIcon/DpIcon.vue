@@ -44,7 +44,7 @@ export default {
      * is applied based on the width/height proportions of the path element.
      */
     proportionClass () {
-      return ICONS[this.icon].proportions
+      return ICONS[this.icon]?.proportions || 'square'
     }
   }
 }

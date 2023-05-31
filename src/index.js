@@ -63,13 +63,13 @@ import {
   DpInlineNotification,
   DpModal,
   DpMultiselect,
+  DpMultistepNav,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
   DpPager,
   DpProgressBar,
   DpRadio,
-  DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,
   DpSelect,
@@ -94,8 +94,7 @@ import {
   DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash,
-  MultistepNav
+  getFileIdsByHash
 } from './components/'
 
 import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
@@ -210,13 +209,13 @@ export default {
   DpInlineNotification,
   DpModal,
   DpMultiselect,
+  DpMultistepNav,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
   DpPager,
   DpProgressBar,
   DpRadio,
-  DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,
   DpSelect,
@@ -242,7 +241,6 @@ export default {
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,
-  MultistepNav,
   CleanHtml,
   prefixClassMixin,
   dpSelectAllMixin,

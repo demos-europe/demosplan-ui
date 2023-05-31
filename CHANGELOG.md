@@ -3,7 +3,7 @@
 ## UNRELEASED
 
 ### Added
-- ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `is-landscape`, `is-portrait`, or `is-square`, based on icon dimensions ([@spiess-demos](https://github.com/spiess-demos))
+- ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.1.3 - 2032-05-31
 

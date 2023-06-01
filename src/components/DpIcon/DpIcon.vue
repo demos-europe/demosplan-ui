@@ -1,6 +1,7 @@
 <template>
   <svg
     class="c-icon"
+    :class="proportionClass"
     :height="pxSize"
     :width="pxSize"
     viewBox="0 0 256 256"
@@ -36,6 +37,14 @@ export default {
 
     path () {
       return ICONS[this.icon].path
+    },
+
+    /**
+     * To enable authors to adapt spacing to different icon proportions, a selector
+     * is applied based on the width/height proportions of the path element.
+     */
+    proportionClass () {
+      return ICONS[this.icon]?.proportions || 'square'
     }
   }
 }

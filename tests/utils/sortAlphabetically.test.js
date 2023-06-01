@@ -1,4 +1,4 @@
-import sortAlphabetically from '../../utils/sortAlphabetically'
+import sortAlphabetically from '../../src/utils/sortAlphabetically'
 
 describe('sortAlphabetically', () => {
     const arrayOfString = [ 'copySpec', 'email2', 'showlist', 'allowedRoleIds' ]

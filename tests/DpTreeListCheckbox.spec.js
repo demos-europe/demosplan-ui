@@ -7,9 +7,13 @@
  * All rights reserved
  */
 
-import DpTreeListCheckbox from '../components/core/DpTreeList/DpTreeListCheckbox'
+import DpTreeListCheckbox from '../src/components/core/DpTreeList/DpTreeListCheckbox'
 
 import { shallowMount } from '@vue/test-utils'
+
+window.Translator = {
+  trans: jest.fn(key => key)
+}
 
 describe('should return result aria.deselect_all when props are: checked = true, checkAll = true', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {

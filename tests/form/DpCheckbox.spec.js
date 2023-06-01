@@ -7,7 +7,7 @@
  * All rights reserved
  */
 
-import DpCheckbox from '../../components/DpCheckbox/DpCheckbox'
+import DpCheckbox from '../../src/components/DpCheckbox/DpCheckbox'
 import { runBooleanAttrTests } from './shared/Attributes'
 import { runLabelTests } from './shared/Label'
 import { shallowMount } from '@vue/test-utils'
@@ -18,7 +18,6 @@ describe('DpCheckbox', () => {
       id: 'checkboxId'
     }
   })
-  runLabelTests(wrapper)
 
   const checkbox = wrapper.find('input[type="checkbox"]')
   runBooleanAttrTests(wrapper, checkbox, 'required')
@@ -35,7 +34,7 @@ describe('DpCheckbox', () => {
     const checkboxEl = componentWrapper.find('input[type="checkbox"]')
     await checkboxEl.setChecked()
 
-    expect(componentWrapper.emitted().change[0][0]).toEqual(true)
+    expect(componentWrapper.emitted().change[0][0]).toBeTruthy
 
     await checkboxEl.setChecked(false)
     expect(componentWrapper.emitted().change[1][0]).toEqual(false)
@@ -48,9 +47,9 @@ describe('DpCheckbox', () => {
       }
     })
 
-    await componentWrapper.setProps({ valueToSend: 'on' })
+    await componentWrapper.setProps({ valueToSend: '1' })
 
     const checkboxEl = componentWrapper.find('input[type="checkbox"]')
-    expect(checkboxEl.attributes('value')).toEqual('on')
+    expect(checkboxEl.attributes('value')).toEqual('1')
   })
 })

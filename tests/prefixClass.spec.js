@@ -7,7 +7,7 @@
  * All rights reserved
  */
 
-import { prefixClass } from '../utils'
+import { prefixClass } from '../src/utils'
 
 window.dplan = {
   settings: {

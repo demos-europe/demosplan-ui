@@ -7,14 +7,23 @@
  * All rights reserved
  */
 
-import DpSelect from '../../components/DpSelect/DpSelect'
+import DpSelect from '../../src/components/DpSelect/DpSelect'
 import { runBooleanAttrTests } from './shared/Attributes'
-import { shallowMount } from '@vue/test-utils'
+import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
+
+
+window.Translator = {
+  trans: jest.fn(key => key)
+}
 
 describe('DpSelect', () => {
-  const options = [{ label: 'option1', value: 'value1' }, { label: 'option2', value: 'value2' }, { label: 'option3', value: 'value3' }]
+  const options = [
+    { label: 'option1', value: 'value1' },
+    { label: 'option2', value: 'value2' },
+    { label: 'option3', value: 'value3' }
+  ]
 
-  const wrapper = shallowMount(DpSelect, {
+  const wrapper = shallowMountWithGlobalMocks(DpSelect, {
     propsData: { options }
   })
   // RunLabelTests(wrapper)
@@ -24,7 +33,7 @@ describe('DpSelect', () => {
 
   it('displays a placeholder if showPlaceholder is true', () => {
     const placeholder = 'somePlaceholder'
-    const componentWrapper = shallowMount(DpSelect, {
+    const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       propsData: {
         options,
         placeholder,
@@ -39,7 +48,7 @@ describe('DpSelect', () => {
 
   it('does not display a placeholder if showPlaceholder is false', () => {
     const placeholder = 'somePlaceholder'
-    const componentWrapper = shallowMount(DpSelect, {
+    const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       propsData: {
         options,
         placeholder,
@@ -52,15 +61,16 @@ describe('DpSelect', () => {
   })
 
   it('emits an event on select with the selected value as argument', async () => {
-    const componentWrapper = shallowMount(DpSelect, {
+    const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       propsData: {
         options
       }
     })
 
-    const selectOptions = componentWrapper.find('select').findAll('option')
-    await selectOptions.at(1).setSelected()
-    expect(componentWrapper.find('option:checked').element.value).toBe(options[0].value)
-    expect(componentWrapper.emitted().select[0][0]).toEqual(options[0].value)
+    const selectOptions = componentWrapper.findAll('select > option')
+    await selectOptions.at(2).setSelected()
+
+    expect(componentWrapper.find('option:checked').element.value).toBe(options[1].value)
+    expect(componentWrapper.emitted().select).toEqual([[options[1].value]])
   })
 })

@@ -7,7 +7,7 @@
  * All rights reserved
  */
 
-import DpNotifyMessage from '../components/core/notify/DpNotifyMessage'
+import DpNotifyMessage from '../src/components/core/notify/DpNotifyMessage'
 import { mount } from '@vue/test-utils'
 
 describe('DpNotifyMessage', () => {

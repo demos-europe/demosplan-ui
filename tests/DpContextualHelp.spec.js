@@ -7,8 +7,8 @@
  * All rights reserved
  */
 
-import { createLocalVue, shallowMount } from '@vue/test-utils'
-import DpContextualHelp from '../components/core/DpContextualHelp'
+import DpContextualHelp from '../src/components/DpContextualHelp/DpContextualHelp.vue'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
 describe('DpContextualHelp', () => {
   it('should be an object', () => {
@@ -20,15 +20,11 @@ describe('DpContextualHelp', () => {
   })
 
   it('should render the correct html', async () => {
-    const localVue = createLocalVue()
 
-    console.log('localVue')
-    console.log(localVue)
-    const instance = shallowMount(DpContextualHelp, {
+    const instance = shallowMountWithGlobalMocks(DpContextualHelp, {
       propsData: {
         text: 'This is the tooltip content.'
-      },
-      localVue
+      }
     })
 
     expect(instance.html()).toMatchSnapshot()

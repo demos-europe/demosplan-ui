@@ -7,8 +7,9 @@
  * All rights reserved
  */
 
-import { createLocalVue, shallowMount } from '@vue/test-utils'
-import DpModal from '../components/core/DpModal'
+import { shallowMount } from '@vue/test-utils'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
+import DpModal from '../src/components/DpModal/DpModal.vue'
 
 describe('Modal', () => {
   it('should be an object', () => {
@@ -20,17 +21,15 @@ describe('Modal', () => {
   })
 
   it('should toggle the modal state', () => {
-    const localVue = createLocalVue()
     window.dplan = () => { return {} }
 
-    const instance = shallowMount(DpModal, {
+    const instance = shallowMountWithGlobalMocks(DpModal, {
       propsData: {
         modalId: 'test'
       },
       slots: {
         default: '<div>Slot Content</div>'
-      },
-      localVue: localVue
+      }
     })
 
     const modal = instance.vm

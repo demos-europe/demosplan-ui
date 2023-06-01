@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+### Added
+- ([]()) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.1.3 - 2032-05-31
 
 ### Removed

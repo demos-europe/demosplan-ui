@@ -3347,16 +3347,17 @@
     lodash "^4.17.15"
     pretty "^2.0.0"
 
-"@vue/vue2-jest@^27.0.0":
-  version "27.0.0"
-  resolved "https://registry.yarnpkg.com/@vue/vue2-jest/-/vue2-jest-27.0.0.tgz#456076e27f7fa0179a37b04baea3e0b3cf786c6d"
-  integrity sha512-r8YGOuqEWpAf2wGfgxfOL6Jce3WYOMcYji2qd8kuDe466ZsybHFeMryMJi6JrELOOI+MCA/8eFsSOx1KoJa7Dg==
+"@vue/vue2-jest@^29.2.3":
+  version "29.2.4"
+  resolved "https://registry.yarnpkg.com/@vue/vue2-jest/-/vue2-jest-29.2.4.tgz#f17b61bbde629a2809db5ed85f88bee972ebe97b"
+  integrity sha512-oU/Ai4sufLlrhsj8GqRqfhMr6Ud4rehmwYP358/SjKcvUqOCoKa2lOBndDzG4uZVMNnQqQbKWIg7wqL3aRYPBA==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.2.0"
     "@vue/component-compiler-utils" "^3.1.0"
     chalk "^2.1.0"
     css-tree "^2.0.1"
     source-map "0.5.6"
+    tsconfig "^7.0.0"
 
 "@webassemblyjs/ast@1.11.5", "@webassemblyjs/ast@^1.11.5":
   version "1.11.5"
@@ -8478,6 +8479,16 @@ jest-haste-map@^29.5.0:
     walker "^1.0.8"
   optionalDependencies:
     fsevents "^2.3.2"
+
+jest-junit@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-15.0.0.tgz#a47544ab42e9f8fe7ada56306c218e09e52bd690"
+  integrity sha512-Z5sVX0Ag3HZdMUnD5DFlG+1gciIFSy7yIVPhOdGUi8YJaI9iLvvBb530gtQL2CHmv0JJeiwRZenr0VrSR7frvg==
+  dependencies:
+    mkdirp "^1.0.4"
+    strip-ansi "^6.0.1"
+    uuid "^8.3.2"
+    xml "^1.0.1"
 
 jest-leak-detector@^29.5.0:
   version "29.5.0"
@@ -13719,6 +13730,11 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
 uuid@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
@@ -14386,6 +14402,11 @@ xml-name-validator@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-4.0.0.tgz#79a006e2e63149a8600f15430f0a4725d1524835"
   integrity sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
+  integrity sha512-huCv9IH9Tcf95zuYCsQraZtWnJvBtLVE0QHMOs8bWyZAFZNDcYjsPq1nEx8jKA9y+Beo9v+7OBPRisQTjinQMw==
 
 xmlchars@^2.2.0:
   version "2.2.0"

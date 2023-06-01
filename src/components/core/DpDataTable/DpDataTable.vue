@@ -4,8 +4,8 @@
       ref="tableEl"
       :class="tableClass">
       <colgroup
-          ref="colgroup"
-          v-if="headerFields.filter(field => field.colClass).length > 0">
+        ref="colgroup"
+        v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable || isSelectable" />
         <col v-for="field in headerFields" :class="field.colClass" />
         <col v-if="hasFlyout" />
@@ -36,68 +36,21 @@
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable">
-        <template
-          v-if="!isLoading && items.length > 0"
-          v-for="(item, idx) in items">
-          <dp-table-row
-            :index="idx"
-            :checked="elementSelections[item[trackBy]] || false"
-            :fields="fields"
-            :has-flyout="hasFlyout"
-            :header-fields="headerFields"
-            :is-draggable="isDraggable"
-            :is-expandable="isExpandable"
-            :is-loading="isLoading && items.length > 0"
-            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
-            :is-resizable="isResizable"
-            :is-selectable="isSelectable"
-            :is-selectable-name="isSelectableName"
-            :is-truncatable="isTruncatable"
-            :item="item"
-            :search-term="searchTerm"
-            :track-by="trackBy"
-            :wrapped="wrappedElements[item[trackBy]] || false"
-            @toggle-expand="toggleExpand"
-            @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap">
-            <template v-slot:[field]="item" v-for="field in fields">
-              <slot
-                :name="field"
-                v-bind="item" />
-            </template>
-            <template v-slot:flyout="item">
-              <slot
-                name="flyout"
-                v-bind="item" />
-            </template>
-          </dp-table-row>
-
-          <!-- DpTableRowExpanded -->
-          <tr
-            v-if="expandedElements[item[trackBy]] || false"
-            :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
-            <td
-              :class="`${isLoading ? 'opacity-7' : ''}`"
-              :colspan="colCount">
-              <slot
-                name="expandedContent"
-                v-bind="item" />
-            </td>
-          </tr>
-        </template>
-      </tbody>
-
-      <!-- draggable -->
-      <dp-draggable
-        v-else
-        :draggable-tag="'tbody'"
+      <component
+        :is="isDraggable ? 'dp-draggable' : 'tbody'"
+        v-if="!isLoading && items.length > 0"
+        draggable-tag="tbody"
+        :opts="{
+          options: {
+            disabled: !isDraggable,
+            handle: '.c-data-table__drag-handle',
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
+          },
+        }"
         :content-data="items"
         @change="(e) => $emit('changed-order', e)">
-        <template
-          v-if="!isLoading && items.length > 0"
-          v-for="(item, idx) in items">
+        <template v-for="(item, idx) in items">
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"
@@ -133,35 +86,32 @@
             </template>
           </dp-table-row>
         </template>
-      </dp-draggable>
+      </component>
 
       <!-- empty items -->
-      <template v-if="items.length === 0">
-
+      <tr v-if="items.length === 0">
         <!-- noResultsData  -->
-        <template v-if="searchTermSet">
-          <td :colspan="colCount"
-              class="u-pt"
-              v-html="noResults" />
-        </template>
+        <td
+          v-if="searchTermSet"
+          :colspan="colCount"
+          class="u-pt"
+          v-html="noResults" />
 
         <!-- noEntriesItem -->
-        <template v-else>
-          <td
-            :colspan="colCount"
-            class="u-pt">
-            <template v-if="isLoading">
-              <dp-loading
-                :is-loading="true"
-                class="u-mt"
-                :colspan="colCount" />
-            </template>
-            <template v-else>
-              {{ mergedTranslations.tableNoElements }}
-            </template>
-          </td>
-        </template>
-      </template>
+        <td
+          v-else
+          :colspan="colCount"
+          class="u-pt">
+          <dp-loading
+            v-if="isLoading"
+            is-loading
+            class="u-mt"
+            :colspan="colCount" />
+          <template v-else>
+            {{ mergedTranslations.tableNoElements }}
+          </template>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
@@ -394,10 +344,11 @@ export default {
 
     colCount () {
       const colgroupElement = this.$refs.colgroup
+
       if (colgroupElement) {
-        const colCount = colgroupElement.children.length;
-        return colCount
+        return colgroupElement.children.length
       }
+
       return null
     },
 

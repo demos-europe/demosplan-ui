@@ -89,7 +89,7 @@
           "themeable": true
         },
         "base": {
-          "value": "#e81616",
+          "value": "#e52222",
           "themeable": true
         },
         "dark-1": {
@@ -98,6 +98,36 @@
         },
         "dark-2": {
           "value": "#820000",
+          "themeable": true
+        }
+      },
+      "teal": {
+        "light-4": {
+          "value": "#e6fbff",
+          "themeable": true
+        },
+        "light-3": {
+          "value": "#bcedf6",
+          "themeable": true
+        },
+        "light-2": {
+          "value": "#66cee2",
+          "themeable": true
+        },
+        "light-1": {
+          "value": "#29acc4",
+          "themeable": true
+        },
+        "base": {
+          "value": "#0095b0",
+          "themeable": true
+        },
+        "dark-1": {
+          "value": "#007286",
+          "themeable": true
+        },
+        "dark-2": {
+          "value": "#004f5D",
           "themeable": true
         }
       },
@@ -153,7 +183,7 @@
           "themeable": true
         },
         "dark-1": {
-          "value": "#eea700",
+          "value": "#d09200",
           "themeable": true
         },
         "dark-2": {
@@ -192,16 +222,20 @@
         }
       },
       "magenta": {
-        "light-3": {
-          "value": "#f3ecf8",
+        "light-4": {
+          "value": "#fdedf2",
           "themeable": true
         },
-        "light-2": {
+        "light-3": {
           "value": "#fbdbe5",
           "themeable": true
         },
-        "light-1": {
+        "light-2": {
           "value": "#ff9fbd",
+          "themeable": true
+        },
+        "light-1": {
+          "value": "#e73e79",
           "themeable": true
         },
         "base": {
@@ -209,150 +243,12 @@
           "themeable": true
         },
         "dark-1": {
-          "value": "#84002e",
+          "value": "#960739",
           "themeable": true
         },
         "dark-2": {
-          "value": "#600021",
+          "value": "#650324",
           "themeable": true
-        }
-      }
-    },
-    "message": {
-      "$description": "Color used to communicate system feedback.",
-      "$todo": "Add all other system colors here.",
-      "info": {
-        "text": {
-          "value": "{color.palette.blue.dark-2}"
-        }
-      }
-    },
-    "brand": {
-      "$description": "Color tokens that are used to express brand.",
-      "$todo": "Add other brand colors here. How to deal with small brand palettes? How to deal with css variables inside tokens?",
-      "main": {
-        "light-3": {
-          "value": "{color.palette.blue.light-3}",
-          "themeable": true
-        },
-        "light-2": {
-          "value": "{color.palette.blue.light-2}",
-          "themeable":  true
-        },
-        "light-1": {
-          "value": "{color.palette.blue.light-1}",
-          "themeable":  true
-        },
-        "base": {
-          "value": "{color.palette.blue.base}",
-          "themeable":  true
-        },
-        "dark-1": {
-          "value": "{color.palette.blue.dark-1}",
-          "themeable":  true
-        },
-        "dark-2": {
-          "value": "{color.palette.blue.dark-2}",
-          "themeable":  true
-        }
-      }
-    },
-    "data":{
-      "$description": "Data visualization colors",
-      "11": {
-        "$description": "11 Step palette",
-        "1": {
-          "value": "#a50026"
-        },
-        "2": {
-          "value": "#d73027"
-        },
-        "3": {
-          "value": "#f46d43"
-        },
-        "4": {
-          "value": "#fdae61"
-        },
-        "5": {
-          "value": "#fee090"
-        },
-        "6": {
-          "value": "#ffffbf"
-        },
-        "7": {
-          "value": "#e0f3f8"
-        },
-        "8": {
-          "value": "#abd9e9"
-        },
-        "9": {
-          "value": "#74add1"
-        },
-        "10": {
-          "value": "#4575b4"
-        },
-        "11": {
-          "value": "#313695"
-        }
-      },
-      "8": {
-        "$description": "8 Step palette",
-        "1": {
-          "value": "#d73027"
-        },
-        "2": {
-          "value": "#f46d43"
-        },
-        "3": {
-          "value": "#fdae61"
-        },
-        "4": {
-          "value": "#fee090"
-        },
-        "5": {
-          "value": "#e0f3f8"
-        },
-        "6": {
-          "value": "#abd9e9"
-        },
-        "7": {
-          "value": "#74add1"
-        },
-        "8": {
-          "value": "#4575b4"
-        }
-      },
-      "6": {
-        "$description": "6 Step palette",
-        "1": {
-          "value": "#d73027"
-        },
-        "2": {
-          "value": "#fc8d59"
-        },
-        "3": {
-          "value": "#fee090"
-        },
-        "4": {
-          "value": "#e0f3f8"
-        },
-        "5": {
-          "value": "#91bfdb"
-        },
-        "6": {
-          "value": "#4575b4"
-        }
-      },
-      "3": {
-        "$description": "3 Step palette",
-        "1": {
-          "value": "#fc8d59"
-        },
-        "2": {
-          "value": "#f1f1a3"
-        },
-        "3": {
-          "value": "#91bfdb"
         }
       }
     }

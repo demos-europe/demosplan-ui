@@ -119,7 +119,7 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
-import DpDraggable from '../DpDraggable'
+import DpDraggable from '../../DpDraggable/DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
@@ -128,10 +128,10 @@ export default {
   name: 'DpDataTable',
 
   components: {
-    DpTableRow,
-    DpTableHeader,
+    DpDraggable,
     DpLoading,
-    DpDraggable
+    DpTableHeader,
+    DpTableRow
   },
 
   directives: {
@@ -311,6 +311,7 @@ export default {
       default: () => ({})
     }
   },
+
   data () {
     return {
       allExpanded: false,
@@ -333,6 +334,7 @@ export default {
       wrappedElements: {}
     }
   },
+
   computed: {
     allSelected () {
       if (this.multiPageSelectionItemsTotal > 0) {
@@ -411,8 +413,8 @@ export default {
      */
     filterElementSelections () {
       return Object.entries(this.elementSelections)
-          .filter(selectedItem => selectedItem[1]) // True or false
-          .map(selectedItem => selectedItem[0]) // TrackBy of the item
+        .filter(selectedItem => selectedItem[1]) // True or false
+        .map(selectedItem => selectedItem[0]) // TrackBy of the item
     },
 
     forceElementSelections (itemsStatusObject) {

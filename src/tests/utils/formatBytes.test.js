@@ -1,4 +1,4 @@
-import { formatBytes } from '../../index';
+import formatBytes from '../../utils/formatBytes'
 
 describe('formatBytes', () => {
     const bytes = {

@@ -11,7 +11,7 @@ const exactlengthHint = (currentLength, requiredLength) => {
     ? Translator.trans('input.text.exactlength.short', {
       requiredlength: requiredLength,
       count: currentLength,
-      class: (currentLength === reqLength) ? 'color-ui-info' : 'color-ui-error'
+      class: (currentLength === reqLength) ? 'color-status-progress-text' : 'color-status-failed-text'
     })
     : ''
 }
@@ -34,7 +34,7 @@ const maxlengthHint = (currentLength, maxlength) => {
     ? Translator.trans('input.text.maxlength.short', {
       max,
       count: max - currentLength,
-      class: (max - currentLength > errorThreshold) ? 'color-ui-info' : 'color-ui-error'
+      class: (max - currentLength > errorThreshold) ? 'color-status-progress-text' : 'color-status-failed-text'
     })
     : ''
 }
@@ -52,7 +52,7 @@ const minlengthHint = (currentLength, minlength) => {
     ? Translator.trans('input.text.minlength.short', {
       min: min,
       count: min - currentLength,
-      class: (min <= currentLength) ? 'color-ui-info' : 'color-ui-error'
+      class: (min <= currentLength) ? 'color-status-progress-text' : 'color-status-failed-text'
     })
     : ''
 }

@@ -2,12 +2,51 @@
 
 ## UNRELEASED
 
+### Added
+- ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
+- ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.3 - 2032-05-31
+
+### Removed
+- ([#255](https://github.com/demos-europe/demosplan-ui/pull/255)) **Breaking**: Remove DpRegisterFlyout ([@hwiem](https://github.com/hwiem))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) **Breaking**: DpButton does not support slots anymore. Use the `icon` prop instead. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+### Added
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpButton: New button variant "subtle" 👻, new props "icon", "iconAfter", "hideText" ([@spiess-demos](https://github.com/spiess-demos))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpIcon: New icons (chevron-left, chevron-right, edit) ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.2 - 2023-05-24
+
+### Fixed
+- ([#249](https://github.com/demos-europe/demosplan-ui/pull/249)) Fix console errors, use correct lifecycle hook and remove `this` from template  ([@muellerdemos](https://github.com/muellerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Allow number, array and object as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/237)) Add event listener for all events in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add prop for searchable for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Show buttons for select all and unselect all only if selectionControls is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Bind props to slots, so they are available for parent ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.1.1 - 2023-05-22
+
+**NOTE:** This release contains a slightly different changelog for v0.1. than the one that was published before.
+Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed until after the release.
+
+### Fixed
+- Remove duplicated prefix from space tokens ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1 - 2023-05-16
+
 ### Changed
-- ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking:** Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
+- ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) **Breaking**: Add design tokens, split generated Scss into multiple files ([@ahmad-demos](https://github.com/ahmad-demos), [@spiess-demos](https://github.com/spiess-demos))
+- ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking**: Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
+- ([#205](https://github.com/demos-europe/demosplan-ui/pull/205)) Move from Functional Component to Template in DpTableHeader ([@elmasdemos](https://github.com/elmasdemos))
 - ([#203](https://github.com/demos-europe/demosplan-ui/pull/203)) Move from Functional Component to Template in DpContextualHelp ([@salisdemos](https://github.com/salisdemos))
 - ([#202](https://github.com/demos-europe/demosplan-ui/pull/202)) Move from Functional Component to Template in DpSlidingPagination ([@salisdemos](https://github.com/salisdemos))
 - ([#195](https://github.com/demos-europe/demosplan-ui/pull/195)) Move from Functional Component to Template in dpSelectPageItemCount ([@salisdemos](https://github.com/salisdemos))
 - ([#181](https://github.com/demos-europe/demosplan-ui/pull/181)) Move from Functional Component to Template in dpMultiselect ([@salisdemos](https://github.com/salisdemos))
+- ([#51](https://github.com/demos-europe/demosplan-ui/pull/51)) Configuration for jest tests for js files ([@elmasdemos](https://github.com/elmasdemos))
+- ([#212](https://github.com/demos-europe/demosplan-ui/pull/212)) Component: Expose `isExpanded` in DpFlyout trigger slot ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.0.21 - 2023-05-02
 

@@ -12,7 +12,7 @@ module.exports = {
     moduleFileExtensions: ['js', 'ts', 'vue'],
     transform: {
         '.*\\.js$': './babel-jest-transformer.js',
-        '.*\\.vue$': '@vue/vue2-jest',
+        '.*\\.vue$': '@vue/vue3-jest',
         '^.+\\.tsx?$': 'ts-jest',
     },
     verbose: true,

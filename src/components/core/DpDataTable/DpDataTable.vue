@@ -1,7 +1,7 @@
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
-import DpDraggable from '../DpDraggable'
+import DpDraggable from '../../DpDraggable/DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
@@ -249,10 +249,6 @@ export default {
   watch: {
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
-    },
-
-    indeterminate () {
-      this.setIndeterminate()
     }
   },
 
@@ -280,12 +276,6 @@ export default {
     forceElementSelections (itemsStatusObject) {
       this.elementSelections = itemsStatusObject
       this.selectedElements = this.filterElementSelections()
-    },
-
-    setIndeterminate () {
-      if (this.isSelectable && this.$refs.selectAll) {
-        this.$refs.selectAll.indeterminate = this.indeterminate
-      }
     },
 
     resetSelection () {
@@ -375,8 +365,15 @@ export default {
       const firstRow = this.tableEl.firstChild
       const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
       tableHeaders.forEach(tableHeader => {
-        const width = tableHeader.getBoundingClientRect().width
-        tableHeader.style.width = width + 'px'
+        /**
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
+         */
+        if(tableHeader.nodeType === 1) {
+          const width = tableHeader.getBoundingClientRect().width
+          tableHeader.style.width = width + 'px'
+        }
       })
 
       this.tableEl.style.tableLayout = 'fixed'
@@ -405,7 +402,6 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
-    this.setIndeterminate()
   },
 
   render: function (h) {

@@ -82,7 +82,7 @@
 
 <script>
 import { deepMerge, hasOwnProp } from '../../../utils'
-import DpDraggable from '../DpDraggable'
+import DpDraggable from '../../DpDraggable/DpDraggable'
 import { Stickier } from '../../../lib'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'

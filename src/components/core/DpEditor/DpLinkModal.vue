@@ -47,7 +47,7 @@
 import DpButtonRow from '../../DpButtonRow/DpButtonRow'
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpInput from '../../DpInput/DpInput'
-import DpModal from '../DpModal'
+import DpModal from '../../DpModal/DpModal'
 import { dpValidateMixin } from '../../../mixins'
 
 export default {

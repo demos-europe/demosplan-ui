@@ -14,9 +14,14 @@
           "value": "{color.palette.blue.dark-1}",
           "themeable": true
         },
-        "hover-subtle": {
-          "$description": "Use as background to visualize hover state for bigger areas.",
-          "value": "{color.palette.neutral.light-1}",
+        "subtle-hover": {
+          "$description": "Use as background to visualize hover state for bigger areas or buttons.",
+          "value": "{color.palette.neutral.light-4}",
+          "themeable": true
+        },
+        "subtle-active": {
+          "$description": "Use as background to visualize active state for bigger areas or buttons.",
+          "value": "{color.palette.neutral.light-3}",
           "themeable": true
         },
         "active": {

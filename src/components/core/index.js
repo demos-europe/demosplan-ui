@@ -9,7 +9,6 @@ import DpDataTable from './DpDataTable/DpDataTable'
 import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
 import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
@@ -36,7 +35,6 @@ export {
   DpDataTableExtended,
   DpEditableList,
   DpEditor,
-  DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
   DpSelectPageItemCount,

@@ -5,7 +5,9 @@
     <td
       v-if="isDraggable"
       class="c-data-table__cell--narrow">
-      <dp-icon icon="drag-handle" />
+      <dp-icon
+          icon="drag-handle"
+          class="c-data-table__drag-handle" />
     </td>
     <td
       v-if="isSelectable"
@@ -25,39 +27,38 @@
         :checked="checked"
         @click="toggleSelect(item[trackBy])">
     </td>
-    <template
+    <td
       v-for="(field, idx) in fields"
-      :key="`${field}:${idx}`">
-      <td
-        :class="{ 'c-data-table__resizable': isTruncatable }"
-        :data-col-idx="`${idx}`">
-        <div
-          v-if="isTruncatable"
-          :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
-          :style="elementStyle(field)">
-          <slot
-            :name="field"
-            v-bind="item" >
-            <span
-              v-if="searchTerm && item[field]"
-              v-html="highlighted(field)" />
-            <span
-               v-else
-               v-text="item[field]" />
-          </slot>
-        </div>
-        <template v-else>
-          <slot
-            :name="field"
-            v-bind="item">
-            <span
-              v-if="searchTerm && item[field]"
-              v-html="highlighted(field)" />
-            <span v-text="item[field]" v-else />
-          </slot>
-        </template>
-      </td>
-    </template>
+      :key="`${field}:${idx}`"
+      :class="{ 'c-data-table__resizable': isTruncatable }"
+      :data-col-idx="`${idx}`">
+      <div
+        v-if="isTruncatable"
+        :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
+        :style="elementStyle(field)">
+        <slot
+          :name="field"
+          v-bind="item" >
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span
+             v-else
+             v-text="item[field]" />
+        </slot>
+      </div>
+      <template v-else>
+        <slot
+          :name="field"
+          v-bind="item">
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span v-text="item[field]" v-else />
+        </slot>
+      </template>
+    </td>
+
     <td
       v-if="hasFlyout"
       class="overflow-visible">
@@ -65,6 +66,7 @@
         name="flyout"
         v-bind="item" />
     </td>
+
     <td
       v-if="isExpandable"
       class="c-data-table__cell--narrow"
@@ -73,6 +75,7 @@
       @click="toggleExpand(item[trackBy])">
       <dp-wrap-trigger :expanded="expanded" />
     </td>
+
     <td
       v-if="isTruncatable"
       class="c-data-table__cell--narrow"

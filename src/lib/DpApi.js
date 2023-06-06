@@ -15,26 +15,23 @@ if (typeof dplan !== 'undefined') {
   }
 }
 
-const apiDefaultHeaders = {
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
-}
-
-const api2defaultHeaders = {
-  Accept: 'application/vnd.api+json',
-  'Content-Type': 'application/vnd.api+json',
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
-}
-
 const getHeaders = function (params) {
-  const headers = params.url.includes('api/2.0/')
-    ? { ...api2defaultHeaders, ...params.headers }
-    : { ...apiDefaultHeaders, ...params.headers }
+  const headers =  {}
 
+  // Add Authorisation Header
+  headers['X-JWT-Authorization'] = 'Bearer ' + jwtToken
+
+  // For JSON:API-Requests we need to set the content Type to JSON
+  if (params.url.includes('api/2.0/')) {
+    headers['Accept']= 'application/vnd.api+json'
+    headers['Content-Type'] = 'application/vnd.api+json'
+  }
   // Add current procedure id only if set
   if (currentProcedureId !== null) {
     headers['X-Demosplan-Procedure-Id'] = currentProcedureId
   }
-  return headers
+
+  return { ...headers, ...params.headers }
 }
 
 const doRequest = (params) => {

@@ -46,6 +46,7 @@ const config = {
     'tippy.js',
     'uuid',
     'v-tooltip',
+    'vue-click-outside',
     'vue-multiselect',
     'vuedraggable',
     'vuex'
@@ -69,7 +70,7 @@ const config = {
         options: {
           compilerOptions: {
             compatConfig: {
-              MODE: 3
+              MODE: 2
             }
           }
         }
@@ -89,7 +90,7 @@ const config = {
             options: {
               compilerOptions: {
                 compatConfig: {
-                  MODE: 3
+                  MODE: 2
                 }
               }
             }

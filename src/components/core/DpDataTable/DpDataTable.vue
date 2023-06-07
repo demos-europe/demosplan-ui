@@ -42,6 +42,7 @@
           v-if="!isLoading && items.length > 0"
           v-for="(item, idx) in items">
           <dp-table-row
+            ref="tableRows"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
             :fields="fields"
@@ -81,7 +82,9 @@
             :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
             <td
               :class="`${isLoading ? 'opacity-7' : ''}`"
-              :colspan="colCount">
+              :colspan="colCount"
+              @mouseenter="addHoveredClass(idx)"
+              @mouseleave="removeHoveredClass(idx)">
               <slot
                 name="expandedContent"
                 v-bind="item" />
@@ -449,6 +452,12 @@ export default {
   },
 
   methods: {
+    addHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.add('is-hovered-content')
+    },
+
     extractTranslations (keys) {
       return keys.reduce((acc, key) => {
         const tmp = this.mergedTranslations[key] ? { [key]: this.mergedTranslations[key] } : {}
@@ -472,6 +481,12 @@ export default {
     forceElementSelections (itemsStatusObject) {
       this.elementSelections = itemsStatusObject
       this.selectedElements = this.filterElementSelections()
+    },
+
+    removeHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.remove('is-hovered-content')
     },
 
     resetSelection () {

@@ -93,7 +93,7 @@
       <!-- draggable -->
       <dp-draggable
         v-if="isDraggable && !isLoading && items.length > 0"
-        :draggable-tag="'tbody'"
+        draggable-tag="tbody"
         :content-data="items"
         :disabled="!isDraggable"
         handle="c-data-table__drag-handle"

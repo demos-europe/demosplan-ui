@@ -4,10 +4,11 @@
       ref="tableEl"
       :class="tableClass">
       <colgroup
-        ref="colgroup"
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable || isSelectable" />
-        <col v-for="field in headerFields" :class="field.colClass" />
+        <col
+          v-for="field in headerFields"
+          :class="field.colClass" />
         <col v-if="hasFlyout" />
         <col v-if="isExpandable" />
         <col v-if="isTruncatable" />
@@ -91,12 +92,15 @@
 
       <!-- draggable -->
       <dp-draggable
-        v-else
+        v-if="isDraggable && !isLoading && items.length > 0"
         :draggable-tag="'tbody'"
         :content-data="items"
+        :disabled="!isDraggable"
+        handle="c-data-table__drag-handle"
+        ghostClass="sortable-ghost"
+        chosenClass="sortable-chosen"
         @change="(e) => $emit('changed-order', e)">
         <template
-          v-if="!isLoading && items.length > 0"
           v-for="(item, idx) in items">
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
@@ -136,32 +140,29 @@
       </dp-draggable>
 
       <!-- empty items -->
-      <template v-if="items.length === 0">
-
+      <tr v-if="items.length === 0">
         <!-- noResultsData  -->
-        <template v-if="searchTermSet">
-          <td :colspan="colCount"
-            class="u-pt"
-            v-html="noResults" />
-        </template>
+        <td
+          v-if="searchTermSet"
+          :colspan="colCount"
+          class="u-pt"
+          v-html="noResults" />
 
         <!-- noEntriesItem -->
-        <template v-else>
-          <td
-            :colspan="colCount"
-            class="u-pt">
-            <template v-if="isLoading">
-              <dp-loading
-                :is-loading="true"
-                class="u-mt"
-                :colspan="colCount" />
-            </template>
-            <template v-else>
-              {{ mergedTranslations.tableNoElements }}
-            </template>
-          </td>
-        </template>
-      </template>
+        <td
+          v-else
+          :colspan="colCount"
+          class="u-pt">
+          <dp-loading
+            v-if="isLoading"
+            is-loading
+            class="u-mt"
+            :colspan="colCount" />
+          <template v-else>
+            {{ mergedTranslations.tableNoElements }}
+          </template>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
@@ -377,12 +378,14 @@ export default {
       },
       elementSelections: {},
       expandedElements: {},
+      headerCellCount: 0,
       mergedTranslations: {},
       selectedElements: [],
       tableEl: undefined,
       wrappedElements: {}
     }
   },
+
   computed: {
     allSelected () {
       if (this.multiPageSelectionItemsTotal > 0) {
@@ -393,11 +396,14 @@ export default {
     },
 
     colCount () {
-      const colgroupElement = this.$refs.colgroup
-      if (colgroupElement) {
-        return colgroupElement.children.length
-      }
-      return null
+      let cells = 0
+
+      cells += this.isSelectable || this.isDraggable ? 1 : 0
+      cells += this.hasFlyout ? 1 : 0
+      cells += this.isExpandable ? 1 : 0
+      cells += this.isTruncatable ? 1 : 0
+
+      return this.headerCellCount + cells
     },
 
     fields () {
@@ -540,9 +546,12 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
+  beforeUpdate() {
+    this.headerCellCount = this.headerFields.length
+  },
+
   mounted () {
     this.tableEl = this.$refs.tableEl
-
     /**
      * Why is this here you may ask?
      * Tables and overflow are difficult to handle.

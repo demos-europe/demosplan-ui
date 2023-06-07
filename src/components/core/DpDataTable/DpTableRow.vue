@@ -6,9 +6,10 @@
       v-if="isDraggable"
       class="c-data-table__cell--narrow">
       <dp-icon
-          icon="drag-handle"
-          class="c-data-table__drag-handle" />
+        icon="drag-handle"
+        class="c-data-table__drag-handle" />
     </td>
+
     <td
       v-if="isSelectable"
       class="c-data-table__cell--narrow">
@@ -27,6 +28,7 @@
         :checked="checked"
         @click="toggleSelect(item[trackBy])">
     </td>
+
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
@@ -92,7 +94,7 @@ import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
 export default {
-  name: "DpTableRow",
+  name: 'DpTableRow',
 
   components: {
     DpIcon,
@@ -231,6 +233,7 @@ export default {
         return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
       }
     },
+
     elementStyle () {
       return (field) => {
         const headerField = this.headerFields.find((hf) => hf.field === field)
@@ -254,9 +257,11 @@ export default {
     toggleSelect (id) {
       this.$emit('toggle-select', id)
     },
+
     toggleWrap (id) {
       this.$emit('toggle-wrap', id)
     },
+
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
     }

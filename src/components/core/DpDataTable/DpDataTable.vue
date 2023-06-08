@@ -4,10 +4,13 @@
       ref="tableEl"
       :class="tableClass">
       <colgroup
-        ref="colgroup"
+
         v-if="headerFields.filter((field) => field.colClass).length > 0">
-        <col v-if="isDraggable || isSelectable" />
-        <col v-for="field in headerFields" :class="field.colClass" />
+        <col v-if="isDraggable" />
+        <col v-if="isSelectable" />
+        <col
+          v-for="field in headerFields"
+          :class="field.colClass" />
         <col v-if="hasFlyout" />
         <col v-if="isExpandable" />
         <col v-if="isTruncatable" />
@@ -36,19 +39,71 @@
       </thead>
 
       <!-- not draggable -->
-      <component
-        :is="isDraggable ? 'dp-draggable' : 'tbody'"
-        v-if="!isLoading && items.length > 0"
+      <tbody v-if="!isDraggable">
+        <template
+          v-if="!isLoading && items.length > 0"
+          v-for="(item, idx) in items">
+          <dp-table-row
+            ref="tableRows"
+            :index="idx"
+            :checked="elementSelections[item[trackBy]] || false"
+            :fields="fields"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-loading="isLoading && items.length > 0"
+            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-selectable-name="isSelectableName"
+            :is-truncatable="isTruncatable"
+            :item="item"
+            :search-term="searchTerm"
+            :track-by="trackBy"
+            :wrapped="wrappedElements[item[trackBy]] || false"
+            @toggle-expand="toggleExpand"
+            @toggle-select="toggleSelect"
+            @toggle-wrap="toggleWrap">
+            <template v-slot:[field]="item" v-for="field in fields">
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
+            </template>
+          </dp-table-row>
+
+          <!-- DpTableRowExpanded -->
+          <tr
+            v-if="expandedElements[item[trackBy]] || false"
+            :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
+            <td
+              :class="`${isLoading ? 'opacity-7' : ''}`"
+              :colspan="colCount"
+              @mouseenter="addHoveredClass(idx)"
+              @mouseleave="removeHoveredClass(idx)">
+              <slot
+                name="expandedContent"
+                v-bind="item" />
+            </td>
+          </tr>
+        </template>
+      </tbody>
+
+      <!-- draggable -->
+      <dp-draggable
+        v-if="isDraggable && !isLoading && items.length > 0"
         draggable-tag="tbody"
-        :opts="{
-          options: {
-            disabled: !isDraggable,
-            handle: '.c-data-table__drag-handle',
-            ghostClass: 'sortable-ghost',
-            chosenClass: 'sortable-chosen',
-          },
-        }"
         :content-data="items"
+        :disabled="!isDraggable"
+        handle="c-data-table__drag-handle"
+        ghostClass="sortable-ghost"
+        chosenClass="sortable-chosen"
         @change="(e) => $emit('changed-order', e)">
         <template v-for="(item, idx) in items">
           <dp-table-row
@@ -328,9 +383,17 @@ export default {
       },
       elementSelections: {},
       expandedElements: {},
+      headerCellCount: 0,
       mergedTranslations: {},
       selectedElements: [],
       tableEl: undefined,
+      tableProps: [
+        this.isDraggable,
+        this.isSelectable,
+        this.hasFlyout,
+        this.isExpandable,
+        this.isTruncatable
+      ],
       wrappedElements: {}
     }
   },
@@ -345,13 +408,13 @@ export default {
     },
 
     colCount () {
-      const colgroupElement = this.$refs.colgroup
+      let tableCellCount = 0
 
-      if (colgroupElement) {
-        return colgroupElement.children.length
-      }
+      this.tableProps.map((prop) => {
+        tableCellCount += prop ? 1 : 0
+      })
 
-      return null
+      return this.headerCellCount + tableCellCount
     },
 
     fields () {
@@ -397,6 +460,12 @@ export default {
   },
 
   methods: {
+    addHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.add('is-hovered-content')
+    },
+
     extractTranslations (keys) {
       return keys.reduce((acc, key) => {
         const tmp = this.mergedTranslations[key] ? { [key]: this.mergedTranslations[key] } : {}
@@ -420,6 +489,12 @@ export default {
     forceElementSelections (itemsStatusObject) {
       this.elementSelections = itemsStatusObject
       this.selectedElements = this.filterElementSelections()
+    },
+
+    removeHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.remove('is-hovered-content')
     },
 
     resetSelection () {
@@ -494,9 +569,12 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
+  beforeUpdate() {
+    this.headerCellCount = this.headerFields.length
+  },
+
   mounted () {
     this.tableEl = this.$refs.tableEl
-
     /**
      * Why is this here you may ask?
      * Tables and overflow are difficult to handle.
@@ -509,8 +587,15 @@ export default {
       const firstRow = this.tableEl.firstChild
       const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
       tableHeaders.forEach(tableHeader => {
-        const width = tableHeader.getBoundingClientRect().width
-        tableHeader.style.width = width + 'px'
+        /**
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
+         */
+        if(tableHeader.nodeType === 1) {
+          const width = tableHeader.getBoundingClientRect().width
+          tableHeader.style.width = width + 'px'
+        }
       })
 
       this.tableEl.style.tableLayout = 'fixed'

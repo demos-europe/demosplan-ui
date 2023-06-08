@@ -40,7 +40,7 @@
       <!-- not draggable -->
       <tbody v-if="!isDraggable">
         <template
-          v-if="!isLoading && items.length > 0"
+          v-if="!isLoading"
           v-for="(item, idx) in items">
           <dp-table-row
             ref="tableRows"
@@ -65,7 +65,9 @@
             @toggle-expand="toggleExpand"
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
-            <template v-slot:[field]="item" v-for="field in fields">
+            <template
+              v-slot:[field]="item"
+              v-for="field in fields">
               <slot
                 :name="field"
                 v-bind="item" />
@@ -80,9 +82,9 @@
           <!-- DpTableRowExpanded -->
           <tr
             v-if="expandedElements[item[trackBy]] || false"
-            :class="expandedElements[item[trackBy]] || false ? 'is-expanded-content' : ''">
+            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
             <td
-              :class="`${isLoading ? 'opacity-7' : ''}`"
+              :class="{ 'opacity-7': isLoading }"
               :colspan="colCount"
               @mouseenter="addHoveredClass(idx)"
               @mouseleave="removeHoveredClass(idx)">
@@ -96,10 +98,9 @@
 
       <!-- draggable -->
       <dp-draggable
-        v-if="isDraggable && !isLoading && items.length > 0"
+        v-if="isDraggable && !isLoading"
         draggable-tag="tbody"
         :content-data="items"
-        :disabled="!isDraggable"
         handle="c-data-table__drag-handle"
         ghostClass="sortable-ghost"
         chosenClass="sortable-chosen"
@@ -115,7 +116,7 @@
             :index="idx"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
-            :is-loading="isLoading && items.length > 0"
+            :is-loading="isLoading"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
             :is-locked-message="mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"

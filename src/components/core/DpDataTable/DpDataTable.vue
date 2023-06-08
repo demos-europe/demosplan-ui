@@ -5,7 +5,8 @@
       :class="tableClass">
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
-        <col v-if="isDraggable || isSelectable" />
+        <col v-if="isDraggable" />
+        <col v-if="isSelectable" />
         <col
           v-for="field in headerFields"
           :class="field.colClass" />
@@ -385,6 +386,13 @@ export default {
       mergedTranslations: {},
       selectedElements: [],
       tableEl: undefined,
+      tableProps: [
+        this.isDraggable,
+        this.isSelectable,
+        this.hasFlyout,
+        this.isExpandable,
+        this.isTruncatable
+      ],
       wrappedElements: {}
     }
   },
@@ -399,14 +407,13 @@ export default {
     },
 
     colCount () {
-      let tableCells = 0
+      let tableCellCount = 0
 
-      tableCells  += this.isSelectable || this.isDraggable ? 1 : 0
-      tableCells  += this.hasFlyout ? 1 : 0
-      tableCells  += this.isExpandable ? 1 : 0
-      tableCells  += this.isTruncatable ? 1 : 0
+      this.tableProps.map((prop) => {
+        tableCellCount += prop ? 1 : 0
+      })
 
-      return this.headerCellCount + tableCells
+      return this.headerCellCount + tableCellCount
     },
 
     fields () {

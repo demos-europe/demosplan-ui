@@ -2,6 +2,7 @@
 import DomPurify from 'dompurify'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
+import { h } from 'vue'
 import { hasOwnProp } from '../../../utils'
 
 export default {
@@ -132,7 +133,7 @@ export default {
     }
   },
 
-  render: function (h, { listeners, props, scopedSlots }) {
+  render: function () {
     const {
       checked,
       expanded,
@@ -151,7 +152,7 @@ export default {
       searchTerm,
       trackBy,
       wrapped
-    } = props
+    } = this.$props
 
     let draggableCell = []
     if (isDraggable) {
@@ -210,7 +211,7 @@ export default {
             value: isSelectableName ? item[trackBy] : null
           },
           domProps: { checked: checked },
-          on: { click: () => listeners.toggleSelect(item[trackBy]) }
+          on: { click: () => this.$listeners.toggleSelect(item[trackBy]) }
         }
       }
 
@@ -245,9 +246,9 @@ export default {
           class: 'overflow-visible'
         },
         scopedSlots: {
-          flyout: scopedSlots.flyout
+          flyout: this.$slots.flyout
         }
-      }, [(scopedSlots.flyout && scopedSlots.flyout(item))])]
+      }, [(this.$slots.flyout && this.$slots.flyout(item))])]
     }
 
     let expandableCell = []
@@ -258,7 +259,7 @@ export default {
           title: Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')
         },
         on: {
-          click: () => listeners.toggleExpand(item[trackBy])
+          click: () => this.$listeners.toggleExpand(item[trackBy])
         }
       }, [h(DpWrapTrigger, {
         props: {
@@ -275,7 +276,7 @@ export default {
           title: Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')
         },
         on: {
-          click: () => listeners.toggleWrap(item[trackBy])
+          click: () => this.$listeners.toggleWrap(item[trackBy])
         }
       }, [h(DpWrapTrigger, {
         props: {
@@ -322,18 +323,18 @@ export default {
             class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
             style: cellInnerElementStyle
           }
-        }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])
+        }, [(this.$slots[field] && this.$slots[field](item)) || highlighted || txt || ''])
       }
 
       return h('td',
           {
             ...cellAttributes,
             key: `${field}:${idx}`,
-            scopedSlots: {
-              [field]: scopedSlots[field]
+            slots: {
+              [field]: this.$slots[field]
             }
           },
-          [cellInnerElement || (scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || '']
+          [cellInnerElement || (this.$slots[field] && this.$slots[field](item)) || highlighted || txt || '']
       )
     })
 
@@ -354,8 +355,8 @@ export default {
       }
     }, rowContent)]
 
-    if (expanded && hasOwnProp(scopedSlots, 'expandedContent')) {
-      const expandedContent = scopedSlots.expandedContent(item) || ''
+    if (expanded && hasOwnProp(this.$slots, 'expandedContent')) {
+      const expandedContent = this.$slots.expandedContent(item) || ''
       const expandedRow = h('tr',
           {
             attrs: {

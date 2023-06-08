@@ -1,5 +1,6 @@
 <script>
 import DpLoading from '../DpLoading/DpLoading'
+import { h } from 'vue'
 
 export default {
   name: 'DpTextWrapper',
@@ -36,19 +37,17 @@ export default {
    * is set up right now - only work for components which are registered to
    * the global Vue object or to the currently calling parent component.
    *
-   * @param h
-   * @param context
    * @return {*}
    */
-  render (h, context) {
+  render () {
     const immediateComponent = {
       template: `<div class='text-wrapper width-fit-content' data-cy='textWrapper'>${context.props.text}</div>`,
       data () {
-        return context.props.data
+        return this.$props.data
       }
     }
 
-    return (context.props.text)
+    return (this.$props.text)
       ? h(immediateComponent)
       : h(DpLoading, { props: { isLoading: true } })
   }

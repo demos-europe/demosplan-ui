@@ -5,6 +5,7 @@ import DpDraggable from '../../DpDraggable/DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
+import { h } from 'vue'
 
 export default {
   name: 'DpDataTable',
@@ -404,7 +405,7 @@ export default {
     this.forceElementSelections(this.shouldBeSelectedItems)
   },
 
-  render: function (h) {
+  render: function () {
     const self = this
     const scopedSlots = this.$scopedSlots
     const fields = self.headerFields.map(hf => hf.field)

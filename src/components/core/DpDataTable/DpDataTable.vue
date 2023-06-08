@@ -399,14 +399,14 @@ export default {
     },
 
     colCount () {
-      let colCells = 0
+      let tableCells = 0
 
-      colCells  += this.isSelectable || this.isDraggable ? 1 : 0
-      colCells  += this.hasFlyout ? 1 : 0
-      colCells  += this.isExpandable ? 1 : 0
-      colCells  += this.isTruncatable ? 1 : 0
+      tableCells  += this.isSelectable || this.isDraggable ? 1 : 0
+      tableCells  += this.hasFlyout ? 1 : 0
+      tableCells  += this.isExpandable ? 1 : 0
+      tableCells  += this.isTruncatable ? 1 : 0
 
-      return this.headerCellCount + colCells
+      return this.headerCellCount + tableCells
     },
 
     fields () {

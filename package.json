@@ -5,6 +5,8 @@
   "private": false,
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
   "main": "./dist/demosplan-ui.umd.js",
+  "module": "dist/demosplan-ui.umd.js",
+  "sideEffects": false,
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
     "@uppy/core": "^3.0.1",

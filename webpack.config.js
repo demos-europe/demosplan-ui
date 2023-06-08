@@ -23,17 +23,15 @@ const transpileNodeModules = [
 const config = {
   mode: isProduction ? 'production' : 'development',
   entry: resolve('./src/index.js'),
+  experiments: {
+    outputModule: true,
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
     filename: 'demosplan-ui.umd.js',
-    library: {
-      name: '__demos_europe_demosplan_ui',
-      type: 'var'
-    },
-    libraryExport: 'default',
     libraryTarget: 'umd',
-    clean: true
+    globalObject: 'this',
+    library: '[name]',
   },
   externalsType: 'commonjs',
   externals: [
@@ -46,6 +44,7 @@ const config = {
     'tippy.js',
     'uuid',
     'v-tooltip',
+    'vue',
     'vue-click-outside',
     'vue-multiselect',
     'vuedraggable',
@@ -103,8 +102,28 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: 'asset',
       },
+      {
+        test: /\.s?css$/,
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      },
     ],
-  },
+  }
 };
 
 module.exports = () => {

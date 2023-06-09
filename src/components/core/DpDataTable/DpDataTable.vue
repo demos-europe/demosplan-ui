@@ -2,8 +2,8 @@
   <div>
     <table
       ref="tableEl"
-      :class="tableClass"
-      :aria-label="tableDescription">
+      :aria-label="tableDescription"
+      :class="tableClass">
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />

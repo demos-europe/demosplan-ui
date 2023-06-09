@@ -2,7 +2,8 @@
   <div>
     <table
       ref="tableEl"
-      :class="tableClass">
+      :class="tableClass"
+      :aria-label="tableDescription">
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
@@ -354,6 +355,12 @@ export default {
       type: String,
       required: false,
       default: 'c-data-table'
+    },
+
+    tableDescription: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     trackBy: {

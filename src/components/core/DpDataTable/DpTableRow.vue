@@ -36,7 +36,8 @@
       :data-col-idx="`${idx}`">
       <div
         v-if="isTruncatable"
-        :class="wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'"
+        class="overflow-word-break"
+        :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
         :style="elementStyle(field)">
         <slot
           :name="field"
@@ -56,7 +57,9 @@
           <span
             v-if="searchTerm && item[field]"
             v-html="highlighted(field)" />
-          <span v-text="item[field]" v-else />
+          <span
+            v-text="item[field]"
+            v-else />
         </slot>
       </template>
     </td>

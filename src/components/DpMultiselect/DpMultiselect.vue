@@ -2,15 +2,22 @@
   <div>
     <vue-multiselect
       :close-on-select="closeOnSelect"
+      :custom-label="customLabel"
+      :data-cy="dataCy"
       :deselect-group-label="deselectGroupLabel"
       :deselect-label="deselectLabel"
+      :disabled="disabled"
       :group-label="groupLabel"
       :group-select="groupSelect"
       :group-values="groupValues"
+      :id="id"
       :label="label"
+      :loading="loading"
+      :max-height="maxHeight"
       :multiple="multiple"
+      :name="name"
       :options="options"
-      :placeholder="Translator.trans('choose')"
+      :placeholder="placeholder"
       :searchable="searchable"
       :select-group-label="selectGroupLabel"
       :select-label="selectLabel"
@@ -90,6 +97,18 @@ export default {
       default: true
     },
 
+    customLabel: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     deselectLabel: {
       type: String,
       required: false,
@@ -100,6 +119,12 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     },
 
     groupLabel: {
@@ -120,10 +145,28 @@ export default {
       default: ''
     },
 
+    id: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     label: {
       type: String,
       required: false,
       default: ''
+    },
+
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    maxHeight: {
+      type: Number,
+      required: false,
+      default: 300
     },
 
     multiple: {
@@ -132,9 +175,21 @@ export default {
       default: false
     },
 
+    name: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     options: {
       type: Array,
       required: true
+    },
+
+    placeholder: {
+      type: String,
+      required: false,
+      default: Translator.trans('choose')
     },
 
     required: {

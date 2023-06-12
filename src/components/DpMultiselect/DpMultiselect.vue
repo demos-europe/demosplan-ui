@@ -100,13 +100,13 @@ export default {
     customLabel: {
       type: Function,
       required: false,
-      default: () => {}
+      default: (option) => `${option.title}`
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: 'multiselect'
     },
 
     deselectLabel: {

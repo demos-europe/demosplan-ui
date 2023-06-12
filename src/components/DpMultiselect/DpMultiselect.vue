@@ -4,6 +4,9 @@
       :close-on-select="closeOnSelect"
       :deselect-group-label="deselectGroupLabel"
       :deselect-label="deselectLabel"
+      :group-label="groupLabel"
+      :group-select="groupSelect"
+      :group-values="groupValues"
       :label="label"
       :multiple="multiple"
       :options="options"
@@ -94,6 +97,24 @@ export default {
     },
 
     deselectGroupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    groupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    groupSelect: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    groupValues: {
       type: String,
       required: false,
       default: ''

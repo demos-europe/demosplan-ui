@@ -189,7 +189,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: Translator.trans('choose')
+      default: () => Translator.trans('choose')
     },
 
     required: {

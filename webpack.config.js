@@ -21,11 +21,7 @@ const transpileNodeModules = [
 ].map(module => resolve('node_modules/' + module))
 
 const config = {
-  mode: isProduction ? 'production' : 'development',
   entry: resolve('./src/index.js'),
-  experiments: {
-    outputModule: true,
-  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'demosplan-ui.umd.js',

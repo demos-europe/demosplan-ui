@@ -1,20 +1,32 @@
 <template>
   <div>
     <vue-multiselect
-      :close-on-select="closeOnSelect"
-      :deselect-group-label="deselectGroupLabel"
-      :deselect-label="deselectLabel"
-      :label="label"
-      :multiple="multiple"
-      :options="options"
-      :placeholder="Translator.trans('choose')"
-      :searchable="searchable"
-      :select-group-label="selectGroupLabel"
-      :select-label="selectLabel"
-      :selected-label="selectedLabel"
-      :tag-placeholder="Translator.trans('tag.create')"
-      :track-by="trackBy"
-      :value="value"
+      v-bind="{
+        closeOnSelect,
+        customLabel,
+        dataCy,
+        deselectGroupLabel,
+        deselectLabel,
+        disabled,
+        groupLabel,
+        groupSelect,
+        groupValues,
+        id,
+        label,
+        loading,
+        maxHeight,
+        multiple,
+        name,
+        options,
+        placeholder,
+        searchable,
+        selectGroupLabel,
+        selectLabel,
+        selectedLabel,
+        tagPlaceholder,
+        trackBy,
+        value
+      }"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
@@ -87,6 +99,18 @@ export default {
       default: true
     },
 
+    customLabel: {
+      type: Function,
+      required: false,
+      default: undefined
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'multiselect'
+    },
+
     deselectLabel: {
       type: String,
       required: false,
@@ -99,10 +123,52 @@ export default {
       default: ''
     },
 
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    groupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    groupSelect: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    groupValues: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    id: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     label: {
       type: String,
       required: false,
       default: ''
+    },
+
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    maxHeight: {
+      type: Number,
+      required: false,
+      default: 300
     },
 
     multiple: {
@@ -111,9 +177,21 @@ export default {
       default: false
     },
 
+    name: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     options: {
       type: Array,
       required: true
+    },
+
+    placeholder: {
+      type: String,
+      required: false,
+      default: () => Translator.trans('choose')
     },
 
     required: {
@@ -150,6 +228,12 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+
+    tagPlaceholder: {
+      type: String,
+      required: false,
+      default: () => Translator.trans('tag.create')
     },
 
     trackBy: {

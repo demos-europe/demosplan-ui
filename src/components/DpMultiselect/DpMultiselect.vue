@@ -1,30 +1,32 @@
 <template>
   <div>
     <vue-multiselect
-      :close-on-select="closeOnSelect"
-      v-bind="conditionalProps"
-      :data-cy="dataCy"
-      :deselect-group-label="deselectGroupLabel"
-      :deselect-label="deselectLabel"
-      :disabled="disabled"
-      :group-label="groupLabel"
-      :group-select="groupSelect"
-      :group-values="groupValues"
-      :id="id"
-      :label="label"
-      :loading="loading"
-      :max-height="maxHeight"
-      :multiple="multiple"
-      :name="name"
-      :options="options"
-      :placeholder="placeholder"
-      :searchable="searchable"
-      :select-group-label="selectGroupLabel"
-      :select-label="selectLabel"
-      :selected-label="selectedLabel"
-      :tag-placeholder="Translator.trans('tag.create')"
-      :track-by="trackBy"
-      :value="value"
+      v-bind="{
+        closeOnSelect,
+        customLabel,
+        dataCy,
+        deselectGroupLabel,
+        deselectLabel,
+        disabled,
+        groupLabel,
+        groupSelect,
+        groupValues,
+        id,
+        label,
+        loading,
+        maxHeight,
+        multiple,
+        name,
+        options,
+        placeholder,
+        searchable,
+        selectGroupLabel,
+        selectLabel,
+        selectedLabel,
+        tagPlaceholder,
+        trackBy,
+        value
+      }"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
@@ -98,9 +100,9 @@ export default {
     },
 
     customLabel: {
-      type: [Function, null],
+      type: Function,
       required: false,
-      default: null
+      default: undefined
     },
 
     dataCy: {
@@ -228,6 +230,12 @@ export default {
       default: ''
     },
 
+    tagPlaceholder: {
+      type: String,
+      required: false,
+      default: () => Translator.trans('tag.create')
+    },
+
     trackBy: {
       type: [String, null],
       required: false,
@@ -238,18 +246,6 @@ export default {
       type: [String, Number, Array, Object],
       required: false,
       default: ''
-    }
-  },
-
-  computed: {
-    /**
-     * If these props are not given by the parent, we don't want to give them to vue-multiselect, because
-     * otherwise we get empty results
-     */
-    conditionalProps() {
-      return {
-        ...(this.customLabel ? this.customLabel : {})
-      }
     }
   }
 }

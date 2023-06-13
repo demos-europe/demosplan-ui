@@ -2,7 +2,7 @@
   <div>
     <vue-multiselect
       :close-on-select="closeOnSelect"
-      :custom-label="customLabel"
+      v-bind="conditionalProps"
       :data-cy="dataCy"
       :deselect-group-label="deselectGroupLabel"
       :deselect-label="deselectLabel"
@@ -229,15 +229,32 @@ export default {
     },
 
     trackBy: {
-      type: [String, null],
+      type: String,
       required: false,
-      default: null
+      default: ''
     },
 
     value: {
       type: [String, Number, Array, Object],
       required: false,
       default: ''
+    }
+  },
+
+  computed: {
+    /**
+     * If these props are not given by the parent, we don't want to give them to vue-multiselect, because
+     * otherwise we get empty results
+     */
+    conditionalProps() {
+      return {
+        ...(this.customLabel ? this.customLabel : {}),
+        ...(this.groupLabel ? this.groupLabel : {}),
+        ...(this.groupValues ? this.groupValues : {}),
+        ...(this.label ? this.label : {}),
+        ...(this.id ? this.id : {}),
+        ...(this.trackBy ? this.trackBy : {})
+      }
     }
   }
 }

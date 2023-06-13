@@ -39,10 +39,8 @@
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable">
-        <template
-          v-if="!isLoading"
-          v-for="(item, idx) in items">
+      <tbody v-if="!isDraggable && !isLoading">
+        <template v-for="(item, idx) in items">
           <dp-table-row
             ref="tableRows"
             :index="idx"
@@ -52,7 +50,6 @@
             :header-fields="headerFields"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
-            :is-loading="isLoading && items.length > 0"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
             :is-locked-message="mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
@@ -106,8 +103,7 @@
         ghostClass="sortable-ghost"
         chosenClass="sortable-chosen"
         @change="(e) => $emit('changed-order', e)">
-        <template
-          v-for="(item, idx) in items">
+        <template v-for="(item, idx) in items">
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"

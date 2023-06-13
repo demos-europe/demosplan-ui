@@ -229,9 +229,9 @@ export default {
     },
 
     trackBy: {
-      type: String,
+      type: [String, null],
       required: false,
-      default: ''
+      default: null
     },
 
     value: {
@@ -248,12 +248,7 @@ export default {
      */
     conditionalProps() {
       return {
-        ...(this.customLabel ? this.customLabel : {}),
-        ...(this.groupLabel ? this.groupLabel : {}),
-        ...(this.groupValues ? this.groupValues : {}),
-        ...(this.label ? this.label : {}),
-        ...(this.id ? this.id : {}),
-        ...(this.trackBy ? this.trackBy : {})
+        ...(this.customLabel ? this.customLabel : {})
       }
     }
   }

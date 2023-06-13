@@ -7,6 +7,7 @@ import DpEditor from './DpEditor/DpEditor'
 import DpNotifyContainer from './notify/DpNotifyContainer'
 import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
+import DpSwitcher from './DpSwitcher'
 import DpTableCard from './DpTableCardList/DpTableCard'
 import DpTableCardListHeader from './DpTableCardList/DpTableCardListHeader'
 import DpTextWrapper from './DpTextWrapper'
@@ -25,6 +26,7 @@ export {
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
+  DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,

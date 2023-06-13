@@ -5,7 +5,6 @@ import DpButton from './DpButton/DpButton'
 import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCard from './DpCard/DpCard'
-import DpChangeStateAtDate from './DpChangeStateAtDate/DpChangeStateAtDate'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
 import DpColumnSelector from './DpDataTable/DpColumnSelector'
@@ -52,6 +51,7 @@ import DpTreeList from './DpTreeList/DpTreeList'
 import {
   DpAnonymizeText,
   DpBulkEditHeader,
+  DpChangeStateAtDate,
   DpCopyPasteButton,
   DpDashboardTaskCard,
   DpEditableList,

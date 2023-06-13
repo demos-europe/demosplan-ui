@@ -3,6 +3,9 @@
 ## UNRELEASED
 
 ### Added
+- ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
 - ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
 - ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
 

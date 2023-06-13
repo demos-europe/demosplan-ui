@@ -20,7 +20,7 @@
         type="checkbox"
         data-cy="selectAll"
         ref="selectAll"
-        @click="$listeners.toggleSelectAll()"
+        @click="toggleSelectAll()"
         :checked="checked" />
     </th>
     <template v-for="(hf, idx) in headerFields">
@@ -48,14 +48,14 @@
       v-if="isExpandable"
       scope="col"
       class="c-data-table__cell--narrow"
-      @click="$listeners.toggleExpandAll()">
+      @click="toggleExpandAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
     <th
       v-if="isTruncatable"
       scope="col"
       class="c-data-table__cell--narrow"
-      @click="$listeners.toggleWrapAll()">
+      @click="toggleWrapAll()">
       <dp-wrap-trigger :title="translations.headerExpandHint" />
     </th>
   </tr>
@@ -149,6 +149,18 @@ export default {
       if (this.isSelectable) {
         this.$refs.selectAll.indeterminate = this.indeterminate
       }
+    },
+
+    toggleExpandAll () {
+      this.$emit('toggle-expand-all')
+    },
+
+    toggleSelectAll () {
+      this.$emit('toggle-select-all')
+    },
+
+    toggleWrapAll () {
+      this.$emit('toggle-wrap-all')
     }
   },
 

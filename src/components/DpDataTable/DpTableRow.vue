@@ -1,13 +1,109 @@
+<template>
+  <tr
+    class="row"
+    :class="[{ 'opacity-7': isLoading }, { 'is-expanded-row': expanded }]">
+    <td
+      v-if="isDraggable"
+      class="c-data-table__cell--narrow">
+      <dp-icon
+        icon="drag-handle"
+        class="c-data-table__drag-handle" />
+    </td>
+
+    <td
+      v-if="isSelectable"
+      class="c-data-table__cell--narrow">
+      <dp-icon
+        v-if="isLocked"
+        class="u-valign--middle color--grey-light"
+        v-tooltip="isLockedMessage"
+        icon="lock" />
+      <input
+        v-else
+        type="checkbox"
+        class="u-m-0 u-valign--middle"
+        data-cy="selectItem"
+        :name="isSelectableName || null"
+        :value="isSelectableName ? item[trackBy] : null"
+        :checked="checked"
+        @click="toggleSelect(item[trackBy])">
+    </td>
+
+    <td
+      v-for="(field, idx) in fields"
+      :key="`${field}:${idx}`"
+      :class="{ 'c-data-table__resizable': isTruncatable }"
+      :data-col-idx="`${idx}`">
+      <div
+        v-if="isTruncatable"
+        class="overflow-word-break"
+        :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
+        :style="elementStyle(field)">
+        <slot
+          :name="field"
+          v-bind="item" >
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span
+             v-else
+             v-text="item[field]" />
+        </slot>
+      </div>
+      <template v-else>
+        <slot
+          :name="field"
+          v-bind="item">
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span
+            v-text="item[field]"
+            v-else />
+        </slot>
+      </template>
+    </td>
+
+    <td
+      v-if="hasFlyout"
+      class="overflow-visible">
+      <slot
+        name="flyout"
+        v-bind="item" />
+    </td>
+
+    <td
+      v-if="isExpandable"
+      class="c-data-table__cell--narrow"
+      :class="{ 'is-open': expanded }"
+      :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
+      @click="toggleExpand(item[trackBy])">
+      <dp-wrap-trigger :expanded="expanded" />
+    </td>
+
+    <td
+      v-if="isTruncatable"
+      class="c-data-table__cell--narrow"
+      :class="{ 'is-open': wrapped }"
+      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
+      @click="toggleWrap(item[trackBy])">
+      <dp-wrap-trigger :expanded="wrapped" />
+    </td>
+  </tr>
+</template>
+
 <script>
-import DomPurify from 'dompurify'
 import DpIcon from '../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import { hasOwnProp } from '../../utils'
+import DomPurify from 'dompurify'
 
 export default {
   name: 'DpTableRow',
 
-  functional: true,
+  components: {
+    DpIcon,
+    DpWrapTrigger
+  },
 
   props: {
     checked: {
@@ -132,215 +228,47 @@ export default {
     }
   },
 
-  render: function (h, { listeners, props, scopedSlots }) {
-    const {
-      checked,
-      expanded,
-      fields,
-      hasFlyout,
-      headerFields,
-      isDraggable,
-      isExpandable,
-      isLoading,
-      isLocked,
-      isLockedMessage,
-      isSelectable,
-      isSelectableName,
-      isTruncatable,
-      item,
-      searchTerm,
-      trackBy,
-      wrapped
-    } = props
+  computed: {
+    highlighted () {
+      return (field) => {
+        let itemValue = this.item[field]
+        itemValue = DomPurify.sanitize(itemValue)
 
-    let draggableCell = []
-    if (isDraggable) {
-      draggableCell = [
-        h('td', {
-          attrs: {
-            class: 'c-data-table__cell--narrow'
-          }
-        }, [
-          h(DpIcon, {
-            attrs: {
-              class: 'c-data-table__drag-handle u-valign--middle'
-            },
-            props: {
-              icon: 'drag-handle'
-            }
-          })
-        ])
-      ]
-    }
-
-    let checkboxCell = []
-
-    if (isSelectable) {
-      let checkboxElement
-      let checkboxData
-      if (isLocked) {
-        checkboxElement = DpIcon
-        checkboxData = {
-          class: 'u-valign--middle color--grey-light',
-          props: { icon: 'lock' },
-          directives: [
-            {
-              name: 'tooltip',
-              value: isLockedMessage
-            }
-          ]
-        }
-      } else {
-        checkboxElement = 'input'
-        checkboxData = {
-          attrs: {
-            type: 'checkbox',
-            class: 'u-m-0 u-valign--middle',
-            'data-cy': 'selectItem',
-            name: isSelectableName || null,
-            value: isSelectableName ? item[trackBy] : null
-          },
-          domProps: { checked: checked },
-          on: { click: () => listeners.toggleSelect(item[trackBy]) }
-        }
+        return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
       }
+    },
 
-      checkboxCell = [h('td', {
-        attrs: { class: 'c-data-table__cell--narrow' }
-      }, [h(checkboxElement, checkboxData)])]
-    }
+    elementStyle () {
+      return (field) => {
+        const headerField = this.headerFields.find((hf) => hf.field === field)
+        let style = ''
 
-    let flyoutCell = []
-    if (hasFlyout) {
-      flyoutCell = [h('td', {
-        attrs: {
-          class: 'overflow-visible'
-        },
-        scopedSlots: {
-          flyout: scopedSlots.flyout
+        if (!this.wrapped && typeof headerField.initialWidth !== 'undefined') {
+          style += `width: ${headerField.initialWidth}px;`
         }
-      }, [(scopedSlots.flyout && scopedSlots.flyout(item))])]
-    }
-
-    let expandableCell = []
-    if (isExpandable) {
-      expandableCell = [h('td', {
-        attrs: {
-          class: `c-data-table__cell--narrow ${expanded ? 'is-open' : ''}`,
-          title: Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')
-        },
-        on: {
-          click: () => listeners.toggleExpand(item[trackBy])
+        if (!this.wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
+          style += `max-width: ${headerField.initialMaxWidth}px;`
         }
-      }, [h(DpWrapTrigger, {
-        props: {
-          expanded: expanded
-        }
-      })])]
-    }
-
-    let truncatableCell = []
-    if (isTruncatable) {
-      truncatableCell = [h('td', {
-        attrs: {
-          class: `c-data-table__cell--narrow ${wrapped ? 'is-open' : ''}`,
-          title: Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')
-        },
-        on: {
-          click: () => listeners.toggleWrap(item[trackBy])
-        }
-      }, [h(DpWrapTrigger, {
-        props: {
-          expanded: wrapped
-        }
-      })])]
-    }
-
-    const rowContent = [
-      ...draggableCell,
-      ...checkboxCell,
-      ...fields.map((field, idx) => {
-        let txt = item[field]
-        let highlighted = null
-        const headerField = headerFields.find((hf) => hf.field === field)
-        if (searchTerm && txt) {
-          txt = DomPurify.sanitize(txt)
-          highlighted = txt.replace(searchTerm, '<span style="background-color: yellow;">$&</span>')
-          highlighted = h('span', {
-            domProps: {
-              innerHTML: highlighted
-            }
-          })
+        if (!this.wrapped && typeof headerField.initialMinWidth !== 'undefined') {
+          style += `min-width: ${headerField.initialMinWidth}px;`
         }
 
-        let cellAttributes = {}
-        let cellInnerElement = null
-        let cellInnerElementStyle = ''
-        if (!wrapped && typeof headerField.initialWidth !== 'undefined') {
-          cellInnerElementStyle = `width: ${headerField.initialWidth}px;`
-        }
-        if (!wrapped && typeof headerField.initialMaxWidth !== 'undefined') {
-          cellInnerElementStyle += `max-width: ${headerField.initialMaxWidth}px;`
-        }
-        if (!wrapped && typeof headerField.initialMinWidth !== 'undefined') {
-          cellInnerElementStyle += `min-width: ${headerField.initialMinWidth}px;`
-        }
-        if (isTruncatable) {
-          cellAttributes = {
-            attrs: {
-              class: 'c-data-table__resizable',
-              'data-col-idx': `${idx}`
-            }
-          }
-          cellInnerElement = h('div', {
-            attrs: {
-              class: `${wrapped ? 'c-data-table__resizable--wrapped overflow-word-break' : 'c-data-table__resizable--truncated overflow-word-break'}`,
-              style: cellInnerElementStyle
-            }
-          }, [(scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || ''])
-        }
-
-        return h('td',
-          {
-            ...cellAttributes,
-            key: `${field}:${idx}`,
-            scopedSlots: {
-              [field]: scopedSlots[field]
-            }
-          },
-          [cellInnerElement || (scopedSlots[field] && scopedSlots[field](item)) || highlighted || txt || '']
-        )
-      }),
-      ...flyoutCell,
-      ...expandableCell,
-      ...truncatableCell
-    ]
-
-    const content = [h('tr', {
-      attrs: {
-        class: `row ${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-row' : ''}`
+        return style
       }
-    }, rowContent)]
-
-    if (expanded && hasOwnProp(scopedSlots, 'expandedContent')) {
-      const expandedContent = scopedSlots.expandedContent(item) || ''
-      const expandedRow = h('tr',
-        {
-          attrs: {
-            class: `${isLoading ? 'opacity-7' : ''} ${expanded ? 'is-expanded-content' : ''}`
-          },
-          on: {
-            mouseenter: (e) => e.target.previousSibling.classList.add('is-hovered-content'),
-            mouseleave: (e) => e.target.previousSibling.classList.remove('is-hovered-content')
-          }
-        },
-        [h('td', { attrs: { colspan: rowContent.length } }, expandedContent)]
-      )
-
-      content.push(expandedRow)
     }
+  },
+  methods: {
+    toggleSelect (id) {
+      this.$emit('toggle-select', id)
+    },
 
-    return content
+    toggleWrap (id) {
+      this.$emit('toggle-wrap', id)
+    },
+
+    toggleExpand (id) {
+      this.$emit('toggle-expand', id)
+    }
   }
 }
 </script>

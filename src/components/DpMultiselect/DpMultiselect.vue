@@ -98,9 +98,9 @@ export default {
     },
 
     customLabel: {
-      type: Function,
+      type: [Function, null],
       required: false,
-      default: (option) => `${option.title}`
+      default: null
     },
 
     dataCy: {

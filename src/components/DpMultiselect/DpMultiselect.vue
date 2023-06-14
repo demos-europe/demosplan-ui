@@ -1,20 +1,40 @@
 <template>
   <div>
     <vue-multiselect
-        :value="value"
-        @input="newVal => $emit('input', newVal)"
-        :options="options"
-        :label="label"
-        :multiple="multiple"
-        :select-label="selectLabel"
-        :select-group-label="selectGroupLabel"
-        :selected-label="selectedLabel"
-        :deselect-label="deselectLabel"
-        :deselect-group-label="deselectGroupLabel"
-        :tag-placeholder="Translator.trans('tag.create')"
-        :track-by="trackBy"
-        :placeholder="Translator.trans('choose')"
-        v-dp-validate-multiselect="required">
+      v-bind="{
+        closeOnSelect,
+        customLabel,
+        dataCy,
+        deselectGroupLabel,
+        deselectLabel,
+        disabled,
+        groupLabel,
+        groupSelect,
+        groupValues,
+        id,
+        label,
+        loading,
+        maxHeight,
+        multiple,
+        name,
+        options,
+        placeholder,
+        searchable,
+        selectGroupLabel,
+        selectLabel,
+        selectedLabel,
+        tagPlaceholder,
+        trackBy,
+        value
+      }"
+      v-dp-validate-multiselect="required"
+      @close="newVal => $emit('close', newVal)"
+      @input="newVal => $emit('input', newVal)"
+      @open="newVal => $emit('open', newVal)"
+      @remove="newVal => $emit('remove', newVal)"
+      @search-change="newVal => $emit('search-change', newVal)"
+      @select="newVal => $emit('select', newVal)"
+      @tag="newVal => $emit('tag', newVal)">
       <template v-slot:noResult>
         {{ Translator.trans('autocomplete.noResults') }}
       </template>
@@ -24,29 +44,37 @@
       </template>
 
       <template v-slot:option="props">
-        <slot name="options" />
+        <slot
+          :props="props"
+          name="option" />
       </template>
 
       <template v-slot:tag="props">
-        <slot name="tag" />
+        <slot
+          :props="props"
+          name="tag" />
       </template>
 
       <!-- put more slots here -->
 
-      <template v-slot:beforeList="props">
+      <template
+        v-if="selectionControls"
+        v-slot:beforeList="props">
         <div class="border-bottom">
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              type="button"
-              :disabled="value.length === options.length === 0"
-              @click="$emit('select-all')">
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === options.length === 0"
+            type="button"
+            v-text="Translator.trans('select.all')"
+            @click="$emit('select-all')">
           </button>
 
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              type="button"
-              :disabled="value.length === 0"
-              @click="$emit('unselect-all')">
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === 0"
+            type="button"
+            v-text="Translator.trans('unselect.all')"
+            @click="$emit('unselect-all')">
           </button>
         </div>
       </template>
@@ -65,6 +93,24 @@ export default {
   },
 
   props: {
+    closeOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
+    customLabel: {
+      type: Function,
+      required: false,
+      default: undefined
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'multiselect'
+    },
+
     deselectLabel: {
       type: String,
       required: false,
@@ -77,10 +123,52 @@ export default {
       default: ''
     },
 
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    groupLabel: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    groupSelect: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    groupValues: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    id: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     label: {
       type: String,
       required: false,
       default: ''
+    },
+
+    loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    maxHeight: {
+      type: Number,
+      required: false,
+      default: 300
     },
 
     multiple: {
@@ -89,15 +177,33 @@ export default {
       default: false
     },
 
+    name: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     options: {
       type: Array,
       required: true
+    },
+
+    placeholder: {
+      type: String,
+      required: false,
+      default: () => Translator.trans('choose')
     },
 
     required: {
       required: false,
       type: Boolean,
       default: false
+    },
+
+    searchable: {
+      required: false,
+      type: Boolean,
+      default: true
     },
 
     selectionControls: {
@@ -124,6 +230,12 @@ export default {
       default: ''
     },
 
+    tagPlaceholder: {
+      type: String,
+      required: false,
+      default: () => Translator.trans('tag.create')
+    },
+
     trackBy: {
       type: [String, null],
       required: false,
@@ -131,7 +243,7 @@ export default {
     },
 
     value: {
-      type: String,
+      type: [String, Number, Array, Object],
       required: false,
       default: ''
     }

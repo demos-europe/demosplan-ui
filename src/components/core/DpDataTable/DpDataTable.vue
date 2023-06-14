@@ -1,7 +1,178 @@
+<template>
+  <div>
+    <table
+      ref="tableEl"
+      :class="tableClass">
+      <caption class="hide-visually" v-text="tableDescription" />
+      <colgroup
+        v-if="headerFields.filter((field) => field.colClass).length > 0">
+        <col v-if="isDraggable" />
+        <col v-if="isSelectable" />
+        <col
+          v-for="field in headerFields"
+          :class="field.colClass" />
+        <col v-if="hasFlyout" />
+        <col v-if="isExpandable" />
+        <col v-if="isTruncatable" />
+      </colgroup>
+
+      <thead>
+        <dp-table-header
+          :checked="allSelected"
+          :has-flyout="hasFlyout"
+          :header-fields="headerFields"
+          :indeterminate="indeterminate"
+          :is-draggable="isDraggable"
+          :is-expandable="isExpandable"
+          :is-resizable="isResizable"
+          :is-selectable="isSelectable"
+          :is-sticky="hasStickyHeader"
+          :is-truncatable="isTruncatable"
+          :translations="headerTranslations"
+          @toggle-expand-all="toggleExpandAll"
+          @toggle-select-all="toggleSelectAll"
+          @toggle-wrap-all="toggleWrapAll">
+          <template v-slot:[`header-${field}`] v-for="field in fields">
+            <slot :name="`header-${field}`" />
+          </template>
+        </dp-table-header>
+      </thead>
+
+      <!-- not draggable -->
+      <tbody v-if="!isDraggable && !isLoading">
+        <template v-for="(item, idx) in items">
+          <dp-table-row
+            ref="tableRows"
+            :index="idx"
+            :checked="elementSelections[item[trackBy]] || false"
+            :fields="fields"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-selectable-name="isSelectableName"
+            :is-truncatable="isTruncatable"
+            :item="item"
+            :search-term="searchTerm"
+            :track-by="trackBy"
+            :wrapped="wrappedElements[item[trackBy]] || false"
+            @toggle-expand="toggleExpand"
+            @toggle-select="toggleSelect"
+            @toggle-wrap="toggleWrap">
+            <template
+              v-slot:[field]="item"
+              v-for="field in fields">
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
+            </template>
+          </dp-table-row>
+
+          <!-- DpTableRowExpanded -->
+          <tr
+            v-if="expandedElements[item[trackBy]] || false"
+            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+            <td
+              :class="{ 'opacity-7': isLoading }"
+              :colspan="colCount"
+              @mouseenter="addHoveredClass(idx)"
+              @mouseleave="removeHoveredClass(idx)">
+              <slot
+                name="expandedContent"
+                v-bind="item" />
+            </td>
+          </tr>
+        </template>
+      </tbody>
+
+      <!-- draggable -->
+      <dp-draggable
+        v-if="isDraggable && !isLoading"
+        draggable-tag="tbody"
+        :content-data="items"
+        handle="c-data-table__drag-handle"
+        ghostClass="sortable-ghost"
+        chosenClass="sortable-chosen"
+        @change="(e) => $emit('changed-order', e)">
+        <template v-for="(item, idx) in items">
+          <dp-table-row
+            :checked="elementSelections[item[trackBy]] || false"
+            :expanded="expandedElements[item[trackBy]] || false"
+            :fields="fields"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :index="idx"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-loading="isLoading"
+            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-selectable-name="isSelectableName"
+            :is-truncatable="isTruncatable"
+            :item="item"
+            :search-term="searchTerm"
+            :track-by="trackBy"
+            :wrapped="wrappedElements[item[trackBy]] || false"
+            @toggle-expand="toggleExpand"
+            @toggle-select="toggleSelect"
+            @toggle-wrap="toggleWrap">
+            <template v-slot:[field]="item" v-for="field in fields">
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
+            </template>
+          </dp-table-row>
+        </template>
+      </dp-draggable>
+
+      <!-- empty items -->
+      <tr v-if="items.length === 0">
+        <!-- noResultsData  -->
+        <td
+          v-if="searchTermSet"
+          :colspan="colCount"
+          class="u-pt"
+          v-html="noResults" />
+
+        <!-- noEntriesItem -->
+        <td
+          v-else
+          :colspan="colCount"
+          class="u-pt">
+          <dp-loading
+            v-if="isLoading"
+            is-loading
+            class="u-mt"
+            :colspan="colCount" />
+          <template v-else>
+            {{ mergedTranslations.tableNoElements }}
+          </template>
+        </td>
+      </tr>
+    </table>
+  </div>
+</template>
+
 <script>
 import { CleanHtml } from '../../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
-import DpDraggable from '../DpDraggable'
+import DpDraggable from '../../DpDraggable/DpDraggable'
 import DpLoading from '../../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
@@ -10,10 +181,10 @@ export default {
   name: 'DpDataTable',
 
   components: {
-    DpDraggable,
-    DpLoading,
+    DpTableRow,
     DpTableHeader,
-    DpTableRow
+    DpLoading,
+    DpDraggable
   },
 
   directives: {
@@ -182,6 +353,12 @@ export default {
       default: 'c-data-table'
     },
 
+    tableDescription: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     trackBy: {
       type: String,
       required: true
@@ -193,7 +370,6 @@ export default {
       default: () => ({})
     }
   },
-
   data () {
     return {
       allExpanded: false,
@@ -210,9 +386,17 @@ export default {
       },
       elementSelections: {},
       expandedElements: {},
+      headerCellCount: 0,
       mergedTranslations: {},
       selectedElements: [],
       tableEl: undefined,
+      tableProps: [
+        this.isDraggable,
+        this.isSelectable,
+        this.hasFlyout,
+        this.isExpandable,
+        this.isTruncatable
+      ],
       wrappedElements: {}
     }
   },
@@ -226,6 +410,24 @@ export default {
       }
     },
 
+    colCount () {
+      let tableCellCount = 0
+
+      this.tableProps.map((prop) => {
+        tableCellCount += prop ? 1 : 0
+      })
+
+      return this.headerCellCount + tableCellCount
+    },
+
+    fields () {
+      return this.headerFields.map(hf => hf.field)
+    },
+
+    headerTranslations () {
+      return this.extractTranslations(['headerSelectHint'])
+    },
+
     indeterminate () {
       if (this.isSelectable === false) {
         return
@@ -237,26 +439,36 @@ export default {
       }
     },
 
+    noResults () {
+      return this.mergedTranslations.searchNoResults(DomPurify.sanitize('"' + this.searchString + '"'))
+    },
+
     searchTerm () {
       if (this.searchString === null || this.searchString.length < 1) {
         return new RegExp()
       }
       const searchTerm = this.searchString.replace(/\s*/ig, '\\s*')
       return new RegExp(searchTerm, 'ig')
+    },
+
+    searchTermSet () {
+      return this.searchTerm.source !== '(?:)'
     }
   },
 
   watch: {
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
-    },
-
-    indeterminate () {
-      this.setIndeterminate()
     }
   },
 
   methods: {
+    addHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.add('is-hovered-content')
+    },
+
     extractTranslations (keys) {
       return keys.reduce((acc, key) => {
         const tmp = this.mergedTranslations[key] ? { [key]: this.mergedTranslations[key] } : {}
@@ -282,10 +494,10 @@ export default {
       this.selectedElements = this.filterElementSelections()
     },
 
-    setIndeterminate () {
-      if (this.isSelectable) {
-        this.$refs.selectAll.indeterminate = this.indeterminate
-      }
+    removeHoveredClass(idx) {
+      const tableRow = this.$refs.tableRows[idx]
+
+      return tableRow.$el.classList.remove('is-hovered-content')
     },
 
     resetSelection () {
@@ -360,9 +572,12 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
+  beforeUpdate() {
+    this.headerCellCount = this.headerFields.length
+  },
+
   mounted () {
     this.tableEl = this.$refs.tableEl
-
     /**
      * Why is this here you may ask?
      * Tables and overflow are difficult to handle.
@@ -412,174 +627,6 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
-    this.setIndeterminate()
-  },
-
-  render: function (h) {
-    const self = this
-    const scopedSlots = this.$scopedSlots
-    const fields = self.headerFields.map(hf => hf.field)
-    const items = this.items
-    const headerTranslations = this.extractTranslations(['headerSelectHint'])
-
-    const rowItems = items.map((item, idx) => {
-      return h(DpTableRow, {
-        props: {
-          checked: self.elementSelections[item[self.trackBy]] || false,
-          expanded: self.expandedElements[item[self.trackBy]] || false,
-          fields: fields,
-          hasFlyout: self.hasFlyout,
-          headerFields: self.headerFields,
-          index: idx,
-          isDraggable: self.isDraggable,
-          isExpandable: self.isExpandable,
-          isLoading: self.isLoading && self.items.length > 0,
-          isLocked: self.lockCheckboxBy ? item[self.lockCheckboxBy] : false,
-          isLockedMessage: self.mergedTranslations.lockedForSelection,
-          isResizable: self.isResizable,
-          isSelectable: self.isSelectable,
-          isSelectableName: self.isSelectableName,
-          isTruncatable: self.isTruncatable,
-          item: item,
-          searchTerm: self.searchTerm,
-          trackBy: self.trackBy,
-          wrapped: self.wrappedElements[item[self.trackBy]] || false
-        },
-        on: {
-          toggleExpand: self.toggleExpand,
-          toggleSelect: self.toggleSelect,
-          toggleWrap: self.toggleWrap
-        },
-        scopedSlots: {
-          ...scopedSlots
-        }
-      })
-    })
-
-    const tableHeaderData = {
-      props: {
-        checked: self.allSelected,
-        hasFlyout: self.hasFlyout,
-        headerFields: self.headerFields,
-        indeterminate: self.indeterminate,
-        isDraggable: self.isDraggable,
-        isExpandable: self.isExpandable,
-        isResizable: self.isResizable,
-        isSelectable: self.isSelectable,
-        isSticky: self.hasStickyHeader,
-        isTruncatable: self.isTruncatable,
-        translations: headerTranslations
-      },
-      on: {
-        toggleExpandAll: self.toggleExpandAll,
-        toggleSelectAll: self.toggleSelectAll,
-        toggleWrapAll: self.toggleWrapAll
-      },
-      scopedSlots: {
-        ...scopedSlots
-      }
-    }
-
-    let noEntriesItem, noResultsItem
-
-    // Generate placeholder items if there are no other items to display
-    if (rowItems.length === 0) {
-      const noEntriesData = {}
-
-      noEntriesData.attrs = {
-        class: 'u-pt',
-        colspan: fields.length + (self.isSelectable && 1) || 0
-      }
-
-      const loadingEl = h(DpLoading, {
-        props: {
-          isLoading: true
-        },
-        attrs: {
-          class: 'u-mt',
-          colspan: fields.length + (self.isSelectable && 1) || 0
-        }
-      })
-
-      noEntriesItem = self.isLoading ? h('td', [loadingEl]) : h('td', noEntriesData, self.mergedTranslations.tableNoElements)
-
-      // If there is no searchTerm an empty RegexEp() object with source '(?:)' is returned
-      const searchTermSet = self.searchTerm.source !== '(?:)'
-      if (searchTermSet) {
-        const noResultsData = { ...noEntriesData }
-        noResultsData.domProps = {
-          // The searchNoResults translation has to be a function -> code in created() ensures that it will be a function
-          innerHTML: self.mergedTranslations.searchNoResults(DomPurify.sanitize('"' + this.searchString + '"'))
-        }
-
-        noResultsItem = h('td', noResultsData)
-      }
-    }
-
-    /**
-     * If self.headerFields include at least one item with a `colClass` property defined, this is treated as a Css class
-     * and rendered into a colgroup to enable equal column sizing of multiple instances of DpDataTable.
-     * Colgroup does not work in tandem with `is-resizable` if the class defines a width.
-     * Note that a very limited set of Css properties apply to columns (see https://www.w3.org/TR/CSS21/tables.html#columns).
-     */
-    let colGroup
-
-    if (self.headerFields.filter(field => field.colClass).length > 0) {
-      const cols = self.headerFields.map(field => {
-        return h('col', { attrs: { class: field.colClass } })
-      })
-
-      const emptyCol = h('col')
-
-      /*
-       * Prepend a col element for each of these props set to true, as they
-       * introduce additional td elements by themselves.
-       */
-      for (const condition of [self.isDraggable, self.isSelectable]) {
-        if (condition) {
-          cols.unshift(emptyCol)
-        }
-      }
-
-      /*
-       * Append a col element for each of these props set to true, as they
-       * introduce additional td elements by themselves.
-       */
-      for (const condition of [self.hasFlyout, self.isExpandable, self.isTruncatable]) {
-        if (condition) {
-          cols.push(emptyCol)
-        }
-      }
-
-      colGroup = h('colgroup', cols)
-      if (this.isResizable) {
-        console.warn('"isResizable" will not work with "colClass" property set in headerFields when applying width definitions.')
-      }
-    }
-
-    let bodyEl = 'tbody'
-    let bodyData = {}
-    if (self.isDraggable) {
-      bodyEl = DpDraggable
-      bodyData = {
-        props: {
-          draggableTag: 'tbody',
-          contentData: items
-        },
-        on: {
-          change: (e) => self.$emit('changed-order', e)
-        }
-      }
-    }
-
-    return h('div',
-      [
-        h('table', { ref: 'tableEl', class: self.tableClass }, [
-          colGroup,
-          h(DpTableHeader, tableHeaderData),
-          h(bodyEl, bodyData, (rowItems.length && rowItems) || [noResultsItem || noEntriesItem])
-        ])
-      ])
   }
 }
 </script>

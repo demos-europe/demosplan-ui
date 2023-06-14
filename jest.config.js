@@ -1,7 +1,7 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
     displayName: 'demosplan-ui',
-    collectCoverage: true,
+    collectCoverage: false,
     collectCoverageFrom: [
         './utils/*.{js}',
         './mixins/*.{js}',

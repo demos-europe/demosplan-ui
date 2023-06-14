@@ -3,10 +3,12 @@
 ## UNRELEASED
 
 ### Added
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) Css: A Tailwind Css file is included in the module to be used by projects ([@spiess-demos](https://github.com/spiess-demos))
 - ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
 - ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Changed
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (eg. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
 - ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))
 
 ### Fixed

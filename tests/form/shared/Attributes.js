@@ -1,13 +1,4 @@
 /**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package demosplan,
- * for more information see the license file.
- *
- * All rights reserved
- */
-
-/**
  * Tests if attributes are defined as expected based on the boolean props they are bound to (e.g. required)
  * @param wrapper {Object} Object containing the mounted component
  * @param formControl {Object} element as returned by wrapper.find()

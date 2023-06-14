@@ -1,12 +1,3 @@
-/**
- * (c) 2010-present DEMOS E-Partizipation GmbH.
- *
- * This file is part of the package demosplan,
- * for more information see the license file.
- *
- * All rights reserved
- */
-
 import { test300, test365, testMso } from '../__mocks__/wordContentSnippets.mock'
 import { handleWordPaste } from '../../src/components/core/DpEditor/libs/handleWordPaste'
 

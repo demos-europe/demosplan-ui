@@ -16,7 +16,7 @@ describe('prefixClass', () => {
     expect(prefixClass('[data-some-stuff="its all right"] > .a-class > label')).toEqual('[data-some-stuff="its all right"] > .dp-a-class > label')
   })
 
-  it('should return the same sting if there are no points at the beginning of a word', () => {
+  it('should return the same string if there are no points at the beginning of a word', () => {
     expect(prefixClass('[data-some-stuff="its all right"] > a:hover > label')).toEqual('[data-some-stuff="its all right"] > a:hover > label')
   })
 })

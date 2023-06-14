@@ -1,7 +1,6 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const path = require('path')
 
-console.dir('<rootDir>')
 module.exports = {
   collectCoverage: false,
   collectCoverageFrom: [

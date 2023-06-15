@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 
@@ -47,42 +47,42 @@ export default defineComponent({
 
   props: {
     bold: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       required: false,
       default: true
     },
 
     checked: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       required: false,
       default: false
     },
 
     dataCy: {
-      type: String as PropType<string>,
+      type: String,
       required: false,
       default: ''
     },
 
     disabled: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       required: false,
       default: false
     },
 
     hint: {
-      type: String as PropType<string>,
+      type: String,
       required: false,
       default: ''
     },
 
     id: {
-      type: String as PropType<string>,
+      type: String,
       required: true
     },
 
     label: {
-      type: Object as PropType<object>,
+      type: Object,
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
@@ -90,25 +90,25 @@ export default defineComponent({
     },
 
     name: {
-      type: String as PropType<string>,
+      type: String,
       required: false,
       default: ''
     },
 
     readonly: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       required: false,
       default: false
     },
 
     required: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean,
       required: false,
       default: false
     },
 
     value: {
-      type: String as PropType<string>,
+      type: String,
       required: false,
       default: '1'
     }

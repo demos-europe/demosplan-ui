@@ -29,7 +29,7 @@
 <script>
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpSearchField from '../../DpSearchField/DpSearchField'
-import DpStickyElement from '../shared/DpStickyElement'
+import DpStickyElement from '../../DpStickyElement/DpStickyElement'
 
 export default {
   name: 'DpTableCardListHeader',

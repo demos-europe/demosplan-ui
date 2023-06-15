@@ -1,6 +1,6 @@
 <template>
   <li
-    class="border--top position--relative"
+    class="border--top relative"
     data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
@@ -18,7 +18,7 @@
         :string-value="nodeId"
         @check="setSelectionState({ selectionState: !isSelected })" />
       <div
-        class="flex flex-grow flex-items-start"
+        class="flex grow items-start"
         :style="indentationStyle">
         <dp-tree-list-toggle
           class="c-treelist__folder text--left u-pv-0_25"
@@ -26,7 +26,7 @@
           :icon-class-prop="iconClassFolder"
           v-if="isBranch"
           v-model="isExpanded" />
-        <div class="flex-grow u-pl-0 u-p-0_25">
+        <div class="grow u-pl-0 u-p-0_25">
           <slot
             v-if="isBranch"
             name="branch"
@@ -45,7 +45,7 @@
       <dp-tree-list-toggle
         data-cy="treeListToggle"
         v-if="isBranch"
-        class="align-self-start"
+        class="self-start"
         :disabled="!hasToggle"
         v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
         v-model="isExpanded" />

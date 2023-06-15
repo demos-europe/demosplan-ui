@@ -15,7 +15,7 @@
     <span
       :class="prefixClass('display--inline-block u-pl-0_5')"
       style="width: calc(100% - 62px);">
-      <span class="overflow-word-break">
+      <span class="break-words">
         {{ file.name }}
       </span>
       ({{ fileSize }})

@@ -85,7 +85,7 @@ export default defineComponent({
       type: Object as PropType<object>,
       default: (): Record<string, any> => ({}),
       validator: (prop) => {
-        return Object.keys(prop).every((key: string) => ['bold', 'hint', 'text'].includes(key))
+        return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
       }
     },
 

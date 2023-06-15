@@ -52,7 +52,6 @@ import {
   DpAnonymizeText,
   DpBulkEditHeader,
   DpChangeStateAtDate,
-  DpColumnSelector,
   DpDashboardTaskCard,
   DpEditableList,
   DpEditor,

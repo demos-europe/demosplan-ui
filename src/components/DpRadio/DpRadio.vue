@@ -83,7 +83,7 @@ export default defineComponent({
 
     label: {
       type: Object as PropType<object>,
-      default: (): Record<string, any> => ({}),
+      default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
       }

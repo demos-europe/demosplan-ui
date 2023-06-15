@@ -46,11 +46,5 @@ module.exports = {
     '<rootDir>/node_modules/(?!@tiptap)(.*)'
   ],
   testEnvironment: "jsdom",
-  testEnvironmentOptions: {
-    customExportConditions: [
-      'node',
-      'node-addons'
-    ]
-  },
   verbose: true
 }

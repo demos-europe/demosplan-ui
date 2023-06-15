@@ -26,11 +26,12 @@
   </div>
 </template>
 
-<script>
-import DpLabel from '../DpLabel/DpLabel'
+<script lang="ts">
+import { defineComponent, PropType } from 'vue'
+import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 
-export default {
+export default defineComponent({
   name: 'DpRadio',
 
   components: {
@@ -46,71 +47,71 @@ export default {
 
   props: {
     bold: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: true
     },
 
     checked: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: false
     },
 
     dataCy: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
       default: ''
     },
 
     disabled: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: false
     },
 
     hint: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
       default: ''
     },
 
     id: {
-      type: String,
+      type: String as PropType<string>,
       required: true
     },
 
     label: {
       type: Object,
-      default: () => ({}),
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
+      default: (): Record<string, any> => ({}),
+      validator: (prop: Record<string, any>): boolean => {
+        return Object.keys(prop).every((key: string) => ['bold', 'hint', 'text'].includes(key))
       }
     },
 
     name: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
       default: ''
     },
 
     readonly: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: false
     },
 
     required: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: false
     },
 
     value: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
       default: '1'
     }
   }
-}
+})
 </script>

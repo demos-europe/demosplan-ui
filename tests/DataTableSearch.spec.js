@@ -1,4 +1,4 @@
-import DataTableSearch from '../src/components/core/DpDataTable/DataTableSearch'
+import DataTableSearch from '../src/components/DpDataTable/DataTableSearch'
 
 describe('DataTableSearch a utility function to perform full-text search in strings', () => {
   it('should escape all regex special chars', () => {

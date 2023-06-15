@@ -93,9 +93,10 @@
 </template>
 
 <script>
-import DpIcon from '../../DpIcon/DpIcon'
+import DpIcon from '../DpIcon/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
+
 export default {
   name: 'DpTableRow',
 

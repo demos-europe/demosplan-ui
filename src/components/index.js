@@ -1,3 +1,4 @@
+import dataTableSearch from './DpDataTable/DataTableSearch'
 import DpAccordion from './DpAccordion/DpAccordion'
 import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
 import DpButton from './DpButton/DpButton'
@@ -6,7 +7,10 @@ import DpButtonRow from './DpButtonRow/DpButtonRow'
 import DpCard from './DpCard/DpCard'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
+import DpColumnSelector from './DpDataTable/DpColumnSelector'
 import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
+import DpDataTable from './DpDataTable/DpDataTable'
+import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
 import DpDatepicker from './DpDatepicker/DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
@@ -29,45 +33,44 @@ import DpRadio from './DpRadio/DpRadio'
 import DpResettableInput from './DpResettableInput/DpResettableInput'
 import DpSearchField from './DpSearchField/DpSearchField'
 import DpSelect from './DpSelect/DpSelect'
+import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
 import DpSkeletonBox from './DpSkeletonBox/DpSkeletonBox'
 import DpSlidebar from './DpSlidebar/DpSlidebar'
 import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
 import DpSplitButton from './DpSplitButton/DpSplitButton'
+import DpStickyElement from './DpStickyElement/DpStickyElement'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
-import DpToggleForm from './DpToggleForm/DpToggleForm'
-import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
 import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
 import DpToggle from './DpToggle/DpToggle'
+import DpToggleForm from './DpToggleForm/DpToggleForm'
+import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
+import DpTreeList from './DpTreeList/DpTreeList'
+
 import {
-  dataTableSearch,
   DpAnonymizeText,
   DpBulkEditHeader,
   DpChangeStateAtDate,
   DpColumnSelector,
   DpDashboardTaskCard,
-  DpDataTable,
-  DpDataTableExtended,
   DpEditableList,
   DpEditor,
   DpNotifyContainer,
   DpNotifyMessage,
   DpObscure,
-  DpSelectPageItemCount,
-  DpStickyElement,
   DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
   DpTextWrapper,
   DpTransitionExpand,
-  DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,
 } from './core/'
 
 export {
+  dataTableSearch,
   DpAccordion,
   DpButton,
   DpButtonRow,
@@ -76,7 +79,6 @@ export {
   DpInput,
   DpLabel,
   DpLoading,
-  dataTableSearch,
   DpAnonymizeText,
   DpAutocomplete,
   DpBulkEditHeader,

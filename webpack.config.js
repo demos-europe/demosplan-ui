@@ -52,7 +52,7 @@ const config = {
     'vuex'
   ],
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.ts', '.js', '.vue'],
     symlinks: false
   },
   plugins: [
@@ -70,6 +70,14 @@ const config = {
         exclude: /node_modules/,
         include: transpileNodeModules,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.css$/i,

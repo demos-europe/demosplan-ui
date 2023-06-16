@@ -2,7 +2,7 @@
   <div
     :class="prefixClass('c-notify__message ' + messageClass)">
     <i
-      :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor--pointer')"
+      :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer')"
       aria-hidden="true"
       @click.stop.prevent="hide" />
 

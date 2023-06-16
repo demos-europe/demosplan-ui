@@ -36,7 +36,7 @@
       :data-col-idx="`${idx}`">
       <div
         v-if="isTruncatable"
-        class="overflow-word-break"
+        class="break-words"
         :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
         :style="elementStyle(field)">
         <slot

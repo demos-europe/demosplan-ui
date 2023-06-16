@@ -14,7 +14,7 @@
           v-model="allElementsSelected"
           check-all
           :style="checkboxIndentationStyle" />
-        <div class="flex-grow color--grey">
+        <div class="grow color--grey">
           <slot name="header" />
         </div>
         <dp-tree-list-toggle

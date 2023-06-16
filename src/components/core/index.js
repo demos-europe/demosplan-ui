@@ -1,6 +1,5 @@
 import DpAnonymizeText from './DpAnonymizeText'
 import DpBulkEditHeader from './DpBulkEditHeader'
-import DpChangeStateAtDate from './DpChangeStateAtDate'
 import DpDashboardTaskCard from './DpDashboardTaskCard'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
@@ -19,7 +18,6 @@ import { getFileIdsByHash } from './DpUpload/utils/GetFileIdsByHash'
 export {
   DpAnonymizeText,
   DpBulkEditHeader,
-  DpChangeStateAtDate,
   DpDashboardTaskCard,
   DpEditableList,
   DpEditor,

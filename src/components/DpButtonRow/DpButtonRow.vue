@@ -106,13 +106,14 @@ export default {
     },
 
     /**
-     * Variants of the button include `outline` (`text` to be implemented).
-     * When not specified, the default style (white on colored background) is applied.
+     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
      */
     variant: {
       required: false,
       type: String,
-      default: ''
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   }
 }

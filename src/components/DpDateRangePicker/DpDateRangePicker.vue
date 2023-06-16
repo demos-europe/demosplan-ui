@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-items-center">
+  <div class="flex items-center">
     <dp-datepicker
       :id="startId"
       :name="startName"

@@ -12,7 +12,7 @@
         :class="prefixClass('o-modal__content ' + contentClasses)"
         role="dialog">
         <button
-          :class="prefixClass('btn--blank o-link--default position--absolute u-right-0')"
+          :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
           :aria-label="Translator.trans('close.window')"
           :title="Translator.trans('close.window')"
           @click.prevent.stop="toggle()">

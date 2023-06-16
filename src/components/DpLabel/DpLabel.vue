@@ -6,9 +6,9 @@
       <span v-cleanhtml="text" /><span v-if="required">*</span>
       <span
         v-if="hints.length > 0"
-        :class="prefixClass('display--block font-size-small weight--normal')">
+        :class="prefixClass('block font-size-small weight--normal')">
         <span
-          :class="prefixClass(['display--inline-block'])"
+          :class="prefixClass(['inline-block'])"
           :key="i"
           v-for="(h, i) in hints"
           v-cleanhtml="h" />

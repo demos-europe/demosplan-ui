@@ -13,7 +13,7 @@
     </select>
     <label
       :for="selectId"
-      class="display--inline u-mb-0">
+      class="inline u-mb-0">
       {{ labelText }}
     </label>
   </div>

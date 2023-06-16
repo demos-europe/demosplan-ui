@@ -20,6 +20,11 @@ import { hasOwnProp } from '~~/utils'
 import { prefixClassMixin } from '~~/mixins'
 import DpNotifyMessage from './DpNotifyMessage'
 
+/**
+ * @deprecated
+ *
+ * import DpNotifyMessage directly and handle messages in outer component
+ **/
 export default {
   name: 'DpNotifyContainer',
 
@@ -98,7 +103,7 @@ export default {
         }
       }
 
-      document.addEventListener('visibilitychange', () => { this.isVisible = document.hidden })
+      document.addEventListener('visibilitychange', () => { this.isVisible = !document.hidden })
     },
 
     removeMessage (message) {

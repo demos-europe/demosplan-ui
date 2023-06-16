@@ -1,5 +1,5 @@
-import { attributes, length } from '~~/shared'
-import { CleanHtml, Tooltip, VPopover } from '~~/directives'
+import { attributes, length } from './shared'
+import { CleanHtml, Tooltip, VPopover } from './directives'
 
 import {
   bindFullScreenChange,
@@ -25,7 +25,7 @@ import {
   throttle,
   uniqueArrayByObjectKey,
   unbindFullScreenChange
-} from '~~/utils'
+} from './utils'
 
 import {
   DpButton,
@@ -42,18 +42,17 @@ import {
   DpButtonIcon,
   DpButtonRow,
   DpCard,
-  DpChangeStateAtDate,
   DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
-  DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
   DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpFlyout,
@@ -62,12 +61,13 @@ import {
   DpInlineNotification,
   DpModal,
   DpMultiselect,
+  DpMultistepNav,
   DpNotifyContainer,
+  DpNotifyMessage,
   DpObscure,
   DpPager,
   DpProgressBar,
   DpRadio,
-  DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,
   DpSelect,
@@ -92,11 +92,10 @@ import {
   DpTreeList,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash,
-  MultistepNav
-} from '~~/components'
+  getFileIdsByHash
+} from './components/'
 
-import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from '~~/mixins'
+import { dpSelectAllMixin, dpValidateMixin, tableSelectAllItems, prefixClassMixin } from './mixins/'
 
 import {
   ActionMenu,
@@ -118,7 +117,7 @@ import {
   Stickier,
   Sticky,
   TableWrapper,
-} from '~~/lib'
+} from './lib/'
 
 import {
   assignHandlerForTrigger,
@@ -133,7 +132,7 @@ import {
   validateInput,
   validateMultiselect,
   validateTiptap
-} from '~~/lib/validation/'
+} from './lib/validation/'
 
 export default {
   ActionMenu,
@@ -187,18 +186,17 @@ export default {
   DpButtonIcon,
   DpButtonRow,
   DpCard,
-  DpChangeStateAtDate,
   DpCheckbox,
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
-  DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
   DpDatepicker,
   DpDateRangePicker,
   DpDatetimePicker,
+  DpDraggable,
   DpEditableList,
   DpEditor,
   DpFlyout,
@@ -207,12 +205,13 @@ export default {
   DpInlineNotification,
   DpModal,
   DpMultiselect,
+  DpMultistepNav,
   DpNotifyContainer,
+  DpNotifyMessage,
   DpObscure,
   DpPager,
   DpProgressBar,
   DpRadio,
-  DpRegisterFlyout,
   DpResettableInput,
   DpSearchField,
   DpSelect,
@@ -238,7 +237,6 @@ export default {
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,
-  MultistepNav,
   CleanHtml,
   prefixClassMixin,
   dpSelectAllMixin,
@@ -266,3 +264,4 @@ export default {
   validateMultiselect,
   validateTiptap
 }
+

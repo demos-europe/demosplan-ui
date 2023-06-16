@@ -1,5 +1,5 @@
 <template>
-  <span :class="{ 'display--inline-block width-100p': inputWidth !== ''}">
+  <span :class="{ 'inline-block width-100p': inputWidth !== ''}">
     <dp-resettable-input
       id="searchField"
       data-cy="searchField"
@@ -10,7 +10,7 @@
       v-model="searchTerm" /><!--
 
  --><dp-button
-      class="u-valign--top"
+      class="align-top"
       data-cy="handleSearch"
       @click="handleSearch"
       :text="Translator.trans('searching')" />
@@ -59,7 +59,7 @@ export default {
 
   computed: {
     cssClasses () {
-      return this.inputWidth !== '' ? `display--inline-block u-mr-0_5 ${this.inputWidth}` : 'display--inline-block u-mr-0_5'
+      return this.inputWidth !== '' ? `inline-block u-mr-0_5 ${this.inputWidth}` : 'inline-block u-mr-0_5'
     }
   },
 

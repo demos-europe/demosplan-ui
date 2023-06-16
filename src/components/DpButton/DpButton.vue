@@ -5,19 +5,39 @@
     :href="!isButtonElement && sanitizedHref"
     :class="classes"
     :aria-hidden="busy"
+    v-tooltip="iconOnly ? text : null"
     v-on="$listeners">
-    <!-- @slot By default, the slot displays the button text. Use to render additional markup, e.g. an icon. -->
-    <slot>
-      <span v-text="text" />
-    </slot>
+    <dp-icon
+      v-if="icon"
+      aria-hidden="true"
+      :icon="icon"
+      size="small" />
+    <span
+      :class="{'hide-visually': hideText}"
+      v-text="text" />
+    <dp-icon
+      v-if="iconAfter"
+      aria-hidden="true"
+      :icon="iconAfter"
+      size="small" />
   </component>
 </template>
 
 <script>
+import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
+import { Tooltip } from '../../directives'
 
 export default {
   name: 'DpButton',
+
+  components: {
+    DpIcon
+  },
+
+  directives: {
+    tooltip: Tooltip
+  },
 
   props: {
     /**
@@ -30,12 +50,23 @@ export default {
     },
 
     /**
-     * Define the color of the button. Possible values are `primary, secondary, warning`.
+     * The color of the button may be `primary`, `secondary`, or `warning`.
      */
     color: {
       required: false,
       type: String,
-      default: 'primary'
+      default: 'primary',
+      validator: (prop) => ['primary', 'secondary', 'warning'].includes(prop)
+    },
+
+    /**
+     * This may be set to true to render icon-only buttons.
+     * The `text` prop will be visually hidden in this case, keeping the button accessible.
+     */
+    hideText: {
+      required: false,
+      type: Boolean,
+      default: false
     },
 
     /**
@@ -49,7 +80,25 @@ export default {
     },
 
     /**
-     * The text content of the button element. Can be omitted if the text content is passed via the default slot.
+     * Icon that will be placed before button text.
+     */
+    icon: {
+      required: false,
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Icon that will be placed after button text.
+     */
+    iconAfter: {
+      required: false,
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Text content of the button element.
      */
     text: {
       required: false,
@@ -68,13 +117,14 @@ export default {
     },
 
     /**
-     * Variants of the button include `outline` (`text` to be implemented).
-     * When not specified, the default style (white on colored background) is applied.
+     * The button may have a variant of `solid`, `outline`, or `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
      */
     variant: {
       required: false,
       type: String,
-      default: ''
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   },
 
@@ -86,15 +136,20 @@ export default {
        * - https://stackoverflow.com/a/2933472
        */
       return [
-        'btn',
+        'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
-        ['primary', 'secondary', 'warning'].includes(this.color) && `btn--${this.color}`,
-        ['outline'].includes(this.variant) && `btn--${this.variant}`
+        this.iconOnly && 'icon-only',
+        ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
+        ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]
       ]
     },
 
     element () {
       return this.isButtonElement ? 'button' : 'a'
+    },
+
+    iconOnly () {
+      return (this.icon || this.iconAfter) && this.hideText
     },
 
     isButtonElement () {
@@ -104,6 +159,25 @@ export default {
     sanitizedHref () {
       return sanitizeUrl(this.href)
     }
+  },
+
+  mounted () {
+    if (!(this.icon || this.iconAfter) && this.hideText) {
+      console.error(`A DpButton instance is used without icon or visible text. Consider showing something to users.`)
+    }
+  }
+}
+
+const classes = {
+  color: {
+    primary: 'btn--primary',
+    secondary: 'btn--secondary',
+    warning: 'btn--warning'
+  },
+  variant: {
+    solid: 'btn--solid',
+    outline: 'btn--outline',
+    subtle: 'btn--subtle'
   }
 }
 </script>

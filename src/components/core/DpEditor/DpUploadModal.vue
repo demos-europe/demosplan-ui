@@ -17,6 +17,7 @@
         <dp-upload-files
           allowed-file-types="img"
           id="imageFile"
+          :get-file-by-hash="getFileByHash"
           :max-file-size="20 * 1024 * 1024/* 20 MiB */"
           :max-number-of-files="1"
           ref="uploader"
@@ -50,11 +51,9 @@
 </template>
 
 <script>
-import {
-  DpInput,
-  DpModal,
-  DpUploadFiles
-} from '~~/components'
+import DpInput from '../../DpInput/DpInput'
+import DpModal from '../../DpModal/DpModal'
+import DpUploadFiles from '../DpUpload/DpUploadFiles'
 
 export default {
   name: 'DpUploadModal',
@@ -63,6 +62,13 @@ export default {
     DpInput,
     DpModal,
     DpUploadFiles
+  },
+
+  props: {
+    getFileByHash: {
+      type: Function,
+      required: true
+    }
   },
 
   data () {
@@ -92,7 +98,7 @@ export default {
     },
 
     setFile ({ hash }) {
-      this.fileUrl = Routing.generate('core_file', { hash: hash })
+      this.fileUrl = this.getFileByHash(hash)
       // Force-update the component so that DpModal updates and therefore check for new focusable elements
       this.$forceUpdate()
     },

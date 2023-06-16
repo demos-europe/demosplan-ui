@@ -1,5 +1,5 @@
 <template>
-  <div class="position--relative">
+  <div class="relative">
     <dp-input
       :id="id"
       :data-cy="dataCy"
@@ -19,8 +19,8 @@
       :disabled="currentValue === defaultValue"
       @click="resetValue">
       <dp-icon
-          icon="xmark"
-          :size="iconSize" />
+        icon="xmark"
+        :size="iconSize" />
     </button>
   </div>
 </template>

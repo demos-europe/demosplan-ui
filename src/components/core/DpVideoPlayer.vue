@@ -1,5 +1,5 @@
 <template>
-  <div class="position--relative">
+  <div class="relative">
     <video
       :aria-labelledby="ariaLabelledby"
       :id="id"

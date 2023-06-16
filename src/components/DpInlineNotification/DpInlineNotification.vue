@@ -20,10 +20,10 @@
   </div>
   <div
     v-else
-    class="cf">
+    class="flow-root">
     <button
       :aria-label="Translator.trans('hint.show')"
-      class="btn--blank color--grey float--right"
+      class="btn--blank color--grey float-right"
       @click="show">
       <dp-icon
         icon="info"

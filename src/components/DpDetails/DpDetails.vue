@@ -4,7 +4,7 @@
     role="group">
     <summary
       :aria-expanded="isOpen"
-      class="o-details__trigger o-link--default cursor--pointer display--inline-block"
+      class="o-details__trigger o-link--default cursor-pointer inline-block"
       role="button"
       @click="isOpen = !isOpen">
       <i

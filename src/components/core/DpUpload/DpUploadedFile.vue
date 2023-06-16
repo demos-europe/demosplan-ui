@@ -8,15 +8,17 @@
     </span>
     <span v-if="isImage">
       <img
-        :src="Routing.generate('core_file', { hash: file.hash })"
+        :src="getFileByHash(file.hash)"
         :aria-label="Translator.trans('image.preview')"
         width="50px">
     </span>
     <span
-      :class="prefixClass('display--inline-block u-pl-0_5')"
+      :class="prefixClass('inline-block u-pl-0_5')"
       style="width: calc(100% - 62px);">
-      {{ file.name }}
-      ({{ file.size }})
+      <span class="break-words">
+        {{ file.name }}
+      </span>
+      ({{ fileSize }})
       <button
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
@@ -31,29 +33,31 @@
 </template>
 
 <script>
-import { getFileInfo } from '~~/lib'
-import { prefixClassMixin } from '~~/mixins'
+import { convertSize } from '../../../lib'
+import { prefixClassMixin } from '../../../mixins'
 
 export default {
   name: 'DpUploadedFile',
 
+  inject: ['getFileByHash'],
+
   mixins: [prefixClassMixin],
 
   props: {
-    fileString: {
-      type: String,
+    file: {
+      type: Object,
       required: true
     }
   },
 
   computed: {
-    file () {
-      return getFileInfo(this.fileString)
-    },
-
     fileIcon () {
       const icon = this.file.mimeType === 'txt' ? 'fa-file-text-o' : 'fa-folder-o'
       return this.prefixClass('fa ' + icon)
+    },
+
+    fileSize () {
+      return convertSize('KB', this.file.size)
     },
 
     isImage () {

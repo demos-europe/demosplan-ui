@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-timepicker display--inline-block"
+    class="c-timepicker inline-block"
     v-click-outside="closeFlyout"
     @keydown.esc="closeFlyout"
     @keydown.enter="e => handleEnter(e)">
@@ -36,7 +36,7 @@
     <div
       ref="flyout"
       v-show="showFlyout"
-      class="flex flex-items-start flex-content-evenly c-timepicker__flyout font-size-small"
+      class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
       tabindex="0">
       <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll height-130">
         <li
@@ -78,6 +78,9 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
+import DpInput from '../DpInput/DpInput'
+import DpLabel from '../DpLabel/DpLabel'
+import DpResettableInput from '../DpResettableInput/DpResettableInput'
 import isMobile from 'ismobilejs'
 
 const DEFAULT_TIME = '00:00'
@@ -86,13 +89,9 @@ export default {
   name: 'DpTimePicker',
 
   components: {
-    DpInput: async () => {
-      return await import('../DpInput/DpInput')
-    },
-    DpLabel: async () => {
-      return await import('../DpLabel/DpLabel')
-    },
-    DpResettableInput: () => import('../DpResettableInput/DpResettableInput')
+    DpInput,
+    DpLabel,
+    DpResettableInput
   },
 
   directives: {

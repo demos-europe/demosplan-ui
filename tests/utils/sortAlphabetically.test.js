@@ -36,19 +36,19 @@ describe('sortAlphabetically', () => {
     })
 
     it('sorts an array of string in alphabetical order by default', () => {
-        const sortedArrayOfString = arrayOfString.sort()
+        const sortedArrayOfString = arrayOfString.sort((a, b) => a - b)
 
         expect(sortAlphabetically(arrayOfString, '')).toEqual(sortedArrayOfString)
     })
 
     it('sorts an array of string in alphabetical order when the third parameter "asc" is provided', () => {
-        const sortedArrayOfString = arrayOfString.sort()
+        const sortedArrayOfString = arrayOfString.sort((a, b) => a - b)
 
         expect(sortAlphabetically(arrayOfString, '', 'asc')).toEqual(sortedArrayOfString)
     })
 
     it('sorts an array of string in reverse alphabetical order when the third parameter "desc" is provided', () => {
-        const sortedArrayOfString = arrayOfString.sort().reverse()
+        const sortedArrayOfString = arrayOfString.sort((a, b) => a - b).reverse()
 
         expect(sortAlphabetically(arrayOfString, '', 'desc')).toEqual(sortedArrayOfString)
     })

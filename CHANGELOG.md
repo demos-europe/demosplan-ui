@@ -3,9 +3,9 @@
 ## UNRELEASED
 
 ### Added
+- ([#268](https://github.com/demos-europe/demosplan-ui/pull/268)) Tests: Add Test setup for Vue Files and some Tests ([@salis-demos](https://github.com/salis-demos))
 - ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
 - ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
-- ([#268](https://github.com/demos-europe/demosplan-ui/pull/268)) Tests: Add Testsetup for Vue Files and some Tests ([@salis-demos](https://github.com/salis-demos))
 
 ### Changed
 - ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))

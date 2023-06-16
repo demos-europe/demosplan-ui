@@ -5,7 +5,7 @@
 ## Removed
 - ([#256](https://github.com/demos-europe/demosplan-ui/pull/256)) **Breaking**: Remove DpCopyPasteButton ([@hwiem](https://github.com/hwiem))
 
-## v0.1.5
+## v0.1.5 - 2023-06-16
 
 _Historic note: v0.1.4 was a bugfix release that contained picked changes from v0.1.5 at a state
 where this release was not fully ready yet and has therefore not been merged back to main. It can
@@ -26,7 +26,7 @@ still be accessed via its release tag._
 ### Fixed
 - ([#290](https://github.com/demos-europe/demosplan-ui/pull/290)) Add missing props to DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
-## v0.1.3 - 2032-05-31
+## v0.1.3 - 2023-05-31
 ### Removed
 - ([#255](https://github.com/demos-europe/demosplan-ui/pull/255)) **Breaking**: Remove DpRegisterFlyout ([@hwiem](https://github.com/hwiem))
 - ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) **Breaking**: DpButton does not support slots anymore. Use the `icon` prop instead. ([@spiess-demos](https://github.com/spiess-demos))

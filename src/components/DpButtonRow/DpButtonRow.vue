@@ -112,7 +112,8 @@ export default {
     variant: {
       required: false,
       type: String,
-      default: ''
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   }
 }

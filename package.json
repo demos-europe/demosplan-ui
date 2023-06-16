@@ -83,10 +83,10 @@
     "vue": "^2.7.14"
   },
   "scripts": {
-    "build-css": "tailwindcss -i ./style/index.css -o ./style/style.css",
-    "build-storybook": "build-storybook",
-    "build-tokens": "node buildTokens.js",
-    "prepack": "yarn build && yarn build-tokens",
+    "build:css": "tailwindcss -i ./style/index.css -o ./style/style.css",
+    "build:storybook": "build-storybook",
+    "build:tokens": "node buildTokens.js",
+    "prepack": "yarn build && yarn build:tokens && yarn build:css",
     "storybook": "start-storybook -p 6006",
     "build": "yarn test && yarn build:prod",
     "build:dev": "webpack --mode=development",

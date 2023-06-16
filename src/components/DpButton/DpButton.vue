@@ -136,7 +136,7 @@ export default {
        * - https://stackoverflow.com/a/2933472
        */
       return [
-        'btn flex-inline flex-items-center space-inline-xs',
+        'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
         this.iconOnly && 'icon-only',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],

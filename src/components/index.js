@@ -51,7 +51,6 @@ import DpTreeList from './DpTreeList/DpTreeList'
 import {
   DpAnonymizeText,
   DpBulkEditHeader,
-  DpCopyPasteButton,
   DpDashboardTaskCard,
   DpEditableList,
   DpEditor,
@@ -87,7 +86,6 @@ export {
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
-  DpCopyPasteButton,
   DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,

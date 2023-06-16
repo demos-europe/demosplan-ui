@@ -2,6 +2,12 @@
 
 ## UNRELEASED
 
+## v0.1.5
+
+_Historic note: v0.1.4 was a bugfix release that contained picked changes from v0.1.5 at a state
+where this release was not fully ready yet and has therefore not been merged back to main. It can
+still be accessed via its release tag._
+
 ### Added
 - ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) Css: A Tailwind Css file is included in the module to be used by projects ([@spiess-demos](https://github.com/spiess-demos))
 - ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))

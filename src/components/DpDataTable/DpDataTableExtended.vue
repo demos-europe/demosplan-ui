@@ -5,7 +5,7 @@
         <div class="layout__item u-10-of-12">
           <!-- Search field -->
           <label
-            class="display--inline"
+            class="inline"
             for="search">
             {{ Translator.trans('search') }}
           </label>
@@ -20,12 +20,12 @@
           <!-- pager -->
           <dp-sliding-pagination
             v-if="totalPages > 1"
-            class="display--inline-block u-ml-0_5 u-mt-0_125"
+            class="inline-block u-ml-0_5 u-mt-0_125"
             :current="currentPage"
             :total="totalPages"
             @page-change="handlePageChange" />
           <dp-select-page-item-count
-            class="display--inline-block u-mt-0_125 u-ml-0_5"
+            class="inline-block u-mt-0_125 u-ml-0_5"
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"

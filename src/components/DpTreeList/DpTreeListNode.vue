@@ -4,7 +4,7 @@
     data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
-        class="display--inline-block u-p-0_25 u-pr-0 u-mt-0_125"
+        class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
         :class="dragHandle"
         v-if="isDraggable">
         <dp-icon

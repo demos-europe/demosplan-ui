@@ -1,5 +1,5 @@
 <template>
-  <div class="position--relative">
+  <div class="relative">
     <dp-input
       :id="id"
       :data-cy="dataCy"

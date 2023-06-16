@@ -3,22 +3,22 @@
 ## UNRELEASED
 
 ### Added
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) Css: A Tailwind Css file is included in the module to be used by projects ([@spiess-demos](https://github.com/spiess-demos))
 - ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
 - ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Changed
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (eg. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
 - ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))
+- ([#230](https://github.com/demos-europe/demosplan-ui/pull/230)) Move from Functional Component to Template in DpDataTable ([@sakutademos](https://github.com/sakutademos))
+- ([#233](https://github.com/demos-europe/demosplan-ui/pull/233)) Move from Functional Component to Template in DpTableRow ([@sakutademos](https://github.com/sakutademos))
+- ([#280](https://github.com/demos-europe/demosplan-ui/pull/280)) Adjust DpTableHeader to work with DpDataTable template-based component ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
 - ([#290](https://github.com/demos-europe/demosplan-ui/pull/290)) Add missing props to DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## Removed
 - ([#256](https://github.com/demos-europe/demosplan-ui/pull/256)) **Breaking**: Remove DpCopyPasteButton ([@hwiem](https://github.com/hwiem))
-
-### Changed
-- ([#230](https://github.com/demos-europe/demosplan-ui/pull/230)) Move from Functional Component to Template in DpDataTable ([@sakutademos](https://github.com/sakutademos))
-- ([#233](https://github.com/demos-europe/demosplan-ui/pull/233)) Move from Functional Component to Template in DpTableRow ([@sakutademos](https://github.com/sakutademos))
-- ([#280](https://github.com/demos-europe/demosplan-ui/pull/280)) Adjust DpTableHeader to work with DpDataTable template-based component ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.1.3 - 2032-05-31
 ### Removed

@@ -55,11 +55,11 @@
           v-bind="element">
           <div
             :key="element.field"
-            class="o-hellip--nowrap position--relative u-pr-0_75">
+            class="o-hellip--nowrap relative u-pr-0_75">
             <button
               :aria-label="Translator.trans('table.cols.sort') + ': ' + element.label"
               :title="Translator.trans('table.cols.sort') + ': ' + element.label"
-              class="btn--blank u-top-0 u-right-0 position--absolute"
+              class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(element.field)"
               type="button">
               <i

@@ -120,7 +120,7 @@
               </button>
               <div
                 v-if="toolbar.insertAndDelete"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('display--inline-block relative')">
                 <button
                   :class="[isActive.insert() || isActive.delete() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
@@ -151,7 +151,7 @@
               </div>
               <div
                 v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('display--inline-block relative')">
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
@@ -244,7 +244,7 @@
               <!-- Insert and edit tables -->
               <div
                 v-if="toolbar.table"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('display--inline-block relative')">
                 <button
                   :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"

@@ -2,6 +2,9 @@
 
 ## UNRELEASED
 
+### Removed
+- ([#303](https://github.com/demos-europe/demosplan-ui/pull/303)) **Breaking**: Remove DpChangeStateAtDate ([@hwiem](https://github.com/hwiem))
+
 ## v0.1.5 - 2023-06-16
 
 _Historic note: v0.1.4 was a bugfix release that contained picked changes from v0.1.5 at a state

@@ -7,5 +7,5 @@ declare module '*.vue' {
     export default component
 
     import Vue from "vue";
-    export default Vue;
+    export default Vue
 }

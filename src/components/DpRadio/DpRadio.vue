@@ -27,8 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 

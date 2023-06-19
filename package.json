@@ -58,6 +58,7 @@
     "@vue/vue2-jest": "^29.2.4",
     "@webpack-cli/generators": "^3.0.0",
     "autoprefixer": "^10.4.13",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
@@ -65,6 +66,7 @@
     "css-loader": "^6.7.2",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.3.1",
+    "jest-junit": "^15.0.0",
     "jest-transform-stub": "^2.0.0",
     "js-beautify": "^1.14.7",
     "mini-css-extract-plugin": "^2.7.0",
@@ -86,7 +88,6 @@
     "vue": "^2.7.14"
   },
   "scripts": {
-    "test": "jest",
     "build:css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build:storybook": "build-storybook",
     "build:tokens": "node buildTokens.js",
@@ -95,6 +96,7 @@
     "build": "yarn test && yarn build:prod",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
+    "test": "jest",
     "watch": "webpack --watch"
   }
 }

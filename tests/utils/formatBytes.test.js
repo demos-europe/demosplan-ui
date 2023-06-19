@@ -1,4 +1,4 @@
-import formatBytes from '../../utils/formatBytes'
+import formatBytes from '../../src/utils/formatBytes'
 
 describe('formatBytes', () => {
     const bytes = {

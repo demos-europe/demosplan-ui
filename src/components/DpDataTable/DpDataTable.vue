@@ -82,7 +82,7 @@
             v-if="expandedElements[item[trackBy]] || false"
             :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
             <td
-              :class="{ 'opacity-7': isLoading }"
+              :class="{ 'opacity-70': isLoading }"
               :colspan="colCount"
               @mouseenter="addHoveredClass(idx)"
               @mouseleave="removeHoveredClass(idx)">

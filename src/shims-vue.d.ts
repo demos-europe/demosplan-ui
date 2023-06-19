@@ -1,6 +1,4 @@
-/**
- * Explain to typescript what Vue components are.
- */
+/* eslint-disable */
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>

@@ -14,7 +14,7 @@
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
-      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace--nowrap"
+      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap"
       @click="toggle">
       <slot
         name="trigger"

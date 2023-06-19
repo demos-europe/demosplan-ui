@@ -6,9 +6,9 @@
       aria-hidden="true"
       @click.stop.prevent="hide" />
 
-    <div :class="prefixClass('cf')">
+    <div :class="prefixClass('flow-root')">
       <i
-        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float--left ' + messageIcon)" />
+        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)" />
       <div :class="prefixClass('u-ml')">
         {{ message.text }}
         <a

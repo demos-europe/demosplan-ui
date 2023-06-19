@@ -72,7 +72,7 @@ describe('DpNotifyMessage', () => {
       }
     })
 
-    expect(wrapper.find('.cf > .u-ml').text()).toBe('MessageText')
+    expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText')
   })
 
   it('renders a link if link attributes are given', () => {
@@ -87,7 +87,7 @@ describe('DpNotifyMessage', () => {
       }
     })
 
-    expect(wrapper.find('.cf > .u-ml').text()).toBe('MessageText\n      \n        LinkText')
+    expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText\n      \n        LinkText')
   })
 
   it('emits dp-notify-remove with it\'s message as payload once clicked', (done) => {

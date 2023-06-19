@@ -1,11 +1,11 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal display--inline-block"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
       :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
         <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
-          class="display--inline-block"
+          class="inline-block"
           :current="currentPage"
           :nonSlidingSize="3"
           :slidingEndingSize="1"
@@ -13,11 +13,11 @@
           :total="totalPages || 1"
           @page-change="handlePageChange" />
       <div
-        class="display--inline-block"
+        class="inline-block"
         v-if="totalItems > Math.min(...limits)">
         <dp-multiselect
           v-model="itemsPerPage"
-          class="display--inline-block"
+          class="inline-block"
           :options="filteredLimits"
           :searchable="false"
           selected-label=""

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-timepicker display--inline-block"
+    class="c-timepicker inline-block"
     v-click-outside="closeFlyout"
     @keydown.esc="closeFlyout"
     @keydown.enter="e => handleEnter(e)">

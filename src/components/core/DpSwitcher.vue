@@ -13,12 +13,12 @@ to the parent.
       @change="toggle">
     <label :for="inputId">
       <span
-        class="o-switcher__option float--left"
+        class="o-switcher__option float-left"
         :class="{'o-switcher__option--checked': active}">
         <slot name="option1" />
       </span>
       <span
-        class="o-switcher__option float--right"
+        class="o-switcher__option float-right"
         :class="{'o-switcher__option--checked': !active}"
         data-cy="fragmentTab">
         <slot name="option2" />

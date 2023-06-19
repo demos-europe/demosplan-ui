@@ -10,7 +10,7 @@
     </slot>
     <button
       type="button"
-      class="btn btn--secondary float--right"
+      class="btn btn--secondary float-right"
       @click="$emit('reset-selection')">
       {{ Translator.trans('unselect') }}
     </button>

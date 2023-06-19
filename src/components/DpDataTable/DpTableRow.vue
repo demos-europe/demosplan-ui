@@ -1,7 +1,7 @@
 <template>
   <tr
     class="row"
-    :class="[{ 'opacity-7': isLoading }, { 'is-expanded-row': expanded }]">
+    :class="[{ 'opacity-70': isLoading }, { 'is-expanded-row': expanded }]">
     <td
       v-if="isDraggable"
       class="c-data-table__cell--narrow">
@@ -15,13 +15,13 @@
       class="c-data-table__cell--narrow">
       <dp-icon
         v-if="isLocked"
-        class="u-valign--middle color--grey-light"
+        class="align-middle color--grey-light"
         v-tooltip="isLockedMessage"
         icon="lock" />
       <input
         v-else
         type="checkbox"
-        class="u-m-0 u-valign--middle"
+        class="u-m-0 align-middle"
         data-cy="selectItem"
         :name="isSelectableName || null"
         :value="isSelectableName ? item[trackBy] : null"

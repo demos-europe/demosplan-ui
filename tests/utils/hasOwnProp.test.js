@@ -1,4 +1,4 @@
-import hasOwnProp from '../../utils/hasOwnProp'
+import hasOwnProp from '../../src/utils/hasOwnProp'
 
 const warning = console.warn
 

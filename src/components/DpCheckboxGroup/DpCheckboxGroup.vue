@@ -4,13 +4,13 @@
       v-if="label !== ''"
       v-cleanhtml="label"
       class="font-size-medium is-label"
-      :class="inline ? 'float--left' : 'u-mb-0_25'" />
+      :class="inline ? 'float-left' : 'u-mb-0_25'" />
     <dp-checkbox
       v-for="(option, idx) in options"
       :id="option.id"
       :key="`option_${idx}`"
       v-model="selected[option.id]"
-      :class="inline ? 'display--inline-block u-ml' : ''"
+      :class="inline ? 'inline-block u-ml' : ''"
       :label="{
         text: option.label
       }"

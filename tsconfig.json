@@ -18,9 +18,9 @@
       "webpack-env"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "~components": ["src/components"],
+      "~directives": ["src/directives"],
+      "~mixins": ["src/mixins"]
     },
     "lib": [
       "esnext",

@@ -22,12 +22,13 @@
   </label>
 </template>
 
-<script>
-import { CleanHtml, Tooltip } from '../../directives'
+<script lang="ts">
+import { CleanHtml, Tooltip } from '~directives'
 import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import { prefixClassMixin } from '~mixins'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   name: 'DpLabel',
 
   directives: {
@@ -85,7 +86,7 @@ export default {
      */
     hints () {
       if (this.hint) {
-        return this.wrapItemIntoArray(this.hint)
+        return  Array.isArray(this.hint) ? this.hint : [this.hint]
       }
       return []
     },
@@ -93,12 +94,6 @@ export default {
     labelFor () {
       return this.for
     }
-  },
-
-  methods: {
-    wrapItemIntoArray (item) {
-      return Array.isArray(item) ? item : [item]
-    }
   }
-}
+})
 </script>

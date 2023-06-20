@@ -27,6 +27,11 @@ module.exports = {
     'ts',
     'vue'
   ],
+  moduleNameMapper: {
+    '^~components': '<rootDir>/src/components',
+    '^~directives': '<rootDir>/src/directives',
+    '^~mixins': '<rootDir>/src/mixins'
+  },
   modulePaths: [
     '<rootDir>'
   ],

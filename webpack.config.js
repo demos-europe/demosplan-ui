@@ -8,7 +8,7 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   reportFilename: resolve(`./bundle_analysis.html`)
 })
 
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
@@ -52,6 +52,11 @@ const config = {
     'vuex'
   ],
   resolve: {
+    alias: {
+      '~components': path.resolve(__dirname, 'src/components'),
+      '~directives': path.resolve(__dirname, 'src/directives'),
+      '~mixins': path.resolve(__dirname, 'src/mixins')
+    },
     extensions: ['.ts', '.js', '.vue'],
     symlinks: false
   },

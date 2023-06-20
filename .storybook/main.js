@@ -1,3 +1,6 @@
+const projectConfig = require('../webpack.config')
+const { merge } = require('webpack-merge')
+
 module.exports = {
   stories: [
     "../src/components/**/*.stories.mdx",
@@ -12,7 +15,7 @@ module.exports = {
   ],
 
   webpackFinal: async config => {
-    /**
+     /**
      * This rule is executed first. It ensures that the <license> blocks
      * at the top of Vue components do not break vue-docgen-loader.
      * The loader returns an empty string for all <license> blocks.
@@ -21,7 +24,20 @@ module.exports = {
       resourceQuery: /blockType=license/,
       loader: require.resolve('./removeSFCBlockLoader.js')
     })
-    return config
+
+    /**
+     * Custom aliases defined within webpack must also be set in storybook.
+     */
+    const resolveAlias = {
+      resolve: {
+        alias: projectConfig().resolve.alias
+      }
+    }
+
+    return merge(
+      config,
+      resolveAlias
+    )
   },
 
   /**

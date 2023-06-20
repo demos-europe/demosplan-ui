@@ -89,6 +89,26 @@ const dpRpc = function (method, parameters, id = null) {
 }
 
 /**
+ * Perform an external API call without any default headers
+ */
+const doExternalRequest = (params) => {
+  return axios({
+    ...{ data: {} },
+    ...params
+  })
+}
+
+const externalApi = function (url, params = {}, options = {}) {
+  return doExternalRequest({
+    method: 'get',
+    url,
+    data: {},
+    params,
+    options
+  })
+}
+
+/**
  * Turn messages into notifications
  *
  * @param responseMeta
@@ -172,4 +192,4 @@ function makeFormPost (payload, url) {
   })
 }
 
-export { dpApi, handleResponseMessages, checkResponse, dpRpc, makeFormPost }
+export { dpApi, handleResponseMessages, checkResponse, dpRpc, makeFormPost, externalApi }

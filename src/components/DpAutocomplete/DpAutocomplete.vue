@@ -24,7 +24,7 @@ import { dpApi } from '@/lib'
 import { prefixClassMixin } from '@/mixins'
 import VueOmnibox from 'vue-omnibox'
 
-export default {
+const DpAutocomplete = {
   name: 'DpAutocomplete',
 
   components: {
@@ -109,5 +109,11 @@ export default {
       }
     }
   }
+}
+
+export default DpAutocomplete
+
+export {
+  DpAutocomplete
 }
 </script>

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import { DpIcon } from '@/components/DpIcon'
 import DpInput from '../DpInput/DpInput'
 
 export default {

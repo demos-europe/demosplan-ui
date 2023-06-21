@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import DpAccordion from '../DpAccordion/DpAccordion'
-import DpButtonRow from '../DpButtonRow/DpButtonRow'
+import { DpAccordion } from '@/components/DpAccordion'
+import { DpButtonRow } from '@/components/DpButtonRow'
 import { dpValidateMixin } from '@/mixins'
 
 export default {

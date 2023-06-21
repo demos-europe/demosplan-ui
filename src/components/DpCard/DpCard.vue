@@ -16,7 +16,8 @@
 
 <script>
 import DpContextualHelp from '../DpContextualHelp/DpContextualHelp'
-export default {
+
+const DpCard = {
   name: 'DpCard',
 
   components: {
@@ -42,5 +43,11 @@ export default {
       default: ''
     }
   }
+}
+
+export default DpCard
+
+export {
+  DpCard
 }
 </script>

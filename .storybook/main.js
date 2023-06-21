@@ -1,5 +1,4 @@
-const projectConfig = require('../webpack.config')
-const { merge } = require('webpack-merge')
+const path = require('path')
 
 module.exports = {
   stories: [
@@ -26,18 +25,14 @@ module.exports = {
     })
 
     /**
-     * Custom aliases defined within webpack must also be set in storybook.
+     * We must duplicate the aliases set within ../webpack.config.js,
+     * but with an added ../ because storybook parses the whole thing
+     * from its own root directory, "./storybook".
+     * @type {string}
      */
-    const resolveAlias = {
-      resolve: {
-        alias: projectConfig().resolve.alias
-      }
-    }
+    config.resolve.alias['@'] = path.resolve(__dirname, '../src')
 
-    return merge(
-      config,
-      resolveAlias
-    )
+    return config
   },
 
   /**

@@ -13,7 +13,7 @@
 <script>
 import { ICONS, SIZES } from './util/iconVariables'
 
-export default {
+const DpIcon = {
   name: 'DpIcon',
 
   props: {
@@ -47,5 +47,11 @@ export default {
       return ICONS[this.icon]?.proportions || 'square'
     }
   }
+}
+
+export default DpIcon
+
+export {
+  DpIcon
 }
 </script>

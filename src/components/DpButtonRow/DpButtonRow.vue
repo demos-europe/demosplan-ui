@@ -24,7 +24,7 @@
 <script>
 import DpButton from '../DpButton/DpButton'
 
-export default {
+const DpButtonRow = {
   name: 'DpButtonRow',
 
   components: {
@@ -116,5 +116,11 @@ export default {
       validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   }
+}
+
+export default DpButtonRow
+
+export {
+  DpButtonRow
 }
 </script>

@@ -16,7 +16,7 @@
 <script>
 import { Tooltip } from '@/directives'
 
-export default {
+const DpButtonIcon = {
   name: 'DpButtonIcon',
 
   props: {
@@ -40,5 +40,11 @@ export default {
       return Translator.trans(this.text)
     }
   }
+}
+
+export default DpButtonIcon
+
+export {
+  DpButtonIcon
 }
 </script>

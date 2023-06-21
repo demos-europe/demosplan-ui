@@ -26,7 +26,7 @@
 <script>
 import DpTransitionExpand from '../core/DpTransitionExpand'
 
-export default {
+const DpAccordion = {
   name: 'DpAccordion',
 
   components: {
@@ -80,5 +80,11 @@ export default {
       this.$emit('item:toggle', this.isVisible)
     }
   }
+}
+
+export default DpAccordion
+
+export {
+  DpAccordion
 }
 </script>

@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import { DpIcon } from '@/components/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '@/directives'
 
-export default {
+const DpButton = {
   name: 'DpButton',
 
   components: {
@@ -179,5 +179,11 @@ const classes = {
     outline: 'btn--outline',
     subtle: 'btn--subtle'
   }
+}
+
+export default DpButton
+
+export {
+  DpButton
 }
 </script>

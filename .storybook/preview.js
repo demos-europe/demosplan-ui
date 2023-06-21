@@ -1,6 +1,8 @@
 import { Tooltip } from '@/directives'
 import Vue from 'vue'
 
+// Uncomment to bring Tailwind to Storybook: import '../style/style.css'
+
 Vue.directive('tooltip', Tooltip)
 
 const beautifyHtml = require('js-beautify').html

@@ -106,7 +106,7 @@ import DpDraggable from '../DpDraggable/DpDraggable'
 import DpIcon from '../DpIcon/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
-import { Tooltip } from '../../directives'
+import { Tooltip } from '@/directives'
 
 export default {
   name: 'DpTreeListNode',

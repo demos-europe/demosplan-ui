@@ -1,4 +1,4 @@
-import { convertSize } from '../../../../lib'
+import { convertSize } from '@/lib'
 const de = () => {
   return {
     strings: {

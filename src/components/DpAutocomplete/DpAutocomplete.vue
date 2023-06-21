@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { dpApi } from '../../lib'
-import { prefixClassMixin } from '../../mixins'
+import { dpApi } from '@/lib'
+import { prefixClassMixin } from '@/mixins'
 import VueOmnibox from 'vue-omnibox'
 
 export default {

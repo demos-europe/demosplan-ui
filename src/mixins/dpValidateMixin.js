@@ -6,10 +6,10 @@
  * https://dplan-documentation.demos-europe.eu/development/application-architecture/validation/frontend/#_1-use-as-a-vue-mixin-dpvalidatemixin-js
  */
 
-import { errorClass, scrollToVisibleElement } from '../lib/validation/utils/helpers'
-import { assignHandlersForInputs } from '../lib/validation/utils/assignHandlersForInputs'
-import hasOwnProp from '../utils/hasOwnProp'
-import validateForm from '../lib/validation/utils/validateForm'
+import { errorClass, scrollToVisibleElement } from '@/lib/validation/utils/helpers'
+import { assignHandlersForInputs } from '@/lib/validation'
+import hasOwnProp from '@/utils/hasOwnProp'
+import validateForm from '@/lib/validation/utils/validateForm'
 
 export default {
   data () {

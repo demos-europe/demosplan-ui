@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { prefixClass } from '../../utils'
+import { prefixClass } from '@/utils'
 import SlidingPagination from 'vue-sliding-pagination'
 
 export default {

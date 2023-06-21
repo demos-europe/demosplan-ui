@@ -30,7 +30,7 @@
 
 <script>
 import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import { formatDate } from '../../utils'
+import { formatDate } from '@/utils'
 
 export default {
   name: 'DpDateRangePicker',

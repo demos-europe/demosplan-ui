@@ -1,4 +1,4 @@
-import { prefixClass } from '../src/utils'
+import { prefixClass } from '@/utils'
 
 window.dplan = {
   settings: {
@@ -11,7 +11,7 @@ describe('prefixClass', () => {
     expect(prefixClass('test foo bar')).toEqual('dp-test dp-foo dp-bar')
   })
 
-  it('should return a quereyselector with prefixed classes', () => {
+  it('should return a query selector with prefixed classes', () => {
     expect(prefixClass('#test .foo .bar')).toEqual('#test .dp-foo .dp-bar')
     expect(prefixClass('[data-some-stuff="its all right"] > .a-class > label')).toEqual('[data-some-stuff="its all right"] > .dp-a-class > label')
   })

@@ -30,7 +30,7 @@
 import Vue from 'vue'
 import type { PropType } from 'vue'
 import DpLabel from '../DpLabel/DpLabel.vue'
-import { prefixClassMixin } from '../../mixins'
+import { prefixClassMixin } from '@/mixins'
 
 export default Vue.extend({
   name: 'DpRadio',

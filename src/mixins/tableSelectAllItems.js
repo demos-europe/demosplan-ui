@@ -1,4 +1,4 @@
-/*
+/**
  * This mixin is intended to be used along with DpDataTable and can be used to select a single item or all items over multiple pages.
  * To show additional information about selected items, you can use DpBulkEditHeader.
  * example usage:
@@ -19,7 +19,7 @@
  *   @items-toggled="handleToggleItem" />
  */
 
-import uniqueArrayByObjectKey from '../utils/uniqueArrayByObjectKey'
+import uniqueArrayByObjectKey from '@/utils/uniqueArrayByObjectKey'
 
 export default {
   data () {

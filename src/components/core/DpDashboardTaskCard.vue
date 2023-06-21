@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import { checkResponse, dpApi } from '../../lib'
-import { CleanHtml } from '../../directives'
+import { checkResponse, dpApi } from '@/lib'
+import { CleanHtml } from '@/directives'
 import DpButton from '../DpButton/DpButton'
 import DpCard from '../DpCard/DpCard'
 

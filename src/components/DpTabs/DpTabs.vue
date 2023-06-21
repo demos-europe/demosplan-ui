@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
+import { CleanHtml } from '@/directives'
 
 export default {
   name: 'DpTabs',

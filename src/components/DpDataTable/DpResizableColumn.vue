@@ -15,7 +15,7 @@
 
 <script>
 import DpResizeHandle from './DpResizeHandle'
-import { hasOwnProp } from '../../utils'
+import { hasOwnProp } from '@/utils'
 
 export default {
   name: 'DpResizableColumn',

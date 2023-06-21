@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
-import DpModal from '../src/components/DpModal/DpModal.vue'
+import DpModal from '@/components/DpModal/DpModal.vue'
 
 describe('Modal', () => {
   it('should be an object', () => {

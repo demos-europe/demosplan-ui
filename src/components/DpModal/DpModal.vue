@@ -44,7 +44,7 @@
 
 <script>
 import DpIcon from '../DpIcon/DpIcon'
-import { prefixClassMixin } from '../../mixins'
+import { prefixClassMixin } from '@/mixins'
 
 export default {
   name: 'DpModal',

@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { CleanHtml, Tooltip } from '@/directives'
-import { de } from '../shared/translations'
+import { de } from '@/locale'
 import { prefixClassMixin } from '@/mixins'
 import Vue from 'vue'
 

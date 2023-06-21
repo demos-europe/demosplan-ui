@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { Stickier } from '../../lib'
+import { Stickier } from '@/lib'
 
 export default {
   name: 'DpStickyElement',

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
+import { de } from '@/locale'
 
 export default {
   name: 'DpLoading',

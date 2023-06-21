@@ -1,4 +1,4 @@
-import DpContextualHelp from '../src/components/DpContextualHelp/DpContextualHelp.vue'
+import DpContextualHelp from '@/components/DpContextualHelp/DpContextualHelp.vue'
 import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
 describe('DpContextualHelp', () => {

@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { hasOwnProp } from '../../utils'
-import { SideNav } from '../../lib'
+import { hasOwnProp } from '@/utils'
+import { SideNav } from '@/lib'
 import DpIcon from '../DpIcon/DpIcon'
 
 export default {

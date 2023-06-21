@@ -1,4 +1,4 @@
-import { Tooltip } from '../src/directives'
+import { Tooltip } from '@/directives'
 import Vue from 'vue'
 
 Vue.directive('tooltip', Tooltip)

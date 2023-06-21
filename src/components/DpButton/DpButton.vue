@@ -26,7 +26,7 @@
 <script>
 import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { Tooltip } from '../../directives'
+import { Tooltip } from '@/directives'
 
 export default {
   name: 'DpButton',

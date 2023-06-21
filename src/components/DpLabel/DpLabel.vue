@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts">
-import { CleanHtml, Tooltip } from '~directives'
+import { CleanHtml, Tooltip } from '@/directives'
 import { de } from '../shared/translations'
-import { prefixClassMixin } from '~mixins'
+import { prefixClassMixin } from '@/mixins'
 import Vue from 'vue'
 
 export default Vue.extend({

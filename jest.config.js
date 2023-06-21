@@ -28,9 +28,7 @@ module.exports = {
     'vue'
   ],
   moduleNameMapper: {
-    '^~components': '<rootDir>/src/components',
-    '^~directives': '<rootDir>/src/directives',
-    '^~mixins': '<rootDir>/src/mixins'
+    '^@/(.*)': '<rootDir>/src/$1'
   },
   modulePaths: [
     '<rootDir>'

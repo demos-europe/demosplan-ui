@@ -103,7 +103,6 @@ const externalApi = function (url) {
   })
 }
 
-
 /**
  * Turn messages into notifications
  *

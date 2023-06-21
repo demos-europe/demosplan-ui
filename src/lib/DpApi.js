@@ -91,22 +91,18 @@ const dpRpc = function (method, parameters, id = null) {
 /**
  * Perform an external API call without any default headers
  */
-const doExternalRequest = (params) => {
-  return axios({
-    ...{ data: {} },
-    ...params
+const externalApi = function (url) {
+  const contentType = axios.defaults.headers.common['Content-Type']
+  delete axios.defaults.headers.common['Content-Type']
+
+  return axios.get(url).then(response => {
+    // Restore the Content-Type header
+    axios.defaults.headers.common['Content-Type'] = contentType
+
+    return response
   })
 }
 
-const externalApi = function (url, params = {}, options = {}) {
-  return doExternalRequest({
-    method: 'get',
-    url,
-    data: {},
-    params,
-    options
-  })
-}
 
 /**
  * Turn messages into notifications

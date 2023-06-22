@@ -10,7 +10,8 @@
 - ([#256](https://github.com/demos-europe/demosplan-ui/pull/256)) **Breaking**: Remove DpCopyPasteButton ([@hwiem](https://github.com/hwiem))
 
 ### Fixed
--  ([#304](https://github.com/demos-europe/demosplan-ui/pull/304)) Fix invalid empty string for DpButtonRow ([@spiess-demos](https://github.com/spiess-demos))
+- ([#304](https://github.com/demos-europe/demosplan-ui/pull/304)) Fix invalid empty string for DpButtonRow ([@spiess-demos](https://github.com/spiess-demos))
+- ([#319](https://github.com/demos-europe/demosplan-ui/pull/319)) Fix data-cy prop on multiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## v0.1.5 - 2023-06-16
 

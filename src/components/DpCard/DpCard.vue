@@ -9,13 +9,13 @@
       <dp-contextual-help
         v-if="headingTooltip !== ''"
         :text="headingTooltip" />
-    </h4><!--
- --><slot />
+    </h4>
+    <slot />
   </div>
 </template>
 
 <script>
-import DpContextualHelp from '../DpContextualHelp/DpContextualHelp'
+import { DpContextualHelp } from '@/components/DpContextualHelp'
 
 const DpCard = {
   name: 'DpCard',

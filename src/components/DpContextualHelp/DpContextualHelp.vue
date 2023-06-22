@@ -8,7 +8,7 @@
 <script>
 import { Tooltip } from '@/directives'
 
-export default {
+const DpContextualHelp = {
   name: 'DpContextualHelp',
 
   props: {
@@ -25,5 +25,11 @@ export default {
   directives: {
     tooltip: Tooltip
   }
+}
+
+export default DpContextualHelp
+
+export {
+  DpContextualHelp
 }
 </script>

@@ -32,7 +32,7 @@
 import DpLabel from '../DpLabel/DpLabel'
 import { prefixClassMixin } from '@/mixins'
 
-export default {
+const DpCheckbox = {
   name: 'DpCheckbox',
 
   components: {
@@ -102,5 +102,11 @@ export default {
       default: '1'
     }
   }
+}
+
+export default DpCheckbox
+
+export {
+  DpCheckbox
 }
 </script>

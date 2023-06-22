@@ -17,8 +17,8 @@
 <script>
 import { checkResponse, dpApi } from '@/lib'
 import { CleanHtml } from '@/directives'
-import DpButton from '../DpButton/DpButton'
-import DpCard from '../DpCard/DpCard'
+import { DpButton } from '@/components/DpButton'
+import { DpCard } from '@/components/DpCard'
 
 export default {
   name: 'DpDashboardTaskCard',

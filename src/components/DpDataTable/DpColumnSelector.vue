@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
+import { DpCheckbox } from '@/components/DpCheckbox'
 import DpFlyout from '../DpFlyout/DpFlyout'
 import { hasOwnProp } from '@/utils'
 

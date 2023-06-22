@@ -21,9 +21,9 @@
 
 <script>
 import { CleanHtml } from '@/directives'
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
+import { DpCheckbox } from '@/components/DpCheckbox'
 
-export default {
+const DpCheckboxGroup = {
   name: 'DpCheckboxGroup',
 
   components: {
@@ -80,5 +80,11 @@ export default {
   mounted () {
     this.setSelected()
   }
+}
+
+export default DpCheckboxGroup
+
+export {
+  DpCheckboxGroup
 }
 </script>

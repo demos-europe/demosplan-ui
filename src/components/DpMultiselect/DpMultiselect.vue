@@ -4,7 +4,6 @@
       v-bind="{
         closeOnSelect,
         customLabel,
-        dataCy,
         deselectGroupLabel,
         deselectLabel,
         disabled,

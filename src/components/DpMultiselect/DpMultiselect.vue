@@ -4,7 +4,6 @@
       v-bind="{
         closeOnSelect,
         customLabel,
-        dataCy,
         deselectGroupLabel,
         deselectLabel,
         disabled,
@@ -27,6 +26,7 @@
         trackBy,
         value
       }"
+      :data-cy="dataCy"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"

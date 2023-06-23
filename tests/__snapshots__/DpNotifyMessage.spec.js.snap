@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DpNotifyMessage always renders with closemark 1`] = `
-"<div class="c-notify__message c-notify__message--error"><i aria-hidden="true" class="c-notify__icon c-notify__closer fa fa-times-circle cursor--pointer"></i>
-  <div class="cf"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float--left fa-exclamation-circle"></i>
+"<div class="c-notify__message c-notify__message--error"><i aria-hidden="true" class="c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer"></i>
+  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-exclamation-circle"></i>
     <div class="u-ml">
 
       <!---->
@@ -12,8 +12,8 @@ exports[`DpNotifyMessage always renders with closemark 1`] = `
 `;
 
 exports[`DpNotifyMessage always renders with closemark 2`] = `
-"<div class="c-notify__message c-notify__message--confirm"><i aria-hidden="true" class="c-notify__icon c-notify__closer fa fa-times-circle cursor--pointer"></i>
-  <div class="cf"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float--left fa-check-circle"></i>
+"<div class="c-notify__message c-notify__message--confirm"><i aria-hidden="true" class="c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer"></i>
+  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-check-circle"></i>
     <div class="u-ml">
 
       <!---->

@@ -1,5 +1,5 @@
 <template>
-  <div class="border u-mb u-p-0_25">
+  <div class="border">
     <editor-menu-bubble
       :editor="editor"
       class="editor-menububble__wrapper"

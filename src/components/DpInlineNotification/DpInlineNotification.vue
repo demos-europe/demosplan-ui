@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isDismissed === false"
-    :class="`flash flash-${type} flex`">
+    :class="`flash flash-${type}`">
     <i
       class="fa u-pr-0_25 line-height--1_4"
       :class="iconClasses[type]"

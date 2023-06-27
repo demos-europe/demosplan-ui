@@ -1,5 +1,5 @@
 <template>
-  <div class="u-mb-0_75">
+  <div>
     <!-- insert form fields here -->
     <slot />
   </div>

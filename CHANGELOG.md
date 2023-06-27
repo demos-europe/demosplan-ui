@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
-- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **Breaking:** Remove spacing classes from DpAnonymizeText ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325), [#327](https://github.com/demos-europe/demosplan-ui/pull/327)) **Breaking:** Remove spacing classes from DpAnonymizeText and DpFormRow ([@ahmad-demos](https://github.com/ahmad-demos))
 
 ### Added
 - ([#318](https://github.com/demos-europe/demosplan-ui/pull/318)) Add a method called externalApi to make external API calls without including default headers ([@sakutademos](https://github.com/sakutademos))

@@ -8,6 +8,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **BREAKING** remove spacing classes from DpAnonymizeText. ([@ahmad-demos](https://github.com/ahmad-demos))
 ### Changed
+- ([#327](https://github.com/demos-europe/demosplan-ui/pull/327)) **Breaking:** Remove spacing classes from DpFormRow ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Changed
 - ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **Breaking:** Remove spacing classes from DpAnonymizeText ([@ahmad-demos](https://github.com/ahmad-demos))
 
 ### Added

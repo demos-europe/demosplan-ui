@@ -12,7 +12,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325), [#327](https://github.com/demos-europe/demosplan-ui/pull/327)) **Breaking:** Remove spacing classes from DpAnonymizeText and DpFormRow ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325), [#327](https://github.com/demos-europe/demosplan-ui/pull/327)), [#334](https://github.com/demos-europe/demosplan-ui/pull/334)) **Breaking:** Remove spacing classes from DpAnonymizeText, DpBulkEditHeader, and DpFormRow ([@ahmad-demos](https://github.com/ahmad-demos))
 
 ### Added
 

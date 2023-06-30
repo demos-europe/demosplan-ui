@@ -4,29 +4,27 @@
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
-    <dp-link-modal
-      v-if="toolbar.linkButton"
-      ref="linkModal"
-      @insert="insertUrl" />
-    <dp-upload-modal
-      v-if="toolbar.imageButton"
-      ref="uploadModal"
-      :get-file-by-hash="routes.getFileByHash"
-      @insert-image="insertImage"
-      @add-alt="addAltTextToImage"
-      @close="resetEditingImage" />
+<!--    <dp-link-modal-->
+<!--      v-if="toolbar.linkButton"-->
+<!--      ref="linkModal"-->
+<!--      @insert="insertUrl" />-->
+<!--    <dp-upload-modal-->
+<!--      v-if="toolbar.imageButton"-->
+<!--      ref="uploadModal"-->
+<!--      :get-file-by-hash="routes.getFileByHash"-->
+<!--      @insert-image="insertImage"-->
+<!--      @add-alt="addAltTextToImage"-->
+<!--      @close="resetEditingImage" />-->
     <slot
         name="modal"
         :appendText="appendText"
         :handleInsertText="handleInsertText" />
-    <div :class="prefixClass('row tiptap')">
+    <div
+      v-if="editor"
+      :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
-        <div
-          :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
-          <editor-menu-bar :editor="editor">
-            <div
-              slot-scope="{ commands, isActive, getMarkAttrs }"
-              :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
+        <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
+            <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
               <!-- Cut -->
               <button
                 @click="cut"
@@ -42,7 +40,7 @@
               &#10072;
               <!-- Undo -->
               <button
-                @click="commands.undo"
+                @click="editor.chain().focus().undo().run()"
                 :class="prefixClass('menubar__button')"
                 type="button"
                 :aria-label="Translator.trans('editor.undo')"
@@ -54,7 +52,7 @@
               </button>
               <!-- Redo -->
               <button
-                @click="commands.redo"
+                @click="editor.chain().focus().redo().run()"
                 :class="prefixClass('menubar__button')"
                 type="button"
                 :aria-label="Translator.trans('editor.redo')"
@@ -69,8 +67,8 @@
                 <!-- Bold -->
 
                 <button
-                  @click="commands.bold"
-                  :class="[isActive.bold() ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
+                  @click="editor.chain().focus().toggleBold().run()"
+                  :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
                   type="button"
                   :aria-label="Translator.trans('editor.bold')"
                   v-tooltip="Translator.trans('editor.bold')"
@@ -82,8 +80,8 @@
 
                 <!-- Italic -->
                 <button
-                  @click="commands.italic"
-                  :class="[isActive.italic() ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
+                  @click="editor.chain().focus().italic().run()"
+                  :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                   type="button"
                   :aria-label="Translator.trans('editor.italic')"
                   v-tooltip="Translator.trans('editor.italic')"
@@ -94,8 +92,8 @@
                 </button>
                 <!-- Underline -->
                 <button
-                  @click="commands.underline"
-                  :class="[isActive.underline() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                  @click="editor.chain().focus().toggleUnderline().run()"
+                  :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
                   :aria-label="Translator.trans('editor.underline')"
                   v-tooltip="Translator.trans('editor.underline')"
@@ -108,8 +106,8 @@
               <!-- Strike through -->
               <button
                 v-if="toolbar.strikethrough"
-                @click="commands.strike"
-                :class="[isActive.strike() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleStrike().run()"
+                :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
                 :aria-label="Translator.trans('editor.strikethrough')"
                 v-tooltip="Translator.trans('editor.strikethrough')"
@@ -122,7 +120,7 @@
                 v-if="toolbar.insertAndDelete"
                 :class="prefixClass('inline-block relative')">
                 <button
-                  :class="[isActive.insert() || isActive.delete() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                  :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
                   @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
                   @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
@@ -138,7 +136,7 @@
                   <button
                     v-for="(button, idx) in diffMenu.buttons"
                     :key="`diffMenu_${idx}`"
-                    :class="{ 'is-active': isActive[button.name]() }"
+                    :class="{ 'is-active': editor.isActive(button.name) }"
                     type="button"
                     :disabled="readonly"
                     @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
@@ -155,7 +153,7 @@
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
-                  :class="[isActive[button.name]() ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
+                  :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
                   type="button"
                   :disabled="readonly"
                   :aria-label="Translator.trans(button.label)"
@@ -172,8 +170,8 @@
               <template v-if="toolbar.listButtons">
                 <!-- Unordered List -->
                 <button
-                  @click="commands.bullet_list"
-                  :class="[isActive.bullet_list() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                  @click="editor.chain().focus().toggleBulletList().run()"
+                  :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
                   :aria-label="Translator.trans('editor.unordered.list')"
                   v-tooltip="Translator.trans('editor.unordered.list')"
@@ -182,8 +180,8 @@
                 </button>
                 <!-- Ordered List -->
                 <button
-                  @click="commands.ordered_list"
-                  :class="[isActive.ordered_list() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                  @click="editor.chain().focus().toggleOrderedList().run()"
+                  :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
                   :aria-label="Translator.trans('editor.ordered.list')"
                   v-tooltip="Translator.trans('editor.ordered.list')"
@@ -200,9 +198,9 @@
                   v-for="heading in toolbar.headings"
                   :key="'heading_' + heading"
                   type="button"
-                  :class="[isActive.heading({ level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  @click="commands.heading({ level: heading })"
-                  v-tooltip="Translator.trans('editor.heading.level', {level: heading})"
+                  :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                  @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
+                  v-tooltip="Translator.trans('editor.heading.level', { level: heading })"
                   :disabled="readonly">
                   {{ `H${heading}` }}
                 </button>
@@ -211,8 +209,8 @@
               <!-- Obscure text -->
               <button
                 v-if="obscureEnabled"
-                @click="commands.obscure"
-                :class="[isActive.obscure() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleObscure().run()"
+                :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
                 v-tooltip="Translator.trans('obscure.title')"
                 :disabled="readonly">
@@ -223,7 +221,7 @@
               <!--Add links-->
               <button
                 v-if="toolbar.linkButton"
-                @click.stop="showLinkPrompt(commands.link, getMarkAttrs('link'))"
+                @click.stop="showLinkPrompt(this.editor.commands.link, getMarkAttrs('link'))"
                 :class="prefixClass('menubar__button')"
                 type="button"
                 v-tooltip="Translator.trans('editor.link.edit.insert')">
@@ -273,7 +271,7 @@
               <button
                 v-if="toolbar.fullscreenButton"
                 @click="fullscreen"
-                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
+                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
                 type="button"
                 :aria-label="Translator.trans('editor.fullscreen')"
                 v-tooltip="Translator.trans('editor.fullscreen')">
@@ -313,40 +311,42 @@
 </template>
 
 <script>
-import {
-  Bold,
-  BulletList,
-  HardBreak,
-  Heading,
-  History,
-  Italic,
-  Link,
-  ListItem,
-  OrderedList,
-  Strike,
-  Table,
-  TableCell,
-  TableHeader,
-  TableRow,
-  Underline
-} from 'tiptap-extensions'
 import { CleanHtml, Tooltip } from '../../../directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
-  EditorMenuBar // Renderless menubar
-} from 'tiptap'
-import { createSuggestion } from './libs/editorBuildSuggestion'
+} from '@tiptap/vue-2'
+import Bold from '@tiptap/extension-bold'
+import BulletList from '@tiptap/extension-bullet-list'
+import Document from '@tiptap/extension-document'
+import HardBreak from '@tiptap/extension-hard-break'
+import Heading from '@tiptap/extension-heading'
+import History from '@tiptap/extension-history'
+import Italic from '@tiptap/extension-italic'
+import Link from '@tiptap/extension-link'
+import ListItem from '@tiptap/extension-list-item'
+// import Mention from './libs/CustomMention'
+import OrderedList from '@tiptap/extension-ordered-list'
+import Paragraph from '@tiptap/extension-paragraph'
+import Strike from '@tiptap/extension-strike'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
+import Text from '@tiptap/extension-text'
+import Underline from '@tiptap/extension-underline'
+// import editorBuildSuggestion from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
-import DpLinkModal from './DpLinkModal'
-import DpUploadModal from './DpUploadModal'
-import EditorCustomDelete from './libs/editorCustomDelete'
-import EditorCustomImage from './libs/editorCustomImage'
-import EditorCustomInsert from './libs/editorCustomInsert'
-import EditorCustomLink from './libs/editorCustomLink'
-import EditorCustomMark from './libs/editorCustomMark'
-import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
-import EditorObscure from './libs/editorObscure'
+// import DpLinkModal from './DpLinkModal'
+// import DpResizableImage from './DpResizableImage'
+// import DpUploadModal from './DpUploadModal'
+// import EditorCustomDelete from './libs/editorCustomDelete'
+// import EditorCustomImage from './libs/editorCustomImage'
+// import EditorCustomInsert from './libs/editorCustomInsert'
+// import EditorCustomLink from './libs/editorCustomLink'
+// import EditorCustomMark from './libs/editorCustomMark'
+// import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
+// import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -356,10 +356,10 @@ export default {
 
   components: {
     DpIcon,
-    EditorMenuBar,
     EditorContent,
-    DpLinkModal,
-    DpUploadModal
+    // DpLinkModal,
+    // DpResizableImage,
+    // DpUploadModal
   },
 
   directives: {
@@ -479,7 +479,12 @@ export default {
         }).length === value.length
       },
       required: false,
-      default: () => ([])
+      default: () => ([{
+        matcher: { char:'$' , allowSpaces: false, startOfLine: false },
+        suggestions: [{
+          id: 'statementPublicSubmitConfirmationTextPlaceholder',
+          name: 'Vorgangsnummer' }]
+      }])
     },
 
     value: {
@@ -515,48 +520,48 @@ export default {
         buttons: [
           {
             label: 'editor.table.create',
-            command: (commands) => commands.createTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
+            command: () => this.editor.commands.insertTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
             name: 'createTable'
           },
           {
             label: 'editor.table.delete',
-            command: (commands) => commands.deleteTable(),
+            command: () => this.editor.commands.deleteTable(),
             name: 'deleteTable'
           },
           {
             label: 'editor.table.addColumnBefore',
-            command: (commands) => commands.addColumnBefore(),
+            command: () => this.editor.commands.addColumnBefore(),
             name: 'addColumnBefore'
           },
           {
             label: 'editor.table.addColumnAfter',
-            command: (commands) => commands.addColumnAfter(),
+            command: () => this.editor.commands.addColumnAfter(),
             name: 'addColumnAfter'
 
           },
           {
             label: 'editor.table.deleteColumn',
-            command: (commands) => commands.deleteColumn(),
+            command: () => this.editor.commands.deleteColumn(),
             name: 'deleteColumn'
           },
           {
             label: 'editor.table.addRowBefore',
-            command: (commands) => commands.addRowBefore(),
+            command: () => this.editor.commands.addRowBefore(),
             name: 'addRowBefore'
           },
           {
             label: 'editor.table.addRowAfter',
-            command: (commands) => commands.addRowAfter(),
+            command: () => this.editor.commands.addRowAfter(),
             name: 'addRowAfter'
           },
           {
             label: 'editor.table.deleteRow',
-            command: (commands) => commands.deleteRow(),
+            command: () => this.editor.commands.deleteRow(),
             name: 'deleteRow'
           },
           {
             label: 'editor.table.toggleCellMerge',
-            command: (commands) => commands.toggleCellMerge(),
+            command: () => this.editor.commands.mergeOrSplit(),
             name: 'toggleCellMerge'
           }
         ]
@@ -629,9 +634,9 @@ export default {
 
   watch: {
     value (newValue) {
-      if (!this.editor.focused) {
+      if (!this.editor.focused && this.editor.getHTML() !== newValue) {
         this.currentValue = newValue
-        this.editor.setContent(newValue, false)
+        this.editor.commands.setContent(newValue, false)
       }
     },
 
@@ -671,8 +676,125 @@ export default {
       this.$emit('input', this.currentValue)
     },
 
+    collectExtensions () {
+      const extensions = [
+        Document,
+        Paragraph,
+        Text,
+        History,
+        HardBreak,
+        Heading.configure({ levels: this.toolbar.headings })
+      ]
+
+      // extensions.push(EditorInsertAtCursorPos)
+
+      // if (this.suggestions.length > 0) {
+      // this.suggestions.forEach(suggestion => {
+      //   extensions.push(Mention.configure({
+      //     HTMLAttributes: {
+      //       class: 'suggestion__node'
+      //     },
+      //     renderLabel({ node }) {
+      //       return suggestion.matcher.char + node.attrs.label
+      //     },
+      //     suggestion: editorBuildSuggestion(suggestion)
+      //   }))
+      // })
+      // }
+
+      if (this.toolbar.headings.length > 0) {
+        extensions.push(Heading.configure({ levels: this.toolbar.headings }))
+      }
+
+      if (this.toolbar.imageButton) {
+        // extensions.push(EditorCustomImage)
+      }
+
+      if (this.toolbar.linkButton) {
+        extensions.push(Link)
+        // extensions.push(EditorCustomLink)
+      }
+
+      if (this.toolbar.obscure) {
+        // extensions.push(EditorObscure)
+      }
+
+      if (this.toolbar.listButtons) {
+        extensions.push(BulletList)
+        extensions.push(OrderedList)
+        extensions.push(ListItem)
+      }
+
+      if (this.toolbar.table) {
+        extensions.push(Table.configure({
+          resizable: true
+        }))
+        extensions.push(TableHeader)
+        extensions.push(TableCell)
+        extensions.push(TableRow)
+      }
+
+      if (this.toolbar.insertAndDelete) {
+        // extensions.push(EditorCustomDelete)
+        // extensions.push(EditorCustomInsert)
+
+        this.diffMenu.buttons = [
+          {
+            label: 'editor.diff.insert',
+            command: () => this.editor.chain().focus().toggleInsert().run(),
+            name: 'insert'
+          },
+          {
+            label: 'editor.diff.delete',
+            command: () => this.editor.chain().focus().toggleDelete().run(),
+            name: 'delete'
+          }
+        ]
+      }
+
+      if (this.toolbar.mark) {
+        // extensions.push(EditorCustomMark)
+
+        this.diffMenu.buttons.unshift({
+          label: 'editor.mark',
+          command: () => this.editor.chain().focus().toggleMarkText().run(),
+          name: 'mark'
+        })
+      }
+
+      if (this.toolbar.textDecoration) {
+        extensions.push(Bold)
+        extensions.push(Italic)
+        extensions.push(Underline)
+      }
+
+      if (this.toolbar.strikethrough) {
+        extensions.push(Strike)
+      }
+
+      return extensions
+    },
+
     cut () {
-      document.execCommand('cut')
+      const selection = window.getSelection()
+
+      selection.deleteFromDocument()
+    },
+
+    executeSubMenuButtonAction (button, menu, activateOne = false) {
+      // If only one button in submenu can be enabled, deactivate the rest
+      if (activateOne) {
+        this[menu].buttons.forEach(subMenuButton => {
+          if (this.editor.isActive(subMenuButton.name) || subMenuButton === button) {
+            subMenuButton.command(this.editor.commands)
+          }
+        })
+      } else {
+        // If we just want to activate the clicked button without deactivating the other buttons in the submenu
+        button.command(this.editor.commands)
+      }
+
+      this[menu].isOpen = false
     },
 
     fullscreen (e) {
@@ -687,6 +809,10 @@ export default {
       if (this.isFullscreen === false && this.editorHeight !== '') {
         editor.setAttribute('style', this.editorHeight)
       }
+    },
+
+    getLinkMark (node) {
+      return node.marks && node.marks.find(mark => mark.type.name === 'link')
     },
 
     handleInsertText (text) {
@@ -710,15 +836,8 @@ export default {
       this.currentValue = this.editor.getHTML()
     },
 
-    startsWithTag (htmlString, tag) {
-      const el = document.createElement('div')
-      el.innerHTML = htmlString
-      const firstChild = el.firstChild && el.firstChild.nodeName
-      return firstChild === tag.toUpperCase()
-    },
-
     insertImage (url, alt) {
-      this.editor.commands.insertImage({ src: url, alt })
+      this.editor.commands.insertImage({ src: url, alt: alt })
     },
 
     insertUrl (linkUrl, newTab, linkText) {
@@ -733,12 +852,6 @@ export default {
       }
     },
 
-    getLinkMark (node) {
-      const linkMark = node.marks && node.marks.find(mark => mark.type.name === 'link')
-
-      return linkMark
-    },
-
     openUploadModal (data) {
       this.$refs.uploadModal.toggleModal(data)
     },
@@ -750,9 +863,9 @@ export default {
 
     replaceLinebreaks (text) {
       let returnText = text
-      returnText = returnText.replace(/<\/p>[\n|\r|\s|\\n|\\r]*?<p>/g, '</p><p>')
-      returnText = returnText.replace(/<ul>[\n|\r|\s|\\n|\\r]*?<li>/g, '<ul><li>')
-      return returnText.replace(/<\/li>[\n|\r|\s|\\n|\\r]*?<li>/g, '</li><li>')
+      returnText = returnText.replace(/<\/p>[\n\r\s\\n\\r]*?<p>/g, '</p><p>')
+      returnText = returnText.replace(/<ul>[\n\r\s\\n\\r]*?<li>/g, '<ul><li>')
+      return returnText.replace(/<\/li>[\n\r\s\\n\\r]*?<li>/g, '</li><li>')
     },
 
     replacePlaceholdersWithImages (text = this.currentValue) {
@@ -786,8 +899,8 @@ export default {
       window.addEventListener('mousemove', resize)
       window.addEventListener('mouseup', stopResize)
 
-      function resize (e) {
-        const height = originalHeight + (e.pageY - originalMouseY)
+      function resize (ev) {
+        const height = originalHeight + (ev.pageY - originalMouseY)
         editor.style.height = height + 'px'
       }
 
@@ -798,14 +911,6 @@ export default {
 
     resetEditor () {
       this.editor.setContent('')
-    },
-
-    setValue () {
-      this.currentValue = this.editor.getHTML()
-      const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
-      this.currentValue = this.currentValue.replace(regex, '<dp-obscure>$1</dp-obscure>')
-      const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
-      this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 
     setSelectionByEditor (nodeBefore, nodeAfter, attrs) {
@@ -826,7 +931,15 @@ export default {
       }
     },
 
-    showLinkPrompt (command, attrs) {
+    setValue () {
+      this.currentValue = this.editor.getHTML()
+      const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
+      this.currentValue = this.currentValue.replace(regex, '<dp-obscure>$1</dp-obscure>')
+      const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
+      this.$emit('input', isEmpty ? '' : this.currentValue)
+    },
+
+    showLinkPrompt (_command, attrs) {
       this.linkUrl = attrs.href ? attrs.href : ''
       const selection = this.editor.view.state.tr.selection
 
@@ -846,20 +959,11 @@ export default {
       this.$refs.linkModal.toggleModal(this.linkUrl, selectionText, attrs.target)
     },
 
-    executeSubMenuButtonAction (button, menu, activateOne = false) {
-      // If only one button in submenu can be enabled, deactivate the rest
-      if (activateOne) {
-        this[menu].buttons.forEach(subMenuButton => {
-          if (this.editor.isActive[subMenuButton.name]() || subMenuButton === button) {
-            subMenuButton.command(this.editor.commands)
-          }
-        })
-      } else {
-        // If we just want to activate the clicked button without deactivating the other buttons in the submenu
-        button.command(this.editor.commands)
-      }
-
-      this[menu].isOpen = false
+    startsWithTag (htmlString, tag) {
+      const el = document.createElement('div')
+      el.innerHTML = htmlString
+      const firstChild = el.firstChild && el.firstChild.nodeName
+      return firstChild === tag.toUpperCase()
     },
 
     toggleSubMenu (menu, isOpen) {
@@ -883,93 +987,9 @@ export default {
   },
 
   mounted () {
-    const extensions = [
-      new History(),
-      new HardBreak(),
-      new Heading({ levels: this.toolbar.headings })
-    ]
-
-    extensions.push(new EditorInsertAtCursorPos())
-
-    if (this.suggestions.length > 0) {
-      this.suggestions.forEach(suggestionGroup => {
-        extensions.push(createSuggestion(suggestionGroup, this))
-      })
-    }
-
-    if (this.toolbar.headings.length > 0) {
-      extensions.push(new Heading({ levels: this.toolbar.headings }))
-    }
-
-    if (this.toolbar.imageButton) {
-      extensions.push(new EditorCustomImage())
-    }
-
-    if (this.toolbar.linkButton) {
-      extensions.push(new Link())
-      extensions.push(new EditorCustomLink())
-    }
-
-    if (this.toolbar.obscure) {
-      extensions.push(new EditorObscure())
-    }
-
-    if (this.toolbar.listButtons) {
-      extensions.push(new BulletList())
-      extensions.push(new OrderedList())
-      extensions.push(new ListItem())
-    }
-
-    if (this.toolbar.table) {
-      extensions.push(new Table({
-        resizable: true
-      }))
-      extensions.push(new TableHeader())
-      extensions.push(new TableCell())
-      extensions.push(new TableRow())
-    }
-
-    if (this.toolbar.insertAndDelete) {
-      extensions.push(new EditorCustomDelete())
-      extensions.push(new EditorCustomInsert())
-
-      this.diffMenu.buttons = [
-        {
-          label: 'editor.diff.insert',
-          command: (commands) => commands.insert(),
-          name: 'insert'
-        },
-        {
-          label: 'editor.diff.delete',
-          command: (commands) => commands.delete(),
-          name: 'delete'
-        }
-      ]
-    }
-
-    if (this.toolbar.mark) {
-      extensions.push(new EditorCustomMark())
-
-      this.diffMenu.buttons.unshift({
-        label: 'editor.mark',
-        command: (commands) => commands.mark(),
-        name: 'mark'
-      })
-    }
-
-    if (this.toolbar.textDecoration) {
-      extensions.push(new Bold())
-      extensions.push(new Italic())
-      extensions.push(new Underline())
-    }
-
-    if (this.toolbar.strikethrough) {
-      extensions.push(new Strike())
-    }
-
     this.editor = new Editor({
       editable: !this.readonly,
-      extensions: extensions,
+      extensions: this.collectExtensions(),
       content: this.currentValue,
       disableInputRules: true,
       disablePasteRules: true,
@@ -977,17 +997,12 @@ export default {
         this.setValue()
       },
       editorProps: {
-        handleDrop: (view, event, slice, moved) => {
+        handleDrop: (_view, _event, _slice, moved) => {
           if (!moved) {
             return true
           }
         },
-        handleClick: (view, pos, event) => {
-          if (event.target.tagName.toLowerCase() === 'img' && event.ctrlKey) {
-            const image = event.target
-            this.openUploadModal({ editAltOnly: true, currentAlt: image.getAttribute('alt') })
-          }
-        },
+
         transformPastedHTML: (slice) => {
           /*
            * Due to the strange Html format from Word clipbord, lists would not be displayed properly,
@@ -998,13 +1013,14 @@ export default {
           const obscureClass = this.prefixClass('u-obscure')
           const obscureColor = getColorFromCSS(obscureClass)
           let returnContent = slice
+
           if (slice.includes(`span style="color: ${obscureColor}`)) {
             returnContent = slice.replace(/(?:<meta [^>]*>\s*<span [^>]*>\s*)([^<]*?)(?:\s*<\/span>)/g, '$1')
             returnContent = '<span class="' + obscureClass + '">' + returnContent + '</span>'
           }
 
           // Strip anchor tags if link functionality is not active
-          if (this.linkButton === false) {
+          if (this.toolbar.linkButton === false) {
             returnContent = returnContent.replace(/<a[^>]*>(.*?)<\/a>/g, '$1')
           }
 
@@ -1014,7 +1030,8 @@ export default {
           return returnContent
         }
       },
-      onInit: ({ state, view }) => {
+
+      onInit: ({ view }) => {
         view._props.handleScrollToSelection = customHandleScrollToSelection
       }
     })
@@ -1066,20 +1083,32 @@ function customHandleScrollToSelection (view, rect = view.coordsAtPos(view.state
   const scrollMargin = view.someProp('scrollMargin') || 5
   const doc = view.dom.ownerDocument
   const win = doc.defaultView
+
   for (let parent = startDOM || view.dom; ; parent = parentNode(parent)) {
     if (!parent) break
     if (parent.nodeType !== 1) continue
+
     const parentStyle = window.getComputedStyle(parent, null)
     const atTop = (parentStyle['overflow-y'] === 'auto' || parentStyle['overflow-y'] === 'scroll' || parent.nodeType !== 1)
     const bounding = atTop ? windowRect(win) : parent.getBoundingClientRect()
     let moveX = 0
     let moveY = 0
-    if (rect.top < bounding.top + getSide(scrollThreshold, 'top')) { moveY = -(bounding.top - rect.top + getSide(scrollMargin, 'top')) } else if (rect.bottom > bounding.bottom - getSide(scrollThreshold, 'bottom')) { moveY = rect.bottom - bounding.bottom + getSide(scrollMargin, 'bottom') }
-    if (rect.left < bounding.left + getSide(scrollThreshold, 'left')) { moveX = -(bounding.left - rect.left + getSide(scrollMargin, 'left')) } else if (rect.right > bounding.right - getSide(scrollThreshold, 'right')) { moveX = rect.right - bounding.right + getSide(scrollMargin, 'right') }
-    if (moveX || moveY) {
-      if (moveY) parent.scrollTop += moveY
-      if (moveX) parent.scrollLeft += moveX
+
+    if (rect.top < bounding.top + getSide(scrollThreshold, 'top')) {
+      moveY = -(bounding.top - rect.top + getSide(scrollMargin, 'top'))
+    } else if (rect.bottom > bounding.bottom - getSide(scrollThreshold, 'bottom')) {
+      moveY = rect.bottom - bounding.bottom + getSide(scrollMargin, 'bottom')
     }
+
+    if (rect.left < bounding.left + getSide(scrollThreshold, 'left')) {
+      moveX = -(bounding.left - rect.left + getSide(scrollMargin, 'left'))
+    } else if (rect.right > bounding.right - getSide(scrollThreshold, 'right')) {
+      moveX = rect.right - bounding.right + getSide(scrollMargin, 'right')
+    }
+
+    if (moveY) parent.scrollTop += moveY
+    if (moveX) parent.scrollLeft += moveX
+
     if (atTop) break
   }
 }

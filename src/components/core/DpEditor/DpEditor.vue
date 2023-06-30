@@ -345,8 +345,8 @@ import DpIcon from '../../DpIcon/DpIcon'
 // import EditorCustomInsert from './libs/editorCustomInsert'
 // import EditorCustomLink from './libs/editorCustomLink'
 // import EditorCustomMark from './libs/editorCustomMark'
-// import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
-// import EditorObscure from './libs/editorObscure'
+import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
+import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -686,7 +686,7 @@ export default {
         Heading.configure({ levels: this.toolbar.headings })
       ]
 
-      // extensions.push(EditorInsertAtCursorPos)
+      extensions.push(EditorInsertAtCursorPos)
 
       // if (this.suggestions.length > 0) {
       // this.suggestions.forEach(suggestion => {
@@ -716,7 +716,7 @@ export default {
       }
 
       if (this.toolbar.obscure) {
-        // extensions.push(EditorObscure)
+        extensions.push(EditorObscure)
       }
 
       if (this.toolbar.listButtons) {

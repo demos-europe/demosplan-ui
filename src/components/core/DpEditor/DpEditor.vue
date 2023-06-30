@@ -8,13 +8,13 @@
 <!--      v-if="toolbar.linkButton"-->
 <!--      ref="linkModal"-->
 <!--      @insert="insertUrl" />-->
-<!--    <dp-upload-modal-->
-<!--      v-if="toolbar.imageButton"-->
-<!--      ref="uploadModal"-->
-<!--      :get-file-by-hash="routes.getFileByHash"-->
-<!--      @insert-image="insertImage"-->
-<!--      @add-alt="addAltTextToImage"-->
-<!--      @close="resetEditingImage" />-->
+    <dp-upload-modal
+      v-if="toolbar.imageButton"
+      ref="uploadModal"
+      :get-file-by-hash="routes.getFileByHash"
+      @insert-image="insertImage"
+      @add-alt="addAltTextToImage"
+      @close="resetEditingImage" />
     <slot
         name="modal"
         :appendText="appendText"
@@ -338,10 +338,10 @@ import Underline from '@tiptap/extension-underline'
 // import editorBuildSuggestion from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
 // import DpLinkModal from './DpLinkModal'
-// import DpResizableImage from './DpResizableImage'
-// import DpUploadModal from './DpUploadModal'
+import DpResizableImage from './DpResizableImage'
+import DpUploadModal from './DpUploadModal'
 // import EditorCustomDelete from './libs/editorCustomDelete'
-// import EditorCustomImage from './libs/editorCustomImage'
+import EditorCustomImage from './libs/editorCustomImage'
 // import EditorCustomInsert from './libs/editorCustomInsert'
 // import EditorCustomLink from './libs/editorCustomLink'
 // import EditorCustomMark from './libs/editorCustomMark'
@@ -358,8 +358,8 @@ export default {
     DpIcon,
     EditorContent,
     // DpLinkModal,
-    // DpResizableImage,
-    // DpUploadModal
+    DpResizableImage,
+    DpUploadModal
   },
 
   directives: {
@@ -707,7 +707,7 @@ export default {
       }
 
       if (this.toolbar.imageButton) {
-        // extensions.push(EditorCustomImage)
+        extensions.push(EditorCustomImage)
       }
 
       if (this.toolbar.linkButton) {

@@ -4,10 +4,10 @@
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
-<!--    <dp-link-modal-->
-<!--      v-if="toolbar.linkButton"-->
-<!--      ref="linkModal"-->
-<!--      @insert="insertUrl" />-->
+    <dp-link-modal
+      v-if="toolbar.linkButton"
+      ref="linkModal"
+      @insert="insertUrl" />
 <!--    <dp-upload-modal-->
 <!--      v-if="toolbar.imageButton"-->
 <!--      ref="uploadModal"-->
@@ -337,13 +337,13 @@ import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
 // import editorBuildSuggestion from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
-// import DpLinkModal from './DpLinkModal'
+import DpLinkModal from './DpLinkModal'
 // import DpResizableImage from './DpResizableImage'
 // import DpUploadModal from './DpUploadModal'
 // import EditorCustomDelete from './libs/editorCustomDelete'
 // import EditorCustomImage from './libs/editorCustomImage'
 // import EditorCustomInsert from './libs/editorCustomInsert'
-// import EditorCustomLink from './libs/editorCustomLink'
+import EditorCustomLink from './libs/editorCustomLink'
 // import EditorCustomMark from './libs/editorCustomMark'
 // import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 // import EditorObscure from './libs/editorObscure'
@@ -357,7 +357,7 @@ export default {
   components: {
     DpIcon,
     EditorContent,
-    // DpLinkModal,
+    DpLinkModal,
     // DpResizableImage,
     // DpUploadModal
   },
@@ -712,7 +712,7 @@ export default {
 
       if (this.toolbar.linkButton) {
         extensions.push(Link)
-        // extensions.push(EditorCustomLink)
+        extensions.push(EditorCustomLink)
       }
 
       if (this.toolbar.obscure) {

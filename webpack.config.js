@@ -34,7 +34,6 @@ const config = {
     'dompurify',
     'lscache',
     'plyr',
-    'tippy.js',
     'uuid',
     'v-tooltip',
     'vue-multiselect',

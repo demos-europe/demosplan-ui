@@ -325,7 +325,7 @@ import History from '@tiptap/extension-history'
 import Italic from '@tiptap/extension-italic'
 import Link from '@tiptap/extension-link'
 import ListItem from '@tiptap/extension-list-item'
-// import Mention from './libs/CustomMention'
+import Mention from './libs/CustomMention'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
 import Strike from '@tiptap/extension-strike'
@@ -335,7 +335,7 @@ import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
-// import editorBuildSuggestion from './libs/editorBuildSuggestion'
+import editorBuildSuggestion from './libs/editorBuildSuggestion'
 import DpIcon from '../../DpIcon/DpIcon'
 // import DpLinkModal from './DpLinkModal'
 // import DpResizableImage from './DpResizableImage'
@@ -688,19 +688,19 @@ export default {
 
       // extensions.push(EditorInsertAtCursorPos)
 
-      // if (this.suggestions.length > 0) {
-      // this.suggestions.forEach(suggestion => {
-      //   extensions.push(Mention.configure({
-      //     HTMLAttributes: {
-      //       class: 'suggestion__node'
-      //     },
-      //     renderLabel({ node }) {
-      //       return suggestion.matcher.char + node.attrs.label
-      //     },
-      //     suggestion: editorBuildSuggestion(suggestion)
-      //   }))
-      // })
-      // }
+      if (this.suggestions.length > 0) {
+      this.suggestions.forEach(suggestion => {
+        extensions.push(Mention.configure({
+          HTMLAttributes: {
+            class: 'suggestion__node'
+          },
+          renderLabel({ node }) {
+            return suggestion.matcher.char + node.attrs.label
+          },
+          suggestion: editorBuildSuggestion(suggestion)
+        }))
+      })
+      }
 
       if (this.toolbar.headings.length > 0) {
         extensions.push(Heading.configure({ levels: this.toolbar.headings }))

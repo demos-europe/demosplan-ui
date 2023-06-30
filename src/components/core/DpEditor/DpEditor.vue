@@ -340,11 +340,11 @@ import DpIcon from '../../DpIcon/DpIcon'
 // import DpLinkModal from './DpLinkModal'
 // import DpResizableImage from './DpResizableImage'
 // import DpUploadModal from './DpUploadModal'
-// import EditorCustomDelete from './libs/editorCustomDelete'
+import EditorCustomDelete from './libs/editorCustomDelete'
 // import EditorCustomImage from './libs/editorCustomImage'
-// import EditorCustomInsert from './libs/editorCustomInsert'
+import EditorCustomInsert from './libs/editorCustomInsert'
 // import EditorCustomLink from './libs/editorCustomLink'
-// import EditorCustomMark from './libs/editorCustomMark'
+import EditorCustomMark from './libs/editorCustomMark'
 // import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
 // import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
@@ -735,8 +735,8 @@ export default {
       }
 
       if (this.toolbar.insertAndDelete) {
-        // extensions.push(EditorCustomDelete)
-        // extensions.push(EditorCustomInsert)
+        extensions.push(EditorCustomDelete)
+        extensions.push(EditorCustomInsert)
 
         this.diffMenu.buttons = [
           {
@@ -753,7 +753,7 @@ export default {
       }
 
       if (this.toolbar.mark) {
-        // extensions.push(EditorCustomMark)
+        extensions.push(EditorCustomMark)
 
         this.diffMenu.buttons.unshift({
           label: 'editor.mark',

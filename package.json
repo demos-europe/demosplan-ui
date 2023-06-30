@@ -3,8 +3,9 @@
   "version": "0.1.7",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
-  "main": "./dist/demosplan-ui.umd.js",
+  "main": "./dist/demosplan-ui.mjs",
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.1",
     "@uppy/core": "^3.0.1",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.22.5",
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.4",
     "@jest/globals": "^29.5.0",
@@ -72,6 +74,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.1",
     "ts-jest": "^29.1.0",
+    "url": "^0.11.1",
     "vue-jest": "^3.0.7",
     "vue-loader": "^15",
     "vue-template-compiler": "^2.7.14",

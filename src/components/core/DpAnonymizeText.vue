@@ -1,27 +1,24 @@
 <template>
   <div class="border u-mb u-p-0_25">
-    <editor-menu-bubble
+    <bubble-menu
+      v-if="editor"
       :editor="editor"
-      class="editor-menububble__wrapper"
-      :keep-in-bounds="true"
-      v-slot:default="{ commands, isActive, menu }">
-      <div
-        :class="{ 'is-active': menu.isActive }"
-        :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`">
-        <a
-          v-if="isActive.anonymize()"
+      :tippy-options="{ duration: 100 }">
+      <div class="editor-menububble__wrapper">
+        <button
+          v-if="editor.isActive('anonymize')"
           class="editor-menububble__button is-active"
-          @click="commands.unanonymize">
+          @click="editor.chain().focus().toggleUnanonymize().run()">
           {{ Translator.trans('statement.anonymize.unmark') }}
-        </a>
-        <a
+        </button>
+        <button
           v-else
           class="editor-menububble__button"
-          @click="commands.anonymize">
+          @click="editor.chain().focus().toggleAnonymize().run()">
           {{ Translator.trans('statement.anonymize.mark') }}
-        </a>
+        </button>
       </div>
-    </editor-menu-bubble>
+    </bubble-menu>
     <editor-content
       autocomplete="off"
       autocorrect="off"
@@ -35,28 +32,34 @@
 
 <script>
 import {
-  Bold,
-  BulletList,
-  HardBreak,
-  History,
-  Italic,
-  ListItem,
-  OrderedList,
-  Underline
-} from 'tiptap-extensions'
-import { Editor, EditorContent, EditorMenuBubble } from 'tiptap'
-import EditorAnonymize from './DpEditor/libs/editorAnonymize'
-import EditorObscure from './DpEditor/libs/editorObscure'
-import EditorUnAnonymize from './DpEditor/libs/editorUnAnonymize'
-import PreventDrop from './DpEditor/libs/preventDrop'
-import PreventKeyboardInput from './DpEditor/libs/preventKeyboardInput'
+  BubbleMenu,
+  Editor, // Wrapper for prosemirror state
+  EditorContent, // Renderless content element
+} from '@tiptap/vue-2'
+import Bold from '@tiptap/extension-bold'
+import BulletList from '@tiptap/extension-bullet-list'
+import Document from '@tiptap/extension-document'
+import HardBreak from '@tiptap/extension-hard-break'
+import Heading from '@tiptap/extension-heading'
+import History from '@tiptap/extension-history'
+import Italic from '@tiptap/extension-italic'
+import Link from '@tiptap/extension-link'
+import OrderedList from '@tiptap/extension-ordered-list'
+import Paragraph from '@tiptap/extension-paragraph'
+import Text from '@tiptap/extension-text'
+import Underline from '@tiptap/extension-underline'
+import ListItem from '@tiptap/extension-list-item'
+import Anonymize from './DpEditor/libs/editorAnonymize'
+import Obscure from './DpEditor/libs/editorObscure'
+import UnAnonymize from './DpEditor/libs/editorUnAnonymize'
+import eventPreventer from './DpEditor/libs/preventEditing'
 
 export default {
   name: 'DpAnonymizeText',
 
   components: {
-    EditorContent,
-    EditorMenuBubble
+    BubbleMenu,
+    EditorContent
   },
 
   props: {
@@ -76,6 +79,7 @@ export default {
     setValue () {
       let currentValue = this.editor.getHTML()
 
+      console.log('setValue', currentValue)
       // 1. look if there are anonymized segements, which are tagged to un-anonymize
       const unanonymize = /<span[^>]*?title="(.*?)"([^>]*?)class="anonymize-me"([^>]*?)>([^<]*?)<span class="unanonymized">([^<]*?)<\/span>([^<]*?)<\/span>/gm
       currentValue = currentValue.replace(unanonymize, (match, p1) => p1.replaceAll('&quot;', '"'))
@@ -89,7 +93,7 @@ export default {
       currentValue = currentValue.replace(anonymize, (match, p1) => ('<span title="' + p1.replaceAll('"', '&quot;') + '" class="anonymize-me">***</span>'))
 
       // Update text
-      this.editor.setContent(currentValue)
+      this.editor.commands.setContent(currentValue)
       this.$emit('change', currentValue)
     }
   },
@@ -98,28 +102,29 @@ export default {
     this.editor = new Editor({
       content: this.value,
       editable: true,
-      disableInputRules: true,
-      disablePasteRules: true,
+      enableInputRules: false,
+      enablePasteRules: false,
       extensions: [
-        new EditorAnonymize(),
-        new EditorUnAnonymize(),
-        new EditorObscure(),
-        new PreventKeyboardInput(),
-        new PreventDrop(),
-        new Bold(),
-        new Italic(),
-        new BulletList(),
-        new OrderedList(),
-        new ListItem(),
-        new Underline(),
-        new History(),
-        new HardBreak()
+        Anonymize,
+        Bold,
+        BulletList,
+        Document,
+        eventPreventer,
+        Heading.configure({ levels: [1,2,3] }),
+        HardBreak,
+        History,
+        Italic,
+        Link,
+        ListItem,
+        Obscure,
+        OrderedList,
+        Paragraph,
+        Text,
+        UnAnonymize,
+        Underline
       ],
       onUpdate: () => {
         this.setValue()
-      },
-      editorProps: {
-        handleTextInput: () => true // Disable text input
       }
     })
   }

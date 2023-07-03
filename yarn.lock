@@ -3438,14 +3438,14 @@
     namespace-emitter "^2.0.1"
 
 "@uppy/core@^3.0.1":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.2.0.tgz#4ccd2110f7fd797fb5b13a3048880c77c5f40bd5"
-  integrity sha512-w/jdNCIdmxt4uPt4UBPfzmQ7HanIE73GiKKeHtZo6Gp+HWOsUhY7DBimGUk3IsX/vMJTSB2+RhZAUOBGRaP5fA==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.2.1.tgz#5cf38508f674529ea8302c99cd42b5bb3d93cd21"
+  integrity sha512-vqNwhVcJb9N4Mx1AhDvq4YrjGzqQiy5i2YA2LP/NODVBowMnHK4+g/gFOkZF8dHnKwnvVizZK/vR1K6CXocrGg==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.9"
     "@uppy/store-default" "^3.0.3"
-    "@uppy/utils" "^5.3.0"
-    lodash.throttle "^4.1.1"
+    "@uppy/utils" "^5.4.0"
+    lodash "^4.17.21"
     mime-match "^1.0.2"
     namespace-emitter "^2.0.1"
     nanoid "^4.0.0"
@@ -3481,12 +3481,12 @@
     "@uppy/utils" "^5.3.0"
     tus-js-client "^3.0.0"
 
-"@uppy/utils@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.3.0.tgz#60803328536da73a11c8e747ed365c903b6a5f7e"
-  integrity sha512-tPW+HtRkjanFQAa/XD2e6kjJ7ZeMHtVxEVeBeRtKTnltsCA9kNF2gDwxtUVPEWyLrKzW+CvRm60NDiOKaWUuww==
+"@uppy/utils@^5.3.0", "@uppy/utils@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.4.0.tgz#1f0816334ef8cfe3eaaf7c6a1d3dc28ac9bbced8"
+  integrity sha512-X9f43OvTcymhoiDEzA2CqH7W5pADTVv2bhQ/9NUaVwYRLUadDjZc27ZgnNraKSYgnOhKFJlC63nyCwcd0yaQIQ==
   dependencies:
-    lodash.throttle "^4.1.1"
+    lodash "^4.17.21"
 
 "@vue/compiler-core@3.2.45":
   version "3.2.45"

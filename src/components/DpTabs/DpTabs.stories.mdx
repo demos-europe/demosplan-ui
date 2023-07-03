@@ -7,13 +7,11 @@ import DpTabs from './DpTabs'
 
 # DpTabs
 
-DpTabs is a wrapper for DpTab component through `<slot />`.
+The DpTabs component provides a structured and interactive way to organize and navigate related content, allowing users to switch between different views while keeping context.
 
-DpTabs component is a simple user interface (tabs UI) for organizing related content and occupying a compact space.
+DpTabs and DpTab both provide a default slot. For each tab, a `DpTab` instance is placed inside the default slot of `DpTabs`, while the content of each tab is placed inside the default slot of the respective `DpTab` instance.
 
-The DpTab components are aligned horizontally, and each tab is associated with its header.
-
-Components DpTabs and DpTab contain `<slot />`.
+The `DpTab` instances are then aligned horizontally, and each tab is associated with its header.
 
 ## Default usage
 

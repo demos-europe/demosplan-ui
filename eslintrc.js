@@ -42,15 +42,12 @@ module.exports = {
   ],
   ignorePatterns: [
     '**/node_modules/**/*',
-    'client/js/legacy/**/*.js',
-    'client/js/generated/*.js'
   ],
   // Required to lint *.vue files
   plugins: [
     '@babel',
     'vue',
     'jest',
-    'jquery',
     'vuejs-accessibility'
   ],
   // Add your custom rules here
@@ -131,7 +128,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './config.webpack.js'
+        config: './webpack.config.mjs'
       }
     }
   }

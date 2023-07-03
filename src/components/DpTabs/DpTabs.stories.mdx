@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs'
+import DpTabs from './DpTabs'
+
+<Meta
+  title="Components/Tabs"
+  component={DpTabs} />
+
+# DpTabs
+
+DpTabs is a wrapper for DpTab component through `<slot />`.
+
+DpTabs component is a simple user interface (tabs UI) for organizing related content and occupying a compact space.
+
+The DpTab components are aligned horizontally, and each tab is associated with its header.
+
+Components DpTabs and DpTab contain `<slot />`.
+
+## Default usage
+
+```html
+<dp-tabs
+    tab-size="medium"
+    :active-id="activeTabId"
+    use-url-fragment
+    @change="setActiveTabId"> // call a method
+    <dp-tab
+      id="id"
+      :label="Translator.trans('tab.name')">
+      <slot>
+        <component-name />
+      </slot>
+    </dp-tab>
+    <dp-tab
+      id="id"
+      :label="Translator.trans('tab.name')">
+      <slot>
+        <component-name />
+      </slot>
+    </dp-tab>
+  </dp-tabs>
+```
+
+## DpTabs Props:
+
+```
+- activeId: is a String type, belongs to data.
+
+- tabSize: `medium` or `large`, default is `large`
+
+- useUrlFragment: Active tab state may be persisted via an Url fragment.
+                  Also, ab clicks are pushed to the browser history to enable state change when browser navigation is used.
+```
+
+## DpTab Props:
+
+```
+- id: Tab ID.
+
+- label: The label is passed to the DpTab child component, but then it is used in the parent component DpTabs.
+
+- suffix: A html string may be passed here which is appended to the tab label.
+```
+

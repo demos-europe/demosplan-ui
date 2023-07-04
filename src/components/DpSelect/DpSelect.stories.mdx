@@ -14,10 +14,11 @@ The DpSelect component is used to render a select input field with customizable 
 ```html
 <dp-select
   v-model="selectModel"
-  class="u-mb-0_5"
-  label="Select Title"
+  :label="{
+          text: Translator.trans('Text')
+        }"
   name="select_menu_name"
-  :options="Computed Name"
+  :options="selectOptions"
   required
   @select="updateLocalState" />
 ```

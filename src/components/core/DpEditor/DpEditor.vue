@@ -221,7 +221,7 @@
               <!--Add links-->
               <button
                 v-if="toolbar.linkButton"
-                @click.stop="showLinkPrompt(this.editor.commands.link, getMarkAttrs('link'))"
+                @click.stop="showLinkPrompt(editor.commands.link, getMarkAttrs('link'))"
                 :class="prefixClass('menubar__button')"
                 type="button"
                 v-tooltip="Translator.trans('editor.link.edit.insert')">

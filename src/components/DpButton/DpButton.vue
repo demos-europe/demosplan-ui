@@ -98,6 +98,15 @@ export default {
     },
 
     /**
+     * Renders the button with a pill-like appearance when set to true.
+     */
+    rounded: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+
+    /**
      * Text content of the button element.
      */
     text: {
@@ -139,6 +148,7 @@ export default {
         'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
         this.iconOnly && 'icon-only',
+        this.rounded && 'rounded-full',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
         ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]
       ]

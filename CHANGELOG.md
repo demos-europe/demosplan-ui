@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.1.8 - 2023-07-07
+
 ### Added
 
 - ([#356](https://github.com/demos-europe/demosplan-ui/pull/356)) Add "blur" event in DpInput ([@salisdemos](https://github.com/@salisdemos))

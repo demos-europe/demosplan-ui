@@ -1,0 +1,44 @@
+{
+  "rounded": {
+    "none": {
+      "$description": "None - No radius.",
+      "value": "0"
+    },
+    "sm": {
+      "$description": "Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have {rounded.small} applied as border-radius.",
+      "value": "2px",
+      "themeable": true
+    },
+    "smallest": {
+      "value": "{rounded.sm}"
+    },
+    "default": {
+      "$description": "Default - The standard for ui elements that shall appear rounded. Use this value for form elements and other smaller ui elements. When in doubt, pick this one.",
+      "value": "3px",
+      "themeable": true
+    },
+    "small": {
+      "value": "{rounded.default}"
+    },
+    "md": {
+      "$description": "Medium - The \"next best\" radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded.",
+      "value": "4px",
+      "themeable": true
+    },
+    "medium": {
+      "value": "{rounded.md}"
+    },
+    "lg": {
+      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with, rounded elements inside it that are rounded via {rounded.default}.",
+      "value": "5px",
+      "themeable": true
+    },
+    "large": {
+      "value": "{rounded.lg}"
+    },
+    "full": {
+      "$description": "Full - use to craft pill-like elements.",
+      "value": "9999px"
+    }
+  }
+}

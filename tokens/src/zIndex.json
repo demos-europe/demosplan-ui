@@ -1,0 +1,36 @@
+{
+  "z-index": {
+    "below-zero": {
+      "$description": "Stack an element behind elements that do not have a stacking order applied.",
+      "value": "-1"
+    },
+    "zero": {
+      "$description": "Stack an element behind elements that do not have a stacking order applied.",
+      "value": "0"
+    },
+    "above-zero": {
+      "$description": "Stack an element above elements that do not have a stacking order applied, but below elements with other z-indexes applied.",
+      "value": "1"
+    },
+    "tooltip": {
+      "$description": "Use for tooltip components.",
+      "value": "2000"
+    },
+    "flyout": {
+      "$description": "Use for flyout components.",
+      "value": "2100"
+    },
+    "fixed": {
+      "$description": "Use for fixed or sticky elements and fullscreen elements.",
+      "value": "2200"
+    },
+    "modal": {
+      "$description": "Use for modals. Modals should be the topmost elements.",
+      "value": "2300"
+    },
+    "ultimate": {
+      "$description": "Use sparingly for elements that should even trump modals.",
+      "value": "10000"
+    }
+  }
+}

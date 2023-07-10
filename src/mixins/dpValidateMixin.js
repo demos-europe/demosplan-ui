@@ -11,30 +11,6 @@ import { assignHandlersForInputs } from '../lib/validation/utils/assignHandlersF
 import hasOwnProp from '../utils/hasOwnProp'
 import validateForm from '../lib/validation/utils/validateForm'
 
-// This is the mapping between form field ids and translation keys, which are displayed in the error message if the field contains an error
-const fieldKeyMapping = {
-  r_text: 'statement.text.short',
-  confirmPrivacy: 'confirm.statement.privacy',
-  locationFieldset: 'statement.map.reference',
-  r_county: 'county',
-  r_firstname: 'name.first',
-  r_lastname: 'name.last',
-  r_name: 'name',
-  r_url: 'url',
-  r_email_feedback: 'statement.fieldset.emailAddress',
-  r_postalCode: 'postalcode',
-  r_city: 'city',
-  r_email: 'statement.fieldset.emailAddress',
-  r_email2: 'email.confirm',
-  r_getEvaluation: 'statement.feedback',
-  r_phone: 'phone',
-  personalInfoFieldset: 'submit.type',
-  submitterTypeFieldset: 'submitter',
-  r_houseNumber: 'street.number.short',
-  r_street: 'street',
-  r_userOrganisation: 'institution.name'
-}
-
 export default {
   data () {
     return {
@@ -69,10 +45,9 @@ export default {
         if (customErrors.length === 0) {
           const invalidFields = this.dpValidate.invalidFields[formId]
           const missingFields = invalidFields.map(field => {
-            const fieldId = field.getAttribute('id')
-            const fieldKey = fieldKeyMapping[fieldId]
+            const fieldName = field.getAttribute('data-validate-error-fieldname')
 
-            return Translator.trans(fieldKey)
+            return fieldName
           })
           const missingFieldsString = missingFields ? missingFields.join(', ') : ' '
           dplan.notify.notify('error', Translator.trans('error.mandatoryfields.missing_fields', { fields: missingFieldsString }))

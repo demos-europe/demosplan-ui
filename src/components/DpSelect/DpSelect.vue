@@ -21,7 +21,7 @@
         disabled
         value=""
         :selected="selected === ''">
-        {{ selectPlaceholder }}
+        {{ de.selectPlaceholder }}
       </option>
       <option
         v-for="(option, idx) in options"

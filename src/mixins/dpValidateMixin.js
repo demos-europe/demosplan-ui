@@ -45,12 +45,17 @@ export default {
         if (customErrors.length === 0) {
           const invalidFields = this.dpValidate.invalidFields[formId]
           const missingFields = invalidFields.map(field => {
-            const fieldName = field.getAttribute('data-validate-error-fieldname')
+            const fieldName = field.getAttribute('data-dp-validate-error-fieldname')
 
             return fieldName
           })
           const missingFieldsString = missingFields ? missingFields.join(', ') : ' '
-          dplan.notify.notify('error', Translator.trans('error.mandatoryfields.missing_fields', { fields: missingFieldsString }))
+
+          if (missingFields) {
+            dplan.notify.notify('error', Translator.trans('error.mandatoryfields.missing_fields', { fields: missingFieldsString }))
+          } else {
+            dplan.notify.notify('error', Translator.trans('error.mandatoryfields.no_asterisk'))
+          }
         }
         const firstErrorElement = form.querySelector('.' + errorClass)
         scrollToVisibleElement(firstErrorElement)

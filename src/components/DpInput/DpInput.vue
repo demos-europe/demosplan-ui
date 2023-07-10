@@ -29,6 +29,7 @@
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
       v-model="currentValue"
+      @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
       @input="$emit('input', currentValue)"
       @keydown.enter="handleEnter">

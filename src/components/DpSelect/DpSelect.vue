@@ -97,12 +97,6 @@ export default {
       type: Array
     },
 
-    placeholder: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     required: {
       type: Boolean,
       required: false,
@@ -123,10 +117,6 @@ export default {
   },
 
   computed: {
-    selectPlaceholder () {
-      return de.selectPlaceholder
-    },
-
     nameOrId () {
       /*
        * As long as there is no necessity of having the id to differ from name,

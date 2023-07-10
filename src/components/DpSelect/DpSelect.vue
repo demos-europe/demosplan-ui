@@ -21,7 +21,7 @@
         disabled
         value=""
         :selected="selected === ''">
-        {{ de.selectPlaceholder }}
+        {{ selectPlaceholder }}
       </option>
       <option
         v-for="(option, idx) in options"
@@ -117,6 +117,10 @@ export default {
   },
 
   computed: {
+    selectPlaceholder () {
+      return de.selectPlaceholder
+    },
+
     nameOrId () {
       /*
        * As long as there is no necessity of having the id to differ from name,

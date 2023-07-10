@@ -479,12 +479,7 @@ export default {
         }).length === value.length
       },
       required: false,
-      default: () => ([{
-        matcher: { char:'$' , allowSpaces: false, startOfLine: false },
-        suggestions: [{
-          id: 'statementPublicSubmitConfirmationTextPlaceholder',
-          name: 'Vorgangsnummer' }]
-      }])
+      default: () => ([])
     },
 
     value: {

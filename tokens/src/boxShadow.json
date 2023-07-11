@@ -6,6 +6,7 @@
       "themeable": true
     },
     "1": {
+      "$status": "{_status.deprecated}",
       "value": "{box-shadow.DEFAULT}"
     },
     "md": {
@@ -14,6 +15,7 @@
       "themeable": true
     },
     "2": {
+      "$status": "{_status.deprecated}",
       "value": "{box-shadow.md}"
     },
     "lg": {
@@ -22,6 +24,7 @@
       "themeable": true
     },
     "3": {
+      "$status": "{_status.deprecated}",
       "value": "{box-shadow.lg}"
     },
     "xl": {
@@ -30,6 +33,7 @@
       "themeable": true
     },
     "4": {
+      "$status": "{_status.deprecated}",
       "value": "{box-shadow.xl}"
     }
   }

@@ -10,6 +10,7 @@
       "themeable": true
     },
     "smallest": {
+      "$status": "{_status.deprecated}",
       "value": "{rounded.sm}"
     },
     "default": {
@@ -18,6 +19,7 @@
       "themeable": true
     },
     "small": {
+      "$status": "{_status.deprecated}",
       "value": "{rounded.default}"
     },
     "md": {
@@ -26,6 +28,7 @@
       "themeable": true
     },
     "medium": {
+      "$status": "{_status.deprecated}",
       "value": "{rounded.md}"
     },
     "lg": {
@@ -34,6 +37,7 @@
       "themeable": true
     },
     "large": {
+      "$status": "{_status.deprecated}",
       "value": "{rounded.lg}"
     },
     "full": {

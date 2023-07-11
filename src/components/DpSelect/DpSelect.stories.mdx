@@ -9,19 +9,7 @@ import DpSelect from './DpSelect'
 
 The DpSelect component is used to render a select input field with customizable options. It provides functionality for selecting an option from a dropdown list and emits a select event with the selected value.
 
-## Default usage
-
-```html
-<dp-select
-  v-model="selectModel"
-  :label="{
-          text: Translator.trans('Text')
-        }"
-  name="select_menu_name"
-  :options="selectOptions"
-  required
-  @select="updateLocalState" />
-```
+## Examples
 
 export const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),

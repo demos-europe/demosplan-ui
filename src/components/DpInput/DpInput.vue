@@ -14,7 +14,7 @@
       :class="prefixClass(classes)"
       :data-counter="dataCounter !== '' ? dataCounter : null"
       :data-dp-validate-error="dataDpValidateError || null"
-      :data-validate-error-fieldname="dataValidateErrorFieldName || null"
+      :data-dp-validate-error-fieldname="label.text || null"
       :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : null"
       :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
       :data-cy="dataCy !== '' ? dataCy : false"
@@ -86,12 +86,6 @@ export default {
     },
 
     dataDpValidateError: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    dataValidateErrorFieldName: {
       type: String,
       required: false,
       default: ''

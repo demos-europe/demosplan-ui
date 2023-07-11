@@ -12,6 +12,7 @@
       :checked="checked"
       :value="valueToSend"
       :data-cy="dataCy !== '' ? dataCy : false"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
       @change="$emit('change', $event.target.checked)"
       true-value="1"
       false-value="0">
@@ -54,6 +55,12 @@ export default {
     },
 
     dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateErrorFieldname: {
       type: String,
       required: false,
       default: ''

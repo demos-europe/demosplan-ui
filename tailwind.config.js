@@ -45,9 +45,9 @@ module.exports = {
     }
   ],
   theme: {
-    screens,
     borderRadius,
     boxShadow,
+    screens,
     zIndex,
     extend: {
       flexShrink: {

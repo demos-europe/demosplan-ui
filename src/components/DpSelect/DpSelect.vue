@@ -21,14 +21,14 @@
         disabled
         value=""
         :selected="selected === ''">
-        {{ Translator.trans(placeholder) }}
+        {{ selectPlaceholder }}
       </option>
       <option
         v-for="(option, idx) in options"
         :selected="option.value === selected"
         :value="option.value"
         :key="idx">
-        {{ Translator.trans(option.label) }}
+        {{ option.label }}
       </option>
     </select>
   </div>
@@ -36,6 +36,7 @@
 
 <script>
 import DpLabel from '../DpLabel/DpLabel'
+import { de } from '../shared/translations'
 import { prefixClassMixin } from '../../mixins'
 
 export default {
@@ -96,12 +97,6 @@ export default {
       type: Array
     },
 
-    placeholder: {
-      type: String,
-      required: false,
-      default: 'warning.select.entry'
-    },
-
     required: {
       type: Boolean,
       required: false,
@@ -122,6 +117,10 @@ export default {
   },
 
   computed: {
+    selectPlaceholder () {
+      return de.selectPlaceholder
+    },
+
     nameOrId () {
       /*
        * As long as there is no necessity of having the id to differ from name,

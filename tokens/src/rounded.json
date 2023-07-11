@@ -29,7 +29,7 @@
       "value": "{rounded.md}"
     },
     "lg": {
-      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with, rounded elements inside it that are rounded via {rounded.default}.",
+      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via {rounded.default}.",
       "value": "5px",
       "themeable": true
     },

@@ -28,6 +28,11 @@ $dp-z-index-below-zero
 
 ## How to use z-index tokens
 
+These tokens give guidance on where to place interface elements in the global
+[stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+For components that require a new stacking context, the Tailwind utility `isolate` can be used. Within this new context,
+the same z-index tokens can be used, again.
+
 ### Scss
 
 Z-Index tokens can be consumed as Scss variables. To use them, they have to be imported at first:

@@ -5,7 +5,7 @@
       "value": "-1"
     },
     "zero": {
-      "$description": "Stack an element behind elements that do not have a stacking order applied.",
+      "$description": "Stack an element on the default layer.",
       "value": "0"
     },
     "above-zero": {
@@ -21,7 +21,7 @@
       "value": "2100"
     },
     "fixed": {
-      "$description": "Use for fixed or sticky elements and fullscreen elements.",
+      "$description": "Use for fixed, sticky, and fullscreen elements.",
       "value": "2200"
     },
     "modal": {
@@ -29,7 +29,7 @@
       "value": "2300"
     },
     "ultimate": {
-      "$description": "Use sparingly for elements that should even trump modals.",
+      "$description": "Use for notifications and tooltips that are triggered from within layers that are normally stacked above tooltips.",
       "value": "10000"
     }
   }

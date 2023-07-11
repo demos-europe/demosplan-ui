@@ -58,6 +58,9 @@ export default {
   },
 
   props: {
+    /**
+     * @deprecated
+     */
     classes: {
       type: [Array, String],
       required: false,

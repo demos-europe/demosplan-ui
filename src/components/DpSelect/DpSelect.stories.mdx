@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs'
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import DpSelect from './DpSelect'
 
 <Meta
@@ -22,3 +22,100 @@ The DpSelect component is used to render a select input field with customizable 
   required
   @select="updateLocalState" />
 ```
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpSelect },
+    template: `<dp-select v-bind="$props" />`
+});
+
+### Classes
+<Canvas>
+    <Story
+        name="Classes"
+        args={{
+            id: 'selectId',
+            label: {
+              text: 'select label'
+            },
+            classes: 'layout__item u-6-of-12 sbdocs-preview css-tmvzag'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'selectId',
+            label: {
+              text: 'select label'
+            },
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+If a select is `required`, an asterisk will be added to its label.
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'selectId',
+            label: {
+              text: 'select label'
+            },
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Options
+
+Need label and value
+
+<Canvas>
+    <Story
+        name="Options"
+        args={{
+            id: 'selectId',
+            label: {
+              text: 'select label'
+            },
+            options: [
+                { label: 'Option 1', value: '1' },
+                { label: 'Option 2', value: '2' }
+            ]
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+
+### Selected
+
+<Canvas>
+    <Story
+        name="Selected"
+        args={{
+            id: 'selectId',
+            label: {
+              text: 'select label'
+            },
+            options: [
+                { label: 'Option 1', value: '1' },
+                { label: 'Option 2', value: '2' }
+            ],
+            selected: 'selected'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

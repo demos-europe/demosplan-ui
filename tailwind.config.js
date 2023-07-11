@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin')
 const borderRadius = Object.fromEntries(
   Object.values(require('./tokens/dist/js/rounded').rounded)
     // Filter out aliases here because they are only included for backward compatibility with Scss
-    .filter(({ original}) => original.value.includes('{') === false)
+    .filter(({ original }) => original.value.includes('{') === false)
     .map(({ attributes, value }) => [attributes.type, value])
 )
 

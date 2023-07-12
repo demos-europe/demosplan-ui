@@ -27,6 +27,7 @@
 import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '../../directives'
+import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
 
 export default {
   name: 'DpButton',
@@ -95,7 +96,7 @@ export default {
       required: false,
       type: String,
       default: 'small',
-      validator: prop => ['small', 'medium', 'large'].includes(prop)
+      validator: prop => Object.keys(ICON_SIZES).includes(prop)
     },
 
     /**

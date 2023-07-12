@@ -10,6 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#364](https://github.com/demos-europe/demosplan-ui/pull/364)) Add Prop IconSize to DpButton ([@salisdemos](https://github.com/@salisdemos))
 - ([#344](https://github.com/demos-europe/demosplan-ui/pull/344)) Add documentation for DpTabs ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#333](https://github.com/demos-europe/demosplan-ui/pull/333)) Add "rounded" prop to DpButton, add "arrow-up" and "arrow-down" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
 

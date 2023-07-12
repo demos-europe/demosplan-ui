@@ -90,7 +90,7 @@ export default {
     },
 
     /**
-     * Icon that will be placed before button text.
+     * Define the size of the button icons.
      */
     iconSize: {
       required: false,

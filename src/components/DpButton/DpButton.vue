@@ -19,8 +19,7 @@
       v-if="iconAfter"
       aria-hidden="true"
       :icon="iconAfter"
-      :size="iconSize"
-      size="small" />
+      :size="iconSize" />
   </component>
 </template>
 

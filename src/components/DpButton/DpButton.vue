@@ -11,7 +11,7 @@
       v-if="icon"
       aria-hidden="true"
       :icon="icon"
-      size="small" />
+      :size="iconSize" />
     <span
       :class="{'hide-visually': hideText}"
       v-text="text" />
@@ -86,6 +86,16 @@ export default {
       required: false,
       type: String,
       default: ''
+    },
+
+    /**
+     * Icon that will be placed before button text.
+     */
+    iconSize: {
+      required: false,
+      type: String,
+      default: 'small',
+      validator: prop => ['small', 'medium', 'large'].includes(prop)
     },
 
     /**

@@ -1,0 +1,133 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpRadio from './DpRadio'
+
+<Meta
+  title="Components/Radio"
+  component={DpRadio} />
+
+# DpRadio
+
+The DpRadio component is used to render a radio input field with customizable options.
+
+## Examples
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpRadio },
+    template: `<dp-radio v-bind="$props" />`
+});
+
+### Default
+
+<Canvas>
+    <Story
+        name="Default"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option'
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option'
+            },
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Checked
+
+<Canvas>
+    <Story
+        name="Checked"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option'
+            },
+            checked: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Readonly
+
+<Canvas>
+    <Story
+        name="Readonly"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option'
+            },
+            readonly: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option'
+            },
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Hint
+
+<Canvas>
+    <Story
+        name="Hint"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option',
+              hint: "This is a hint"
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Tooltip
+
+The `tooltip` property adds a contextual help icon that reveals additional information on the input field when the user
+hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information, whereas
+critical information should be presented immediately.
+
+<Canvas>
+    <Story
+        name="Tooltip"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose a option',
+              tooltip: "This is a tooltip"
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

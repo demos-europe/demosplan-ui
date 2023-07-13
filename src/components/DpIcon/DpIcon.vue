@@ -12,7 +12,7 @@
 
 <script>
 import { ICONS, SIZES } from './util/iconVariables'
-import {hasOwnProp} from "../../utils";
+import { hasOwnProp } from '../../utils'
 
 export default {
   name: 'DpIcon',

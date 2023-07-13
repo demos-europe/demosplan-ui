@@ -376,6 +376,13 @@ export default {
       required: false,
       default: ''
     },
+
+    dataDpValidateIf: {
+      type: String,
+      default: '',
+      required: false
+    },
+
     /**
      * Only needed for testing purposes with data-cy
      */
@@ -491,12 +498,6 @@ export default {
     value: {
       type: String,
       required: true
-    },
-
-    dataDpValidateIf: {
-      type: String,
-      default: '',
-      required: false
     }
   },
 

@@ -12,7 +12,7 @@
       :checked="checked"
       :value="valueToSend"
       :data-cy="dataCy !== '' ? dataCy : false"
-      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"
       true-value="1"
       false-value="0">

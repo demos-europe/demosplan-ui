@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#370](https://github.com/demos-europe/demosplan-ui/pull/370)) Add documentation for DpRadio ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#350](https://github.com/demos-europe/demosplan-ui/pull/350)) Add documentation for DpSelect ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+
 ### Removed
 
 - ([#357](https://github.com/demos-europe/demosplan-ui/pull/357)) Remove Translator from DpSelect ([@ahmad-demos](https://github.com/ahmad-demos))

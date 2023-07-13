@@ -11,11 +11,6 @@ import { Meta } from '@storybook/addon-docs'
     },
   }} />
 
-<!--
-  - https://developer.mozilla.org/de/docs/Web/CSS/box-shadow
-  - https://material.io/design/environment/elevation.html
--->
-
 # Box Shadow tokens
 
 The demosplan-ui BoxShadow tokens variables adds shadow effects around an element's frame.
@@ -23,12 +18,13 @@ The demosplan-ui BoxShadow tokens variables adds shadow effects around an elemen
 There are several sizes (from 1 - smallest elevation, to 4 - biggest elevation). Detailed use cases can be found in the token description.
 
 ```
-$dp-box-shadow-1
-$dp-box-shadow-2
-$dp-box-shadow-3
-$dp-box-shadow-4
+$dp-box-shadow-xl
+$dp-box-shadow-lg
+$dp-box-shadow-md
+$dp-box-shadow
 ```
 
+The `$dp-box-shadow-1` to `$dp-box-shadow-4` still work, but will be removed eventually.
 
 ## How to use and override BoxShadow tokens
 
@@ -42,7 +38,19 @@ Then, tokens can be used within Scss code:
 
 ```
 &.is-active:active {
-    box-shadow: $dp-box-shadow-1;
+    box-shadow: $dp-box-shadow;
     color: $actionbox-color-dark;
 }
+```
+
+
+### Tailwind utilities
+
+As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
+They replace the BoxShadow classes mentioned within the Tailwind documentation.
+
+```
+<div class="shadow">
+  Nicely rounded corners.
+</div
 ```

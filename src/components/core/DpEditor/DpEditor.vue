@@ -221,7 +221,7 @@
               <!--Add links-->
               <button
                 v-if="toolbar.linkButton"
-                @click.stop="showLinkPrompt(this.editor.commands.link, getMarkAttrs('link'))"
+                @click.stop="showLinkPrompt(editor.commands.link, getMarkAttrs('link'))"
                 :class="prefixClass('menubar__button')"
                 type="button"
                 v-tooltip="Translator.trans('editor.link.edit.insert')">
@@ -311,42 +311,46 @@
 </template>
 
 <script>
+import {
+  Bold,
+  BulletList,
+  Document,
+  HardBreak,
+  Heading,
+  History,
+  Italic,
+  Link,
+  ListItem,
+  OrderedList,
+  Paragraph,
+  Strike,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
+  Text,
+  Underline
+} from './libs/tiptapExtensions'
 import { CleanHtml, Tooltip } from '../../../directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
-import Bold from '@tiptap/extension-bold'
-import BulletList from '@tiptap/extension-bullet-list'
-import Document from '@tiptap/extension-document'
-import HardBreak from '@tiptap/extension-hard-break'
-import Heading from '@tiptap/extension-heading'
-import History from '@tiptap/extension-history'
-import Italic from '@tiptap/extension-italic'
-import Link from '@tiptap/extension-link'
-import ListItem from '@tiptap/extension-list-item'
-// import Mention from './libs/CustomMention'
-import OrderedList from '@tiptap/extension-ordered-list'
-import Paragraph from '@tiptap/extension-paragraph'
-import Strike from '@tiptap/extension-strike'
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import Text from '@tiptap/extension-text'
-import Underline from '@tiptap/extension-underline'
-// import editorBuildSuggestion from './libs/editorBuildSuggestion'
+import {
+//   DpLinkModal,
+  DpResizableImage,
+  DpUploadModal
+//   editorBuildSuggestion,
+//   EditorCustomDelete,
+//   EditorCustomImage,
+//   EditorCustomInsert,
+//   EditorCustomLink,
+//   EditorCustomMark,
+//   EditorInsertAtCursorPos,
+//   EditorObscure,
+//   Mention
+} from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
-// import DpLinkModal from './DpLinkModal'
-import DpResizableImage from './DpResizableImage'
-import DpUploadModal from './DpUploadModal'
-// import EditorCustomDelete from './libs/editorCustomDelete'
-import EditorCustomImage from './libs/editorCustomImage'
-// import EditorCustomInsert from './libs/editorCustomInsert'
-// import EditorCustomLink from './libs/editorCustomLink'
-// import EditorCustomMark from './libs/editorCustomMark'
-// import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
-// import EditorObscure from './libs/editorObscure'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -479,12 +483,7 @@ export default {
         }).length === value.length
       },
       required: false,
-      default: () => ([{
-        matcher: { char:'$' , allowSpaces: false, startOfLine: false },
-        suggestions: [{
-          id: 'statementPublicSubmitConfirmationTextPlaceholder',
-          name: 'Vorgangsnummer' }]
-      }])
+      default: () => ([])
     },
 
     value: {

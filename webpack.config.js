@@ -3,6 +3,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
 const bundleAnalyzer = new BundleAnalyzerPlugin({
   analyzerMode: 'static',
   reportFilename: resolve(`./bundle_analysis.html`)
@@ -11,6 +15,12 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
 const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
+
+const transpileNodeModules = [
+  'tiptap',
+  'tiptap-commands',
+  'tiptap-extensions',
+].map(module => resolve('node_modules/' + module))
 
 const config = {
   entry: resolve('./src/index.js'),
@@ -58,6 +68,7 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
+        include: transpileNodeModules,
         loader: 'babel-loader'
       },
       {

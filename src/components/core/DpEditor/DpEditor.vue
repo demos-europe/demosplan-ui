@@ -349,7 +349,7 @@ import {
 //   EditorInsertAtCursorPos,
 //   EditorObscure,
 //   Mention
-// } from './libs/tiptapExtensions'
+// } from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'

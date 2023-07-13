@@ -11,7 +11,7 @@
       v-if="icon"
       aria-hidden="true"
       :icon="icon"
-      size="small" />
+      :size="iconSize" />
     <span
       :class="{'hide-visually': hideText}"
       v-text="text" />
@@ -19,7 +19,7 @@
       v-if="iconAfter"
       aria-hidden="true"
       :icon="iconAfter"
-      size="small" />
+      :size="iconSize" />
   </component>
 </template>
 
@@ -27,6 +27,7 @@
 import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '../../directives'
+import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
 
 export default {
   name: 'DpButton',
@@ -86,6 +87,16 @@ export default {
       required: false,
       type: String,
       default: ''
+    },
+
+    /**
+     * Define the size of the button icons.
+     */
+    iconSize: {
+      required: false,
+      type: String,
+      default: 'small',
+      validator: prop => Object.keys(ICON_SIZES).includes(prop)
     },
 
     /**

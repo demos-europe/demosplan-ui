@@ -1,6 +1,6 @@
 {
   "name": "@demos-europe/demosplan-ui",
-  "version": "0.1.7",
+  "version": "0.1.8-rerelease",
   "license": "MIT",
   "private": false,
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
@@ -59,6 +59,7 @@
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "css-loader": "^6.7.2",
+    "glob": "^10.3.1",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.3.1",
     "jest-junit": "^16.0.0",

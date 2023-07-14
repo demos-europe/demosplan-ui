@@ -3,14 +3,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-function resolve (dir) {
-  return path.join(__dirname, dir)
-}
-
 const bundleAnalyzer = new BundleAnalyzerPlugin({
   analyzerMode: 'static',
   reportFilename: resolve(`./bundle_analysis.html`)
 })
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 
 const isProduction = process.env.NODE_ENV == 'production';
 

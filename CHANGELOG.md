@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#359](https://github.com/demos-europe/demosplan-ui/pull/359)) Add incorrect field names to the error messages during the validation process (dpValidateMixin) ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.1.9 - 2023-13-07
 
 ### Removed

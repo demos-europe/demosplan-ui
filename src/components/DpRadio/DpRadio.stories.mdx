@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import DpRadio from './DpRadio'
+import LinkTo from '@storybook/addon-links/react';
 
 <Meta
   title="Components/Radio"
@@ -25,7 +26,7 @@ export const Template = (args, { argTypes }) => ({
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option'
+              text: 'Choose an option'
             }
         }}>
         {Template.bind({})}
@@ -40,7 +41,7 @@ export const Template = (args, { argTypes }) => ({
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option'
+              text: 'Choose an option'
             },
             disabled: true
         }}>
@@ -72,7 +73,7 @@ export const Template = (args, { argTypes }) => ({
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option'
+              text: 'Choose an option'
             },
             readonly: true
         }}>
@@ -88,13 +89,17 @@ export const Template = (args, { argTypes }) => ({
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option'
+              text: 'Choose an option'
             },
             required: true
         }}>
         {Template.bind({})}
     </Story>
 </Canvas>
+
+### Label Props:
+
+Also here can see in |<LinkTo kind="components-label--default-usage">Label Story</LinkTo>| which label props are supported!
 
 ### Hint
 
@@ -104,7 +109,7 @@ export const Template = (args, { argTypes }) => ({
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option',
+              text: 'Choose an option',
               hint: "This is a hint"
             }
         }}>
@@ -112,20 +117,18 @@ export const Template = (args, { argTypes }) => ({
     </Story>
 </Canvas>
 
-### Tooltip
+### Bold
 
-The `tooltip` property adds a contextual help icon that reveals additional information on the input field when the user
-hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information, whereas
-critical information should be presented immediately.
+default is `true`
 
 <Canvas>
     <Story
-        name="Tooltip"
+        name="Bold"
         args={{
             id: 'radioId',
             label: {
-              text: 'Choose a option',
-              tooltip: "This is a tooltip"
+              text: 'Choose an option',
+              bold: false
             }
         }}>
         {Template.bind({})}

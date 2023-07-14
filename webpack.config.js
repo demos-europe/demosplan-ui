@@ -8,13 +8,13 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   reportFilename: resolve(`./bundle_analysis.html`)
 })
 
-function resolve (dir) {
-  return path.join(__dirname, dir)
-}
-
 const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 
 const transpileNodeModules = [
   'tiptap',

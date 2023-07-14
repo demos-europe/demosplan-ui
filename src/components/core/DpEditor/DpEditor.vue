@@ -16,272 +16,269 @@
 <!--      @add-alt="addAltTextToImage"-->
 <!--      @close="resetEditingImage" />-->
     <slot
-        name="modal"
-        :appendText="appendText"
-        :handleInsertText="handleInsertText" />
-    <div
-      v-if="editor"
-      :class="prefixClass('row tiptap')">
-      <div :class="prefixClass('col')">
-        <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
-            <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
-              <!-- Cut -->
-              <button
-                @click="cut"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                :aria-label="Translator.trans('editor.cut')"
-                v-tooltip="Translator.trans('editor.cut')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-scissors')"
-                  aria-hidden="true" />
-              </button>
+      name="modal"
+      :appendText="appendText"
+    :handleInsertText="handleInsertText" />
+  <div
+    v-if="editor"
+    :class="prefixClass('row tiptap')">
+    <div :class="prefixClass('col')">
+      <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
+          <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
+            <!-- Cut -->
+            <button
+              @click="cut"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="Translator.trans('editor.cut')"
+              v-tooltip="Translator.trans('editor.cut')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-scissors')"
+                aria-hidden="true" />
+            </button>
+            &#10072;
+            <!-- Undo -->
+            <button
+              @click="editor.chain().focus().undo().run()"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="Translator.trans('editor.undo')"
+              v-tooltip="Translator.trans('editor.undo')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-reply')"
+                aria-hidden="true" />
+            </button>
+            <!-- Redo -->
+            <button
+              @click="editor.chain().focus().redo().run()"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="Translator.trans('editor.redo')"
+              v-tooltip="Translator.trans('editor.redo')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-share')"
+                aria-hidden="true" />
+            </button>
+            <template v-if="toolbar.textDecoration">
               &#10072;
-              <!-- Undo -->
+              <!-- Bold -->
+
               <button
-                @click="editor.chain().focus().undo().run()"
-                :class="prefixClass('menubar__button')"
+                @click="editor.chain().focus().toggleBold().run()"
+                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.undo')"
-                v-tooltip="Translator.trans('editor.undo')"
+                :aria-label="Translator.trans('editor.bold')"
+                v-tooltip="Translator.trans('editor.bold')"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-reply')"
+                  :class="prefixClass('fa fa-bold')"
                   aria-hidden="true" />
               </button>
-              <!-- Redo -->
+
+              <!-- Italic -->
               <button
-                @click="editor.chain().focus().redo().run()"
-                :class="prefixClass('menubar__button')"
+                @click="editor.chain().focus().italic().run()"
+                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                 type="button"
-                :aria-label="Translator.trans('editor.redo')"
-                v-tooltip="Translator.trans('editor.redo')"
+                :aria-label="Translator.trans('editor.italic')"
+                v-tooltip="Translator.trans('editor.italic')"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-share')"
+                  :class="prefixClass('fa fa-italic')"
                   aria-hidden="true" />
               </button>
-              <template v-if="toolbar.textDecoration">
-                &#10072;
-                <!-- Bold -->
-
-                <button
-                  @click="editor.chain().focus().toggleBold().run()"
-                  :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.bold')"
-                  v-tooltip="Translator.trans('editor.bold')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-bold')"
-                    aria-hidden="true" />
-                </button>
-
-                <!-- Italic -->
-                <button
-                  @click="editor.chain().focus().italic().run()"
-                  :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.italic')"
-                  v-tooltip="Translator.trans('editor.italic')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-italic')"
-                    aria-hidden="true" />
-                </button>
-                <!-- Underline -->
-                <button
-                  @click="editor.chain().focus().toggleUnderline().run()"
-                  :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.underline')"
-                  v-tooltip="Translator.trans('editor.underline')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-underline')"
-                    aria-hidden="true" />
-                </button>
-              </template>
-              <!-- Strike through -->
+              <!-- Underline -->
               <button
-                v-if="toolbar.strikethrough"
-                @click="editor.chain().focus().toggleStrike().run()"
-                :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleUnderline().run()"
+                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.strikethrough')"
-                v-tooltip="Translator.trans('editor.strikethrough')"
+                :aria-label="Translator.trans('editor.underline')"
+                v-tooltip="Translator.trans('editor.underline')"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-strikethrough')"
+                  :class="prefixClass('fa fa-underline')"
                   aria-hidden="true" />
+              </button>
+            </template>
+            <!-- Strike through -->
+            <button
+              v-if="toolbar.strikethrough"
+              @click="editor.chain().focus().toggleStrike().run()"
+              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              type="button"
+              :aria-label="Translator.trans('editor.strikethrough')"
+              v-tooltip="Translator.trans('editor.strikethrough')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-strikethrough')"
+                aria-hidden="true" />
+            </button>
+            <div
+              v-if="toolbar.insertAndDelete"
+              :class="prefixClass('inline-block relative')">
+              <button
+                :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
+                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
+                :disabled="readonly">
+                <dp-icon
+                  class="align-text-top"
+                  icon="highlighter" />
+                <i :class="prefixClass('fa fa-caret-down')" />
               </button>
               <div
-                v-if="toolbar.insertAndDelete"
-                :class="prefixClass('inline-block relative')">
-                <button
-                  :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
-                  @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
-                  :disabled="readonly">
-                  <dp-icon
-                    class="align-text-top"
-                    icon="highlighter" />
-                  <i :class="prefixClass('fa fa-caret-down')" />
-                </button>
-                <div
-                  v-if="diffMenu.isOpen"
-                  :class="prefixClass('button_submenu')">
-                  <button
-                    v-for="(button, idx) in diffMenu.buttons"
-                    :key="`diffMenu_${idx}`"
-                    :class="{ 'is-active': editor.isActive(button.name) }"
-                    type="button"
-                    :disabled="readonly"
-                    @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
-                    @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
-                    @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                    {{ Translator.trans(button.label) }}
-                  </button>
-                </div>
-                &#10072;
-              </div>
-              <div
-                v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-                :class="prefixClass('inline-block relative')">
+                v-if="diffMenu.isOpen"
+                :class="prefixClass('button_submenu')">
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
-                  :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
+                  :class="{ 'is-active': editor.isActive(button.name) }"
                   type="button"
                   :disabled="readonly"
-                  :aria-label="Translator.trans(button.label)"
-                  v-tooltip="Translator.trans(button.label)"
                   @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                  <dp-icon
-                    class="align-text-top"
-                    icon="highlighter" />
+                  {{ Translator.trans(button.label) }}
                 </button>
               </div>
-              <!-- lists -->
-              <template v-if="toolbar.listButtons">
-                <!-- Unordered List -->
-                <button
-                  @click="editor.chain().focus().toggleBulletList().run()"
-                  :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.unordered.list')"
-                  v-tooltip="Translator.trans('editor.unordered.list')"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-list-ul')" />
-                </button>
-                <!-- Ordered List -->
-                <button
-                  @click="editor.chain().focus().toggleOrderedList().run()"
-                  :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.ordered.list')"
-                  v-tooltip="Translator.trans('editor.ordered.list')"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-list-ol')" />
-                </button>
-                &#10072;
-              </template>
-              <!--Heading Buttons - for each heading level in props a button will be rendered. We want to keep it
-              flexible because the user should not always be able to define e.g. H1. It depends where the text should
-              appear.-->
-              <template v-if="toolbar.headings.length > 0">
-                <button
-                  v-for="heading in toolbar.headings"
-                  :key="'heading_' + heading"
-                  type="button"
-                  :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
-                  v-tooltip="Translator.trans('editor.heading.level', { level: heading })"
-                  :disabled="readonly">
-                  {{ `H${heading}` }}
-                </button>
-                &#10072;
-              </template>
-              <!-- Obscure text -->
-              <button
-                v-if="obscureEnabled"
-                @click="editor.chain().focus().toggleObscure().run()"
-                :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                type="button"
-                v-tooltip="Translator.trans('obscure.title')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-pencil-square')"
-                  aria-hidden="true" />
-              </button>
-              <!--Add links-->
-              <button
-                v-if="toolbar.linkButton"
-                @click.stop="showLinkPrompt(editor.commands.link, getMarkAttrs('link'))"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('editor.link.edit.insert')">
-                <i
-                  :class="prefixClass('fa fa-link')" />
-              </button>
-              <!-- Insert images-->
-              <button
-                v-if="toolbar.imageButton"
-                @click.stop="openUploadModal(null)"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('image.insert')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-picture-o')" />
-              </button>
-              <!-- Insert and edit tables -->
-              <div
-                v-if="toolbar.table"
-                :class="prefixClass('inline-block relative')">
-                <button
-                  :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
-                  @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-table')" />
-                  <i :class="prefixClass('fa fa-caret-down')" />
-                </button>
-                <div
-                  v-if="tableMenu.isOpen"
-                  :class="prefixClass('button_submenu')">
-                  <button
-                    v-for="(button, idx) in tableMenu.buttons"
-                    :key="`tableMenu_${idx}`"
-                    type="button"
-                    :disabled="readonly"
-                    @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
-                    @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
-                    @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
-                    {{ Translator.trans(button.label) }}
-                  </button>
-                </div>
-              </div>
-              <!-- Fullscreen -->
-              <button
-                v-if="toolbar.fullscreenButton"
-                @click="fullscreen"
-                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
-                type="button"
-                :aria-label="Translator.trans('editor.fullscreen')"
-                v-tooltip="Translator.trans('editor.fullscreen')">
-                <i
-                  :class="prefixClass('fa fa-arrows-alt')"
-                  aria-hidden="true" />
-              </button>
-              <slot name="button" />
+              &#10072;
             </div>
-          </editor-menu-bar>
+            <div
+              v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
+              :class="prefixClass('inline-block relative')">
+              <button
+                v-for="(button, idx) in diffMenu.buttons"
+                :key="`diffMenu_${idx}`"
+                :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
+                type="button"
+                :disabled="readonly"
+                :aria-label="Translator.trans(button.label)"
+                v-tooltip="Translator.trans(button.label)"
+                @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
+                @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
+                @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
+                <dp-icon
+                  class="align-text-top"
+                  icon="highlighter" />
+              </button>
+            </div>
+            <!-- lists -->
+            <template v-if="toolbar.listButtons">
+              <!-- Unordered List -->
+              <button
+                @click="editor.chain().focus().toggleBulletList().run()"
+                :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                :aria-label="Translator.trans('editor.unordered.list')"
+                v-tooltip="Translator.trans('editor.unordered.list')"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-list-ul')" />
+              </button>
+              <!-- Ordered List -->
+              <button
+                @click="editor.chain().focus().toggleOrderedList().run()"
+                :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                :aria-label="Translator.trans('editor.ordered.list')"
+                v-tooltip="Translator.trans('editor.ordered.list')"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-list-ol')" />
+              </button>
+              &#10072;
+            </template>
+            <!--Heading Buttons - for each heading level in props a button will be rendered. We want to keep it
+            flexible because the user should not always be able to define e.g. H1. It depends where the text should
+            appear.-->
+            <template v-if="toolbar.headings.length > 0">
+              <button
+                v-for="heading in toolbar.headings"
+                :key="'heading_' + heading"
+                type="button"
+                :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
+                v-tooltip="Translator.trans('editor.heading.level', { level: heading })"
+                :disabled="readonly">
+                {{ `H${heading}` }}
+              </button>
+              &#10072;
+            </template>
+            <!-- Obscure text -->
+            <button
+              v-if="obscureEnabled"
+              @click="editor.chain().focus().toggleObscure().run()"
+              :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              type="button"
+              v-tooltip="Translator.trans('obscure.title')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-pencil-square')"
+                aria-hidden="true" />
+            </button>
+            <!--Add links-->
+            <button
+              v-if="toolbar.linkButton"
+              @click.stop="showLinkPrompt(editor.commands.link, getMarkAttrs('link'))"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              v-tooltip="Translator.trans('editor.link.edit.insert')">
+              <i :class="prefixClass('fa fa-link')" />
+            </button>
+            <!-- Insert images-->
+            <button
+              v-if="toolbar.imageButton"
+              @click.stop="openUploadModal(null)"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              v-tooltip="Translator.trans('image.insert')"
+              :disabled="readonly">
+              <i :class="prefixClass('fa fa-picture-o')" />
+            </button>
+            <!-- Insert and edit tables -->
+            <div
+              v-if="toolbar.table"
+              :class="prefixClass('inline-block relative')">
+              <button
+                :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
+                @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-table')" />
+                <i :class="prefixClass('fa fa-caret-down')" />
+              </button>
+              <div
+                v-if="tableMenu.isOpen"
+                :class="prefixClass('button_submenu')">
+                <button
+                  v-for="(button, idx) in tableMenu.buttons"
+                  :key="`tableMenu_${idx}`"
+                  type="button"
+                  :disabled="readonly"
+                  @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
+                  @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
+                  @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
+                  {{ Translator.trans(button.label) }}
+                </button>
+              </div>
+            </div>
+            <!-- Fullscreen -->
+            <button
+              v-if="toolbar.fullscreenButton"
+              @click="fullscreen"
+              :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
+              type="button"
+              :aria-label="Translator.trans('editor.fullscreen')"
+              v-tooltip="Translator.trans('editor.fullscreen')">
+              <i
+                :class="prefixClass('fa fa-arrows-alt')"
+                aria-hidden="true" />
+            </button>
+            <slot name="button" />
+          </div>
           <editor-content
             v-if="editor"
             :data-cy="`editor${editorId}`"
@@ -349,8 +346,8 @@ import {
   Mention
 } from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
-import DpLinkModal from './modals/DpLinkModal'
-import DpUploadModal from './modals/DpUploadModal'
+import DpLinkModal from './DpLinkModal'
+import DpUploadModal from './DpUploadModal'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'

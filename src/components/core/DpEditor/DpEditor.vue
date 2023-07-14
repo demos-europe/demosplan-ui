@@ -120,7 +120,7 @@
               </button>
               <div
                 v-if="toolbar.insertAndDelete"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   :class="[isActive.insert() || isActive.delete() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
@@ -128,7 +128,7 @@
                   @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
                   :disabled="readonly">
                   <dp-icon
-                    class="u-valign--text-top"
+                    class="align-text-top"
                     icon="highlighter" />
                   <i :class="prefixClass('fa fa-caret-down')" />
                 </button>
@@ -151,7 +151,7 @@
               </div>
               <div
                 v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
@@ -164,7 +164,7 @@
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
                   <dp-icon
-                    class="u-valign--text-top"
+                    class="align-text-top"
                     icon="highlighter" />
                 </button>
               </div>
@@ -244,7 +244,7 @@
               <!-- Insert and edit tables -->
               <div
                 v-if="toolbar.table"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
@@ -273,7 +273,7 @@
               <button
                 v-if="toolbar.fullscreenButton"
                 @click="fullscreen"
-                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
+                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
                 type="button"
                 :aria-label="Translator.trans('editor.fullscreen')"
                 v-tooltip="Translator.trans('editor.fullscreen')">

@@ -1,5 +1,5 @@
 <template>
-  <div class="position--relative">
+  <div class="relative">
     <dp-input
       v-bind="inputAttributes"
       :id="id"

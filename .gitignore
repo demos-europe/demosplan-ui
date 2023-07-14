@@ -10,3 +10,4 @@ yarn-debug.log*
 yarn-error.log*
 dist/
 bundle_analysis.html
+style/style.css

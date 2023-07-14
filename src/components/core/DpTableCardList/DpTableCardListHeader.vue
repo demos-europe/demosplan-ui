@@ -13,7 +13,7 @@
       <dp-checkbox
         v-if="selectable"
         id="selectAll"
-        class="display--inline-block width-20 u-pv-0_25"
+        class="inline-block width-20 u-pv-0_25"
         @change="val => $emit('select-all', val)" /><!--
     --><div
         class="layout__item weight--bold u-pv-0_5"
@@ -29,7 +29,7 @@
 <script>
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpSearchField from '../../DpSearchField/DpSearchField'
-import DpStickyElement from '../shared/DpStickyElement'
+import DpStickyElement from '../../DpStickyElement/DpStickyElement'
 
 export default {
   name: 'DpTableCardListHeader',

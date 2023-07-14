@@ -1,7 +1,5 @@
-import DpLinkModal from './DpLinkModal'
 import DpResizableImage from './DpResizableImage'
-import DpUploadModal from './DpUploadModal'
-import editorBuildSuggestion from './editorBuildSuggestion'
+import * as editorBuildSuggestion from './editorBuildSuggestion'
 import EditorCustomDelete from './editorCustomDelete'
 import EditorCustomImage from './editorCustomImage'
 import EditorCustomInsert from './editorCustomInsert'
@@ -11,9 +9,7 @@ import EditorInsertAtCursorPos from './editorInsertAtCursorPos'
 import EditorObscure from './editorObscure'
 
 export {
-  DpLinkModal,
   DpResizableImage,
-  DpUploadModal,
   editorBuildSuggestion,
   EditorCustomDelete,
   EditorCustomImage,

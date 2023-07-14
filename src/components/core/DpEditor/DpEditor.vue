@@ -336,21 +336,21 @@ import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
-// import {
-//   DpLinkModal,
-//   DpResizableImage,
-//   DpUploadModal,
-//   editorBuildSuggestion,
-//   EditorCustomDelete,
-//   EditorCustomImage,
-//   EditorCustomInsert,
-//   EditorCustomLink,
-//   EditorCustomMark,
-//   EditorInsertAtCursorPos,
-//   EditorObscure,
-//   Mention
-// } from './libs/customExtensions'
+import {
+  DpResizableImage,
+  editorBuildSuggestion,
+  EditorCustomDelete,
+  EditorCustomImage,
+  EditorCustomInsert,
+  EditorCustomLink,
+  EditorCustomMark,
+  EditorInsertAtCursorPos,
+  EditorObscure,
+  Mention
+} from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
+import DpLinkModal from './modals/DpLinkModal'
+import DpUploadModal from './modals/DpUploadModal'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'

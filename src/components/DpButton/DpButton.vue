@@ -11,7 +11,7 @@
       v-if="icon"
       aria-hidden="true"
       :icon="icon"
-      size="small" />
+      :size="iconSize" />
     <span
       :class="{'hide-visually': hideText}"
       v-text="text" />
@@ -19,7 +19,7 @@
       v-if="iconAfter"
       aria-hidden="true"
       :icon="iconAfter"
-      size="small" />
+      :size="iconSize" />
   </component>
 </template>
 
@@ -27,6 +27,7 @@
 import DpIcon from '../DpIcon/DpIcon'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '../../directives'
+import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
 
 export default {
   name: 'DpButton',
@@ -89,12 +90,31 @@ export default {
     },
 
     /**
+     * Define the size of the button icons.
+     */
+    iconSize: {
+      required: false,
+      type: String,
+      default: 'small',
+      validator: prop => Object.keys(ICON_SIZES).includes(prop)
+    },
+
+    /**
      * Icon that will be placed after button text.
      */
     iconAfter: {
       required: false,
       type: String,
       default: ''
+    },
+
+    /**
+     * Renders the button with a pill-like appearance when set to true.
+     */
+    rounded: {
+      required: false,
+      type: Boolean,
+      default: false
     },
 
     /**
@@ -139,6 +159,7 @@ export default {
         'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
         this.iconOnly && 'icon-only',
+        this.rounded && 'rounded-full',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
         ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]
       ]

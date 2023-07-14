@@ -1,4 +1,4 @@
-import DpResizableImage from './DpResizableImage'
+import DpResizableImage from '../DpResizableImage'
 import { Node } from 'tiptap'
 import { nodeInputRule } from 'tiptap-commands'
 

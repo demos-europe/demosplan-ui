@@ -334,7 +334,6 @@ import {
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
 import {
-  DpResizableImage,
   editorBuildSuggestion,
   EditorCustomDelete,
   EditorCustomImage,
@@ -348,6 +347,7 @@ import {
 import DpIcon from '../../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
+import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'

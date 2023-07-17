@@ -1,5 +1,5 @@
 <template>
-  <div class="u-mt-0_5">
+  <div>
     <dp-sticky-element>
       <div class="layout u-pv-0_5">
         <div class="layout__item u-10-of-12">

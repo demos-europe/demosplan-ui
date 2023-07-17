@@ -7,15 +7,20 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **BREAKING** remove spacing classes from DpAnonymizeText. ([@ahmad-demos](https://github.com/ahmad-demos))
+
+- ([#333](https://github.com/demos-europe/demosplan-ui/pull/333)) Add "rounded" prop to DpButton, add "arrow-up" and "arrow-down" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.1.7 - 2023-06-27
 
 ### Changed
+
 - ([#325](https://github.com/demos-europe/demosplan-ui/pull/325), [#327](https://github.com/demos-europe/demosplan-ui/pull/327)) **Breaking:** Remove spacing classes from DpAnonymizeText and DpFormRow ([@ahmad-demos](https://github.com/ahmad-demos))
 
 ### Changed
 - ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **Breaking:** Remove spacing classes from DpAnonymizeText ([@ahmad-demos](https://github.com/ahmad-demos))
 
 ### Added
+
 - ([#318](https://github.com/demos-europe/demosplan-ui/pull/318)) Add a method called externalApi to make external API calls without including default headers ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.1.6 - 2023-06-22

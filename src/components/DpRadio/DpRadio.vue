@@ -27,11 +27,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
 import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 
-export default defineComponent({
+export default {
   name: 'DpRadio',
 
   components: {
@@ -113,5 +112,5 @@ export default defineComponent({
       default: '1'
     }
   }
-})
+}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="border u-mb u-p-0_25">
+  <div class="border">
     <bubble-menu
       v-if="editor"
       :editor="editor"
@@ -79,7 +79,6 @@ export default {
     setValue () {
       let currentValue = this.editor.getHTML()
 
-      console.log('setValue', currentValue)
       // 1. look if there are anonymized segements, which are tagged to un-anonymize
       const unanonymize = /<span[^>]*?title="(.*?)"([^>]*?)class="anonymize-me"([^>]*?)>([^<]*?)<span class="unanonymized">([^<]*?)<\/span>([^<]*?)<\/span>/gm
       currentValue = currentValue.replace(unanonymize, (match, p1) => p1.replaceAll('&quot;', '"'))

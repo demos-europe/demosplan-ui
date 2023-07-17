@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import { action } from '@storybook/addon-actions'
+import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
 
 import DpButton from './DpButton'
 
@@ -22,6 +23,10 @@ import DpButton from './DpButton'
     },
     variant: {
       options: ['solid', 'outline', 'subtle'],
+      control: { type: 'select' }
+    },
+    iconSize: {
+      options: Object.keys(ICON_SIZES),
       control: { type: 'select' }
     }
   }}
@@ -117,6 +122,18 @@ export const Template = (args, { argTypes }) => ({
     name="Subtle"
     args={{
       variant: 'subtle',
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Rounded
+<Canvas>
+  <Story
+    name="Rounded"
+    args={{
+      rounded: true,
       text: 'Save'
     }}>
     {Template.bind({})}

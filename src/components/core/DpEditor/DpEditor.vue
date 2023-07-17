@@ -291,6 +291,7 @@
             :data-dp-validate-if="dataDpValidateIf || false"
             type="hidden"
             :id="hiddenInput"
+            :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
             :name="hiddenInput"
             :class="[required ? prefixClass('is-required') : '', prefixClass('tiptap__input--hidden')]"
             :data-dp-validate-maxlength="maxlength"
@@ -371,6 +372,18 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateIf: {
+      type: String,
+      default: '',
+      required: false
+    },
+
     /**
      * Only needed for testing purposes with data-cy
      */
@@ -486,12 +499,6 @@ export default {
     value: {
       type: String,
       required: true
-    },
-
-    dataDpValidateIf: {
-      type: String,
-      default: '',
-      required: false
     }
   },
 

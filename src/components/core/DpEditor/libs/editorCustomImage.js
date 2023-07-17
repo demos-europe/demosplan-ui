@@ -122,6 +122,6 @@ export default Node.create({
 
   // Return a vue component
   addNodeView() {
-    return VueNodeViewRenderer(DpResizableImage, { as: 'img' })
+    return VueNodeViewRenderer(DpResizableImage)
   }
 })

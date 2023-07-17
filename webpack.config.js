@@ -23,7 +23,7 @@ const transpileNodeModules = [
 ].map(module => resolve('node_modules/' + module))
 
 const config = {
-  entry: './src',
+  entry: resolve('./src/index.js'),
   output: {
     path: resolve('dist'),
     publicPath: '',

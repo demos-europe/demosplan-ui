@@ -1,4 +1,3 @@
-import DpResizableImage from './DpResizableImage'
 import * as editorBuildSuggestion from './editorBuildSuggestion'
 import EditorCustomDelete from './editorCustomDelete'
 import EditorCustomImage from './editorCustomImage'
@@ -9,7 +8,6 @@ import EditorInsertAtCursorPos from './editorInsertAtCursorPos'
 import EditorObscure from './editorObscure'
 
 export {
-  DpResizableImage,
   editorBuildSuggestion,
   EditorCustomDelete,
   EditorCustomImage,

@@ -16,9 +16,9 @@
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
     <slot
-        name="modal"
-        :appendText="appendText"
-        :handleInsertText="handleInsertText" />
+      name="modal"
+      :appendText="appendText"
+      :handleInsertText="handleInsertText" />
     <div
       v-if="editor"
       :class="prefixClass('row tiptap')">
@@ -225,8 +225,7 @@
               :class="prefixClass('menubar__button')"
               type="button"
               v-tooltip="Translator.trans('editor.link.edit.insert')">
-              <i
-                :class="prefixClass('fa fa-link')" />
+              <i :class="prefixClass('fa fa-link')" />
             </button>
             <!-- Insert images-->
             <button
@@ -236,8 +235,7 @@
               type="button"
               v-tooltip="Translator.trans('image.insert')"
               :disabled="readonly">
-              <i
-                :class="prefixClass('fa fa-picture-o')" />
+              <i :class="prefixClass('fa fa-picture-o')" />
             </button>
             <!-- Insert and edit tables -->
             <div
@@ -336,7 +334,6 @@ import {
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
 import {
-  DpResizableImage,
   editorBuildSuggestion,
   EditorCustomDelete,
   EditorCustomImage,
@@ -348,8 +345,9 @@ import {
   Mention
 } from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
-import DpLinkModal from './modals/DpLinkModal'
-import DpUploadModal from './modals/DpUploadModal'
+import DpLinkModal from './DpLinkModal'
+import DpUploadModal from './DpUploadModal'
+import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'

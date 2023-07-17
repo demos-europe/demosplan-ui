@@ -1,0 +1,24 @@
+{
+  "breakpoints": {
+    "sm": {
+      "$description": "Smartphone",
+      "type": "size",
+      "value": "620px"
+    },
+    "md": {
+      "$description": "Tablet",
+      "type": "size",
+      "value": "904px"
+    },
+    "lg": {
+      "$description": "Small desktop",
+      "type": "size",
+      "value": "1200px"
+    },
+    "xl": {
+      "$description": "Large desktop",
+      "type": "size",
+      "value": "1400px"
+    }
+  }
+}

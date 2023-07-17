@@ -1,7 +1,7 @@
 <template>
   <div
     role="menu"
-    class="layout__item u-12-of-12 u-p-0_5 bg-color-selection line-height--1_6">
+    class="bg-color-selection space-inset-s line-height--1_6">
     <span class="u-mr">
       {{ selectedItemsText }}
     </span>

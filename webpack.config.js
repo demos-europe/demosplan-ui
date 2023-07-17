@@ -25,7 +25,7 @@ const transpileNodeModules = [
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve('dist'),
     publicPath: '',
     filename: 'demosplan-ui.umd.js',
     library: {
@@ -73,7 +73,6 @@ const config = {
       },
       {
         test: /\.ts$/,
-        exclude: /node_modules/,
         loader: "ts-loader",
         options: {
           appendTsSuffixTo: [/\.vue$/]

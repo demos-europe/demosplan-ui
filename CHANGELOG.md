@@ -5,9 +5,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-<<<<<<< HEAD
 - ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
-=======
+- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) remove some component class, to pass it from outside. ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
+>>>>>>> a651a82 (chore (refs T30980): add changelog.)
 - ([#318](https://github.com/demos-europe/demosplan-ui/pull/318)) Add a method called externalApi to make external API calls without including default headers ([@sakutademos](https://github.com/sakutademos))
 >>>>>>> 75827b0 (Feat(T33336): add externalApi method for external requests (#318))
 

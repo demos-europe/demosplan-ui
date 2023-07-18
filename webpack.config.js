@@ -25,7 +25,7 @@ const transpileNodeModules = [
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve('dist'),
     publicPath: '',
     filename: 'demosplan-ui.umd.js',
     library: {
@@ -52,7 +52,7 @@ const config = {
     'vuex'
   ],
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.ts', '.js', '.vue'],
     symlinks: false
   },
   plugins: [
@@ -70,6 +70,13 @@ const config = {
         exclude: /node_modules/,
         include: transpileNodeModules,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.css$/i,

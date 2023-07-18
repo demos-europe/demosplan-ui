@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
+
 ## v0.1.10 - 2023-17-07
 
 ### Added

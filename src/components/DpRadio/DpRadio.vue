@@ -27,8 +27,8 @@
   </div>
 </template>
 
-<script>
-import DpLabel from '../DpLabel/DpLabel'
+<script lang="ts">
+import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 
 export default {
@@ -89,9 +89,9 @@ export default {
 
     label: {
       type: Object,
-      default: () => ({}),
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
+      default: (): Record<string, any> => ({}),
+      validator: (prop: Record<string, any>): boolean => {
+        return Object.keys(prop).every((key: string) => ['bold', 'hint', 'text'].includes(key))
       }
     },
 

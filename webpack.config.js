@@ -12,10 +12,20 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
+const transpileNodeModules = [
+  'tiptap',
+  'tiptap-commands',
+  'tiptap-extensions',
+].map(module => resolve('node_modules/' + module))
+
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve('dist'),
     publicPath: '',
     filename: 'demosplan-ui.umd.js',
     library: {
@@ -34,6 +44,7 @@ const config = {
     'dompurify',
     'lscache',
     'plyr',
+    'tippy.js',
     'uuid',
     'v-tooltip',
     'vue-multiselect',
@@ -41,7 +52,7 @@ const config = {
     'vuex'
   ],
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.ts', '.js', '.vue'],
     symlinks: false
   },
   plugins: [
@@ -57,7 +68,15 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
+        include: transpileNodeModules,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.css$/i,

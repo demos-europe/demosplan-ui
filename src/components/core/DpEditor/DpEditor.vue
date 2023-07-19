@@ -8,39 +8,39 @@
 <!--      v-if="toolbar.linkButton"-->
 <!--      ref="linkModal"-->
 <!--      @insert="insertUrl" />-->
-<!--    <dp-upload-modal-->
-<!--      v-if="toolbar.imageButton"-->
-<!--      ref="uploadModal"-->
-<!--      :get-file-by-hash="routes.getFileByHash"-->
-<!--      @insert-image="insertImage"-->
-<!--      @add-alt="addAltTextToImage"-->
-<!--      @close="resetEditingImage" />-->
+    <dp-upload-modal
+      v-if="toolbar.imageButton"
+      ref="uploadModal"
+      :get-file-by-hash="routes.getFileByHash"
+      @insert-image="insertImage"
+      @add-alt="addAltTextToImage"
+      @close="resetEditingImage" />
     <slot
       name="modal"
       :appendText="appendText"
       :handleInsertText="handleInsertText" />
-      <div
-        v-if="editor"
-        :class="prefixClass('row tiptap')">
-        <div :class="prefixClass('col')">
-          <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
-            <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
-              <!-- Cut -->
-              <button
-                @click="cut"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                :aria-label="Translator.trans('editor.cut')"
-                v-tooltip="Translator.trans('editor.cut')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-scissors')"
-                  aria-hidden="true" />
-              </button>
-              &#10072;
-              <!-- Undo -->
-              <button
-                @click="editor.chain().focus().undo().run()"
+    <div
+      v-if="editor"
+      :class="prefixClass('row tiptap')">
+      <div :class="prefixClass('col')">
+        <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
+          <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
+            <!-- Cut -->
+            <button
+              @click="cut"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="Translator.trans('editor.cut')"
+              v-tooltip="Translator.trans('editor.cut')"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-scissors')"
+                aria-hidden="true" />
+            </button>
+            &#10072;
+            <!-- Undo -->
+            <button
+              @click="editor.chain().focus().undo().run()"
               :class="prefixClass('menubar__button')"
               type="button"
               :aria-label="Translator.trans('editor.undo')"
@@ -291,6 +291,7 @@
             :data-dp-validate-if="dataDpValidateIf || false"
             type="hidden"
             :id="hiddenInput"
+            :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
             :name="hiddenInput"
             :class="[required ? prefixClass('is-required') : '', prefixClass('tiptap__input--hidden')]"
             :data-dp-validate-maxlength="maxlength"
@@ -359,8 +360,8 @@ export default {
     DpIcon,
     EditorContent,
     // DpLinkModal,
-    // DpResizableImage,
-    // DpUploadModal
+    DpResizableImage,
+    DpUploadModal
   },
 
   directives: {
@@ -371,6 +372,18 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateIf: {
+      type: String,
+      default: '',
+      required: false
+    },
+
     /**
      * Only needed for testing purposes with data-cy
      */
@@ -480,23 +493,12 @@ export default {
         }).length === value.length
       },
       required: false,
-      default: () => ([{
-        matcher: { char:'$' , allowSpaces: false, startOfLine: false },
-        suggestions: [{
-          id: 'statementPublicSubmitConfirmationTextPlaceholder',
-          name: 'Vorgangsnummer' }]
-      }])
+      default: () => ([])
     },
 
     value: {
       type: String,
       required: true
-    },
-
-    dataDpValidateIf: {
-      type: String,
-      default: '',
-      required: false
     }
   },
 
@@ -708,7 +710,7 @@ export default {
       }
 
       if (this.toolbar.imageButton) {
-        // extensions.push(EditorCustomImage)
+        extensions.push(EditorCustomImage)
       }
 
       if (this.toolbar.linkButton) {

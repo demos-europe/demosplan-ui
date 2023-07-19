@@ -1,0 +1,147 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpTextArea from './DpTextArea'
+
+<Meta
+  title="Components/TextArea"
+  component={DpTextArea} />
+
+# DpTextArea
+
+The `DpTextArea` component is used to defines a multi-line text input control.
+
+## Examples
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpTextArea },
+    template: `<dp-text-area v-bind="$props" />`
+});
+
+### Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Hint
+
+<Canvas>
+    <Story
+        name="Hint"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            hint: 'Insert the hint.'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### growToParent
+
+If enabled, classes are applied to let element grow to 100% height of its parent element.
+
+<Canvas>
+    <Story
+        name="growToParent"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            growToParent: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### dataDpValidateIf
+
+Use to conditionally validate a required textarea field.
+
+<Canvas>
+    <Story
+        name="dataDpValidateIf"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            dataDpValidateIf: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### reducedHeight
+
+Display the form field with reduced height (60px).
+
+<Canvas>
+    <Story
+        name="reducedHeight"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            reducedHeight: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+If a TextArea Field is `required`, an asterisk will be added to its label.
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### dataDpValidateErrorFieldname
+
+<Canvas>
+    <Story
+        name="dataDpValidateErrorFieldname"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.',
+            dataDpValidateErrorFieldname: 'Text Message here'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Attributes
+
+Allows passing of additional attributes into the inner form element. Only chosen elements are allowed for each element type, failing if at least one attribute is not allowed within the array.
+Attributes are specified like :attributes="['attrName1=attrValue1', 'attrName2=attrValue2']".
+Params:
+element: String – Type of element
+
+For Examples:
+
+`:attributes="['rows=5', 'cols=10']"`
+
+<Canvas>
+    <Story
+        name="Attributes"
+        args={{
+            id: 'textAreaId',
+            label: 'Insert the Text.'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+

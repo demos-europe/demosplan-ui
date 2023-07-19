@@ -8,22 +8,22 @@
 <!--      v-if="toolbar.linkButton"-->
 <!--      ref="linkModal"-->
 <!--      @insert="insertUrl" />-->
-<!--    <dp-upload-modal-->
-<!--      v-if="toolbar.imageButton"-->
-<!--      ref="uploadModal"-->
-<!--      :get-file-by-hash="routes.getFileByHash"-->
-<!--      @insert-image="insertImage"-->
-<!--      @add-alt="addAltTextToImage"-->
-<!--      @close="resetEditingImage" />-->
+    <dp-upload-modal
+      v-if="toolbar.imageButton"
+      ref="uploadModal"
+      :get-file-by-hash="routes.getFileByHash"
+      @insert-image="insertImage"
+      @add-alt="addAltTextToImage"
+      @close="resetEditingImage" />
     <slot
       name="modal"
       :appendText="appendText"
-    :handleInsertText="handleInsertText" />
-  <div
-    v-if="editor"
-    :class="prefixClass('row tiptap')">
-    <div :class="prefixClass('col')">
-      <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
+      :handleInsertText="handleInsertText" />
+    <div
+      v-if="editor"
+      :class="prefixClass('row tiptap')">
+      <div :class="prefixClass('col')">
+        <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
             <!-- Cut -->
             <button
@@ -360,8 +360,8 @@ export default {
     DpIcon,
     EditorContent,
     // DpLinkModal,
-    // DpResizableImage,
-    // DpUploadModal
+    DpResizableImage,
+    DpUploadModal
   },
 
   directives: {
@@ -710,7 +710,7 @@ export default {
       }
 
       if (this.toolbar.imageButton) {
-        // extensions.push(EditorCustomImage)
+        extensions.push(EditorCustomImage)
       }
 
       if (this.toolbar.linkButton) {

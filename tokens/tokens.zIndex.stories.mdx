@@ -16,14 +16,14 @@ import { Meta } from '@storybook/addon-docs'
 To be able to manage stacking order within demosplan UI, the following global z-index variables can be used:
 
 ```
-$dp-z-index-ultimate
-$dp-z-index-modal
-$dp-z-index-fixed
-$dp-z-index-flyout
-$dp-z-index-tooltip
-$dp-z-index-above-zero
-$dp-z-index-zero
-$dp-z-index-below-zero
+$dp-z-ultimate
+$dp-z-modal
+$dp-z-fixed
+$dp-z-flyout
+$dp-z-tooltip
+$dp-z-above-zero
+$dp-z-zero
+$dp-z-below-zero
 ```
 
 ## How to use z-index tokens
@@ -45,7 +45,7 @@ Then, tokens can be used within Scss code:
 
 ```
 .flyout-container {
-  z-index: $dp-z-index-flyout;
+  z-index: $dp-z-flyout;
 }
 ```
 

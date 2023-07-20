@@ -1,5 +1,6 @@
 import { Tooltip } from '../src/directives'
 import Vue from 'vue'
+import '../style/index.css' // tailwind
 
 Vue.directive('tooltip', Tooltip)
 

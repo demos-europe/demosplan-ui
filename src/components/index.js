@@ -45,6 +45,7 @@ import DpTextArea from './DpTextArea/DpTextArea'
 import DpTimePicker from './DpTimePicker/DpTimePicker'
 import DpToggle from './DpToggle/DpToggle'
 import DpToggleForm from './DpToggleForm/DpToggleForm'
+import DpTooltip from './DpTootip/DpTooltip.vue'
 import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
 import DpTreeList from './DpTreeList/DpTreeList'
 
@@ -127,6 +128,7 @@ export {
   DpTimePicker,
   DpToggle,
   DpToggleForm,
+  DpTooltip,
   DpTooltipIcon,
   DpTransitionExpand,
   DpTreeList,

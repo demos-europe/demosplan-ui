@@ -1,0 +1,79 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpTooltip from './DpTooltip.vue'
+
+<Meta
+argTypes={{
+  default: {
+    text: {
+      type: 'text'
+    }
+  }
+}}
+parameters={{
+  slots: {
+    default: {
+      description: 'Default slot',
+      template: `<p>{{ args.default }}</p>`,
+    },
+  }
+}}
+title="Components/Tooltip"
+component={DpTooltip} />
+
+# Tooltip
+
+Renders a Tooltip.
+
+## Default usage
+
+```html
+<dp-tooltip text="Content of the tooltip">
+  slot content
+</dp-tooltip>
+```
+
+## Usage with HTML
+
+```html
+<dp-tooltip text="Content of <strong>the Tooltip </strong>">
+  slot content
+</dp-tooltip>
+```
+
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DpTooltip },
+  template: `<dp-tooltip v-bind="propsWithoutDefaultSlot" >{{ slotcontent }}</dp-tooltip>`,
+  computed: {
+    propsWithoutDefaultSlot() {
+      const all = this.$props
+      delete all['default']
+      return all
+    }
+  }
+});
+
+
+<Canvas>
+  <Story
+    name="Plain"
+    args={{
+      text: 'Tooltip Text',
+      slotcontent: 'slot content'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+<Canvas>
+  <Story
+    name="With HTML"
+    args={{
+      text: 'Tooltip Text <strong>with HTML</strong>',
+      slotcontent: 'my text'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

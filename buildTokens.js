@@ -23,6 +23,11 @@ StyleDictionary.registerTransform({
     if (token.path[0] === 'color' || token.path[0] === 'font-size') {
       token.path.splice(1, 1)
     }
+    // The key "z-index" should be shortened in the variable name to match Tailwind syntax
+    if (token.path[0] === 'z-index') {
+      token.path[0] = 'z'
+    }
+    // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
     if (token.path[1] === 'DEFAULT') {
       token.path.splice(1, 1)
     }

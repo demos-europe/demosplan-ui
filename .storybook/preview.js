@@ -1,7 +1,5 @@
 import { Tooltip } from '../src/directives'
 import Vue from 'vue'
-import '../style/index.css'
-import '../../dplan/projects/diplanbau/web/css/style.0f5e11.css'
 
 Vue.directive('tooltip', Tooltip)
 

@@ -1,5 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { DpButton } from '../index'
 import DpTooltip from './DpTooltip.vue'
+import { Tooltip } from '../../directives'
 
 <Meta
 argTypes={{
@@ -20,27 +22,6 @@ parameters={{
 title="Components/Tooltip"
 component={DpTooltip} />
 
-# Tooltip
-
-Renders a Tooltip.
-
-## Default usage
-
-```html
-<dp-tooltip text="Content of the tooltip">
-  slot content
-</dp-tooltip>
-```
-
-## Usage with HTML
-
-```html
-<dp-tooltip text="Content of <strong>the Tooltip </strong>">
-  slot content
-</dp-tooltip>
-```
-
-
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { DpTooltip },
@@ -55,11 +36,41 @@ export const Template = (args, { argTypes }) => ({
 });
 
 
+export const DirectiveTemplate = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpButton },
+    template: `<DpButton v-tooltip="'${Object.values(args)[0]}'">My button</DpButton>`,
+    directives: {
+      tooltip: Tooltip
+    },
+    computed: {
+      propsWithoutDefaultSlot () {
+        const all = this.$props
+        delete all['default']
+        return all
+      }
+    }
+})
+
+
+# Tooltip
+
+Renders a Tooltip.
+
+
+## Usage without HTML
+
+```html
+<dp-tooltip text="Content of the tooltip">
+  slot content
+</dp-tooltip>
+```
+
 <Canvas>
   <Story
-    name="Plain"
+    name="without HTML"
     args={{
-      text: 'Tooltip Text',
+      text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem',
       slotcontent: 'slot content'
     }}>
     {Template.bind({})}
@@ -67,13 +78,39 @@ export const Template = (args, { argTypes }) => ({
 </Canvas>
 
 
+## Usage with HTML
+
+```html
+<dp-tooltip text="Content of <strong>the Tooltip </strong>">
+  slot content
+</dp-tooltip>
+```
+
 <Canvas>
   <Story
     name="With HTML"
     args={{
-      text: 'Tooltip Text <strong>with HTML</strong>',
+      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
       slotcontent: 'my text'
     }}>
     {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage as Directive
+
+```html
+<my-container v-tooltip="Content of <strong>the Tooltip </strong>" />
+```
+
+
+<Canvas>
+  <Story
+    name="As Directive"
+    args={{
+      ['v-tooltip']: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes',
+    }}>
+    {DirectiveTemplate.bind({})}
   </Story>
 </Canvas>

@@ -2,7 +2,7 @@
   "z-index": {
     "below-zero": {
       "$description": "Stack an element behind elements that do not have a stacking order applied.",
-      "value": "-1"
+      "value": "-10"
     },
     "zero": {
       "$description": "Stack an element on the default layer.",
@@ -10,7 +10,7 @@
     },
     "above-zero": {
       "$description": "Stack an element above elements that do not have a stacking order applied, but below elements with other z-indexes applied.",
-      "value": "1"
+      "value": "10"
     },
     "tooltip": {
       "$description": "Use for tooltip components.",

@@ -1,4 +1,12 @@
-import { VPopover, VTooltip } from 'v-tooltip'
+import { VPopover as Popover, VTooltip } from 'v-tooltip'
+import { destroyTooltip, initTooltip } from '../../components/DpTootip/utils/tooltip'
+
+/**
+ * @deprecated Use DpTooltip instead
+ *
+ * @type {VueConstructor<Vue>}
+ */
+const VPopover = Popover
 
 /*
  * Merge custom config into default options for tooltip config.
@@ -27,6 +35,21 @@ const tooltipConfig = {
 }
 VTooltip.options = { ...VTooltip.options, ...tooltipConfig }
 VPopover.options = { ...VPopover.options, ...tooltipConfig }
-const Tooltip = VTooltip
+
+/**
+ * v-tooltip directive
+ *
+ * @type {VueDirective}
+ *
+ * @param text{String|HTML}
+ */
+const Tooltip = {
+  inserted: function (element, binding) {
+    initTooltip(element, binding.value, { placement: 'top' })
+  },
+  unbind: function (element) {
+    destroyTooltip(element)
+  }
+}
 
 export { VPopover, Tooltip }

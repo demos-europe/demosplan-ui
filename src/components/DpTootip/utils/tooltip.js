@@ -1,6 +1,10 @@
 import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { v4 as uuid } from 'uuid'
 
+// We need empty Variables for our show/hide methods, so we can destroy them later on.
+let handleShowTooltip = null
+let handleHideTooltip = null
+
 const destroyTooltip = (el) => {
   el.removeEventListener('mouseenter', handleShowTooltip)
   el.removeEventListener('focus', handleShowTooltip)
@@ -9,9 +13,6 @@ const destroyTooltip = (el) => {
 
   document.getElementById(el.getAttribute('aria-describedby'))?.remove()
 }
-
-let handleShowTooltip = null
-let handleHideTooltip = null
 
 const hideTooltip = tooltipEl => {
   tooltipEl.classList.add('z-below-zero')

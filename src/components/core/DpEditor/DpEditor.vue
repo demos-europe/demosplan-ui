@@ -4,10 +4,10 @@
       v-if="maxlength !== 0"
       :class="prefixClass('lbl__hint')"
       v-cleanhtml="counterText" />
-    <dp-link-modal
-      v-if="toolbar.linkButton"
-      ref="linkModal"
-      @insert="insertUrl" />
+<!--    <dp-link-modal-->
+<!--      v-if="toolbar.linkButton"-->
+<!--      ref="linkModal"-->
+<!--      @insert="insertUrl" />-->
     <dp-upload-modal
       v-if="toolbar.imageButton"
       ref="uploadModal"

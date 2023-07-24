@@ -689,7 +689,7 @@ export default {
         Heading.configure({ levels: this.toolbar.headings })
       ]
 
-      // extensions.push(EditorInsertAtCursorPos)
+      extensions.push(EditorInsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
       this.suggestions.forEach(suggestion => {
@@ -719,7 +719,7 @@ export default {
       }
 
       if (this.toolbar.obscure) {
-        // extensions.push(EditorObscure)
+        extensions.push(EditorObscure)
       }
 
       if (this.toolbar.listButtons) {

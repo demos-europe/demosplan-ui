@@ -3984,11 +3984,11 @@
   integrity sha512-wy0mglZpDSiSS0XHrVR+BAdId2+yxPSoJW8fsna3ZpYSlufjvxnP4YbKTCBZnNIcGN4r6ZPXV55X4mYExOfLmw==
 
 "@webpack-cli/generators@^3.0.0":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@webpack-cli/generators/-/generators-3.0.4.tgz#52ce0a4586b51b051d3e790d2df858ff77659a31"
-  integrity sha512-XAUSYlzyyZn+6uQyFJCP+qtD4Hbd3q4As3MGyb5Oeo9LDUz0FuTxnL/YdC6DMXF5Vhul1pd1XO+JHMj3d9pviA==
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@webpack-cli/generators/-/generators-3.0.7.tgz#34e362d8fd1b79ae3c6cef6c651eba56b346c558"
+  integrity sha512-H4dlEX8CzO5EHBYYZQop9x4w6lG9FenSF/1spLRlvRAULDgTs0VfmwOuwp03tTLml9jpMsouuVw6vEN8KpwE/w==
   dependencies:
-    webpack-cli "^5.1.1"
+    webpack-cli "^5.1.4"
     yeoman-environment "^3.9.1"
     yeoman-generator "^5.7.0"
 
@@ -14718,7 +14718,7 @@ webpack-bundle-analyzer@^4.7.0:
     sirv "^1.0.7"
     ws "^7.3.1"
 
-webpack-cli@^5.0.0, webpack-cli@^5.1.1:
+webpack-cli@^5.0.0, webpack-cli@^5.1.4:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-5.1.4.tgz#c8e046ba7eaae4911d7e71e2b25b776fcc35759b"
   integrity sha512-pIDJHIEI9LR0yxHXQ+Qh95k2EvXpWzZ5l+d+jIo+RdSm9MiHfzazIxwwni/p7+x4eJZuvG1AJwgC4TNQ7NRgsg==

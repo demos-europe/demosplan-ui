@@ -1,3 +1,9 @@
+import { Canvas, Meta } from '@storybook/blocks'
+
+import * as DpSlidebar from './DpSlidebar.stories'
+
+<Meta of={DpSlidebar} />
+
 # Slidebar
 
 This component initializes a SideNav instance and contains a minimal template (mostly for the closing button).
@@ -9,3 +15,9 @@ Put content inside the default slot.
 ## Roadmap
 
 - Remove data attributes in favor of refs
+
+```html
+<dp-slidebar>
+    Test
+</dp-slidebar>
+```

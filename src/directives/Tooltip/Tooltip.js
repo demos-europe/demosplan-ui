@@ -1,4 +1,4 @@
-import { VPopover as Popover, VTooltip } from 'v-tooltip'
+import { VPopover as Popover } from 'v-tooltip'
 import { destroyTooltip, initTooltip } from '../../components/DpTootip/utils/tooltip'
 
 /**
@@ -33,7 +33,6 @@ const tooltipConfig = {
     defaultTrigger: 'hover'
   }
 }
-VTooltip.options = { ...VTooltip.options, ...tooltipConfig }
 VPopover.options = { ...VPopover.options, ...tooltipConfig }
 
 /**

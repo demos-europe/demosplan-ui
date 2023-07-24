@@ -738,8 +738,8 @@ export default {
       }
 
       if (this.toolbar.insertAndDelete) {
-        // extensions.push(EditorCustomDelete)
-        // extensions.push(EditorCustomInsert)
+        extensions.push(EditorCustomDelete)
+        extensions.push(EditorCustomInsert)
 
         this.diffMenu.buttons = [
           {
@@ -756,7 +756,7 @@ export default {
       }
 
       if (this.toolbar.mark) {
-        // extensions.push(EditorCustomMark)
+        extensions.push(EditorCustomMark)
 
         this.diffMenu.buttons.unshift({
           label: 'editor.mark',

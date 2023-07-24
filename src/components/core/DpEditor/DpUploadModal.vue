@@ -106,7 +106,6 @@ export default {
     toggleModal (data) {
       const willCloseModal = this.$refs.uploadModal.isOpenModal === true
 
-      console.log('toggleUploadModal', data, willCloseModal)
       if (willCloseModal) {
         this.$refs.uploader.clearFilesList()
       } else if (data) {

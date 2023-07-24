@@ -89,7 +89,7 @@ const showTooltip = async (wrapperEl, tooltipEl, arrowEl, { place = 'top' })  =>
     top: arrowY ? `${arrowY}px` : '',
     bottom: '',
     right: '',
-    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px' // with this, we always will set the arrow to the side we want to attach it.
+    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px' // Always sets the arrow to the correct side.
   })
 
   tooltipEl.classList.remove('z-below-zero')

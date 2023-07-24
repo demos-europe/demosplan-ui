@@ -691,19 +691,19 @@ export default {
 
       // extensions.push(EditorInsertAtCursorPos)
 
-      // if (this.suggestions.length > 0) {
-      // this.suggestions.forEach(suggestion => {
-      //   extensions.push(Mention.configure({
-      //     HTMLAttributes: {
-      //       class: 'suggestion__node'
-      //     },
-      //     renderLabel({ node }) {
-      //       return suggestion.matcher.char + node.attrs.label
-      //     },
-      //     suggestion: editorBuildSuggestion(suggestion)
-      //   }))
-      // })
-      // }
+      if (this.suggestions.length > 0) {
+      this.suggestions.forEach(suggestion => {
+        extensions.push(Mention.configure({
+          HTMLAttributes: {
+            class: 'suggestion__node'
+          },
+          renderLabel({ node }) {
+            return suggestion.matcher.char + node.attrs.label
+          },
+          suggestion: editorBuildSuggestion(suggestion)
+        }))
+      })
+      }
 
       if (this.toolbar.headings.length > 0) {
         extensions.push(Heading.configure({ levels: this.toolbar.headings }))

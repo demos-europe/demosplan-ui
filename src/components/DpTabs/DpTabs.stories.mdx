@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs'
+import DpTabs from './DpTabs'
+
+<Meta
+  title="Components/Tabs"
+  component={DpTabs} />
+
+# DpTabs
+
+The DpTabs component provides a structured and interactive way to organize and navigate related content, allowing users to switch between different views while keeping context.
+
+DpTabs and DpTab both provide a default slot. For each tab, a `DpTab` instance is placed inside the default slot of `DpTabs`, while the content of each tab is placed inside the default slot of the respective `DpTab` instance.
+
+The `DpTab` instances are then aligned horizontally, and each tab is associated with its header.
+
+## Default usage
+
+```html
+<dp-tabs
+    tab-size="medium"
+    :active-id="activeTabId"
+    use-url-fragment
+    @change="setActiveTabId"> <!-- call a method -->
+    <dp-tab
+      id="idTab1"
+      label="Tab Title 1">
+      <slot>
+        Tab content 1.
+      </slot>
+    </dp-tab>
+    <dp-tab
+      id="idTab2"
+      label="Tab Title 2">
+      <slot>
+        Tab content 2.
+      </slot>
+    </dp-tab>
+  </dp-tabs>
+```

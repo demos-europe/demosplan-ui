@@ -6,6 +6,7 @@
  * https://dplan-documentation.demos-europe.eu/development/application-architecture/validation/frontend/#_1-use-as-a-vue-mixin-dpvalidatemixin-js
  */
 
+import { de } from '../components/shared/translations'
 import { errorClass, scrollToVisibleElement } from '../lib/validation/utils/helpers'
 import { assignHandlersForInputs } from '../lib/validation/utils/assignHandlersForInputs'
 import hasOwnProp from '../utils/hasOwnProp'
@@ -29,20 +30,32 @@ export default {
       const isForm = this.$el.hasAttribute('data-dp-validate') && this.$el.getAttribute('data-dp-validate') === formId
       const form = isForm ? this.$el : this.$el.querySelector(`[data-dp-validate=${formId}]`)
       const formValidation = validateForm(form)
-      const newValidateObject = { ...this.dpValidate, [formId]: formValidation.valid }
-      this.dpValidate = newValidateObject
+      this.dpValidate = { ...this.dpValidate, [formId]: formValidation.valid }
 
       if (hasOwnProp(this.dpValidate, 'invalidFields') === false) {
         this.dpValidate.invalidFields = {}
       }
       this.dpValidate.invalidFields[formId] = formValidation.invalidFields
+
       if (this.dpValidate[formId] === false) {
-        const customErrors = this.dpValidate.invalidFields[formId]
+        const invalidFields = this.dpValidate.invalidFields[formId]
+        const customErrors = invalidFields
           .filter(element => element.hasAttribute('data-dp-validate-error'))
           .map(element => element.dataset.dpValidateError)
         customErrors.forEach(error => dplan.notify.notify('error', Translator.trans(error)))
+
         if (customErrors.length === 0) {
-          dplan.notify.notify('error', Translator.trans('error.mandatoryfields.no_asterisk'))
+          const nonEmptyFieldNames = invalidFields
+            .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
+            .filter(Boolean)
+
+          if (nonEmptyFieldNames.length) {
+            const fieldsString = nonEmptyFieldNames ? nonEmptyFieldNames.join(', ') : ' '
+            const errorMandatoryFields = de.errorMandatoryFieldsIntro + fieldsString + de.errorMandatoryFieldsOutro
+            dplan.notify.notify('error', errorMandatoryFields)
+          } else {
+            dplan.notify.notify('error', de.errorMandatoryFieldsDefault)
+          }
         }
         const firstErrorElement = form.querySelector('.' + errorClass)
         scrollToVisibleElement(firstErrorElement)

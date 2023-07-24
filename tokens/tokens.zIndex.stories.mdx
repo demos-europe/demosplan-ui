@@ -1,0 +1,72 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta
+  title="Design Tokens/Z-Index"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    },
+  }} />
+
+# Z-Index
+
+To be able to manage stacking order within demosplan UI, the following global z-index variables can be used:
+
+```
+$dp-z-ultimate
+$dp-z-modal
+$dp-z-fixed
+$dp-z-flyout
+$dp-z-tooltip
+$dp-z-above-zero
+$dp-z-zero
+$dp-z-below-zero
+```
+
+## How to use z-index tokens
+
+These tokens give guidance on where to place interface elements in the global
+[stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+For components that require a new stacking context, the Tailwind utility `isolate` can be used. Within this new context,
+the same z-index tokens can be used, again.
+
+| SCSS Variable         | Tailwind Class | Description                                                                                                                     |
+|-----------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `$dp-z-ultimate`      | `z-ultimate`   | Use for notifications and tooltips that are triggered from within layers that are normally stacked above tooltips.               |
+| `$dp-z-modal`         | `z-modal`      | Use for modals. Modals should be the topmost elements.                                                                          |
+| `$dp-z-fixed`         | `z-fixed`      | Use for fixed, sticky, and fullscreen elements.                                                                                 |
+| `$dp-z-flyout`        | `z-flyout`     | Use for flyout components.                                                                                                     |
+| `$dp-z-tooltip`       | `z-tooltip`    | Use for tooltip components.                                                                                                    |
+| `$dp-z-above-zero`    | `z-above-zero` | Stack an element above elements that do not have a stacking order applied, but below elements with other z-indexes applied.     |
+| `$dp-z-zero`          | `z-zero`       | Stack an element on the default layer.                                                                                          |
+| `$dp-z-below-zero`    | `z-below-zero` | Stack an element behind elements that do not have a stacking order applied.                                                     |
+
+## Usage example - Scss
+
+Z-Index tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/zIndex';
+```
+
+Then, tokens can be used within Scss code:
+
+```
+.flyout-container {
+  z-index: $dp-z-flyout;
+}
+```
+
+## Usage example - Tailwind utility class
+
+As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
+They replace the z-index classes mentioned within the Tailwind documentation.
+
+```
+<div class="z-modal">
+  This should be a modal element. Please, let it be one, or use another appropriate z-index.
+</div
+```

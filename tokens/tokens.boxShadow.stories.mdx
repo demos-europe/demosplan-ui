@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta
+  title="Design Tokens/Box Shadow"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    },
+  }} />
+
+# Box Shadow tokens
+
+The BoxShadow tokens add shadow effects around an element's frame.
+
+| SCSS Variable      | Tailwind Class | Description                                                                                                  |
+|--------------------|----------------|--------------------------------------------------------------------------------------------------------------|
+| `$dp-box-shadow`   | `.shadow`      | Default elevation. Use for Cards + Buttons.                                                                 |
+| `$dp-box-shadow-md`| `.shadow-md`   | Medium elevation. Use for Elevated Cards + Buttons.                                                         |
+| `$dp-box-shadow-lg`| `.shadow-lg`   | Highest elevation. Use for Modals.                                                                          |
+| `$dp-box-shadow-xl`| `.shadow-xl`   | Extra shadow optimized for boxes that take up 100% width or height of viewport. Use e.g. for Sidebar, BottomBar. |
+
+Detailed use cases for each can be found in the token description.
+
+The `$dp-box-shadow-1` to `$dp-box-shadow-4` Scss variables still work, but will be removed eventually.
+
+## Usage example - Scss
+
+BoxShadow tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/boxShadow';
+```
+
+Then, they can be used within Scss code:
+
+```
+&.is-active:active {
+    box-shadow: $dp-box-shadow;
+    color: $actionbox-color-dark;
+}
+```
+
+## Usage example - Tailwind utility class
+
+As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
+They replace the BoxShadow classes mentioned within the Tailwind documentation.
+
+```
+<div class="shadow">
+  Nicely rounded corners.
+</div
+```

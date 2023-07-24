@@ -12,6 +12,7 @@
 
 <script>
 import { ICONS, SIZES } from './util/iconVariables'
+import { hasOwnProp } from '../../utils'
 
 export default {
   name: 'DpIcon',
@@ -36,7 +37,12 @@ export default {
     },
 
     path () {
-      return ICONS[this.icon].path
+      if (hasOwnProp(ICONS[this.icon], 'path') && !!ICONS[this.icon].path) {
+        return ICONS[this.icon].path
+      } else {
+        console.warn(`DpIcon is called with an unsupported "icon" value.`)
+        return ICONS.warning.path
+      }
     },
 
     /**

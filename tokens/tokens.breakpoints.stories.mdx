@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta
+  title="Design Tokens/Breakpoints"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    },
+  }} />
+
+# Breakpoints
+
+The following breakpoints are available:
+
+| SCSS Variable           | Tailwind Class  | Value  |
+|-------------------------|-----------------|--------|
+| `$dp-breakpoints-sm`    | `sm:`           | 620px  |
+| `$dp-breakpoints-md`    | `md:`           | 904px  |
+| `$dp-breakpoints-lg`    | `lg:`           | 1200px |
+| `$dp-breakpoints-xl`    | `xl:`           | 1400px |
+
+## Usage example - Scss
+
+Breakpoint tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/breakpoints';
+```
+
+Then, tokens can be used within Scss code:
+
+```
+@media all and (min-width: $dp-breakpoints-lg) {
+  .some-selector {
+    display: block;
+  }
+}
+```
+
+## Usage example - Tailwind utility class
+
+As Tailwind is configured with these breakpoints, too, they can be used as modifiers for tailwind utility classes.
+
+```
+<div class="hidden lg:block xl:hidden">
+  This only shows up on devices larger than 1200px but smaller than 1400px.
+</div
+```

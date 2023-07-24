@@ -9,6 +9,7 @@
       class="o-form__control-textarea"
       :class="{ 'grow': growToParent, 'height-60': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :disabled="disabled"
       :maxlength="maxlength"
       v-bind="allowedAttributes"
@@ -33,6 +34,12 @@ export default {
 
   props: {
     attributes: attributes('textarea'),
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
 
     /**
      * Use to conditionally validate a required textarea field.

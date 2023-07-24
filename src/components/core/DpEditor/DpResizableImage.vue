@@ -45,7 +45,7 @@ export default {
       if (width > 0) {
         this.$nextTick(() => {
           this.node.attrs.width = width
-          this.node.attrs.heigth = width / this.ratioFactor
+          this.node.attrs.height = width / this.ratioFactor
 
           this.editor.options.onUpdate()
         })

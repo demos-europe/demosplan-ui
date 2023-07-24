@@ -14,6 +14,7 @@
       :class="prefixClass(classes)"
       :data-counter="dataCounter !== '' ? dataCounter : null"
       :data-dp-validate-error="dataDpValidateError || null"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : null"
       :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
       :data-cy="dataCy !== '' ? dataCy : false"
@@ -29,6 +30,7 @@
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
       v-model="currentValue"
+      @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
       @input="$emit('input', currentValue)"
       @keydown.enter="handleEnter">
@@ -84,6 +86,12 @@ export default {
     },
 
     dataDpValidateError: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateErrorFieldname: {
       type: String,
       required: false,
       default: ''

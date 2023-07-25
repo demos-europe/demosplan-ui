@@ -9,13 +9,24 @@ import DpFlyout from './DpFlyout'
 
 The Flyout component renders a flyout that is intended to show further content.
 
-export const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { DpFlyout },
-  template: `<dp-flyout v-bind="$props" />`
-});
-
 ## Roadmap
 
 - use https://popper.js.org/docs/v2/ for positioning instead of basic css - or find
 another way to make left/right offset dynamic.
+
+## Default usage
+
+```html
+<dp-flyout>
+    <a
+      :href="link"
+      rel="noopener">
+      "edit"
+    </a>
+    <a
+      :href="link"
+      rel="noopener">
+      "create"
+    </a>
+</dp-flyout>
+```

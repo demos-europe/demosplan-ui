@@ -1,5 +1,5 @@
 import { VPopover as Popover } from 'v-tooltip'
-import { destroyTooltip, initTooltip } from '../../components/DpTootip/utils/tooltip'
+import { destroyTooltip, initTooltip } from '../../components/DpTooltip/utils/tooltip'
 
 /**
  * @deprecated Use DpTooltip instead

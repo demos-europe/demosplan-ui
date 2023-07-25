@@ -335,14 +335,14 @@ import {
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
 import {
-  editorBuildSuggestion,
-  EditorCustomDelete,
-  EditorCustomImage,
-  EditorCustomInsert,
-  EditorCustomLink,
-  EditorCustomMark,
-  EditorInsertAtCursorPos,
-  EditorObscure,
+  buildSuggestion,
+  CustomDelete,
+  CustomImage,
+  CustomInsert,
+  CustomLink,
+  CustomMark,
+  InsertAtCursorPos,
+  Obscure,
   Mention
 } from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
@@ -689,7 +689,7 @@ export default {
         Heading.configure({ levels: this.toolbar.headings })
       ]
 
-      extensions.push(EditorInsertAtCursorPos)
+      extensions.push(InsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
       this.suggestions.forEach(suggestion => {
@@ -700,7 +700,7 @@ export default {
           renderLabel({ node }) {
             return suggestion.matcher.char + node.attrs.label
           },
-          suggestion: editorBuildSuggestion(suggestion)
+          suggestion: buildSuggestion(suggestion)
         }))
       })
       }
@@ -710,16 +710,16 @@ export default {
       }
 
       if (this.toolbar.imageButton) {
-        extensions.push(EditorCustomImage)
+        extensions.push(CustomImage)
       }
 
       if (this.toolbar.linkButton) {
         extensions.push(Link)
-        extensions.push(EditorCustomLink)
+        extensions.push(CustomLink)
       }
 
       if (this.toolbar.obscure) {
-        extensions.push(EditorObscure)
+        extensions.push(Obscure)
       }
 
       if (this.toolbar.listButtons) {
@@ -738,8 +738,8 @@ export default {
       }
 
       if (this.toolbar.insertAndDelete) {
-        extensions.push(EditorCustomDelete)
-        extensions.push(EditorCustomInsert)
+        extensions.push(CustomDelete)
+        extensions.push(CustomInsert)
 
         this.diffMenu.buttons = [
           {
@@ -756,7 +756,7 @@ export default {
       }
 
       if (this.toolbar.mark) {
-        extensions.push(EditorCustomMark)
+        extensions.push(CustomMark)
 
         this.diffMenu.buttons.unshift({
           label: 'editor.mark',

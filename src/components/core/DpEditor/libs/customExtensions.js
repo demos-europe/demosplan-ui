@@ -1,19 +1,27 @@
-import * as editorBuildSuggestion from './editorBuildSuggestion'
-import EditorCustomDelete from './editorCustomDelete'
-import EditorCustomImage from './editorCustomImage'
-import EditorCustomInsert from './editorCustomInsert'
-import EditorCustomLink from './editorCustomLink'
-import EditorCustomMark from './editorCustomMark'
-import EditorInsertAtCursorPos from './editorInsertAtCursorPos'
-import EditorObscure from './editorObscure'
+import Anonymize from './editorAnonymize'
+import * as buildSuggestion from './editorBuildSuggestion'
+import CustomDelete from './editorCustomDelete'
+import CustomImage from './editorCustomImage'
+import CustomInsert from './editorCustomInsert'
+import CustomLink from './editorCustomLink'
+import CustomMark from './editorCustomMark'
+import InsertAtCursorPos from './editorInsertAtCursorPos'
+import Mention from './editorMention'
+import Obscure from './editorObscure'
+import UnAnonymize from './editorUnAnonymize'
+import PreventEditing from './preventEditing'
 
 export {
-  editorBuildSuggestion,
-  EditorCustomDelete,
-  EditorCustomImage,
-  EditorCustomInsert,
-  EditorCustomLink,
-  EditorCustomMark,
-  EditorInsertAtCursorPos,
-  EditorObscure
+  Anonymize,
+  buildSuggestion,
+  CustomDelete,
+  CustomImage,
+  CustomInsert,
+  CustomLink,
+  CustomMark,
+  InsertAtCursorPos,
+  Mention,
+  Obscure,
+  UnAnonymize,
+  PreventEditing
 }

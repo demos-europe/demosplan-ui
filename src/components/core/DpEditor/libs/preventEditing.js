@@ -1,8 +1,8 @@
 import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 
-export const EventHandler = Extension.create({
-  name: 'eventPreventer',
+export default Extension.create({
+  name: 'PreventEditing',
 
   addProseMirrorPlugins() {
     return [

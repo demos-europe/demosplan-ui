@@ -53,7 +53,7 @@ import {
 } from './DpEditor/libs/tiptapExtensions'
 import {
   Anonymize,
-  eventPreventer,
+  PreventEditing,
   Obscure,
   UnAnonymize
 } from './DpEditor/libs/customExtensions'
@@ -111,7 +111,6 @@ export default {
         Bold,
         BulletList,
         Document,
-        eventPreventer,
         Heading.configure({ levels: [1,2,3] }),
         HardBreak,
         History,
@@ -121,6 +120,7 @@ export default {
         Obscure,
         OrderedList,
         Paragraph,
+        PreventEditing,
         Text,
         UnAnonymize,
         Underline

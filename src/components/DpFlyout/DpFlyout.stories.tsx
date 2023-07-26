@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
 import DpFlyout from './DpFlyout.vue'
 
 const meta: Meta<typeof DpFlyout> = {
     component: DpFlyout,
+    title: "Components/DpFlyout",
     argTypes: {
         'open': { action: 'open' },
         'close': { action: 'close' }

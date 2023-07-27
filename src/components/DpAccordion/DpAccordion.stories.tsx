@@ -4,6 +4,7 @@ import DpAccordion from './DpAccordion.vue'
 
 const meta: Meta<typeof DpAccordion> = {
     component: DpAccordion,
+    title: "Components/DpAccordion",
     argTypes: {
         'item:toggle': { action: 'item:toggle' }
     }

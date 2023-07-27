@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
 import DpHeightLimit from './DpHeightLimit.vue'
 
 const Translator = {
@@ -7,7 +6,8 @@ const Translator = {
 }
 
 const meta: Meta<typeof DpHeightLimit> = {
-  component: DpHeightLimit
+  component: DpHeightLimit,
+  title: "Components/DpHeightLimit",
 }
 
 export default meta

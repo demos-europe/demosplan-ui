@@ -1,6 +1,14 @@
 module.exports = {
-  stories: ["../src/components/**/*.stories.mdx", "../src/components/**/*.stories.@(js|jsx|ts|tsx)", "../src/directives/**/*.stories.mdx", "../tokens/**/*.stories.mdx"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-mdx-gfm"],
+  stories: [
+    "../src/components/**/*.stories.@(js|jsx|mdx|ts|tsx)",
+    "../src/directives/**/*.stories.mdx",
+    "../tokens/**/*.stories.mdx"
+  ],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-mdx-gfm"
+  ],
   webpackFinal: async config => {
     /**
      * This rule is executed first. It ensures that the <license> blocks

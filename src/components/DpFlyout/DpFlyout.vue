@@ -23,7 +23,7 @@
       </slot>
     </button>
     <div
-      class="o-flyout__content box-shadow-1"
+      class="o-flyout__content shadow"
       data-cy="flyout">
       <slot />
     </div>

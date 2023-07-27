@@ -38,3 +38,17 @@ Tokens are made up of the following scheme:
 - *Context* may further specify in which context a value is intended to be used - `$dp-color-message-severe-interactive`
   should be applied to interactive elements inside messaging components that convey severe state, while
   `$dp-color-status-progress-fill` can be applied to shapes (like icons or rectangles) to communicate that something is in progress.
+
+## Applying Design Tokens as Tailwind Utility Classes and SCSS Variables
+
+Tokens can be utilized through Tailwind Utility Classes and SCSS Variables. As we're currently migrating to Tailwind,
+not all tokens are already available as Tailwind classes.
+
+| Token          | SCSS Variable  | Tailwind Utility Class |
+|----------------|----------------|------------------------|
+| Box Shadow     |       ✔        |          ✔             |
+| Breakpoints    |       ✔        |          ✔             |
+| Color          |       ✔        |                        |
+| Font Size      |       ✔        |                        |
+| Border Radius  |       ✔        |          ✔             |
+| Z-Index        |       ✔        |          ✔             |

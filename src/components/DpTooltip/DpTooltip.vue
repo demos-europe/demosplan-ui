@@ -18,6 +18,11 @@ export default {
   },
 
   props: {
+    container: {
+      type: Element,
+      required: false
+    },
+
     placement: {
       type: String,
       required: false,
@@ -50,7 +55,9 @@ export default {
     if (this.$el.hasChildNodes() && this.$el.childNodes.length === 1 && Object.keys(this.$el.childNodes[0]).length > 0) {
       this.tooltipHook = this.$el.childNodes[0]
     }
-    initTooltip(this.tooltipHook, this.text, { placement: this.placement })
+
+    const value = this.$slots.popover?[0] : this.text
+    initTooltip(this.tooltipHook, value, { placement: this.placement, container: this.container })
   },
 
   beforeDestroy () {

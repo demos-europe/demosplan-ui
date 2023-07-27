@@ -6,24 +6,31 @@ let handleShowTooltip = null
 let handleHideTooltip = null
 let handleTimeoutForDestroy = null
 
-
-const destroyTooltip = (el) => {
-  el.removeEventListener('mouseenter', handleShowTooltip)
-  el.removeEventListener('focus', handleShowTooltip)
-  el.removeEventListener('mouseleave',handleHideTooltip)
-  el.removeEventListener('blur', handleHideTooltip)
-
-  document.getElementById(el.getAttribute('aria-describedby'))?.remove()
+const deleteTooltip = (tooltipEl) => {
+  if (tooltipEl) {
+    tooltipEl.remove()
+  }
 }
 
-const hideTooltip = tooltipEl => {
+const destroyTooltip = (wrapperEl) => {
+  const tooltipEl = document.getElementById(wrapperEl.getAttribute('aria-describedby'))
+
+  wrapperEl.removeEventListener('mouseenter', handleShowTooltip)
+  wrapperEl.removeEventListener('focus', handleShowTooltip)
+  wrapperEl.removeEventListener('mouseleave', handleHideTooltip)
+  wrapperEl.removeEventListener('blur', handleHideTooltip)
+
+  deleteTooltip(tooltipEl)
+}
+
+const hideTooltip = (tooltipEl) => {
   tooltipEl.classList.add('z-below-zero')
   tooltipEl.classList.add('opacity-0')
 
-  handleTimeoutForDestroy = setTimeout(destroyTooltip, 3000)
+  handleTimeoutForDestroy = setTimeout(() => { return destroyTooltip(tooltipEl) }, 3000)
 }
 
-const createTooltip = (id, el) => {
+const createTooltip = (id, el, value, container) => {
   // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =
     `<div class="tooltip absolute z-below-zero " role="tooltip" id="${id}">` +
@@ -36,37 +43,41 @@ const createTooltip = (id, el) => {
 
   const content = range.createContextualFragment(tooltipHtml)
 
-  document.body.appendChild(content)
+  container.appendChild(content)
 }
 
 const initTooltip = (el, value, options) => {
+  if (!value) return
+
   const id = `tooltip-${uuid()}`
-  const tooltipEl = document.getElementById(id)
 
   handleShowTooltip = () => showTooltip(
     id,
     el,
-    tooltipEl,
-    tooltipEl.querySelector('[data-tooltip-arrow]'),
-    {
-      place: options.placement
-    }
+    value,
+    options
   )
+  handleHideTooltip = () => hideTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
   el.addEventListener('mouseenter', handleShowTooltip)
   el.addEventListener('focus', handleShowTooltip)
+  el.addEventListener('mouseleave', handleHideTooltip)
+  el.addEventListener('blur', handleHideTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, tooltipEl, arrowEl, { place = 'top' })  => {
-  if (!tooltipEl) {
-    createTooltip(id, wrapperEl)
+const showTooltip = async (id, wrapperEl, value, { place = 'top', container = document.body })  => {
+  if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
+    createTooltip(id, wrapperEl, value, container)
   } else {
     clearTimeout(handleTimeoutForDestroy)
   }
 
+  const tooltipEl = document.getElementById(id)
+  const arrowEl = tooltipEl.querySelector('[data-tooltip-arrow]')
 
   const { x, y, middlewareData, placement } = await computePosition(wrapperEl, tooltipEl,
     {
+      context: container,
       placement: place,
       middleware: [
         offset(12),
@@ -105,10 +116,6 @@ const showTooltip = async (id, wrapperEl, tooltipEl, arrowEl, { place = 'top' })
 
   tooltipEl.classList.remove('z-below-zero')
   tooltipEl.classList.remove('opacity-0')
-
-  handleHideTooltip = () => hideTooltip(tooltipEl)
-  wrapperEl.addEventListener('mouseleave', handleHideTooltip)
-  wrapperEl.addEventListener('blur', handleHideTooltip)
 }
 
 export { destroyTooltip, initTooltip }

@@ -44,7 +44,7 @@ export default {
     label: {
       type: String,
       required: false,
-      default: () => 'label'
+      default: 'label'
     },
 
     options: {
@@ -56,7 +56,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => de.placeholder
+      default: de.placeholder
     },
 
     routeGenerator: {

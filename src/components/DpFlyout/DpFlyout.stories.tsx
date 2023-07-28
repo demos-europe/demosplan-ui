@@ -3,7 +3,7 @@ import DpFlyout from './DpFlyout.vue'
 
 const meta: Meta<typeof DpFlyout> = {
     component: DpFlyout,
-    title: "Components/DpFlyout",
+    title: "Components/Flyout",
     argTypes: {
         'open': { action: 'open' },
         'close': { action: 'close' }

@@ -4,7 +4,7 @@ import DpAutocomplete from './DpAutocomplete.vue'
 
 const meta: Meta<typeof DpAutocomplete> = {
     component: DpAutocomplete,
-    title: "Components/DpAutocomplete",
+    title: "Components/Autocomplete",
     argTypes: {
         'searchChanged': { action: 'searchChanged' }
     }

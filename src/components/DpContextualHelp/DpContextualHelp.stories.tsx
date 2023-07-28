@@ -8,7 +8,7 @@ const Translator = {
 
 const meta: Meta<typeof DpContextualHelp> = {
   component: DpContextualHelp,
-  title: "Components/DpContextualHelp",
+  title: "Components/ContextualHelp",
 }
 
 export default meta

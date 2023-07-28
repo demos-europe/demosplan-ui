@@ -93,10 +93,10 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = do
     top: `${y}px`
   })
 
-  /*
-   * to handle the position of the arrow.
-   * e.g. if the tooltip is on the top, we want to place the arrow at the bottom....
-   * `placement` can be 'bottom-start' etc s well, so we have to make sure to only take the first part
+ /*
+   * Handles the position of the arrow -  e.g. if the Tooltip is on the top, 
+   * we want to place the arrow at the bottom, and so on. `placement` can be 
+   * 'bottom-start' etc as well, so we have to make sure to only take the first part.
    */
   const { x: arrowX, y: arrowY } = middlewareData.arrow
   const opposedSide = {

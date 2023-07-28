@@ -56,7 +56,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: de.placeholder
+      default: de.placeholderAutoSuggest
     },
 
     routeGenerator: {

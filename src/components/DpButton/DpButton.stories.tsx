@@ -13,13 +13,13 @@ type Story = StoryObj<typeof DpButton>
 export const Default: Story = {
     args: {
         busy: false,
-        color: 'secondary',
+        color: 'primary',
         hideText: false,
-        icon: 'delete',
-        iconSize: 'medium',
-        rounded: true,
-        text: 'Delete',
-        type: 'submit',
-        variant: 'outline'
+        icon: '',
+        iconSize: 'small',
+        rounded: false,
+        text: 'save',
+        type: 'button',
+        variant: 'solid'
     }
 }

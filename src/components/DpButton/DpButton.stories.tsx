@@ -11,15 +11,5 @@ export default meta
 type Story = StoryObj<typeof DpButton>
 
 export const Default: Story = {
-    args: {
-        busy: false,
-        color: 'primary',
-        hideText: false,
-        icon: '',
-        iconSize: 'small',
-        rounded: false,
-        text: 'save',
-        type: 'button',
-        variant: 'solid'
-    }
+    args: {}
 }

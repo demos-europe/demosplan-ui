@@ -15,8 +15,8 @@ type Story = StoryObj<typeof DpAutocomplete>
 
 export const Default: Story = {
     args: {
-        height: '28px',
-        label: 'label',
+        height: '50px',
+        label: 'Autocomplete',
         placeholder: 'Search',
         routeGenerator: () => '',
     }

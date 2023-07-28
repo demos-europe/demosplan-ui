@@ -98,3 +98,19 @@ Renders a Tooltip.
   </Story>
 </Canvas>
 
+
+## Usage with HTML
+
+<Canvas>
+  <Story
+    name="With custom context"
+    args={{
+      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
+      slotcontent: 'another Tooltip Hook',
+      container: '#root',
+      placement: 'right'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+

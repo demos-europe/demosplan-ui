@@ -43,7 +43,7 @@ const createTooltip = (id, el, value, container) => {
 
   const content = range.createContextualFragment(tooltipHtml)
 
-  container.appendChild(content)
+  document.querySelector(container).appendChild(content)
 }
 
 const initTooltip = (el, value, options) => {
@@ -94,8 +94,8 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = do
   })
 
  /*
-   * Handles the position of the arrow -  e.g. if the Tooltip is on the top, 
-   * we want to place the arrow at the bottom, and so on. `placement` can be 
+   * Handles the position of the arrow -  e.g. if the Tooltip is on the top,
+   * we want to place the arrow at the bottom, and so on. `placement` can be
    * 'bottom-start' etc as well, so we have to make sure to only take the first part.
    */
   const { x: arrowX, y: arrowY } = middlewareData.arrow

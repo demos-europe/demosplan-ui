@@ -19,7 +19,7 @@ export default {
 
   props: {
     container: {
-      type: Element,
+      type: String,
       required: false
     },
 
@@ -57,7 +57,7 @@ export default {
     }
 
     const value = this.$slots.popover?[0] : this.text
-    initTooltip(this.tooltipHook, value, { placement: this.placement, container: this.container })
+    initTooltip(this.tooltipHook, value, { place: this.placement, container: this.container })
   },
 
   beforeDestroy () {

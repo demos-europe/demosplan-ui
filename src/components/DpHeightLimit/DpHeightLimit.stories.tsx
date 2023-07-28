@@ -7,7 +7,7 @@ const Translator = {
 
 const meta: Meta<typeof DpHeightLimit> = {
   component: DpHeightLimit,
-  title: "Components/DpHeightLimit",
+  title: "Components/HeightLimit",
 }
 
 export default meta

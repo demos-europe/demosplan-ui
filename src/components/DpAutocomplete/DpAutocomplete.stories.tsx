@@ -18,6 +18,6 @@ export const Default: Story = {
         height: '28px',
         label: 'label',
         placeholder: 'Search',
-        routeGenerator: function () {},
+        routeGenerator: () => '',
     }
 }

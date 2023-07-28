@@ -27,7 +27,7 @@ const hideTooltip = (tooltipEl) => {
   tooltipEl.classList.add('z-below-zero')
   tooltipEl.classList.add('opacity-0')
 
-  handleTimeoutForDestroy = setTimeout(() => { return destroyTooltip(tooltipEl) }, 3000)
+  handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 3000)
 }
 
 const createTooltip = (id, el, value, container) => {

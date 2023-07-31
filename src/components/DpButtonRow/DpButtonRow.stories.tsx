@@ -8,14 +8,21 @@ const meta: Meta<typeof DpButtonRow> = {
     argTypes: {
         'primaryAction': { action: 'primaryAction' },
         'secondaryAction': { action: 'secondaryAction' }
-    }
+    },
+    render: (args) => ({
+        components: {
+            DpButtonRow,
+        },
+        setup() {
+            return { args }
+        },
+        template: `<dp-button-row primary secondary v-bind="args"></dp-button-row>`,
+    })
 }
 
 export default meta
 type Story = StoryObj<typeof DpButtonRow>
 
 export const Default: Story = {
-    args: {
-        default: `<div><span>Example</span></div>`,
-    },
+    args: {},
 }

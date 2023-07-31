@@ -103,7 +103,7 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: de.abort
+      default: de.cancel
     },
 
     /**

@@ -7,7 +7,7 @@ const de = {
   errorMandatoryFieldsDefault: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
   placeholderAutoSuggest: "Suchbegriff...",
   save: "Speichern",
-  abort: "Abbrechen"
+  cancel: "Abbrechen"
 }
 
 export { de }

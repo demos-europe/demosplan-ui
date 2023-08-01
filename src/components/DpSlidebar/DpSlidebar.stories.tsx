@@ -3,25 +3,28 @@ import type { Meta, StoryObj } from '@storybook/vue'
 import DpSlidebar from './DpSlidebar.vue'
 
 const meta: Meta<typeof DpSlidebar> = {
-    title: 'DpSlidebar',
+    title: 'Components/Slidebar',
     component: DpSlidebar,
     argTypes: {
-        default: {
-            control: 'text',
-            description: 'Slot content',
-            defaultValue: 'DpSlidebar'
-        },
         'close': { action: 'close' }
-    }
+    },
+    render: (args) => ({
+        components: {
+            DpSlidebar,
+        },
+        setup() {
+            return { args }
+        },
+        template: `<dp-slidebar style="position: static !important; left: 0 !important;" v-bind="args">
+        Test
+        </dp-slidebar>`,
+    })
 }
 
 export default meta
 type Story = StoryObj<typeof DpSlidebar>
 
 export const Default: Story = {
-    args: {
-        noEvent: true
-    },
-    components: { DpSlidebar },
-    template: '<dp-slidebar @close="close" v-bind="$props" ><p>Test</p></dp-slidebar>',
+    args: {},
+    template: '<dp-slidebar @close="close" v-bind="$props"><p>Test</p></dp-slidebar>',
 }

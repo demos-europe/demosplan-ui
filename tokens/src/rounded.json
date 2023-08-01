@@ -13,14 +13,14 @@
       "$status": "{_status.deprecated}",
       "value": "{rounded.sm}"
     },
-    "default": {
+    "DEFAULT": {
       "$description": "Default - The standard for ui elements that shall appear rounded. Use this value for form elements and other smaller ui elements. When in doubt, pick this one.",
       "value": "3px",
       "themeable": true
     },
     "small": {
       "$status": "{_status.deprecated}",
-      "value": "{rounded.default}"
+      "value": "{rounded.DEFAULT}"
     },
     "md": {
       "$description": "Medium - The \"next best\" radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded.",
@@ -32,7 +32,7 @@
       "value": "{rounded.md}"
     },
     "lg": {
-      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via {rounded.default}.",
+      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via {rounded.DEFAULT}.",
       "value": "5px",
       "themeable": true
     },

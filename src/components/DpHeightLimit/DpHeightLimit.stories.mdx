@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs'
+import DpHeightLimit from './DpHeightLimit'
+
+<Meta
+  title="Components/HeightLimit"
+  component={DpHeightLimit}
+/>
+
+# Height Limit
+
+Displays large texts by first loading only a defined set of characters, and fetching the remaining characters onCLick.
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DpHeightLimit },
+  template: `<dp-height-limit v-bind="$props" />`
+});
+
+
+## Default usage
+
+```html
+<dp-height-limit
+    :short="shortText"
+    :full="fullText"
+    no-event
+    :element="element" />
+```

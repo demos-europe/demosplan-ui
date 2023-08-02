@@ -11,6 +11,7 @@ const meta: Meta<typeof DpCheckbox> = {
 }
 
 export default meta
+
 type Story = StoryObj<typeof DpCheckbox>
 
 export const Default: Story = {

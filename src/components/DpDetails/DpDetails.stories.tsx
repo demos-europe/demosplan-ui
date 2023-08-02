@@ -19,6 +19,7 @@ const meta: Meta<typeof DpDetails> = {
 }
 
 export default meta
+
 type Story = StoryObj<typeof DpDetails>
 
 export const Default: Story = {

@@ -27,7 +27,7 @@
         value
       }"
       :data-cy="dataCy"
-      v-dp-validate-multiselect="required"
+      :dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
       @open="newVal => $emit('open', newVal)"
@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { de } from '../shared/translations'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -191,7 +192,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('choose')
+      default: de.choose
     },
 
     required: {
@@ -233,7 +234,7 @@ export default {
     tagPlaceholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('tag.create')
+      default: de.tagCreate
     },
 
     trackBy: {

@@ -4,7 +4,6 @@ import DpDetails from './DpDetails.vue'
 const meta: Meta<typeof DpDetails> = {
     component: DpDetails,
     title: "Components/Details",
-    argTypes: {},
     render: (args) => ({
         components: {
             DpDetails,
@@ -12,7 +11,7 @@ const meta: Meta<typeof DpDetails> = {
         setup() {
             return { args }
         },
-        template: `<dp-details primary secondary v-bind="args">
+        template: `<dp-details v-bind="args">
         Content to be revealed onClick of the summary.
         </dp-details>`,
     })

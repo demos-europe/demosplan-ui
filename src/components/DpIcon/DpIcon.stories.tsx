@@ -12,6 +12,6 @@ type Story = StoryObj<typeof DpIcon>
 
 export const Default: Story = {
     args: {
-        icon: ''
+        icon: 'history'
     }
 }

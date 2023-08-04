@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#412](https://github.com/demos-europe/demosplan-ui/pull/412)) Adjust dpValidate directive in DpMultiselect ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#381](https://github.com/demos-europe/demosplan-ui/pull/381)) Change z-index values and var names to match Tailwind convention ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Added

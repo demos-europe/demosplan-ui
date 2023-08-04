@@ -84,6 +84,7 @@
 
 <script>
 import { de } from '../shared/translations'
+import { dpValidateMultiselectDirective } from '../../lib/validation'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -91,6 +92,10 @@ export default {
 
   components: {
     VueMultiselect
+  },
+
+  directives: {
+    dpValidateMultiselectDirective
   },
 
   props: {

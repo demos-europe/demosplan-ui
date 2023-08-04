@@ -27,7 +27,7 @@
         value
       }"
       :data-cy="dataCy"
-      :dp-validate-multiselect="required"
+      v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
       @open="newVal => $emit('open', newVal)"

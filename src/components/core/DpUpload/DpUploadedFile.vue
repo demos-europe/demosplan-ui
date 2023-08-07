@@ -22,7 +22,7 @@
       <button
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
-        :aria-label="Translator.trans('file.remove')"
+        :aria-label="translations.removeFile"
         @click="removeFile">
         <i
           :class="prefixClass('fa fa-trash')"
@@ -34,6 +34,7 @@
 
 <script>
 import { convertSize } from '../../../lib'
+import { de } from './utils/UppyTranslations'
 import { prefixClassMixin } from '../../../mixins'
 
 export default {
@@ -63,6 +64,12 @@ export default {
     isImage () {
       const imageTypes = ['png', 'jpg', 'gif', 'bmp', 'ico', 'tiff', 'svg']
       return typeof imageTypes.find(type => type === this.file.mimeType) !== 'undefined'
+    },
+
+    translations () {
+      return {
+        removeFile: de.file.remove
+      }
     }
   },
 

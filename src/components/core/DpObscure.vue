@@ -1,13 +1,21 @@
 <template>
   <span
     class="u-obscure"
-    :title="Translator.trans('obscure.title')">
+    :title="title">
     <slot />
   </span>
 </template>
 
 <script>
+import { de } from '../shared/translations'
+
 export default {
-  name: 'DpObscure'
+  name: 'DpObscure',
+
+  computed: {
+    title () {
+      return de.obscure.title
+    }
+  }
 }
 </script>

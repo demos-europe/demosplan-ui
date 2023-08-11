@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.1.11 - 2023-08-11
+
 ### Fixed
 
 - ([#412](https://github.com/demos-europe/demosplan-ui/pull/412)) Import missing directive in DpMultiselect ([@ahmad-demos](https://github.com/@ahmad-demos))
@@ -17,7 +19,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
 
-## v0.1.10 - 2023-17-07
+## v0.1.10 - 2023-07-17
 
 ### Added
 
@@ -26,7 +28,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#350](https://github.com/demos-europe/demosplan-ui/pull/350)) Add documentation for DpSelect ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#372](https://github.com/demos-europe/demosplan-ui/pull/372)) Add "question", "severe", and "warning" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
 
-## v0.1.9 - 2023-13-07
+## v0.1.9 - 2023-07-13
 
 ### Removed
 

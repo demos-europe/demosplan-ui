@@ -8,6 +8,7 @@ const Translator = {
 const meta: Meta<typeof DpHeightLimit> = {
   component: DpHeightLimit,
   title: "Components/HeightLimit",
+  argTypes: { 'heightLimit:toggle': { action: 'heightLimit:toggle' } }
 }
 
 export default meta

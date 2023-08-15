@@ -170,8 +170,8 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
 import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { de } from '../shared/translations'
 import DomPurify from 'dompurify'
 import DpDraggable from '../DpDraggable/DpDraggable'
 import DpLoading from '../DpLoading/DpLoading'
@@ -378,8 +378,8 @@ export default {
       defaultTranslations: {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
-        headerExpandHint: de.ariaExpandAll,
-        headerSelectHint: de.ariaSelectAll,
+        headerExpandHint: de.expandAll,
+        headerSelectHint: de.selectAll,
         lockedForSelection: de.itemLockedForSelection,
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
         tableLoadingData: de.loadingData,

@@ -1,21 +1,21 @@
 const de = {
-  contextualHelp: 'Kontexthilfe',
-  loadingData: 'Daten werden geladen...',
-  selectPlaceholder: 'Bitte wählen Sie einen Eintrag aus.',
-  errorMandatoryFieldsIntro: 'Bitte korrigieren Sie Ihre Eingabe in folgenden Feldern: ',
-  errorMandatoryFieldsOutro: '. Erst dann können Sie Ihre Angaben speichern.',
-  errorMandatoryFieldsDefault: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
-  placeholderAutoSuggest: "Suchbegriff...",
-  save: "Speichern",
   cancel: "Abbrechen",
   choose: "Auswählen",
-  tagCreate: "Tag erstellen",
+  contextualHelp: 'Kontexthilfe',
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
-  ariaExpandAll: "Alle Elemente ausklappen",
-  ariaSelectAll: "Alle Elemente auswählen",
+  errorMandatoryFieldsDefault: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
+  errorMandatoryFieldsIntro: 'Bitte korrigieren Sie Ihre Eingabe in folgenden Feldern: ',
+  errorMandatoryFieldsOutro: '. Erst dann können Sie Ihre Angaben speichern.',
+  expandAll: "Alle Elemente ausklappen",
+  explanationNoentries: "Es sind keine Einträge vorhanden.",
   itemLockedForSelection: "Element kann nicht ausgewählt werden",
-  explanationNoentries: "Es sind keine Einträge vorhanden."
+  loadingData: 'Daten werden geladen...',
+  save: "Speichern",
+  selectAll: "Alle Elemente auswählen",
+  selectPlaceholder: 'Bitte wählen Sie einen Eintrag aus.',
+  tagCreate: "Tag erstellen",
+  placeholderAutoSuggest: "Suchbegriff..."
 }
 
 export { de }

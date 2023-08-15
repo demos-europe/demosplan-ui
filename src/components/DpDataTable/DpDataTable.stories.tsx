@@ -27,25 +27,23 @@ export const Default: Story = {
                 colClass: "u-1-of-2",
                 field: "anzahl",
                 label: "Anzahl"
-            },
-            {
-                colClass: "u-1-of-2",
-                field: false,
-                label: false
             }
         ],
         items: [
             {
                 id: 'name',
-                name: 'Name'
+                name: 'Test 1',
+                anzahl: "99"
             },
             {
                 id: 'login',
-                name: 'Login'
+                name: 'Test 2',
+                anzahl: "60"
             },
             {
                 id: 'email',
-                name: 'E-Mail'
+                name: 'Test 3',
+                anzahl: "100"
             }
         ],
         trackBy: 'ID'

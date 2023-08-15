@@ -170,6 +170,7 @@
 </template>
 
 <script>
+import { de } from '../shared/translations'
 import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
 import DomPurify from 'dompurify'
 import DpDraggable from '../DpDraggable/DpDraggable'
@@ -375,14 +376,14 @@ export default {
       allExpanded: false,
       allWrapped: false,
       defaultTranslations: {
-        footerSelectedElement: Translator.trans('entry.selected'),
-        footerSelectedElements: Translator.trans('entries.selected'),
-        headerExpandHint: Translator.trans('aria.expand.all'),
-        headerSelectHint: Translator.trans('aria.select.all'),
-        lockedForSelection: Translator.trans('item.lockedForSelection'),
+        footerSelectedElement: de.entrySelected,
+        footerSelectedElements: de.entriesSelected,
+        headerExpandHint: de.ariaExpandAll,
+        headerSelectHint: de.ariaSelectAll,
+        lockedForSelection: de.itemLockedForSelection,
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
-        tableLoadingData: Translator.trans('loading.data'),
-        tableNoElements: Translator.trans('explanation.noentries')
+        tableLoadingData: de.loadingData,
+        tableNoElements: de.explanationNoentries
       },
       elementSelections: {},
       expandedElements: {},

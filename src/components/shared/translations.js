@@ -9,7 +9,13 @@ const de = {
   save: "Speichern",
   cancel: "Abbrechen",
   choose: "Auswählen",
-  tagCreate: "Tag erstellen"
+  tagCreate: "Tag erstellen",
+  entrySelected: "Eintrag ausgewählt",
+  entriesSelected: "Einträge ausgewählt",
+  ariaExpandAll: "Alle Elemente ausklappen",
+  ariaSelectAll: "Alle Elemente auswählen",
+  itemLockedForSelection: "Element kann nicht ausgewählt werden",
+  explanationNoentries: "Es sind keine Einträge vorhanden."
 }
 
 export { de }

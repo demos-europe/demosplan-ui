@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#443](https://github.com/demos-europe/demosplan-ui/pull/443)) Add E2E Props ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#437](https://github.com/demos-europe/demosplan-ui/pull/437)) Add missing Hooks/Selectors ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ## v0.1.11 - 2023-08-11

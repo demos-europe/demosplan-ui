@@ -28,6 +28,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
+      default: 'datepicker'
     },
 
     disabled: {

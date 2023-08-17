@@ -8,6 +8,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#443](https://github.com/demos-europe/demosplan-ui/pull/443)), ([#437](https://github.com/demos-europe/demosplan-ui/pull/437)) Add E2E Props ([@ahmad-demos](https://github.com/@ahmad-demos))
 
+### Changed
+
+- ([#438](https://github.com/demos-europe/demosplan-ui/pull/438)) Stickier.js: An extra check has been added wherever the function _bindBottom is called: when the value of the stickToDirection is 'top' the funciton _bindBottom will not be performed.([@sakutademos](https://github.com/sakutademos))
+
 ## v0.1.11 - 2023-08-11
 
 ### Fixed

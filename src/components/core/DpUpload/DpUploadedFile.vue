@@ -34,7 +34,7 @@
 
 <script>
 import { convertSize } from '../../../lib'
-import { de } from './utils/UppyTranslations'
+import { de } from '../../shared/translations'
 import { prefixClassMixin } from '../../../mixins'
 
 export default {

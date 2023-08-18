@@ -5,7 +5,7 @@
       v-if="title !== ''"
       @click="() => toggle()"
       :aria-expanded="isVisible.toString()"
-      data-cy="accordionToggle"
+      :data-cy="dataCy"
       :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
       class="btn--blank o-link--default">
       <i
@@ -34,6 +34,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'accordionToggle'
+    },
+
     fontWeight: {
       type: String,
       required: false,

@@ -250,7 +250,7 @@ export default {
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
     initFixedControls () {
-      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0)
+      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0, 'top')
 
       if (this.$slots.footer) {
         this.stickyFooter = new Stickier(this.$refs.footer, this.$refs.treeList.$el, 0, 'bottom')

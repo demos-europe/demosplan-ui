@@ -12,9 +12,9 @@ import { de } from '../shared/translations'
 export default {
   name: 'DpObscure',
 
-  computed: {
-    title () {
-      return de.obscure.title
+  data () {
+    return {
+      title: de.obscure.title
     }
   }
 }

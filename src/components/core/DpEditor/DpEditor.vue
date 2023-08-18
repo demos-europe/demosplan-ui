@@ -616,7 +616,12 @@ export default {
          */
         table: false,
         textDecoration: true
-      }, this.toolbarItems)
+      }, this.toolbarItems),
+      translations: {
+        ...de.editor,
+        insertImage: de.image.insert,
+        obscureTitle: de.obscure.title
+      }
     }
   },
 
@@ -632,14 +637,6 @@ export default {
 
     obscureEnabled () {
       return this.toolbar.obscure
-    },
-
-    translations () {
-      return {
-        ...de.editor,
-        insertImage: de.image.insert,
-        obscureTitle: de.obscure.title
-      }
     }
   },
 

@@ -61,13 +61,8 @@ export default {
 
   data () {
     return {
-      selectedColumns: new Set()
-    }
-  },
-
-  computed: {
-    triggerText () {
-      return de.table.colsSelect
+      selectedColumns: new Set(),
+      triggerText: de.table.colsSelect
     }
   },
 

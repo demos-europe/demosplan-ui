@@ -71,6 +71,13 @@ export default {
       isVisible: false,
       newTab: false,
       text: '',
+      translations: {
+        linkEdit: de.editor.link.edit,
+        linkHint: de.editor.link.hint,
+        linkInsert: de.editor.link.insert,
+        linkText: de.link.text,
+        newTab: de.tab.openNew
+      },
       url: ''
     }
   },
@@ -78,16 +85,6 @@ export default {
   computed: {
     hasLink () {
       return this.initUrl !== ''
-    },
-
-    translations () {
-      return {
-        linkEdit: de.editor.link.edit,
-        linkHint: de.editor.link.hint,
-        linkInsert: de.editor.link.insert,
-        linkText: de.link.text,
-        newTab: de.tab.openNew
-      }
     }
   },
 

@@ -255,9 +255,9 @@ export default {
     }
   },
 
-  computed: {
-    translations () {
-      return {
+  data () {
+    return {
+      translations: {
         deselectAll: de.deselect.all,
         selectAll: de.select.all
       }

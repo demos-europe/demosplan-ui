@@ -93,17 +93,14 @@ export default {
     return {
       isOpenModal: false,
       lastFocusedElement: '',
-      focusableElements: []
+      focusableElements: [],
+      title: de.window.close
     }
   },
 
   computed: {
     hasHeader () {
       return typeof this.$slots.header !== 'undefined'
-    },
-
-    title () {
-      return de.window.close
     }
   },
 

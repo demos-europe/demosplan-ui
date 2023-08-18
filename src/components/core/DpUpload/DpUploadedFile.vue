@@ -51,6 +51,14 @@ export default {
     }
   },
 
+  data () {
+    return {
+      translations: {
+        removeFile: de.file.remove
+      }
+    }
+  },
+
   computed: {
     fileIcon () {
       const icon = this.file.mimeType === 'txt' ? 'fa-file-text-o' : 'fa-folder-o'
@@ -64,12 +72,6 @@ export default {
     isImage () {
       const imageTypes = ['png', 'jpg', 'gif', 'bmp', 'ico', 'tiff', 'svg']
       return typeof imageTypes.find(type => type === this.file.mimeType) !== 'undefined'
-    },
-
-    translations () {
-      return {
-        removeFile: de.file.remove
-      }
     }
   },
 

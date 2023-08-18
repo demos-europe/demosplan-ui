@@ -27,9 +27,9 @@ export default {
     tooltip: Tooltip
   },
 
-  computed: {
-    ariaLabel () {
-      return de.contextualHelp
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
     }
   }
 }

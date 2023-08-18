@@ -69,13 +69,8 @@ export default {
 
   data () {
     return {
-      editor: null
-    }
-  },
-
-  computed: {
-    translations () {
-      return {
+      editor: null,
+      translations: {
         anonymize: de.anonymization.mark,
         unanonymize: de.anonymization.unmark
       }

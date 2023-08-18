@@ -76,13 +76,8 @@ export default {
     return {
       fileUrl: '',
       altText: '',
-      editAltTextOnly: false
-    }
-  },
-
-  computed: {
-    translations() {
-      return {
+      editAltTextOnly: false,
+      translations: {
         altText: de.altText.default,
         altTextHint: de.image.alt.explanation,
         editImage: de.image.edit,

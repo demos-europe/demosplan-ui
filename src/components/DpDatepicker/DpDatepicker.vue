@@ -1,7 +1,7 @@
 <template>
   <div
     :id="id"
-    data-cy="datepicker"
+    :data-cy="dataCy"
     @input.stop.prevent="emitUpdate" />
 </template>
 
@@ -23,6 +23,12 @@ export default {
       type: Number,
       required: false,
       default: 0
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'datepicker'
     },
 
     disabled: {

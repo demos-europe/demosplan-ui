@@ -172,11 +172,11 @@ class Stickier {
 
     // After page load, and before other conditions trigger, the element will be in its initial state
     if (this._isInitial()) {
-      if (scroll.top >= context.bottom) {
+      if (scroll.top >= context.bottom && this.stickToDirection !== 'top') {
         this._log('element context above viewport - initial position is bottom of context')
         this._bindBottom()
       } else if (scroll.top > element.top) {
-        if ((element.height + scroll.top - elementScroll) >= context.bottom) {
+        if ((element.height + scroll.top - elementScroll) >= context.bottom && this.stickToDirection !== 'top') {
           this._log('element ends below context - initial position is bottom of context')
           this._bindBottom()
         } else {
@@ -189,7 +189,7 @@ class Stickier {
         if (scroll.top <= element.top) {
           this._log('fixed element reached top of container')
           this._unsetPosition()
-        } else if ((element.height + scroll.top - elementScroll) >= context.bottom) {
+        } else if ((element.height + scroll.top - elementScroll) >= context.bottom && this.stickToDirection !== 'top') {
           this._log('fixed element reached bottom of container')
           this._bindBottom()
         } else if (doesNotFit) {
@@ -202,7 +202,7 @@ class Stickier {
         if ((scroll.bottom - element.height) <= element.top) {
           this._log('bottom fixed rail has reached top of container')
           this._unsetPosition()
-        } else if (scroll.bottom >= context.bottom) {
+        } else if (scroll.bottom >= context.bottom && this.stickToDirection !== 'top') {
           this._log('bottom fixed rail has reached bottom of container')
           this._bindBottom()
         } else if (doesNotFit) {

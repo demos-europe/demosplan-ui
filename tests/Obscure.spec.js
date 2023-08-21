@@ -25,7 +25,7 @@ describe('Obscure', () => {
         default: '<div>Slot Content</div>'
       }
     })
-    expect(slotInstance.html()).toBe('<span title="obscure.title" class="u-obscure"><div>Slot Content</div></span>')
+    expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
 
     window.hasPermission = () => false
     slotInstance = shallowMountWithGlobalMocks(DpObscure, {
@@ -33,6 +33,6 @@ describe('Obscure', () => {
         default: '<div>Slot Content</div>'
       }
     })
-    expect(slotInstance.html()).toBe('<span title="obscure.title" class="u-obscure"><div>Slot Content</div></span>')
+    expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
   })
 })

@@ -1,3 +1,4 @@
+import { de } from '../../../shared/translations'
 import { Mark } from 'tiptap'
 import { toggleMark } from 'tiptap-commands'
 
@@ -13,7 +14,7 @@ export default class EditorCustomMark extends Mark {
           tag: 'mark'
         }
       ],
-      toDOM: () => ['mark', { title: Translator.trans('text.mark') }, 0]
+      toDOM: () => ['mark', { title: de.text.marked }, 0]
     }
   }
 

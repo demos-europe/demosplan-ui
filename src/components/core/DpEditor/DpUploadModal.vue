@@ -6,12 +6,12 @@
       <h3
         v-if="editAltTextOnly"
         class="u-mb">
-        {{ Translator.trans('image.edit') }}
+        {{ translations.editImage }}
       </h3>
       <h3
         v-else
         class="u-mb">
-        {{ Translator.trans('image.insert') }}
+        {{ translations.insertImage }}
       </h3>
       <div v-show="editAltTextOnly === false">
         <dp-upload-files
@@ -21,7 +21,7 @@
           :max-file-size="20 * 1024 * 1024/* 20 MiB */"
           :max-number-of-files="1"
           ref="uploader"
-          :translations="{ dropHereOr: Translator.trans('form.button.upload.image', { browse: '{browse}', maxUploadSize: '20MB' }) }"
+          :translations="{ dropHereOr: translations.uploadImage('20MB')}"
           @upload-success="setFile" />
       </div>
       <dp-input
@@ -29,8 +29,8 @@
         v-model="altText"
         class="u-mb"
         :label="{
-          hint: Translator.trans('image.alt.explanation'),
-          text: Translator.trans('alternative.text')
+          hint: translations.altTextHint,
+          text: translations.altText,
         }" />
       <div class="u-mt text--right width-100p space-inline-s">
         <button
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { de } from '../../shared/translations'
 import DpInput from '../../DpInput/DpInput'
 import DpModal from '../../DpModal/DpModal'
 import DpUploadFiles from '../DpUpload/DpUploadFiles'
@@ -75,7 +76,14 @@ export default {
     return {
       fileUrl: '',
       altText: '',
-      editAltTextOnly: false
+      editAltTextOnly: false,
+      translations: {
+        altText: de.altText.default,
+        altTextHint: de.image.alt.explanation,
+        editImage: de.image.edit,
+        insertImage: de.image.insert,
+        uploadImage: de.upload.select.image
+      }
     }
   },
 

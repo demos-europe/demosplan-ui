@@ -19,17 +19,6 @@ const de = {
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
-  entrySelected: "Eintrag ausgewählt",
-  entriesSelected: "Einträge ausgewählt",
-  expandAll: "Alle Elemente ausklappen",
-  explanationNoentries: "Es sind keine Einträge vorhanden.",
-  itemLockedForSelection: "Element kann nicht ausgewählt werden",
-  loadingData: 'Daten werden geladen...',
-  save: "Speichern",
-  selectAll: "Alle Elemente auswählen",
-  selectPlaceholder: 'Bitte wählen Sie einen Eintrag aus.',
-  tagCreate: "Tag erstellen",
-  placeholderAutoSuggest: "Suchbegriff...",
   deselect: {
     all: 'Alle abwählen'
   },
@@ -46,6 +35,8 @@ const de = {
     underline: 'Unterstrichen',
     undo: 'Rückgängig'
   },
+  entrySelected: "Eintrag ausgewählt",
+  entriesSelected: "Einträge ausgewählt",
   error: {
     mandatoryFields: {
       default: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
@@ -53,6 +44,8 @@ const de = {
       outro: '. Erst dann können Sie Ihre Angaben speichern.'
     }
   },
+  expandAll: "Alle Elemente ausklappen",
+  explanationNoentries: "Es sind keine Einträge vorhanden.",
   file: {
     remove: 'Datei entfernen'
   },
@@ -71,20 +64,30 @@ const de = {
       minlength({ cssClass, count, min }) { return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`}
     }
   },
+  item: {
+    lockedForSelection: "Element kann nicht ausgewählt werden",
+  },
   link: {
     text: 'Linktext'
   },
+  loadingData: 'Daten werden geladen...',
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
+  placeholderAutoSuggest: "Suchbegriff...",
+  save: "Speichern",
   select: {
-    all: 'Alle auswählen'
+    all: 'Alle auswählen',
+    placeholder: 'Bitte wählen Sie einen Eintrag aus.'
   },
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
   table: {
     colsSelect: 'Spalten auswählen'
+  },
+  tag: {
+    create: "Tag erstellen",
   },
   text: {
     deleted: 'Dieser Text wurde entfernt',

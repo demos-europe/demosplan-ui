@@ -43,7 +43,7 @@ const createTooltip = (id, el, value, container) => {
 
   const content = range.createContextualFragment(tooltipHtml)
 
-  container.appendChild(content)
+  document.querySelector(container).appendChild(content)
 }
 
 const initTooltip = (el, value, options) => {
@@ -65,7 +65,7 @@ const initTooltip = (el, value, options) => {
   el.addEventListener('blur', handleHideTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, value, { place = 'top', container = document.body })  => {
+const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body' })  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     createTooltip(id, wrapperEl, value, container)
   } else {

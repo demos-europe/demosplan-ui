@@ -121,7 +121,7 @@ export default {
 
   data () {
     return {
-      selectPlaceholder: de.selectPlaceholder
+      selectPlaceholder: de.select.placeholder
     }
   },
 

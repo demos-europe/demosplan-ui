@@ -239,7 +239,7 @@ export default {
     tagPlaceholder: {
       type: String,
       required: false,
-      default: de.tagCreate
+      default: de.tag.create
     },
 
     trackBy: {

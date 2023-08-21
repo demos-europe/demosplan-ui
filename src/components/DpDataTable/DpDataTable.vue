@@ -170,7 +170,8 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { CleanHtml } from '../../directives'
+import { de } from '../shared/translations'
 import DomPurify from 'dompurify'
 import DpDraggable from '../DpDraggable/DpDraggable'
 import DpLoading from '../DpLoading/DpLoading'
@@ -381,7 +382,7 @@ export default {
         headerSelectHint: Translator.trans('aria.select.all'),
         lockedForSelection: Translator.trans('item.lockedForSelection'),
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
-        tableLoadingData: Translator.trans('loading.data'),
+        tableLoadingData: de.loadingData,
         tableNoElements: Translator.trans('explanation.noentries')
       },
       elementSelections: {},

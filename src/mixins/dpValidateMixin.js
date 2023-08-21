@@ -51,10 +51,10 @@ export default {
 
           if (nonEmptyFieldNames.length) {
             const fieldsString = nonEmptyFieldNames ? nonEmptyFieldNames.join(', ') : ' '
-            const errorMandatoryFields = de.errorMandatoryFieldsIntro + fieldsString + de.errorMandatoryFieldsOutro
+            const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
             dplan.notify.notify('error', errorMandatoryFields)
           } else {
-            dplan.notify.notify('error', de.errorMandatoryFieldsDefault)
+            dplan.notify.notify('error', de.error.mandatoryFields.default)
           }
         }
         const firstErrorElement = form.querySelector('.' + errorClass)

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { de } from '../../shared/translations'
 import { v4 as uuid } from 'uuid'
 
 export default {
@@ -62,7 +63,7 @@ export default {
   data () {
     return {
       id: uuid(),
-      imageTitle: Translator.trans('image.alt.edit.hint'),
+      imageTitle: de.image.alt.editHint,
       observer: null,
       ratioFactor: 1
     }

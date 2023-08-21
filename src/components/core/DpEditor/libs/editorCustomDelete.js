@@ -1,3 +1,4 @@
+import { de } from '../../../shared/translations'
 import { Mark } from 'tiptap'
 import { toggleMark } from 'tiptap-commands'
 
@@ -13,7 +14,7 @@ export default class EditorCustomDelete extends Mark {
           tag: 'del'
         }
       ],
-      toDOM: () => ['del', { title: Translator.trans('text.deleted') }, 0]
+      toDOM: () => ['del', { title: de.text.deleted }, 0]
     }
   }
 

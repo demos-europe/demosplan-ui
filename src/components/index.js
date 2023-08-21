@@ -52,7 +52,6 @@ import DpTreeList from './DpTreeList/DpTreeList'
 import {
   DpAnonymizeText,
   DpBulkEditHeader,
-  DpDashboardTaskCard,
   DpEditableList,
   DpEditor,
   DpNotifyContainer,
@@ -87,7 +86,6 @@ export {
   DpCheckboxGroup,
   DpColumnSelector,
   DpContextualHelp,
-  DpDashboardTaskCard,
   DpDataTable,
   DpDataTableExtended,
   DpDatepicker,

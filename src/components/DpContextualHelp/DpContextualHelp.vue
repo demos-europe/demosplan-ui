@@ -1,11 +1,12 @@
 <template>
   <i
     class="fa fa-question-circle"
-    :aria-label="Translator.trans('contextual.help')"
+    :aria-label="ariaLabel"
     v-tooltip="text" />
 </template>
 
 <script>
+import { de } from '../shared/translations'
 import { Tooltip } from '../../directives'
 
 export default {
@@ -24,6 +25,12 @@ export default {
 
   directives: {
     tooltip: Tooltip
+  },
+
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
+    }
   }
 }
 </script>

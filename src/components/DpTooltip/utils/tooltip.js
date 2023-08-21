@@ -43,7 +43,7 @@ const createTooltip = (id, el, value, container) => {
 
   const content = range.createContextualFragment(tooltipHtml)
 
-  document.querySelector(container).appendChild(content)
+  container.appendChild(content)
 }
 
 const initTooltip = (el, value, options) => {

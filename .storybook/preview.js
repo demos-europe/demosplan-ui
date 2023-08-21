@@ -1,7 +1,4 @@
-import { Tooltip } from '../src/directives'
 import Vue from 'vue'
-
-Vue.directive('tooltip', Tooltip)
 
 const beautifyHtml = require('js-beautify').html
 

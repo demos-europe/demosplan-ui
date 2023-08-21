@@ -1,3 +1,4 @@
+import { de } from '../../../shared/translations'
 import { Mark } from 'tiptap'
 import { toggleMark } from 'tiptap-commands'
 
@@ -13,7 +14,7 @@ export default class EditorCustomInsert extends Mark {
           tag: 'ins'
         }
       ],
-      toDOM: () => ['ins', { title: Translator.trans('text.inserted') }, 0]
+      toDOM: () => ['ins', { title: de.text.inserted }, 0]
     }
   }
 

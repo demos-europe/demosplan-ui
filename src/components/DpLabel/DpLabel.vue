@@ -74,10 +74,13 @@ export default {
     }
   },
 
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
+    }
+  },
+
   computed: {
-    ariaLabel () {
-      return de.contextualHelp
-    },
     /**
      * List of Hints
      *

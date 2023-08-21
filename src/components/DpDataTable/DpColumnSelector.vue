@@ -3,7 +3,7 @@
     :has-menu="false"
     @close="trackSelection">
     <template v-slot:trigger>
-      <span>{{ Translator.trans('table.cols.select') }}</span>
+      <span v-text="triggerText" />
       <i
         class="fa fa-caret-down u-ml-0_25"
         aria-hidden="true" />
@@ -25,10 +25,12 @@
 <script>
 import DpCheckbox from '../DpCheckbox/DpCheckbox'
 import DpFlyout from '../DpFlyout/DpFlyout'
+import { de } from '../shared/translations'
 import { hasOwnProp } from '../../utils'
 
 export default {
   name: 'DpColumnSelector',
+
   components: {
     DpCheckbox,
     DpFlyout
@@ -56,11 +58,14 @@ export default {
       default: false
     }
   },
+
   data () {
     return {
-      selectedColumns: new Set()
+      selectedColumns: new Set(),
+      triggerText: de.table.colsSelect
     }
   },
+
   methods: {
     broadcastSelection (column, shouldCheck = null) {
       if (shouldCheck === true) {

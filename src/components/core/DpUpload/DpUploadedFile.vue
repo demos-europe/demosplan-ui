@@ -22,7 +22,7 @@
       <button
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
-        :aria-label="Translator.trans('file.remove')"
+        :aria-label="translations.removeFile"
         @click="removeFile">
         <i
           :class="prefixClass('fa fa-trash')"
@@ -34,6 +34,7 @@
 
 <script>
 import { convertSize } from '../../../lib'
+import { de } from '../../shared/translations'
 import { prefixClassMixin } from '../../../mixins'
 
 export default {
@@ -47,6 +48,14 @@ export default {
     file: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      translations: {
+        removeFile: de.file.remove
+      }
     }
   },
 

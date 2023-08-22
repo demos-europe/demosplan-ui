@@ -1,7 +1,8 @@
 <template>
   <dp-icon
-    :icon="icon"
     :aria-label="ariaLabel"
+    :icon="icon"
+    :size="size"
     v-tooltip="text" />
 </template>
 

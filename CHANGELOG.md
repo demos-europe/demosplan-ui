@@ -8,6 +8,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#445](https://github.com/demos-europe/demosplan-ui/pull/445)) **Breaking:** Remove DpDashboardTaskCard component ([@hwiem](https://github.com/hwiem))
 
+### Changed
+
+- ([#383](https://github.com/demos-europe/demosplan-ui/pull/383)) Rework Tooltip Directive and Component ([@salisdemos](https://github.com/salisdemos))
+  - Introduced DpTooltip. Please replace VPopover (now deprecated) with DpTooltip
+
 ## v0.1.12 - 2023-08-18
 
 ### Added
@@ -16,8 +21,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#383](https://github.com/demos-europe/demosplan-ui/pull/383)) Rework Tooltip Directive and Component ([@salisdemos](https://github.com/salisdemos))
-    - Introduced DpTooltip. Please replace VPopover (now deprecated) with DpTooltip
 - ([#438](https://github.com/demos-europe/demosplan-ui/pull/438)) Stickier.js: An extra check has been added wherever the function _bindBottom is called: when the value of the stickToDirection is 'top' the funciton _bindBottom will not be performed.([@sakutademos](https://github.com/sakutademos))
 
 ## v0.1.11 - 2023-08-11

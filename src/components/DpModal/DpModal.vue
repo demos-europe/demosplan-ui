@@ -13,8 +13,8 @@
         role="dialog">
         <button
           :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="Translator.trans('close.window')"
-          :title="Translator.trans('close.window')"
+          :aria-label="title"
+          :title="title"
           @click.prevent.stop="toggle()">
           <dp-icon
             icon="close"
@@ -44,6 +44,7 @@
 
 <script>
 import DpIcon from '../DpIcon/DpIcon'
+import { de } from '../shared/translations'
 import { prefixClassMixin } from '../../mixins'
 
 export default {
@@ -92,7 +93,8 @@ export default {
     return {
       isOpenModal: false,
       lastFocusedElement: '',
-      focusableElements: []
+      focusableElements: [],
+      title: de.window.close
     }
   },
 

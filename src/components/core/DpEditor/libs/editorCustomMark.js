@@ -1,3 +1,4 @@
+import { de } from '../../../shared/translations'
 import { Mark } from '@tiptap/core'
 
 export default Mark.create({
@@ -11,7 +12,7 @@ export default Mark.create({
     ]
   },
 
-  renderHTML: () => ['mark', { title: Translator.trans('text.mark') }, 0],
+  renderHTML: () => ['mark', { title: de.text.marked }, 0],
 
   addCommands() {
     return {

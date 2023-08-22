@@ -30,8 +30,8 @@
               @click="cut"
               :class="prefixClass('menubar__button')"
               type="button"
-              :aria-label="Translator.trans('editor.cut')"
-              v-tooltip="Translator.trans('editor.cut')"
+              :aria-label="translations.cut"
+              v-tooltip="translations.cut"
               :disabled="readonly">
               <i
                 :class="prefixClass('fa fa-scissors')"
@@ -43,8 +43,8 @@
               @click="editor.chain().focus().undo().run()"
               :class="prefixClass('menubar__button')"
               type="button"
-              :aria-label="Translator.trans('editor.undo')"
-              v-tooltip="Translator.trans('editor.undo')"
+              :aria-label="translations.undo"
+              v-tooltip="translations.undo"
               :disabled="readonly">
               <i
                 :class="prefixClass('fa fa-reply')"
@@ -55,8 +55,8 @@
               @click="editor.chain().focus().redo().run()"
               :class="prefixClass('menubar__button')"
               type="button"
-              :aria-label="Translator.trans('editor.redo')"
-              v-tooltip="Translator.trans('editor.redo')"
+              :aria-label="translations.redo"
+              v-tooltip="translations.redo"
               :disabled="readonly">
               <i
                 :class="prefixClass('fa fa-share')"
@@ -70,8 +70,8 @@
                 @click="editor.chain().focus().toggleBold().run()"
                 :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.bold')"
-                v-tooltip="Translator.trans('editor.bold')"
+                :aria-label="translations.bold"
+                v-tooltip="translations.bold"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-bold')"
@@ -83,8 +83,8 @@
                 @click="editor.chain().focus().italic().run()"
                 :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                 type="button"
-                :aria-label="Translator.trans('editor.italic')"
-                v-tooltip="Translator.trans('editor.italic')"
+                :aria-label="translations.italic"
+                v-tooltip="translations.italic"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-italic')"
@@ -95,8 +95,8 @@
                 @click="editor.chain().focus().toggleUnderline().run()"
                 :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.underline')"
-                v-tooltip="Translator.trans('editor.underline')"
+                :aria-label="translations.underline"
+                v-tooltip="translations.underline"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-underline')"
@@ -109,8 +109,8 @@
               @click="editor.chain().focus().toggleStrike().run()"
               :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
               type="button"
-              :aria-label="Translator.trans('editor.strikethrough')"
-              v-tooltip="Translator.trans('editor.strikethrough')"
+              :aria-label="translations.strikethrough"
+              v-tooltip="translations.strikethrough"
               :disabled="readonly">
               <i
                 :class="prefixClass('fa fa-strikethrough')"
@@ -212,7 +212,7 @@
               @click="editor.chain().focus().toggleObscure().run()"
               :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
               type="button"
-              v-tooltip="Translator.trans('obscure.title')"
+              v-tooltip="translations.obscureTitle"
               :disabled="readonly">
               <i
                 :class="prefixClass('fa fa-pencil-square')"
@@ -233,7 +233,7 @@
               @click.stop="openUploadModal(null)"
               :class="prefixClass('menubar__button')"
               type="button"
-              v-tooltip="Translator.trans('image.insert')"
+              v-tooltip="translations.insertImage"
               :disabled="readonly">
               <i :class="prefixClass('fa fa-picture-o')" />
             </button>
@@ -309,6 +309,7 @@
 </template>
 
 <script>
+import { de } from '../../shared/translations'
 import {
   Bold,
   BulletList,
@@ -616,7 +617,12 @@ export default {
          */
         table: false,
         textDecoration: true
-      }, this.toolbarItems)
+      }, this.toolbarItems),
+      translations: {
+        ...de.editor,
+        insertImage: de.image.insert,
+        obscureTitle: de.obscure.title
+      }
     }
   },
 

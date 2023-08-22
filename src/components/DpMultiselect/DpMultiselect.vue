@@ -65,7 +65,7 @@
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :disabled="value.length === options.length === 0"
             type="button"
-            v-text="Translator.trans('select.all')"
+            v-text="translations.selectAll"
             @click="$emit('select-all')">
           </button>
 
@@ -73,7 +73,7 @@
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :disabled="value.length === 0"
             type="button"
-            v-text="Translator.trans('unselect.all')"
+            v-text="translations.deselectAll"
             @click="$emit('unselect-all')">
           </button>
         </div>
@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import { de } from '../shared/translations'
+import { dpValidateMultiselectDirective } from '../../lib/validation'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -90,6 +92,10 @@ export default {
 
   components: {
     VueMultiselect
+  },
+
+  directives: {
+    dpValidateMultiselectDirective
   },
 
   props: {
@@ -246,6 +252,15 @@ export default {
       type: [String, Number, Array, Object],
       required: false,
       default: ''
+    }
+  },
+
+  data () {
+    return {
+      translations: {
+        deselectAll: de.deselect.all,
+        selectAll: de.select.all
+      }
     }
   }
 }

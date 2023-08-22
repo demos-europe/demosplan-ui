@@ -119,11 +119,13 @@ export default {
     }
   },
 
-  computed: {
-    selectPlaceholder () {
-      return de.selectPlaceholder
-    },
+  data () {
+    return {
+      selectPlaceholder: de.selectPlaceholder
+    }
+  },
 
+  computed: {
     nameOrId () {
       /*
        * As long as there is no necessity of having the id to differ from name,

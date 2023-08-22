@@ -3,6 +3,7 @@ import {
   markInputRule,
   markPasteRule,
 } from '@tiptap/core'
+import { de } from '../../../shared/translations'
 
 export default Mark.create({
   name: 'insert',
@@ -12,7 +13,7 @@ export default Mark.create({
   },
 
   renderHTML () {
-    return ['ins', { title: Translator.trans('text.inserted') }, 0]
+    return ['ins', { title: de.text.inserted }, 0]
   },
 
   addCommands () {

@@ -1,4 +1,6 @@
 import { convertSize } from '../../../../lib'
+import { de as german } from '../../../shared/translations'
+
 const de = () => {
   return {
     strings: {
@@ -10,11 +12,9 @@ const de = () => {
         browse: '{browse}',
         maxUploadSize: convertSize('GB', window.dplan.settings.maxUploadSize)
       }),
-      failedToUpload: Translator.trans('form.button.upload.failed', {
-        file: '{file}'
-      }),
+      failedToUpload: german.upload.failed,
       // This string is clickable and opens the system file selection dialog.
-      browse: Translator.trans('form.button.upload.search')
+      browse: german.computer
     }
   }
 }

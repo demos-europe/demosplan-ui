@@ -9,13 +9,13 @@
           v-if="editor.isActive('anonymize')"
           class="editor-menububble__button is-active"
           @click="editor.chain().focus().toggleUnanonymize().run()">
-          {{ Translator.trans('statement.anonymize.unmark') }}
+          {{ translations.unanonymize }}
         </button>
         <button
           v-else
           class="editor-menububble__button"
           @click="editor.chain().focus().toggleAnonymize().run()">
-          {{ Translator.trans('statement.anonymize.mark') }}
+          {{ translations.anonymize }}
         </button>
       </div>
     </bubble-menu>
@@ -36,6 +36,7 @@ import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
 } from '@tiptap/vue-2'
+import { de } from '../shared/translations'
 import {
   Bold,
   BulletList,
@@ -74,7 +75,11 @@ export default {
 
   data () {
     return {
-      editor: null
+      editor: null,
+      translations: {
+        anonymize: de.anonymization.mark,
+        unanonymize: de.anonymization.unmark
+      }
     }
   },
 

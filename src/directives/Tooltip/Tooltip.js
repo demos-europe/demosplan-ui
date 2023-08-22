@@ -10,7 +10,6 @@ const VPopover = Popover
 
 /*
  * Merge custom config into default options for tooltip config.
- * The non-vue tooltip lib also uses tooltip.js, both have to be in sync.
  */
 const tooltipConfig = {
   defaultHtml: true,

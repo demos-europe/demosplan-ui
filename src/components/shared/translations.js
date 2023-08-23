@@ -52,10 +52,12 @@ const de = {
   image: {
     alt: {
       editHint: 'Strg + Klick, um den alternativen Text zu bearbeiten',
-      explanation: 'Ein Screenreader liest diesen Text anstelle des Bildes vor.'
+      explanation: 'Ein Screenreader liest diesen Text anstelle des Bildes vor.',
+      placeholder: 'Hier können Sie Ihren alternativen Text einfügen.'
     },
     edit: 'Bild bearbeiten',
-    insert: 'Bild einfügen'
+    insert: 'Bild einfügen',
+    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]'
   },
   input: {
     text: {

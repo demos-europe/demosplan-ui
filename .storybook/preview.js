@@ -1,8 +1,5 @@
-import { Tooltip } from '../src/directives'
 import Vue from 'vue'
 import { Translator } from './translatorMock'
-
-Vue.directive('tooltip', Tooltip)
 
 Vue.prototype.Translator = Translator
 

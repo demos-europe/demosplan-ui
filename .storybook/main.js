@@ -18,8 +18,9 @@ module.exports = {
     config.module.rules.push({
       resourceQuery: /blockType=license/,
       loader: require.resolve('./removeSFCBlockLoader.js')
-    });
-    return config;
+    })
+
+    return config
   },
   framework: {
     name: "@storybook/vue-webpack5",

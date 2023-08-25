@@ -376,14 +376,14 @@ export default {
       allExpanded: false,
       allWrapped: false,
       defaultTranslations: {
-        footerSelectedElement: Translator.trans('entry.selected'),
-        footerSelectedElements: Translator.trans('entries.selected'),
-        headerExpandHint: Translator.trans('aria.expand.all'),
-        headerSelectHint: Translator.trans('aria.select.all'),
-        lockedForSelection: Translator.trans('item.lockedForSelection'),
+        footerSelectedElement: de.entrySelected,
+        footerSelectedElements: de.entriesSelected,
+        headerExpandHint: de.expandAll,
+        headerSelectHint: de.select.all,
+        lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
         tableLoadingData: de.loadingData,
-        tableNoElements: Translator.trans('explanation.noentries')
+        tableNoElements: de.explanationNoentries
       },
       elementSelections: {},
       expandedElements: {},

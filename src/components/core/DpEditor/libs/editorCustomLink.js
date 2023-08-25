@@ -2,6 +2,8 @@ import { mergeAttributes } from '@tiptap/core'
 import { Link } from '@tiptap/extension-link'
 
 export default Link.extend({
+  name: 'customLink',
+
   addOptions () {
     return {
       openOnClick: true,
@@ -38,5 +40,19 @@ export default Link.extend({
       this.options.HTMLAttributes,
       HTMLAttributes
     ), 0]
+  },
+
+  addCommands () {
+    return {
+      setCustomLink: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleCustomLink: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetCustomLink: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
+    }
   }
 })

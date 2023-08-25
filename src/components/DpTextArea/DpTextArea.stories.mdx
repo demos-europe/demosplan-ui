@@ -125,10 +125,13 @@ If a textarea is `required`, an asterisk will be added to its label.
 
 ### Attributes
 
-Allows passing of additional attributes into the inner form element. Only chosen elements are allowed for each element type, failing if at least one attribute is not allowed within the array.
-Attributes are specified like :attributes="['attrName1=attrValue1', 'attrName2=attrValue2']".
-Params:
-element: String – Type of element
+Allows passing of additional attributes into the inner form element (i.e., the textarea element). Allowed attributes for DpTextArea are
+- rows
+- cols
+
+If at least one disallowed attribute is passed, an error will be thrown.
+Only chosen elements are allowed for each element type, failing if at least one attribute is not allowed within the array.
+Attributes are specified as follows:
 
 For Examples:
 

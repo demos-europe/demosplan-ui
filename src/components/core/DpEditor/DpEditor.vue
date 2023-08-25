@@ -769,12 +769,12 @@ export default {
     },
 
     replacePlaceholdersWithImages (text = this.currentValue) {
-      const placeholder = Translator.trans('image.placeholder')
+      const placeholder = de.image.placeholder
       const placeholderText = placeholder.startsWith('[') && placeholder.endsWith(']') ? placeholder.slice(1, -1) : placeholder
       const regex = new RegExp(`(\\[${placeholderText}\\].*?-->)`, 'gm')
       try {
         return text.replace(regex, (match, p1) => {
-          const altText = p1.match(/{([^}]*?)}/)[1] === Translator.trans('image.alt.placeholder') ? '' : p1.match(/{([^}]*?)}/)[1]
+          const altText = p1.match(/{([^}]*?)}/)[1] === de.image.alt.placeholder ? '' : p1.match(/{([^}]*?)}/)[1]
           const placeholder = p1.match(/<!-- (.*?) -->/)[1]
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]

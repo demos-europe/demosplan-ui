@@ -1,15 +1,6 @@
 import { Meta } from '@storybook/addon-docs'
 
-<Meta
-  title="Design Tokens/Rounded"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: {
-        hidden: true
-      }
-    },
-  }} />
+<Meta title="Design Tokens/Rounded"/>
 
 
 # Rounded tokens
@@ -29,13 +20,13 @@ These tokens define the way things may be rounded in demosplan.
 
 Rounded tokens can be consumed as Scss variables. To use them, they have to be imported at first:
 
-```
+```scss
 @import '@demos-europe/demosplan-ui/tokens/scss/rounded';
 ```
 
 Then, tokens can be used within Scss code:
 
-```
+```scss
 .toolbar {
     border-radius: $dp-rounded-md;
 }
@@ -49,7 +40,7 @@ Then, tokens can be used within Scss code:
 
 As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
 
-```
+```html
 <div class="rounded-sm">
   I'm just a little label in a big world.
 </div

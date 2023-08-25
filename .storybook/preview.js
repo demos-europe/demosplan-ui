@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import { Translator } from './translatorMock'
+
+Vue.prototype.Translator = Translator
 
 const beautifyHtml = require('js-beautify').html
 

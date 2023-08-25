@@ -197,7 +197,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('choose')
+      default: de.choose
     },
 
     required: {
@@ -239,7 +239,7 @@ export default {
     tagPlaceholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('tag.create')
+      default: de.tag.create
     },
 
     trackBy: {

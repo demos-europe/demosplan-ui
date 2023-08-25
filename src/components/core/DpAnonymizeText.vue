@@ -12,13 +12,13 @@
           v-if="isActive.anonymize()"
           class="editor-menububble__button is-active"
           @click="commands.unanonymize">
-          {{ Translator.trans('statement.anonymize.unmark') }}
+          {{ translations.unanonymize }}
         </a>
         <a
           v-else
           class="editor-menububble__button"
           @click="commands.anonymize">
-          {{ Translator.trans('statement.anonymize.mark') }}
+          {{ translations.anonymize }}
         </a>
       </div>
     </editor-menu-bubble>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { de } from '../shared/translations'
 import {
   Bold,
   BulletList,
@@ -68,7 +69,11 @@ export default {
 
   data () {
     return {
-      editor: null
+      editor: null,
+      translations: {
+        anonymize: de.anonymization.mark,
+        unanonymize: de.anonymization.unmark
+      }
     }
   },
 

@@ -1,32 +1,23 @@
 import { Meta } from '@storybook/addon-docs'
 
-<Meta
-  title="Design Tokens/Box Shadow"
-  parameters={{
-    viewMode: 'docs',
-    previewTabs: {
-      canvas: {
-        hidden: true
-      }
-    },
-  }} />
+<Meta title="Design Tokens/Box Shadow"/>
 
 # Box Shadow tokens
 
-The demosplan-ui BoxShadow tokens variables adds shadow effects around an element's frame.
+The BoxShadow tokens add shadow effects around an element's frame.
 
-There are several sizes (from 1 - smallest elevation, to 4 - biggest elevation). Detailed use cases can be found in the token description.
+| SCSS Variable      | Tailwind Class | Description                                                                                                  |
+|--------------------|----------------|--------------------------------------------------------------------------------------------------------------|
+| `$dp-box-shadow`   | `.shadow`      | Default elevation. Use for Cards + Buttons.                                                                 |
+| `$dp-box-shadow-md`| `.shadow-md`   | Medium elevation. Use for Elevated Cards + Buttons.                                                         |
+| `$dp-box-shadow-lg`| `.shadow-lg`   | Highest elevation. Use for Modals.                                                                          |
+| `$dp-box-shadow-xl`| `.shadow-xl`   | Extra shadow optimized for boxes that take up 100% width or height of viewport. Use e.g. for Sidebar, BottomBar. |
 
-```
-$dp-box-shadow-xl
-$dp-box-shadow-lg
-$dp-box-shadow-md
-$dp-box-shadow
-```
+Detailed use cases for each can be found in the token description.
 
-The `$dp-box-shadow-1` to `$dp-box-shadow-4` still work, but will be removed eventually.
+The `$dp-box-shadow-1` to `$dp-box-shadow-4` Scss variables still work, but will be removed eventually.
 
-## How to use and override BoxShadow tokens
+## Usage example - Scss
 
 BoxShadow tokens can be consumed as Scss variables. To use them, they have to be imported at first:
 
@@ -34,7 +25,7 @@ BoxShadow tokens can be consumed as Scss variables. To use them, they have to be
 @import '@demos-europe/demosplan-ui/tokens/scss/boxShadow';
 ```
 
-Then, tokens can be used within Scss code:
+Then, they can be used within Scss code:
 
 ```
 &.is-active:active {
@@ -43,8 +34,7 @@ Then, tokens can be used within Scss code:
 }
 ```
 
-
-### Tailwind utilities
+## Usage example - Tailwind utility class
 
 As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
 They replace the BoxShadow classes mentioned within the Tailwind documentation.

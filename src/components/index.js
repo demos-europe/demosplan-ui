@@ -1,9 +1,11 @@
 import dataTableSearch from './DpDataTable/DataTableSearch'
+import DpAddonWrapper from './DpAddonWrapper/DpAddonWrapper';
 import DpAccordion from './DpAccordion/DpAccordion'
 import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
 import DpButton from './DpButton/DpButton'
 import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
+import DpBadge from './DpBadge/DpBadge'
 import DpCard from './DpCard/DpCard'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
@@ -22,6 +24,7 @@ import DpHeightLimit from './DpHeightLimit/DpHeightLimit'
 import DpIcon from './DpIcon/DpIcon'
 import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
+import DpInsertableRecommendation from './DpInsertableRecommendation/DpInsertableRecommendation'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpModal from './DpModal/DpModal'
@@ -69,7 +72,9 @@ import {
 
 export {
   dataTableSearch,
+  DpAddonWrapper,
   DpAccordion,
+  DpBadge,
   DpButton,
   DpButtonRow,
   DpDetails,
@@ -98,6 +103,7 @@ export {
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
+  DpInsertableRecommendation,
   DpModal,
   DpMultiselect,
   DpMultistepNav,

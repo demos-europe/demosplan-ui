@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpCard from './DpCard.vue'
-import DpLoading from '../DpLoading/DpLoading.vue'
 
 const meta: Meta<typeof DpCard> = {
     component: DpCard,
@@ -8,14 +7,13 @@ const meta: Meta<typeof DpCard> = {
     argTypes: {},
     render: (args) => ({
         components: {
-            DpCard,
-            DpLoading
+            DpCard
         },
         setup() {
             return { args }
         },
         template: `<dp-card v-bind="args">
-          <dp-loading class="u-mt-0_5" />
+          Content goes here (into the default slot).
         </dp-card>`,
     })
 }

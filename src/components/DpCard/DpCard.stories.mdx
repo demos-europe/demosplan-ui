@@ -8,8 +8,9 @@ import DpCard from './DpCard'
 
 # Card
 
-The DpCard component used to add Card section with `heading`, `heading-tooltip` props, and include some text or component
-like `dp-button` or `dp-loading`.
+The Card component is used to present concise and structured information in a visually appealing and organized manner. It can be used to display widgets in a dashboard, or a collection of distinct items.
+
+The heading and tooltip of a card is set via props, while the content is passed via its default slot.
 
 ## Default usage
 
@@ -17,7 +18,9 @@ like `dp-button` or `dp-loading`.
 <dp-card
     :heading="Translator.trans('heading')"
     :heading-tooltip="Translator.trans('analytics.visitorMetrics.contextualHelp')">
-    <div class="text--right u-mt">
+    Content goes here (into the default slot).
+    Cards typically also contain actionable controls like buttons:
+    <div class="text-right u-mt">
       <dp-button
         :href="userFilteredSegmentUrl"
         :text="Translator.trans('tasks.view')" />

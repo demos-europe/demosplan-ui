@@ -12,7 +12,7 @@
 import { checkResponse, dpRpc } from '../../lib/DpApi'
 
 export default {
-  name: 'AddonWrapper',
+  name: 'DpAddonWrapper',
 
   props: {
     /**

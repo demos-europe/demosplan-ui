@@ -17,7 +17,9 @@ like `dp-button` or `dp-loading`.
 <dp-card
     :heading="Translator.trans('heading')"
     :heading-tooltip="Translator.trans('analytics.visitorMetrics.contextualHelp')">
-    <div class="text--right u-mt">
+    Content goes here (into the default slot).
+    Cards typically also contain actionable controls like buttons:
+    <div class="text-right u-mt">
       <dp-button
         :href="userFilteredSegmentUrl"
         :text="Translator.trans('tasks.view')" />

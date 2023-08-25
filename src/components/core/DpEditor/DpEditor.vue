@@ -698,17 +698,17 @@ export default {
       extensions.push(InsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
-      this.suggestions.forEach(suggestion => {
-        extensions.push(Mention.configure({
-          HTMLAttributes: {
-            class: 'suggestion__node'
-          },
-          renderLabel({ node }) {
-            return suggestion.matcher.char + node.attrs.label
-          },
-          suggestion: buildSuggestion(suggestion)
-        }))
-      })
+        this.suggestions.forEach(suggestion => {
+          extensions.push(Mention.configure({
+            HTMLAttributes: {
+              class: 'suggestion__node'
+            },
+            renderLabel({ node }) {
+              return suggestion.matcher.char + node.attrs.label
+            },
+            suggestion: buildSuggestion(suggestion)
+          }))
+        })
       }
 
       if (this.toolbar.headings.length > 0) {
@@ -855,18 +855,18 @@ export default {
         const selection = this.editor.view.state.selection
 
         this.editor.commands.insertContent({
-            type: selection.node ? selection.node.type.name : 'text',
-            text: linkText,
-            marks: [
-              {
-                type: 'customLink',
-                attrs: {
-                  href: linkUrl,
-                  target: newTab ? '_blank' : null
-                }
+          type: selection.node ? selection.node.type.name : 'text',
+          text: linkText,
+          marks: [
+            {
+              type: 'customLink',
+              attrs: {
+                href: linkUrl,
+                target: newTab ? '_blank' : null
               }
-            ]
-          })
+            }
+          ]
+        })
       }
     },
 
@@ -937,14 +937,14 @@ export default {
       if (nodeBefore) {
         const linkMark = this.getLinkMark(nodeBefore)
         if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.commands.setNodeSelection((tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), tr.selection.anchor)
+          this.editor.commands.setTextSelection({ from: (tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), to: tr.selection.anchor })
         }
       }
 
       if (nodeAfter) {
         const linkMark = this.getLinkMark(nodeAfter)
         if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.commands.setNodeSelection(tr.selection.anchor, (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize))
+          this.editor.commands.setTextSelection({ from: tr.selection.anchor, to: (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize) })
         }
       }
     },

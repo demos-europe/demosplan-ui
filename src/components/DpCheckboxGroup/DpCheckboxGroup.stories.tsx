@@ -6,16 +6,7 @@ const meta: Meta<typeof DpCheckboxGroup> = {
     title: "Components/CheckboxGroup",
     argTypes: {
         'update': { action: 'update' }
-    },
-    render: (args) => ({
-        components: {
-            DpCheckboxGroup,
-        },
-        setup() {
-            return { args }
-        },
-        template: `<dp-checkbox-group v-bind="args"></dp-checkbox-group>`,
-    })
+    }
 }
 
 export default meta
@@ -27,6 +18,5 @@ export const Default: Story = {
             { id: 'option-1-id', label: 'option 1', name: 'option-1' },
             { id: 'option-2-id', label: 'option 2', name: 'option-2' },
         ]
-    },
-    template: '<dp-checkbox-group @update="update" v-bind="$props"></dp-checkbox-group>',
+    }
 }

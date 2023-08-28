@@ -1,4 +1,4 @@
-import { EditorState, TextSelection } from 'prosemirror-state'
+import { EditorState, Plugin, PluginKey, TextSelection } from 'prosemirror-state'
 import { Decoration, DecorationSet, EditorView } from 'prosemirror-view'
 import { DOMParser, DOMSerializer, Schema } from 'prosemirror-model'
 import { addListNodes } from 'prosemirror-schema-list'
@@ -12,6 +12,8 @@ export {
   DOMSerializer,
   EditorState,
   EditorView,
+  Plugin,
+  PluginKey,
   Schema,
   schema,
   TextSelection

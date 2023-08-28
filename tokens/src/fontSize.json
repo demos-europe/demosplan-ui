@@ -1,0 +1,111 @@
+{
+  "font-size": {
+    "scale": {
+      "$description": "The numbers count from 0 (smallest possible size) up to 7 (biggest size used). When on inuit 6, calculate those with https://github.com/modularscale/modularscale-sass. The default font-size is 16px.",
+      "0": {
+        "value": "11px",
+        "themeable": true
+      },
+      "1": {
+        "value": "12px",
+        "themeable": true
+      },
+      "2": {
+        "value": "14px",
+        "themeable": true
+      },
+      "3": {
+        "value": "16px",
+        "themeable": true
+      },
+      "4": {
+        "value": "19.2px",
+        "themeable": true
+      },
+      "5": {
+        "value": "23px",
+        "themeable": true
+      },
+      "6": {
+        "value": "27.65px",
+        "themeable": true
+      },
+      "7": {
+        "value": "50px",
+        "themeable": true
+      }
+    },
+    "brand": {
+      "hero": {
+        "$description": "The [hero] font size is used to style the single most gigantic headline of the site.",
+        "value": "{font-size.scale.7}",
+        "themeable": true
+      },
+      "header": {
+        "$description": "The [header] font size styles the pageheader in the participation area. Usage of var() is omitted here intentionally because it breaks when passing it to inuit-font-size() mixin.",
+        "value": "{font-size.scale.5}",
+        "themeable": true
+      }
+    },
+    "heading": {
+      "$description": "The [h1-h6] sizes are used to create visual hierarchy with heading-like entities that structure long-form content. Do not use them when styling interface elements. Use [large|small] instead.",
+      "h1": {
+        "value": "{font-size.scale.6}",
+        "themeable": true
+      },
+      "h2": {
+        "value": "{font-size.scale.5}",
+        "themeable": true
+      },
+      "h3": {
+        "value": "{font-size.scale.4}",
+        "themeable": true
+      },
+      "h4": {
+        "value": "{font-size.scale.3}",
+        "themeable": true
+      },
+      "h5": {
+        "value": "{font-size.scale.2}",
+        "themeable": true
+      },
+      "h6": {
+        "value": "{font-size.scale.1}",
+        "themeable": true
+      }
+    },
+    "ui": {
+      "$description": "The [large|medium|small|smaller|smallest] font sizes are used to create hierarchy between interface elements via font size, like tabs, action buttons and the like. Do not use it to create visual hierarchy with long text. Go for [h1-h6] tokens instead.",
+      "larger": {
+        "$description": "Use for heading title, like in StatementSegmentsList component for title of Statement",
+        "value": "{font-size.scale.5}",
+        "themeable": true
+      },
+      "large": {
+        "$description": "Tabs, Action buttons, \"more important\" ui",
+        "value": "{font-size.scale.4}",
+        "themeable": true
+      },
+      "medium": {
+        "$description": "Body copy and other text that should be readable",
+        "value": "{font-size.scale.3}",
+        "themeable": true
+      },
+      "small": {
+        "$description": "Less important text that still has to be readable",
+        "value": "{font-size.scale.2}",
+        "themeable": true
+      },
+      "smaller": {
+        "$description": "Even smaller text that is hardly readable; do not use it. Please.",
+        "value": "{font-size.scale.1}",
+        "themeable": true
+      },
+      "smallest": {
+        "$description": "Use only for very short text that is used as visual cue inside labels.",
+        "value": "{font-size.scale.0}",
+        "themeable": true
+      }
+    }
+  }
+}

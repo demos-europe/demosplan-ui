@@ -1,9 +1,10 @@
 <template>
   <svg
     class="c-icon"
+    :class="proportionClass"
     :height="pxSize"
     :width="pxSize"
-    viewBox="0 0 16 16"
+    viewBox="0 0 256 256"
     xmlns="http://www.w3.org/2000/svg">
     <path :d="path" />
   </svg>
@@ -11,6 +12,7 @@
 
 <script>
 import { ICONS, SIZES } from './util/iconVariables'
+import { hasOwnProp } from '../../utils'
 
 export default {
   name: 'DpIcon',
@@ -35,7 +37,20 @@ export default {
     },
 
     path () {
-      return ICONS[this.icon].path
+      if (hasOwnProp(ICONS[this.icon], 'path') && !!ICONS[this.icon].path) {
+        return ICONS[this.icon].path
+      } else {
+        console.warn(`DpIcon is called with an unsupported "icon" value.`)
+        return ICONS.warning.path
+      }
+    },
+
+    /**
+     * To enable authors to adapt spacing to different icon proportions, a selector
+     * is applied based on the width/height proportions of the path element.
+     */
+    proportionClass () {
+      return ICONS[this.icon]?.proportions || 'square'
     }
   }
 }

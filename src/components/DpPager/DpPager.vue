@@ -1,21 +1,27 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal display--inline-block"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
       :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
-      <span aria-hidden="true">
-        {{ Translator.trans('pager.amount.multiple.show') }}
-      </span>
+        <dp-sliding-pagination
+          v-if="totalItems > Math.min(...limits)"
+          class="inline-block"
+          :current="currentPage"
+          :nonSlidingSize="3"
+          :slidingEndingSize="1"
+          :slidingWindowSize="1"
+          :total="totalPages || 1"
+          @page-change="handlePageChange" />
       <div
-        class="display--inline-block"
+        class="inline-block"
         v-if="totalItems > Math.min(...limits)">
         <dp-multiselect
-          class="display--inline-block"
           v-model="itemsPerPage"
-          @select="handleSizeChange"
+          class="inline-block"
+          :options="filteredLimits"
           :searchable="false"
           selected-label=""
-          :options="filteredLimits" />
+          @select="handleSizeChange"/>
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
@@ -24,12 +30,6 @@
         {{ Translator.trans('pager.amount.multiple.items') }}
       </span>
     </label>
-    <dp-sliding-pagination
-      v-if="totalItems > Math.min(...limits)"
-      class="display--inline-block"
-      :current="currentPage"
-      :total="totalPages || 1"
-      @page-change="handlePageChange" />
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import { action } from '@storybook/addon-actions'
+import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
 
 import DpButton from './DpButton'
 
@@ -21,7 +22,11 @@ import DpButton from './DpButton'
       }
     },
     variant: {
-      options: ['', 'outline'],
+      options: ['solid', 'outline', 'subtle'],
+      control: { type: 'select' }
+    },
+    iconSize: {
+      options: Object.keys(ICON_SIZES),
       control: { type: 'select' }
     }
   }}
@@ -88,6 +93,17 @@ export const Template = (args, { argTypes }) => ({
 
 ## Variants
 
+### Solid
+<Canvas>
+  <Story
+    name="Solid"
+    args={{
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
 ### Outline
 <Canvas>
     <Story
@@ -98,6 +114,30 @@ export const Template = (args, { argTypes }) => ({
         }}>
         {Template.bind({})}
     </Story>
+</Canvas>
+
+### Subtle
+<Canvas>
+  <Story
+    name="Subtle"
+    args={{
+      variant: 'subtle',
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Rounded
+<Canvas>
+  <Story
+    name="Rounded"
+    args={{
+      rounded: true,
+      text: 'Save'
+    }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 ## Render a link element
@@ -124,13 +164,27 @@ export const Template = (args, { argTypes }) => ({
     </Story>
 </Canvas>
 
-## Use the default slot to render additional content
+## With Icon
 <Canvas>
-    <Story
-        name="With default slot"
-        args={{
-            default: `<i class="fa fa-pencil" aria-hidden="true" /> Edit item`
-        }}>
-        {Template.bind({})}
-    </Story>
+  <Story
+    name="With Icon"
+    args={{
+      iconAfter: 'chevron-right',
+      text: 'Next'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Only Icon
+<Canvas>
+  <Story
+    name="Only Icon"
+    args={{
+      hideText: true,
+      icon: 'edit',
+      text: 'Edit item'
+    }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>

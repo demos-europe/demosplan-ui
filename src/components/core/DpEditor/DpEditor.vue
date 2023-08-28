@@ -32,8 +32,8 @@
                 @click="cut"
                 :class="prefixClass('menubar__button')"
                 type="button"
-                :aria-label="Translator.trans('editor.cut')"
-                v-tooltip="Translator.trans('editor.cut')"
+                :aria-label="translations.cut"
+                v-tooltip="translations.cut"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-scissors')"
@@ -45,8 +45,8 @@
                 @click="commands.undo"
                 :class="prefixClass('menubar__button')"
                 type="button"
-                :aria-label="Translator.trans('editor.undo')"
-                v-tooltip="Translator.trans('editor.undo')"
+                :aria-label="translations.undo"
+                v-tooltip="translations.undo"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-reply')"
@@ -57,8 +57,8 @@
                 @click="commands.redo"
                 :class="prefixClass('menubar__button')"
                 type="button"
-                :aria-label="Translator.trans('editor.redo')"
-                v-tooltip="Translator.trans('editor.redo')"
+                :aria-label="translations.redo"
+                v-tooltip="translations.redo"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-share')"
@@ -72,8 +72,8 @@
                   @click="commands.bold"
                   :class="[isActive.bold() ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
                   type="button"
-                  :aria-label="Translator.trans('editor.bold')"
-                  v-tooltip="Translator.trans('editor.bold')"
+                  :aria-label="translations.bold"
+                  v-tooltip="translations.bold"
                   :disabled="readonly">
                   <i
                     :class="prefixClass('fa fa-bold')"
@@ -85,8 +85,8 @@
                   @click="commands.italic"
                   :class="[isActive.italic() ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                   type="button"
-                  :aria-label="Translator.trans('editor.italic')"
-                  v-tooltip="Translator.trans('editor.italic')"
+                  :aria-label="translations.italic"
+                  v-tooltip="translations.italic"
                   :disabled="readonly">
                   <i
                     :class="prefixClass('fa fa-italic')"
@@ -97,8 +97,8 @@
                   @click="commands.underline"
                   :class="[isActive.underline() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
-                  :aria-label="Translator.trans('editor.underline')"
-                  v-tooltip="Translator.trans('editor.underline')"
+                  :aria-label="translations.underline"
+                  v-tooltip="translations.underline"
                   :disabled="readonly">
                   <i
                     :class="prefixClass('fa fa-underline')"
@@ -120,7 +120,7 @@
               </button>
               <div
                 v-if="toolbar.insertAndDelete"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   :class="[isActive.insert() || isActive.delete() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
@@ -128,7 +128,7 @@
                   @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
                   :disabled="readonly">
                   <dp-icon
-                    class="u-valign--text-top"
+                    class="align-text-top"
                     icon="highlighter" />
                   <i :class="prefixClass('fa fa-caret-down')" />
                 </button>
@@ -151,7 +151,7 @@
               </div>
               <div
                 v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
@@ -164,7 +164,7 @@
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
                   <dp-icon
-                    class="u-valign--text-top"
+                    class="align-text-top"
                     icon="highlighter" />
                 </button>
               </div>
@@ -214,7 +214,7 @@
                 @click="commands.obscure"
                 :class="[isActive.obscure() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                v-tooltip="Translator.trans('obscure.title')"
+                v-tooltip="translations.obscureTitle"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-pencil-square')"
@@ -236,7 +236,7 @@
                 @click.stop="openUploadModal(null)"
                 :class="prefixClass('menubar__button')"
                 type="button"
-                v-tooltip="Translator.trans('image.insert')"
+                v-tooltip="translations.insertImage"
                 :disabled="readonly">
                 <i
                   :class="prefixClass('fa fa-picture-o')" />
@@ -244,7 +244,7 @@
               <!-- Insert and edit tables -->
               <div
                 v-if="toolbar.table"
-                :class="prefixClass('display--inline-block position--relative')">
+                :class="prefixClass('inline-block relative')">
                 <button
                   :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                   type="button"
@@ -273,7 +273,7 @@
               <button
                 v-if="toolbar.fullscreenButton"
                 @click="fullscreen"
-                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
+                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
                 type="button"
                 :aria-label="Translator.trans('editor.fullscreen')"
                 v-tooltip="Translator.trans('editor.fullscreen')">
@@ -296,6 +296,7 @@
             :data-dp-validate-if="dataDpValidateIf || false"
             type="hidden"
             :id="hiddenInput"
+            :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
             :name="hiddenInput"
             :class="[required ? prefixClass('is-required') : '', prefixClass('tiptap__input--hidden')]"
             :data-dp-validate-maxlength="maxlength"
@@ -313,6 +314,7 @@
 </template>
 
 <script>
+import { de } from '../../shared/translations'
 import {
   Bold,
   BulletList,
@@ -370,6 +372,18 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateIf: {
+      type: String,
+      default: '',
+      required: false
+    },
+
     /**
      * Only needed for testing purposes with data-cy
      */
@@ -485,12 +499,6 @@ export default {
     value: {
       type: String,
       required: true
-    },
-
-    dataDpValidateIf: {
-      type: String,
-      default: '',
-      required: false
     }
   },
 
@@ -608,7 +616,12 @@ export default {
          */
         table: false,
         textDecoration: true
-      }, this.toolbarItems)
+      }, this.toolbarItems),
+      translations: {
+        ...de.editor,
+        insertImage: de.image.insert,
+        obscureTitle: de.obscure.title
+      }
     }
   },
 
@@ -756,12 +769,12 @@ export default {
     },
 
     replacePlaceholdersWithImages (text = this.currentValue) {
-      const placeholder = Translator.trans('image.placeholder')
+      const placeholder = de.image.placeholder
       const placeholderText = placeholder.startsWith('[') && placeholder.endsWith(']') ? placeholder.slice(1, -1) : placeholder
       const regex = new RegExp(`(\\[${placeholderText}\\].*?-->)`, 'gm')
       try {
         return text.replace(regex, (match, p1) => {
-          const altText = p1.match(/{([^}]*?)}/)[1] === Translator.trans('image.alt.placeholder') ? '' : p1.match(/{([^}]*?)}/)[1]
+          const altText = p1.match(/{([^}]*?)}/)[1] === de.image.alt.placeholder ? '' : p1.match(/{([^}]*?)}/)[1]
           const placeholder = p1.match(/<!-- (.*?) -->/)[1]
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]

@@ -2,6 +2,10 @@ import validateMultiselect from './utils/validateMultiselect'
 
 const dpValidateMultiselectDirective = {
   inserted (el, binding, vnode) {
+    if(!binding.value) {
+      return
+    }
+
     // Set initially correct validity value (no dropdown options => isValid)
     const component = vnode.componentInstance
     const hasOptions = component.groupValues ? component.options.some(group => group[component.groupValues].length > 0) : component.options.length > 0
@@ -18,6 +22,10 @@ const dpValidateMultiselectDirective = {
   },
 
   componentUpdated (el, binding, vnode) {
+    if(!binding.value) {
+      return
+    }
+
     const component = vnode.componentInstance
     const hasOptions = component.groupValues ? component.options.some(group => group[component.groupValues].length > 0) : component.options.length > 0
     let isValid = checkValue(component.value)

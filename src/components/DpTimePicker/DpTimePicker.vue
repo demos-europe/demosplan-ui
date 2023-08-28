@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-timepicker display--inline-block"
+    class="c-timepicker inline-block"
     v-click-outside="closeFlyout"
     @keydown.esc="closeFlyout"
     @keydown.enter="e => handleEnter(e)">
@@ -35,8 +35,8 @@
 
     <div
       ref="flyout"
-      v-show="showFlyout"
-      class="flex flex-items-start flex-content-evenly c-timepicker__flyout font-size-small"
+      class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
+      :class="{ 'hidden': !showFlyout }"
       tabindex="0">
       <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll height-130">
         <li

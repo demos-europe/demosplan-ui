@@ -1,0 +1,116 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { DpButton } from '../index'
+import { DpTooltip } from './../../components'
+import { Tooltip } from '../../directives'
+
+<Meta
+argTypes={{
+  default: {
+    text: {
+      type: 'text'
+    }
+  }
+}}
+parameters={{
+  slots: {
+    default: {
+      description: 'Default slot',
+      template: `<p>{{ args.default }}</p>`,
+    },
+  }
+}}
+title="Components/Tooltip"
+component={DpTooltip} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DpTooltip, DpButton },
+  template: `<dp-tooltip v-bind="propsWithoutDefaultSlot" >{{ slotcontent }}</dp-tooltip>`,
+  computed: {
+    propsWithoutDefaultSlot() {
+      const all = this.$props
+      delete all['default']
+      return all
+    }
+  }
+});
+
+
+export const DirectiveTemplate = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpButton },
+    template: `<DpButton v-tooltip="'${Object.values(args)[0]}'">My button</DpButton>`,
+    directives: {
+      tooltip: Tooltip
+    },
+    computed: {
+      propsWithoutDefaultSlot () {
+        const all = this.$props
+        delete all['default']
+        return all
+      }
+    }
+})
+
+
+# Tooltip
+
+Renders a Tooltip.
+
+
+## Usage as Directive
+
+<Canvas>
+  <Story
+    name="As Directive"
+    args={{
+      ['v-tooltip']: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes',
+    }}>
+    {DirectiveTemplate.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage without HTML
+
+<Canvas>
+  <Story
+    name="without HTML"
+    args={{
+      text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem',
+      slotcontent: '<p>my trigger</p>'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage with HTML
+
+<Canvas>
+  <Story
+    name="With HTML"
+    args={{
+      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
+      slotcontent: 'my text'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage with HTML
+
+<Canvas>
+  <Story
+    name="With custom context"
+    args={{
+      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
+      slotcontent: 'another Tooltip Hook',
+      container: '#root',
+      placement: 'right'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+

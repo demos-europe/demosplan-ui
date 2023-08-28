@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Design Tokens/Overview"/>
+
+# Design tokens
+
+Design tokens are **named entities that store visual design attributes**. While both design tokens and utility classes
+are the smallest building blocks of this system, design tokens differ in that they provide a specific usage context
+for the values they represent.
+
+Design tokens help **maintaining a scalable and consistent visual system** for ui development. Furthermore, by introducing
+specific brand tokens we lay the groundwork for a themeable system.
+
+## Naming scheme
+
+Tokens are made up of the following scheme:
+
+```
+<Namespace>-<Category>(-<Domain>)?-<Concept/Element>-<Variant/State>(-<Context>)?
+```
+
+- *Namespace* is always "dp"
+- *Category* can be "color", "space", or "font-size"
+- *Domain* can be "brand", "data", "ui" or "palette" (domain part is omitted for the sake of readability within generated variables)
+- *Concept/Element* can be either a color name (in palette colors), or a concept the token applies to (like "main" in brand tokens,
+  or "interactive" in ui tokens).
+- *Variant/State* can either be a shade ("dark-2" oder "base") in palette colors, or a state (like "hover", or "progress")
+- *Context* may further specify in which context a value is intended to be used - `$dp-color-message-severe-interactive`
+  should be applied to interactive elements inside messaging components that convey severe state, while
+  `$dp-color-status-progress-fill` can be applied to shapes (like icons or rectangles) to communicate that something is in progress.
+
+## Applying Design Tokens as Tailwind Utility Classes and SCSS Variables
+
+Tokens can be utilized through Tailwind Utility Classes and SCSS Variables. As we're currently migrating to Tailwind,
+not all tokens are already available as Tailwind classes.
+
+| Token          | SCSS Variable  | Tailwind Utility Class |
+|----------------|----------------|------------------------|
+| Box Shadow     |       ✔        |          ✔             |
+| Breakpoints    |       ✔        |          ✔             |
+| Color          |       ✔        |                        |
+| Font Size      |       ✔        |                        |
+| Border Radius  |       ✔        |          ✔             |
+| Z-Index        |       ✔        |          ✔             |

@@ -1,6 +1,195 @@
 # Changelog
 
+Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
+
 ## UNRELEASED
+
+### Added
+
+- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)) Add DpCard documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#475](https://github.com/demos-europe/demosplan-ui/pull/475)) Add Tailwind Styles to Storybook7 ([@spiess-demos](https://github.com/spiess-demos))
+
+
+### Removed
+
+- ([#445](https://github.com/demos-europe/demosplan-ui/pull/445)) **Breaking:** Remove DpDashboardTaskCard component ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#379](https://github.com/demos-europe/demosplan-ui/pull/379)) Upgrade Storybook v7, Migrate stories to v7 ([@salisdemos](https://github.com/salisdemos)), ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#383](https://github.com/demos-europe/demosplan-ui/pull/383)) Rework Tooltip Directive and Component ([@salisdemos](https://github.com/salisdemos))
+  - Introduced DpTooltip. Please replace VPopover (now deprecated) with DpTooltip
+- ([#462](https://github.com/demos-europe/demosplan-ui/pull/462) Deprecate DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.12 - 2023-08-18
+
+### Added
+
+- ([#444](https://github.com/demos-europe/demosplan-ui/pull/444)), ([#443](https://github.com/demos-europe/demosplan-ui/pull/443)), ([#437](https://github.com/demos-europe/demosplan-ui/pull/437)) Add E2E Props ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+### Changed
+
+- ([#438](https://github.com/demos-europe/demosplan-ui/pull/438)) Stickier.js: An extra check has been added wherever the function _bindBottom is called: when the value of the stickToDirection is 'top' the funciton _bindBottom will not be performed.([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.11 - 2023-08-11
+
+### Fixed
+
+- ([#412](https://github.com/demos-europe/demosplan-ui/pull/412)) Import missing directive in DpMultiselect ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+### Changed
+
+- ([#409](https://github.com/demos-europe/demosplan-ui/pull/409)) Change the way to show/hide the dropdown menu in DpTimePicker by using the 'hidden' class instead of the 'v-show' directive ([@sakutademos](https://github.com/sakutademos))
+- ([#381](https://github.com/demos-europe/demosplan-ui/pull/381)) Change z-index values and var names to match Tailwind convention ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.1.10 - 2023-07-17
+
+### Added
+
+- ([#359](https://github.com/demos-europe/demosplan-ui/pull/359)) Add field names for incorrect fields to the error messages during the validation process (dpValidateMixin) ([@sakutademos](https://github.com/sakutademos))
+- ([#370](https://github.com/demos-europe/demosplan-ui/pull/370)) Add documentation for DpRadio ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#350](https://github.com/demos-europe/demosplan-ui/pull/350)) Add documentation for DpSelect ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#372](https://github.com/demos-europe/demosplan-ui/pull/372)) Add "question", "severe", and "warning" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.9 - 2023-07-13
+
+### Removed
+
+- ([#357](https://github.com/demos-europe/demosplan-ui/pull/357)) Remove Translator from DpSelect ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Changed
+
+- ([#314](https://github.com/demos-europe/demosplan-ui/pull/314), [#363](https://github.com/demos-europe/demosplan-ui/pull/363)) Use Barrel Export ([@salisdemos](https://github.com/@salisdemos))
+- ([#361](https://github.com/demos-europe/demosplan-ui/pull/361)) **Breaking:** Move compiled token files to "tokens/dist" folder", add borderRadius, boxShadow, breakpoints and z-index tokens to Tailwind config, deprecate old box-shadow and rounded Scss tokens ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#364](https://github.com/demos-europe/demosplan-ui/pull/364)) Add Prop IconSize to DpButton ([@salisdemos](https://github.com/@salisdemos))
+- ([#344](https://github.com/demos-europe/demosplan-ui/pull/344)) Add documentation for DpTabs ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#333](https://github.com/demos-europe/demosplan-ui/pull/333)) Add "rounded" prop to DpButton, add "arrow-up" and "arrow-down" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.8 - 2023-07-07
+
+### Added
+
+- ([#356](https://github.com/demos-europe/demosplan-ui/pull/356)) Add "blur" event in DpInput ([@salisdemos](https://github.com/@salisdemos))
+
+## v0.1.7 - 2023-06-27
+
+### Changed
+- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325)) **Breaking:** Remove spacing classes from DpAnonymizeText ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
+
+- ([#356](https://github.com/demos-europe/demosplan-ui/pull/356)) Add "blur" event in DpInput ([@salisdemos](https://github.com/@salisdemos))
+- ([#344](https://github.com/demos-europe/demosplan-ui/pull/344)) Add documentation for DpTabs ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#333](https://github.com/demos-europe/demosplan-ui/pull/333)) Add "rounded" prop to DpButton, add "arrow-up" and "arrow-down" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.7 - 2023-06-27
+
+### Changed
+
+- ([#325](https://github.com/demos-europe/demosplan-ui/pull/325), [#327](https://github.com/demos-europe/demosplan-ui/pull/327)), [#334](https://github.com/demos-europe/demosplan-ui/pull/334)), [#335](https://github.com/demos-europe/demosplan-ui/pull/335)) **Breaking:** Remove spacing classes from DpAnonymizeText, DpBulkEditHeader, DpFormRow and DpDataTableExtended ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
+
+- ([#318](https://github.com/demos-europe/demosplan-ui/pull/318)) Add a method called externalApi to make external API calls without including default headers ([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.6 - 2023-06-22
+
+### Changed
+
+- ([#306](https://github.com/demos-europe/demosplan-ui/pull/306)) Adapt some utility classes to use tailwind ([@spiess-demos](https://github.com/spiess-demos))
+
+### Removed
+
+- ([#303](https://github.com/demos-europe/demosplan-ui/pull/303)) **Breaking**: Remove DpChangeStateAtDate ([@hwiem](https://github.com/hwiem))
+- ([#256](https://github.com/demos-europe/demosplan-ui/pull/256)) **Breaking**: Remove DpCopyPasteButton ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+
+- ([#304](https://github.com/demos-europe/demosplan-ui/pull/304)) Fix invalid empty string for DpButtonRow ([@spiess-demos](https://github.com/spiess-demos))
+- ([#319](https://github.com/demos-europe/demosplan-ui/pull/319)) Fix data-cy prop on multiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.1.5 - 2023-06-16
+
+_Historic note: v0.1.4 was a bugfix release that contained picked changes from v0.1.5 at a state
+where this release was not fully ready yet and has therefore not been merged back to main. It can
+still be accessed via its release tag._
+
+### Added
+
+- ([#268](https://github.com/demos-europe/demosplan-ui/pull/268)) Tests: Add Test setup for Vue Files and some Tests ([@salis-demos](https://github.com/salis-demos))
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) Css: A Tailwind Css file is included in the module to be used by projects ([@spiess-demos](https://github.com/spiess-demos))
+- ([#269](https://github.com/demos-europe/demosplan-ui/pull/269)) DpIcon: new selector `landscape`, `portrait`, or `square`, based on icon proportions ([@spiess-demos](https://github.com/spiess-demos))
+- ([#270](https://github.com/demos-europe/demosplan-ui/pull/270)) DpIcon: new icons (ai, copy) ([@spiess-demos](https://github.com/spiess-demos))
+
+### Changed
+
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (eg. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
+- ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))
+- ([#230](https://github.com/demos-europe/demosplan-ui/pull/230)) Move from Functional Component to Template in DpDataTable ([@sakutademos](https://github.com/sakutademos))
+- ([#233](https://github.com/demos-europe/demosplan-ui/pull/233)) Move from Functional Component to Template in DpTableRow ([@sakutademos](https://github.com/sakutademos))
+- ([#280](https://github.com/demos-europe/demosplan-ui/pull/280)) Adjust DpTableHeader to work with DpDataTable template-based component ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+
+- ([#290](https://github.com/demos-europe/demosplan-ui/pull/290)) Add missing props to DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.1.3 - 2023-05-31
+
+### Removed
+
+- ([#255](https://github.com/demos-europe/demosplan-ui/pull/255)) **Breaking**: Remove DpRegisterFlyout ([@hwiem](https://github.com/hwiem))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) **Breaking**: DpButton does not support slots anymore. Use the `icon` prop instead. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+### Added
+
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpButton: New button variant "subtle" 👻, new props "icon", "iconAfter", "hideText" ([@spiess-demos](https://github.com/spiess-demos))
+- ([#259](https://github.com/demos-europe/demosplan-ui/pull/259)) DpIcon: New icons (chevron-left, chevron-right, edit) ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.2 - 2023-05-24
+
+### Fixed
+- ([#249](https://github.com/demos-europe/demosplan-ui/pull/249)) Fix console errors, use correct lifecycle hook and remove `this` from template  ([@muellerdemos](https://github.com/muellerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Allow number, array and object as value for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/237)) Add event listener for all events in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#234](https://github.com/demos-europe/demosplan-ui/pull/234)) Add prop for searchable for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Show buttons for select all and unselect all only if selectionControls is true in DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#237](https://github.com/demos-europe/demosplan-ui/pull/237)) Bind props to slots, so they are available for parent ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.1.1 - 2023-05-22
+
+**NOTE:** This release contains a slightly different changelog for v0.1. than the one that was published before.
+Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed until after the release.
+
+### Fixed
+
+- Remove duplicated prefix from space tokens ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1 - 2023-05-16
+
+### Changed
+
+- ([#108](https://github.com/demos-europe/demosplan-ui/pull/108)) **Breaking**: Add design tokens, split generated Scss into multiple files ([@ahmad-demos](https://github.com/ahmad-demos), [@spiess-demos](https://github.com/spiess-demos))
+- ([#211](https://github.com/demos-europe/demosplan-ui/pull/211)) **Breaking**: Replace Font Awesome with Phosphor Icons ([@spiess-demos](https://github.com/spiess-demos))
+- ([#205](https://github.com/demos-europe/demosplan-ui/pull/205)) Move from Functional Component to Template in DpTableHeader ([@elmasdemos](https://github.com/elmasdemos))
+- ([#203](https://github.com/demos-europe/demosplan-ui/pull/203)) Move from Functional Component to Template in DpContextualHelp ([@salisdemos](https://github.com/salisdemos))
+- ([#202](https://github.com/demos-europe/demosplan-ui/pull/202)) Move from Functional Component to Template in DpSlidingPagination ([@salisdemos](https://github.com/salisdemos))
+- ([#195](https://github.com/demos-europe/demosplan-ui/pull/195)) Move from Functional Component to Template in dpSelectPageItemCount ([@salisdemos](https://github.com/salisdemos))
+- ([#181](https://github.com/demos-europe/demosplan-ui/pull/181)) Move from Functional Component to Template in dpMultiselect ([@salisdemos](https://github.com/salisdemos))
+- ([#51](https://github.com/demos-europe/demosplan-ui/pull/51)) Configuration for jest tests for js files ([@elmasdemos](https://github.com/elmasdemos))
+- ([#212](https://github.com/demos-europe/demosplan-ui/pull/212)) Component: Expose `isExpanded` in DpFlyout trigger slot ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.0.21 - 2023-05-02
+
+### Changed
+
+- ([#175](https://github.com/demos-europe/demosplan-ui/pull/175)) adjust layout of DpPager ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.0.20 - 2023-04-18
 
@@ -11,6 +200,7 @@
 ## v0.0.19 - 2023-04-06
 
 ### Changed
+
 - ([#146](https://github.com/demos-europe/demosplan-ui/pull/146)) Expose DpNotifyMessage and deprecate DpNotifyContainer
 
 ### Fixed
@@ -128,3 +318,7 @@ Same as v0.0.13, but with up-to-date build dependencies this time around.
 ## v0.0.1 - 2022-11-15
 
 - This is unfinished and broken. We just need a starting point
+
+---
+
+[common-changelog]: https://common-changelog.org

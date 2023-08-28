@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'flex flex-column': growToParent }">
+  <div :class="{ 'flex flex-col': growToParent }">
     <dp-label
       v-if="label !== ''"
       v-bind="labelProps" /><!--
@@ -7,8 +7,9 @@
       :name="name"
       :id="id"
       class="o-form__control-textarea"
-      :class="{ 'flex-grow': growToParent, 'height-60': reducedHeight }"
+      :class="{ 'grow': growToParent, 'height-60': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :disabled="disabled"
       :maxlength="maxlength"
       v-bind="allowedAttributes"
@@ -33,6 +34,12 @@ export default {
 
   props: {
     attributes: attributes('textarea'),
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
 
     /**
      * Use to conditionally validate a required textarea field.

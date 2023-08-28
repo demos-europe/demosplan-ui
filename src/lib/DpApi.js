@@ -89,6 +89,21 @@ const dpRpc = function (method, parameters, id = null) {
 }
 
 /**
+ * Perform an external API call without any default headers
+ */
+const externalApi = function (url) {
+  const contentType = axios.defaults.headers.common['Content-Type']
+  delete axios.defaults.headers.common['Content-Type']
+
+  return axios.get(url).then(response => {
+    // Restore the Content-Type header
+    axios.defaults.headers.common['Content-Type'] = contentType
+
+    return response
+  })
+}
+
+/**
  * Turn messages into notifications
  *
  * @param responseMeta
@@ -172,4 +187,4 @@ function makeFormPost (payload, url) {
   })
 }
 
-export { dpApi, handleResponseMessages, checkResponse, dpRpc, makeFormPost }
+export { dpApi, handleResponseMessages, checkResponse, dpRpc, makeFormPost, externalApi }

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-items-center">
+  <div class="flex items-center">
     <dp-datepicker
       :id="startId"
       :name="startName"
@@ -10,7 +10,7 @@
       :disabled="startDisabled"
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
-      data-cy="startDateDescription"
+      :data-cy="dataCy.startDate"
       @input="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
@@ -23,7 +23,7 @@
       :disabled="endDisabled"
       :value="endValue"
       :required="required"
-      data-cy="endDateDescription"
+      :data-cy="dataCy.endDate"
       @input="handleInputEndDate" />
   </div>
 </template>
@@ -50,6 +50,15 @@ export default {
       type: Number,
       required: false,
       default: 0
+    },
+
+    dataCy: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+      validator: (prop) => {
+        return Object.keys(prop).every(key => ['endDate', 'startDate'].includes(key))
+      }
     },
 
     endDisabled: {

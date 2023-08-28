@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title="Design Tokens/Color"/>
+
+{/*
+  @TODO
+  - integrate https://github.com/UX-and-I/storybook-design-token
+  - make code pretty https://storybook.js.org/docs/react/configure/theming#css-escape-hatches
+*/}
+
+# Color tokens
+
+The demosplan-ui color tokens are grouped into *palette* (the raw values which should not be used directly), *brand* (for
+colors used in branded context), *message* and *status* (to communicate system state), *data* (for data visualization)
+and *interaction* (to indicate interaction). Apart from *brand*, colors are not meant to be themeable.
+
+## How to use and override color tokens
+
+Color tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/color.palette';
+@import '@demos-europe/demosplan-ui/tokens/scss/color.data';
+@import '@demos-europe/demosplan-ui/tokens/scss/color.brand';
+@import '@demos-europe/demosplan-ui/tokens/scss/color.ui';
+```
+
+Then, tokens can be used within Scss code:
+
+```
+.custom-interactive-element {
+  color: $dp-color-interactive-base;
+
+  &:hover {
+    color: $dp-color-interactive-hover;
+  }
+
+  //...
+}
+```
+
+To override the value of a specific token, define the override
+before importing the provided file:
+
+```
+// Set a new color for just this one token:
+$dp-color-interactive-hover: #9700ff;
+
+// Import tokens. Only the ones that are not yet defined
+// will be assigned their default values.
+@import '@demos-europe/demosplan-ui/tokens/scss/color.ui';
+
+// Use tokens...
+```
+
+If you want to override tokens with other token values, you
+would have to import those first. Also, by importing alias
+tokens afterwards, they are as well assigned the changed values.
+
+```
+@import '@demos-europe/demosplan-ui/tokens/scss/color.palette';
+
+// Set a new color from palette tokens for this one token:
+$dp-color-interactive-hover: $dp-color-red-dark-1;
+
+// Set main brand color to a palette color.
+$dp-color-main: $dp-color-yellow-base;
+
+// Import UI tokens. Only the ones that are not yet defined
+// will be assigned their default values. UI tokens that are
+// aliased to $dp-color-main will inherit the yellow defined above.
+@import '@demos-europe/demosplan-ui/tokens/scss/color.ui';
+
+// Use tokens...
+```
+
+## Available tokens
+
+### Palette colors
+
+Color palettes resemble all colors available within demosplan-ui. Available color palettes contain 7 steps:
+a base color, 2 shades and 4 lights. The colors are complemented with white, black, and neutral.
+
+### Brand colors
+
+For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist. Like message, status,
+and interaction tokens, they are aliased to palette tokens.
+
+### Functional (UI) colors
+
+When building UI with a focus on functionality, not brand, the *interactive*, *message*, and *status* tokens can be utilized.
+
+#### Interactive
+
+Be it links, buttons, or other elements users can interact with: whenever an interface element should convey
+its interactive nature, the *interactive* tokens can be used.
+
+#### Message
+
+Message color is used to communicate system feedback. For each group, the following tokens exist:
+
+- `-bg` Background color
+- `-border` Border color
+- `-interactive` Color for links and other interactive elements
+- `-fill` Fill color for icons or other svg
+- `-text` Text color
+
+#### Status
+
+System state is typically communicated via icons (maybe in condensed table rows) or as colored text. For these cases,
+the following *status* tokens can be used:
+
+- `-fill` Fill color for icons or other svg
+- `-text` Text color
+
+The tokens are to be used for elements on a white background.
+
+**More ui tokens are still to be documented.**
+
+### Data visualization colors
+
+The 4 distinct data color palettes can be used for data visualizations with a defined number of needed colors
+that differentiate from each other. Like palette colors, they contain hex values.
+
+These are generated with https://colorbrewer2.org/#type=diverging&scheme=BrBG&n=8 to be colorblind safe
+and intentionally separate from other color palettes.
+
+Although these colors are universally used for charts, they need to be refined into "sequential", "categorical",
+and "diverging" when appropriate. Read more if the need arises:
+
+- https://design.gitlab.com/data-visualization/color/
+- https://www.carbondesignsystem.com/data-visualization/color-palettes/
+- https://medium.com/design-ibm/inclusive-color-sequences-for-data-viz-in-6-steps-712869b910c2
+- https://medium.com/carbondesign/color-palettes-and-accessibility-features-for-data-visualization-7869f4874fca
+- https://blog.graphiq.com/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283

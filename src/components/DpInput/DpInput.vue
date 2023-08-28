@@ -10,25 +10,27 @@
       }" /><!--
  --><input
       :id="id"
-      :name="name !== '' ? name : false"
+      :name="name !== '' ? name : null"
       :class="prefixClass(classes)"
-      :data-counter="dataCounter !== '' ? dataCounter : false"
-      :data-dp-validate-error="dataDpValidateError || false"
-      :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : false"
-      :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : false"
+      :data-counter="dataCounter !== '' ? dataCounter : null"
+      :data-dp-validate-error="dataDpValidateError || null"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
+      :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : null"
+      :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
       :data-cy="dataCy !== '' ? dataCy : false"
       :aria-labelledby="ariaLabelledby"
-      :maxlength="maxlength !== '' ? maxlength : false"
-      :minlength="minlength !== '' ? minlength : false"
+      :maxlength="maxlength !== '' ? maxlength : null"
+      :minlength="minlength !== '' ? minlength : null"
       :type="type"
-      :pattern="pattern !== '' ? pattern : false"
-      :placeholder="placeholder !== '' ? placeholder : false"
+      :pattern="pattern !== '' ? pattern : null"
+      :placeholder="placeholder !== '' ? placeholder : null"
       :disabled="disabled"
       :readonly="readonly"
       :required="required"
-      :autocomplete="autocomplete !== '' ? autocomplete : false"
-      :size="size ? size : false"
+      :autocomplete="autocomplete !== '' ? autocomplete : null"
+      :size="(size && size > 0) ? size : null"
       v-model="currentValue"
+      @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
       @input="$emit('input', currentValue)"
       @keydown.enter="handleEnter">
@@ -84,6 +86,12 @@ export default {
     },
 
     dataDpValidateError: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateErrorFieldname: {
       type: String,
       required: false,
       default: ''
@@ -190,9 +198,9 @@ export default {
      * and element classes do not define any width styles when a size is set here.
      */
     size: {
-      type: Number,
+      type: [Number, null],
       required: false,
-      default: undefined
+      default: null
     },
 
     type: {

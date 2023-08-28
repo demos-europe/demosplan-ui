@@ -12,6 +12,7 @@
       :checked="checked"
       :value="value"
       :data-cy="dataCy !== '' ? dataCy : false"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"><!--
  --><dp-label
       v-if="label.text"
@@ -26,8 +27,8 @@
   </div>
 </template>
 
-<script>
-import DpLabel from '../DpLabel/DpLabel'
+<script lang="ts">
+import DpLabel from '../DpLabel/DpLabel.vue'
 import { prefixClassMixin } from '../../mixins'
 
 export default {
@@ -63,6 +64,12 @@ export default {
       default: ''
     },
 
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     disabled: {
       type: Boolean,
       required: false,
@@ -82,9 +89,9 @@ export default {
 
     label: {
       type: Object,
-      default: () => ({}),
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text'].includes(key))
+      default: (): Record<string, any> => ({}),
+      validator: (prop: Record<string, any>): boolean => {
+        return Object.keys(prop).every((key: string) => ['bold', 'hint', 'text'].includes(key))
       }
     },
 

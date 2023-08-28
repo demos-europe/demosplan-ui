@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { de } from '../shared/translations'
 import DpButton from '../DpButton/DpButton'
 
 export default {
@@ -84,7 +85,7 @@ export default {
     primaryText: {
       type: String,
       required: false,
-      default: () => Translator.trans('save')
+      default: de.save
     },
 
     /**
@@ -102,17 +103,18 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: () => Translator.trans('abort')
+      default: de.cancel
     },
 
     /**
-     * Variants of the button include `outline` (`text` to be implemented).
-     * When not specified, the default style (white on colored background) is applied.
+     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
      */
     variant: {
       required: false,
       type: String,
-      default: ''
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   }
 }

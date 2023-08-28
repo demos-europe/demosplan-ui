@@ -6,9 +6,9 @@
       <span v-cleanhtml="text" /><span v-if="required">*</span>
       <span
         v-if="hints.length > 0"
-        :class="prefixClass('display--block font-size-small weight--normal')">
+        :class="prefixClass('block font-size-small weight--normal')">
         <span
-          :class="prefixClass(['display--inline-block'])"
+          :class="prefixClass(['inline-block'])"
           :key="i"
           v-for="(h, i) in hints"
           v-cleanhtml="h" />
@@ -16,7 +16,7 @@
     </span>
     <i
       v-if="tooltip !== ''"
-      :class="prefixClass('fa fa-question-circle u-mt-0_125 flex-item-end')"
+      :class="prefixClass('fa fa-question-circle u-mt-0_125 ml-auto')"
       :aria-label="ariaLabel"
       v-tooltip="tooltip" />
   </label>
@@ -74,10 +74,13 @@ export default {
     }
   },
 
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
+    }
+  },
+
   computed: {
-    ariaLabel () {
-      return de.contextualHelp
-    },
     /**
      * List of Hints
      *

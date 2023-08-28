@@ -3,19 +3,32 @@ const StyleDictionary = require('style-dictionary')
 
 const prefix = 'dp-'
 
-const tokensPath = 'tokens/*.json'
+const tokensPath = 'tokens/src/**/*.json'
+
 const files = glob
   .sync(tokensPath)
   .map(filePath => filePath
-    .replace('tokens/', '')
+    .replace('tokens/src/', '')
+    .replace('color/', '')
     .replace('.json', ''))
+  // Do not render tokens only used internally
+  .filter(filePath => !filePath.startsWith('_'))
 
 StyleDictionary.registerTransform({
   name: 'name/scss',
   type: 'name',
   transformer: (token) => {
-    // "palette" within colors should not be part of the variable name
-    if (token.path[0] === 'color' && token.path[1] === 'palette') {
+    // The domain part ("palette", "ui"...) within color tokens should not be part of the variable name.
+    // The domain part ("scale", "heading", "ui"...) within font-size tokens should not be part of the variable name.
+    if (token.path[0] === 'color' || token.path[0] === 'font-size') {
+      token.path.splice(1, 1)
+    }
+    // The key "z-index" should be shortened in the variable name to match Tailwind syntax
+    if (token.path[0] === 'z-index') {
+      token.path[0] = 'z'
+    }
+    // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
+    if (token.path[1] === 'DEFAULT') {
       token.path.splice(1, 1)
     }
     return prefix + token.path.join('-')
@@ -32,11 +45,25 @@ const StyleDictionaryExtended = StyleDictionary.extend({
   platforms: {
     scss: {
       transformGroup: 'custom/scss',
-      buildPath: 'tokens/',
+      buildPath: 'tokens/dist/scss/',
       files: files.map((filePath) => {
         return {
-          destination: `scss/_${filePath}.scss`,
+          destination: `_${filePath}.scss`,
           format: 'scss/variables',
+          filter: (token) => token.filePath.includes(filePath),
+          options: {
+            outputReferences: true
+          }
+        }
+      })
+    },
+    js: {
+      transformGroup: 'js',
+      buildPath: 'tokens/dist/js/',
+      files: files.map((filePath) => {
+        return {
+          destination: `${filePath}.js`,
+          format: 'javascript/module',
           filter: (token) => token.filePath.includes(filePath),
           options: {
             outputReferences: true

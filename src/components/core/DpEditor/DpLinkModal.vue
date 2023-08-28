@@ -6,21 +6,21 @@
     @modal:toggled="setVisible">
     <template>
       <h3>
-        {{ Translator.trans(hasLink ? 'editor.link.edit' : 'editor.link.insert') }}
+        {{ hasLink ? translations.linkEdit : translations.linkInsert }}
       </h3>
       <div class="space-stack-m">
         <dp-input
           id="link_text"
           v-model="text"
           :label="{
-            text: Translator.trans('link.text')
+            text: translations.linkText
           }"
           :required="isVisible" />
         <dp-input
           id="link_url"
           v-model="url"
           :label="{
-            hint: Translator.trans('editor.link.url.formatHint'),
+            hint: translations.linkHint,
             text: Translator.trans('url')
           }"
           :pattern="isVisible === true ? '(^https?://.*|^//.*)' : null"
@@ -30,7 +30,7 @@
           id="newTab"
           v-model="newTab"
           :label="{
-            text: Translator.trans('open.in.new.tab')
+            text: translations.newTab
           }" />
         <dp-button-row
           class="u-mt"
@@ -49,7 +49,8 @@
 import DpButtonRow from '../../DpButtonRow/DpButtonRow'
 import DpCheckbox from '../../DpCheckbox/DpCheckbox'
 import DpInput from '../../DpInput/DpInput'
-import DpModal from '../DpModal'
+import DpModal from '../../DpModal/DpModal'
+import { de } from '../../shared/translations'
 import { dpValidateMixin } from '../../../mixins'
 
 export default {
@@ -70,6 +71,13 @@ export default {
       isVisible: false,
       newTab: false,
       text: '',
+      translations: {
+        linkEdit: de.editor.link.edit,
+        linkHint: de.editor.link.hint,
+        linkInsert: de.editor.link.insert,
+        linkText: de.link.text,
+        newTab: de.tab.openNew
+      },
       url: ''
     }
   },

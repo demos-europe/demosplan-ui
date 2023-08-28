@@ -1,0 +1,81 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import DpDataTable from './DpDataTable'
+
+<Meta
+  title="Components/DataTable"
+  component={DpDataTable} />
+
+# Data table
+
+Renders a tabular representation of data.
+
+## How to use
+
+The elements in the items array must have a key which matches a field in the header-fields array.
+The following code defines a table with two equally sized columns named "E-Mail" and "Name":
+
+```js
+export default {
+    // ...
+    data () {
+        return {
+            headerFields: [
+                {
+                    field: 'mail',
+                    label: 'E-Mail',
+                    colClass: 'u-1-of-2', // Can be omitted, renders a colgroup > col element
+                    tooltip: 'longer.text.then.label' // Can be omitted
+                },
+                {
+                    field: 'name',
+                    label: 'Name'
+                }
+            ],
+            items: [{mail: 'test@domain.dev', name: 'Testname'}]
+        }
+    }
+    // ...
+}
+```
+
+### Simple usage
+
+```html
+<dp-data-table
+  has-flyout="true|false"
+  header-fields="[{field, label}]"
+  is-selectable="true|false"
+  items="[{fieldName}]"
+  search-string="String"
+  track-by="ID (used for checkbox identification)" />
+```
+
+### Advanced setup with scoped slots
+
+```html
+<dp-data-table
+  search-string="searchString"
+  header-fields="headerInput (see above)"
+  table-class="additional classes for the table element"
+  items="inputItems (see above)"
+  track-by="(see above)">
+  <!-- Header slots -->
+  <template
+    v-for="element in headerInput/* iterate over the HeaderFields */"
+    v-slot:[`header-${element.field}`]="headerData">
+    <div :key="element.id">
+      {{ headerData.value }}
+    </div>
+  </template>
+  <!-- Field slots -->
+  <template
+    v-for="(element, i) in inputItems"
+    v-slot:[element.field]="rowData">
+    <!-- For highlighting text in a slot we have to do something like this, where the `highlightText()` method
+    has to handle the highlighting from outside -->
+    <span
+      :key="`${element.field}:${i}`"
+      v-cleanhtml="highlightText(rowData[element.field])" />
+  </template>
+</dp-data-table>
+```

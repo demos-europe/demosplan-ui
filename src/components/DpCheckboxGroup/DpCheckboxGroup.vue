@@ -73,7 +73,7 @@ export default {
   methods: {
     setSelected () {
       this.options.forEach(option => {
-        Vue.set(this.selected, option.id, false)
+        this.selected[option.id] = false
       })
     }
   },

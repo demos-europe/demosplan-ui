@@ -115,7 +115,41 @@
     "webpack-cli": "^5.0.0"
   },
   "peerDependencies": {
+    "prosemirror-history": "^1.3.0",
+    "prosemirror-model": "^1.18.1",
+    "prosemirror-schema-basic": "^1.2.0",
+    "prosemirror-schema-list": "^1.2.2",
+    "prosemirror-state": "^1.4.1",
+    "prosemirror-tables": "^1.3.0",
+    "prosemirror-utils": "^1.2.0",
+    "prosemirror-view": "^1.28.2",
     "vue": "^2.7.14"
+  },
+  "peerDependenciesMeta": {
+    "prosemirror-history": {
+      "optional": true
+    },
+    "prosemirror-model": {
+      "optional": true
+    },
+    "prosemirror-schema-basic": {
+      "optional": true
+    },
+    "prosemirror-schema-list": {
+      "optional": true
+    },
+    "prosemirror-state": {
+      "optional": true
+    },
+    "prosemirror-tables": {
+      "optional": true
+    },
+    "prosemirror-utils": {
+      "optional": true
+    },
+    "prosemirror-view": {
+      "optional": true
+    }
   },
   "scripts": {
     "build:css": "tailwindcss -i ./style/index.css -o ./style/style.css",

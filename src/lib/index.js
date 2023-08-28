@@ -1,17 +1,3 @@
-import {
-  addListNodes,
-  Decoration,
-  DecorationSet,
-  DOMParser,
-  DOMSerializer,
-  EditorState,
-  EditorView,
-  Plugin,
-  PluginKey,
-  Schema,
-  schema,
-  TextSelection
-} from './DpProsemirror'
 import { checkResponse, dpApi, dpRpc, externalApi, handleResponseMessages, makeFormPost } from './DpApi'
 import { convertSize, getFileInfo, getFileTypes, mimeTypes } from './FileInfo'
 import { highlightActiveLinks } from './HighlightHashLink'
@@ -27,19 +13,12 @@ import TableWrapper from './TableWrapper'
 
 export {
   ActionMenu,
-  addListNodes,
   checkResponse,
   Confirm,
   convertSize,
-  Decoration,
-  DecorationSet,
   Detabinator,
-  DOMSerializer,
-  DOMParser,
   dpApi,
   dpRpc,
-  EditorView,
-  EditorState,
   externalApi,
   getCssVariable,
   getFileInfo,
@@ -49,13 +28,8 @@ export {
   makeFormPost,
   MatchMedia,
   mimeTypes,
-  Plugin,
-  PluginKey,
-  Schema,
-  schema,
   SideNav,
   Stickier,
   Sticky,
-  TableWrapper,
-  TextSelection
+  TableWrapper
 }

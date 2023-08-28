@@ -121,13 +121,15 @@ If a textarea is `required`, an asterisk will be added to its label.
 
 ### dataDpValidateErrorFieldname
 
+Instead of displaying a custom error per field, as achieved by the custom data attribute `data-dp-validate-error` (which is not yet supported in DpTextArea), multiple failing fields may trigger one combined error notification that will then list the field names of each failing field. It reads such as `Bitte korrigieren Sie Ihre Eingabe in folgenden Feldern: Anrede, Betreff, Nachricht. Erst dann können Sie Ihre Angaben speichern.`. If not explicitly set, it defaults to the `label` prop, or, if not set, to null.
+
 <Canvas>
     <Story
         name="dataDpValidateErrorFieldname"
         args={{
             id: 'textAreaId',
-            label: 'Enter some text',
-            dataDpValidateErrorFieldname: 'Error message here'
+            label: 'Your Notes',
+            dataDpValidateErrorFieldname: 'Notes'
         }}>
         {Template.bind({})}
     </Story>

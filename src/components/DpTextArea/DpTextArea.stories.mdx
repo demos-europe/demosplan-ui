@@ -65,8 +65,14 @@ If enabled, classes are applied to let the element grow to 100% height of its pa
 
 Use to conditionally validate a required textarea field.
 
-This Prop take values `Boolean` or `String`.
+A condition consists of an expression that can be passed to `querySelector` (which should target another form element), followed by one of the operators `!==` or `===`, followed by a string to compare against. The operator and value can be omitted if the target element is of type checkbox or radio - in this case the textarea is validated if the referenced radio or checkbox element is checked.
 
+Multiple conditions are separated by a comma.
+
+In this example, a textarea is validated if a checkbox with the id `#send_to_address` is checked:
+`data-dp-validate-if="#send_to_address"`
+
+In this example, the textarea is validated if the input with the name `uploadedFiles[videoSrc]` is already filled, but the field with the id `videoTitle` is empty.
 `data-dp-validate-if="input[name='uploadedFiles[videoSrc]']!=='', #videoTitle!==''"`
 
 <Canvas>

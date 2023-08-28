@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#477](https://github.com/demos-europe/demosplan-ui/pull/477)) Add DpCheckboxGroup documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)) Add DpCard documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 

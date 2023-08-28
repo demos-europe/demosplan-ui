@@ -1,5 +1,4 @@
 import dataTableSearch from './DpDataTable/DataTableSearch'
-import DpAddonWrapper from './DpAddonWrapper/DpAddonWrapper';
 import DpAccordion from './DpAccordion/DpAccordion'
 import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
 import DpButton from './DpButton/DpButton'
@@ -71,7 +70,6 @@ import {
 
 export {
   dataTableSearch,
-  DpAddonWrapper,
   DpAccordion,
   DpBadge,
   DpButton,

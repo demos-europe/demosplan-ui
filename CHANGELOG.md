@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)) Add DpCard documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)), ([#477](https://github.com/demos-europe/demosplan-ui/pull/477)) Add DpCard & DpCheckboxGroup documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#475](https://github.com/demos-europe/demosplan-ui/pull/475)) Add Tailwind Styles to Storybook7 ([@spiess-demos](https://github.com/spiess-demos))
 
 

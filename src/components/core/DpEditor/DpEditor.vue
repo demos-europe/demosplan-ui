@@ -80,7 +80,7 @@
 
               <!-- Italic -->
               <button
-                @click="editor.chain().focus().italic().run()"
+                @click="editor.chain().focus().toggleItalic().run()"
                 :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                 type="button"
                 :aria-label="translations.italic"
@@ -221,7 +221,7 @@
             <!--Add links-->
             <button
               v-if="toolbar.linkButton"
-              @click.stop="showLinkPrompt(editor.commands.link, getMarkAttrs('link'))"
+              @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))"
               :class="prefixClass('menubar__button')"
               type="button"
               v-tooltip="Translator.trans('editor.link.edit.insert')">
@@ -698,17 +698,17 @@ export default {
       extensions.push(InsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
-      this.suggestions.forEach(suggestion => {
-        extensions.push(Mention.configure({
-          HTMLAttributes: {
-            class: 'suggestion__node'
-          },
-          renderLabel({ node }) {
-            return suggestion.matcher.char + node.attrs.label
-          },
-          suggestion: buildSuggestion(suggestion)
-        }))
-      })
+        this.suggestions.forEach(suggestion => {
+          extensions.push(Mention.configure({
+            HTMLAttributes: {
+              class: 'suggestion__node'
+            },
+            renderLabel({ node }) {
+              return suggestion.matcher.char + node.attrs.label
+            },
+            suggestion: buildSuggestion(suggestion)
+          }))
+        })
       }
 
       if (this.toolbar.headings.length > 0) {
@@ -720,8 +720,7 @@ export default {
       }
 
       if (this.toolbar.linkButton) {
-        extensions.push(Link)
-        extensions.push(CustomLink)
+        extensions.push(CustomLink.configure({ openOnClick: false }))
       }
 
       if (this.toolbar.obscure) {
@@ -821,7 +820,7 @@ export default {
     },
 
     getLinkMark (node) {
-      return node.marks && node.marks.find(mark => mark.type.name === 'link')
+      return node.marks && node.marks.find(mark => mark.type.name === 'customLink')
     },
 
     handleInsertText (text) {
@@ -850,14 +849,24 @@ export default {
     },
 
     insertUrl (linkUrl, newTab, linkText) {
-      if (linkUrl === null) {
-        this.editor.commands.link({ href: null, ...(newTab && { target: '_blank' }) })
-        return
-      }
+      if (linkUrl === null || linkUrl === '') {
+        this.editor.commands.unsetCustomLink({ extendEmptyMarkRange: true })
+      } else  if (linkText !== '') {
+        const selection = this.editor.view.state.selection
 
-      if (linkUrl !== '' && linkText !== '') {
-        const newNode = this.editor.schema.text(linkText, [this.editor.schema.marks.link.create({ href: linkUrl, ...(newTab && { target: '_blank' }) })])
-        this.editor.view.dispatch(this.editor.state.tr.replaceSelectionWith(newNode, false))
+        this.editor.commands.insertContent({
+          type: selection.node ? selection.node.type.name : 'text',
+          text: linkText,
+          marks: [
+            {
+              type: 'customLink',
+              attrs: {
+                href: linkUrl,
+                target: newTab ? '_blank' : null
+              }
+            }
+          ]
+        })
       }
     },
 
@@ -928,14 +937,14 @@ export default {
       if (nodeBefore) {
         const linkMark = this.getLinkMark(nodeBefore)
         if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.setSelection((tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), tr.selection.anchor)
+          this.editor.commands.setTextSelection({ from: (tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), to: tr.selection.anchor })
         }
       }
 
       if (nodeAfter) {
         const linkMark = this.getLinkMark(nodeAfter)
         if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.setSelection(tr.selection.anchor, (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize))
+          this.editor.commands.setTextSelection({ from: tr.selection.anchor, to: (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize) })
         }
       }
     },

@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs'
+import DpCheckboxGroup from './DpCheckboxGroup'
+
+<Meta
+    title="Components/CheckboxGroup"
+    component={DpCheckboxGroup}
+/>
+
+# CheckboxGroup
+
+The `CheckboxGroup` component renders an inputs group of type `checkbox`.
+
+Use it for a multiple options that the user can turn on or off.
+
+## Default usage
+
+```html
+<dp-checkbox-group
+  :label="label"
+  :options="options"
+  @update="checked => someFunction(checked)"
+  :selected-options="someFunction(options)" />
+```

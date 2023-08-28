@@ -16,7 +16,7 @@ export default {
 
   props: {
     /**
-     * The addonProps prop will be binded to the addon component to add props dynamically.
+     * The addonProps prop will be bound to the addon component to add props dynamically.
      */
     addonProps: {
       type: Object,
@@ -57,7 +57,7 @@ export default {
             const addon = result[key]
             if (addon === undefined) {
               /*
-               * If for some reason we don't receive a valid info object from the backend
+               * If for some reason we don't receive a valid response object from the backend
                * we'll just skip it.
                */
               console.debug('Skipping addon hook response evaluation for ' + key)
@@ -68,8 +68,8 @@ export default {
             const content = addon.content[contentKey]
 
             /*
-             * While eval generally is a BADIDEA, we really need to evaluate the code we're
-             * adding dynamically to use the provided addon's script henceforth.
+             * While eval is generally a BAD IDEA, we really need to evaluate the code
+             * we're adding dynamically to use the provided addon's script from now on.
              */
             eval(content)
             this.$options.components[addon.entry] = window[addon.entry].default

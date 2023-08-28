@@ -24,7 +24,6 @@ import DpHeightLimit from './DpHeightLimit/DpHeightLimit'
 import DpIcon from './DpIcon/DpIcon'
 import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
 import DpInput from './DpInput/DpInput'
-import DpInsertableRecommendation from './DpInsertableRecommendation/DpInsertableRecommendation'
 import DpLabel from './DpLabel/DpLabel'
 import DpLoading from './DpLoading/DpLoading'
 import DpModal from './DpModal/DpModal'
@@ -103,7 +102,6 @@ export {
   DpFormRow,
   DpHeightLimit,
   DpInlineNotification,
-  DpInsertableRecommendation,
   DpModal,
   DpMultiselect,
   DpMultistepNav,

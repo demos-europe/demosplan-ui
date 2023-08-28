@@ -7,7 +7,33 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-mdx-gfm"
+    "@storybook/addon-mdx-gfm",
+    ({
+      name: "@storybook/addon-styling-webpack",
+      options: {
+        rules: [
+          {
+            test: /\.css$/,
+            sideEffects: true,
+            use: [
+              require.resolve("style-loader"),
+              {
+                loader: require.resolve("css-loader"),
+                options: {
+                  importLoaders: 1,
+                },
+              },
+              {
+                loader: require.resolve("postcss-loader"),
+                options: {
+                  implementation: require.resolve("postcss"),
+                },
+              },
+            ],
+          },
+        ],
+      }
+    }),
   ],
   webpackFinal: async config => {
     /**

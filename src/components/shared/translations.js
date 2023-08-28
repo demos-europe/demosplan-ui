@@ -15,6 +15,8 @@ const de = {
       element: 'Element auswählen'
     }
   },
+  cancel: "Abbrechen",
+  choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
   deselect: {
@@ -33,6 +35,8 @@ const de = {
     underline: 'Unterstrichen',
     undo: 'Rückgängig'
   },
+  entrySelected: "Eintrag ausgewählt",
+  entriesSelected: "Einträge ausgewählt",
   error: {
     mandatoryFields: {
       default: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
@@ -40,16 +44,20 @@ const de = {
       outro: '. Erst dann können Sie Ihre Angaben speichern.'
     }
   },
+  expandAll: "Alle Elemente ausklappen",
+  explanationNoentries: "Es sind keine Einträge vorhanden.",
   file: {
     remove: 'Datei entfernen'
   },
   image: {
     alt: {
       editHint: 'Strg + Klick, um den alternativen Text zu bearbeiten',
-      explanation: 'Ein Screenreader liest diesen Text anstelle des Bildes vor.'
+      explanation: 'Ein Screenreader liest diesen Text anstelle des Bildes vor.',
+      placeholder: 'Hier können Sie Ihren alternativen Text einfügen.'
     },
     edit: 'Bild bearbeiten',
-    insert: 'Bild einfügen'
+    insert: 'Bild einfügen',
+    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]'
   },
   input: {
     text: {
@@ -58,6 +66,9 @@ const de = {
       minlength({ cssClass, count, min }) { return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`}
     }
   },
+  item: {
+    lockedForSelection: "Element kann nicht ausgewählt werden",
+  },
   link: {
     text: 'Linktext'
   },
@@ -65,15 +76,20 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
-  selectPlaceholder: 'Bitte wählen Sie einen Eintrag aus.',
+  placeholderAutoSuggest: "Suchbegriff...",
+  save: "Speichern",
   select: {
-    all: 'Alle auswählen'
+    all: 'Alle auswählen',
+    placeholder: 'Bitte wählen Sie einen Eintrag aus.'
   },
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
   table: {
     colsSelect: 'Spalten auswählen'
+  },
+  tag: {
+    create: "Tag erstellen",
   },
   text: {
     deleted: 'Dieser Text wurde entfernt',

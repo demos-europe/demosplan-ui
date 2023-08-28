@@ -22,7 +22,6 @@
 <script>
 import { CleanHtml } from '../../directives'
 import DpCheckbox from '../DpCheckbox/DpCheckbox'
-import Vue from "vue";
 
 export default {
   name: 'DpCheckboxGroup',

@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
 import DpAutocomplete from './DpAutocomplete.vue'
+
+interface IDpAutocomplete {
+    height: string,
+    label: string,
+    placeholder: string,
+    routeGenerator: Function,
+}
 
 const meta: Meta<typeof DpAutocomplete> = {
     component: DpAutocomplete,
@@ -11,7 +17,7 @@ const meta: Meta<typeof DpAutocomplete> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DpAutocomplete>
+type Story = StoryObj<IDpAutocomplete>
 
 export const Default: Story = {
     args: {

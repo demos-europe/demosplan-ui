@@ -37,12 +37,16 @@ const getHeaders = function (params) {
   return headers
 }
 
-const doRequest = (params) => {
-  return axios({
-    ...{ data: {} },
-    ...params,
+const doRequest = async ({ url, method = 'GET', data = {}, params, options }) => {
+  const response = await fetch(url, {
+    method,
+    body: JSON.stringify(data),
+    options,
+    params,
     headers: getHeaders(params)
   })
+
+  return response.json()
 }
 
 const dpApi = doRequest
@@ -54,6 +58,8 @@ dpApi.get = (url, params = {}, options = {}) => {
       headers: getHeaders({ ...params, url })
     }
     delete options.serialize
+
+    console.log('DO NOT USE THIS. AXIOS HAS TO GO AWAI')
     return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
   } else {
     return doRequest({ method: 'get', url, data: {}, params, options })
@@ -91,16 +97,10 @@ const dpRpc = function (method, parameters, id = null) {
 /**
  * Perform an external API call without any default headers
  */
-const externalApi = function (url) {
-  const contentType = axios.defaults.headers.common['Content-Type']
-  delete axios.defaults.headers.common['Content-Type']
+const externalApi = async function (url) {
+  const response = await fetch(url)
 
-  return axios.get(url).then(response => {
-    // Restore the Content-Type header
-    axios.defaults.headers.common['Content-Type'] = contentType
-
-    return response
-  })
+  return response.json()
 }
 
 /**
@@ -123,8 +123,8 @@ const handleResponseMessages = function (responseMeta) {
  * Perform rudimentary response validation, handle response messages.
  *
  * @param {Object} response
- *                    The axios wrapper around the XMLHttpRequest instance.
- *                    See https://github.com/axios/axios#response-schema for documentation.
+ *                    The Response Provided by the fetch API around the XMLHttpRequest instance.
+ *                    See https://developer.mozilla.org/en-US/docs/Web/API/Response
  * @param {Object} [messages]
  *                    Define messages to display with response codes that are expected to be returned
  *                    from a certain endpoint.

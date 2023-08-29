@@ -9,8 +9,12 @@ const meta: Meta<typeof DpMultistepNav> = {
     }
 }
 
+interface IDpMultistepNav {
+    steps: object[]
+}
+
 export default meta
-type Story = StoryObj<typeof DpMultistepNav>
+type Story = StoryObj<IDpMultistepNav>
 
 export const Default: Story = {
     args: {

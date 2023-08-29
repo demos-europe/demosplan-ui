@@ -14,14 +14,12 @@ const meta: Meta<typeof DpSplitButton> = {
         },
         template: `<dp-split-button v-bind="args">
           <a
-              class="btn btn--primary"
-              data-cy="createNewGisLayer"
               href="#">
-            Action Button
+              Save
           </a>
           <template v-slot:dropdown>
             <a href="#">
-              Dropdown Link
+                Save and return
             </a>
           </template>
         </dp-split-button>`,

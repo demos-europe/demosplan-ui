@@ -3,21 +3,31 @@ import DpResettableInput from './DpResettableInput.vue'
 
 const meta: Meta<typeof DpResettableInput> = {
     component: DpResettableInput,
-    title: "Components/ResettableInput",
-    argTypes: {
-        'blur': { action: 'blur' },
-        'input': { action: 'input' },
-        'enter': { action: 'enter' },
-        'focus': { action: 'focus' },
-        'reset': { action: 'reset' },
-    }
+    title: "Components/ResettableInput"
 }
 
+interface IDpResettableInput {
+    blur: object
+    id: string
+    input: object
+    enter: object
+    focus: object
+    reset: object
+}
+
+type Story = StoryObj<IDpResettableInput>
+
 export default meta
-type Story = StoryObj<typeof DpResettableInput>
 
 export const Default: Story = {
     args: {
         id: 'ID',
+    },
+    argTypes: {
+        blur: { action: 'blur' },
+        input: { action: 'input' },
+        enter: { action: 'enter' },
+        focus: { action: 'focus' },
+        reset: { action: 'reset' },
     }
 }

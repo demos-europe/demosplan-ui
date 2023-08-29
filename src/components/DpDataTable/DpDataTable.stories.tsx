@@ -3,17 +3,41 @@ import DpDataTable from './DpDataTable.vue'
 
 const meta: Meta<typeof DpDataTable> = {
     component: DpDataTable,
-    title: "Components/DataTable",
-    argTypes: {
-        'selectAll': { action: 'selectAll' },
-        'changedOrder': { action: 'changedOrder' },
-        'itemsSelected': { action: 'itemsSelected' },
-        'itemsToggled': { action: 'itemsToggled' },
-    }
+    title: "Components/DataTable"
 }
 
+interface IDpDataTable {
+    changedOrder: object
+    hasFlyout:boolean
+    hasStickyHeader:boolean
+    headerFields: object[]
+    initSelectedItems: object[]
+    isDraggable: boolean
+    isExpandable: boolean
+    isLoading: boolean
+    isResizable: boolean
+    isSelectable: boolean
+    isSelectableName: string
+    isTruncatable: boolean
+    items: object[]
+    itemsSelected: object
+    itemsToggled: object
+    multiPageAllSelected: boolean
+    lockCheckboxBy: string
+    multiPageSelectionItemsToggled: number
+    multiPageSelectionItemsTotal: number
+    selectAll: object
+    searchString: string | null
+    shouldBeSelectedItems: object
+    tableClass: string
+    tableDescription: string
+    trackBy:string
+    translations: object
+}
+
+type Story = StoryObj<IDpDataTable>
+
 export default meta
-type Story = StoryObj<typeof DpDataTable>
 
 export const Default: Story = {
     args: {
@@ -47,5 +71,11 @@ export const Default: Story = {
             }
         ],
         trackBy: 'ID'
+    },
+    argTypes: {
+        selectAll: { action: 'selectAll' },
+        changedOrder: { action: 'changedOrder' },
+        itemsSelected: { action: 'itemsSelected' },
+        itemsToggled: { action: 'itemsToggled' },
     }
 }

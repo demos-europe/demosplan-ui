@@ -6,8 +6,18 @@ const meta: Meta<typeof DpLabel> = {
     title: "Components/Label"
 }
 
+interface IDpLabel {
+    bold: boolean
+    for: string
+    hint: string | string[]
+    text: string
+    tooltip: string
+    required: boolean
+}
+
+type Story = StoryObj<IDpLabel>
+
 export default meta
-type Story = StoryObj<typeof DpLabel>
 
 export const Default: Story = {
     args: {

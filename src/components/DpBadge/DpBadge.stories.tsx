@@ -1,19 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpBadge from './DpBadge.vue'
 
+interface IDpBadge {
+  text: string
+}
+
 const meta: Meta<typeof DpBadge> = {
   component: DpBadge,
-  title: "Components/Badge",
-  argTypes: {
-    'text':  { action: 'text' }
-  }
+  title: "Components/Badge"
 }
 
 export default meta
-type Story = StoryObj<typeof DpBadge>
+type Story = StoryObj<IDpBadge>
 
 export const Default: Story = {
   args: {
     text: 'Info text'
+  },
+  argTypes: {
+    'text':  { action: 'text' }
   }
 }

@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpSlidebar from './DpSlidebar.vue'
 
+interface IDpSlidebar {
+    close: object
+}
+
 const meta: Meta<typeof DpSlidebar> = {
     title: 'Components/Slidebar',
     component: DpSlidebar,
-    argTypes: {
-        'close': { action: 'close' }
-    },
     render: (args) => ({
         components: {
             DpSlidebar,
@@ -21,8 +22,11 @@ const meta: Meta<typeof DpSlidebar> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DpSlidebar>
+type Story = StoryObj<IDpSlidebar>
 
 export const Default: Story = {
-    args: {}
+    args: {},
+    argTypes: {
+        'close': { action: 'close' }
+    }
 }

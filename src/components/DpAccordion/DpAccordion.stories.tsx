@@ -8,13 +8,14 @@ const meta: Meta<typeof DpAccordion> = {
 
 interface IDpAccordion {
     fontWeight: 'bold' | 'regular',
-    compressed: boolean,
-    isOpen: boolean,
-    title: string,
+    compressed: boolean
+    isOpen: boolean
+    title: string
 }
 
-// export default meta
 type Story = StoryObj<IDpAccordion>
+
+export default meta
 
 export const Default: Story = {
     args: {

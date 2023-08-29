@@ -18,10 +18,6 @@ interface IDpButtonRow {
 const meta: Meta<typeof DpButtonRow> = {
     component: DpButtonRow,
     title: "Components/ButtonRow",
-    argTypes: {
-        primaryAction: { action: 'primaryAction' },
-        secondaryAction: { action: 'secondaryAction' }
-    },
     render: (args) => ({
         components: {
             DpButtonRow,
@@ -38,4 +34,8 @@ type Story = StoryObj<IDpButtonRow>
 
 export const Default: Story = {
     args: {},
+    argTypes: {
+        primaryAction: { action: 'primaryAction' },
+        secondaryAction: { action: 'secondaryAction' }
+    },
 }

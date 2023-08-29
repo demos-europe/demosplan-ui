@@ -19,7 +19,7 @@ const meta: Meta<typeof DpCard> = {
 }
 
 interface IDpCard {
-    heading: string,
+    heading: string
     headingTooltip: string
 }
 

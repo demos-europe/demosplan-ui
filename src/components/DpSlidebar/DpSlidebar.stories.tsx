@@ -29,5 +29,5 @@ export const Default: Story = {
     args: {},
     argTypes: {
         close: { action: 'close' }
-    },
+    }
 }

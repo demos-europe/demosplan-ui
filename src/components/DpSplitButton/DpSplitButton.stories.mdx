@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs'
+import DpSplitButton from './DpSplitButton'
+
+<Meta
+    title="Components/SplitButton"
+    component={DpSplitButton}
+/>
+
+# SplitButton
+
+The SplitButton displays a main action button with an accompanying arrow that reveals more actions in a dropdown. It's useful in situations with limited space, where one primary action stands out and less important actions remain hidden initially.
+
+Dropdown actions may contain links or buttons.
+
+## Default usage
+
+```html
+<dp-split-button>
+    <a href="#">
+        Save
+    </a>
+    <template v-slot:dropdown>
+    <a href="#">
+       Save and return
+    </a>
+    </template>
+</dp-split-button>
+```
+

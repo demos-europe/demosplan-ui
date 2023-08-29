@@ -18,8 +18,13 @@ const meta: Meta<typeof DpCard> = {
     })
 }
 
+interface IDpCard {
+    heading: string,
+    headingTooltip: string
+}
+
 export default meta
-type Story = StoryObj<typeof DpCard>
+type Story = StoryObj<IDpCard>
 
 export const Default: Story = {
     args: {

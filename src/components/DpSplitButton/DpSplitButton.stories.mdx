@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs'
+import DpSplitButton from './DpSplitButton'
+
+<Meta
+    title="Components/SplitButton"
+    component={DpSplitButton}
+/>
+
+# SplitButton
+
+The `DpSplitButton` component renders an Primary Action Button with Dropdown Actions.
+
+Dropdown Actions containing links or buttons.
+
+## Default usage
+
+```html
+<dp-split-button>
+    <a href="#">
+        primary action button name
+    </a><!--
+ --><template v-slot:dropdown>
+    <a href="#">
+       dropdown link 1
+    </a>
+    <a href="#">
+       dropdown link 2
+    </a>
+    </template>
+</dp-split-button>
+```
+

@@ -4,14 +4,24 @@ import DpColumnSelector from './DpColumnSelector.vue'
 const meta: Meta<typeof DpColumnSelector> = {
     component: DpColumnSelector,
     title: "Components/ColumnSelector",
-    argTypes: {
-        'selectionChanged': { action: 'selectionChanged' }
-    }
+
 }
 
+interface IDpColumnSelector {
+    selectableColumns: []
+    initialSelection: []
+    localStorageKey: string
+    selectionChanged: object
+    useLocalStorage: boolean
+}
+
+type Story = StoryObj<IDpColumnSelector>
+
 export default meta
-type Story = StoryObj<typeof DpColumnSelector>
 
 export const Default: Story = {
-    args: {}
+    args: {},
+    argTypes: {
+        selectionChanged: { action: 'selectionChanged' }
+    }
 }

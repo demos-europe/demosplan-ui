@@ -3,17 +3,23 @@ import DpRadio from './DpRadio.vue'
 
 const meta: Meta<typeof DpRadio> = {
     component: DpRadio,
-    title: "Components/Radio",
-    argTypes: {
-        'change': { action: 'change' }
-    }
+    title: "Components/Radio"
 }
 
+interface IDpRadio {
+    id: string
+    change: object
+}
+
+type Story = StoryObj<IDpRadio>
+
 export default meta
-type Story = StoryObj<typeof DpRadio>
 
 export const Default: Story = {
     args: {
         id: 'radioId'
+    },
+    argTypes: {
+        change: { action: 'change' }
     }
 }

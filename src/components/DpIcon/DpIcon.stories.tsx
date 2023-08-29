@@ -7,8 +7,15 @@ const meta: Meta<typeof DpIcon> = {
     argTypes: {}
 }
 
+
+interface IDpIcon {
+    icon: string
+    size: string
+}
+
+type Story = StoryObj<IDpIcon>
+
 export default meta
-type Story = StoryObj<typeof DpIcon>
 
 export const Default: Story = {
     args: {

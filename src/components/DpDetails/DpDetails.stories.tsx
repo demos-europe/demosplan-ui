@@ -17,9 +17,14 @@ const meta: Meta<typeof DpDetails> = {
     })
 }
 
-export default meta
+interface IDpDetails {
+    default: string
+    summary: string
+}
 
-type Story = StoryObj<typeof DpDetails>
+type Story = StoryObj<IDpDetails>
+
+export default meta
 
 export const Default: Story = {
     args: {

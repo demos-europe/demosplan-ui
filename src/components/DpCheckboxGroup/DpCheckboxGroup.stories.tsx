@@ -4,13 +4,18 @@ import DpCheckboxGroup from './DpCheckboxGroup.vue'
 const meta: Meta<typeof DpCheckboxGroup> = {
     component: DpCheckboxGroup,
     title: "Components/CheckboxGroup",
-    argTypes: {
-        'update': { action: 'update' }
-    }
 }
 
+interface IDpCheckboxGroup {
+    options: { id: string, label: string, name: string }[]
+    label: string
+    inline: boolean
+    selectedOptions: object
+    update: object
+}
+type Story = StoryObj<IDpCheckboxGroup>
+
 export default meta
-type Story = StoryObj<typeof DpCheckboxGroup>
 
 export const Default: Story = {
     args: {
@@ -18,5 +23,8 @@ export const Default: Story = {
             { id: 'option-1-id', label: 'option 1', name: 'option-1' },
             { id: 'option-2-id', label: 'option 2', name: 'option-2' },
         ]
+    },
+    argTypes: {
+        update: { action: 'update' }
     }
 }

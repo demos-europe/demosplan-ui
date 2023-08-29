@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpTooltipIcon from './DpTooltipIcon.vue'
 
+interface IDpTooltipIcon {
+    icon: string,
+    text: string,
+}
+
 const meta: Meta<typeof DpTooltipIcon> = {
     component: DpTooltipIcon,
     title: "Components/TooltipIcon",
@@ -8,7 +13,7 @@ const meta: Meta<typeof DpTooltipIcon> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DpTooltipIcon>
+type Story = StoryObj<IDpTooltipIcon>
 
 export const Default: Story = {
     args: {

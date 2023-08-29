@@ -16,8 +16,13 @@ const meta: Meta<typeof DpMultiselect> = {
     }
 }
 
+interface IDpMultiselect {
+    required: boolean,
+    options: string[]
+}
+
 export default meta
-type Story = StoryObj<typeof DpMultiselect>
+type Story = StoryObj<IDpMultiselect>
 
 export const Default: Story = {
     args: {

@@ -4,6 +4,7 @@ import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
 import DpButton from './DpButton/DpButton'
 import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
 import DpButtonRow from './DpButtonRow/DpButtonRow'
+import DpBadge from './DpBadge/DpBadge'
 import DpCard from './DpCard/DpCard'
 import DpCheckbox from './DpCheckbox/DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
@@ -70,6 +71,7 @@ import {
 export {
   dataTableSearch,
   DpAccordion,
+  DpBadge,
   DpButton,
   DpButtonRow,
   DpDetails,

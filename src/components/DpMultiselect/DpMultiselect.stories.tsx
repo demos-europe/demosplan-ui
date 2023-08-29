@@ -4,21 +4,19 @@ import DpMultiselect from './DpMultiselect.vue'
 const meta: Meta<typeof DpMultiselect> = {
     component: DpMultiselect,
     title: "Components/Multiselect",
-    argTypes: {
-        'close': { action: 'close' },
-        'input': { action: 'input' },
-        'open': { action: 'open' },
-        'remove': { action: 'remove' },
-        'searchChange': { action: 'searchChange' },
-        'select': { action: 'select' },
-        'selectAll': { action: 'selectAll' },
-        'unselectAll': { action: 'unselectAll' },
-    }
 }
 
 interface IDpMultiselect {
-    required: boolean,
+    required: boolean
     options: string[]
+    close: object
+    input: object
+    open: object
+    remove: object
+    searchChange: object
+    select: object
+    selectAll: object
+    unselectAll: object
 }
 
 export default meta
@@ -28,5 +26,15 @@ export const Default: Story = {
     args: {
         required: true,
         options: ['option 1', 'option 2']
+    },
+    argTypes: {
+        close: { action: 'close' },
+        input: { action: 'input' },
+        open: { action: 'open' },
+        remove: { action: 'remove' },
+        searchChange: { action: 'searchChange' },
+        select: { action: 'select' },
+        selectAll: { action: 'selectAll' },
+        unselectAll: { action: 'unselectAll' },
     }
 }

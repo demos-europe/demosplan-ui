@@ -7,12 +7,13 @@ const meta: Meta<typeof DpSelect> = {
 }
 
 interface IDpSelect {
-    options: object[],
+    options: object[]
     select: object
 }
 
-export default meta
 type Story = StoryObj<IDpSelect>
+
+export default meta
 
 export const Default: Story = {
     args: {
@@ -22,6 +23,6 @@ export const Default: Story = {
         ]
     },
     argTypes: {
-        'select': { action: 'select' }
+        select: { action: 'select' }
     }
 }

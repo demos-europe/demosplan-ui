@@ -5,9 +5,6 @@ import DpTab from './DpTab.vue'
 const meta: Meta<typeof DpTabs> = {
     component: DpTabs,
     title: "Components/Tabs",
-    argTypes: {
-        'change': { action: 'change' }
-    },
     render: (args) => ({
         components: {
             DpTabs,
@@ -31,9 +28,17 @@ const meta: Meta<typeof DpTabs> = {
     })
 }
 
+interface IDpTabs {
+    change: object
+}
+
+type Story = StoryObj<IDpTabs>
+
 export default meta
-type Story = StoryObj<typeof DpTabs>
 
 export const Default: Story = {
-    args: {}
+    args: {},
+    argTypes: {
+        change: { action: 'change' }
+    },
 }

@@ -9,8 +9,12 @@ const meta: Meta<typeof DpSelect> = {
     }
 }
 
+interface IDpSelect {
+    options: object[]
+}
+
 export default meta
-type Story = StoryObj<typeof DpSelect>
+type Story = StoryObj<IDpSelect>
 
 export const Default: Story = {
     args: {

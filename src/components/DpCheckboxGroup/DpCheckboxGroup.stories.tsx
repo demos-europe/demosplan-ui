@@ -9,8 +9,15 @@ const meta: Meta<typeof DpCheckboxGroup> = {
     }
 }
 
+interface IDpCheckboxGroup {
+    options: [],
+    label: string,
+    inline: boolean,
+    selectedOptions: object,
+}
+type Story = StoryObj<IDpCheckboxGroup>
+
 export default meta
-type Story = StoryObj<typeof DpCheckboxGroup>
 
 export const Default: Story = {
     args: {

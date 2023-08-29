@@ -1,13 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
 import DpButtonRow from './DpButtonRow.vue'
+
+interface IDpButtonRow {
+    align:string,
+    busy: boolean,
+    disabled: boolean,
+    href: string,
+    primary: boolean,
+    primaryAction: object,
+    primaryText: string,
+    secondary: boolean,
+    secondaryAction: object,
+    secondaryText: string,
+    variant: string
+}
 
 const meta: Meta<typeof DpButtonRow> = {
     component: DpButtonRow,
     title: "Components/ButtonRow",
     argTypes: {
-        'primaryAction': { action: 'primaryAction' },
-        'secondaryAction': { action: 'secondaryAction' }
+        primaryAction: { action: 'primaryAction' },
+        secondaryAction: { action: 'secondaryAction' }
     },
     render: (args) => ({
         components: {
@@ -21,7 +34,7 @@ const meta: Meta<typeof DpButtonRow> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DpButtonRow>
+type Story = StoryObj<IDpButtonRow>
 
 export const Default: Story = {
     args: {},

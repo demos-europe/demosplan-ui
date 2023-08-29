@@ -10,9 +10,21 @@ const meta: Meta<typeof DpCheckbox> = {
     }
 }
 
+interface IDpCheckbox {
+    checked: boolean,
+    dataCy: string,
+    dataDpValidateErrorFieldname: string,
+    disabled: boolean,
+    id: string,
+    label: object,
+    name:  string,
+    readonly: boolean,
+    required: boolean,
+    valueToSend: string
+}
 export default meta
 
-type Story = StoryObj<typeof DpCheckbox>
+type Story = StoryObj<IDpCheckbox>
 
 export const Default: Story = {
     args: {

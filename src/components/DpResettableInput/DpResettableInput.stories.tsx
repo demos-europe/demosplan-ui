@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpResettableInput from './DpResettableInput.vue'
 
+interface IDpResettableInput {
+    id: string
+}
+
 const meta: Meta<typeof DpResettableInput> = {
     component: DpResettableInput,
     title: "Components/ResettableInput",
@@ -14,7 +18,7 @@ const meta: Meta<typeof DpResettableInput> = {
 }
 
 export default meta
-type Story = StoryObj<typeof DpResettableInput>
+type Story = StoryObj<IDpResettableInput>
 
 export const Default: Story = {
     args: {

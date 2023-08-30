@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.1.13 - 2023-08-30
+
 ### Added
 
 - ([#473](https://github.com/demos-europe/demosplan-ui/pull/473)) Add DpBadge component with Storybook documentation ([@muellerdemos](https://github.com/muellerdemos))

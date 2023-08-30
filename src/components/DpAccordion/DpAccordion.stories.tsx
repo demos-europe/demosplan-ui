@@ -3,7 +3,7 @@ import DpAccordion from './DpAccordion.vue'
 
 const meta: Meta<typeof DpAccordion> = {
     component: DpAccordion,
-    title: "Components/Accordion",
+    title: "Components/Accordion"
 }
 
 interface IDpAccordion {
@@ -11,7 +11,7 @@ interface IDpAccordion {
     compressed: boolean
     isOpen: boolean
     title: string
-    itemToggle: object
+    'item:toggle': object
 }
 
 type Story = StoryObj<IDpAccordion>
@@ -26,6 +26,6 @@ export const Default: Story = {
         title: 'Accordion',
     },
     argTypes: {
-        itemToggle: { action: 'itemToggle' }
+        'item:toggle': { action: 'item:toggle' }
     }
 }

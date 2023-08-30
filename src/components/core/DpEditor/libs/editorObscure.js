@@ -8,44 +8,57 @@
  * use more than one tool (e.g. obscure and bold) simultaneously, etc.
  */
 
-import { markInputRule, markPasteRule, toggleMark } from 'tiptap-commands'
-import { Mark } from 'tiptap'
+import {
+  Mark,
+  markInputRule,
+  markPasteRule,
+} from '@tiptap/core'
 
-export default class EditorObscure extends Mark {
-  get name () {
-    return 'obscure'
-  }
+const markInputRegex = /(?:<o>)([^<o>]+)(?:<o>)$/
+const markPasteRegex = /(?:<o>)([^<o>]+)(?:<o>)/g
+export default Mark.create({
+  name: 'obscure',
 
-  get schema () {
+  parseHTML () {
+    return [
+      { tag: '.u-obscure' },
+      { tag: 'dp-obscure' }
+    ]
+  },
+
+  renderHTML () {
+    return ['span', { class: 'u-obscure' }, 0]
+  },
+
+  addCommands () {
     return {
-      parseDOM: [
-        { tag: '.u-obscure' },
-        { tag: 'dp-obscure' }
-      ],
-      toDOM: () => ['span', { class: 'u-obscure' }, 0]
+      setObscure: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleObscure: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetObscure: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
     }
-  }
-  /*
-   * Keys ({ type }) {
-   *   return {
-   *     'Mod-obscure': toggleMark(type)
-   *   }
-   * }
-   */
+  },
 
-  commands ({ type }) {
-    return () => toggleMark(type)
-  }
-
-  inputRules ({ type }) {
+  addInputRules () {
     return [
-      markInputRule(/(?:<o>)([^<o>]+)(?:<o>)$/, type)
+      markInputRule({
+       find: markInputRegex,
+       type: this.type
+      })
+    ]
+  },
+
+  addPasteRules () {
+    return [
+      markPasteRule({
+        find: markPasteRegex,
+        type: this.type
+      })
     ]
   }
-
-  pasteRules ({ type }) {
-    return [
-      markPasteRule(/(?:<o>)([^<o>]+)(?:<o>)/g, type)
-    ]
-  }
-}
+})

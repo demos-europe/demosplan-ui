@@ -4,15 +4,25 @@ import DpCheckbox from './DpCheckbox.vue'
 
 const meta: Meta<typeof DpCheckbox> = {
     component: DpCheckbox,
-    title: "Components/Checkbox",
-    argTypes: {
-        'change': { action: 'change' }
-    }
+    title: "Components/Checkbox"
 }
 
+interface IDpCheckbox {
+    change: object
+    checked: boolean
+    dataCy: string
+    dataDpValidateErrorFieldname: string
+    disabled: boolean
+    id: string
+    label: object
+    name:  string
+    readonly: boolean
+    required: boolean
+    valueToSend: string
+}
 export default meta
 
-type Story = StoryObj<typeof DpCheckbox>
+type Story = StoryObj<IDpCheckbox>
 
 export const Default: Story = {
     args: {
@@ -20,5 +30,8 @@ export const Default: Story = {
         label: {
             text: 'Checkbox label'
         }
+    },
+    argTypes: {
+        change: { action: 'change' }
     }
 }

@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs'
+import DpStickyElement from './DpStickyElement'
+
+<Meta
+    title="Components/StickyElement"
+    component={DpStickyElement}
+/>
+
+# StickyElement
+
+The StickyElement component to add static position any container, menu or slide in the (top or bottom)
+of Page when scrolling.
+
+## Props:
+
+### applyZIndex:
+
+If set to false, no z-index is applied to the element.
+
+
+### border:
+
+Whether the element should show an 1px border when being sticky.
+
+When enabled, the border is always displayed on the side of the
+element opposite to the direction the element sticks to.
+
+### context:
+
+Reference to the HTMLElement that should serve as the context for the sticky element.
+
+If omitted, the Stickier lib will default to this.$el.offsetParent
+
+### direction:
+
+The direction the element should stick to.
+
+### observeContext:
+
+Whether context changes should trigger a refresh of stickier positions.
+
+### offset:
+
+The offset from context the element should go into/out of sticky mode.

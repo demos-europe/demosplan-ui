@@ -7,41 +7,28 @@
  * InputRules and pasteRules help to handle diverse behaviour when we want to obscure only part of words or we want to
  * use more than one tool (e.g. obscure and bold) simultaneously, etc.
  */
+import { Mark } from '@tiptap/core'
 
-import { markInputRule, markPasteRule, toggleMark } from 'tiptap-commands'
-import { Mark } from 'tiptap'
+export default Mark.create({
+  name: 'unanonymize',
 
-export default class EditorUnAnonymize extends Mark {
-  get name () {
-    return 'unanonymize'
-  }
+  parseHTML () {
+    return [{
+      tag: 'span.unanonymized'
+    }]
+  },
 
-  get schema () {
+  renderHTML: () => {
+    return ['span', {
+      class: 'unanonymized'
+    }, 0]
+  },
+
+  addCommands () {
     return {
-      parseDOM: [{
-        tag: '.unanonymized'
-      }],
-      toDOM: () => {
-        return ['span', {
-          class: 'unanonymized'
-        }, 0]
+      toggleUnanonymize: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
       }
     }
   }
-
-  commands ({ type }) {
-    return () => toggleMark(type)
-  }
-
-  inputRules ({ type }) {
-    return [
-      markInputRule(/(?:<o>)([^<o>]+)(?:<o>)$/, type)
-    ]
-  }
-
-  pasteRules ({ type }) {
-    return [
-      markPasteRule(/(?:<o>)([^<o>]+)(?:<o>)/g, type)
-    ]
-  }
-}
+})

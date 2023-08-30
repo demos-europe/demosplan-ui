@@ -1,32 +1,30 @@
 import { DOMParser } from 'prosemirror-model'
-import { Node } from 'tiptap'
+import { Node } from '@tiptap/core'
 
-export default class EditorInsertAtCursorPos extends Node {
-  get name () {
-    return 'insertHTML'
-  }
+export default Node.create({
+  name: 'insertHTML',
 
-  get schema () {
-    return {
-      inline: false,
-      attrs: {},
-      group: 'block',
-      draggable: true,
-      parseDOM: []
-    }
-  }
+  inline: false,
 
-  commands ({ type }) {
-    return {
-      insertHTML: string =>
-        (state, dispatch) => {
-          const { selection } = state
-          const element = document.createElement('div')
-          element.innerHTML = string.trim()
-          const slice = DOMParser.fromSchema(state.schema).parseSlice(element)
-          const transaction = state.tr.insert(selection.anchor, slice.content)
-          dispatch(transaction)
-        }
-    }
+  attrs: {},
+
+  group: 'block',
+
+  draggable: true,
+
+  parseHTML () {
+    return []
+  },
+
+  insertHTML: string => (state, dispatch) => {
+    const { selection } = this.editor.state
+    const element = document.createElement('div')
+
+    element.innerHTML = string.trim()
+
+    const slice = DOMParser.fromSchema(state.schema).parseSlice(element)
+    const transaction = state.tr.insert(selection.anchor, slice.content)
+
+    dispatch(transaction)
   }
-}
+})

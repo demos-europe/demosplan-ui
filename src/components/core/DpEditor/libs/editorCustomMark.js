@@ -1,24 +1,31 @@
+import {
+  Mark,
+} from '@tiptap/core'
 import { de } from '../../../shared/translations'
-import { Mark } from 'tiptap'
-import { toggleMark } from 'tiptap-commands'
 
-export default class EditorCustomMark extends Mark {
-  get name () {
-    return 'mark'
-  }
+export default Mark.create({
+  name: 'markText',
 
-  get schema () {
+  parseHTML () {
+    return [{ tag: 'mark' }]
+  },
+
+  renderHTML () {
+    return ['mark', { title: de.text.marked }, 0]
+  },
+
+  addCommands () {
     return {
-      parseDOM: [
-        {
-          tag: 'mark'
-        }
-      ],
-      toDOM: () => ['mark', { title: de.text.marked }, 0]
+      setMarkText: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleMarkText: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetMarkText: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
     }
   }
+})
 
-  commands ({ type }) {
-    return () => toggleMark(type)
-  }
-}

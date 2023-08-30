@@ -1,6 +1,7 @@
-import DpResizableImage from '../DpResizableImage'
-import { Node } from 'tiptap'
-import { nodeInputRule } from 'tiptap-commands'
+import DpResizableImage from './../DpResizableImage'
+import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core'
+import { VueNodeViewRenderer } from '@tiptap/vue-2'
+
 
 /**
  * Matches following attributes in Markdown-typed image: [, alt, src, title]
@@ -12,80 +13,115 @@ import { nodeInputRule } from 'tiptap-commands'
  */
 const IMAGE_INPUT_REGEX = /!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\)/
 
-export default class Image extends Node {
-  get name () {
-    return 'image'
-  }
+export default Node.create({
+  name: 'image',
 
-  get schema () {
+  inline: true,
+
+  addOptions() {
     return {
-      inline: true,
-      attrs: {
-        src: {},
-        alt: {
-          default: null
-        },
-        title: {
-          default: null
-        },
-        width: {
-          default: null
-        },
-        height: {
-          default: null
-        }
-      },
-      group: 'inline',
-      draggable: true,
-      parseDOM: [
-        {
-          tag: 'img[src]',
-          getAttrs: dom => {
-            return ({
-              src: dom.getAttribute('src'),
-              title: dom.getAttribute('title'),
-              alt: dom.getAttribute('alt'),
-              width: dom.getAttribute('width'),
-              height: dom.getAttribute('height')
-            })
-          }
-        }
-      ],
-      toDOM: node => {
-        return ['img', { ...node.attrs, unselectable: 'on' }]
+      HTMLAttributes: {
+        style: 'width: ',
+        class: null,
       }
     }
-  }
+  },
 
-  commands ({ type }) {
+  addAttributes() {
     return {
-      insertImage: attrs => (state, dispatch) => {
+      alt: {
+        default: '',
+        keepOnSplit: false,
+        parseHTML: element => element.getAttribute('alt'),
+        renderHTML: attributes => ({
+          'alt': attributes.alt
+        })
+      },
+
+      height: {
+        default: '',
+        keepOnSplit: false,
+        parseHTML: element => {
+          return element.height || element.style.height
+        },
+        renderHTML: attributes => ({
+          'height': attributes.height
+        })
+      },
+
+      src: {
+        default: '',
+        keepOnSplit: false,
+        parseHTML: element => element.getAttribute('src'),
+        renderHTML: attributes => ({
+          'src': attributes.src
+        })
+      },
+
+      title: {
+        default: '',
+        keepOnSplit: false,
+        parseHTML: element => element.getAttribute('title'),
+        renderHTML: attributes => ({
+          'title': attributes.title
+        })
+      },
+
+      width: {
+        default: '',
+        keepOnSplit: false,
+        parseHTML: element => element.width || element.style.width,
+        renderHTML: attributes => {
+          return {
+            'width': attributes.width
+          }
+        }
+      }
+    }
+  },
+
+  group: 'inline',
+
+  draggable: true,
+
+  atom: true,
+
+  parseHTML () {
+    return [{
+      tag: `dp-resizable-image[style="width:${this.att}"]`
+    }, {
+      tag: 'img[src]'
+    }]
+  },
+
+  renderHTML ({ HTMLAttributes }) {
+    return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, { unselectable: 'on' })]
+  },
+
+  addCommands () {
+    return {
+      insertImage: attributes => ({ state, dispatch }) => {
         const { selection } = state
         const position = selection.$cursor ? selection.$cursor.pos : selection.$to.pos
-        const node = type.create(attrs)
+        const node = this.type.create(attributes)
         const transaction = state.tr.insert(position, node)
+
         dispatch(transaction)
       }
     }
-  }
+  },
 
-  inputRules ({ type }) {
+  addInputRules () {
     return [
-      nodeInputRule(IMAGE_INPUT_REGEX, type, match => {
-        const [, alt, src, title, width, height] = match
-        return {
-          src,
-          alt,
-          title,
-          width,
-          height
-        }
+      nodeInputRule({
+        find: IMAGE_INPUT_REGEX,
+        type: this.type
       })
     ]
-  }
+  },
 
   // Return a vue component
-  get view () {
-    return DpResizableImage
+  addNodeView() {
+    return VueNodeViewRenderer(DpResizableImage)
   }
-}
+})

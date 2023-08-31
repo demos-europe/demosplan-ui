@@ -6,12 +6,12 @@ const meta: Meta<typeof DpSearchField> = {
     title: "Components/SearchField"
 }
 
-interface IDpAccordion {
+interface IDpSearchField {
     reset: object
     search: object
 }
 
-type Story = StoryObj<IDpAccordion>
+type Story = StoryObj<IDpSearchField>
 
 export default meta
 

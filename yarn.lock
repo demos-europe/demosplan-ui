@@ -3115,10 +3115,10 @@
     "@storybook/types" "7.4.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-styling-webpack@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.2.tgz#75c2e77094c4955149f55f8dac0dde0dde2828df"
-  integrity sha512-ffbfzXITu09GJjgzrS2cxkipX+xejc1+C7fhcs6o84ci63zczEfbjjyuhenGCTwBVs/e971xpcQ8NY28d2Uu4w==
+"@storybook/addon-styling-webpack@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.3.tgz#db46b825c346a2b0c8d4fb19f4c995c1806344d3"
+  integrity sha512-7RjjXjrFynVjBz11AB29ErcH/yJTVfiRzel9AfmMZtfmoGyAZSJyc9tozWaokVWp3M6bCmPjGiB0h2jZJQTbVQ==
   dependencies:
     "@storybook/node-logger" "^7.0.12"
 
@@ -3527,15 +3527,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/mdx2-csf/-/mdx2-csf-1.1.0.tgz#97f6df04d0bf616991cc1005a073ac004a7281e5"
   integrity sha512-TXJJd5RAKakWx4BtpwvSNdgTDkKM6RkXU8GK34S/LhidQ5Pjz3wcnqb0TxEkfhK/ztbP8nKHqXFwLfa2CYkvQw==
 
-"@storybook/node-logger@7.4.0":
+"@storybook/node-logger@7.4.0", "@storybook/node-logger@^7.0.12":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-7.4.0.tgz#808ed8a63e3bc2f97a2d276b4e8ddaa72b79deb0"
   integrity sha512-tWSWkYyAvp6SxjIBaTklg29avzv/3Lv4c0dOG2o5tz79PyZkq9v6sQtwLLoI8EJA9Mo8Z08vaJp8NZyDQ9RCuA==
-
-"@storybook/node-logger@^7.0.12":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-7.3.2.tgz#c8fea7b87d63c7b50757646af990d7cf13f7c71e"
-  integrity sha512-XCCYiLa5mQ7KeDQcZ4awlyWDmtxJHLIJeedvXx29JUNztUjgwyon9rlNvxtxtGj6171zgn9MERFh920WyJOOOQ==
 
 "@storybook/postinstall@7.4.0":
   version "7.4.0"
@@ -8604,7 +8599,7 @@ istanbul-reports@^3.1.3:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jackspeak@2.1.1, jackspeak@^2.0.3:
+jackspeak@^2.0.3:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/jackspeak/-/jackspeak-2.1.1.tgz#2a42db4cfbb7e55433c28b6f75d8b796af9669cd"
   integrity sha512-juf9stUEwUaILepraGOWIJTLwg48bUnBmRqd2ln2Os1sW987zeoj/hzhbvRB95oMuS2ZTpjULmdwHNX4rzZIZw==

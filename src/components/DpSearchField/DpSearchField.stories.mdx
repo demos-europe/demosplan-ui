@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs'
+import DpSearchField from './DpSearchField'
+
+<Meta
+    title="Components/SearchField"
+    component={DpSearchField}
+/>
+
+# SearchField
+
+The DpSearchField component to add input field with attribute `type="search"` and a button to submit search processing.
+
+The DpSearchField component has two events `search & reset`.
+
+## Props:
+
+### inputWidth:
+
+Value has to be a css class like 'u-1-of-2'.
+
+## Default usage
+
+```html
+<dp-search-field
+    input-width="u-1-of-2"
+    @search="searchTerm => searchFunction(searchTerm)"
+    @reset="resetFunction" />
+```

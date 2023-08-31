@@ -159,8 +159,5 @@
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "test": "jest",
     "watch": "webpack --watch"
-  },
-  "resolutions": {
-    "jackspeak": "2.1.1"
   }
 }

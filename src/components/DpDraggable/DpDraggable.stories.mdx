@@ -15,15 +15,14 @@ Use the Draggable component to change the order of items within a list.
 
 ```html
 <dp-draggable
-  :opts="draggableOptions">
-      <dp-admin-layer-list-item
-        v-for="(item, idx) in childElements"
-        :key="item.id"
-        :element="{ id: item.id, type: item.type }"
-        :sorting-type="sortingType"
-        :layer-type="layerType"
-        :parent-order-position="layer.attributes[sortingType]"
-        :index="idx" />
+    v-model="currentList"
+    :opts="draggableOptions">
+    <div class="o-sortablelist__item u-pv-0_5 u-pl-0_5 border--top">
+      <p>Content 1</p>
+    </div>
+    <div class="o-sortablelist__item u-pv-0_5 u-pl-0_5 border--top">
+      <p>Content 2</p>
+    </div>
 </dp-draggable>
 ```
 

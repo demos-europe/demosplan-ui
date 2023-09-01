@@ -5,8 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
-- ([#383](https://github.com/demos-europe/demosplan-ui/pull/383)) Rework Tooltip Directive and Component ([@salisdemos](https://github.com/salisdemos))
-  - **Introduced DpTooltip**. Please replace VPopover (now deprecated) with DpTooltip
+- ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 

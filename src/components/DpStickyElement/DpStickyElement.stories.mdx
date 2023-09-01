@@ -10,34 +10,23 @@ import DpStickyElement from './DpStickyElement'
 
 The StickyElement component is used to create elements that stick to a specific position (top or bottom) while scrolling.
 
-## Props:
+## Default usage
 
-### applyZIndex:
-
-If set to false, no z-index is applied to the element.
-
-
-### border:
-
-Whether the element should show an 1px border when being sticky.
-
-When enabled, the border is always displayed on the side of the
-element opposite to the direction the element sticks to.
-
-### context:
-
-Reference to the HTMLElement that should serve as the context for the sticky element.
-
-If omitted, the Stickier lib will default to this.$el.offsetParent
-
-### direction:
-
-The direction the element should stick to.
-
-### observeContext:
-
-Whether context changes should trigger a refresh of stickier positions.
-
-### offset:
-
-The offset from context the element should go into/out of sticky mode.
+```html
+<dp-sticky-element
+  direction="bottom"
+  ref="footer"
+  class="c-mastertoeb__footer">
+  <div class="u-mv-0_5 text-right">
+    <sliding-pagination
+      :current="currentPage"
+      :total="totalPages"
+      @page-change="handlePageChange" />
+    <dp-select-page-item-count
+      @changed-count="setPageItemCount"
+      :page-count-options="itemsPerPageOptions"
+      :current-item-count="itemsPerPage"
+      :translations="{ pagerElementsPerPage: Translator.trans('pager.per.page') }" />
+  </div>
+</dp-sticky-element>
+```

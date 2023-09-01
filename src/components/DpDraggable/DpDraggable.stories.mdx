@@ -17,11 +17,10 @@ Use the Draggable component to change the order of items within a list.
 <dp-draggable
     v-model="currentList"
     :opts="draggableOptions">
-    <div>
-      <p>Content 1</p>
-    </div>
-    <div>
-      <p>Content 2</p>
+    <div
+        v-for="item in currentList"
+        :key="item.id">
+        {{ item.name }}
     </div>
 </dp-draggable>
 ```

@@ -3115,10 +3115,10 @@
     "@storybook/types" "7.4.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-styling-webpack@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.2.tgz#75c2e77094c4955149f55f8dac0dde0dde2828df"
-  integrity sha512-ffbfzXITu09GJjgzrS2cxkipX+xejc1+C7fhcs6o84ci63zczEfbjjyuhenGCTwBVs/e971xpcQ8NY28d2Uu4w==
+"@storybook/addon-styling-webpack@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.3.tgz#db46b825c346a2b0c8d4fb19f4c995c1806344d3"
+  integrity sha512-7RjjXjrFynVjBz11AB29ErcH/yJTVfiRzel9AfmMZtfmoGyAZSJyc9tozWaokVWp3M6bCmPjGiB0h2jZJQTbVQ==
   dependencies:
     "@storybook/node-logger" "^7.0.12"
 
@@ -3527,15 +3527,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/mdx2-csf/-/mdx2-csf-1.1.0.tgz#97f6df04d0bf616991cc1005a073ac004a7281e5"
   integrity sha512-TXJJd5RAKakWx4BtpwvSNdgTDkKM6RkXU8GK34S/LhidQ5Pjz3wcnqb0TxEkfhK/ztbP8nKHqXFwLfa2CYkvQw==
 
-"@storybook/node-logger@7.4.0":
+"@storybook/node-logger@7.4.0", "@storybook/node-logger@^7.0.12":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-7.4.0.tgz#808ed8a63e3bc2f97a2d276b4e8ddaa72b79deb0"
   integrity sha512-tWSWkYyAvp6SxjIBaTklg29avzv/3Lv4c0dOG2o5tz79PyZkq9v6sQtwLLoI8EJA9Mo8Z08vaJp8NZyDQ9RCuA==
-
-"@storybook/node-logger@^7.0.12":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-7.3.2.tgz#c8fea7b87d63c7b50757646af990d7cf13f7c71e"
-  integrity sha512-XCCYiLa5mQ7KeDQcZ4awlyWDmtxJHLIJeedvXx29JUNztUjgwyon9rlNvxtxtGj6171zgn9MERFh920WyJOOOQ==
 
 "@storybook/postinstall@7.4.0":
   version "7.4.0"
@@ -4401,13 +4396,13 @@
     namespace-emitter "^2.0.1"
 
 "@uppy/core@^3.0.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.2.1.tgz#5cf38508f674529ea8302c99cd42b5bb3d93cd21"
-  integrity sha512-vqNwhVcJb9N4Mx1AhDvq4YrjGzqQiy5i2YA2LP/NODVBowMnHK4+g/gFOkZF8dHnKwnvVizZK/vR1K6CXocrGg==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.4.0.tgz#47621de4b094e3ae86b7c6b3a0994862f5a7b47a"
+  integrity sha512-95NNyXZfuNfB6sgna41fNNPRuTqjrHdlVzkXaJlZzghAckIxNz2CoeMYA1rtgn9o8ykKa2Zdz4kk2MEq8Qy4fw==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.9"
     "@uppy/store-default" "^3.0.3"
-    "@uppy/utils" "^5.4.0"
+    "@uppy/utils" "^5.4.3"
     lodash "^4.17.21"
     mime-match "^1.0.2"
     namespace-emitter "^2.0.1"
@@ -4444,12 +4439,13 @@
     "@uppy/utils" "^5.4.0"
     tus-js-client "^3.0.0"
 
-"@uppy/utils@^5.3.0", "@uppy/utils@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.4.0.tgz#1f0816334ef8cfe3eaaf7c6a1d3dc28ac9bbced8"
-  integrity sha512-X9f43OvTcymhoiDEzA2CqH7W5pADTVv2bhQ/9NUaVwYRLUadDjZc27ZgnNraKSYgnOhKFJlC63nyCwcd0yaQIQ==
+"@uppy/utils@^5.3.0", "@uppy/utils@^5.4.0", "@uppy/utils@^5.4.3":
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.4.3.tgz#5d8c238805a35dec5b0d3cd4bea4e0a1b7e54584"
+  integrity sha512-ewQTWQ5Wu1/ocz/lLCkhoXQwHLRktFK4CxrOsZmeCLK9LxjD1GOwSFjOuL199WDQKXiCle6SVlAJGQ3SDlXVkg==
   dependencies:
     lodash "^4.17.21"
+    preact "^10.5.13"
 
 "@vue/cli-plugin-typescript@~5.0.0":
   version "5.0.8"
@@ -8604,7 +8600,7 @@ istanbul-reports@^3.1.3:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jackspeak@2.1.1, jackspeak@^2.0.3:
+jackspeak@^2.0.3:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/jackspeak/-/jackspeak-2.1.1.tgz#2a42db4cfbb7e55433c28b6f75d8b796af9669cd"
   integrity sha512-juf9stUEwUaILepraGOWIJTLwg48bUnBmRqd2ln2Os1sW987zeoj/hzhbvRB95oMuS2ZTpjULmdwHNX4rzZIZw==
@@ -11466,9 +11462,9 @@ postcss@^7.0.36:
     source-map "^0.6.1"
 
 postcss@^8.1.10, postcss@^8.4.14, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.26:
-  version "8.4.28"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.28.tgz#c6cc681ed00109072816e1557f889ef51cf950a5"
-  integrity sha512-Z7V5j0cq8oEKyejIKfpD8b4eBy9cwW2JWPk0+fB1HOAMsfHbnAXLLS+PfVWlzMSLQaWttKDt607I0XHmpE67Vw==
+  version "8.4.29"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.29.tgz#33bc121cf3b3688d4ddef50be869b2a54185a1dd"
+  integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"

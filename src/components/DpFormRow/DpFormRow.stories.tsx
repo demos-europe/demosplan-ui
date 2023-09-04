@@ -4,7 +4,7 @@ import DpSelect from '../DpSelect/DpSelect.vue'
 
 const meta: Meta<typeof DpFormRow> = {
     component: DpFormRow,
-    title: "Components/FormRow",
+    title: 'Components/FormRow',
     render: (args) => ({
         components: {
             DpFormRow,

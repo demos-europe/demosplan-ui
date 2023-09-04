@@ -4396,13 +4396,13 @@
     namespace-emitter "^2.0.1"
 
 "@uppy/core@^3.0.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.2.1.tgz#5cf38508f674529ea8302c99cd42b5bb3d93cd21"
-  integrity sha512-vqNwhVcJb9N4Mx1AhDvq4YrjGzqQiy5i2YA2LP/NODVBowMnHK4+g/gFOkZF8dHnKwnvVizZK/vR1K6CXocrGg==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.4.0.tgz#47621de4b094e3ae86b7c6b3a0994862f5a7b47a"
+  integrity sha512-95NNyXZfuNfB6sgna41fNNPRuTqjrHdlVzkXaJlZzghAckIxNz2CoeMYA1rtgn9o8ykKa2Zdz4kk2MEq8Qy4fw==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.9"
     "@uppy/store-default" "^3.0.3"
-    "@uppy/utils" "^5.4.0"
+    "@uppy/utils" "^5.4.3"
     lodash "^4.17.21"
     mime-match "^1.0.2"
     namespace-emitter "^2.0.1"
@@ -4439,12 +4439,13 @@
     "@uppy/utils" "^5.4.0"
     tus-js-client "^3.0.0"
 
-"@uppy/utils@^5.3.0", "@uppy/utils@^5.4.0":
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.4.0.tgz#1f0816334ef8cfe3eaaf7c6a1d3dc28ac9bbced8"
-  integrity sha512-X9f43OvTcymhoiDEzA2CqH7W5pADTVv2bhQ/9NUaVwYRLUadDjZc27ZgnNraKSYgnOhKFJlC63nyCwcd0yaQIQ==
+"@uppy/utils@^5.3.0", "@uppy/utils@^5.4.0", "@uppy/utils@^5.4.3":
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.4.3.tgz#5d8c238805a35dec5b0d3cd4bea4e0a1b7e54584"
+  integrity sha512-ewQTWQ5Wu1/ocz/lLCkhoXQwHLRktFK4CxrOsZmeCLK9LxjD1GOwSFjOuL199WDQKXiCle6SVlAJGQ3SDlXVkg==
   dependencies:
     lodash "^4.17.21"
+    preact "^10.5.13"
 
 "@vue/cli-plugin-typescript@~5.0.0":
   version "5.0.8"
@@ -11461,9 +11462,9 @@ postcss@^7.0.36:
     source-map "^0.6.1"
 
 postcss@^8.1.10, postcss@^8.4.14, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.26:
-  version "8.4.28"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.28.tgz#c6cc681ed00109072816e1557f889ef51cf950a5"
-  integrity sha512-Z7V5j0cq8oEKyejIKfpD8b4eBy9cwW2JWPk0+fB1HOAMsfHbnAXLLS+PfVWlzMSLQaWttKDt607I0XHmpE67Vw==
+  version "8.4.29"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.29.tgz#33bc121cf3b3688d4ddef50be869b2a54185a1dd"
+  integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"

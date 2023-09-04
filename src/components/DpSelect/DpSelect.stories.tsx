@@ -3,14 +3,17 @@ import DpSelect from './DpSelect.vue'
 
 const meta: Meta<typeof DpSelect> = {
     component: DpSelect,
-    title: "Components/Select",
-    argTypes: {
-        'select': { action: 'select' }
-    }
+    title: "Components/Select"
 }
 
+interface IDpSelect {
+    options: object[]
+    select: object
+}
+
+type Story = StoryObj<IDpSelect>
+
 export default meta
-type Story = StoryObj<typeof DpSelect>
 
 export const Default: Story = {
     args: {
@@ -18,5 +21,8 @@ export const Default: Story = {
             { label: 'Option 1', value: '1' },
             { label: 'Option 2', value: '2' }
         ]
+    },
+    argTypes: {
+        select: { action: 'select' }
     }
 }

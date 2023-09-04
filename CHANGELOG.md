@@ -4,9 +4,20 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
+
 ### Added
 
-- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)), ([#477](https://github.com/demos-europe/demosplan-ui/pull/477)), ([#479](https://github.com/demos-europe/demosplan-ui/pull/479)) Add DpCard, DpCheckboxGroup & DpInlineNotification documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#503](https://github.com/demos-europe/demosplan-ui/pull/503)) Add DpFormRow documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#491](https://github.com/demos-europe/demosplan-ui/pull/491)) Add DpStickyElement documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+## v0.1.13 - 2023-08-30
+
+### Added
+
+- ([#473](https://github.com/demos-europe/demosplan-ui/pull/473)) Add DpBadge component with Storybook documentation ([@muellerdemos](https://github.com/muellerdemos))
+- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)), ([#477](https://github.com/demos-europe/demosplan-ui/pull/477)), ([#479](https://github.com/demos-europe/demosplan-ui/pull/479)), ([#480](https://github.com/demos-europe/demosplan-ui/pull/480)), ([#481](https://github.com/demos-europe/demosplan-ui/pull/481)) Add DpCard, DpCheckboxGroup, DpInlineNotification, DpSkeletonBox & DpSplitButton documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#475](https://github.com/demos-europe/demosplan-ui/pull/475)) Add Tailwind Styles to Storybook7 ([@spiess-demos](https://github.com/spiess-demos))
 
 

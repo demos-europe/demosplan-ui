@@ -6,8 +6,14 @@ const meta: Meta<typeof DpLoading> = {
     title: "Components/Loading"
 }
 
+interface IDpLoading {
+    hideLabel: boolean
+    overlay: boolean
+}
+
+type Story = StoryObj<IDpLoading>
+
 export default meta
-type Story = StoryObj<typeof DpLoading>
 
 export const Default: Story = {
     args: {}

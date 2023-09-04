@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs'
+import DpFormRow from './DpFormRow'
+
+<Meta
+    title="Components/FormRow"
+    component={DpFormRow}
+/>
+
+# FormRow
+
+The FormRow component is used to insert form fields into the row.
+
+And through `elementCount` counts the number of elements in the form row.
+
+## Default usage
+
+```html
+<dp-form-row>
+  <dp-select
+    id="select"
+    :label="Select"
+    name="select"
+    :options="options" />
+</dp-form-row>
+```

@@ -7,8 +7,16 @@ const meta: Meta<typeof DpInlineNotification> = {
     argTypes: {}
 }
 
+interface IDpInlineNotification {
+    dismissible: boolean
+    dismissibleKey: string
+    message: string
+    type: string
+}
+
+type Story = StoryObj<IDpInlineNotification>
+
 export default meta
-type Story = StoryObj<typeof DpInlineNotification>
 
 export const Default: Story = {
     args: {

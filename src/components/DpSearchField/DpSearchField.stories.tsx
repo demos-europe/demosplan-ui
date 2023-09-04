@@ -3,7 +3,7 @@ import DpSearchField from './DpSearchField.vue'
 
 const meta: Meta<typeof DpSearchField> = {
     component: DpSearchField,
-    title: "Components/SearchField"
+    title: 'Components/SearchField'
 }
 
 interface IDpSearchField {

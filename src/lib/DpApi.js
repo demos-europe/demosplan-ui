@@ -27,31 +27,44 @@ const api2defaultHeaders = {
 
 const getHeaders = function (params) {
   const headers = params.url.includes('api/2.0/')
-    ? { ...api2defaultHeaders, ...params.headers }
-    : { ...apiDefaultHeaders, ...params.headers }
+    ? new Headers({ ...api2defaultHeaders, ...params.headers })
+    : new Headers({ ...apiDefaultHeaders, ...params.headers })
 
   // Add current procedure id only if set
   if (currentProcedureId !== null) {
-    headers['X-Demosplan-Procedure-Id'] = currentProcedureId
+    headers.append('X-Demosplan-Procedure-Id', currentProcedureId)
   }
   return headers
 }
 
-const doRequest = async ({ url, method = 'GET', data = {}, params, options }) => {
-  const response = await fetch(url, {
+const doRequest = (async ({ url, method = 'GET', data = {}, params, options }) => {
+  console.log('doRequest with fetch', url, method, data, params, options)
+
+  const payload = {
     method,
-    body: JSON.stringify(data),
     options,
     params,
-    headers: getHeaders(params)
-  })
+    headers: getHeaders({ ...params, url })
+  }
 
-  return response.json()
-}
+  if (method.toUpperCase() !== 'GET') {
+    payload.body = JSON.stringify(data)
+  }
+
+  const response = await fetch(url, payload)
+
+  const content = await response.json()
+
+  console.log('response - content')
+  console.log(content)
+
+  return { data: content }
+})
 
 const dpApi = doRequest
 dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
 dpApi.get = (url, params = {}, options = {}) => {
+  let parameters = params
   if (options.serialize === true) {
     const config = {
       paramsSerializer: (params) => stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' }),
@@ -60,10 +73,12 @@ dpApi.get = (url, params = {}, options = {}) => {
     delete options.serialize
 
     console.log('DO NOT USE THIS. AXIOS HAS TO GO AWAI')
-    return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
-  } else {
-    return doRequest({ method: 'get', url, data: {}, params, options })
+    parameters = stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })
   }
+  // return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
+  // } else {
+  return doRequest({ method: 'get', url, data: {}, parameters, options })
+  // }
 }
 dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
 dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
@@ -84,13 +99,18 @@ const dpRpc = function (method, parameters, id = null) {
     jsonrpc: '2.0',
     method: method,
     id: id === null ? uuid() : id,
-    params: parameters
+    params: parameters,
   }
 
   return doRequest({
-    method: 'post',
     url: Routing.generate('rpc_generic_post'),
-    data
+    method: 'POST',
+    data,
+    params: {
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }
   })
 }
 

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import hasOwnProp from '../utils/hasOwnProp'
 import { stringify } from 'qs'
 import { v4 as uuid } from 'uuid'
@@ -37,9 +36,7 @@ const getHeaders = function (params) {
   return headers
 }
 
-const doRequest = (async ({ url, method = 'GET', data = {}, params, options }) => {
-  console.log('doRequest with fetch', url, method, data, params, options)
-
+const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
   const payload = {
     method,
     options,
@@ -49,37 +46,26 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options }) =
 
   if (method.toUpperCase() !== 'GET') {
     payload.body = JSON.stringify(data)
+  } else if (options.serialize === true) {
+    delete payload.options.serialize
+
+    url = `${url}?${stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })}`
   }
 
   const response = await fetch(url, payload)
-
   const content = await response.json()
 
-  console.log('response - content')
-  console.log(content)
-
-  return { data: content }
+  return {
+    data: content,
+    status: response.status,
+    ok: response.ok
+  }
 })
 
 const dpApi = doRequest
-dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => {
-  let parameters = params
-  if (options.serialize === true) {
-    const config = {
-      paramsSerializer: (params) => stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' }),
-      headers: getHeaders({ ...params, url })
-    }
-    delete options.serialize
 
-    console.log('DO NOT USE THIS. AXIOS HAS TO GO AWAI')
-    parameters = stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })
-  }
-  // return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
-  // } else {
-  return doRequest({ method: 'get', url, data: {}, parameters, options })
-  // }
-}
+dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
+dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'get', url, params, options })
 dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
 dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
 dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'delete', url, params, options })
@@ -117,10 +103,10 @@ const dpRpc = function (method, parameters, id = null) {
 /**
  * Perform an external API call without any default headers
  */
-const externalApi = async function (url) {
-  const response = await fetch(url)
+const externalApi = async (url, data) => {
+  const response = await fetch(url, data)
 
-  return response.json()
+  return await response.json()
 }
 
 /**

@@ -11,6 +11,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#504](https://github.com/demos-europe/demosplan-ui/pull/504)) Add DpSlidingPagination documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#503](https://github.com/demos-europe/demosplan-ui/pull/503)) Add DpFormRow documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#497](https://github.com/demos-europe/demosplan-ui/pull/497)) Add DpDraggable documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#491](https://github.com/demos-europe/demosplan-ui/pull/491)) Add DpStickyElement documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ## v0.1.13 - 2023-08-30

@@ -38,6 +38,7 @@ export default {
 
     /**
      * Value has to be a css class like 'u-1-of-2'
+     * @deprecated Apply inputWidth to the parent element of DpSearchField.
      */
     inputWidth: {
       type: String,

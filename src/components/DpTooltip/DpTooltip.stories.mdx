@@ -64,7 +64,7 @@ Renders a Tooltip.
   <Story
     name="As Directive"
     args={{
-      ['v-tooltip']: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes',
+      ['v-tooltip']: 'Click here to save all your changes!',
     }}>
     {DirectiveTemplate.bind({})}
   </Story>
@@ -77,8 +77,8 @@ Renders a Tooltip.
   <Story
     name="without HTML"
     args={{
-      text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem',
-      slotcontent: '<p>my trigger</p>'
+      text: 'Click here to find out more details about this topic.',
+      slotcontent: '<a href="#">My link</a>'
     }}>
     {Template.bind({})}
   </Story>
@@ -91,8 +91,8 @@ Renders a Tooltip.
   <Story
     name="With HTML"
     args={{
-      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
-      slotcontent: 'my text'
+      text: 'Here text <strong>with HTML</strong>, <ul><li>List 1</li><li>List 2</li></ul>',
+      slotcontent: 'My Tooltip Trigger'
     }}>
     {Template.bind({})}
   </Story>
@@ -105,8 +105,8 @@ Renders a Tooltip.
   <Story
     name="With custom context"
     args={{
-      text: 'Lorem ipsum <strong>with HTML</strong> sit amet, <ul><li>commodo</li><li>adipiscing</li><li>elit</li></ul> elit. Aenean commodo ligula eget dolor. Aenean massa. <strong>with HTML</strong>',
-      slotcontent: 'another Tooltip Hook',
+      text: 'Here another text <strong>with HTML</strong>, <ul><li>List 1</li><li>List 2</li><li>List 3</li></ul>',
+      slotcontent: 'another Tooltip Trigger',
       container: '#storybook-root',
       placement: 'right'
     }}>

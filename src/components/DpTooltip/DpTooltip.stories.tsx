@@ -12,22 +12,22 @@ const meta: Meta<typeof DpTooltip> = {
             return { args }
         },
         template: `<dp-tooltip v-bind='args'>
-          my text
+          Tooltip Trigger.
         </dp-tooltip>`,
     })
 }
 
-interface IDpAccordion {
+interface IDpTooltip {
     text: string
 }
 
-type Story = StoryObj<IDpAccordion>
+type Story = StoryObj<IDpTooltip>
 
 export default meta
 
 export const Default: Story = {
     args: {
-        text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
+        text: 'Need assistance? Click here for help and support.',
     },
     argTypes: { }
 }

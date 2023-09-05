@@ -43,7 +43,18 @@ VPopover.options = { ...VPopover.options, ...tooltipConfig }
  */
 const Tooltip = {
   inserted: function (element, binding) {
-    initTooltip(element, binding.value, { placement: 'top' })
+    let content = binding.value
+    let container = element
+
+    if (typeof binding.value === 'object') {
+      content = binding.value.content
+
+      if (binding.value.container) {
+        container = binding.value.container
+      }
+    }
+
+    initTooltip(container, content, { placement: 'top' })
   },
   unbind: function (element) {
     destroyTooltip(element)

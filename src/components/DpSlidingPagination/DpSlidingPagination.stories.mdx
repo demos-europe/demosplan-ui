@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs'
+import DpSlidingPagination from './DpSlidingPagination'
+
+<Meta
+    title="Components/SlidingPagination"
+    component={DpSlidingPagination}
+/>
+
+# SlidingPagination
+
+The SlidingPagination component is ARIA-friendly pagination component with a sliding window.
+
+## Default usage
+
+Basic usage of the pagination component only requires the current page,
+the total number of pages and a handler which is called on page change.
+
+The pagination component does not handle page changes by itself, instead you are required to provide a page change
+handler which should contain all your page changing logic (e.g. a vuex store dispatch) and eventually change the current
+page to the passed one. In later releases, a v-model approach to `currentPage` may be offered, but was opted against
+for the time being.
+
+```html
+<dp-sliding-pagination
+  :current="currentPage"
+  :total="totalPages"
+  :non-sliding-size="10"
+  @page-change="pageChangeHandler" />
+```

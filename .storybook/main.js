@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   stories: [
     "../src/components/**/*.stories.@(js|jsx|mdx|ts|tsx)",
@@ -45,6 +47,14 @@ module.exports = {
       resourceQuery: /blockType=license/,
       loader: require.resolve('./removeSFCBlockLoader.js')
     })
+
+    /**
+     * We must duplicate the aliases set within ../webpack.config.js,
+     * but with an added ../ because storybook parses the whole thing
+     * from its own root directory, "./storybook".
+     * @type {string}
+     */
+    config.resolve.alias['@'] = path.resolve(__dirname, '../src')
 
     return config
   },

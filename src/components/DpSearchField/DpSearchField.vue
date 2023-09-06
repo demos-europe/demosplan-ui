@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import DpButton from '@/components/DpButton'
+import DpButton from '~/components/DpButton'
 import DpResettableInput from '../DpResettableInput/DpResettableInput'
 
 export default {

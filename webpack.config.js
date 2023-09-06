@@ -47,7 +47,7 @@ const config = {
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '~': path.resolve(__dirname, 'src')
     },
     extensions: ['.ts', '.js', '.vue'],
     symlinks: false

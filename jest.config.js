@@ -28,7 +28,7 @@ module.exports = {
     'vue'
   ],
   moduleNameMapper: {
-    '^@/(.*)': '<rootDir>/src/$1'
+    '^~/(.*)': '<rootDir>/src/$1'
   },
   modulePaths: [
     '<rootDir>'

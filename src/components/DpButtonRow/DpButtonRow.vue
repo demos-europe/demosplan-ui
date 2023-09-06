@@ -23,7 +23,7 @@
 
 <script>
 import { de } from '../shared/translations'
-import DpButton from '@/components/DpButton'
+import DpButton from '~/components/DpButton'
 
 export default {
   name: 'DpButtonRow',

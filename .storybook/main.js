@@ -54,7 +54,7 @@ module.exports = {
      * from its own root directory, "./storybook".
      * @type {string}
      */
-    config.resolve.alias['@'] = path.resolve(__dirname, '../src')
+    config.resolve.alias['~'] = path.resolve(__dirname, '../src')
 
     return config
   },

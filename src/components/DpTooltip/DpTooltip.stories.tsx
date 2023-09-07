@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpTooltip from './DpTooltip.vue'
+import DpTooltip from './'
 
 const meta: Meta<typeof DpTooltip> = {
     component: DpTooltip,

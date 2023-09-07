@@ -18,8 +18,7 @@
 </template>
 
 <script>
-import DpButton from '~/components/DpButton'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
+import { DpButton, DpResettableInput } from '~/components'
 
 export default {
   name: 'DpSearchField',

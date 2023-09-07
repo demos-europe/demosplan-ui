@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { CleanHtml, Tooltip } from '../../directives'
-import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import { CleanHtml, Tooltip } from '~/directives'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpLabel',

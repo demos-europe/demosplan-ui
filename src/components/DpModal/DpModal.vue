@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
-import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import DpIcon from '~/components/DpIcon'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpModal',

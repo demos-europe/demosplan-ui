@@ -16,9 +16,8 @@
 </template>
 
 <script>
-import DpAccordion from '../DpAccordion/DpAccordion'
-import DpButtonRow from '../DpButtonRow/DpButtonRow'
-import { dpValidateMixin } from '../../mixins'
+import { DpAccordion, DpButtonRow } from '~/components'
+import { dpValidateMixin } from '~/mixins'
 
 export default {
   name: 'DpToggleForm',

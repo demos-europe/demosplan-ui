@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSelect from './DpSelect.vue'
+import DpSelect from './'
 
 const meta: Meta<typeof DpSelect> = {
     component: DpSelect,

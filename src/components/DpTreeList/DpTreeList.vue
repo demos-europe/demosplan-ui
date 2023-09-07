@@ -81,14 +81,14 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp } from '../../utils'
+import { deepMerge, hasOwnProp } from '~/utils'
 import DpDraggable from '../DpDraggable/DpDraggable'
-import { Stickier } from '../../lib'
 import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
 import { dragHandleWidth } from './utils/constants'
+import { Stickier } from '~/lib'
 
 export default {
   name: 'DpTreeList',

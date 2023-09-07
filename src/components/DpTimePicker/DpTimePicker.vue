@@ -77,10 +77,8 @@
 </template>
 
 <script>
+import { DpInput, DpLabel, DpResettableInput } from '~/components'
 import ClickOutside from 'vue-click-outside'
-import DpInput from '../DpInput/DpInput'
-import DpLabel from '../DpLabel/DpLabel'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
 import isMobile from 'ismobilejs'
 
 const DEFAULT_TIME = '00:00'

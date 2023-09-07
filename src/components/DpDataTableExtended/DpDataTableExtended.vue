@@ -100,14 +100,13 @@
 </template>
 
 <script>
+import { DpSlidingPagination, DpStickyElement } from '~/components'
 import dataTableSearch from './DataTableSearch'
 import DomPurify from 'dompurify'
-import DpDataTable from './DpDataTable'
+import DpDataTable from '~/components/DpDataTable'
 import DpSelectPageItemCount from './DpSelectPageItemCount'
-import DpSlidingPagination from '../DpSlidingPagination/DpSlidingPagination'
-import DpStickyElement from '../DpStickyElement/DpStickyElement'
-import { hasOwnProp } from '../../utils'
-import { tableSelectAllItems } from '../../mixins'
+import { hasOwnProp } from '~/utils'
+import { tableSelectAllItems } from '~/mixins'
 
 export default {
   name: 'DpDataTableExtended',

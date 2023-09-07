@@ -170,11 +170,10 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
-import { de } from '../shared/translations'
+import { DpDraggable, DpLoading } from '~/components'
+import { CleanHtml } from '~/directives'
+import { de } from '~/components/shared/translations'
 import DomPurify from 'dompurify'
-import DpDraggable from '../DpDraggable/DpDraggable'
-import DpLoading from '../DpLoading/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 

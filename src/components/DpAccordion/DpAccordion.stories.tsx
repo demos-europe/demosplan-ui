@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpAccordion from './DpAccordion.vue'
+import DpAccordion from './'
 
 const meta: Meta<typeof DpAccordion> = {
     component: DpAccordion,

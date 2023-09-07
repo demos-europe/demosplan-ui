@@ -23,10 +23,9 @@
 </template>
 
 <script>
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
-import DpFlyout from '../DpFlyout/DpFlyout'
-import { de } from '../shared/translations'
-import { hasOwnProp } from '../../utils'
+import { DpCheckbox, DpFlyout } from '~/components'
+import { de } from '~/components/shared/translations'
+import { hasOwnProp } from '~/utils'
 
 export default {
   name: 'DpColumnSelector',

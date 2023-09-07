@@ -101,8 +101,9 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
-import { DpDraggable, DpIcon } from '~/components'
 import bus from './utils/bus'
+import DpDraggable from '~/components/DpDraggable'
+import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
 import { Tooltip } from '~/directives'

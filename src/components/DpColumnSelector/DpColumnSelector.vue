@@ -23,7 +23,8 @@
 </template>
 
 <script>
-import { DpCheckbox, DpFlyout } from '~/components'
+import DpCheckbox from '~/components/DpCheckbox'
+import DpFlyout from '~/components/DpFlyout'
 import { de } from '~/components/shared/translations'
 import { hasOwnProp } from '~/utils'
 

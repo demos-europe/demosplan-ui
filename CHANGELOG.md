@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.1.14 - 2023-09-07
+
+Several minor bugfixes.
+
 ## v0.1.13 - 2023-08-30
 
 ### Added

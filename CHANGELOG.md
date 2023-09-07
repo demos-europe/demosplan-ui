@@ -16,6 +16,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#492](https://github.com/demos-europe/demosplan-ui/pull/492)) Add DpSearchField documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#491](https://github.com/demos-europe/demosplan-ui/pull/491)) Add DpStickyElement documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 
+## v0.1.14 - 2023-09-07
+
+Several minor bugfixes.
+
 ## v0.1.13 - 2023-08-30
 
 ### Added

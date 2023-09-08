@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpDraggable from './DpDraggable.vue'
+import DpDraggable from './'
 
 interface IDpDraggable {
     contentData: object[]

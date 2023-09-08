@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpResettableInput from './DpResettableInput.vue'
+import DpResettableInput from './'
 
 const meta: Meta<typeof DpResettableInput> = {
     component: DpResettableInput,

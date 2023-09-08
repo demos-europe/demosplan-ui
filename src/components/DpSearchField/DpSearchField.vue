@@ -19,7 +19,7 @@
 
 <script>
 import DpButton from '~/components/DpButton'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
+import DpResettableInput from '~/components/DpResettableInput'
 
 export default {
   name: 'DpSearchField',

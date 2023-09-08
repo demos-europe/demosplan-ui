@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpFlyout from './DpFlyout.vue'
+import DpFlyout from './'
 
 const meta: Meta<typeof DpFlyout> = {
     component: DpFlyout,

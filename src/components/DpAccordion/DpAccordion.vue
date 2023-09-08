@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import DpTransitionExpand from '../core/DpTransitionExpand'
+import DpTransitionExpand from '~/components/core/DpTransitionExpand'
 
 export default {
   name: 'DpAccordion',

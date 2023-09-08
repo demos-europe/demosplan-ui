@@ -8,9 +8,9 @@ const de = () => {
        * Text to show on the droppable area.
        * `%{browse}` is replaced with a link that opens the system file selection dialog.
        */
-      dropHereOr: Translator.trans('form.button.upload.pdf', {
+      dropHereOr: german.upload.select.pdf({
         browse: '{browse}',
-        maxUploadSize: convertSize('GB', window.dplan.settings.maxUploadSize)
+        maxUploadSize: convertSize('GB', 2)
       }),
       failedToUpload: german.upload.failed,
       // This string is clickable and opens the system file selection dialog.

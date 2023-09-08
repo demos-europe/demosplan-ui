@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpTextArea from './DpTextArea.vue'
+import DpTextArea from './'
 
 const meta: Meta<typeof DpTextArea> = {
     component: DpTextArea,

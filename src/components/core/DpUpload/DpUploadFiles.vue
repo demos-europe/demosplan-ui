@@ -207,8 +207,7 @@ export default {
      */
     tusEndpoint: {
       type: String,
-      required: true,
-      default: ''
+      required: true
     }
   },
 

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
 import { destroyTooltip, initTooltip } from './utils/tooltip'
+import { CleanHtml } from '~/directives'
 
 export default {
   name: 'DpTooltip',

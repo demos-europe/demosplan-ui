@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpMultistepNav from './DpMultistepNav.vue'
+import DpMultistepNav from './'
 
 const meta: Meta<typeof DpMultistepNav> = {
     component: DpMultistepNav,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpPager from './DpPager.vue'
+import DpPager from './'
 
 const meta: Meta<typeof DpPager> = {
     component: DpPager,

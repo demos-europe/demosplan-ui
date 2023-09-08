@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import DpLabel from '../DpLabel/DpLabel.vue'
-import { prefixClassMixin } from '../../mixins'
+import DpLabel from '~/components/DpLabel'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpRadio',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpButtonRow from './DpButtonRow.vue'
+import DpButtonRow from './'
 
 interface IDpButtonRow {
     align:string,

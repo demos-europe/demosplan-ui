@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpLabel from './DpLabel.vue'
+import DpLabel from './'
 
 const meta: Meta<typeof DpLabel> = {
     component: DpLabel,

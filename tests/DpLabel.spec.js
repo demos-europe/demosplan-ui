@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import DpLabel from '../src/components/DpLabel/DpLabel.vue'
+import DpLabel from '~/components/DpLabel/DpLabel.vue'
 
 describe('DpLabel', () => {
   const wrapper = shallowMount(DpLabel, {

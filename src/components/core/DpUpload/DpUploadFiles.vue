@@ -13,11 +13,13 @@
       }" />
     <dp-upload
       :allowed-file-types="allowedFileTypes"
+      :basic-auth="basicAuth"
       :chunk-size="chunkSize"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
       :translations="translations"
+      :upload-post="uploadPost"
       @upload-success="handleUpload" /><!--
 
  --><dp-uploaded-file-list
@@ -73,6 +75,12 @@ export default {
       type: [Array, String],
       required: true,
       default: 'pdf'
+    },
+
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     /**
@@ -189,6 +197,15 @@ export default {
      * in the sessionStorage (i.e., be available across page reloads)
      */
     storageName: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    uploadPost: {
       type: String,
       required: false,
       default: ''

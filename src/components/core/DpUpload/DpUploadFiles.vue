@@ -19,7 +19,7 @@
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
       :translations="translations"
-      :upload-post="uploadPost"
+      :tus-endpoint="tusEndpoint"
       @upload-success="handleUpload" /><!--
 
  --><dp-uploaded-file-list
@@ -205,9 +205,9 @@ export default {
     /**
      * Global path for file uploader endpoint.
      */
-    uploadPost: {
+    tusEndpoint: {
       type: String,
-      required: false,
+      required: true,
       default: ''
     }
   },

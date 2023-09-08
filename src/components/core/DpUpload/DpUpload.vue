@@ -83,9 +83,9 @@ export default {
     /**
      * Global path for file uploader endpoint.
      */
-    uploadPost: {
+    tusEndpoint: {
       type: String,
-      required: false,
+      required: true,
       default: ''
     }
   },
@@ -204,7 +204,7 @@ export default {
       }
 
       this.uppy.use(Tus, {
-        endpoint: this.uploadPost,
+        endpoint: this.tusEndpoint,
         chunkSize: 819200, // 800 KiB
         limit: 5,
         onAfterResponse: (_req, res) => {

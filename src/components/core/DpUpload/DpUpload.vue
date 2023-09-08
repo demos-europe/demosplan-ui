@@ -41,6 +41,12 @@ export default {
       default: false
     },
 
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     /**
      * Define chunk size for huge files like PDFs
      */
@@ -72,6 +78,14 @@ export default {
       type: Object,
       required: false,
       default: () => ({})
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    tusEndpoint: {
+      type: String,
+      required: true
     }
   },
 
@@ -184,12 +198,12 @@ export default {
       }
 
       // If we have a basic auth, for some reason it has to be added to the header
-      if (dplan.settings.basicAuth !== '') {
-        headers.Authorization = dplan.settings.basicAuth
+      if (this.basicAuth !== '') {
+        headers.Authorization = this.basicAuth
       }
 
       this.uppy.use(Tus, {
-        endpoint: dplan.paths.uploadPost,
+        endpoint: this.tusEndpoint,
         chunkSize: 819200, // 800 KiB
         limit: 5,
         onAfterResponse: (_req, res) => {

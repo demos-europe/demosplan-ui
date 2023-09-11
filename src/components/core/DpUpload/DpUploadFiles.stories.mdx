@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs'
+import DpUploadFiles from './DpUploadFiles'
+
+<Meta
+    title="Components/UploadFiles"
+    component={DpUploadFiles}
+/>
+
+# UploadFiles
+
+The UploadFiles component can be upload a single file or multiple files.
+
+The `allowedFileTypes` Prop allows us to choose the type of files that we want to upload.
+
+## Default usage
+
+```html
+<dp-upload-files
+    id="r_upload"
+    name="r_upload"
+    allowed-file-types="all"
+    :basic-auth="dplan.settings.basicAuth"
+    :get-file-by-hash="hash => Routing.generate('core_file', { hash: hash })"
+    :max-file-size="2 * 1024 * 1024 * 1024/* 2 GiB */"
+    :max-number-of-files="1000"
+    needs-hidden-input
+    :translations="{ dropHereOr: Translator.trans('form.button.upload.file', { browse: '{browse}', maxUploadSize: '2GB' }) }"
+    :tus-endpoint="dplan.paths.tusEndpoint" />
+```

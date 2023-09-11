@@ -11,15 +11,14 @@
         :aria-label="ariaLabel"
         :class="prefixClass('o-modal__content ' + contentClasses)"
         role="dialog">
-        <button
-          :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="title"
-          :title="title"
-          @click.prevent.stop="toggle()">
-          <dp-icon
-            icon="close"
-            size="large" />
-        </button>
+        <dp-button
+          class="absolute u-right-0 u-mr-0_5 u-mt-0_5"
+          hide-text
+          icon="close"
+          icon-size="large"
+          :text="title"
+          variant="subtle"
+          @click.prevent.stop="toggle()" />
         <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
           <h2
             :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-import DpIcon from '~/components/DpIcon'
+import DpButton from '~/components/DpButton'
 import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
 
@@ -51,7 +50,7 @@ export default {
   name: 'DpModal',
 
   components: {
-    DpIcon
+    DpButton
   },
 
   mixins: [prefixClassMixin],

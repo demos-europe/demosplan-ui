@@ -12,7 +12,7 @@
         :class="prefixClass('o-modal__content ' + contentClasses)"
         role="dialog">
         <dp-button
-          class="absolute u-right-0 u-mr-0_5 u-mt-0_5"
+          class="absolute u-right-0 u-mr-0_25 u-mt-0_25"
           hide-text
           icon="close"
           icon-size="large"

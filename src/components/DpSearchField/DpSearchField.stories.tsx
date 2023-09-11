@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSearchField from './DpSearchField.vue'
+import DpSearchField from './'
 
 const meta: Meta<typeof DpSearchField> = {
     component: DpSearchField,

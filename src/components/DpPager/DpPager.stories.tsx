@@ -1,18 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpPager from './DpPager.vue'
+import DpPager from './'
 
 const meta: Meta<typeof DpPager> = {
     component: DpPager,
-    title: "Components/Pager",
-    argTypes: {
-        'pageChange': { action: 'pageChange' },
-        'sizeChange': { action: 'sizeChange' }
-    }
+    title: "Components/Pager"
 }
 
+interface IDpPager {
+    pageChange: object
+    sizeChange: object
+}
+
+type Story = StoryObj<IDpPager>
+
 export default meta
-type Story = StoryObj<typeof DpPager>
 
 export const Default: Story = {
-    args: {}
+    args: {},
+    argTypes: {
+        pageChange: { action: 'pageChange' },
+        sizeChange: { action: 'sizeChange' }
+    }
 }

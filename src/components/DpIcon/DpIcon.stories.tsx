@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpIcon from './DpIcon.vue'
+import DpIcon from './'
 
 const meta: Meta<typeof DpIcon> = {
     component: DpIcon,
@@ -7,8 +7,15 @@ const meta: Meta<typeof DpIcon> = {
     argTypes: {}
 }
 
+
+interface IDpIcon {
+    icon: string
+    size: string
+}
+
+type Story = StoryObj<IDpIcon>
+
 export default meta
-type Story = StoryObj<typeof DpIcon>
 
 export const Default: Story = {
     args: {

@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
-import DpIcon from '../DpIcon/DpIcon'
-import { SIZES } from '../DpIcon/util/iconVariables'
-import { Tooltip } from '../../directives'
+import { de } from '~/components/shared/translations'
+import DpIcon from '~/components/DpIcon'
+import { SIZES } from '~/components/DpIcon/util/iconVariables'
+import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpContextualHelp',

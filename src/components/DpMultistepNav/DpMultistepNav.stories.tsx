@@ -1,16 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpMultistepNav from './DpMultistepNav.vue'
+import DpMultistepNav from './'
 
 const meta: Meta<typeof DpMultistepNav> = {
     component: DpMultistepNav,
-    title: "Components/MultistepNav",
-    argTypes: {
-        'changeStep': { action: 'changeStep' }
-    }
+    title: "Components/MultistepNav"
 }
 
+interface IDpMultistepNav {
+    changeStep: object
+    steps: object[]
+}
+
+type Story = StoryObj<IDpMultistepNav>
+
 export default meta
-type Story = StoryObj<typeof DpMultistepNav>
 
 export const Default: Story = {
     args: {
@@ -24,5 +27,8 @@ export const Default: Story = {
                 title: 'In this step you can do that'
             }
         ]
+    },
+    argTypes: {
+        changeStep: { action: 'changeStep' }
     }
 }

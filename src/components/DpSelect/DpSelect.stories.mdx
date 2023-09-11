@@ -1,5 +1,5 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
-import DpSelect from './DpSelect'
+import DpSelect from './'
 
 <Meta
   title="Components/Select"
@@ -27,6 +27,10 @@ export const Template = (args, { argTypes }) => ({
             label: {
               text: 'Choose a number'
             },
+            options: [
+                { label: 'Option 1', value: '1' },
+                { label: 'Option 2', value: '2' }
+            ],
             disabled: true
         }}>
         {Template.bind({})}
@@ -45,6 +49,10 @@ If a select is `required`, an asterisk will be added to its label.
             label: {
               text: 'Choose a number'
             },
+            options: [
+                { label: 'Option 1', value: '1' },
+                { label: 'Option 2', value: '2' }
+            ],
             required: true
         }}>
         {Template.bind({})}

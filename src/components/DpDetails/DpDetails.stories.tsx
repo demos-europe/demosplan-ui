@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpDetails from './DpDetails.vue'
+import DpDetails from './'
 
 const meta: Meta<typeof DpDetails> = {
     component: DpDetails,
@@ -17,9 +17,14 @@ const meta: Meta<typeof DpDetails> = {
     })
 }
 
-export default meta
+interface IDpDetails {
+    default: string
+    summary: string
+}
 
-type Story = StoryObj<typeof DpDetails>
+type Story = StoryObj<IDpDetails>
+
+export default meta
 
 export const Default: Story = {
     args: {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpHeightLimit from './DpHeightLimit.vue'
+import DpHeightLimit from './'
 
 const Translator = {
   trans: (key: string): string => key
@@ -7,12 +7,22 @@ const Translator = {
 
 const meta: Meta<typeof DpHeightLimit> = {
   component: DpHeightLimit,
-  title: "Components/HeightLimit",
-  argTypes: { 'heightLimit:toggle': { action: 'heightLimit:toggle' } }
+  title: "Components/HeightLimit"
 }
 
+interface IDpHeightLimit {
+  shortText: string
+  fullText: string
+  'heightLimit:toggle': object
+  noEvent: boolean
+  element: string
+  isShortened: boolean
+
+}
+
+type Story = StoryObj<IDpHeightLimit>
+
 export default meta
-type Story = StoryObj<typeof DpHeightLimit>
 
 export const Default: Story = {
   args: {
@@ -20,7 +30,9 @@ export const Default: Story = {
     fullText: 'test text test text test text test text test text test text test text test text test text test text test text ',
     isShortened: true,
     noEvent: true,
-    element: 'element',
-
+    element: 'element'
+  },
+  argTypes: {
+    'heightLimit:toggle': { action: 'heightLimit:toggle' }
   }
 }

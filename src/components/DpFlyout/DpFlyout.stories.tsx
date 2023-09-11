@@ -1,17 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpFlyout from './DpFlyout.vue'
+import DpFlyout from './'
 
 const meta: Meta<typeof DpFlyout> = {
     component: DpFlyout,
-    title: "Components/Flyout",
-    argTypes: {
-        'open': { action: 'open' },
-        'close': { action: 'close' }
-    }
+    title: "Components/Flyout"
 }
 
+interface IDpFlyout {
+    align: string
+    close: object
+    disabled: boolean
+    hasMenu: boolean
+    open: object
+    padded: boolean
+}
+
+type Story = StoryObj<IDpFlyout>
+
 export default meta
-type Story = StoryObj<typeof DpFlyout>
 
 export const Default: Story = {
     args: {
@@ -19,5 +25,9 @@ export const Default: Story = {
         disabled: false,
         hasMenu: true,
         padded: true
+    },
+    argTypes: {
+        open: { action: 'open' },
+        close: { action: 'close' }
     }
 }

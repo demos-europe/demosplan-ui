@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
-import DpButton from '../DpButton/DpButton'
+import { de } from '~/components/shared/translations'
+import DpButton from '~/components/DpButton'
 
 export default {
   name: 'DpButtonRow',

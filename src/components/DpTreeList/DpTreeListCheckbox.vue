@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
+import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpTreeListCheckbox',

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
+import { CleanHtml } from '~/directives'
+import DpCheckbox from '~/components/DpCheckbox'
 
 export default {
   name: 'DpCheckboxGroup',
@@ -72,7 +72,7 @@ export default {
   methods: {
     setSelected () {
       this.options.forEach(option => {
-        Vue.set(this.selected, option.id, false)
+        this.selected[option.id] = false
       })
     }
   },

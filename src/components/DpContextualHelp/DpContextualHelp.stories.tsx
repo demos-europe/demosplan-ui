@@ -1,18 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
-import DpContextualHelp from './DpContextualHelp.vue'
-
-const Translator = {
-  trans: (key: string): string => key
-}
+import DpContextualHelp from './'
 
 const meta: Meta<typeof DpContextualHelp> = {
   component: DpContextualHelp,
   title: "Components/ContextualHelp",
 }
 
+interface IDpContextualHelp {
+  icon: string
+  size: string
+  text: string
+}
+
+type Story = StoryObj<IDpContextualHelp>
+
 export default meta
-type Story = StoryObj<typeof DpContextualHelp>
 
 export const Default: Story = {
   args: {

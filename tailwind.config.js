@@ -39,11 +39,6 @@ module.exports = {
       })
     })
   ],
-  safelist: [
-    {
-      pattern: /./// Disable purging https://github.com/tailwindlabs/tailwindcss/discussions/6557#discussioncomment-1838214
-    }
-  ],
   theme: {
     borderRadius,
     boxShadow,

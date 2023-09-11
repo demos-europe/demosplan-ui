@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSkeletonBox from './DpSkeletonBox.vue'
+import DpSkeletonBox from './'
 
 const meta: Meta<typeof DpSkeletonBox> = {
     component: DpSkeletonBox,

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { attributes, length } from '../../shared'
-import { maxlengthHint } from '../../utils'
+import { attributes, length } from '~/shared'
+import { maxlengthHint } from '~/utils'
 
 export default {
   name: 'DpTextArea',

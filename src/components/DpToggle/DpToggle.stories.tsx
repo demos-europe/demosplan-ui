@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpToggle from './DpToggle.vue'
+import DpToggle from './'
 
 const meta: Meta<typeof DpToggle> = {
     component: DpToggle,

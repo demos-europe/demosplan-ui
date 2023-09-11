@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-
-import DpCheckbox from './DpCheckbox.vue'
+import DpCheckbox from './'
 
 const meta: Meta<typeof DpCheckbox> = {
     component: DpCheckbox,

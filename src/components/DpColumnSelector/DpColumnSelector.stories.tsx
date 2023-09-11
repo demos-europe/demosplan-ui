@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpColumnSelector from './DpColumnSelector.vue'
+import DpColumnSelector from './'
 
 const meta: Meta<typeof DpColumnSelector> = {
     component: DpColumnSelector,

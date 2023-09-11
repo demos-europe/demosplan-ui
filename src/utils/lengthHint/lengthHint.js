@@ -1,4 +1,4 @@
-import { de } from '../../components/shared/translations'
+import { de } from '~/components/shared/translations'
 /**
  * Return a translated hint on exact matching characters.
  * @param {Number}    currentLength Currently used character count

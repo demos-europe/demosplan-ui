@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
-import DpInput from '../DpInput/DpInput'
+import DpIcon from '~/components/DpIcon'
+import DpInput from '~/components/DpInput'
 
 export default {
   name: 'DpResettableInput',

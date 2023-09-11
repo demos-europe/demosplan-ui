@@ -83,8 +83,8 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
-import { dpValidateMultiselectDirective } from '../../lib/validation'
+import { de } from '~/components/shared/translations'
+import { dpValidateMultiselectDirective } from '~/lib/validation'
 import VueMultiselect from 'vue-multiselect'
 
 export default {

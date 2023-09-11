@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpAutocomplete from './DpAutocomplete.vue'
+import DpAutocomplete from './'
 
 interface IDpAutocomplete {
     height: string

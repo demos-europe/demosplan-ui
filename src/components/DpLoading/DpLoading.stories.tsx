@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpLoading from './DpLoading.vue'
+import DpLoading from './'
 
 const meta: Meta<typeof DpLoading> = {
     component: DpLoading,

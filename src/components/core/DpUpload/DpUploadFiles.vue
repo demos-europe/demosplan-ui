@@ -69,7 +69,7 @@ export default {
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
-     * @see demosplan-ui/src/lib/FileInfo.js
+     * @see ./src/lib/FileInfo.js
      */
     allowedFileTypes: {
       type: [Array, String],

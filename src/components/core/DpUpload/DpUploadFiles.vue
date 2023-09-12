@@ -69,7 +69,7 @@ export default {
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
-     * @see demosplan-ui/src/lib/FileInfo.js
+     * @see ./src/lib/FileInfo.js
      */
     allowedFileTypes: {
       type: [Array, String],
@@ -186,7 +186,7 @@ export default {
      * you can find all available keys here
      * @see https://github.com/transloadit/uppy/blob/master/packages/%40uppy/locales/src/de_DE.js
      * some are already overwritten here
-     * @see demosplan-ui/src/components/core/DpUpload/utils/UppyTranslations.js
+     * @see ./src/components/core/DpUpload/utils/UppyTranslations.js
      */
     translations: {
       type: Object,

@@ -79,7 +79,8 @@ export default {
 
     basicAuth: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
 
     /**

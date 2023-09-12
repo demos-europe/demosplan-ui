@@ -10,17 +10,15 @@ import DpUploadFiles from './DpUploadFiles'
 
 The UploadFiles component can be upload a single file or multiple files.
 
-The `allowedFileTypes` Prop allows us to choose the type of files that we want to upload.
-
-## Default usage
+## Custom usage
 
 ```html
 <dp-upload-files
-    id="r_upload"
-    name="r_upload"
+    id="upload"
+    name="upload"
     allowed-file-types="all"
     :basic-auth="dplan.settings.basicAuth"
-    :get-file-by-hash="hash => Routing.generate('core_file', { hash: hash })"
+    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
     :max-file-size="2 * 1024 * 1024 * 1024/* 2 GiB */"
     :max-number-of-files="1000"
     needs-hidden-input

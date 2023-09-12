@@ -14,14 +14,8 @@ The UploadFiles component can be upload a single file or multiple files.
 
 ```html
 <dp-upload-files
-    id="upload"
-    name="upload"
     allowed-file-types="all"
     :basic-auth="dplan.settings.basicAuth"
     :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
-    :max-file-size="2 * 1024 * 1024 * 1024/* 2 GiB */"
-    :max-number-of-files="1000"
-    needs-hidden-input
-    :translations="{ dropHereOr: Translator.trans('form.button.upload.file', { browse: '{browse}', maxUploadSize: '2GB' }) }"
     :tus-endpoint="dplan.paths.tusEndpoint" />
 ```

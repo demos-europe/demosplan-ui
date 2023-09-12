@@ -69,7 +69,7 @@ export default {
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
-     * @see demosplan/DemosPlanCoreBundle/Resources/client/js/lib/FileInfo.js
+     * @see ./src/lib/FileInfo.js
      */
     allowedFileTypes: {
       type: [Array, String],
@@ -102,17 +102,30 @@ export default {
       default: false
     },
 
+    /**
+     * Use as routing function that receives a file hash as parameter and returns a route to that file.
+     */
     getFileByHash: {
       type: Function,
       required: true
     },
 
+    /**
+     * The ID of the upload files component is derived from this prop.
+     */
     id: {
       type: String,
       required: false,
       default: ''
     },
 
+    /**
+     * The label is passed to the DpUploadFiles component.
+     * This prop as Object, has 3 keys:
+     * text: use as label text.
+     * hint: use as description text.
+     * tooltip: use as tooltip text.
+     */
     label: {
       type: Object,
       default: () => ({}),
@@ -174,7 +187,7 @@ export default {
      * you can find all available keys here
      * @see https://github.com/transloadit/uppy/blob/master/packages/%40uppy/locales/src/de_DE.js
      * some are already overwritten here
-     * @see demosplan/DemosPlanCoreBundle/Resources/client/js/components/DpUpload/utils/UppyTranslations.js
+     * @see ./src/components/core/DpUpload/utils/UppyTranslations.js
      */
     translations: {
       type: Object,

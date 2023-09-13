@@ -3,7 +3,10 @@
     :aria-label="ariaLabel"
     :icon="icon"
     :size="size"
-    v-tooltip="text" />
+    v-tooltip="{
+      classes: 'z-ultimate',
+      content: text
+    }" />
 </template>
 
 <script>

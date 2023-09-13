@@ -8,11 +8,14 @@ import DpDatepicker from './'
 
 # Datepicker
 
-The Datepicker component use `a11y-datepicker` component.
+The Datepicker component allows users to enter a date either by typing or by selecting a date from the calendar.
+
+Use a date picker when you want to provide a view that allows the user to select a calendar date.
 
 ## Default usage
 
 ```html
 <dp-datepicker
-  id="datepicker_id" />
+  id="datepicker_id"
+  v-model="planDate" />
 ```

@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
+- ([#523](https://github.com/demos-europe/demosplan-ui/pull/523)) Place the tooltip in the foreground using the 'z-ultimate' class in the DpContextualHelp.vue component ([@sakutademos](https://github.com/sakutademos))
 - ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
 
 ### Added

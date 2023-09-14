@@ -9,7 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#521](https://github.com/demos-europe/demosplan-ui/pull/521)), ([#522](https://github.com/demos-europe/demosplan-ui/pull/522)), ([#524](https://github.com/demos-europe/demosplan-ui/pull/524)) Add DpDatepicker, DpDatetimePicker & DpDateRangePicker documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#521](https://github.com/demos-europe/demosplan-ui/pull/521)), ([#522](https://github.com/demos-europe/demosplan-ui/pull/522)), ([#524](https://github.com/demos-europe/demosplan-ui/pull/524)), ([#525](https://github.com/demos-europe/demosplan-ui/pull/525)) Add DpDatepicker, DpDatetimePicker, DpDateRangePicker & DpTimePicker documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#518](https://github.com/demos-europe/demosplan-ui/pull/518)) Add DpUpload documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#516](https://github.com/demos-europe/demosplan-ui/pull/516)) Add Props to DpUpload & DpUploadFiles ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#505](https://github.com/demos-europe/demosplan-ui/pull/505)) Add DpTooltip documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))

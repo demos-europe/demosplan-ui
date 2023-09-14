@@ -37,7 +37,7 @@ export default {
 
   computed: {
     translatedText () {
-      return Translator.trans(this.text)
+      return this.text
     }
   }
 }

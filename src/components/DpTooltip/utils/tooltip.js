@@ -23,6 +23,14 @@ const destroyTooltip = (wrapperEl) => {
   deleteTooltip(tooltipEl)
 }
 
+const getZIndex = (element) => {
+  const z = window.getComputedStyle(element).getPropertyValue('z-index')
+  if (isNaN(z)) {
+    return (element.nodeName === 'HTML') ? 1 : getZIndex(element.parentNode)
+  }
+  return z
+}
+
 const hideTooltip = (tooltipEl) => {
   tooltipEl.classList.add('z-below-zero')
   tooltipEl.classList.add('opacity-0')
@@ -50,12 +58,14 @@ const initTooltip = (el, value, options) => {
   if (!value) return
 
   const id = `tooltip-${uuid()}`
+  const zIndex = getZIndex(el)
 
   handleShowTooltip = () => showTooltip(
     id,
     el,
     value,
-    options
+    options,
+    zIndex
   )
   handleHideTooltip = () => hideTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
@@ -65,7 +75,7 @@ const initTooltip = (el, value, options) => {
   el.addEventListener('blur', handleHideTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' })  => {
+const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     createTooltip(id, wrapperEl, value, container, classes)
   } else {
@@ -90,7 +100,8 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'b
 
   Object.assign(tooltipEl.style, {
     left: `${x}px`,
-    top: `${y}px`
+    top: `${y}px`,
+    zIndex: Number(zIndex) + 1
   })
 
  /*

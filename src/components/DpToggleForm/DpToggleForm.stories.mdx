@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs'
+import DpToggleForm from './'
+
+<Meta
+    title="Components/ToggleForm"
+    component={DpToggleForm}
+/>
+
+# ToggleForm
+
+The ToggleForm component is used to toggle the visibility of a forms.
+
+## Default usage
+
+```html
+<dp-toggle-form v-bind="args" title="Form Title">
+  <form
+      action="#"
+      method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+  </form>
+</dp-toggle-form>`
+```

@@ -45,7 +45,6 @@ import DpTabs from './DpTabs/DpTabs'
 import DpTextArea from './DpTextArea'
 import DpTimePicker from './DpTimePicker'
 import DpToggle from './DpToggle'
-import DpToggleForm from './DpToggleForm'
 import DpTooltip from './DpTooltip'
 import DpTooltipIcon from './DpTooltipIcon'
 import DpTreeList from './DpTreeList'
@@ -127,7 +126,6 @@ export {
   DpTextWrapper,
   DpTimePicker,
   DpToggle,
-  DpToggleForm,
   DpTooltip,
   DpTooltipIcon,
   DpTransitionExpand,

@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.1.15 - 2023-09-18
+
 ### Added
 - ([#523](https://github.com/demos-europe/demosplan-ui/pull/523)) Added a method that checks the z-index of the parent element and appends zIndex + 1 to the style of the tooltip ([@sakutademos](https://github.com/sakutademos))
 

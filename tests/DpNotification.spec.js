@@ -1,4 +1,4 @@
-import DpNotification from '~/components/DpNotification/DpNotification'
+import DpNotification from '~/components/DpNotification'
 import { mount } from '@vue/test-utils'
 
 describe('DpNotification', () => {

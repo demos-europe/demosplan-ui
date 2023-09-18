@@ -28,6 +28,7 @@ import DpLoading from './DpLoading'
 import DpModal from './DpModal'
 import DpMultiselect from './DpMultiselect'
 import DpMultistepNav from './DpMultistepNav'
+import DpNotification from './DpNotification'
 import DpPager from './DpPager'
 import DpProgressBar from './DpProgressBar'
 import DpRadio from './DpRadio'
@@ -54,7 +55,6 @@ import {
   DpBulkEditHeader,
   DpEditableList,
   DpEditor,
-  DpNotifyMessage,
   DpObscure,
   DpSwitcher,
   DpTableCard,
@@ -101,7 +101,7 @@ export {
   DpModal,
   DpMultiselect,
   DpMultistepNav,
-  DpNotifyMessage,
+  DpNotification,
   DpObscure,
   DpPager,
   DpProgressBar,

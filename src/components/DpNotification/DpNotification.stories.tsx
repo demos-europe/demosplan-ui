@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpNotifyMessage from './DpNotifyMessage.vue'
+import DpNotification from './'
 
-const meta: Meta<typeof DpNotifyMessage> = {
-    component: DpNotifyMessage,
-    title: 'Components/NotifyMessage'
+const meta: Meta<typeof DpNotification> = {
+    component: DpNotification,
+    title: 'Components/Notification'
 }
 
-interface IDpNotifyMessage {
+interface IDpNotification {
     dpNotifyRemove: object
     message: object
 }
 
-type Story = StoryObj<IDpNotifyMessage>
+type Story = StoryObj<IDpNotification>
 
 export default meta
 

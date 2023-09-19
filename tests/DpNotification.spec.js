@@ -1,10 +1,10 @@
-import DpNotifyMessage from '~/components/core/notify/DpNotifyMessage'
+import DpNotification from '~/components/DpNotification'
 import { mount } from '@vue/test-utils'
 
-describe('DpNotifyMessage', () => {
-  it('is named DpNotifyMessage', () => {
-    expect(DpNotifyMessage.hasOwnProperty('name')).toBe(true)
-    expect(DpNotifyMessage.name).toBe('DpNotifyMessage')
+describe('DpNotification', () => {
+  it('is named DpNotification', () => {
+    expect(DpNotification.hasOwnProperty('name')).toBe(true)
+    expect(DpNotification.name).toBe('DpNotification')
   })
 
   it('chooses the message class based on it\'s type', () => {
@@ -24,7 +24,7 @@ describe('DpNotifyMessage', () => {
     ]
 
     for (const val of validCombinations) {
-      const wrapper = mount(DpNotifyMessage, {
+      const wrapper = mount(DpNotification, {
         propsData: {
           message: {
             type: val.type
@@ -37,7 +37,7 @@ describe('DpNotifyMessage', () => {
   })
 
   it('always renders with closemark', () => {
-    let wrapper = mount(DpNotifyMessage, {
+    let wrapper = mount(DpNotification, {
       propsData: {
         message: {
           type: 'error'
@@ -49,7 +49,7 @@ describe('DpNotifyMessage', () => {
     let closer = wrapper.find('i.c-notify__closer')
     expect(closer.element.tagName).toStrictEqual('I')
 
-    wrapper = mount(DpNotifyMessage, {
+    wrapper = mount(DpNotification, {
       propsData: {
         message: {
           type: 'confirm'
@@ -63,7 +63,7 @@ describe('DpNotifyMessage', () => {
   })
 
   it('renders the message text', () => {
-    const wrapper = mount(DpNotifyMessage, {
+    const wrapper = mount(DpNotification, {
       propsData: {
         message: {
           type: 'confirm',
@@ -76,7 +76,7 @@ describe('DpNotifyMessage', () => {
   })
 
   it('renders a link if link attributes are given', () => {
-    const wrapper = mount(DpNotifyMessage, {
+    const wrapper = mount(DpNotification, {
       propsData: {
         message: {
           type: 'confirm',
@@ -96,7 +96,7 @@ describe('DpNotifyMessage', () => {
       text: 'MessageText'
     }
 
-    const wrapper = mount(DpNotifyMessage, {
+    const wrapper = mount(DpNotification, {
       propsData: {
         message: message
       }
@@ -116,7 +116,7 @@ describe('DpNotifyMessage', () => {
       text: 'MessageText'
     }
 
-    const wrapper = mount(DpNotifyMessage, {
+    const wrapper = mount(DpNotification, {
       propsData: {
         message: message,
         hideTimer: 25 // Make this timeout reasonably short to keep the test time low

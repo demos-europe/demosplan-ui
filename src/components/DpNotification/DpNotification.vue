@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import { prefixClassMixin } from '../../../mixins'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
-  name: 'DpNotifyMessage',
+  name: 'DpNotification',
 
   mixins: [prefixClassMixin],
 

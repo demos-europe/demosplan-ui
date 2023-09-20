@@ -20,7 +20,10 @@ const meta: Meta<typeof DpModal> = {
                 role="button">
               Open Modal
             </a>
-            <dp-modal id="openModal" ref="openModal" v-bind="args">
+            <dp-modal
+                id="openModal"
+                ref="openModal"
+                v-bind="args">
               <template v-slot:header>
                 Header Title
               </template>

@@ -14,14 +14,17 @@ The Modal component intentionally interrupts a user's page experience, disabling
 ## Custom usage
 
 ```html
-<dp-modal id="openModal" ref="openModal" v-bind="args">
-  <template v-slot:header>
-    Short, descriptive modal title
-  </template>
-  <template>
-    <p>
-      Modal content
-    </p>
-  </template>
+<dp-modal
+    id="openModal"
+    ref="openModal"
+    v-bind="args">
+    <template v-slot:header>
+        Short, descriptive modal title
+    </template>
+    <template>
+        <p>
+          Modal content
+        </p>
+    </template>
 </dp-modal>
 ```

@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs'
+import DpModal from './'
+
+<Meta
+    title="Components/Modal"
+    component={DpModal}
+/>
+
+# Modal
+
+The Modal component allows users to open and close a modal dialog or popup by clicking a button, link
+or performing a specific action.
+
+
+## Custom usage
+
+```html
+<dp-upload-files
+    allowed-file-types="all"
+    :basic-auth="dplan.settings.basicAuth"
+    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
+    :tus-endpoint="dplan.paths.tusEndpoint" />
+```

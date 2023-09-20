@@ -15,9 +15,14 @@ or performing a specific action.
 ## Custom usage
 
 ```html
-<dp-upload-files
-    allowed-file-types="all"
-    :basic-auth="dplan.settings.basicAuth"
-    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
-    :tus-endpoint="dplan.paths.tusEndpoint" />
+<dp-modal id="openModal" ref="openModal" v-bind="args">
+  <template v-slot:header>
+    Header Title
+  </template>
+  <template>
+    <p>
+      Template Code & Text
+    </p>
+  </template>
+</dp-modal>
 ```

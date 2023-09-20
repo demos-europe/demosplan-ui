@@ -106,7 +106,7 @@ export default {
 
   methods: {
     getFocusableElements () {
-      const elementList = this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])')
+      const elementList = Array.from(this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])'))
 
       if (elementList.length <= 0) {
         this.focusableElements = []

@@ -13,21 +13,23 @@ const meta: Meta<typeof DpModal> = {
         },
         template: `
           <div>
-            <a 
+            <a
+                href="#openModal"
+                id="openModal"
                 @click.stop.prevent="$refs.openModal.toggle()"
                 role="button">
               Open Modal
             </a>
-              <dp-modal ref="openModal" v-bind="args">
-                  <template v-slot:header>
-                    header
-                  </template>
-                  <template>
-                    <p>
-                      template
-                    </p>
-                  </template>
-              </dp-modal>
+            <dp-modal id="openModal" ref="openModal" v-bind="args">
+              <template v-slot:header>
+                Header Title
+              </template>
+              <template>
+                <p>
+                  Template Code & Text
+                </p>
+              </template>
+            </dp-modal>
           </div>
         `,
     })

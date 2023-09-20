@@ -32,8 +32,10 @@ const getZIndex = (element) => {
 }
 
 const hideTooltip = (tooltipEl) => {
-  tooltipEl.classList.add('z-below-zero')
-  tooltipEl.classList.add('opacity-0')
+  if (tooltipEl) {
+    tooltipEl.classList.add('z-below-zero')
+    tooltipEl.classList.add('opacity-0')
+  }
 
   handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
 }
@@ -76,6 +78,12 @@ const initTooltip = (el, value, options) => {
 }
 
 const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
+  let elementToRemove = document.getElementById(id)
+  if (elementToRemove) {
+    clearTimeout(handleTimeoutForDestroy)
+    document.querySelector(container).removeChild(elementToRemove)
+  }
+
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     createTooltip(id, wrapperEl, value, container, classes)
   } else {
@@ -129,4 +137,23 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'b
   tooltipEl.classList.remove('opacity-0')
 }
 
-export { destroyTooltip, initTooltip }
+const updateTooltip = (elWrapper, value, options, id) => {
+  if (!value) return
+
+  destroyTooltip(elWrapper)
+
+  handleShowTooltip = () => showTooltip(
+    id,
+    elWrapper,
+    value,
+    options
+  )
+  handleHideTooltip = () => hideTooltip(document.getElementById(elWrapper.getAttribute('aria-describedby')))
+
+  elWrapper.addEventListener('mouseenter', handleShowTooltip)
+  elWrapper.addEventListener('focus', handleShowTooltip)
+  elWrapper.addEventListener('mouseleave', handleHideTooltip)
+  elWrapper.addEventListener('blur', handleHideTooltip)
+}
+
+export { destroyTooltip, initTooltip, updateTooltip }

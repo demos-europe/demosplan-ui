@@ -43,7 +43,7 @@ const hideTooltip = (tooltipEl) => {
 
 const createTooltip = (id, container, classes) => {
   const tooltip = tooltips.find(el => el.id === id)
-
+  // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =
     `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${tooltip.id}">` +
     `<div class="tooltip__arrow" data-tooltip-arrow></div>` +

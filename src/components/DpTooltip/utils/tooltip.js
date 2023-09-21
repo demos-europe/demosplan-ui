@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 let handleShowTooltip = null
 let handleHideTooltip = null
 let handleTimeoutForDestroy = null
+let tooltips = []
 
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
@@ -32,18 +33,21 @@ const getZIndex = (element) => {
 }
 
 const hideTooltip = (tooltipEl) => {
-  tooltipEl.classList.add('z-below-zero')
-  tooltipEl.classList.add('opacity-0')
+  if (tooltipEl) {
+    tooltipEl.classList.add('z-below-zero')
+    tooltipEl.classList.add('opacity-0')
+  }
 
   handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
 }
 
 const createTooltip = (id, el, value, container, classes) => {
-  // this has to be in sync with the Template in DpTooltip
+  const tooltip = tooltips.find(el => el.id === id)
+
   const tooltipHtml =
-    `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
+    `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${tooltip.id}">` +
     `<div class="tooltip__arrow" data-tooltip-arrow></div>` +
-    `<div class="tooltip__inner">${value}</div>` +
+    `<div class="tooltip__inner">${tooltip.value}</div>` +
     `</div>`
 
   const range = document.createRange()
@@ -59,6 +63,10 @@ const initTooltip = (el, value, options) => {
 
   const id = `tooltip-${uuid()}`
   const zIndex = getZIndex(el)
+  const tooltipData = { id: id, value: value }
+
+  tooltips.push(tooltipData)
+  el.setAttribute('aria-describedby', id)
 
   handleShowTooltip = () => showTooltip(
     id,
@@ -129,4 +137,16 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'b
   tooltipEl.classList.remove('opacity-0')
 }
 
-export { destroyTooltip, initTooltip }
+const updateTooltip = (elWrapper, value) => {
+  if (!value) return
+
+  const wrapperId = elWrapper.getAttribute('aria-describedby')
+
+  tooltips.forEach(el => {
+    if (wrapperId === el.id) {
+      el.value = value
+    }
+  })
+}
+
+export { destroyTooltip, initTooltip, updateTooltip }

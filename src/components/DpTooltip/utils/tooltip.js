@@ -78,17 +78,14 @@ const initTooltip = (el, value, options) => {
 }
 
 const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
-  let elementToRemove = document.getElementById(id)
-  if (elementToRemove) {
+  const existingTooltip = document.getElementById(id)
+
+  if (existingTooltip) {
+    document.querySelector(container).removeChild(existingTooltip)
     clearTimeout(handleTimeoutForDestroy)
-    document.querySelector(container).removeChild(elementToRemove)
   }
 
-  if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    createTooltip(id, wrapperEl, value, container, classes)
-  } else {
-    clearTimeout(handleTimeoutForDestroy)
-  }
+  createTooltip(id, wrapperEl, value, container, classes)
 
   const tooltipEl = document.getElementById(id)
   const arrowEl = tooltipEl.querySelector('[data-tooltip-arrow]')
@@ -140,13 +137,16 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'b
 const updateTooltip = (elWrapper, value, options, id) => {
   if (!value) return
 
+  const zIndex = getZIndex(elWrapper)
+
   destroyTooltip(elWrapper)
 
   handleShowTooltip = () => showTooltip(
     id,
     elWrapper,
     value,
-    options
+    options,
+    zIndex
   )
   handleHideTooltip = () => hideTooltip(document.getElementById(elWrapper.getAttribute('aria-describedby')))
 

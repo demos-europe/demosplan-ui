@@ -62,9 +62,7 @@ const Tooltip = {
   },
 
   update: function (element, binding) {
-    console.log('update')
     const tooltipEl = document.getElementById(element.getAttribute('aria-describedby'))
-
     let content = binding.value
     let options = { place: 'top' }
 

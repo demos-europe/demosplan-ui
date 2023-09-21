@@ -13,6 +13,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
+- ([#538](https://github.com/demos-europe/demosplan-ui/pull/538)) Add DpModal documentation to Storybook & Fix getComputedStyle error ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Add DpNotification documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#531](https://github.com/demos-europe/demosplan-ui/pull/531)) Add DpProgressBar documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#526](https://github.com/demos-europe/demosplan-ui/pull/526)) Add DpButtonIcon documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))

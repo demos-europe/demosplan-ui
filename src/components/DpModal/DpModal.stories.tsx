@@ -25,7 +25,7 @@ const meta: Meta<typeof DpModal> = {
                 ref="openModal"
                 v-bind="args">
               <template v-slot:header>
-                Header Title
+                Short, descriptive modal title
               </template>
               <template>
                 <p>

@@ -41,7 +41,7 @@ const hideTooltip = (tooltipEl) => {
   handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
 }
 
-const createTooltip = (id, el, value, container, classes) => {
+const createTooltip = (id, el, container, classes) => {
   const tooltip = tooltips.find(el => el.id === id)
 
   const tooltipHtml =
@@ -71,7 +71,6 @@ const initTooltip = (el, value, options) => {
   handleShowTooltip = () => showTooltip(
     id,
     el,
-    value,
     options,
     zIndex
   )
@@ -83,9 +82,9 @@ const initTooltip = (el, value, options) => {
   el.addEventListener('blur', handleHideTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
+const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    createTooltip(id, wrapperEl, value, container, classes)
+    createTooltip(id, wrapperEl, container, classes)
   } else {
     clearTimeout(handleTimeoutForDestroy)
   }

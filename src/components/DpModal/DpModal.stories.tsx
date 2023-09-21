@@ -29,7 +29,7 @@ const meta: Meta<typeof DpModal> = {
               </template>
               <template>
                 <p>
-                  Template Code & Text
+                  Modal content
                 </p>
               </template>
             </dp-modal>

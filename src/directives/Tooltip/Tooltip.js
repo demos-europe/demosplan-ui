@@ -63,12 +63,21 @@ const Tooltip = {
 
   update: function (element, binding) {
     let content = binding.value
+    let options = { place: 'top' }
 
     if (binding.value && typeof binding.value === 'object') {
       content = binding.value.content
+
+      if (binding.value.container) {
+        options = { ...options, container: binding.value.container }
+      }
+
+      if (binding.value.classes) {
+        options = { ...options, classes: binding.value.classes }
+      }
     }
 
-    updateTooltip(element, content)
+    updateTooltip(element, content, options)
   },
 
   unbind: function (element) {

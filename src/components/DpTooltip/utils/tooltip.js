@@ -41,7 +41,7 @@ const hideTooltip = (tooltipEl) => {
   handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
 }
 
-const createTooltip = (id, el, container, classes) => {
+const createTooltip = (id, container, classes) => {
   const tooltip = tooltips.find(el => el.id === id)
 
   const tooltipHtml =
@@ -51,7 +51,6 @@ const createTooltip = (id, el, container, classes) => {
     `</div>`
 
   const range = document.createRange()
-  el.setAttribute('aria-describedby', id)
 
   const content = range.createContextualFragment(tooltipHtml)
 
@@ -84,7 +83,7 @@ const initTooltip = (el, value, options) => {
 
 const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    createTooltip(id, wrapperEl, container, classes)
+    createTooltip(id, container, classes)
   } else {
     clearTimeout(handleTimeoutForDestroy)
   }
@@ -136,16 +135,24 @@ const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', c
   tooltipEl.classList.remove('opacity-0')
 }
 
-const updateTooltip = (elWrapper, value) => {
+const updateTooltip = (elWrapper, value, options) => {
   if (!value) return
 
   const wrapperId = elWrapper.getAttribute('aria-describedby')
+  const zIndex = getZIndex(elWrapper)
 
   tooltips.forEach(el => {
     if (wrapperId === el.id) {
       el.value = value
     }
   })
+
+  const tooltipEl = document.getElementById(wrapperId)
+
+  if (tooltipEl) {
+    deleteTooltip(tooltipEl)
+    showTooltip(wrapperId, elWrapper, options, zIndex)
+  }
 }
 
 export { destroyTooltip, initTooltip, updateTooltip }

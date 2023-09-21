@@ -9,6 +9,7 @@ let tooltips = []
 
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
+    tooltips.filter(el => el.id !== tooltipEl.id)
     tooltipEl.remove()
   }
 }

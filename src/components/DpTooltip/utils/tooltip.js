@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 let handleShowTooltip = null
 let handleHideTooltip = null
 let handleTimeoutForDestroy = null
+let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
@@ -32,13 +33,16 @@ const getZIndex = (element) => {
 }
 
 const hideTooltip = (tooltipEl) => {
-  tooltipEl.classList.add('z-below-zero')
-  tooltipEl.classList.add('opacity-0')
+  if (tooltipEl) {
+    tooltipEl.classList.add('z-below-zero')
+    tooltipEl.classList.add('opacity-0')
+  }
 
   handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
 }
 
-const createTooltip = (id, el, value, container, classes) => {
+const createTooltip = (id, container, classes) => {
+  const value = tooltips[id]
   // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =
     `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
@@ -47,7 +51,6 @@ const createTooltip = (id, el, value, container, classes) => {
     `</div>`
 
   const range = document.createRange()
-  el.setAttribute('aria-describedby', id)
 
   const content = range.createContextualFragment(tooltipHtml)
 
@@ -59,11 +62,13 @@ const initTooltip = (el, value, options) => {
 
   const id = `tooltip-${uuid()}`
   const zIndex = getZIndex(el)
+  tooltips[id] = value
+
+  el.setAttribute('aria-describedby', id)
 
   handleShowTooltip = () => showTooltip(
     id,
     el,
-    value,
     options,
     zIndex
   )
@@ -75,9 +80,9 @@ const initTooltip = (el, value, options) => {
   el.addEventListener('blur', handleHideTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
+const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    createTooltip(id, wrapperEl, value, container, classes)
+    createTooltip(id, container, classes)
   } else {
     clearTimeout(handleTimeoutForDestroy)
   }
@@ -129,4 +134,19 @@ const showTooltip = async (id, wrapperEl, value, { place = 'top', container = 'b
   tooltipEl.classList.remove('opacity-0')
 }
 
-export { destroyTooltip, initTooltip }
+const updateTooltip = (wrapper, value, options) => {
+  if (!value) return
+
+  const wrapperId = wrapper.getAttribute('aria-describedby')
+  tooltips[wrapperId] = value
+
+  const zIndex = getZIndex(wrapper)
+  const tooltipEl = document.getElementById(wrapperId)
+
+  if (tooltipEl) {
+    deleteTooltip(tooltipEl)
+    showTooltip(wrapperId, wrapper, options, zIndex)
+  }
+}
+
+export { destroyTooltip, initTooltip, updateTooltip }

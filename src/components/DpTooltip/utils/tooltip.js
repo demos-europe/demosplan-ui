@@ -5,11 +5,10 @@ import { v4 as uuid } from 'uuid'
 let handleShowTooltip = null
 let handleHideTooltip = null
 let handleTimeoutForDestroy = null
-let tooltips = []
+let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
-    tooltips.filter(el => el.id !== tooltipEl.id)
     tooltipEl.remove()
   }
 }
@@ -43,12 +42,12 @@ const hideTooltip = (tooltipEl) => {
 }
 
 const createTooltip = (id, container, classes) => {
-  const tooltip = tooltips.find(el => el.id === id)
+  const value = tooltips[id]
   // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =
-    `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${tooltip.id}">` +
+    `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
     `<div class="tooltip__arrow" data-tooltip-arrow></div>` +
-    `<div class="tooltip__inner">${tooltip.value}</div>` +
+    `<div class="tooltip__inner">${value}</div>` +
     `</div>`
 
   const range = document.createRange()
@@ -63,9 +62,8 @@ const initTooltip = (el, value, options) => {
 
   const id = `tooltip-${uuid()}`
   const zIndex = getZIndex(el)
-  const tooltipData = { id: id, value: value }
+  tooltips[id] = value
 
-  tooltips.push(tooltipData)
   el.setAttribute('aria-describedby', id)
 
   handleShowTooltip = () => showTooltip(
@@ -136,23 +134,18 @@ const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', c
   tooltipEl.classList.remove('opacity-0')
 }
 
-const updateTooltip = (elWrapper, value, options) => {
+const updateTooltip = (wrapper, value, options) => {
   if (!value) return
 
-  const wrapperId = elWrapper.getAttribute('aria-describedby')
-  const zIndex = getZIndex(elWrapper)
+  const wrapperId = wrapper.getAttribute('aria-describedby')
+  tooltips[wrapperId] = value
 
-  tooltips.forEach(el => {
-    if (wrapperId === el.id) {
-      el.value = value
-    }
-  })
-
+  const zIndex = getZIndex(wrapper)
   const tooltipEl = document.getElementById(wrapperId)
 
   if (tooltipEl) {
     deleteTooltip(tooltipEl)
-    showTooltip(wrapperId, elWrapper, options, zIndex)
+    showTooltip(wrapperId, wrapper, options, zIndex)
   }
 }
 

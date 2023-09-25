@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpTabs from './'
-import DpTab from './'
+import DpTab from './DpTab.vue'
 
 const meta: Meta<typeof DpTabs> = {
     component: DpTabs,

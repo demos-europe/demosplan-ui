@@ -3,15 +3,19 @@ import DpTextArea from './'
 
 const meta: Meta<typeof DpTextArea> = {
     component: DpTextArea,
-    title: "Components/TextArea",
-    argTypes: {
-        'input': { action: 'input' }
-    }
+    title: "Components/TextArea"
+}
+
+interface IDpTextArea {
+    input: object
 }
 
 export default meta
-type Story = StoryObj<typeof DpTextArea>
+type Story = StoryObj<IDpTextArea>
 
 export const Default: Story = {
-    args: {}
+    args: {},
+    argTypes: {
+        input: { action: 'input' }
+    }
 }

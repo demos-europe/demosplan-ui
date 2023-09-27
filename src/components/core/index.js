@@ -2,7 +2,6 @@ import DpAnonymizeText from './DpAnonymizeText'
 import DpBulkEditHeader from './DpBulkEditHeader'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor/DpEditor'
-import DpNotifyMessage from './notify/DpNotifyMessage'
 import DpObscure from './DpObscure'
 import DpSwitcher from './DpSwitcher'
 import DpTableCard from './DpTableCardList/DpTableCard'
@@ -18,7 +17,6 @@ export {
   DpBulkEditHeader,
   DpEditableList,
   DpEditor,
-  DpNotifyMessage,
   DpObscure,
   DpSwitcher,
   DpTableCard,

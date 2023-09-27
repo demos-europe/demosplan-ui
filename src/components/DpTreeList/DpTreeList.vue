@@ -81,13 +81,14 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp } from '../../utils'
+import { deepMerge, hasOwnProp } from '~/utils'
 import DpDraggable from '../DpDraggable/DpDraggable'
-import { Stickier } from '../../lib'
+import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
 import { dragHandleWidth } from './utils/constants'
+import { Stickier } from '~/lib'
 
 export default {
   name: 'DpTreeList',
@@ -249,7 +250,7 @@ export default {
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
     initFixedControls () {
-      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0)
+      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0, 'top')
 
       if (this.$slots.footer) {
         this.stickyFooter = new Stickier(this.$refs.footer, this.$refs.treeList.$el, 0, 'bottom')

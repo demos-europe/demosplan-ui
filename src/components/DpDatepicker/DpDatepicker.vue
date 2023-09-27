@@ -1,7 +1,7 @@
 <template>
   <div
     :id="id"
-    data-cy="datepicker"
+    :data-cy="dataCy"
     @input.stop.prevent="emitUpdate" />
 </template>
 
@@ -25,23 +25,38 @@ export default {
       default: 0
     },
 
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'datepicker'
+    },
+
     disabled: {
       type: Boolean,
       required: false,
       default: false
     },
 
+    /**
+     * The ID of the Datepicker component is derived from this prop.
+     */
     id: {
       type: String,
       required: true
     },
 
+    /**
+     * Upper date limit.
+     */
     maxDate: {
       type: String,
       required: false,
       default: ''
     },
 
+    /**
+     * Lower date limit.
+     */
     minDate: {
       type: String,
       required: false,
@@ -66,6 +81,9 @@ export default {
       default: false
     },
 
+    /**
+     * Expects ISO date
+     */
     value: {
       type: String,
       required: false,

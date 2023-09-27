@@ -13,8 +13,8 @@
         role="dialog">
         <button
           :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="Translator.trans('close.window')"
-          :title="Translator.trans('close.window')"
+          :aria-label="title"
+          :title="title"
           @click.prevent.stop="toggle()">
           <dp-icon
             icon="close"
@@ -43,8 +43,9 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
-import { prefixClassMixin } from '../../mixins'
+import DpIcon from '~/components/DpIcon'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpModal',
@@ -92,7 +93,8 @@ export default {
     return {
       isOpenModal: false,
       lastFocusedElement: '',
-      focusableElements: []
+      focusableElements: [],
+      title: de.window.close
     }
   },
 
@@ -104,7 +106,7 @@ export default {
 
   methods: {
     getFocusableElements () {
-      const elementList = this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])')
+      const elementList = Array.from(this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])'))
 
       if (elementList.length <= 0) {
         this.focusableElements = []

@@ -101,11 +101,11 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
-import DpDraggable from '../DpDraggable/DpDraggable'
-import DpIcon from '../DpIcon/DpIcon'
+import DpDraggable from '~/components/DpDraggable'
+import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
-import { Tooltip } from '../../directives'
+import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpTreeListNode',

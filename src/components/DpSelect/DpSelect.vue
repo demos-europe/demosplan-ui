@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import DpLabel from '../DpLabel/DpLabel'
-import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import DpLabel from '~/components/DpLabel'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpSelect',
@@ -119,11 +119,13 @@ export default {
     }
   },
 
-  computed: {
-    selectPlaceholder () {
-      return de.selectPlaceholder
-    },
+  data () {
+    return {
+      selectPlaceholder: de.select.placeholder
+    }
+  },
 
+  computed: {
     nameOrId () {
       /*
        * As long as there is no necessity of having the id to differ from name,

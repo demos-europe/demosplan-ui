@@ -1,4 +1,6 @@
 import { convertSize } from '../../../../lib'
+import { de as german } from '../../../shared/translations'
+
 const de = () => {
   return {
     strings: {
@@ -6,15 +8,13 @@ const de = () => {
        * Text to show on the droppable area.
        * `%{browse}` is replaced with a link that opens the system file selection dialog.
        */
-      dropHereOr: Translator.trans('form.button.upload.pdf', {
+      dropHereOr: german.upload.select.pdf({
         browse: '{browse}',
-        maxUploadSize: convertSize('GB', window.dplan.settings.maxUploadSize)
+        maxUploadSize: convertSize('GB', 2)
       }),
-      failedToUpload: Translator.trans('form.button.upload.failed', {
-        file: '{file}'
-      }),
+      failedToUpload: german.upload.failed,
       // This string is clickable and opens the system file selection dialog.
-      browse: Translator.trans('form.button.upload.search')
+      browse: german.computer
     }
   }
 }

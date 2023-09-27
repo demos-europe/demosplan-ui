@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import DpTextWrapper from '../core/DpTextWrapper'
+import DpTextWrapper from '~/components/core/DpTextWrapper.vue'
 
 export default {
   name: 'DpHeightLimit',

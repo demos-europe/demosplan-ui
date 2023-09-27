@@ -34,8 +34,8 @@
 
     <div
       ref="flyout"
-      v-show="showFlyout"
       class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
+      :class="{ 'hidden': !showFlyout }"
       tabindex="0">
       <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll height-130">
         <li
@@ -77,9 +77,9 @@
 
 <script>
 // import ClickOutside from 'vue-click-outside'
-import DpInput from '../DpInput/DpInput'
-import DpLabel from '../DpLabel/DpLabel'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
+import DpInput from '~/components/DpInput'
+import DpLabel from '~/components/DpLabel'
+import DpResettableInput from '~/components/DpResettableInput'
 import isMobile from 'ismobilejs'
 
 const DEFAULT_TIME = '00:00'

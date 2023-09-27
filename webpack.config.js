@@ -8,22 +8,17 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   reportFilename: resolve(`./bundle_analysis.html`)
 })
 
-const isProduction = process.env.NODE_ENV == 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
-const transpileNodeModules = [
-  'tiptap',
-  'tiptap-commands',
-  'tiptap-extensions',
-].map(module => resolve('node_modules/' + module))
-
 const config = {
   entry: resolve('./src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve('dist'),
+    publicPath: '',
     filename: 'demosplan-ui.umd.js',
     libraryTarget: 'umd',
     globalObject: 'this',
@@ -47,11 +42,12 @@ const config = {
     'vuex'
   ],
   resolve: {
-    extensions: ['.js', '.vue'],
-    symlinks: false,
     alias: {
-      vue: '@vue/compat'
-    }
+      vue: '@vue/compat',
+      '~': path.resolve(__dirname, 'src')
+    },
+    extensions: ['.ts', '.js', '.vue'],
+    symlinks: false
   },
   plugins: [
     // new MiniCssExtractPlugin(),
@@ -73,8 +69,14 @@ const config = {
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
-        include: transpileNodeModules,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
       },
       {
         test: /\.css$/i,
@@ -123,6 +125,12 @@ const config = {
 };
 
 module.exports = () => {
+  if (isProduction) {
+    config.mode = 'production';
+  } else {
+    config.mode = 'development';
+  }
+
   if (process.argv.includes('--analyze')) {
     config.plugins.unshift(bundleAnalyzer)
   }

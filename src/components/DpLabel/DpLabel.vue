@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import { CleanHtml, Tooltip } from '../../directives'
-import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import { CleanHtml, Tooltip } from '~/directives'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpLabel',
@@ -74,10 +74,13 @@ export default {
     }
   },
 
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
+    }
+  },
+
   computed: {
-    ariaLabel () {
-      return de.contextualHelp
-    },
     /**
      * List of Hints
      *

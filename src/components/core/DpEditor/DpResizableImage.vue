@@ -1,113 +1,96 @@
 <template>
-  <span
+  <node-view-wrapper
+    as="span"
     class="resizable-image"
     ref="imagewrapper"
-    tabindex="1"
-    @mouseup="() => updateImageDimensions(node.attrs.width)"
-    :style="`height: ${node.attrs.height}px; width: ${node.attrs.width}px`">
+    tabindex="1">
     <img
-      @click.ctrl="$root.$emit('open-image-alt-modal', $event, id)"
       :alt="node.attrs.alt"
       ref="image"
       :src="node.attrs.src"
       :title="imageTitle"
-      :width="node.attrs.width">
-  </span>
+      @click.ctrl="$root.$emit('open-image-alt-modal', $event, id)">
+  </node-view-wrapper>
 </template>
 
 <script>
+import { nodeViewProps, NodeViewWrapper } from '@tiptap/vue-2'
+import { de } from '../../shared/translations'
 import { v4 as uuid } from 'uuid'
 
 export default {
   name: 'DpResizableImage',
 
-  props: {
-    getPos: {
-      type: Function,
-      required: false,
-      default: () => ({})
-    },
+  props: nodeViewProps,
 
-    node: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-
-    options: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    },
-
-    selected: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    updateAttrs: {
-      type: Function,
-      required: false,
-      default: () => ({})
-    },
-
-    view: {
-      type: Object,
-      required: false,
-      default: () => ({})
-    }
+  components: {
+    NodeViewWrapper
   },
 
   data () {
     return {
       id: uuid(),
-      imageTitle: Translator.trans('image.alt.edit.hint'),
+      imageTitle: de.image.alt.editHint,
       observer: null,
       ratioFactor: 1
     }
   },
 
   methods: {
-    updateImageDimensions (width) {
+    updateImageDimensions () {
+      // The max width should not be wider than the editor.
+      const innerEditorWidth = this.$parent.$el.clientWidth - 40
+      const imgWidth = this.$refs.imagewrapper.$el.clientWidth
+      const width = (imgWidth < innerEditorWidth) ? imgWidth : innerEditorWidth
+
       if (width > 0) {
         this.$nextTick(() => {
-          this.updateAttrs({
-            height: width / this.ratioFactor,
-            width: width
-          })
+          this.node.attrs.width = width
+          this.node.attrs.height = width / this.ratioFactor
+
+          this.editor.options.onUpdate()
         })
       }
     },
 
     setRatio (updateSize = false) {
       const img = new Image()
+
       img.onload = () => {
         this.ratioFactor = img.width / img.height
 
         // If the width is not set jet, set it to the image original dimensions
         if (updateSize) {
-          // The max width should not be wider than the editor.
-          const innerEditorWidth = this.$parent.$el.clientWidth - 40
-          const width = (img.width < innerEditorWidth) ? img.width : innerEditorWidth
-          this.updateImageDimensions(width)
+          this.updateImageDimensions()
         }
       }
+
       img.src = this.node.attrs.src // This must be done AFTER setting onload
+    },
+
+    initResizeObserver () {
+      if (this.$refs.imagewrapper.$el) {
+        this.observer = new ResizeObserver(e => this.updateImageDimensions())
+        this.observer.observe(this.$refs.imagewrapper.$el)
+      } else {
+        setTimeout(() => {
+          this.initResizeObserver()
+        }, 200)
+      }
     }
   },
 
   mounted () {
-    /*
-     * Observe changes to image wrapper to update image size
-     * We have to wait for the nextTick to ensure, that the ref is set
-     */
-    this.observer = new ResizeObserver(e => this.updateImageDimensions(e[0].target.offsetWidth))
-    this.observer.observe(this.$refs.imagewrapper)
-
     this.$root.$on('update-image:' + this.id, data => {
-      this.updateAttrs(data)
+      Object.keys(data).forEach(key => {
+        this.node.attrs[key] = data[key]
+      })
     })
+
+    this.initResizeObserver()
+
+    // May or not may be necessary
+    // this.$refs.imagewrapper.$el.style.width = this.node.attrs.width + 'px'
 
     const updateSize = (this.node.attrs.height > 0) === false || this.node.attrs.height === Infinity
     this.setRatio(updateSize)

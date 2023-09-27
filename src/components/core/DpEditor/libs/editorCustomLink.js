@@ -1,37 +1,58 @@
-import { Link } from 'tiptap-extensions'
+import { mergeAttributes } from '@tiptap/core'
+import { Link } from '@tiptap/extension-link'
 
-export default class EditorCustomLink extends Link {
-  get defaultOptions () {
-    return {
-      openOnClick: false,
-      target: null
-    }
-  }
+export default Link.extend({
+  name: 'customLink',
 
-  get schema () {
+  addOptions () {
     return {
-      attrs: {
-        href: {
-          default: null
-        },
-        target: {
-          default: null
-        }
-      },
-      inclusive: false,
-      parseDOM: [
-        {
-          tag: 'a[href]',
-          getAttrs: dom => ({
-            href: dom.getAttribute('href'),
-            target: dom.getAttribute('target')
-          })
-        }
-      ],
-      toDOM: node => ['a', {
-        ...node.attrs,
+      openOnClick: true,
+      HTMLAttributes: {
+        target: null,
         rel: 'noopener noreferrer nofollow'
-      }, 0]
+      }
+    }
+  },
+
+  addAttributes () {
+    return {
+      href: {
+        default: null
+      },
+      target: {
+        default: null
+      }
+    }
+  },
+
+  inclusive: false,
+
+  parseHTML () {
+    return [
+      {
+        tag: 'a[href]'
+      }
+    ]
+  },
+
+  renderHTML ({ HTMLAttributes }) {
+    return ['a', mergeAttributes(
+      this.options.HTMLAttributes,
+      HTMLAttributes
+    ), 0]
+  },
+
+  addCommands () {
+    return {
+      setCustomLink: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleCustomLink: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetCustomLink: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
     }
   }
-}
+})

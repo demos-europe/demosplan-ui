@@ -10,6 +10,7 @@
       class="o-form__control-textarea"
       :class="{ 'grow': growToParent, 'height-60': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :disabled="disabled"
       :maxlength="maxlength"
       v-model="currentValue"
@@ -19,8 +20,8 @@
 </template>
 
 <script>
-import { attributes, length } from '../../shared'
-import { maxlengthHint } from '../../utils'
+import { attributes, length } from '~/shared'
+import { maxlengthHint } from '~/utils'
 
 export default {
   name: 'DpTextArea',
@@ -33,6 +34,12 @@ export default {
 
   props: {
     attributes: attributes('textarea'),
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
 
     /**
      * Use to conditionally validate a required textarea field.

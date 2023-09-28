@@ -1,5 +1,5 @@
 import { shouldValidate, toggleErrorClass } from './helpers'
-import { de } from '../../../components/shared/translations'
+import { de } from '~/components/shared/translations'
 import { regexp } from './validateEmail'
 
 export default function validateInput (input) {

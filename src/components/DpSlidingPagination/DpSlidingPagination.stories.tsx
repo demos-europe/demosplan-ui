@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSlidingPagination from './DpSlidingPagination.vue'
+import DpSlidingPagination from './'
 
 const meta: Meta<typeof DpSlidingPagination> = {
     component: DpSlidingPagination,

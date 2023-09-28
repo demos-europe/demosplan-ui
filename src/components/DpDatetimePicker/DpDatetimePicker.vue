@@ -35,10 +35,10 @@
 </template>
 
 <script>
+import DpDatepicker from '~/components/DpDatepicker'
+import DpTimePicker from '~/components/DpTimePicker'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
-import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import DpTimePicker from '../DpTimePicker/DpTimePicker'
 
 dayjs.extend(customParseFormat)
 

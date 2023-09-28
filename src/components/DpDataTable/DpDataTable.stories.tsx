@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpDataTable from './DpDataTable.vue'
+import DpDataTable from './'
 
 const meta: Meta<typeof DpDataTable> = {
     component: DpDataTable,

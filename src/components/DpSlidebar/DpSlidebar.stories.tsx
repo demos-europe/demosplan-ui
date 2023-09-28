@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSlidebar from './DpSlidebar.vue'
+import DpSlidebar from './'
 
 const meta: Meta<typeof DpSlidebar> = {
     title: 'Components/Slidebar',

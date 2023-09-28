@@ -2,19 +2,23 @@
   <button
     class="btn--icon"
     v-tooltip="{
-      content: translatedText,
+      content: text,
       delay: { show: 1000, hide: 200 }
     }"
     @click="$emit('click')">
     <i
       :class="`fa ${icon}`"
       aria-hidden="true" />
-    <span class="hide-visually">{{ translatedText }}</span>
+    <span class="hide-visually">{{ text }}</span>
   </button>
 </template>
 
 <script>
-import { Tooltip } from '../../directives'
+/**
+ * A component is only used within one addon.
+ * @deprecated Use DpButton instead.
+ */
+import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpButtonIcon',
@@ -33,12 +37,6 @@ export default {
 
   directives: {
     tooltip: Tooltip
-  },
-
-  computed: {
-    translatedText () {
-      return Translator.trans(this.text)
-    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
-import DpSelect from '../../src/components/DpSelect/DpSelect'
-import { de } from '../../src/components/shared/translations'
+import DpSelect from '~/components/DpSelect'
+import { de } from '~/components/shared/translations'
 import { runBooleanAttrTests } from './shared/Attributes'
 import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
 

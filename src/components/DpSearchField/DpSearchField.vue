@@ -19,7 +19,7 @@
 
 <script>
 import DpButton from '~/components/DpButton'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
+import DpResettableInput from '~/components/DpResettableInput'
 
 export default {
   name: 'DpSearchField',
@@ -38,6 +38,7 @@ export default {
 
     /**
      * Value has to be a css class like 'u-1-of-2'
+     * @deprecated Will be removed when the component layout is refactored.
      */
     inputWidth: {
       type: String,

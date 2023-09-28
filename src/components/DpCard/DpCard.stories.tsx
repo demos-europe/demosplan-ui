@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpCard from './DpCard.vue'
+import DpCard from './'
 
 const meta: Meta<typeof DpCard> = {
     component: DpCard,

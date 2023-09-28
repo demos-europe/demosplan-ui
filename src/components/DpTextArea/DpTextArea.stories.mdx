@@ -1,0 +1,161 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpTextArea from './'
+
+<Meta
+  title="Components/TextArea"
+  component={DpTextArea} />
+
+# DpTextArea
+
+The `DpTextArea` component is used to define a multi-line text input control.
+
+## Examples
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpTextArea },
+    template: `<dp-text-area v-bind="$props" />`
+});
+
+### Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Hint
+
+<Canvas>
+    <Story
+        name="Hint"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            hint: 'A hint explaining what to enter in the textarea.'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### growToParent
+
+If enabled, classes are applied to let the element grow to 100% height of its parent element.
+
+<Canvas>
+    <Story
+        name="growToParent"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            growToParent: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### dataDpValidateIf
+
+Use to conditionally validate a required textarea field.
+
+A condition consists of an expression that can be passed to `querySelector` (which should target another form element), followed by one of the operators `!==` or `===`, followed by a string to compare against. The operator and value can be omitted if the target element is of type checkbox or radio - in this case the textarea is validated if the referenced radio or checkbox element is checked.
+
+Multiple conditions are separated by a comma.
+
+In this example, a textarea is validated if a checkbox with the id `#send_to_address` is checked:
+`data-dp-validate-if="#send_to_address"`
+
+In this example, the textarea is validated if the input with the name `uploadedFiles[videoSrc]` is already filled, but the field with the id `videoTitle` is empty.
+`data-dp-validate-if="input[name='uploadedFiles[videoSrc]']!=='', #videoTitle!==''"`
+
+<Canvas>
+    <Story
+        name="dataDpValidateIf"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            dataDpValidateIf: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### reducedHeight
+
+Display the textarea with reduced height (60px).
+
+<Canvas>
+    <Story
+        name="reducedHeight"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            reducedHeight: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+If a textarea is `required`, an asterisk will be added to its label.
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### dataDpValidateErrorFieldname
+
+Instead of displaying a custom error per field, as achieved by the custom data attribute `data-dp-validate-error` (which is not yet supported in DpTextArea), multiple failing fields may trigger one combined error notification that will then list the field names of each failing field. It reads such as `Bitte korrigieren Sie Ihre Eingabe in folgenden Feldern: Anrede, Betreff, Nachricht. Erst dann können Sie Ihre Angaben speichern.`. If not explicitly set, it defaults to the `label` prop, or, if not set, to null.
+
+<Canvas>
+    <Story
+        name="dataDpValidateErrorFieldname"
+        args={{
+            id: 'textAreaId',
+            label: 'Your Notes',
+            dataDpValidateErrorFieldname: 'Notes'
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Attributes
+
+Allows passing of additional attributes into the inner form element (i.e., the textarea element). Allowed attributes for DpTextArea are
+- rows
+- cols
+
+If at least one disallowed attribute is passed, an error will be thrown.
+Only chosen elements are allowed for each element type, failing if at least one attribute is not allowed within the array.
+Attributes are specified as follows:
+
+`:attributes="['rows=5', 'cols=10']"`
+
+<Canvas>
+    <Story
+        name="Attributes"
+        args={{
+            id: 'textAreaId',
+            label: 'Enter some text',
+            attributes: ['rows=5', 'cols=10']
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+

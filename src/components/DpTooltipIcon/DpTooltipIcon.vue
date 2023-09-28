@@ -10,7 +10,7 @@
  * A component rendering a tooltip with an icon trigger.
  * @deprecated Use DpContextualHelp instead.
  */
-import { Tooltip } from '../../directives'
+import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpTooltipIcon',

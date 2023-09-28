@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpSplitButton from './DpSplitButton.vue'
+import DpSplitButton from './'
 
 const meta: Meta<typeof DpSplitButton> = {
     component: DpSplitButton,

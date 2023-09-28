@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpTooltipIcon from './DpTooltipIcon.vue'
+import DpTooltipIcon from './'
 
 interface IDpTooltipIcon {
     icon: string,

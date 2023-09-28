@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import { exactlengthHint, maxlengthHint, minlengthHint } from '../../utils/'
-import DpLabel from '../DpLabel/DpLabel'
-import { length } from '../../shared/'
-import { prefixClassMixin } from '../../mixins'
+import { exactlengthHint, maxlengthHint, minlengthHint } from '~/utils'
+import DpLabel from '~/components/DpLabel'
+import { length } from '~/shared'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpInput',

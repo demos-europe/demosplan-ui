@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpHeightLimit from './DpHeightLimit.vue'
+import DpHeightLimit from './'
 
 const Translator = {
   trans: (key: string): string => key

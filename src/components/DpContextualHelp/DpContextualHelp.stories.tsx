@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpContextualHelp from './DpContextualHelp.vue'
+import DpContextualHelp from './'
 
 const meta: Meta<typeof DpContextualHelp> = {
   component: DpContextualHelp,

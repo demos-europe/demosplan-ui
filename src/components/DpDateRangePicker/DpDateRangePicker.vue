@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import { formatDate } from '../../utils'
+import DpDatepicker from '~/components/DpDatepicker'
+import { formatDate } from '~/utils'
 
 export default {
   name: 'DpDateRangePicker',

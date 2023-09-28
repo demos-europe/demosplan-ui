@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
+import { de } from '~/components/shared/translations'
 import DpButton from '~/components/DpButton'
 
 export default {

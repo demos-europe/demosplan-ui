@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import DpContextualHelp from '../DpContextualHelp/DpContextualHelp'
+import DpContextualHelp from '~/components/DpContextualHelp'
+
 export default {
   name: 'DpCard',
 

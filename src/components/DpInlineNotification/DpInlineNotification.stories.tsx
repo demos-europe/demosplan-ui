@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpInlineNotification from './DpInlineNotification.vue'
+import DpInlineNotification from './'
 
 const meta: Meta<typeof DpInlineNotification> = {
     component: DpInlineNotification,

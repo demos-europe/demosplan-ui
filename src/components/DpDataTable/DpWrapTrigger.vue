@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import DpIcon from '~/components/DpIcon'
 
 export default {
   name: 'DpWrapTrigger',

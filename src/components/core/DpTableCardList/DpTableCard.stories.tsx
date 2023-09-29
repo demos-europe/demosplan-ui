@@ -16,7 +16,6 @@ const meta: Meta<typeof DpTableCard> = {
             return { args }
         },
         template: `
-          <div>
             <ul class="o-list o-list--card u-mb">
               <div class="o-list__item">
                 <dp-table-card
@@ -48,7 +47,6 @@ const meta: Meta<typeof DpTableCard> = {
                 </dp-table-card>
               </div>
             </ul>
-          </div>
         `,
     })
 }

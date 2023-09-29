@@ -15,31 +15,37 @@ It's often used to present data in a list, making it easier for users to scan an
 ## Custom usage
 
 ```html
-<ul class="o-list o-list--card u-mb">
-  <div class="o-list__item">
-    <dp-table-card class="o-accordion u-ph-0_5" v-bind="args">
-      <template v-slot:header>
-        <div class="flex items-start">
-          <div class="relative z-above-zero u-mt-0_75">
-              <input
-                  type="checkbox">
-          </div>
-          <button
-              @click="args.isOpen = !args.isOpen"
-              type="button"
-              data-cy="userListItemToggle"
-              class="btn--blank o-link--default u-pv-0_75">
-            Click to Toggle
-          </button>
-        </div>
-      </template>
-      <div>
-        Test 1
+<div>
+    <ul class="o-list o-list--card u-mb">
+      <div class="o-list__item">
+        <dp-table-card
+            class="o-accordion u-p-0_5"
+            ref="card"
+            v-bind="args">
+            <template v-slot:header>
+              <div class="flex">
+                <div>
+                  <input
+                      type="checkbox">
+                </div>
+                <div class="">
+                  <p>Title 1</p>
+                </div>
+                <button
+                    @click="$refs.card.toggle()"
+                    type="button"
+                    class="btn--blank o-link--default">
+                  Click to Toggle
+                </button>
+              </div>
+            </template>
+            <template>
+              <div>
+                Content 1
+              </div>
+            </template>
+        </dp-table-card>
       </div>
-      <div>
-        Test 2
-      </div>
-    </dp-table-card>
-  </div>
-</ul>
+    </ul>
+</div>
 ```

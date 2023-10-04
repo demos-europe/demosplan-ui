@@ -13,7 +13,15 @@ const de = {
     },
     select: {
       element: 'Element auswählen'
-    }
+    },
+    collapse: {
+      all: 'Alle Elemente zuklappen',
+      element: 'Element zuklappen'
+    },
+    expand: {
+      all: 'Alle Elemente ausklappen',
+      element: 'Element ausklappen'
+    },
   },
   cancel: "Abbrechen",
   choose: "Auswählen",

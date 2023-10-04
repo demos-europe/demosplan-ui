@@ -12,6 +12,7 @@ const de = {
       element: 'Auswahl für Element aufheben'
     },
     select: {
+      all: 'Alle Elemente auswählen',
       element: 'Element auswählen'
     },
     collapse: {

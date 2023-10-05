@@ -1,4 +1,5 @@
 import DpTreeListCheckbox from '~/components/DpTreeList/DpTreeListCheckbox'
+import { de } from '../src/components/shared/translations'
 
 import { shallowMount } from '@vue/test-utils'
 
@@ -30,7 +31,7 @@ describe('should return result aria.select.all when props are: checked = false, 
   })
 
   it('returns aria.select.all', () => {
-    expect(wrapper.vm.label).toEqual('aria.select.all')
+    expect(wrapper.vm.label).toEqual(de.aria.select.all)
   })
 })
 

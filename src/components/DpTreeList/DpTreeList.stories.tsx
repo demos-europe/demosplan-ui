@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpTreeList from './'
 
-const isBranch = (node) => {
-    return node.type === node
+const isBranch = (node: any) => {
+    return node.type === 'faqCategory'
 }
 
 const meta: Meta<typeof DpTreeList> = {
@@ -29,16 +29,17 @@ const meta: Meta<typeof DpTreeList> = {
               </div>
             </div>
           </template>
-          <template v-slot:branch>
-            <div
-                v-for="item in args.treeData.children">
-              {{ item.attributes.title }}
+          <template v-slot:branch="{ nodeElement }">
+            <div class="layout__item u-5-of-12">
+              {{ nodeElement.attributes.title }}
+            </div>
+            <div class="layout__item u-5-of-12">
+              Enables
             </div>
           </template>
-          <template v-slot:leaf>
-            <div
-                v-for="item in args.treeData">
-              {{ item.attributes.title }}
+          <template v-slot:leaf="{ nodeElement }">
+            <div class="layout__item u-5-of-12">
+              {{ nodeElement.attributes.title }}
             </div>
           </template>
           <template v-slot:footer>
@@ -70,7 +71,7 @@ export default meta
 
 export const Default: Story = {
     args: {
-        branchIdentifier: () => { return isBranch('faqCategory') },
+        branchIdentifier: () => { return isBranch },
         treeData: [
             {
                 attributes: {

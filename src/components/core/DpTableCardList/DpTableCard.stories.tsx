@@ -24,24 +24,19 @@ const meta: Meta<typeof DpTableCard> = {
                     v-bind="args">
                     <template v-slot:header>
                       <div class="flex">
-                        <div>
-                          <input
-                              type="checkbox">
-                        </div>
-                        <div class="">
-                          <p>Title 1</p>
-                        </div>
-                        <button
-                            @click="$refs.card.toggle()"
-                            type="button"
-                            class="btn--blank o-link--default">
-                          Click to Toggle
-                        </button>
+                          <input type="checkbox">
+                          <p>Title</p>
                       </div>
+                      <button
+                          @click="$refs.card.toggle()"
+                          type="button"
+                          class="btn--blank o-link--default">
+                        Click to Toggle
+                      </button>
                     </template>
                     <template>
                       <div>
-                        Content 1
+                        Content
                       </div>
                     </template>
                 </dp-table-card>

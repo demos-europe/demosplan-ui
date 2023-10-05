@@ -1,0 +1,58 @@
+import { Meta } from '@storybook/addon-docs'
+import DpTreeList from './DpTreeList'
+
+<Meta
+    title="Components/TreeList"
+    component={DpTreeList}
+/>
+
+# TreeList
+
+The TreeList component used to display data in a hierarchical, tree-like structure while providing functionalities
+similar to a list.
+
+It is commonly used in various applications, such as file explorers, FAQ, and organizational charts,
+where data has a hierarchical relationship.
+
+## Custom usage
+
+```html
+<dp-tree-list
+    :tree-data="args.treeData"
+    :options="args.options"
+    v-bind="args">
+  <template v-slot:header>
+    <div class="layout--flush">
+      <div class="layout__item u-5-of-12">
+        Heading
+      </div>
+      <div class="layout__item u-5-of-12">
+        Status
+      </div>
+    </div>
+  </template>
+  <template v-slot:branch="{ nodeElement }">
+    <div class="layout__item u-5-of-12">
+      {{ nodeElement.attributes.title }}
+    </div>
+    <div class="layout__item u-5-of-12">
+      Enables
+    </div>
+  </template>
+  <template v-slot:leaf="{ nodeElement }">
+    <div class="layout__item u-5-of-12">
+      {{ nodeElement.attributes.title }}
+    </div>
+  </template>
+  <template v-slot:footer>
+    <button
+        type="submit"
+        class="btn btn--primary">
+      <i
+          class="fa fa-download u-mr-0_25"
+          aria-hidden="true" />
+      Button-Label
+    </button>
+  </template>
+</dp-tree-list>
+```

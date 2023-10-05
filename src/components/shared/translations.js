@@ -12,8 +12,17 @@ const de = {
       element: 'Auswahl für Element aufheben'
     },
     select: {
+      all: 'Alle Elemente auswählen',
       element: 'Element auswählen'
-    }
+    },
+    collapse: {
+      all: 'Alle Elemente zuklappen',
+      element: 'Element zuklappen'
+    },
+    expand: {
+      all: 'Alle Elemente ausklappen',
+      element: 'Element ausklappen'
+    },
   },
   cancel: "Abbrechen",
   choose: "Auswählen",

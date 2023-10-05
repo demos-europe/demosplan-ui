@@ -3265,9 +3265,9 @@
   integrity sha512-hd/E4qQopBXWa6kdFY19qFVgqj4fzdPgAnzdXJ2XW7bC6O2CusmHphRRZ5FBsuspYTN/6/fv0i0jK9rSGlsEyA==
 
 "@tiptap/extension-mention@^2.0.3":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-mention/-/extension-mention-2.1.7.tgz#09fa03af6f502a9c0343c2d39e2557b74c5ffcfd"
-  integrity sha512-GPVw8AiGwCozkY2TKLk/eMpo7IYfVuXnFB82yPlG3RQTGREpvf6L5Vv28HdXcgk7KMTo2IcEdH32EJDqjPYlEg==
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-mention/-/extension-mention-2.1.11.tgz#cad9ee38335cc7c737371957b659254c0eb8e4ee"
+  integrity sha512-QMHmAkhiDQEgAdUHdKRfVna0AINcbSbQCrpgwKLIHGWcpbi1zJbAPpm+xngbl0I9ZNxaMzbP4utTAzeQ92pJkw==
 
 "@tiptap/extension-ordered-list@^2.0.3":
   version "2.1.7"

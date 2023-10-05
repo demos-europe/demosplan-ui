@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpTreeList from './'
 
+const isBranch = (node) => {
+    return node.type === node
+}
+
 const meta: Meta<typeof DpTreeList> = {
     component: DpTreeList,
     title: 'Components/TreeList',
@@ -11,7 +15,10 @@ const meta: Meta<typeof DpTreeList> = {
         setup() {
             return { args }
         },
-        template: `<dp-tree-list v-bind="args">
+        template: `<dp-tree-list
+            :tree-data="args.treeData"
+            :options="args.options"
+            v-bind="args">
           <template v-slot:header>
             <div class="layout--flush">
               <div class="layout__item u-5-of-12">
@@ -22,11 +29,17 @@ const meta: Meta<typeof DpTreeList> = {
               </div>
             </div>
           </template>
-          <template v-slot:branch="{ nodeElement }">
-            {{ nodeElement.attributes.title }}
+          <template v-slot:branch>
+            <div
+                v-for="item in args.treeData.children">
+              {{ item.attributes.title }}
+            </div>
           </template>
-          <template v-slot:leaf="{ nodeElement }">
-            {{ nodeElement.children.attributes.title }}
+          <template v-slot:leaf>
+            <div
+                v-for="item in args.treeData">
+              {{ item.attributes.title }}
+            </div>
           </template>
           <template v-slot:footer>
             <button
@@ -48,6 +61,7 @@ interface IDpTreeList {
     nodeSelectionChange: object
     branchIdentifier: Function
     treeData: object[]
+    options: object
 }
 
 type Story = StoryObj<IDpTreeList>
@@ -56,7 +70,7 @@ export default meta
 
 export const Default: Story = {
     args: {
-        branchIdentifier: () => '',
+        branchIdentifier: () => { return isBranch('faqCategory') },
         treeData: [
             {
                 attributes: {
@@ -67,7 +81,8 @@ export const Default: Story = {
                         attributes: {
                             title: 'Sub-Category 1'
                         },
-                        id: 'id-attributes-1'
+                        id: 'id-attributes-1',
+                        type: 'faq'
                     }
                 ],
                 id: 'id-1',
@@ -80,31 +95,13 @@ export const Default: Story = {
                     },
                     type: 'faqCategory'
                 }
-            },
-            {
-                attributes: {
-                    title: 'Category 2'
-                },
-                children: [
-                    {
-                        attributes: {
-                            title: 'Sub-Category 2'
-                        },
-                        id: 'id-attributes-2'
-                    }
-                ],
-                id: 'id-2',
-                relationships: {
-                    faq: {
-                        data: [{
-                            id: 'id-2',
-                            type: 'faq'
-                        }]
-                    },
-                    type: 'faqCategory'
-                }
             }
-        ]
+        ],
+        options: {
+            branchesSelectable: true,
+            leavesSelectable: false,
+            dragLeaves: true
+        }
     },
     argTypes: {
         'tree:change': { action: 'tree:change' },

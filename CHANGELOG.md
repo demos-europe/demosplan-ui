@@ -3,7 +3,6 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
-
 ### Removed
 - ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Remove DpNotifyContainer component ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#536](https://github.com/demos-europe/demosplan-ui/pull/536)) Remove DpToggleForm component ([@ahmad-demos](https://github.com/@ahmad-demos))
@@ -30,6 +29,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#491](https://github.com/demos-europe/demosplan-ui/pull/491)) Add DpStickyElement documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#515](https://github.com/demos-europe/demosplan-ui/pull/515)) Add internal alias ([@spiess-demos](https://github.com/spiess-demos))
 - ([#380](https://github.com/demos-europe/demosplan-ui/pull/380)) Add DpTextArea documentation to Storybook ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.1.16 - 2023-09-25
+
+### Added
+- ([#542](https://github.com/demos-europe/demosplan-ui/pull/542)) Add update hook to tooltip directive for dynamic value updates ([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.15 - 2023-09-18
+
+### Added
+- ([#523](https://github.com/demos-europe/demosplan-ui/pull/523)) Add a method that checks the z-index of the parent element and appends zIndex + 1 to the style of the tooltip ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.1.14 - 2023-09-07
 

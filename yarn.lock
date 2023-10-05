@@ -3260,9 +3260,9 @@
     linkifyjs "^4.1.0"
 
 "@tiptap/extension-list-item@^2.0.3":
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-list-item/-/extension-list-item-2.1.7.tgz#dc24045e445d0f91baec9b113f711dc90c6682ac"
-  integrity sha512-hd/E4qQopBXWa6kdFY19qFVgqj4fzdPgAnzdXJ2XW7bC6O2CusmHphRRZ5FBsuspYTN/6/fv0i0jK9rSGlsEyA==
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-list-item/-/extension-list-item-2.1.11.tgz#466e4d1dcad153b4e52678b08d2bf073339c2dc9"
+  integrity sha512-YhwHaPGhffsFsg/zjCu1G24//j/BTRDRZbZXmMwp77m1yEqPULcWyoWrI+gUzetQxJRD/ruAucqjLtoLLfICmQ==
 
 "@tiptap/extension-mention@^2.0.3":
   version "2.1.7"

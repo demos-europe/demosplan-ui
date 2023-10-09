@@ -67,7 +67,7 @@
     "@storybook/addon-mdx-gfm": "7.4.0",
     "@storybook/addon-styling-webpack": "^0.0.5",
     "@storybook/vue": "7.4.0",
-    "@storybook/vue-webpack5": "7.4.0",
+    "@storybook/vue-webpack5": "7.4.6",
     "@types/jest": "^29.5.1",
     "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",

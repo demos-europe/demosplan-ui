@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/addon-docs'
+import DpProgressBar from './'
+
+<Meta
+    title="Components/ProgressBar"
+    component={DpProgressBar}
+/>
+
+# ProgressBar
+
+The ProgressBar component displays a colored bar indicating the progress of a specific task or process.
+
+## Determinate ProgressBar
+
+Use the determinate ProgressBar if you know how long a task will take, and you want to inform users about the current
+status.
+
+The green color indicates (increasing) success.
+
+```html
+<dp-progress-bar
+  label="LabelText"
+  percentage="someNumber" />
+```
+
+## Indeterminate ProgressBar
+
+Use the indeterminate ProgressBar if you don't know how long a task will take. It shows a cyclic animation instead of
+linear progress.
+
+The blue color indicates that something is happening, but we do not have information on
+the progress towards success.
+
+```html
+<dp-progress-bar
+  label="LabelText"
+  indeterminate />
+```
+
+## When to use
+
+Use this component if you want to communicate to the user
+
+**a)** the progress of a task or process (determinate)
+
+**b)** the information that a process is running (indeterminate).
+
+Do not use it as a loading indicator. To indicate loading state,
+use [DpLoading](/docs/components-loading--docs) or [DpSkeletonBox](/docs/components-skeletonbox--docs).
+

@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs'
+import DpModal from './'
+
+<Meta
+    title="Components/Modal"
+    component={DpModal}
+/>
+
+# Modal
+
+The Modal component intentionally interrupts a user's page experience, disabling page content to focus the user's attention on critical information, actions requiring review or completion, or content that requires user interaction in a layer above the app's main interface.
+
+
+## Custom usage
+
+```html
+<dp-modal
+    id="openModal"
+    ref="openModal"
+    v-bind="args">
+    <template v-slot:header>
+        Short, descriptive modal title
+    </template>
+    <template>
+        <p>
+          Modal content
+        </p>
+    </template>
+</dp-modal>
+```

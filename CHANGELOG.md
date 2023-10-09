@@ -4,6 +4,116 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.2.0 - 2023-10-05
+
+### Removed
+- ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Remove DpNotifyContainer component ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#536](https://github.com/demos-europe/demosplan-ui/pull/536)) Remove DpToggleForm component ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+### Changed
+- ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Rename DpNotifyMessage to DpNotification ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
+
+### Added
+- ([#556](https://github.com/demos-europe/demosplan-ui/pull/556)) Add DpTreeList documentation to Storybook & Fix getComputedStyle error ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#538](https://github.com/demos-europe/demosplan-ui/pull/538)) Add DpModal documentation to Storybook & Fix getComputedStyle error ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Add DpNotification documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#531](https://github.com/demos-europe/demosplan-ui/pull/531)) Add DpProgressBar documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#526](https://github.com/demos-europe/demosplan-ui/pull/526)) Add DpButtonIcon documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#523](https://github.com/demos-europe/demosplan-ui/pull/523)) Added a method that checks the z-index of the parent element and appends zIndex + 1 to the style of the tooltip ([@sakutademos](https://github.com/sakutademos))
+- ([#521](https://github.com/demos-europe/demosplan-ui/pull/521)), ([#522](https://github.com/demos-europe/demosplan-ui/pull/522)), ([#524](https://github.com/demos-europe/demosplan-ui/pull/524)), ([#525](https://github.com/demos-europe/demosplan-ui/pull/525)) Add DpDatepicker, DpDatetimePicker, DpDateRangePicker & DpTimePicker documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#518](https://github.com/demos-europe/demosplan-ui/pull/518)) Add DpUpload documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#516](https://github.com/demos-europe/demosplan-ui/pull/516)) Add Props to DpUpload & DpUploadFiles ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#505](https://github.com/demos-europe/demosplan-ui/pull/505)) Add DpTooltip documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#504](https://github.com/demos-europe/demosplan-ui/pull/504)) Add DpSlidingPagination documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#503](https://github.com/demos-europe/demosplan-ui/pull/503)) Add DpFormRow documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#497](https://github.com/demos-europe/demosplan-ui/pull/497)) Add DpDraggable documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#492](https://github.com/demos-europe/demosplan-ui/pull/492)) Add DpSearchField documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#491](https://github.com/demos-europe/demosplan-ui/pull/491)) Add DpStickyElement documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#515](https://github.com/demos-europe/demosplan-ui/pull/515)) Add internal alias ([@spiess-demos](https://github.com/spiess-demos))
+- ([#380](https://github.com/demos-europe/demosplan-ui/pull/380)) Add DpTextArea documentation to Storybook ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.1.16 - 2023-09-25
+
+### Added
+- ([#542](https://github.com/demos-europe/demosplan-ui/pull/542)) Add update hook to tooltip directive for dynamic value updates ([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.15 - 2023-09-18
+
+### Added
+- ([#523](https://github.com/demos-europe/demosplan-ui/pull/523)) Add a method that checks the z-index of the parent element and appends zIndex + 1 to the style of the tooltip ([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.14 - 2023-09-07
+
+Several minor bugfixes.
+
+## v0.1.13 - 2023-08-30
+
+### Added
+
+- ([#473](https://github.com/demos-europe/demosplan-ui/pull/473)) Add DpBadge component with Storybook documentation ([@muellerdemos](https://github.com/muellerdemos))
+- ([#472](https://github.com/demos-europe/demosplan-ui/pull/472)), ([#477](https://github.com/demos-europe/demosplan-ui/pull/477)), ([#479](https://github.com/demos-europe/demosplan-ui/pull/479)), ([#480](https://github.com/demos-europe/demosplan-ui/pull/480)), ([#481](https://github.com/demos-europe/demosplan-ui/pull/481)) Add DpCard, DpCheckboxGroup, DpInlineNotification, DpSkeletonBox & DpSplitButton documentation to Storybook7 ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#475](https://github.com/demos-europe/demosplan-ui/pull/475)) Add Tailwind Styles to Storybook7 ([@spiess-demos](https://github.com/spiess-demos))
+
+
+### Removed
+
+- ([#445](https://github.com/demos-europe/demosplan-ui/pull/445)) **Breaking:** Remove DpDashboardTaskCard component ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#379](https://github.com/demos-europe/demosplan-ui/pull/379)) Upgrade Storybook v7, Migrate stories to v7 ([@salisdemos](https://github.com/salisdemos)), ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#383](https://github.com/demos-europe/demosplan-ui/pull/383)) Rework Tooltip Directive and Component ([@salisdemos](https://github.com/salisdemos))
+  - Introduced DpTooltip. Please replace VPopover (now deprecated) with DpTooltip
+- ([#462](https://github.com/demos-europe/demosplan-ui/pull/462) Deprecate DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.12 - 2023-08-18
+
+### Added
+
+- ([#444](https://github.com/demos-europe/demosplan-ui/pull/444)), ([#443](https://github.com/demos-europe/demosplan-ui/pull/443)), ([#437](https://github.com/demos-europe/demosplan-ui/pull/437)) Add E2E Props ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+### Changed
+
+- ([#438](https://github.com/demos-europe/demosplan-ui/pull/438)) Stickier.js: An extra check has been added wherever the function _bindBottom is called: when the value of the stickToDirection is 'top' the funciton _bindBottom will not be performed.([@sakutademos](https://github.com/sakutademos))
+
+## v0.1.11 - 2023-08-11
+
+### Fixed
+
+- ([#412](https://github.com/demos-europe/demosplan-ui/pull/412)) Import missing directive in DpMultiselect ([@ahmad-demos](https://github.com/@ahmad-demos))
+
+### Changed
+
+- ([#409](https://github.com/demos-europe/demosplan-ui/pull/409)) Change the way to show/hide the dropdown menu in DpTimePicker by using the 'hidden' class instead of the 'v-show' directive ([@sakutademos](https://github.com/sakutademos))
+- ([#381](https://github.com/demos-europe/demosplan-ui/pull/381)) Change z-index values and var names to match Tailwind convention ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#291](https://github.com/demos-europe/demosplan-ui/pull/291)) Add Typescript Config ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.1.10 - 2023-07-17
+
+### Added
+
+- ([#359](https://github.com/demos-europe/demosplan-ui/pull/359)) Add field names for incorrect fields to the error messages during the validation process (dpValidateMixin) ([@sakutademos](https://github.com/sakutademos))
+- ([#370](https://github.com/demos-europe/demosplan-ui/pull/370)) Add documentation for DpRadio ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#350](https://github.com/demos-europe/demosplan-ui/pull/350)) Add documentation for DpSelect ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#372](https://github.com/demos-europe/demosplan-ui/pull/372)) Add "question", "severe", and "warning" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.1.9 - 2023-07-13
+
+### Removed
+
+- ([#357](https://github.com/demos-europe/demosplan-ui/pull/357)) Remove Translator from DpSelect ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Changed
+
+- ([#314](https://github.com/demos-europe/demosplan-ui/pull/314), [#363](https://github.com/demos-europe/demosplan-ui/pull/363)) Use Barrel Export ([@salisdemos](https://github.com/@salisdemos))
+- ([#361](https://github.com/demos-europe/demosplan-ui/pull/361)) **Breaking:** Move compiled token files to "tokens/dist" folder", add borderRadius, boxShadow, breakpoints and z-index tokens to Tailwind config, deprecate old box-shadow and rounded Scss tokens ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#364](https://github.com/demos-europe/demosplan-ui/pull/364)) Add Prop IconSize to DpButton ([@salisdemos](https://github.com/@salisdemos))
 - ([#344](https://github.com/demos-europe/demosplan-ui/pull/344)) Add documentation for DpTabs ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#333](https://github.com/demos-europe/demosplan-ui/pull/333)) Add "rounded" prop to DpButton, add "arrow-up" and "arrow-down" icons to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
 

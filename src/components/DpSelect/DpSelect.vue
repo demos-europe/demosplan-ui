@@ -21,22 +21,23 @@
         disabled
         value=""
         :selected="selected === ''">
-        {{ Translator.trans(placeholder) }}
+        {{ selectPlaceholder }}
       </option>
       <option
         v-for="(option, idx) in options"
         :selected="option.value === selected"
         :value="option.value"
         :key="idx">
-        {{ Translator.trans(option.label) }}
+        {{ option.label }}
       </option>
     </select>
   </div>
 </template>
 
 <script>
-import DpLabel from '../DpLabel/DpLabel'
-import { prefixClassMixin } from '../../mixins'
+import DpLabel from '~/components/DpLabel'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpSelect',
@@ -57,6 +58,9 @@ export default {
   },
 
   props: {
+    /**
+     * @deprecated
+     */
     classes: {
       type: [Array, String],
       required: false,
@@ -96,12 +100,6 @@ export default {
       type: Array
     },
 
-    placeholder: {
-      type: String,
-      required: false,
-      default: 'warning.select.entry'
-    },
-
     required: {
       type: Boolean,
       required: false,
@@ -118,6 +116,12 @@ export default {
       type: String,
       required: false,
       default: ''
+    }
+  },
+
+  data () {
+    return {
+      selectPlaceholder: de.select.placeholder
     }
   },
 

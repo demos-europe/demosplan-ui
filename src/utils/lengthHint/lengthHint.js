@@ -1,3 +1,4 @@
+import { de } from '~/components/shared/translations'
 /**
  * Return a translated hint on exact matching characters.
  * @param {Number}    currentLength Currently used character count
@@ -8,10 +9,10 @@ const exactlengthHint = (currentLength, requiredLength) => {
   const reqLength = Number(requiredLength)
 
   return reqLength
-    ? Translator.trans('input.text.exactlength.short', {
+    ? de.input.text.exactlength({
       requiredlength: requiredLength,
+      cssClass: (currentLength === reqLength) ? 'color-status-progress-text' : 'color-status-failed-text',
       count: currentLength,
-      class: (currentLength === reqLength) ? 'color-status-progress-text' : 'color-status-failed-text'
     })
     : ''
 }
@@ -31,10 +32,10 @@ const maxlengthHint = (currentLength, maxlength) => {
   const max = Number(maxlength)
 
   return max
-    ? Translator.trans('input.text.maxlength.short', {
-      max,
+    ? de.input.text.maxlength({
+      cssClass: (max - currentLength > errorThreshold) ? 'color-status-progress-text' : 'color-status-failed-text',
       count: max - currentLength,
-      class: (max - currentLength > errorThreshold) ? 'color-status-progress-text' : 'color-status-failed-text'
+      max
     })
     : ''
 }
@@ -49,10 +50,10 @@ const minlengthHint = (currentLength, minlength) => {
   const min = Number(minlength)
 
   return min
-    ? Translator.trans('input.text.minlength.short', {
-      min: min,
+    ? de.input.text.minlength({
+      cssClass: (min <= currentLength) ? 'color-status-progress-text' : 'color-status-failed-text',
       count: min - currentLength,
-      class: (min <= currentLength) ? 'color-status-progress-text' : 'color-status-failed-text'
+      min: min,
     })
     : ''
 }

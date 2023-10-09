@@ -12,6 +12,7 @@
       :checked="checked"
       :value="valueToSend"
       :data-cy="dataCy !== '' ? dataCy : false"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"
       true-value="1"
       false-value="0">
@@ -29,8 +30,8 @@
 </template>
 
 <script>
-import DpLabel from '../DpLabel/DpLabel'
-import { prefixClassMixin } from '../../mixins'
+import DpLabel from '~/components/DpLabel'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpCheckbox',
@@ -54,6 +55,12 @@ export default {
     },
 
     dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateErrorFieldname: {
       type: String,
       required: false,
       default: ''

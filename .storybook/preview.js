@@ -1,7 +1,8 @@
-import { Tooltip } from '../src/directives'
 import Vue from 'vue'
+import { Translator } from './translatorMock'
+import '../style/index.css'
 
-Vue.directive('tooltip', Tooltip)
+Vue.prototype.Translator = Translator
 
 const beautifyHtml = require('js-beautify').html
 

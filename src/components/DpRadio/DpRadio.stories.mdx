@@ -1,0 +1,136 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpRadio from './'
+import LinkTo from '@storybook/addon-links/react'
+
+<Meta
+  title="Components/Radio"
+  component={DpRadio} />
+
+# DpRadio
+
+The DpRadio component is used to render a radio input field with customizable options.
+
+## Examples
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpRadio },
+    template: `<dp-radio v-bind="$props" />`
+});
+
+### Default
+
+<Canvas>
+    <Story
+        name="Default usage"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option'
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option'
+            },
+            disabled: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Checked
+
+<Canvas>
+    <Story
+        name="Checked"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option'
+            },
+            checked: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Readonly
+
+<Canvas>
+    <Story
+        name="Readonly"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option'
+            },
+            readonly: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Required
+
+<Canvas>
+    <Story
+        name="Required"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option'
+            },
+            required: true
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Label props
+
+DpRadio passes the `label` prop to the <LinkTo kind="components-label--default-usage">DpLabel component</LinkTo>. It supports the 'bold', 'hint', and 'text' properties.
+
+### Hint
+
+<Canvas>
+    <Story
+        name="Hint"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option',
+              hint: "This is a hint"
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+### Bold
+
+default is `true`
+
+<Canvas>
+    <Story
+        name="Bold"
+        args={{
+            id: 'radioId',
+            label: {
+              text: 'Choose an option',
+              bold: false
+            }
+        }}>
+        {Template.bind({})}
+    </Story>
+</Canvas>

@@ -1,5 +1,5 @@
 <template>
-  <div class="box-shadow-1 space-inset-m">
+  <div class="shadow space-inset-m">
     <h4
       v-if="heading !== ''"
       class="u-mb-0 space-inline-xs">
@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import DpContextualHelp from '../DpContextualHelp/DpContextualHelp'
+import DpContextualHelp from '~/components/DpContextualHelp'
+
 export default {
   name: 'DpCard',
 

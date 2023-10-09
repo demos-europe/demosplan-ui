@@ -1,4 +1,5 @@
-import DpSelect from '../../src/components/DpSelect/DpSelect'
+import DpSelect from '~/components/DpSelect'
+import { de } from '~/components/shared/translations'
 import { runBooleanAttrTests } from './shared/Attributes'
 import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
 
@@ -23,7 +24,7 @@ describe('DpSelect', () => {
   runBooleanAttrTests(wrapper, select, 'disabled')
 
   it('displays a placeholder if showPlaceholder is true', () => {
-    const placeholder = 'somePlaceholder'
+    const placeholder = de.select.placeholder
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       propsData: {
         options,
@@ -38,7 +39,7 @@ describe('DpSelect', () => {
   })
 
   it('does not display a placeholder if showPlaceholder is false', () => {
-    const placeholder = 'somePlaceholder'
+    const placeholder = de.select.placeholder
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       propsData: {
         options,

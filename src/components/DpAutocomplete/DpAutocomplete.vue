@@ -20,8 +20,9 @@
 </template>
 
 <script>
-import { dpApi } from '../../lib'
-import { prefixClassMixin } from '../../mixins'
+import { dpApi } from '~/lib'
+import { prefixClassMixin } from '~/mixins'
+import { de } from '~/components/shared/translations'
 import VueOmnibox from 'vue-omnibox'
 
 export default {
@@ -43,7 +44,7 @@ export default {
     label: {
       type: String,
       required: false,
-      default: () => 'label'
+      default: 'label'
     },
 
     options: {
@@ -55,7 +56,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('search')
+      default: de.placeholderAutoSuggest
     },
 
     routeGenerator: {

@@ -1,5 +1,5 @@
 import { runBooleanAttrTests, runStringAttrTests } from './shared/Attributes'
-import DpInput from '../../src/components/DpInput/DpInput.vue'
+import DpInput from '~/components/DpInput'
 import { shallowMount } from '@vue/test-utils'
 
 describe('DpInput', () => {

@@ -1,0 +1,115 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { DpButton, DpTooltip } from '~/components'
+import { Tooltip } from '~/directives'
+
+<Meta
+argTypes={{
+  default: {
+    text: {
+      type: 'text'
+    }
+  }
+}}
+parameters={{
+  slots: {
+    default: {
+      description: 'Default slot',
+      template: `<p>{{ args.default }}</p>`,
+    },
+  }
+}}
+title="Components/Tooltip"
+component={DpTooltip} />
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { DpTooltip, DpButton },
+  template: `<dp-tooltip v-bind="propsWithoutDefaultSlot" >{{ slotcontent }}</dp-tooltip>`,
+  computed: {
+    propsWithoutDefaultSlot() {
+      const all = this.$props
+      delete all['default']
+      return all
+    }
+  }
+});
+
+
+export const DirectiveTemplate = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpButton },
+    template: `<DpButton v-tooltip="'${Object.values(args)[0]}'">My button</DpButton>`,
+    directives: {
+      tooltip: Tooltip
+    },
+    computed: {
+      propsWithoutDefaultSlot () {
+        const all = this.$props
+        delete all['default']
+        return all
+      }
+    }
+})
+
+
+# Tooltip
+
+Renders a Tooltip.
+
+
+## Usage as Directive
+
+<Canvas>
+  <Story
+    name="As Directive"
+    args={{
+      ['v-tooltip']: 'Click here to save all your changes!',
+    }}>
+    {DirectiveTemplate.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage without HTML
+
+<Canvas>
+  <Story
+    name="without HTML"
+    args={{
+      text: 'Click here to find out more details about this topic.',
+      slotcontent: '<a href="#">My link</a>'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage with HTML
+
+<Canvas>
+  <Story
+    name="With HTML"
+    args={{
+      text: 'Here text <strong>with HTML</strong>, <ul><li>List 1</li><li>List 2</li></ul>',
+      slotcontent: 'My Tooltip Trigger'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+
+## Usage with HTML
+
+<Canvas>
+  <Story
+    name="With custom context"
+    args={{
+      text: 'Here another text <strong>with HTML</strong>, <ul><li>List 1</li><li>List 2</li><li>List 3</li></ul>',
+      slotcontent: 'another Tooltip Trigger',
+      container: '#storybook-root',
+      placement: 'right'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+

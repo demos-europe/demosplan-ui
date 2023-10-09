@@ -16,274 +16,269 @@
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
     <slot
-        name="modal"
-        :appendText="appendText"
-        :handleInsertText="handleInsertText" />
-    <div :class="prefixClass('row tiptap')">
+      name="modal"
+      :appendText="appendText"
+      :handleInsertText="handleInsertText" />
+    <div
+      v-if="editor"
+      :class="prefixClass('row tiptap')">
       <div :class="prefixClass('col')">
-        <div
-          :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
-          <editor-menu-bar :editor="editor">
-            <div
-              slot-scope="{ commands, isActive, getMarkAttrs }"
-              :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
-              <!-- Cut -->
-              <button
-                @click="cut"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                :aria-label="Translator.trans('editor.cut')"
-                v-tooltip="Translator.trans('editor.cut')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-scissors')"
-                  aria-hidden="true" />
-              </button>
+        <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
+          <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
+            <!-- Cut -->
+            <button
+              @click="cut"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="translations.cut"
+              v-tooltip="translations.cut"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-scissors')"
+                aria-hidden="true" />
+            </button>
+            &#10072;
+            <!-- Undo -->
+            <button
+              @click="editor.chain().focus().undo().run()"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="translations.undo"
+              v-tooltip="translations.undo"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-reply')"
+                aria-hidden="true" />
+            </button>
+            <!-- Redo -->
+            <button
+              @click="editor.chain().focus().redo().run()"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              :aria-label="translations.redo"
+              v-tooltip="translations.redo"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-share')"
+                aria-hidden="true" />
+            </button>
+            <template v-if="toolbar.textDecoration">
               &#10072;
-              <!-- Undo -->
+              <!-- Bold -->
+
               <button
-                @click="commands.undo"
-                :class="prefixClass('menubar__button')"
+                @click="editor.chain().focus().toggleBold().run()"
+                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.undo')"
-                v-tooltip="Translator.trans('editor.undo')"
+                :aria-label="translations.bold"
+                v-tooltip="translations.bold"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-reply')"
+                  :class="prefixClass('fa fa-bold')"
                   aria-hidden="true" />
               </button>
-              <!-- Redo -->
+
+              <!-- Italic -->
               <button
-                @click="commands.redo"
-                :class="prefixClass('menubar__button')"
+                @click="editor.chain().focus().toggleItalic().run()"
+                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
                 type="button"
-                :aria-label="Translator.trans('editor.redo')"
-                v-tooltip="Translator.trans('editor.redo')"
+                :aria-label="translations.italic"
+                v-tooltip="translations.italic"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-share')"
+                  :class="prefixClass('fa fa-italic')"
                   aria-hidden="true" />
               </button>
-              <template v-if="toolbar.textDecoration">
-                &#10072;
-                <!-- Bold -->
-
-                <button
-                  @click="commands.bold"
-                  :class="[isActive.bold() ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.bold')"
-                  v-tooltip="Translator.trans('editor.bold')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-bold')"
-                    aria-hidden="true" />
-                </button>
-
-                <!-- Italic -->
-                <button
-                  @click="commands.italic"
-                  :class="[isActive.italic() ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.italic')"
-                  v-tooltip="Translator.trans('editor.italic')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-italic')"
-                    aria-hidden="true" />
-                </button>
-                <!-- Underline -->
-                <button
-                  @click="commands.underline"
-                  :class="[isActive.underline() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.underline')"
-                  v-tooltip="Translator.trans('editor.underline')"
-                  :disabled="readonly">
-                  <i
-                    :class="prefixClass('fa fa-underline')"
-                    aria-hidden="true" />
-                </button>
-              </template>
-              <!-- Strike through -->
+              <!-- Underline -->
               <button
-                v-if="toolbar.strikethrough"
-                @click="commands.strike"
-                :class="[isActive.strike() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleUnderline().run()"
+                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.strikethrough')"
-                v-tooltip="Translator.trans('editor.strikethrough')"
+                :aria-label="translations.underline"
+                v-tooltip="translations.underline"
                 :disabled="readonly">
                 <i
-                  :class="prefixClass('fa fa-strikethrough')"
+                  :class="prefixClass('fa fa-underline')"
                   aria-hidden="true" />
+              </button>
+            </template>
+            <!-- Strike through -->
+            <button
+              v-if="toolbar.strikethrough"
+              @click="editor.chain().focus().toggleStrike().run()"
+              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              type="button"
+              :aria-label="translations.strikethrough"
+              v-tooltip="translations.strikethrough"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-strikethrough')"
+                aria-hidden="true" />
+            </button>
+            <div
+              v-if="toolbar.insertAndDelete"
+              :class="prefixClass('inline-block relative')">
+              <button
+                :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
+                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
+                :disabled="readonly">
+                <dp-icon
+                  class="align-text-top"
+                  icon="highlighter" />
+                <i :class="prefixClass('fa fa-caret-down')" />
               </button>
               <div
-                v-if="toolbar.insertAndDelete"
-                :class="prefixClass('inline-block relative')">
-                <button
-                  :class="[isActive.insert() || isActive.delete() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
-                  @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
-                  :disabled="readonly">
-                  <dp-icon
-                    class="align-text-top"
-                    icon="highlighter" />
-                  <i :class="prefixClass('fa fa-caret-down')" />
-                </button>
-                <div
-                  v-if="diffMenu.isOpen"
-                  :class="prefixClass('button_submenu')">
-                  <button
-                    v-for="(button, idx) in diffMenu.buttons"
-                    :key="`diffMenu_${idx}`"
-                    :class="{ 'is-active': isActive[button.name]() }"
-                    type="button"
-                    :disabled="readonly"
-                    @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
-                    @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
-                    @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                    {{ Translator.trans(button.label) }}
-                  </button>
-                </div>
-                &#10072;
-              </div>
-              <div
-                v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-                :class="prefixClass('inline-block relative')">
+                v-if="diffMenu.isOpen"
+                :class="prefixClass('button_submenu')">
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
-                  :class="[isActive[button.name]() ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
+                  :class="{ 'is-active': editor.isActive(button.name) }"
                   type="button"
                   :disabled="readonly"
-                  :aria-label="Translator.trans(button.label)"
-                  v-tooltip="Translator.trans(button.label)"
                   @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                  <dp-icon
-                    class="align-text-top"
-                    icon="highlighter" />
+                  {{ Translator.trans(button.label) }}
                 </button>
               </div>
-              <!-- lists -->
-              <template v-if="toolbar.listButtons">
-                <!-- Unordered List -->
-                <button
-                  @click="commands.bullet_list"
-                  :class="[isActive.bullet_list() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.unordered.list')"
-                  v-tooltip="Translator.trans('editor.unordered.list')"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-list-ul')" />
-                </button>
-                <!-- Ordered List -->
-                <button
-                  @click="commands.ordered_list"
-                  :class="[isActive.ordered_list() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  :aria-label="Translator.trans('editor.ordered.list')"
-                  v-tooltip="Translator.trans('editor.ordered.list')"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-list-ol')" />
-                </button>
-                &#10072;
-              </template>
-              <!--Heading Buttons - for each heading level in props a button will be rendered. We want to keep it
-              flexible because the user should not always be able to define e.g. H1. It depends where the text should
-              appear.-->
-              <template v-if="toolbar.headings.length > 0">
-                <button
-                  v-for="heading in toolbar.headings"
-                  :key="'heading_' + heading"
-                  type="button"
-                  :class="[isActive.heading({ level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  @click="commands.heading({ level: heading })"
-                  v-tooltip="Translator.trans('editor.heading.level', {level: heading})"
-                  :disabled="readonly">
-                  {{ `H${heading}` }}
-                </button>
-                &#10072;
-              </template>
-              <!-- Obscure text -->
-              <button
-                v-if="obscureEnabled"
-                @click="commands.obscure"
-                :class="[isActive.obscure() ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                type="button"
-                v-tooltip="Translator.trans('obscure.title')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-pencil-square')"
-                  aria-hidden="true" />
-              </button>
-              <!--Add links-->
-              <button
-                v-if="toolbar.linkButton"
-                @click.stop="showLinkPrompt(commands.link, getMarkAttrs('link'))"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('editor.link.edit.insert')">
-                <i
-                  :class="prefixClass('fa fa-link')" />
-              </button>
-              <!-- Insert images-->
-              <button
-                v-if="toolbar.imageButton"
-                @click.stop="openUploadModal(null)"
-                :class="prefixClass('menubar__button')"
-                type="button"
-                v-tooltip="Translator.trans('image.insert')"
-                :disabled="readonly">
-                <i
-                  :class="prefixClass('fa fa-picture-o')" />
-              </button>
-              <!-- Insert and edit tables -->
-              <div
-                v-if="toolbar.table"
-                :class="prefixClass('inline-block relative')">
-                <button
-                  :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                  type="button"
-                  @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
-                  @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)"
-                  :disabled="readonly">
-                  <i :class="prefixClass('fa fa-table')" />
-                  <i :class="prefixClass('fa fa-caret-down')" />
-                </button>
-                <div
-                  v-if="tableMenu.isOpen"
-                  :class="prefixClass('button_submenu')">
-                  <button
-                    v-for="(button, idx) in tableMenu.buttons"
-                    :key="`tableMenu_${idx}`"
-                    type="button"
-                    :disabled="readonly"
-                    @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
-                    @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
-                    @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
-                    {{ Translator.trans(button.label) }}
-                  </button>
-                </div>
-              </div>
-              <!-- Fullscreen -->
-              <button
-                v-if="toolbar.fullscreenButton"
-                @click="fullscreen"
-                :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
-                type="button"
-                :aria-label="Translator.trans('editor.fullscreen')"
-                v-tooltip="Translator.trans('editor.fullscreen')">
-                <i
-                  :class="prefixClass('fa fa-arrows-alt')"
-                  aria-hidden="true" />
-              </button>
-              <slot name="button" />
+              &#10072;
             </div>
-          </editor-menu-bar>
+            <div
+              v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
+              :class="prefixClass('inline-block relative')">
+              <button
+                v-for="(button, idx) in diffMenu.buttons"
+                :key="`diffMenu_${idx}`"
+                :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
+                type="button"
+                :disabled="readonly"
+                :aria-label="Translator.trans(button.label)"
+                v-tooltip="Translator.trans(button.label)"
+                @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
+                @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
+                @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
+                <dp-icon
+                  class="align-text-top"
+                  icon="highlighter" />
+              </button>
+            </div>
+            <!-- lists -->
+            <template v-if="toolbar.listButtons">
+              <!-- Unordered List -->
+              <button
+                @click="editor.chain().focus().toggleBulletList().run()"
+                :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                :aria-label="Translator.trans('editor.unordered.list')"
+                v-tooltip="Translator.trans('editor.unordered.list')"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-list-ul')" />
+              </button>
+              <!-- Ordered List -->
+              <button
+                @click="editor.chain().focus().toggleOrderedList().run()"
+                :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                :aria-label="Translator.trans('editor.ordered.list')"
+                v-tooltip="Translator.trans('editor.ordered.list')"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-list-ol')" />
+              </button>
+              &#10072;
+            </template>
+            <!--Heading Buttons - for each heading level in props a button will be rendered. We want to keep it
+            flexible because the user should not always be able to define e.g. H1. It depends where the text should
+            appear.-->
+            <template v-if="toolbar.headings.length > 0">
+              <button
+                v-for="heading in toolbar.headings"
+                :key="'heading_' + heading"
+                type="button"
+                :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
+                v-tooltip="Translator.trans('editor.heading.level', { level: heading })"
+                :disabled="readonly">
+                {{ `H${heading}` }}
+              </button>
+              &#10072;
+            </template>
+            <!-- Obscure text -->
+            <button
+              v-if="obscureEnabled"
+              @click="editor.chain().focus().toggleObscure().run()"
+              :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              type="button"
+              v-tooltip="translations.obscureTitle"
+              :disabled="readonly">
+              <i
+                :class="prefixClass('fa fa-pencil-square')"
+                aria-hidden="true" />
+            </button>
+            <!--Add links-->
+            <button
+              v-if="toolbar.linkButton"
+              @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              v-tooltip="Translator.trans('editor.link.edit.insert')">
+              <i :class="prefixClass('fa fa-link')" />
+            </button>
+            <!-- Insert images-->
+            <button
+              v-if="toolbar.imageButton"
+              @click.stop="openUploadModal(null)"
+              :class="prefixClass('menubar__button')"
+              type="button"
+              v-tooltip="translations.insertImage"
+              :disabled="readonly">
+              <i :class="prefixClass('fa fa-picture-o')" />
+            </button>
+            <!-- Insert and edit tables -->
+            <div
+              v-if="toolbar.table"
+              :class="prefixClass('inline-block relative')">
+              <button
+                :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                type="button"
+                @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
+                @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)"
+                :disabled="readonly">
+                <i :class="prefixClass('fa fa-table')" />
+                <i :class="prefixClass('fa fa-caret-down')" />
+              </button>
+              <div
+                v-if="tableMenu.isOpen"
+                :class="prefixClass('button_submenu')">
+                <button
+                  v-for="(button, idx) in tableMenu.buttons"
+                  :key="`tableMenu_${idx}`"
+                  type="button"
+                  :disabled="readonly"
+                  @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
+                  @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
+                  @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
+                  {{ Translator.trans(button.label) }}
+                </button>
+              </div>
+            </div>
+            <!-- Fullscreen -->
+            <button
+              v-if="toolbar.fullscreenButton"
+              @click="fullscreen"
+              :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
+              type="button"
+              :aria-label="Translator.trans('editor.fullscreen')"
+              v-tooltip="Translator.trans('editor.fullscreen')">
+              <i
+                :class="prefixClass('fa fa-arrows-alt')"
+                aria-hidden="true" />
+            </button>
+            <slot name="button" />
+          </div>
           <editor-content
             v-if="editor"
             :data-cy="`editor${editorId}`"
@@ -296,6 +291,7 @@
             :data-dp-validate-if="dataDpValidateIf || false"
             type="hidden"
             :id="hiddenInput"
+            :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
             :name="hiddenInput"
             :class="[required ? prefixClass('is-required') : '', prefixClass('tiptap__input--hidden')]"
             :data-dp-validate-maxlength="maxlength"
@@ -313,9 +309,11 @@
 </template>
 
 <script>
+import { de } from '../../shared/translations'
 import {
   Bold,
   BulletList,
+  Document,
   HardBreak,
   Heading,
   History,
@@ -323,30 +321,35 @@ import {
   Link,
   ListItem,
   OrderedList,
+  Paragraph,
   Strike,
   Table,
   TableCell,
   TableHeader,
   TableRow,
+  Text,
   Underline
-} from 'tiptap-extensions'
+} from './libs/tiptapExtensions'
 import { CleanHtml, Tooltip } from '../../../directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
-  EditorMenuBar // Renderless menubar
-} from 'tiptap'
-import { createSuggestion } from './libs/editorBuildSuggestion'
+} from '@tiptap/vue-2'
+import {
+  buildSuggestion,
+  CustomDelete,
+  CustomImage,
+  CustomInsert,
+  CustomLink,
+  CustomMark,
+  InsertAtCursorPos,
+  Obscure,
+  Mention
+} from './libs/customExtensions'
 import DpIcon from '../../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
-import EditorCustomDelete from './libs/editorCustomDelete'
-import EditorCustomImage from './libs/editorCustomImage'
-import EditorCustomInsert from './libs/editorCustomInsert'
-import EditorCustomLink from './libs/editorCustomLink'
-import EditorCustomMark from './libs/editorCustomMark'
-import EditorInsertAtCursorPos from './libs/editorInsertAtCursorPos'
-import EditorObscure from './libs/editorObscure'
+import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '../../../utils/'
 import { prefixClassMixin } from '../../../mixins'
@@ -356,9 +359,9 @@ export default {
 
   components: {
     DpIcon,
-    EditorMenuBar,
     EditorContent,
     DpLinkModal,
+    DpResizableImage,
     DpUploadModal
   },
 
@@ -370,6 +373,18 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    dataDpValidateIf: {
+      type: String,
+      default: '',
+      required: false
+    },
+
     /**
      * Only needed for testing purposes with data-cy
      */
@@ -485,12 +500,6 @@ export default {
     value: {
       type: String,
       required: true
-    },
-
-    dataDpValidateIf: {
-      type: String,
-      default: '',
-      required: false
     }
   },
 
@@ -515,48 +524,48 @@ export default {
         buttons: [
           {
             label: 'editor.table.create',
-            command: (commands) => commands.createTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
+            command: () => this.editor.commands.insertTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
             name: 'createTable'
           },
           {
             label: 'editor.table.delete',
-            command: (commands) => commands.deleteTable(),
+            command: () => this.editor.commands.deleteTable(),
             name: 'deleteTable'
           },
           {
             label: 'editor.table.addColumnBefore',
-            command: (commands) => commands.addColumnBefore(),
+            command: () => this.editor.commands.addColumnBefore(),
             name: 'addColumnBefore'
           },
           {
             label: 'editor.table.addColumnAfter',
-            command: (commands) => commands.addColumnAfter(),
+            command: () => this.editor.commands.addColumnAfter(),
             name: 'addColumnAfter'
 
           },
           {
             label: 'editor.table.deleteColumn',
-            command: (commands) => commands.deleteColumn(),
+            command: () => this.editor.commands.deleteColumn(),
             name: 'deleteColumn'
           },
           {
             label: 'editor.table.addRowBefore',
-            command: (commands) => commands.addRowBefore(),
+            command: () => this.editor.commands.addRowBefore(),
             name: 'addRowBefore'
           },
           {
             label: 'editor.table.addRowAfter',
-            command: (commands) => commands.addRowAfter(),
+            command: () => this.editor.commands.addRowAfter(),
             name: 'addRowAfter'
           },
           {
             label: 'editor.table.deleteRow',
-            command: (commands) => commands.deleteRow(),
+            command: () => this.editor.commands.deleteRow(),
             name: 'deleteRow'
           },
           {
             label: 'editor.table.toggleCellMerge',
-            command: (commands) => commands.toggleCellMerge(),
+            command: () => this.editor.commands.mergeOrSplit(),
             name: 'toggleCellMerge'
           }
         ]
@@ -608,7 +617,12 @@ export default {
          */
         table: false,
         textDecoration: true
-      }, this.toolbarItems)
+      }, this.toolbarItems),
+      translations: {
+        ...de.editor,
+        insertImage: de.image.insert,
+        obscureTitle: de.obscure.title
+      }
     }
   },
 
@@ -629,9 +643,9 @@ export default {
 
   watch: {
     value (newValue) {
-      if (!this.editor.focused) {
+      if (!this.editor.focused && this.editor.getHTML() !== newValue) {
         this.currentValue = newValue
-        this.editor.setContent(newValue, false)
+        this.editor.commands.setContent(newValue, false)
       }
     },
 
@@ -671,8 +685,124 @@ export default {
       this.$emit('input', this.currentValue)
     },
 
+    collectExtensions () {
+      const extensions = [
+        Document,
+        Paragraph,
+        Text,
+        History,
+        HardBreak,
+        Heading.configure({ levels: this.toolbar.headings })
+      ]
+
+      extensions.push(InsertAtCursorPos)
+
+      if (this.suggestions.length > 0) {
+        this.suggestions.forEach(suggestion => {
+          extensions.push(Mention.configure({
+            HTMLAttributes: {
+              class: 'suggestion__node'
+            },
+            renderLabel({ node }) {
+              return suggestion.matcher.char + node.attrs.label
+            },
+            suggestion: buildSuggestion(suggestion)
+          }))
+        })
+      }
+
+      if (this.toolbar.headings.length > 0) {
+        extensions.push(Heading.configure({ levels: this.toolbar.headings }))
+      }
+
+      if (this.toolbar.imageButton) {
+        extensions.push(CustomImage)
+      }
+
+      if (this.toolbar.linkButton) {
+        extensions.push(CustomLink.configure({ openOnClick: false }))
+      }
+
+      if (this.toolbar.obscure) {
+        extensions.push(Obscure)
+      }
+
+      if (this.toolbar.listButtons) {
+        extensions.push(BulletList)
+        extensions.push(OrderedList)
+        extensions.push(ListItem)
+      }
+
+      if (this.toolbar.table) {
+        extensions.push(Table.configure({
+          resizable: true
+        }))
+        extensions.push(TableHeader)
+        extensions.push(TableCell)
+        extensions.push(TableRow)
+      }
+
+      if (this.toolbar.insertAndDelete) {
+        extensions.push(CustomDelete)
+        extensions.push(CustomInsert)
+
+        this.diffMenu.buttons = [
+          {
+            label: 'editor.diff.insert',
+            command: () => this.editor.chain().focus().toggleInsert().run(),
+            name: 'insert'
+          },
+          {
+            label: 'editor.diff.delete',
+            command: () => this.editor.chain().focus().toggleDelete().run(),
+            name: 'delete'
+          }
+        ]
+      }
+
+      if (this.toolbar.mark) {
+        extensions.push(CustomMark)
+
+        this.diffMenu.buttons.unshift({
+          label: 'editor.mark',
+          command: () => this.editor.chain().focus().toggleMarkText().run(),
+          name: 'mark'
+        })
+      }
+
+      if (this.toolbar.textDecoration) {
+        extensions.push(Bold)
+        extensions.push(Italic)
+        extensions.push(Underline)
+      }
+
+      if (this.toolbar.strikethrough) {
+        extensions.push(Strike)
+      }
+
+      return extensions
+    },
+
     cut () {
-      document.execCommand('cut')
+      const selection = window.getSelection()
+
+      selection.deleteFromDocument()
+    },
+
+    executeSubMenuButtonAction (button, menu, activateOne = false) {
+      // If only one button in submenu can be enabled, deactivate the rest
+      if (activateOne) {
+        this[menu].buttons.forEach(subMenuButton => {
+          if (this.editor.isActive(subMenuButton.name) || subMenuButton === button) {
+            subMenuButton.command(this.editor.commands)
+          }
+        })
+      } else {
+        // If we just want to activate the clicked button without deactivating the other buttons in the submenu
+        button.command(this.editor.commands)
+      }
+
+      this[menu].isOpen = false
     },
 
     fullscreen (e) {
@@ -687,6 +817,10 @@ export default {
       if (this.isFullscreen === false && this.editorHeight !== '') {
         editor.setAttribute('style', this.editorHeight)
       }
+    },
+
+    getLinkMark (node) {
+      return node.marks && node.marks.find(mark => mark.type.name === 'customLink')
     },
 
     handleInsertText (text) {
@@ -710,33 +844,30 @@ export default {
       this.currentValue = this.editor.getHTML()
     },
 
-    startsWithTag (htmlString, tag) {
-      const el = document.createElement('div')
-      el.innerHTML = htmlString
-      const firstChild = el.firstChild && el.firstChild.nodeName
-      return firstChild === tag.toUpperCase()
-    },
-
     insertImage (url, alt) {
-      this.editor.commands.insertImage({ src: url, alt })
+      this.editor.commands.insertImage({ src: url, alt: alt })
     },
 
     insertUrl (linkUrl, newTab, linkText) {
-      if (linkUrl === null) {
-        this.editor.commands.link({ href: null, ...(newTab && { target: '_blank' }) })
-        return
+      if (linkUrl === null || linkUrl === '') {
+        this.editor.commands.unsetCustomLink({ extendEmptyMarkRange: true })
+      } else  if (linkText !== '') {
+        const selection = this.editor.view.state.selection
+
+        this.editor.commands.insertContent({
+          type: selection.node ? selection.node.type.name : 'text',
+          text: linkText,
+          marks: [
+            {
+              type: 'customLink',
+              attrs: {
+                href: linkUrl,
+                target: newTab ? '_blank' : null
+              }
+            }
+          ]
+        })
       }
-
-      if (linkUrl !== '' && linkText !== '') {
-        const newNode = this.editor.schema.text(linkText, [this.editor.schema.marks.link.create({ href: linkUrl, ...(newTab && { target: '_blank' }) })])
-        this.editor.view.dispatch(this.editor.state.tr.replaceSelectionWith(newNode, false))
-      }
-    },
-
-    getLinkMark (node) {
-      const linkMark = node.marks && node.marks.find(mark => mark.type.name === 'link')
-
-      return linkMark
     },
 
     openUploadModal (data) {
@@ -750,18 +881,18 @@ export default {
 
     replaceLinebreaks (text) {
       let returnText = text
-      returnText = returnText.replace(/<\/p>[\n|\r|\s|\\n|\\r]*?<p>/g, '</p><p>')
-      returnText = returnText.replace(/<ul>[\n|\r|\s|\\n|\\r]*?<li>/g, '<ul><li>')
-      return returnText.replace(/<\/li>[\n|\r|\s|\\n|\\r]*?<li>/g, '</li><li>')
+      returnText = returnText.replace(/<\/p>[\n\r\s\\n\\r]*?<p>/g, '</p><p>')
+      returnText = returnText.replace(/<ul>[\n\r\s\\n\\r]*?<li>/g, '<ul><li>')
+      return returnText.replace(/<\/li>[\n\r\s\\n\\r]*?<li>/g, '</li><li>')
     },
 
     replacePlaceholdersWithImages (text = this.currentValue) {
-      const placeholder = Translator.trans('image.placeholder')
+      const placeholder = de.image.placeholder
       const placeholderText = placeholder.startsWith('[') && placeholder.endsWith(']') ? placeholder.slice(1, -1) : placeholder
       const regex = new RegExp(`(\\[${placeholderText}\\].*?-->)`, 'gm')
       try {
         return text.replace(regex, (match, p1) => {
-          const altText = p1.match(/{([^}]*?)}/)[1] === Translator.trans('image.alt.placeholder') ? '' : p1.match(/{([^}]*?)}/)[1]
+          const altText = p1.match(/{([^}]*?)}/)[1] === de.image.alt.placeholder ? '' : p1.match(/{([^}]*?)}/)[1]
           const placeholder = p1.match(/<!-- (.*?) -->/)[1]
           const imageHash = placeholder.substr(7, 36)
           const imageWidth = placeholder.match(/width=(\d*?)&/)[1]
@@ -786,8 +917,8 @@ export default {
       window.addEventListener('mousemove', resize)
       window.addEventListener('mouseup', stopResize)
 
-      function resize (e) {
-        const height = originalHeight + (e.pageY - originalMouseY)
+      function resize (ev) {
+        const height = originalHeight + (ev.pageY - originalMouseY)
         editor.style.height = height + 'px'
       }
 
@@ -800,6 +931,24 @@ export default {
       this.editor.setContent('')
     },
 
+    setSelectionByEditor (nodeBefore, nodeAfter, attrs) {
+      const tr = this.editor.view.state.tr
+
+      if (nodeBefore) {
+        const linkMark = this.getLinkMark(nodeBefore)
+        if (linkMark && linkMark.attrs.href === attrs.href) {
+          this.editor.commands.setTextSelection({ from: (tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), to: tr.selection.anchor })
+        }
+      }
+
+      if (nodeAfter) {
+        const linkMark = this.getLinkMark(nodeAfter)
+        if (linkMark && linkMark.attrs.href === attrs.href) {
+          this.editor.commands.setTextSelection({ from: tr.selection.anchor, to: (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize) })
+        }
+      }
+    },
+
     setValue () {
       this.currentValue = this.editor.getHTML()
       const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
@@ -808,25 +957,7 @@ export default {
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 
-    setSelectionByEditor (nodeBefore, nodeAfter, attrs) {
-      const tr = this.editor.view.state.tr
-
-      if (nodeBefore) {
-        const linkMark = this.getLinkMark(nodeBefore)
-        if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.setSelection((tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize), tr.selection.anchor)
-        }
-      }
-
-      if (nodeAfter) {
-        const linkMark = this.getLinkMark(nodeAfter)
-        if (linkMark && linkMark.attrs.href === attrs.href) {
-          this.editor.setSelection(tr.selection.anchor, (tr.selection.anchor + tr.selection.$anchor.nodeAfter.nodeSize))
-        }
-      }
-    },
-
-    showLinkPrompt (command, attrs) {
+    showLinkPrompt (_command, attrs) {
       this.linkUrl = attrs.href ? attrs.href : ''
       const selection = this.editor.view.state.tr.selection
 
@@ -846,20 +977,11 @@ export default {
       this.$refs.linkModal.toggleModal(this.linkUrl, selectionText, attrs.target)
     },
 
-    executeSubMenuButtonAction (button, menu, activateOne = false) {
-      // If only one button in submenu can be enabled, deactivate the rest
-      if (activateOne) {
-        this[menu].buttons.forEach(subMenuButton => {
-          if (this.editor.isActive[subMenuButton.name]() || subMenuButton === button) {
-            subMenuButton.command(this.editor.commands)
-          }
-        })
-      } else {
-        // If we just want to activate the clicked button without deactivating the other buttons in the submenu
-        button.command(this.editor.commands)
-      }
-
-      this[menu].isOpen = false
+    startsWithTag (htmlString, tag) {
+      const el = document.createElement('div')
+      el.innerHTML = htmlString
+      const firstChild = el.firstChild && el.firstChild.nodeName
+      return firstChild === tag.toUpperCase()
     },
 
     toggleSubMenu (menu, isOpen) {
@@ -883,93 +1005,9 @@ export default {
   },
 
   mounted () {
-    const extensions = [
-      new History(),
-      new HardBreak(),
-      new Heading({ levels: this.toolbar.headings })
-    ]
-
-    extensions.push(new EditorInsertAtCursorPos())
-
-    if (this.suggestions.length > 0) {
-      this.suggestions.forEach(suggestionGroup => {
-        extensions.push(createSuggestion(suggestionGroup, this))
-      })
-    }
-
-    if (this.toolbar.headings.length > 0) {
-      extensions.push(new Heading({ levels: this.toolbar.headings }))
-    }
-
-    if (this.toolbar.imageButton) {
-      extensions.push(new EditorCustomImage())
-    }
-
-    if (this.toolbar.linkButton) {
-      extensions.push(new Link())
-      extensions.push(new EditorCustomLink())
-    }
-
-    if (this.toolbar.obscure) {
-      extensions.push(new EditorObscure())
-    }
-
-    if (this.toolbar.listButtons) {
-      extensions.push(new BulletList())
-      extensions.push(new OrderedList())
-      extensions.push(new ListItem())
-    }
-
-    if (this.toolbar.table) {
-      extensions.push(new Table({
-        resizable: true
-      }))
-      extensions.push(new TableHeader())
-      extensions.push(new TableCell())
-      extensions.push(new TableRow())
-    }
-
-    if (this.toolbar.insertAndDelete) {
-      extensions.push(new EditorCustomDelete())
-      extensions.push(new EditorCustomInsert())
-
-      this.diffMenu.buttons = [
-        {
-          label: 'editor.diff.insert',
-          command: (commands) => commands.insert(),
-          name: 'insert'
-        },
-        {
-          label: 'editor.diff.delete',
-          command: (commands) => commands.delete(),
-          name: 'delete'
-        }
-      ]
-    }
-
-    if (this.toolbar.mark) {
-      extensions.push(new EditorCustomMark())
-
-      this.diffMenu.buttons.unshift({
-        label: 'editor.mark',
-        command: (commands) => commands.mark(),
-        name: 'mark'
-      })
-    }
-
-    if (this.toolbar.textDecoration) {
-      extensions.push(new Bold())
-      extensions.push(new Italic())
-      extensions.push(new Underline())
-    }
-
-    if (this.toolbar.strikethrough) {
-      extensions.push(new Strike())
-    }
-
     this.editor = new Editor({
       editable: !this.readonly,
-      extensions: extensions,
+      extensions: this.collectExtensions(),
       content: this.currentValue,
       disableInputRules: true,
       disablePasteRules: true,
@@ -977,17 +1015,12 @@ export default {
         this.setValue()
       },
       editorProps: {
-        handleDrop: (view, event, slice, moved) => {
+        handleDrop: (_view, _event, _slice, moved) => {
           if (!moved) {
             return true
           }
         },
-        handleClick: (view, pos, event) => {
-          if (event.target.tagName.toLowerCase() === 'img' && event.ctrlKey) {
-            const image = event.target
-            this.openUploadModal({ editAltOnly: true, currentAlt: image.getAttribute('alt') })
-          }
-        },
+
         transformPastedHTML: (slice) => {
           /*
            * Due to the strange Html format from Word clipbord, lists would not be displayed properly,
@@ -998,13 +1031,14 @@ export default {
           const obscureClass = this.prefixClass('u-obscure')
           const obscureColor = getColorFromCSS(obscureClass)
           let returnContent = slice
+
           if (slice.includes(`span style="color: ${obscureColor}`)) {
             returnContent = slice.replace(/(?:<meta [^>]*>\s*<span [^>]*>\s*)([^<]*?)(?:\s*<\/span>)/g, '$1')
             returnContent = '<span class="' + obscureClass + '">' + returnContent + '</span>'
           }
 
           // Strip anchor tags if link functionality is not active
-          if (this.linkButton === false) {
+          if (this.toolbar.linkButton === false) {
             returnContent = returnContent.replace(/<a[^>]*>(.*?)<\/a>/g, '$1')
           }
 
@@ -1014,7 +1048,8 @@ export default {
           return returnContent
         }
       },
-      onInit: ({ state, view }) => {
+
+      onInit: ({ view }) => {
         view._props.handleScrollToSelection = customHandleScrollToSelection
       }
     })
@@ -1066,20 +1101,32 @@ function customHandleScrollToSelection (view, rect = view.coordsAtPos(view.state
   const scrollMargin = view.someProp('scrollMargin') || 5
   const doc = view.dom.ownerDocument
   const win = doc.defaultView
+
   for (let parent = startDOM || view.dom; ; parent = parentNode(parent)) {
     if (!parent) break
     if (parent.nodeType !== 1) continue
+
     const parentStyle = window.getComputedStyle(parent, null)
     const atTop = (parentStyle['overflow-y'] === 'auto' || parentStyle['overflow-y'] === 'scroll' || parent.nodeType !== 1)
     const bounding = atTop ? windowRect(win) : parent.getBoundingClientRect()
     let moveX = 0
     let moveY = 0
-    if (rect.top < bounding.top + getSide(scrollThreshold, 'top')) { moveY = -(bounding.top - rect.top + getSide(scrollMargin, 'top')) } else if (rect.bottom > bounding.bottom - getSide(scrollThreshold, 'bottom')) { moveY = rect.bottom - bounding.bottom + getSide(scrollMargin, 'bottom') }
-    if (rect.left < bounding.left + getSide(scrollThreshold, 'left')) { moveX = -(bounding.left - rect.left + getSide(scrollMargin, 'left')) } else if (rect.right > bounding.right - getSide(scrollThreshold, 'right')) { moveX = rect.right - bounding.right + getSide(scrollMargin, 'right') }
-    if (moveX || moveY) {
-      if (moveY) parent.scrollTop += moveY
-      if (moveX) parent.scrollLeft += moveX
+
+    if (rect.top < bounding.top + getSide(scrollThreshold, 'top')) {
+      moveY = -(bounding.top - rect.top + getSide(scrollMargin, 'top'))
+    } else if (rect.bottom > bounding.bottom - getSide(scrollThreshold, 'bottom')) {
+      moveY = rect.bottom - bounding.bottom + getSide(scrollMargin, 'bottom')
     }
+
+    if (rect.left < bounding.left + getSide(scrollThreshold, 'left')) {
+      moveX = -(bounding.left - rect.left + getSide(scrollMargin, 'left'))
+    } else if (rect.right > bounding.right - getSide(scrollThreshold, 'right')) {
+      moveX = rect.right - bounding.right + getSide(scrollMargin, 'right')
+    }
+
+    if (moveY) parent.scrollTop += moveY
+    if (moveX) parent.scrollLeft += moveX
+
     if (atTop) break
   }
 }

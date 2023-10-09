@@ -7,51 +7,47 @@
  * InputRules and pasteRules help to handle diverse behaviour when we want to obscure only part of words or we want to
  * use more than one tool (e.g. obscure and bold) simultaneously, etc.
  */
+import { Mark, mergeAttributes } from '@tiptap/core'
 
-import { markInputRule, markPasteRule, toggleMark } from 'tiptap-commands'
-import { Mark } from 'tiptap'
+export default Mark.create({
+  name: 'anonymize',
 
-export default class EditorAnonymize extends Mark {
-  get name () {
-    return 'anonymize'
-  }
+  spanning: false,
 
-  get schema () {
+  addAttributes () {
     return {
-      attrs: {
-        title: {
-          default: null
-        }
-      },
-      spanning: false,
-      parseDOM: [{
-        tag: '.anonymize-me',
-        getAttrs: dom => ({
-          title: dom.getAttribute('title')
-        })
-      }],
-      toDOM: node => {
-        return ['span', {
-          ...node.attrs,
-          class: 'anonymize-me'
-        }, 0]
+      title: {
+        default: null
+      }
+    }
+  },
+
+  addOptions () {
+    return {
+      HTMLAttributes: {
+        title: null,
+      }
+    }
+  },
+
+  parseHTML () {
+    return [{
+      tag: 'span.anonymize-me'
+    }]
+  },
+
+  renderHTML: ({ HTMLAttributes, options }) => {
+    return ['span', mergeAttributes(
+      { class: 'anonymize-me' },
+      HTMLAttributes
+    ), 0]
+  },
+
+  addCommands () {
+    return {
+      toggleAnonymize: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
       }
     }
   }
-
-  commands ({ type }) {
-    return () => toggleMark(type)
-  }
-
-  inputRules ({ type }) {
-    return [
-      markInputRule(/(?:<o>)([^<o>]+)(?:<o>)$/, type)
-    ]
-  }
-
-  pasteRules ({ type }) {
-    return [
-      markPasteRule(/(?:<o>)([^<o>]+)(?:<o>)/g, type)
-    ]
-  }
-}
+})

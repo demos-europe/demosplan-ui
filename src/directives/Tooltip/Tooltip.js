@@ -1,8 +1,15 @@
-import { VPopover, VTooltip } from 'v-tooltip'
+import { VPopover as Popover } from 'v-tooltip'
+import { destroyTooltip, initTooltip, updateTooltip } from '~/components/DpTooltip/utils/tooltip'
+
+/**
+ * @deprecated Use DpTooltip instead
+ *
+ * @type {VueConstructor<Vue>}
+ */
+const VPopover = Popover
 
 /*
  * Merge custom config into default options for tooltip config.
- * The non-vue tooltip lib also uses tooltip.js, both have to be in sync.
  */
 const tooltipConfig = {
   defaultHtml: true,
@@ -25,8 +32,57 @@ const tooltipConfig = {
     defaultTrigger: 'hover'
   }
 }
-VTooltip.options = { ...VTooltip.options, ...tooltipConfig }
 VPopover.options = { ...VPopover.options, ...tooltipConfig }
-const Tooltip = VTooltip
+
+/**
+ * v-tooltip directive
+ *
+ * @type {VueDirective}
+ *
+ * @param text{String|HTML}
+ */
+const Tooltip = {
+  inserted: function (element, binding) {
+    let content = binding.value
+    let options = { place: 'top' }
+
+    if (binding.value && typeof binding.value === 'object') {
+      content = binding.value.content
+
+      if (binding.value.container) {
+        options = { ...options, container: binding.value.container }
+      }
+
+      if (binding.value.classes) {
+        options = { ...options, classes: binding.value.classes }
+      }
+    }
+
+    initTooltip(element, content, options)
+  },
+
+  update: function (element, binding) {
+    let content = binding.value
+    let options = { place: 'top' }
+
+    if (binding.value && typeof binding.value === 'object') {
+      content = binding.value.content
+
+      if (binding.value.container) {
+        options = { ...options, container: binding.value.container }
+      }
+
+      if (binding.value.classes) {
+        options = { ...options, classes: binding.value.classes }
+      }
+    }
+
+    updateTooltip(element, content, options)
+  },
+
+  unbind: function (element) {
+    destroyTooltip(element)
+  }
+}
 
 export { VPopover, Tooltip }

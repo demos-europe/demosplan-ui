@@ -1,23 +1,33 @@
-import { Mark } from 'tiptap'
-import { toggleMark } from 'tiptap-commands'
+import {
+  Mark,
+  markInputRule,
+  markPasteRule,
+} from '@tiptap/core'
+import { de } from '../../../shared/translations'
 
-export default class EditorCustomDelete extends Mark {
-  get name () {
-    return 'delete'
-  }
 
-  get schema () {
+export default Mark.create({
+  name: 'delete',
+
+  parseHTML () {
+    return [{ tag: 'del' }]
+  },
+
+  renderHTML () {
+    return ['del', { title: de.text.deleted }, 0]
+  },
+
+  addCommands () {
     return {
-      parseDOM: [
-        {
-          tag: 'del'
-        }
-      ],
-      toDOM: () => ['del', { title: Translator.trans('text.deleted') }, 0]
+      setDelete: () => ({ commands }) => {
+        return commands.setMark(this.name)
+      },
+      toggleDelete: () => ({ commands }) => {
+        return commands.toggleMark(this.name)
+      },
+      unsetDelete: () => ({ commands }) => {
+        return commands.unsetMark(this.name)
+      },
     }
   }
-
-  commands ({ type }) {
-    return () => toggleMark(type)
-  }
-}
+})

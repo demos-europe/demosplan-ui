@@ -2483,10 +2483,10 @@
     "@storybook/types" "7.4.6"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-styling-webpack@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.3.tgz#db46b825c346a2b0c8d4fb19f4c995c1806344d3"
-  integrity sha512-7RjjXjrFynVjBz11AB29ErcH/yJTVfiRzel9AfmMZtfmoGyAZSJyc9tozWaokVWp3M6bCmPjGiB0h2jZJQTbVQ==
+"@storybook/addon-styling-webpack@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-0.0.5.tgz#714c713cf8c57ed1f674ebc80bc16cb41b9bdf1b"
+  integrity sha512-8XdE3w+W7qxMeqnK/FDFipFN9XaVKUJFcHyM2ZBlhAAxVWMbTcifqw5lzqeK8jSAA/TUtpUp37gT2Bw/3k6slQ==
   dependencies:
     "@storybook/node-logger" "^7.0.12"
 

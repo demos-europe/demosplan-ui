@@ -2273,28 +2273,6 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@storybook/addon-actions@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.4.0.tgz#709988f46422b85b3672d2e6f90bf623af59faa9"
-  integrity sha512-0lHLLUlrGE7CBFrfmAXrBKu7fUIsiQlnNekuE3cIAjSgVR481bJEzYHUUoMATqpPC4GGErBdP1CZxVDDwWV8jA==
-  dependencies:
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/components" "7.4.0"
-    "@storybook/core-events" "7.4.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/manager-api" "7.4.0"
-    "@storybook/preview-api" "7.4.0"
-    "@storybook/theming" "7.4.0"
-    "@storybook/types" "7.4.0"
-    dequal "^2.0.2"
-    lodash "^4.17.21"
-    polished "^4.2.2"
-    prop-types "^15.7.2"
-    react-inspector "^6.0.0"
-    telejson "^7.2.0"
-    ts-dedent "^2.0.0"
-    uuid "^9.0.0"
-
 "@storybook/addon-actions@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.4.6.tgz#080bd1612a744cc3fc4a435a07a63d2d8c05f030"
@@ -2689,22 +2667,6 @@
     prettier "^2.8.0"
     recast "^0.23.1"
 
-"@storybook/components@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-7.4.0.tgz#0cc83ff89dd9cdcde3eaeeb7b3fbcf2036ba6fb8"
-  integrity sha512-GGnQrI4NXwri/PqNjhO1vNv4tC7RBjY87ce9WHBq1ueat3kBakdqV97NzScoldXarkkKK6grBqmhw9jE5PfzhQ==
-  dependencies:
-    "@radix-ui/react-select" "^1.2.2"
-    "@radix-ui/react-toolbar" "^1.0.4"
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/theming" "7.4.0"
-    "@storybook/types" "7.4.0"
-    memoizerific "^1.11.3"
-    use-resize-observer "^9.1.0"
-    util-deprecate "^1.0.2"
-
 "@storybook/components@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-7.4.6.tgz#e804407bd3a047e9f6026edfbbe188244661b55a"
@@ -2865,21 +2827,6 @@
   dependencies:
     "@storybook/csf-tools" "7.4.6"
     unplugin "^1.3.1"
-
-"@storybook/csf-tools@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/csf-tools/-/csf-tools-7.4.0.tgz#db5c97ee603da9a68511192d701534e356f9e592"
-  integrity sha512-bKyOmWPyvT50Neq2wCRr2PmVGLVVm6pOw8WL5t5jueD8sRRzo9QdfhEkqmuSyqdsBdt3SiJKL5oA6dqY5Vl9ww==
-  dependencies:
-    "@babel/generator" "^7.22.9"
-    "@babel/parser" "^7.22.7"
-    "@babel/traverse" "^7.22.8"
-    "@babel/types" "^7.22.5"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/types" "7.4.0"
-    fs-extra "^11.1.0"
-    recast "^0.23.1"
-    ts-dedent "^2.0.0"
 
 "@storybook/csf-tools@7.4.6":
   version "7.4.6"

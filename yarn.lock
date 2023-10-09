@@ -2351,31 +2351,6 @@
     lodash "^4.17.21"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-docs@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-7.4.0.tgz#e07233c264eaec149a0fcca0e27c586d4e80b403"
-  integrity sha512-LJE92LUeVTgi8W4tLBEbSvCqF54snmBfTFCr46vhCFov2CE2VBgEvIX1XT3dfUgYUOtPu3RXR2C89fYgU6VYZw==
-  dependencies:
-    "@jest/transform" "^29.3.1"
-    "@mdx-js/react" "^2.1.5"
-    "@storybook/blocks" "7.4.0"
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/components" "7.4.0"
-    "@storybook/csf-plugin" "7.4.0"
-    "@storybook/csf-tools" "7.4.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/mdx2-csf" "^1.0.0"
-    "@storybook/node-logger" "7.4.0"
-    "@storybook/postinstall" "7.4.0"
-    "@storybook/preview-api" "7.4.0"
-    "@storybook/react-dom-shim" "7.4.0"
-    "@storybook/theming" "7.4.0"
-    "@storybook/types" "7.4.0"
-    fs-extra "^11.1.0"
-    remark-external-links "^8.0.0"
-    remark-slug "^6.0.0"
-    ts-dedent "^2.0.0"
-
 "@storybook/addon-docs@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-7.4.6.tgz#f2cc635a77cfb3e2910d6ca813add9a16785595d"
@@ -2515,35 +2490,6 @@
     "@storybook/theming" "7.4.6"
     memoizerific "^1.11.3"
     prop-types "^15.7.2"
-
-"@storybook/blocks@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-7.4.0.tgz#6a9240e2b58bac99a998c559d719be7ff4e19dcc"
-  integrity sha512-YQznNjJm+l32fCfPxrZso9+MbcyG0pWZSpx3RKI1+pxDMsAs4mbXsIw4//jKfjoDP/6/Cz/FJcSx8LT7i4BJ2w==
-  dependencies:
-    "@storybook/channels" "7.4.0"
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/components" "7.4.0"
-    "@storybook/core-events" "7.4.0"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/docs-tools" "7.4.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/manager-api" "7.4.0"
-    "@storybook/preview-api" "7.4.0"
-    "@storybook/theming" "7.4.0"
-    "@storybook/types" "7.4.0"
-    "@types/lodash" "^4.14.167"
-    color-convert "^2.0.1"
-    dequal "^2.0.2"
-    lodash "^4.17.21"
-    markdown-to-jsx "^7.1.8"
-    memoizerific "^1.11.3"
-    polished "^4.2.2"
-    react-colorful "^5.1.2"
-    telejson "^7.2.0"
-    tocbot "^4.20.1"
-    ts-dedent "^2.0.0"
-    util-deprecate "^1.0.2"
 
 "@storybook/blocks@7.4.6":
   version "7.4.6"
@@ -2912,14 +2858,6 @@
     "@types/node" "^16.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/csf-plugin@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/csf-plugin/-/csf-plugin-7.4.0.tgz#f25ebb30affbc9b4dd61b1fdb12c4a4257a275dc"
-  integrity sha512-X1L3l/dpz2UYjCEQlFLkW7w1A13pmzDZpJ0lotkV79PALlakMXBeoX3I2E0VMjJATV8wC9RSj56COBAs6HsPeg==
-  dependencies:
-    "@storybook/csf-tools" "7.4.0"
-    unplugin "^1.3.1"
-
 "@storybook/csf-plugin@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/csf-plugin/-/csf-plugin-7.4.6.tgz#63b4498c9be329ba9cdd53bb8cbe66ef225230ec"
@@ -3061,11 +2999,6 @@
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-7.4.6.tgz#d92eb7e99cb8aefffe67eb63583a21398ce9a0ab"
   integrity sha512-djZb310Q27GviDug1XBv0jOEDLCiwr4hhDE0aifCEKZpfNCi/EaP31nbWimFzZwxu4hE/YAPWExzScruR1zw9Q==
 
-"@storybook/postinstall@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/postinstall/-/postinstall-7.4.0.tgz#81f3bef31b566e26d616f9c3ce567f07ff143cc7"
-  integrity sha512-ZVBZggqkuj7ysfuHSCd/J7ovWV06zY9uWf+VU+Zw7ZeojDT8QHFrCurPsN7D9679j9vRU1/kSzqvAiStALS33g==
-
 "@storybook/postinstall@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/postinstall/-/postinstall-7.4.6.tgz#2d5da361fc8baee1866c80b2244815a9e217b843"
@@ -3128,11 +3061,6 @@
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@storybook/preview/-/preview-7.4.0.tgz#a58756ac9b12ea21f203032eca47991946257b53"
   integrity sha512-R4LMTvUrVAbcUetRbAXpY3frkwD0eysqHrByiR73040+ngzDwtZOBAy0JfO3jw3WrWv2dn3kWlao5aEwVc9Exw==
-
-"@storybook/react-dom-shim@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/react-dom-shim/-/react-dom-shim-7.4.0.tgz#12f137f00f2a209cb49a4084475dd93f23e0678a"
-  integrity sha512-TLpb8a2hnWJoRLqoXpMADh82BFfRZll6JI2Waf1FjnvJ4SF9eS0zBbxybrjW3lFAHWy2XJi+rwcK8FiPj0iBoQ==
 
 "@storybook/react-dom-shim@7.4.6":
   version "7.4.6"

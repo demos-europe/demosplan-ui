@@ -2708,14 +2708,6 @@
     use-resize-observer "^9.1.0"
     util-deprecate "^1.0.2"
 
-"@storybook/core-client@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-7.4.0.tgz#b2b683ebc44d0dfaa7a886f7bb1a5fc74a3d0965"
-  integrity sha512-AhysJS2HnydB8Jc+BMVzK5VLHa1liJjxroNsd+ZTgGUhD7R8wvozrswQgY4MLFtcaLwN/wDWlK2YavSBqmc94Q==
-  dependencies:
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/preview-api" "7.4.0"
-
 "@storybook/core-client@7.4.6":
   version "7.4.6"
   resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-7.4.6.tgz#880ab2a431133912d0b76f2273cefe95b287d8ca"
@@ -2723,34 +2715,6 @@
   dependencies:
     "@storybook/client-logger" "7.4.6"
     "@storybook/preview-api" "7.4.6"
-
-"@storybook/core-common@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/core-common/-/core-common-7.4.0.tgz#da71afd79a12cfb5565351f184f6797214a5da79"
-  integrity sha512-QKrBL46ZFdfTjlZE3f7b59Q5+frOHWIJ64sC9BZ2PHkZkGjFeYRDdJJ6EHLYBb+nToynl33dYN1GQz+hQn2vww==
-  dependencies:
-    "@storybook/node-logger" "7.4.0"
-    "@storybook/types" "7.4.0"
-    "@types/find-cache-dir" "^3.2.1"
-    "@types/node" "^16.0.0"
-    "@types/node-fetch" "^2.6.4"
-    "@types/pretty-hrtime" "^1.0.0"
-    chalk "^4.1.0"
-    esbuild "^0.18.0"
-    esbuild-register "^3.4.0"
-    file-system-cache "2.3.0"
-    find-cache-dir "^3.0.0"
-    find-up "^5.0.0"
-    fs-extra "^11.1.0"
-    glob "^10.0.0"
-    handlebars "^4.7.7"
-    lazy-universal-dotenv "^4.0.0"
-    node-fetch "^2.0.0"
-    picomatch "^2.3.0"
-    pkg-dir "^5.0.0"
-    pretty-hrtime "^1.0.3"
-    resolve-from "^5.0.0"
-    ts-dedent "^2.0.0"
 
 "@storybook/core-common@7.4.6":
   version "7.4.6"
@@ -2887,18 +2851,6 @@
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@storybook/docs-mdx/-/docs-mdx-0.1.0.tgz#33ba0e39d1461caf048b57db354b2cc410705316"
   integrity sha512-JDaBR9lwVY4eSH5W8EGHrhODjygPd6QImRbwjAuJNEnY0Vw4ie3bPkeGfnacB3OBW6u/agqPv2aRlR46JcAQLg==
-
-"@storybook/docs-tools@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/docs-tools/-/docs-tools-7.4.0.tgz#d9109c9c8ec4e90bb24d1acfcc16834a252618eb"
-  integrity sha512-DzXmt4JorAOePoS+sjQznf8jLPI9D5mdB1eSXjfvmGBQyyehKTZv5+TXuxYvT3iPN4rW4OPrIrQCSIrbULFdwA==
-  dependencies:
-    "@storybook/core-common" "7.4.0"
-    "@storybook/preview-api" "7.4.0"
-    "@storybook/types" "7.4.0"
-    "@types/doctrine" "^0.0.3"
-    doctrine "^3.0.0"
-    lodash "^4.17.21"
 
 "@storybook/docs-tools@7.4.6":
   version "7.4.6"
@@ -3138,20 +3090,6 @@
     "@storybook/preset-vue-webpack" "7.4.6"
     "@storybook/vue" "7.4.6"
     "@types/node" "^16.0.0"
-
-"@storybook/vue@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@storybook/vue/-/vue-7.4.0.tgz#5003000308ec9bb05aa0db992d28c39aeb524b87"
-  integrity sha512-QY/DeBYH03Jjl8uNYfKe/Nb2VeOH8TSkDJ4AovE78wUEfpvXtQ3v5OkCbEsnkCnQUE/5zP3mIO/wVzw59cHqpw==
-  dependencies:
-    "@storybook/client-logger" "7.4.0"
-    "@storybook/core-client" "7.4.0"
-    "@storybook/docs-tools" "7.4.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/preview-api" "7.4.0"
-    "@storybook/types" "7.4.0"
-    ts-dedent "^2.0.0"
-    type-fest "~2.19"
 
 "@storybook/vue@7.4.6":
   version "7.4.6"

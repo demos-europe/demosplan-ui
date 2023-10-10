@@ -11,11 +11,61 @@ import DpEditor from './DpEditor'
 A rich text editor component based on tiptap.
 
 - defines a menubar with a number of buttons and an editor
-- use this component without the inline-editing-wrapper TiptapEditText.vue if you want to add a text editor to a form element (as in new statement view)
-- use this component with the inline-editing-wrapper TiptapEditText.vue if you want to save the text directly via inline-editing (as in assessment table)
 
 To properly set the content we have to update this.currentValue and use editor.setContent() - both actions are needed!
 
-To use image upload we need to add imageButton Prop.
+To use image upload we need to add imageButton optional Prop.
 
 To use another component within DpEditor, we can add Slot named modal.
+
+## Custom usage
+
+```html
+<dp-editor
+    :toolbar-items="{
+        fullscreenButton: true,
+        insertAndDelete: true,
+        table: true,
+        headings: [2,3,4],
+        imageButton: true,
+        linkButton: true,
+        strikethrough: true
+    }"
+    :value="value">
+    <template v-slot:modal="modalProps">
+        <dp-modal
+          id="openModal"
+          ref="openModal">
+          <dp-tabs
+              tab-size="medium"
+              :active-id="activeTabId"
+              use-url-fragment
+              @change="setActiveTabId"> <!-- call a method -->
+              <dp-tab
+                id="idTab1"
+                label="Tab Title 1">
+                <slot>
+                  Tab content 1.
+                </slot>
+              </dp-tab>
+              <dp-tab
+                id="idTab2"
+                label="Tab Title 2">
+                <slot>
+                  Tab content 2.
+                </slot>
+              </dp-tab>
+          </dp-tabs>
+        </dp-modal>
+    </template>
+    <template v-slot:button>
+        <button
+            class="{{ 'menubar__button'|prefixClass }}"
+            type="button"
+            v-tooltip="'{{ 'boilerplate.insert'|trans }})'"
+            @click.stop="$refs.boilerPlateModal.toggleModal()">
+            <i class="{{ 'fa fa-puzzle-piece'|prefixClass }}"></i>
+        </button>
+    </template>
+</dp-editor>
+```

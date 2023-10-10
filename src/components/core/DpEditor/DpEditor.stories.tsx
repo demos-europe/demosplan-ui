@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpEditor from './DpEditor.vue'
+import DpModal from '../../DpModal/DpModal.vue'
 
 const meta: Meta<typeof DpEditor> = {
     component: DpEditor,
@@ -18,6 +19,7 @@ const meta: Meta<typeof DpEditor> = {
 interface IDpEditor {
     value: string
     toolbarItems: object
+    routes: object
 }
 
 type Story = StoryObj<IDpEditor>
@@ -25,6 +27,13 @@ type Story = StoryObj<IDpEditor>
 export default meta
 
 export const Default: Story = {
+    args: {
+        value: ''
+    },
+    argTypes: {}
+}
+
+export const Extended: Story = {
     args: {
         value: '',
         toolbarItems: {
@@ -35,7 +44,27 @@ export const Default: Story = {
             imageButton: true,
             linkButton: true,
             strikethrough: true
+        },
+        routes: {
+            getFileByHash: () => {}
         }
     },
-    argTypes: {}
+    render: (args) => ({
+        components: {
+            DpEditor,
+            DpModal
+        },
+        setup() {
+            return { args }
+        },
+        template: `<dp-editor v-bind="args">
+          <template v-slot:modal="modalProps">
+            <dp-modal
+                id="openModal"
+                ref="openModal">
+              Add an component
+            </dp-modal>
+          </template>
+        </dp-editor>`,
+    })
 }

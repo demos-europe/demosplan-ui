@@ -18,6 +18,15 @@ To use image upload we need to add imageButton optional Prop.
 
 To use another component within DpEditor, we can add Slot named modal.
 
+## Default usage
+
+```html
+<dp-editor
+    :value="value"
+    ref="r_links">
+</dp-editor>
+```
+
 ## Custom usage
 
 ```html
@@ -36,26 +45,7 @@ To use another component within DpEditor, we can add Slot named modal.
         <dp-modal
           id="openModal"
           ref="openModal">
-          <dp-tabs
-              tab-size="medium"
-              :active-id="activeTabId"
-              use-url-fragment
-              @change="setActiveTabId"> <!-- call a method -->
-              <dp-tab
-                id="idTab1"
-                label="Tab Title 1">
-                <slot>
-                  Tab content 1.
-                </slot>
-              </dp-tab>
-              <dp-tab
-                id="idTab2"
-                label="Tab Title 2">
-                <slot>
-                  Tab content 2.
-                </slot>
-              </dp-tab>
-          </dp-tabs>
+          Add an component
         </dp-modal>
     </template>
 </dp-editor>

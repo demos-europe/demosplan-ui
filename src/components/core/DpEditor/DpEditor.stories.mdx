@@ -58,14 +58,5 @@ To use another component within DpEditor, we can add Slot named modal.
           </dp-tabs>
         </dp-modal>
     </template>
-    <template v-slot:button>
-        <button
-            class="{{ 'menubar__button'|prefixClass }}"
-            type="button"
-            v-tooltip="'{{ 'boilerplate.insert'|trans }})'"
-            @click.stop="$refs.boilerPlateModal.toggleModal()">
-            <i class="{{ 'fa fa-puzzle-piece'|prefixClass }}"></i>
-        </button>
-    </template>
 </dp-editor>
 ```

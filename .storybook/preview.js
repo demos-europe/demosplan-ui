@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { Translator } from './translatorMock'
 import '../style/index.css'
+import '../../dplan/projects/blp/web/css/style.1b4f04.css'
 
 Vue.prototype.Translator = Translator
 

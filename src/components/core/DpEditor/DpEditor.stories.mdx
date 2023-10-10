@@ -13,10 +13,9 @@ A rich text editor component based on tiptap.
 - defines a menubar with a number of buttons and an editor
 - use this component without the inline-editing-wrapper TiptapEditText.vue if you want to add a text editor to a form element (as in new statement view)
 - use this component with the inline-editing-wrapper TiptapEditText.vue if you want to save the text directly via inline-editing (as in assessment table)
-- the editor-content component needs a prop with editor instance to work correctly
 
 To properly set the content we have to update this.currentValue and use editor.setContent() - both actions are needed!
 
-To use boilerplates we need to mount tiptap editor, where boilerplate modal is imported dynamically.
+To use image upload we need to add imageButton Prop.
 
-The boilerplates are stored in boilerplates vuex store, which is also registered dynamically if boilerplate prop is specified.
+To use another component within DpEditor, we can add Slot named modal.

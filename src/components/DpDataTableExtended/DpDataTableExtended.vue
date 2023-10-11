@@ -48,26 +48,26 @@
       :should-be-selected-items="currentlySelectedItems"
       :track-by="trackBy">
       <template
-        v-for="el in sortableFilteredFields"
-        v-slot:[`header-${el.field}`]="element">
+        v-for="(el, i) in sortableFilteredFields"
+        v-slot:[`header-${el.field}`]="el">
         <slot
-          :name="`header-${element.field}`"
-          v-bind="element">
+          :name="`header-${el.field}`"
+          v-bind="sortableFilteredFields[i]">
           <div
-            :key="element.field"
+            :key="el.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="Translator.trans('table.cols.sort') + ': ' + element.label"
-              :title="Translator.trans('table.cols.sort') + ': ' + element.label"
+              :aria-label="Translator.trans('table.cols.sort') + ': ' + el.label"
+              :title="Translator.trans('table.cols.sort') + ': ' + el.label"
               class="btn--blank u-top-0 u-right-0 absolute"
-              @click="setOrder(element.field)"
+              @click="setOrder(el.field)"
               type="button">
               <i
                 aria-hidden="true"
                 class="fa"
-                :class="sortIconClass(element.field)" />
+                :class="sortIconClass(el.field)" />
             </button>
-            {{ element.label }}
+            {{ el.label }}
           </div>
         </slot>
       </template>
@@ -76,20 +76,20 @@
         v-slot:[filteredFields[i].field]="element">
         <!-- table cells (TDs) -->
         <slot
-          :name="filteredFields[i].field"
-          v-bind="element" />
+          :name="el.field"
+          v-bind="filteredFields[i]" />
       </template>
-      <template v-slot:expandedContent="element">
+      <template v-slot:expandedContent="el">
         <!-- expanded content area -->
         <slot
           name="expandedContent"
-          v-bind="element" />
+          v-bind="el" />
       </template>
-      <template v-slot:flyout="element">
+      <template v-slot:flyout="el">
         <!-- flyout content area -->
         <slot
           name="flyout"
-          v-bind="element" />
+          v-bind="el" />
       </template>
     </dp-data-table>
 

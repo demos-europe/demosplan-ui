@@ -4,8 +4,7 @@
       ref="tableEl"
       :class="tableClass">
       <caption class="hide-visually" v-text="tableDescription" />
-      <colgroup
-        v-if="headerFields.filter((field) => field.colClass).length > 0">
+      <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
         <col v-if="isSelectable" />
         <col
@@ -375,6 +374,7 @@ export default {
     return {
       allExpanded: false,
       allWrapped: false,
+      currentItems: [],
       defaultTranslations: {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,

@@ -10,10 +10,10 @@
     @searched="emit($event, 'searched')"
     @selected="emit($event, 'selected')">
     <template
-      v-for="(_, scopedSlotName) in $scopedSlots"
-      v-slot:[scopedSlotName]="slotData">
+      v-for="(_, slotName) in $slots"
+      v-slot:[slotName]="slotData">
       <slot
-        :name="scopedSlotName"
+        :name="slotName"
         v-bind="slotData" />
     </template>
   </vue-omnibox>

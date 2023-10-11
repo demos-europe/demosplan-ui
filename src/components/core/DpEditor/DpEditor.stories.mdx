@@ -14,7 +14,7 @@ The Editor component renders a rich text editor consisting of a menu bar support
 To use image upload we need to add imageButton optional Prop, and when using `imageButton` Prop, you have to set also
 `routes.getFileByHash` Prop.
 
-To use another component within DpEditor, we can add Slot.
+The slot `button` can be used to add additional buttons to the toolbar. The slot `modal` can be used to add a modal component to DpEditor. The function `handleInsertText` is exposed to the `modal` slot to enable the modal component to add text to the editor instance.
 
 ## Default usage
 

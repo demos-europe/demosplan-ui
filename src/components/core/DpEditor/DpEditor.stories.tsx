@@ -17,6 +17,7 @@ const meta: Meta<typeof DpEditor> = {
 }
 
 interface IDpEditor {
+    tusEndpoint: string
     value: string
     toolbarItems: object
     routes: object
@@ -35,6 +36,7 @@ export const Default: Story = {
 
 export const Extended: Story = {
     args: {
+        tusEndpoint: 'tusEndpointPath',
         value: '',
         toolbarItems: {
             fullscreenButton: true,

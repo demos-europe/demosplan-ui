@@ -9,9 +9,11 @@
       ref="linkModal"
       @insert="insertUrl" />
     <dp-upload-modal
-      v-if="toolbar.imageButton"
+      v-if="toolbar.imageButton && tusEndpoint"
+      :basic-auth="basicAuth"
       ref="uploadModal"
       :get-file-by-hash="routes.getFileByHash"
+      :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -373,6 +375,12 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
@@ -389,6 +397,15 @@ export default {
      * Only needed for testing purposes with data-cy
      */
     editorId: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    tusEndpoint: {
       type: String,
       required: false,
       default: ''

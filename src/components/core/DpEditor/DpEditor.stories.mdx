@@ -11,10 +11,14 @@ import DpEditor from './DpEditor'
 The Editor component renders a rich text editor consisting of a menu bar supporting common editor interactions and a text field.
 
 
-Uploading images can be enabled via the imageButton prop. When using `imageButton`, the `routes.getFileByHash` prop must be set to an existing route which returns a file by its hash (see second example).
-.
+Uploading images can be enabled via the imageButton prop. When using `imageButton`,
+the `routes.getFileByHash` prop must be set to an existing route which returns a file by its hash (see second example).
 
-The slot `button` can be used to add additional buttons to the toolbar. The slot `modal` can be used to add a modal component to DpEditor. The function `handleInsertText` is exposed to the `modal` slot to enable the modal component to add text to the editor instance.
+The slot `button` can be used to add additional buttons to the toolbar.
+
+The slot `modal` can be used to add a modal component to DpEditor.
+
+The function `handleInsertText` is exposed to the `modal` slot to enable the modal component to add text to the editor instance.
 
 ## Default usage
 

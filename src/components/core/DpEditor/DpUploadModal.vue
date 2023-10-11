@@ -16,12 +16,14 @@
       <div v-show="editAltTextOnly === false">
         <dp-upload-files
           allowed-file-types="img"
+          :basic-auth="basicAuth"
           id="imageFile"
           :get-file-by-hash="getFileByHash"
           :max-file-size="20 * 1024 * 1024/* 20 MiB */"
           :max-number-of-files="1"
           ref="uploader"
           :translations="{ dropHereOr: translations.uploadImage('20MB')}"
+          :tus-endpoint="tusEndpoint"
           @upload-success="setFile" />
       </div>
       <dp-input
@@ -66,8 +68,22 @@ export default {
   },
 
   props: {
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     getFileByHash: {
       type: Function,
+      required: true
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    tusEndpoint: {
+      type: String,
       required: true
     }
   },

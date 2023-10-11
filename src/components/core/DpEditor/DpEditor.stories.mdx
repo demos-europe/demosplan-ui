@@ -11,9 +11,10 @@ import DpEditor from './DpEditor'
 The Editor component renders a rich text editor consisting of a menu bar supporting common editor interactions and a text field.
 
 
-To use image upload we need to add imageButton optional Prop.
+To use image upload we need to add imageButton optional Prop, and when using `imageButton` Prop, you have to set also
+`routes.getFileByHash` Prop.
 
-To use another component within DpEditor, we can add Slot named modal.
+To use another component within DpEditor, we can add Slot.
 
 ## Default usage
 
@@ -36,6 +37,9 @@ To use another component within DpEditor, we can add Slot named modal.
         imageButton: true,
         linkButton: true,
         strikethrough: true
+    }"
+    :routes="{
+        getFileByHash: (hash) => RoutingFunction(hash)
     }"
     :value="value">
     <template v-slot:modal="modalProps">

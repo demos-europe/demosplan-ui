@@ -44,10 +44,17 @@ To use another component within DpEditor, we can add Slot.
     :value="value">
     <template v-slot:modal="modalProps">
         <dp-modal
-          id="openModal"
-          ref="openModal">
-          Add an component
+            id="editorModal"
+            ref="editorModal"
+            @insert="text => modalProps.handleInsertText(textFromParentComponent)">
+            Add an component
         </dp-modal>
+    </template>
+    <template v-slot:button>
+        <dp-button
+              :text="Add Text"
+              variant="subtle"
+              @click.stop="openEditorModal" />
     </template>
 </dp-editor>
 ```

@@ -66,14 +66,24 @@ export const Extended: Story = {
             <template v-slot:modal="modalProps">
               <dp-modal
                   id="editorModal"
-                  ref="editorModal"
-                  @insert="text => modalProps.handleInsertText(textFromParentComponent)">
-                Add an component
+                  ref="editorModal">
+                <p>
+                  Insert quote from...
+                </p>
+                <dp-button
+                  class="u-mr"
+                  text="Oscar Wilde"
+                  variant="subtle"
+                  @click.stop="modalProps.handleInsertText('Experience is the name everyone gives to their mistakes.')" />
+                <dp-button
+                  text="Martin Fowler"
+                  variant="subtle"
+                  @click.stop="modalProps.handleInsertText('Any fool can write code that a computer can understand. Good programmers write code that humans can understand.')" />
               </dp-modal>
             </template>
             <template v-slot:button>
               <dp-button
-                  text="Add Text"
+                  text="Add Quote"
                   variant="subtle"
                   @click.stop="$refs.editorModal.toggle()" />
             </template>

@@ -57,7 +57,7 @@ is exposed to the `modal` slot to enable the modal component to add text to the 
         <dp-button
               :text="Add Text"
               variant="subtle"
-              @click.stop="openEditorModal" />
+              @click.stop="$refs.editorModal.toggle()" />
     </template>
 </dp-editor>
 ```

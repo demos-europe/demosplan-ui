@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpEditor from './DpEditor.vue'
-import DpModal from '../../DpModal/DpModal.vue'
+import DpModal from '~/components/DpModal'
 
 const meta: Meta<typeof DpEditor> = {
     component: DpEditor,

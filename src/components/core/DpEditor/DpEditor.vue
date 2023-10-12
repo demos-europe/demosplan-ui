@@ -330,7 +330,7 @@ import {
   Text,
   Underline
 } from './libs/tiptapExtensions'
-import { CleanHtml, Tooltip } from '../../../directives'
+import { CleanHtml, Tooltip } from '~/directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
@@ -351,8 +351,8 @@ import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
 import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
-import { maxlengthHint } from '../../../utils/'
-import { prefixClassMixin } from '../../../mixins'
+import { maxlengthHint } from '~/utils/'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpEditor',
@@ -680,7 +680,7 @@ export default {
         newText = this.currentValue + '<br>' + text
       }
 
-      this.editor.setContent(newText)
+      this.editor.commands.setContent(newText)
       this.currentValue = newText
       this.$emit('input', this.currentValue)
     },
@@ -840,7 +840,7 @@ export default {
         text = text.slice(3, -4)
       }
 
-      this.editor.commands.insertHTML(text)
+      this.editor.commands.insertContent(text)
       this.currentValue = this.editor.getHTML()
     },
 

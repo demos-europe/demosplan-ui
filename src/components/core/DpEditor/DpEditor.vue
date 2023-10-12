@@ -9,9 +9,11 @@
       ref="linkModal"
       @insert="insertUrl" />
     <dp-upload-modal
-      v-if="toolbar.imageButton"
+      v-if="toolbar.imageButton && tusEndpoint"
+      :basic-auth="basicAuth"
       ref="uploadModal"
       :get-file-by-hash="routes.getFileByHash"
+      :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -373,6 +375,15 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    /**
+     * The Tus endpoint requires basicAuth to be added to the file header.
+     */
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
@@ -389,6 +400,15 @@ export default {
      * Only needed for testing purposes with data-cy
      */
     editorId: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    tusEndpoint: {
       type: String,
       required: false,
       default: ''
@@ -1066,6 +1086,10 @@ export default {
     this.manuallyResetForm = (this.hiddenInput !== '' && this.$el.closest('form') !== null)
     if (this.manuallyResetForm) {
       this.$el.closest('form').addEventListener('reset', this.resetEditor)
+    }
+
+    if (this.toolbar.imageButton ^ this.tusEndpoint) {
+      console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
   },
 

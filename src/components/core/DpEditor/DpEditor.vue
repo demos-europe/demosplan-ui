@@ -330,7 +330,7 @@ import {
   Text,
   Underline
 } from './libs/tiptapExtensions'
-import { CleanHtml, Tooltip } from '../../../directives'
+import { CleanHtml, Tooltip } from '~/directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
@@ -351,8 +351,8 @@ import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
 import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
-import { maxlengthHint } from '../../../utils/'
-import { prefixClassMixin } from '../../../mixins'
+import { maxlengthHint } from '~/utils/'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpEditor',
@@ -477,16 +477,16 @@ export default {
         const suggestionGroupSchema = {
           matcher: {
             char: '@|$|#', // A single char that should trigger a suggestion
-            allowSpaces: true || false,
-            startOfLine: true || false
+            allowSpaces: 'boolean',
+            startOfLine: 'boolean'
           },
           suggestions: [{ id: 'a unique id', name: 'a string that should be displayed when inserting the suggestion' }]
         }
         return Array.isArray(value) && value.filter(suggestionGroup => {
           let isValid = suggestionGroup.matcher && suggestionGroup.suggestions
           isValid = isValid && typeof suggestionGroup.matcher.char === typeof suggestionGroupSchema.matcher.char
-          isValid = isValid && typeof suggestionGroup.matcher.allowSpaces === typeof suggestionGroupSchema.matcher.allowSpaces
-          isValid = isValid && typeof suggestionGroup.matcher.startOfLine === typeof suggestionGroupSchema.matcher.startOfLine
+          isValid = isValid && typeof suggestionGroup.matcher.allowSpaces === suggestionGroupSchema.matcher.allowSpaces
+          isValid = isValid && typeof suggestionGroup.matcher.startOfLine === suggestionGroupSchema.matcher.startOfLine
           isValid = isValid && suggestionGroup.suggestions.filter(suggestion => {
             return typeof suggestion.id === typeof suggestionGroupSchema.suggestions[0].id && typeof suggestion.name === typeof suggestionGroupSchema.suggestions[0].name
           }).length === suggestionGroup.suggestions.length
@@ -680,7 +680,7 @@ export default {
         newText = this.currentValue + '<br>' + text
       }
 
-      this.editor.setContent(newText)
+      this.editor.commands.setContent(newText)
       this.currentValue = newText
       this.$emit('input', this.currentValue)
     },
@@ -840,7 +840,7 @@ export default {
         text = text.slice(3, -4)
       }
 
-      this.editor.commands.insertHTML(text)
+      this.editor.commands.insertContent(text)
       this.currentValue = this.editor.getHTML()
     },
 

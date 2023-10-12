@@ -477,16 +477,16 @@ export default {
         const suggestionGroupSchema = {
           matcher: {
             char: '@|$|#', // A single char that should trigger a suggestion
-            allowSpaces: 'boolean',
-            startOfLine: 'boolean'
+            allowSpaces: true || false,
+            startOfLine: true || false
           },
           suggestions: [{ id: 'a unique id', name: 'a string that should be displayed when inserting the suggestion' }]
         }
         return Array.isArray(value) && value.filter(suggestionGroup => {
           let isValid = suggestionGroup.matcher && suggestionGroup.suggestions
           isValid = isValid && typeof suggestionGroup.matcher.char === typeof suggestionGroupSchema.matcher.char
-          isValid = isValid && typeof suggestionGroup.matcher.allowSpaces === suggestionGroupSchema.matcher.allowSpaces
-          isValid = isValid && typeof suggestionGroup.matcher.startOfLine === suggestionGroupSchema.matcher.startOfLine
+          isValid = isValid && typeof suggestionGroup.matcher.allowSpaces === typeof suggestionGroupSchema.matcher.allowSpaces
+          isValid = isValid && typeof suggestionGroup.matcher.startOfLine === typeof suggestionGroupSchema.matcher.startOfLine
           isValid = isValid && suggestionGroup.suggestions.filter(suggestion => {
             return typeof suggestion.id === typeof suggestionGroupSchema.suggestions[0].id && typeof suggestion.name === typeof suggestionGroupSchema.suggestions[0].name
           }).length === suggestionGroup.suggestions.length

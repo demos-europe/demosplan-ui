@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([585](https://github.com/demos-europe/demosplan-ui/pull/585)) Fix Update Pasted Content in DpEditor ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.2.0 - 2023-10-05
 
 ### Removed

@@ -1089,7 +1089,7 @@ export default {
     }
 
     if (this.toolbar.imageButton ^ this.tusEndpoint) {
-      console.warn(`DpEditor is called olny one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
+      console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
   },
 

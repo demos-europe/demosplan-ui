@@ -1087,6 +1087,10 @@ export default {
     if (this.manuallyResetForm) {
       this.$el.closest('form').addEventListener('reset', this.resetEditor)
     }
+
+    if (this.toolbar.imageButton ^ this.tusEndpoint) {
+      console.warn(`DpEditor is called olny one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
+    }
   },
 
   beforeDestroy () {

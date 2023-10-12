@@ -375,6 +375,9 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    /**
+     * If we have a basic auth, for some reason it has to be added to the header.
+     */
     basicAuth: {
       type: String,
       required: false,

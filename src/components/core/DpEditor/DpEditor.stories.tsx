@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpEditor from './DpEditor.vue'
 import DpModal from '~/components/DpModal'
+import DpButton from '~/components/DpButton'
 
 const meta: Meta<typeof DpEditor> = {
     component: DpEditor,
@@ -17,10 +18,10 @@ const meta: Meta<typeof DpEditor> = {
 }
 
 interface IDpEditor {
+    routes: object
+    toolbarItems: object
     tusEndpoint: string
     value: string
-    toolbarItems: object
-    routes: object
 }
 
 type Story = StoryObj<IDpEditor>
@@ -36,37 +37,47 @@ export const Default: Story = {
 
 export const Extended: Story = {
     args: {
-        tusEndpoint: 'tusEndpointPath',
-        value: '',
-        toolbarItems: {
-            fullscreenButton: true,
-            insertAndDelete: true,
-            table: true,
-            headings: [2,3,4],
-            imageButton: true,
-            linkButton: true,
-            strikethrough: true
-        },
         routes: {
             getFileByHash: () => {}
-        }
+        },
+        toolbarItems: {
+            fullscreenButton: true,
+            headings: [2,3,4],
+            imageButton: true,
+            insertAndDelete: true,
+            linkButton: true,
+            strikethrough: true,
+            table: true
+        },
+        tusEndpoint: 'tusEndpointPath',
+        value: '',
     },
     render: (args) => ({
         components: {
+            DpButton,
             DpEditor,
             DpModal
         },
         setup() {
             return { args }
         },
-        template: `<dp-editor v-bind="args">
-          <template v-slot:modal="modalProps">
-            <dp-modal
-                id="openModal"
-                ref="openModal">
-              Add an component
-            </dp-modal>
-          </template>
-        </dp-editor>`,
+        template: `
+          <dp-editor v-bind="args">
+            <template v-slot:modal="modalProps">
+              <dp-modal
+                  id="editorModal"
+                  ref="editorModal"
+                  @insert="text => modalProps.handleInsertText(textFromParentComponent)">
+                Add an component
+              </dp-modal>
+            </template>
+            <template v-slot:button>
+              <dp-button
+                  text="Add Text"
+                  variant="subtle"
+                  @click.stop="$refs.editorModal.toggle()" />
+            </template>
+          </dp-editor>
+        `,
     })
 }

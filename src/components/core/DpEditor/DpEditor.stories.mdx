@@ -23,8 +23,8 @@ is exposed to the `modal` slot to enable the modal component to add text to the 
 
 ```html
 <dp-editor
-    :value="value"
-    ref="r_links">
+    v-model="values.text"
+    ref="editor">
 </dp-editor>
 ```
 
@@ -34,12 +34,12 @@ is exposed to the `modal` slot to enable the modal component to add text to the 
 <dp-editor
     :toolbar-items="{
         fullscreenButton: true,
-        insertAndDelete: true,
-        table: true,
         headings: [2,3,4],
         imageButton: true,
+        insertAndDelete: true,
         linkButton: true,
-        strikethrough: true
+        strikethrough: true,
+        table: true
     }"
     :routes="{
         getFileByHash: (hash) => RoutingFunction(hash)

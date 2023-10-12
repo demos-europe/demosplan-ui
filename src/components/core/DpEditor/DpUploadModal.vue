@@ -69,7 +69,7 @@ export default {
 
   props: {
     /**
-     * If we have a basic auth, for some reason it has to be added to the header.
+     * The Tus endpoint requires basicAuth to be added to the file header.
      */
     basicAuth: {
       type: String,

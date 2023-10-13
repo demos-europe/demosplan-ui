@@ -128,7 +128,7 @@
                 @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
                 :disabled="readonly">
                 <dp-icon
-                  class="align-text-top"
+                  class="align-text-top inline-block"
                   icon="highlighter" />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>

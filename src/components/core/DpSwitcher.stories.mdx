@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs'
+import DpSwitcher from './DpSwitcher'
+
+<Meta
+    title="Components/Switcher"
+    component={DpSwitcher}
+/>
+
+# Switcher
+
+The Switcher component used to allows users to toggle between different two options.
+
+## Default usage
+
+```html
+<dp-switcher
+  input-id="switcherId"
+  :active="optionTab"
+  @input="toggleTab()"
+  ref="switcher">
+  <template v-slot:option1>
+    Option 1
+  </template>
+  <template v-slot:option2>
+    Option 2
+  </template>
+</dp-switcher>
+```

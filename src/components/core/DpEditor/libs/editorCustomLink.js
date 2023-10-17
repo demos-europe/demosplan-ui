@@ -6,7 +6,7 @@ export default Link.extend({
 
   addOptions () {
     return {
-      ...this.parent?.(),
+      ...this.parent?.(), // The magic comes from tiptap itself and is copied from https://tiptap.dev/guide/custom-extensions/#settings
       openOnClick: true,
       HTMLAttributes: {
         target: null,

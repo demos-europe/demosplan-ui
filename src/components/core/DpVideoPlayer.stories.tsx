@@ -27,7 +27,7 @@ export default meta
 
 export const Default: Story = {
     args: {
-        iconUrl: 'videoIconUrl.svg',
+        iconUrl: '',
         id: 'videoId',
         sources: [{
             src: 'videoSrc',

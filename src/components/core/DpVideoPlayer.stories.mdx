@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs'
+import DpVideoPlayer from './DpVideoPlayer'
+
+<Meta
+    title="Components/VideoPlayer"
+    component={DpVideoPlayer}
+/>
+
+# VideoPlayer
+
+The VideoPlayer component used to add Video Playback and can include various features and functionalities, such as:
+
+`Video Playback, Controls, Full-Screen Mode and more...`
+
+## Default usage
+
+```html
+<dp-video-player
+    :sources="[ { src: 'pathUrl', type: 'videoType' } ]"
+    id="videoId"
+    icon-url="videoIconUrl.svg">
+</dp-video-player>
+```

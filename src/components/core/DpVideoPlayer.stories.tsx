@@ -31,7 +31,7 @@ export const Default: Story = {
         id: 'videoId',
         sources: [{
             src: 'videoSrc',
-            type: 'videoType'
+            type: 'mimeType'
         }]
     },
     argTypes: {}

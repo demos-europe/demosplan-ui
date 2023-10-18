@@ -1,6 +1,7 @@
 import DpSelect from '~/components/DpSelect'
 import { de } from '~/components/shared/translations'
 import { runBooleanAttrTests } from './shared/Attributes'
+import { runLabelTests } from './shared/Label'
 import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
 
 
@@ -18,7 +19,7 @@ describe('DpSelect', () => {
   const wrapper = shallowMountWithGlobalMocks(DpSelect, {
     propsData: { options }
   })
-  // RunLabelTests(wrapper)
+  runLabelTests(wrapper)
 
   const select = wrapper.find('select')
   runBooleanAttrTests(wrapper, select, 'disabled')

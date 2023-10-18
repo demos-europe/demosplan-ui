@@ -3092,10 +3092,10 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-bold/-/extension-bold-2.1.11.tgz#a890d278ba932d91081dc91b75d2b3579a276f5c"
   integrity sha512-vhdkBtvd029ufOYt2ug49Gz+RLKSczO/CCqKYBqBmpIpsifyK7M6jkgamvAQg3c/vYk0LNcKiL2dp0Jp7L+5Gw==
 
-"@tiptap/extension-bubble-menu@^2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-bubble-menu/-/extension-bubble-menu-2.1.11.tgz#3cc3d8be3108932f15c36e9b00948219cc92ab0f"
-  integrity sha512-WFJJpZvl9DP94Y5RQZB/THDxvDbrTo8tuhjT7yWlhseJ6zyhWmRXdutt39wfSZNFxitv/As+s7cO9aYLML/TVg==
+"@tiptap/extension-bubble-menu@^2.1.12":
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-bubble-menu/-/extension-bubble-menu-2.1.12.tgz#4103a21a6433e58690c8f742ece39fad78dc26eb"
+  integrity sha512-gAGi21EQ4wvLmT7klgariAc2Hf+cIjaNU2NWze3ut6Ku9gUo5ZLqj1t9SKHmNf4d5JG63O8GxpErqpA7lHlRtw==
   dependencies:
     tippy.js "^6.3.7"
 
@@ -3109,10 +3109,10 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-document/-/extension-document-2.1.11.tgz#76782660420900acb6301a5ba69c27054139b622"
   integrity sha512-L/iLuqxvJep33ycCFNrnUhdR0VtcZyeNnqB+ZvVHzEwLoRud+LBy44lpEdBrAFsvRm3DG14m/FGYL+TfaD0vxA==
 
-"@tiptap/extension-floating-menu@^2.1.11":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-floating-menu/-/extension-floating-menu-2.1.11.tgz#3013924727ad95a1cd484e4bc426912b63e1a444"
-  integrity sha512-ExeoOQ6nT0CY0eWx6WjbG+osurXLXa7XrqIdhCAcTmzBAlGiKt8khX9qaZ+QF+BRK1r1lja2KX+5/fpLK7Dt1g==
+"@tiptap/extension-floating-menu@^2.1.12":
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-floating-menu/-/extension-floating-menu-2.1.12.tgz#68a658b2b9bdd3a0fc1afc5165231838061a8fde"
+  integrity sha512-uo0ydCJNg6AWwLT6cMUJYVChfvw2PY9ZfvKRhh9YJlGfM02jS4RUG/bJBts6R37f+a5FsOvAVwg8EvqPlNND1A==
   dependencies:
     tippy.js "^6.3.7"
 
@@ -3228,12 +3228,12 @@
   integrity sha512-AVMB4x1X3eU7QCO1A8URQK0W7ps5dsVzveIP7+c//Z/GYe8lFSGIUnEbLJdr6bwgPkRL56m7c9+oZqVST5wfjQ==
 
 "@tiptap/vue-2@^2.0.3":
-  version "2.1.11"
-  resolved "https://registry.yarnpkg.com/@tiptap/vue-2/-/vue-2-2.1.11.tgz#b542ab910269b8d9f985cbfb64fcbfe8cb9f8d5e"
-  integrity sha512-TH5RdDR3fV3cuXX1nFizKi0WJ1lmQXY4AVoXQV4aTjioqpMoDyLOyHIkS1fdl1w5scSn3snQex0DI1bKzx6yHQ==
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/@tiptap/vue-2/-/vue-2-2.1.12.tgz#1858057fb3bb2925228ac8d245e8e971c2b92e4f"
+  integrity sha512-QMalZecf10kXsug76zozaZGyDKMUBP4IKj5L4PP+KNHSLMHTHgZGpjs/l8G80+pCivYb9Ww4D1yz6ZWxLbwVxw==
   dependencies:
-    "@tiptap/extension-bubble-menu" "^2.1.11"
-    "@tiptap/extension-floating-menu" "^2.1.11"
+    "@tiptap/extension-bubble-menu" "^2.1.12"
+    "@tiptap/extension-floating-menu" "^2.1.12"
     vue-ts-types "^1.6.0"
 
 "@tootallnate/once@1":
@@ -12421,6 +12421,7 @@ string-length@^4.0.1:
     strip-ansi "^6.0.0"
 
 "string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -12453,6 +12454,7 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -13901,6 +13903,7 @@ wordwrap@^1.0.0:
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==

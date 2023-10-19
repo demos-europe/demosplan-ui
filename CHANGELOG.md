@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Removed
 
-- ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove components from ui, move it to Core. ([@ahmad-demos](https://github.com/@ahmad-demos))
+- ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove DpHeightLimit, DpSwitcher, and DpTextWrapper components. ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ## v0.2.1 - 2023-10-18
 

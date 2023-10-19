@@ -12396,9 +12396,9 @@ store2@^2.14.2:
   integrity sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==
 
 storybook-addon-vue-slots@^0.9.21:
-  version "0.9.21"
-  resolved "https://registry.yarnpkg.com/storybook-addon-vue-slots/-/storybook-addon-vue-slots-0.9.21.tgz#6c77f3b9eb30cb36ade022c2f37a1d569ac17b6b"
-  integrity sha512-t4ii2mAMknF/fDVsVMbl6JBWiZVceAkuEyfW/JOlOEQlUbLGwxKAK+iB+/+z5DloR6PmIXrIvC+qa0bQkg8npA==
+  version "0.9.24"
+  resolved "https://registry.yarnpkg.com/storybook-addon-vue-slots/-/storybook-addon-vue-slots-0.9.24.tgz#0bbe19a856fcf3f99454dfd6626993e83179c863"
+  integrity sha512-2Zlm/NcZTqfsg3ikaCNpFGY82y2FUGy2v+2vLzEOKnFaUsLaBehDL/odajBK5s2yoPtjD0RP1VpZhTBTVq9KCQ==
 
 storybook@7.4.6:
   version "7.4.6"

@@ -8,6 +8,9 @@ updates:
         timezone: Europe/Berlin
     open-pull-requests-limit: 10
     groups:
+      babel:
+        patterns:
+          - "@babel*"
       storybook:
         patterns:
           - "@storybook*"

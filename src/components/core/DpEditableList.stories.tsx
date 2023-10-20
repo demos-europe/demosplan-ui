@@ -12,22 +12,23 @@ const meta: Meta<typeof DpEditableList> = {
             return { args }
         },
         template: `
-          <dp-editable-list v-bind="args">
+          <dp-editable-list
+              :entries="args.entries"
+              v-bind="args">
             <template v-slot:list="entry">
                 <span>
                   {{ entry.mail }}
                   <input
                       class="hide-visually"
                       type="email"
-                      :value="entry.mail"
-                      name="formFieldName">
+                      :value="entry.mail">
                 </span>
             </template>
             <template v-slot:form="entry">
               <input
                   id="emailAddress"
                   type="email"
-                  :value="args.entries.mail"/>
+                  v-model="args.entries.mail"/>
             </template>
           </dp-editable-list>
         `,
@@ -36,6 +37,8 @@ const meta: Meta<typeof DpEditableList> = {
 
 interface IDpEditableList {
     entries: object[]
+    reset: object
+    saveEntry: object
 }
 
 type Story = StoryObj<IDpEditableList>
@@ -53,5 +56,8 @@ export const Default: Story = {
             }
         ],
     },
-    argTypes: {}
+    argTypes: {
+        reset: { action: 'reset' },
+        saveEntry: { action: 'saveEntry' }
+    }
 }

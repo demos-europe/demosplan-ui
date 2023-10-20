@@ -13,6 +13,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([585](https://github.com/demos-europe/demosplan-ui/pull/585), [586](https://github.com/demos-europe/demosplan-ui/pull/586)) Fix Bugs in DpEditor after Migrating to tiptap@v2 ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
+- ([#590](https://github.com/demos-europe/demosplan-ui/pull/590)) Add DpVideoPlayer documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#588](https://github.com/demos-europe/demosplan-ui/pull/588)) Add DpSwitcher documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#567](https://github.com/demos-europe/demosplan-ui/pull/567)) Add DpEditor documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#587](https://github.com/demos-europe/demosplan-ui/pull/587) Add phone icon to DpIcon ([@spiess-demos](https://github.com/spiess-demos))

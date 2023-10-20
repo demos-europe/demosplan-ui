@@ -36,6 +36,9 @@ export default {
       default: false
     },
 
+    /**
+     * See: https://github.com/sampotts/plyr#using-the-iconurl-option
+     */
     iconUrl: {
       type: String,
       required: true

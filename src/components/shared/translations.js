@@ -85,6 +85,14 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
+  operations: {
+    new: 'Neu',
+    add: 'Hinzufügen',
+    abort: 'Abbrechen',
+    update: 'Aktualisierung',
+    none: 'Keine',
+    delete: 'Löschen'
+  },
   placeholderAutoSuggest: "Suchbegriff...",
   save: "Speichern",
   select: {

@@ -3798,13 +3798,13 @@
     namespace-emitter "^2.0.1"
 
 "@uppy/core@^3.0.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.5.1.tgz#997110e2430fe0fa198bfbd47406e5dfd3f0f9bd"
-  integrity sha512-iaHn2JG6HgwQMxRAwzEeqRoJGElnUerAh/coDF30Ha92lAPe8xkjFIqIHjaCtEMJqjQAm1msZX4v5Vi7M9hzsw==
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.6.0.tgz#f81f936a5709b411d1e52cb63e9c87fd4b1ee2e6"
+  integrity sha512-fvj8XhIdbLq4cd/EJWOy9Mqgcfqzwcj/fKO1N9BG+mg/dPcCFtNfn5az8/Lzr1KqnOIR+zP6kdUVjM2JvUAgQw==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.9"
-    "@uppy/store-default" "^3.0.4"
-    "@uppy/utils" "^5.5.1"
+    "@uppy/store-default" "^3.0.5"
+    "@uppy/utils" "^5.5.2"
     lodash "^4.17.21"
     mime-match "^1.0.2"
     namespace-emitter "^2.0.1"
@@ -3827,10 +3827,10 @@
     "@uppy/utils" "^5.4.3"
     preact "^10.5.13"
 
-"@uppy/store-default@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-3.0.4.tgz#96cb9c3d62dd1aedd934cbe4bf0ac21bf578e2ab"
-  integrity sha512-DOqDZBfz2TMBdpzVdk6ehVCgj2bQ7p66CcVtAm31XL39nCvHI4Miy9IjnqRi2Okmou7JoPH52WX9A2dNZrAYZA==
+"@uppy/store-default@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-3.0.5.tgz#a1c864691c61a936936f3b425f26d801d14e4769"
+  integrity sha512-NEow8ZYicAvxEDqcmi9MSW2gy4uElVnRuHoHBx9zwB5g81F9i2Q/i1u08sKzUY704o84zI6bctDe2cCYdBCuZw==
 
 "@uppy/tus@^3.0.1":
   version "3.3.1"
@@ -3841,10 +3841,10 @@
     "@uppy/utils" "^5.5.1"
     tus-js-client "^3.0.0"
 
-"@uppy/utils@^5.4.3", "@uppy/utils@^5.5.1":
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.5.1.tgz#372bdf03848c7b93d119a81492b752b5b1237b8e"
-  integrity sha512-iGLYSp9DHH54TXIoTxcArjPFEPNyWxSyMxXso9qRi3eY4wB8+Vflj/BGj4nm3sGzE+NSuat48nDa55vboYCn3g==
+"@uppy/utils@^5.4.3", "@uppy/utils@^5.5.1", "@uppy/utils@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.5.2.tgz#374af59a16b26bf25dd2c17975aff52af3d54f89"
+  integrity sha512-3vGx0L3t2ikZ1fgQxM2ztHDfx0hnC8QYFi+Wtc+8tNpiClzlJQHyOWLfBJ0mW0yREVXoITqa6mxev+/Zc3oVzA==
   dependencies:
     lodash "^4.17.21"
     preact "^10.5.13"

@@ -13,22 +13,23 @@ The EditableList component
 ## Custom usage
 
 ```html
-<dp-editable-list v-bind="args">
+<dp-editable-list
+    :entries="args.entries"
+    v-bind="args">
     <template v-slot:list="entry">
         <span>
           {{ entry.mail }}
           <input
               class="hide-visually"
               type="email"
-              :value="entry.mail"
-              name="formFieldName">
+              :value="entry.mail">
         </span>
     </template>
     <template v-slot:form="entry">
       <input
           id="emailAddress"
           type="email"
-          :value="args.entries.mail"/>
+          v-model="entry.mail"/>
     </template>
 </dp-editable-list>
 ```

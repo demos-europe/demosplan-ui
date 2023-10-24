@@ -79,6 +79,9 @@ export default function validateInput (input) {
       if (errorLabel) {
         // Custom error label from data-dp-validate-error
         input.setCustomValidity(Translator.trans(errorLabel))
+        if (Translator.trans(errorLabel) !== errorLabel) {
+          console.warn(`[data-dp-validate-error] Please pass already translated text, "${errorLabel}" was not translated."`)
+        }
       } else if (inputPattern) {
         // Error label based on pattern
         switch (inputPattern) {

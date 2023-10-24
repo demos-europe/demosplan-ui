@@ -24,13 +24,9 @@ const de = {
       element: 'Element ausklappen'
     },
   },
-  cancel: "Abbrechen",
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
-  deselect: {
-    all: 'Alle abwählen'
-  },
   editor: {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
@@ -86,19 +82,22 @@ const de = {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
   operations: {
-    new: 'Neu',
+    abort: "Abbrechen",
     add: 'Hinzufügen',
-    abort: 'Abbrechen',
-    update: 'Aktualisierung',
+    delete: 'Löschen',
+    deselect: {
+      all: 'Alle abwählen'
+    },
+    new: 'Neu',
     none: 'Keine',
-    delete: 'Löschen'
+    save: "Speichern",
+    select: {
+      all: 'Alle auswählen',
+      placeholder: 'Bitte wählen Sie einen Eintrag aus.'
+    },
+    update: 'Aktualisierung'
   },
   placeholderAutoSuggest: "Suchbegriff...",
-  save: "Speichern",
-  select: {
-    all: 'Alle auswählen',
-    placeholder: 'Bitte wählen Sie einen Eintrag aus.'
-  },
   tab: {
     openNew: 'in neuem Tab öffnen'
   },

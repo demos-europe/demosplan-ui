@@ -258,8 +258,8 @@ export default {
   data () {
     return {
       translations: {
-        deselectAll: de.deselect.all,
-        selectAll: de.select.all
+        deselectAll: de.operations.deselect.all,
+        selectAll: de.operations.select.all
       }
     }
   }

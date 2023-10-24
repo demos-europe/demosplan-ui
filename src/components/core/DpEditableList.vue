@@ -72,6 +72,8 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
+
 export default {
   name: 'DpEditableList',
   props: {
@@ -86,12 +88,12 @@ export default {
       type: Object,
       default: () => {
         return {
-          new: Translator.trans('new'),
-          add: Translator.trans('add'),
-          abort: Translator.trans('abort'),
-          update: Translator.trans('update'),
-          noEntries: Translator.trans('none'),
-          delete: Translator.trans('delete')
+          new: de.operations.new,
+          add: de.operations.add,
+          abort: de.operations.abort,
+          update: de.operations.update,
+          noEntries: de.operations.none,
+          delete: de.operations.delete
         }
       }
     },

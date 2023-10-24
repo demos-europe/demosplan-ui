@@ -85,7 +85,7 @@ export default {
     primaryText: {
       type: String,
       required: false,
-      default: de.save
+      default: de.operations.save
     },
 
     /**
@@ -103,7 +103,7 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: de.cancel
+      default: de.operations.abort
     },
 
     /**

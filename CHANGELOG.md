@@ -8,6 +8,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#605](https://github.com/demos-europe/demosplan-ui/pull/605)) Add DpEditableList documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#591](https://github.com/demos-europe/demosplan-ui/pull/591)) Add label tests for form components ([@hwiem](https://github.com/hwiem))
 
+### Changed
+- ([613](https://github.com/demos-europe/demosplan-ui/pull/613)) Deprecate usage of translator in "data-dp-validate-error" ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.2.1 - 2023-10-18
 
 ### Changed

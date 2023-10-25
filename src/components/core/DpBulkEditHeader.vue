@@ -12,12 +12,14 @@
       type="button"
       class="btn btn--secondary float-right"
       @click="$emit('reset-selection')">
-      {{ Translator.trans('unselect') }}
+      {{ unselect }}
     </button>
   </div>
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
+
 export default {
   name: 'DpBulkEditHeader',
 
@@ -38,6 +40,10 @@ export default {
   computed: {
     selectedItemsText () {
       return this.selectedItemsCount + ' ' + this.selectionText
+    },
+
+    unselect () {
+      return de.operations.deselect.element
     }
   }
 }

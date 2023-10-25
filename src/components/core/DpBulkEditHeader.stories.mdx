@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs'
+import DpBulkEditHeader from './DpBulkEditHeader'
+
+<Meta
+    title="Components/BulkEditHeader"
+    component={DpBulkEditHeader}
+/>
+
+# BulkEditHeader
+
+The BulkEditHeader component allows users to perform bulk editing operations on a set of data or records.
+
+In a data management system, users often need to edit multiple records simultaneously.
+Instead of editing each record individually, a bulk edit functionality allows users to select multiple records
+and apply changes to specific fields in one go.
+
+## Custom usage
+
+```html
+<dp-upload-files
+    allowed-file-types="all"
+    :basic-auth="dplan.settings.basicAuth"
+    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
+    :tus-endpoint="dplan.paths.tusEndpoint" />
+```

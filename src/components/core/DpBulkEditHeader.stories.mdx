@@ -17,9 +17,30 @@ and apply changes to specific fields in one go.
 ## Custom usage
 
 ```html
-<dp-upload-files
-    allowed-file-types="all"
-    :basic-auth="dplan.settings.basicAuth"
-    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
-    :tus-endpoint="dplan.paths.tusEndpoint" />
+<div>
+  <dp-bulk-edit-header
+      v-if="args.options.length > 0"
+      :selected-items-count="args.options.length"
+      selection-text="Elements"
+      @reset-selection="resetSelection"
+      v-bind="args">
+    <button
+        class="btn-icns u-m-0"
+        type="button">
+      <i class="fa fa-times u-mr-0_125" />
+      Delete
+    </button>
+  </dp-bulk-edit-header>
+  <div
+      class="u-mt-0_5"
+      v-for="item in args.options"
+      :key="item.id">
+    <input
+        :id="item.id"
+        v-model="item.checked"
+        :checked="!item.checked === false"
+        type="checkbox"/>
+    {{ item.label }}
+  </div>
+</div>
 ```

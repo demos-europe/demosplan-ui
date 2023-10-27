@@ -15,7 +15,15 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                 }
             }
 
-            return { args, resetSelection }
+            const deleteSelection = () => {
+                for (let element of args.options) {
+                    if(element.checked === true) {
+                        args.options = args.options.filter(checked => checked.checked != true)
+                    }
+                }
+            }
+
+            return { args, resetSelection, deleteSelection }
         },
         template: `
           <div>
@@ -27,7 +35,8 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   v-bind="args">
                 <button
                     class="btn-icns u-m-0"
-                    type="button">
+                    type="button"
+                    @click.prevent="deleteSelection">
                   <i class="fa fa-times u-mr-0_125" />
                   Delete
                 </button>
@@ -60,7 +69,9 @@ export const Default: Story = {
     args: {
         options: [
             { label: 'Option 1', id: '1', checked: true },
-            { label: 'Option 2', id: '2', checked: true }
+            { label: 'Option 2', id: '2', checked: true },
+            { label: 'Option 3', id: '3', checked: true }
+
         ]
     },
     argTypes: {}

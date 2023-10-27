@@ -9,7 +9,13 @@ const meta: Meta<typeof DpBulkEditHeader> = {
             DpBulkEditHeader
         },
         setup() {
-            return { args }
+            const resetSelection = () => {
+                for (const element of args.options) {
+                    element.checked = false
+                }
+            }
+
+            return { args, resetSelection }
         },
         template: `
           <div>
@@ -17,6 +23,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   v-if="args.options.length > 0"
                   :selected-items-count="args.options.length"
                   selection-text="Elements"
+                  @reset-selection="resetSelection"
                   v-bind="args">
                 <button
                     class="btn-icns u-m-0"
@@ -53,7 +60,7 @@ export const Default: Story = {
     args: {
         options: [
             { label: 'Option 1', id: '1', checked: true },
-            { label: 'Option 2', id: '2', checked: false }
+            { label: 'Option 2', id: '2', checked: true }
         ]
     },
     argTypes: {}

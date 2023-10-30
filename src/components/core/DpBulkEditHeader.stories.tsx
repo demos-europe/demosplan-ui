@@ -8,6 +8,11 @@ const meta: Meta<typeof DpBulkEditHeader> = {
         components: {
             DpBulkEditHeader
         },
+        computed: {
+            selectedItemsCount () {
+                return args.options.filter(checked => checked.checked == true)
+            }
+        },
         setup() {
             const resetSelection = () => {
                 for (const element of args.options) {
@@ -25,11 +30,14 @@ const meta: Meta<typeof DpBulkEditHeader> = {
 
             return { args, resetSelection, deleteSelection }
         },
+        mounted () {
+            this.deleteSelection()
+        },
         template: `
           <div>
               <dp-bulk-edit-header
-                  v-if="args.options.length > 0"
-                  :selected-items-count="args.options.length"
+                  v-if="selectedItemsCount.length > 0"
+                  :selected-items-count="selectedItemsCount.length"
                   selection-text="Elements"
                   @reset-selection="resetSelection"
                   v-bind="args">
@@ -68,9 +76,9 @@ export default meta
 export const Default: Story = {
     args: {
         options: [
-            { label: 'Option 1', id: '1', checked: true },
-            { label: 'Option 2', id: '2', checked: true },
-            { label: 'Option 3', id: '3', checked: true }
+            { label: 'Option 1', id: '1', checked: false },
+            { label: 'Option 2', id: '2', checked: false },
+            { label: 'Option 3', id: '3', checked: false }
 
         ]
     },

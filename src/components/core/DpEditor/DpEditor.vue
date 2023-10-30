@@ -9,9 +9,11 @@
       ref="linkModal"
       @insert="insertUrl" />
     <dp-upload-modal
-      v-if="toolbar.imageButton"
+      v-if="toolbar.imageButton && tusEndpoint"
+      :basic-auth="basicAuth"
       ref="uploadModal"
       :get-file-by-hash="routes.getFileByHash"
+      :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
       @close="resetEditingImage" />
@@ -126,7 +128,7 @@
                 @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
                 :disabled="readonly">
                 <dp-icon
-                  class="align-text-top"
+                  class="align-text-top inline-block"
                   icon="highlighter" />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>
@@ -330,7 +332,7 @@ import {
   Text,
   Underline
 } from './libs/tiptapExtensions'
-import { CleanHtml, Tooltip } from '../../../directives'
+import { CleanHtml, Tooltip } from '~/directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
@@ -351,8 +353,8 @@ import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
 import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
-import { maxlengthHint } from '../../../utils/'
-import { prefixClassMixin } from '../../../mixins'
+import { maxlengthHint } from '~/utils/'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpEditor',
@@ -373,6 +375,15 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    /**
+     * The Tus endpoint requires basicAuth to be added to the file header.
+     */
+    basicAuth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
@@ -389,6 +400,15 @@ export default {
      * Only needed for testing purposes with data-cy
      */
     editorId: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    /**
+     * Global path for file uploader endpoint.
+     */
+    tusEndpoint: {
       type: String,
       required: false,
       default: ''
@@ -680,7 +700,7 @@ export default {
         newText = this.currentValue + '<br>' + text
       }
 
-      this.editor.setContent(newText)
+      this.editor.commands.setContent(newText)
       this.currentValue = newText
       this.$emit('input', this.currentValue)
     },
@@ -840,7 +860,7 @@ export default {
         text = text.slice(3, -4)
       }
 
-      this.editor.commands.insertHTML(text)
+      this.editor.commands.insertContent(text)
       this.currentValue = this.editor.getHTML()
     },
 
@@ -1066,6 +1086,10 @@ export default {
     this.manuallyResetForm = (this.hiddenInput !== '' && this.$el.closest('form') !== null)
     if (this.manuallyResetForm) {
       this.$el.closest('form').addEventListener('reset', this.resetEditor)
+    }
+
+    if (this.toolbar.imageButton ^ this.tusEndpoint) {
+      console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
   },
 

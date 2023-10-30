@@ -52,7 +52,7 @@ export default {
   computed: {
     label () {
       if (this.checkAll) {
-        return this.toggleCheckedStatus(de.deselect.all, de.aria.select.all)
+        return this.toggleCheckedStatus(de.operations.deselect.all, de.aria.select.all)
       }
 
       return this.toggleCheckedStatus(de.aria.deselect.element, de.aria.select.element)

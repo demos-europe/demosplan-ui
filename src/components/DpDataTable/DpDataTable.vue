@@ -379,7 +379,7 @@ export default {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
         headerExpandHint: de.expandAll,
-        headerSelectHint: de.select.all,
+        headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
         tableLoadingData: de.loadingData,

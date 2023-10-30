@@ -10,6 +10,8 @@ describe('DpCheckbox', () => {
     }
   })
 
+  runLabelTests(wrapper)
+
   const checkbox = wrapper.find('input[type="checkbox"]')
   runBooleanAttrTests(wrapper, checkbox, 'required')
   runBooleanAttrTests(wrapper, checkbox, 'disabled')

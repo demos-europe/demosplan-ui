@@ -19,7 +19,6 @@ import DpDetails from './DpDetails'
 import DpDraggable from './DpDraggable'
 import DpFlyout from './DpFlyout'
 import DpFormRow from './DpFormRow'
-import DpHeightLimit from './DpHeightLimit'
 import DpIcon from './DpIcon'
 import DpInlineNotification from './DpInlineNotification'
 import DpInput from './DpInput'
@@ -56,10 +55,8 @@ import {
   DpEditableList,
   DpEditor,
   DpObscure,
-  DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
-  DpTextWrapper,
   DpTransitionExpand,
   DpUploadFiles,
   DpVideoPlayer,
@@ -96,7 +93,6 @@ export {
   DpEditor,
   DpFlyout,
   DpFormRow,
-  DpHeightLimit,
   DpInlineNotification,
   DpModal,
   DpMultiselect,
@@ -115,13 +111,11 @@ export {
   DpSlidingPagination,
   DpSplitButton,
   DpStickyElement,
-  DpSwitcher,
   DpTab,
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
   DpTextArea,
-  DpTextWrapper,
   DpTimePicker,
   DpToggle,
   DpTooltip,

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Removed
+
+- ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove DpHeightLimit, DpSwitcher, and DpTextWrapper components. ([@ahmad-demos](https://github.com/@ahmad-demos))
+
 ### Added
 - ([#605](https://github.com/demos-europe/demosplan-ui/pull/605)) Add DpEditableList documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#591](https://github.com/demos-europe/demosplan-ui/pull/591)) Add label tests for form components ([@hwiem](https://github.com/hwiem))

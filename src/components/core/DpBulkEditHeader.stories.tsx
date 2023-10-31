@@ -14,6 +14,16 @@ const meta: Meta<typeof DpBulkEditHeader> = {
             }
         },
         setup() {
+            const toggleSelectAll = () => {
+                for (let element of args.options) {
+                    if(element.checked === false) {
+                        element.checked = true
+                    } else {
+                        element.checked = false
+                    }
+                }
+            }
+
             const resetSelection = () => {
                 for (const element of args.options) {
                     element.checked = false
@@ -28,10 +38,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                 }
             }
 
-            return { args, resetSelection, deleteSelection }
-        },
-        mounted () {
-            this.deleteSelection()
+            return { args, deleteSelection, resetSelection, toggleSelectAll }
         },
         template: `
           <div>
@@ -49,6 +56,9 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   Delete
                 </button>
               </dp-bulk-edit-header>
+              <input
+                  type="checkbox"
+                  @click="toggleSelectAll"> Select all
               <div
                   class="u-mt-0_5"
                   v-for="item in args.options"

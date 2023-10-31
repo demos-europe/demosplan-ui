@@ -22,7 +22,8 @@ import { ICONS } from './util/iconVariables'
 
 # Icon
 
-The `DpIcon` component renders svg icons - mostly from fontawesome v5.
+The `DpIcon` component renders SVG icons, exposing a selected set of [PhosphorIcons](https://phosphoricons.com/) in regular variants
+and some icons in filled variants.
 
 export const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),
@@ -239,7 +240,11 @@ Use to illustrate the action of copying something somewhere.
 </Canvas>
 
 ### Delete
-The infamous trash can is used to indicate destructive actions.
+
+The delete icon is used to indicate destructive actions.
+
+For non-destructive actions, like removing items from a list, use [`xmark`](#xmark) instead.
+
 <Canvas>
     <Story
         name="Delete"
@@ -503,7 +508,7 @@ Use to illustrate that an item is not being edited by someone else.
 </Canvas>
 
 ### Warning
-Use to illustrate warning notifications. Also, this is the default icon if the component is called with an unsupported icon name
+Use to illustrate warning notifications. Also, this is the default icon if `DpIcon` is called with an unsupported icon name.
 <Canvas>
   <Story
     name="Warning"
@@ -519,7 +524,10 @@ Use to illustrate warning notifications. Also, this is the default icon if the c
 Use for these cases:
 
 * In tables, it can indicate success vs. error in columns with limited space in tandem with the "check" icon
+* As a button icon, it is used to cancel an action
 * In form fields, it can be the trigger to clear the field
+
+Do <strong>not use</strong> the xmark icon for destructive actions. Use [`delete`](#delete) instead.
 
 <Canvas>
     <Story

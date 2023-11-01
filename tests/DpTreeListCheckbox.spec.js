@@ -9,7 +9,7 @@ window.Translator = {
 
 describe('should return result \'Alle abwählen\' when props are: checked = true, checkAll = true', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
-    propsData: {
+    props: {
       checked: true,
       checkAll: true,
       name: 'someName'
@@ -23,7 +23,7 @@ describe('should return result \'Alle abwählen\' when props are: checked = true
 
 describe('should return result aria.select.all when props are: checked = false, checkAll = true', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
-    propsData: {
+    props: {
       checked: false,
       checkAll: true,
       name: 'someName'
@@ -37,7 +37,7 @@ describe('should return result aria.select.all when props are: checked = false, 
 
 describe('should return result \'Auswahl für Element aufheben\' when props are: checked = true, checkAll = false', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
-    propsData: {
+    props: {
       checked: true,
       checkAll: false,
       name: 'someName'
@@ -51,7 +51,7 @@ describe('should return result \'Auswahl für Element aufheben\' when props are:
 
 describe('should return result \'Element auswählen\' when props are: checked = false, checkAll = false', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
-    propsData: {
+    props: {
       checked: false,
       checkAll: false,
       name: 'someName'

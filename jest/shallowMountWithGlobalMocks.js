@@ -3,10 +3,10 @@
  */
 
 // Use Local Vue for testing
-import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
+// then you can use `app.component` here
 // Mocking global stuff
-const localVue = createLocalVue()
 const globalMocks = {
   hasPermission: jest.fn(() => true),
   Translator: {
@@ -19,23 +19,18 @@ const globalMocks = {
  * So we don't have to do that in every Test.
  *
  * @param component{Component}
- * @param options{mocks, propsData, computed, store, methods, stubs, slots}
+ * @param options{mocks, props, computed, store, methods, stubs, slots}
  *
- * @returns {Wrapper<Vue>}
+ * @returns {Vue}
  */
 const shallowMountWithGlobalMocks = (component, options) => {
-  return shallowMount(
-    component,
-    {
-      localVue,
-      mocks: Object.assign(globalMocks, options.mocks),
-      propsData: Object.assign({}, options.propsData),
-      computed: Object.assign({}, options.computed),
-      store: options.store,
-      methods: Object.assign({}, options.methods),
-      stubs: Object.assign({}, options.stubs),
-      slots: Object.assign({}, options.slots)
-    })
+  return shallowMount(component, {
+      ...options,
+      global: {
+        mocks: globalMocks,
+      }
+    }
+  )
 }
 
 export default shallowMountWithGlobalMocks

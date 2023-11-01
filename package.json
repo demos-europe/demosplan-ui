@@ -30,7 +30,7 @@
     "@tiptap/extension-underline": "^2.0.3",
     "@tiptap/pm": "^2.0.3",
     "@tiptap/suggestion": "^2.0.3",
-    "@tiptap/vue-2": "^2.0.3",
+    "@tiptap/vue-3": "^2.1.12",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",

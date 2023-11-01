@@ -2,53 +2,51 @@
   <dp-modal
     ref="uploadModal"
     content-classes="u-2-of-3-lap-up u-1-of-2-desk-up">
-    <template>
-      <h3
-        v-if="editAltTextOnly"
-        class="u-mb">
-        {{ translations.editImage }}
-      </h3>
-      <h3
-        v-else
-        class="u-mb">
-        {{ translations.insertImage }}
-      </h3>
-      <div v-show="editAltTextOnly === false">
-        <dp-upload-files
-          allowed-file-types="img"
-          :basic-auth="basicAuth"
-          id="imageFile"
-          :get-file-by-hash="getFileByHash"
-          :max-file-size="20 * 1024 * 1024/* 20 MiB */"
-          :max-number-of-files="1"
-          ref="uploader"
-          :translations="{ dropHereOr: translations.uploadImage('20MB')}"
-          :tus-endpoint="tusEndpoint"
-          @upload-success="setFile" />
-      </div>
-      <dp-input
-        id="altText"
-        v-model="altText"
-        class="u-mb"
-        :label="{
-          hint: translations.altTextHint,
-          text: translations.altText,
-        }" />
-      <div class="u-mt text--right width-100p space-inline-s">
-        <button
-          class="btn btn--primary"
-          type="button"
-          @click="emitAndClose()">
-          {{ Translator.trans('insert') }}
-        </button>
-        <button
-          class="btn btn--secondary"
-          type="button"
-          @click="resetAndClose()">
-          {{ Translator.trans('abort') }}
-        </button>
-      </div>
-    </template>
+    <h3
+      v-if="editAltTextOnly"
+      class="u-mb">
+      {{ translations.editImage }}
+    </h3>
+    <h3
+      v-else
+      class="u-mb">
+      {{ translations.insertImage }}
+    </h3>
+    <div v-show="editAltTextOnly === false">
+      <dp-upload-files
+        allowed-file-types="img"
+        :basic-auth="basicAuth"
+        id="imageFile"
+        :get-file-by-hash="getFileByHash"
+        :max-file-size="20 * 1024 * 1024/* 20 MiB */"
+        :max-number-of-files="1"
+        ref="uploader"
+        :translations="{ dropHereOr: translations.uploadImage('20MB')}"
+        :tus-endpoint="tusEndpoint"
+        @upload-success="setFile" />
+    </div>
+    <dp-input
+      id="altText"
+      v-model="altText"
+      class="u-mb"
+      :label="{
+        hint: translations.altTextHint,
+        text: translations.altText,
+      }" />
+    <div class="u-mt text--right width-100p space-inline-s">
+      <button
+        class="btn btn--primary"
+        type="button"
+        @click="emitAndClose()">
+        {{ Translator.trans('insert') }}
+      </button>
+      <button
+        class="btn btn--secondary"
+        type="button"
+        @click="resetAndClose()">
+        {{ Translator.trans('abort') }}
+      </button>
+    </div>
   </dp-modal>
 </template>
 

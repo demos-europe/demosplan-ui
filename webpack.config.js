@@ -42,8 +42,7 @@ const config = {
     'uuid',
     'v-tooltip',
     'vue-multiselect',
-    'vuedraggable',
-    'vuex'
+    'vuedraggable'
   ],
   resolve: {
     alias: {
@@ -58,10 +57,6 @@ const config = {
   ],
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
       {
         test: /\.(js|jsx)$/i,
         exclude: /node_modules/,
@@ -86,6 +81,17 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: 'asset',
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          }
+        }
+      }
     ],
   },
 };

@@ -12,7 +12,7 @@
       type="button"
       class="btn btn--secondary float-right"
       @click="$emit('reset-selection')">
-      {{ unselect }}
+      {{ deselect }}
     </button>
   </div>
 </template>
@@ -38,12 +38,12 @@ export default {
   },
 
   computed: {
-    selectedItemsText () {
-      return this.selectedItemsCount + ' ' + this.selectionText
+    deselect () {
+      return de.operations.deselect.element
     },
 
-    unselect () {
-      return de.operations.deselect.element
+    selectedItemsText () {
+      return this.selectedItemsCount + ' ' + this.selectionText
     }
   }
 }

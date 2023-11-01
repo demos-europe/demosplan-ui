@@ -19,18 +19,22 @@ and apply changes to specific fields in one go.
 ```html
 <div>
   <dp-bulk-edit-header
-      v-if="args.options.length > 0"
-      :selected-items-count="args.options.length"
+      v-if="selectedItemsCount.length > 0"
+      :selected-items-count="selectedItemsCount.length"
       selection-text="Elements"
       @reset-selection="resetSelection"
       v-bind="args">
     <button
         class="btn-icns u-m-0"
-        type="button">
+        type="button"
+        @click.prevent="deleteSelection">
       <i class="fa fa-times u-mr-0_125" />
       Delete
     </button>
   </dp-bulk-edit-header>
+  <input
+      type="checkbox"
+      @click="toggleSelectAll"> Select all
   <div
       class="u-mt-0_5"
       v-for="item in args.options"

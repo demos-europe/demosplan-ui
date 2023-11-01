@@ -89,7 +89,6 @@ export const Default: Story = {
             { label: 'Option 1', id: '1', checked: false },
             { label: 'Option 2', id: '2', checked: false },
             { label: 'Option 3', id: '3', checked: false }
-
         ]
     },
     argTypes: {}

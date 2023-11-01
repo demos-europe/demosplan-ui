@@ -56,19 +56,25 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   Delete
                 </button>
               </dp-bulk-edit-header>
-              <input
-                  type="checkbox"
-                  @click="toggleSelectAll"> Select all
+              <label for="selectAll">
+                  <input
+                      id="selectAll"
+                      type="checkbox"
+                      @click="toggleSelectAll">
+                  Select all
+              </label>
               <div
                   class="u-mt-0_5"
                   v-for="item in args.options"
                   :key="item.id">
-                <input
-                    :id="item.id"
-                    v-model="item.checked"
-                    :checked="!item.checked === false"
-                    type="checkbox"/>
-                {{ item.label }}
+                <label :for="item.id">
+                  <input
+                      :id="item.id"
+                      v-model="item.checked"
+                      :checked="!item.checked === false"
+                      type="checkbox"/>
+                  {{ item.label }}
+                </label>
               </div>
           </div>
         `,

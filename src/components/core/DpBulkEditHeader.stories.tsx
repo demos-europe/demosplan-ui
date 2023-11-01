@@ -30,15 +30,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                 }
             }
 
-            const deleteSelection = () => {
-                for (let element of args.options) {
-                    if(element.checked === true) {
-                        args.options = args.options.filter(checked => checked.checked != true)
-                    }
-                }
-            }
-
-            return { args, deleteSelection, resetSelection, toggleSelectAll }
+            return { args, resetSelection, toggleSelectAll }
         },
         template: `
           <div>
@@ -51,7 +43,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                 <button
                     class="btn-icns u-m-0"
                     type="button"
-                    @click.prevent="deleteSelection">
+                    @click.prevent="resetSelection">
                   <i class="fa fa-times u-mr-0_125" />
                   Delete
                 </button>

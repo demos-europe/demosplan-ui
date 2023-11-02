@@ -39,7 +39,7 @@ export default {
 
   computed: {
     deselect () {
-      return de.operations.deselect.element
+      return de.operations.deselect.all
     },
 
     selectedItemsText () {

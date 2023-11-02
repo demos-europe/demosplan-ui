@@ -16,7 +16,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
             }
         },
         setup() {
-            const toggleSelectAll = () => {
+            const selectAll = () => {
                 for (let element of args.options) {
                     element.checked = true
                 }
@@ -30,14 +30,13 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                 selectAll.checked = false
             }
 
-            return { args, resetSelection, toggleSelectAll }
+            return { args, resetSelection, selectAll }
         },
         template: `
           <div>
               <dp-bulk-edit-header
                   v-if="selectedItemsCount.length > 0"
-                  :selected-items-count="selectedItemsCount.length"
-                  selection-text="Elements"
+                  :selected-items-text="selectedItemsCount.length + ' ' + 'Elements selected'"
                   @reset-selection="resetSelection"
                   v-bind="args">
                 <dp-button
@@ -49,7 +48,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   <input
                       id="selectAll"
                       type="checkbox"
-                      @click="toggleSelectAll">
+                      @click="selectAll">
                   Select all
               </label>
               <div

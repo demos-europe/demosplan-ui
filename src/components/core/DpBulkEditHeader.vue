@@ -5,9 +5,7 @@
     <span class="u-mr">
       {{ selectedItemsText }}
     </span>
-    <slot :selected-items-count="selectedItemsCount">
-      <!-- place edit actions here -->
-    </slot>
+    <slot />
     <button
       type="button"
       class="btn btn--secondary float-right"
@@ -24,26 +22,15 @@ export default {
   name: 'DpBulkEditHeader',
 
   props: {
-    selectedItemsCount: {
-      type: Number,
-      required: false,
-      default: 0
-    },
-
-    selectionText: {
+    selectedItemsText: {
       type: String,
-      required: false,
-      default: ''
+      required: true
     }
   },
 
   computed: {
     deselect () {
       return de.operations.deselect.all
-    },
-
-    selectedItemsText () {
-      return this.selectedItemsCount + ' ' + this.selectionText
     }
   }
 }

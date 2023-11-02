@@ -45,7 +45,7 @@
         ]"
         :style="isTruncatable ?? elementStyle(field)">
         <slot
-          v-if="$scopedSlots[field]({ key: 'we need soemthing here' })[0].children.length > 0"
+          v-if="$scopedSlots[field](item)[0].children.length > 0"
           :name="field"
           v-bind="item" />
         <span
@@ -252,6 +252,7 @@ export default {
       }
     }
   },
+
   methods: {
     toggleSelect (id) {
       this.$emit('toggle-select', id)

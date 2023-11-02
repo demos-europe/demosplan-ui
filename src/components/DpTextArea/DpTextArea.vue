@@ -4,6 +4,7 @@
       v-if="label !== ''"
       v-bind="labelProps" /><!--
  --><textarea
+      v-bind="allowedAttributes"
       :name="name"
       :id="id"
       class="o-form__control-textarea"
@@ -12,7 +13,6 @@
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :disabled="disabled"
       :maxlength="maxlength"
-      v-bind="allowedAttributes"
       v-model="currentValue"
       @input="$emit('input', currentValue)"
       :required="required" />

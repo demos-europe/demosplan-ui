@@ -334,7 +334,7 @@ export default {
         selectionState: selectionState
       })
 
-      bus.$emit('checked', selectionsCpy)
+      this.$root.$emit('checked', selectionsCpy)
       if (fromParent === false) {
         this.$emit('node-selected', selectionsCpy)
       }

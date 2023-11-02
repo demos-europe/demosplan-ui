@@ -323,7 +323,7 @@ export default {
 
     this.initFixedControls()
 
-    bus.$on('checked', this.handleSelectEvent)
+    this.$root.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

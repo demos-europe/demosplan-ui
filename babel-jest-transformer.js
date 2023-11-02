@@ -4,4 +4,4 @@ const babelConfig = {
     ],
 };
 
-module.exports = require('babel-jest').createTransformer(babelConfig);
+module.exports = babelConfig;

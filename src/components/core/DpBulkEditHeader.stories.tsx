@@ -11,32 +11,38 @@ const meta: Meta<typeof DpBulkEditHeader> = {
             DpBulkEditHeader
         },
         computed: {
+            allSelected () {
+                return this.selectedItemsCount === (args as any).options.length
+            },
             selectedItemsCount () {
-                return args.options.filter(checked => checked.checked == true)
+                return (args as any).options.filter(checked => checked.checked == true).length
+            },
+            selectedItemsText () {
+                return this.selectedItemsCount + ' ' + (this.selectedItemsCount > 1 ? 'Elements' : 'Element') + ' selected'
             }
         },
-        setup() {
-            const selectAll = () => {
-                for (let element of args.options) {
-                    element.checked = true
+        setup () {
+            const toggleAll = (event) => {
+                for (let element of (args as any).options) {
+                    element.checked = event.target.checked
                 }
             }
 
             const resetSelection = () => {
-                const selectAll = document.getElementById('selectAll')
-                for (const element of args.options) {
+                const toggleAll = document.getElementById('toggleAll') as HTMLInputElement
+                for (const element of (args as any).options) {
                     element.checked = false
                 }
-                selectAll.checked = false
+                toggleAll.checked = false
             }
 
-            return { args, resetSelection, selectAll }
+            return { args, resetSelection, toggleAll }
         },
         template: `
           <div>
               <dp-bulk-edit-header
-                  v-if="selectedItemsCount.length > 0"
-                  :selected-items-text="selectedItemsCount.length + ' ' + 'Elements selected'"
+                  v-if="selectedItemsCount > 0"
+                  :selected-items-text="selectedItemsText"
                   @reset-selection="resetSelection"
                   v-bind="args">
                 <dp-button
@@ -44,11 +50,12 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                     icon="delete"
                     @click="resetSelection" />
               </dp-bulk-edit-header>
-              <label for="selectAll">
+              <label for="toggleAll">
                   <input
-                      id="selectAll"
+                      id="toggleAll"
                       type="checkbox"
-                      @click="selectAll">
+                      :checked="allSelected"
+                      @click="toggleAll">
                   Select all
               </label>
               <div

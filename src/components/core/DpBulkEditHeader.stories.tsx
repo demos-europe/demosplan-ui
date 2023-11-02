@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpBulkEditHeader from './DpBulkEditHeader.vue'
-import DpButton from "~/components/DpButton/DpButton.vue";
+import DpButton from '~/components/DpButton'
 
 const meta: Meta<typeof DpBulkEditHeader> = {
     component: DpBulkEditHeader,
@@ -59,7 +59,6 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   <input
                       :id="item.id"
                       v-model="item.checked"
-                      :checked="!item.checked === false"
                       type="checkbox"/>
                   {{ item.label }}
                 </label>

@@ -18,11 +18,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
         setup() {
             const toggleSelectAll = () => {
                 for (let element of args.options) {
-                    if(element.checked === false) {
-                        element.checked = true
-                    } else {
-                        element.checked = false
-                    }
+                    element.checked = true
                 }
             }
 

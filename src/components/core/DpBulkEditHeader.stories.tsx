@@ -41,7 +41,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   v-bind="args">
                 <dp-button
                     text="Delete"
-                    icon="fa-trash"
+                    icon="fa-delete"
                     @click="resetSelection" />
               </dp-bulk-edit-header>
               <label for="selectAll">

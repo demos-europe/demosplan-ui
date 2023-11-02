@@ -86,7 +86,7 @@ const de = {
     add: 'Hinzufügen',
     delete: 'Löschen',
     deselect: {
-      all: 'Alle abwählen'
+      all: 'Auswahl aufheben'
     },
     new: 'Neu',
     none: 'Keine',

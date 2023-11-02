@@ -18,31 +18,33 @@ The component features a visually prominent style and showcases the number of se
 <div>
   <dp-bulk-edit-header
       v-if="selectedItemsCount.length > 0"
-      :selected-items-count="selectedItemsCount.length"
-      selection-text="Elements"
+      :selected-items-text="selectedItemsCount.length + ' ' + 'Elements selected'"
       @reset-selection="resetSelection"
       v-bind="args">
-    <button
-        class="btn-icns u-m-0"
-        type="button"
-        @click.prevent="deleteSelection">
-      <i class="fa fa-times u-mr-0_125" />
-      Delete
-    </button>
+    <dp-button
+        text="Delete"
+        icon="fa-delete"
+        @click="resetSelection" />
   </dp-bulk-edit-header>
-  <input
-      type="checkbox"
-      @click="toggleSelectAll"> Select all
+  <label for="selectAll">
+      <input
+          id="selectAll"
+          type="checkbox"
+          @click="selectAll">
+      Select all
+  </label>
   <div
       class="u-mt-0_5"
       v-for="item in args.options"
       :key="item.id">
-    <input
-        :id="item.id"
-        v-model="item.checked"
-        :checked="!item.checked === false"
-        type="checkbox"/>
-    {{ item.label }}
+    <label :for="item.id">
+      <input
+          :id="item.id"
+          v-model="item.checked"
+          :checked="!item.checked === false"
+          type="checkbox"/>
+      {{ item.label }}
+    </label>
   </div>
 </div>
 ```

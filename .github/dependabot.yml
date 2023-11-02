@@ -18,3 +18,7 @@ updates:
       tiptap:
         patterns:
           - "@tiptap*"
+      vue:
+        patterns:
+          - "vue"
+          - "vue-template-compiler"

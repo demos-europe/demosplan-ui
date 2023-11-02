@@ -26,11 +26,11 @@ The component features a visually prominent style and showcases the number of se
         icon="delete"
         @click="resetSelection" />
   </dp-bulk-edit-header>
-  <label for="selectAll">
+  <label for="toggleAll">
       <input
-          id="selectAll"
+          id="toggleAll"
           type="checkbox"
-          @click="selectAll">
+          @click="toggleAll">
       Select all
   </label>
   <div
@@ -41,7 +41,6 @@ The component features a visually prominent style and showcases the number of se
       <input
           :id="item.id"
           v-model="item.checked"
-          :checked="!item.checked === false"
           type="checkbox"/>
       {{ item.label }}
     </label>

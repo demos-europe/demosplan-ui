@@ -28,9 +28,9 @@ export default {
     }
   },
 
-  computed: {
-    deselect () {
-      return de.operations.deselect.all
+  data () {
+    return {
+      deselect: de.operations.deselect.all
     }
   }
 }

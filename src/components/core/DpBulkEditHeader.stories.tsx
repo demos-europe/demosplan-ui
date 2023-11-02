@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/vue'
 import DpBulkEditHeader from './DpBulkEditHeader.vue'
+import DpButton from "~/components/DpButton/DpButton.vue";
 
 const meta: Meta<typeof DpBulkEditHeader> = {
     component: DpBulkEditHeader,
     title: 'Components/BulkEditHeader',
     render: (args) => ({
         components: {
+            DpButton,
             DpBulkEditHeader
         },
         computed: {
@@ -25,9 +27,11 @@ const meta: Meta<typeof DpBulkEditHeader> = {
             }
 
             const resetSelection = () => {
+                const selectAll = document.getElementById('selectAll')
                 for (const element of args.options) {
                     element.checked = false
                 }
+                selectAll.checked = false
             }
 
             return { args, resetSelection, toggleSelectAll }
@@ -40,13 +44,10 @@ const meta: Meta<typeof DpBulkEditHeader> = {
                   selection-text="Elements"
                   @reset-selection="resetSelection"
                   v-bind="args">
-                <button
-                    class="btn-icns u-m-0"
-                    type="button"
-                    @click.prevent="resetSelection">
-                  <i class="fa fa-times u-mr-0_125" />
-                  Delete
-                </button>
+                <dp-button
+                    text="Delete"
+                    icon="fa-trash"
+                    @click="resetSelection" />
               </dp-bulk-edit-header>
               <label for="selectAll">
                   <input

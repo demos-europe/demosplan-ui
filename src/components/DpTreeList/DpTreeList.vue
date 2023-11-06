@@ -70,7 +70,7 @@
 
     <!-- Footer -->
     <div
-      v-if="$slots['footer']"
+      v-if="$slots.footer"
       ref="footer"
       class="c-treelist__footer o-sticky">
       <div class="u-p-0_5 bg-color--white">

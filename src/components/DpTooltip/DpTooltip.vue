@@ -56,7 +56,7 @@ export default {
       this.tooltipHook = this.$el.childNodes[0]
     }
 
-    const value = this.$slots.popover?[0] : this.text
+    const value = this.$slots.popover? this.$slots.popover()[0] : this.text
     initTooltip(this.tooltipHook, value, { place: this.placement, container: this.container })
   },
 

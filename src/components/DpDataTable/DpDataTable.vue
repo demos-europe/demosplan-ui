@@ -41,7 +41,7 @@
       <tbody v-if="!isDraggable && !isLoading">
         <template v-for="(item, idx) in items">
           <dp-table-row
-            ref="tableRows"
+            :ref="`tableRows[${idx}]`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
             :fields="fields"

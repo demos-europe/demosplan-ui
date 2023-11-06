@@ -41,6 +41,7 @@ const config = {
     'tippy.js',
     'uuid',
     'v-tooltip',
+    'vue',
     'vue-multiselect',
     'vuedraggable'
   ],

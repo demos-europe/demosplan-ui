@@ -9,11 +9,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove DpHeightLimit, DpSwitcher, and DpTextWrapper components. ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ### Changed
+- ([#622](https://github.com/demos-europe/demosplan-ui/pull/622)) Improve validation notifications in the DpValidation action by incorporating invalid fields and displaying unique fields only ([@sakutademos](https://github.com/sakutademos))
 - ([#621](https://github.com/demos-europe/demosplan-ui/pull/621)) Bump Vue Peer dependency to 2.5.17 ([@spiess-demos](https://github.com/spiess-demos))
 - ([#615](https://github.com/demos-europe/demosplan-ui/pull/615)) **Breaking:** Change DpBulkEditHeader Props ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ### Added
-- ([#622](https://github.com/demos-europe/demosplan-ui/pull/622)) Enhance validation notifications by displaying unique fields only ([@sakutademos](https://github.com/sakutademos))
 - ([#615](https://github.com/demos-europe/demosplan-ui/pull/615)) Add DpBulkEditHeader documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#605](https://github.com/demos-europe/demosplan-ui/pull/605)) Add DpEditableList documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#591](https://github.com/demos-europe/demosplan-ui/pull/591)) Add label tests for form components ([@hwiem](https://github.com/hwiem))
@@ -27,7 +27,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#590](https://github.com/demos-europe/demosplan-ui/pull/590)) Add DpVideoPlayer documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#588](https://github.com/demos-europe/demosplan-ui/pull/588)) Add DpSwitcher documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#567](https://github.com/demos-europe/demosplan-ui/pull/567)) Add DpEditor documentation to Storybook ([@ahmad-demos](https://github.com/@ahmad-demos))
-- ([#587](https://github.com/demos-europe/demosplan-ui/pull/587) Add phone icon to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
+- ([#587](https://github.com/demos-europe/demosplan-ui/pull/587)) Add phone icon to DpIcon ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.2.0 - 2023-10-05
 

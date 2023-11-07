@@ -240,7 +240,7 @@ export default {
     subSlots: {
       type: Array,
       required: false,
-      default: () => ['option', 'tag', '']
+      default: () => ['option', 'tag']
     },
 
     tagPlaceholder: {

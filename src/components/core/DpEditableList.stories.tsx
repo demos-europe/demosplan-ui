@@ -11,9 +11,9 @@ const meta: Meta<typeof DpEditableList> = {
         data () {
             return {
                 formFields: {
-                    mail: ''
+                    item: ''
                 },
-                emails: args.entries,
+                entries: args.entries,
                 itemIndex: null
             }
         },
@@ -21,24 +21,24 @@ const meta: Meta<typeof DpEditableList> = {
             return { args }
         },
         methods: {
-            addElement () {
-                this.emails.push({
-                    mail: this.formFields.mail
+            addItem () {
+                this.entries.push({
+                    item: this.formFields.item
                 })
             },
 
             deleteItem (index) {
-                this.emails.splice(index, 1)
-                this.updateExtraEmailAddress(index)
+                this.entries.splice(index, 1)
+                this.updateExtraItems(index)
             },
 
             handleSubmit (index) {
                 if (index === 'new') {
-                    this.addElement()
-                    this.saveExtraEmailAddress(this.formFields.mail)
+                    this.addItem()
+                    this.saveExtraItems(this.formFields.item)
                 } else {
-                    this.updateEmailAddress(index)
-                    this.updateExtraEmailAddress(index, this.formFields.mail[index])
+                    this.updateItems(index)
+                    this.updateExtraItems(index, this.formFields.item[index])
                 }
 
                 this.resetForm()
@@ -47,20 +47,20 @@ const meta: Meta<typeof DpEditableList> = {
             },
 
             resetForm () {
-                this.formFields.mail = ''
+                this.formFields.item = ''
                 this.itemIndex = null
             },
 
-            saveExtraEmailAddress (extraEmailAddress) {
-                this.$emit('saved', extraEmailAddress)
+            saveExtraItems (extraItems) {
+                this.$emit('saved', extraItems)
             },
 
-            updateExtraEmailAddress (index, extraEmailAddress) {
-                this.$emit('updated', (index, extraEmailAddress))
+            updateExtraItems (index, extraItems) {
+                this.$emit('updated', (index, extraItems))
             },
 
-            updateEmailAddress (index) {
-                this.emails[index].mail = this.formFields.mail
+            updateItems (index) {
+                this.entries[index].item = this.formFields.item
             },
         },
         mounted () {
@@ -71,17 +71,18 @@ const meta: Meta<typeof DpEditableList> = {
         },
         template: `
           <dp-editable-list
-              :entries="emails"
+              :entries="entries"
               v-bind="args"
+              @reset="resetForm"
               @saveEntry="handleSubmit(itemIndex !== null ? itemIndex : 'new')"
               ref="listComponent">
             <template v-slot:list="entry">
                 <span>
-                  {{ entry.mail }}
+                  {{ entry.item }}
                   <input
                       class="hide-visually"
                       type="email"
-                      :value="entry.mail">
+                      :value="entry.item">
                 </span>
             </template>
             <template v-slot:form="entry">
@@ -89,7 +90,7 @@ const meta: Meta<typeof DpEditableList> = {
                   id="emailAddress"
                   type="email"
                   placeholder="Email Address"
-                  v-model="formFields.mail"
+                  v-model="formFields.item"
                   @enter="handleSubmit(itemIndex !== null ? itemIndex : 'new')" />
             </template>
           </dp-editable-list>
@@ -111,10 +112,10 @@ export const Default: Story = {
     args: {
         entries: [
             {
-                mail: "mail1@mail.com"
+                item: "mail1@mail.com"
             },
             {
-                mail: "mail2@mail.com"
+                item: "mail2@mail.com"
             }
         ],
     },

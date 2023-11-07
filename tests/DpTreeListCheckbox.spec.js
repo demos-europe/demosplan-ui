@@ -3,11 +3,7 @@ import { de } from '../src/components/shared/translations'
 
 import { shallowMount } from '@vue/test-utils'
 
-window.Translator = {
-  trans: jest.fn(key => key)
-}
-
-describe('should return result \'Alle abwählen\' when props are: checked = true, checkAll = true', () => {
+describe('should return result \'Auswahl aufheben\' when props are: checked = true, checkAll = true', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
     propsData: {
       checked: true,

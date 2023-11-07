@@ -16,8 +16,8 @@ describe('should return result \'Alle abwählen\' when props are: checked = true
     }
   })
 
-  it('returns \'Alle abwählen\'', () => {
-    expect(wrapper.vm.label).toEqual('Alle abwählen')
+  it('returns operations.deselect.all', () => {
+    expect(wrapper.vm.label).toEqual(de.operations.deselect.all)
   })
 })
 

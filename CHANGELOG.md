@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3 - 2023-11-08
+
 ### Removed
 
 - ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove DpHeightLimit, DpSwitcher, and DpTextWrapper components. ([@ahmad-demos](https://github.com/@ahmad-demos))

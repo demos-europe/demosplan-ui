@@ -1,3 +1,4 @@
+import { de } from '~/components/shared/translations'
 import { scrollToVisibleElement } from './helpers'
 import validateForm from './validateForm'
 
@@ -44,10 +45,19 @@ export default function assignHandlerForTrigger (triggerButton, form) {
       invalidCustomErrorFields.forEach(field => {
         dplan.notify.notify('error', Translator.trans(field.validationMessage))
       })
-      // Make sure the default notification is displayed as needed
+      const nonEmptyFieldNames = [...new Set(
+        validatedForm.invalidFields
+          .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
+          .filter(Boolean)
+      )]
+
       if (invalidCustomErrorFields.length === 0 || invalidCustomErrorFields.length < validatedForm.invalidFields) {
-        dplan.notify.notify('error', Translator.trans('error.mandatoryfields.no_asterisk'))
+        const fieldsString = nonEmptyFieldNames ? nonEmptyFieldNames.join(', ') : ' '
+        const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
+
+        nonEmptyFieldNames.length ? dplan.notify.notify('error', errorMandatoryFields) : dplan.notify.notify('error', de.error.mandatoryFields.default)
       }
+
       scrollToVisibleElement(validatedForm.invalidFields[0])
       document.dispatchEvent(new CustomEvent('customValidationFailed', { detail: { form: form } }))
     } else {

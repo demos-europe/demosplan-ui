@@ -3788,12 +3788,12 @@
     "@typescript-eslint/types" "6.7.5"
     eslint-visitor-keys "^3.4.1"
 
-"@uppy/companion-client@^3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-3.4.1.tgz#5d5a21e5d3d0fceab5dde89cc8e926ffe4fb351b"
-  integrity sha512-aUCJuZR+u+yWdfNblu08WVZ6thkLQdf9MTo0orNsj4xzc0PZVtX7gbjjvgmv71iA3Losy5ltOXhg/+dYOosBtA==
+"@uppy/companion-client@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-3.5.0.tgz#13df17bc2ecbe2be60b84231121971c62b57d2c0"
+  integrity sha512-+Ql28pPdXpWFje18kHT3xt9RdrVPpbkMprTkoW85JFRbqrCCz6pFa8P+BHCh/J0ZHNDaL+jCuS7jRjYLRaeR7w==
   dependencies:
-    "@uppy/utils" "^5.5.1"
+    "@uppy/utils" "^5.5.2"
     namespace-emitter "^2.0.1"
 
 "@uppy/core@^3.0.1":
@@ -3832,15 +3832,15 @@
   integrity sha512-NEow8ZYicAvxEDqcmi9MSW2gy4uElVnRuHoHBx9zwB5g81F9i2Q/i1u08sKzUY704o84zI6bctDe2cCYdBCuZw==
 
 "@uppy/tus@^3.0.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-3.3.1.tgz#a28b4b87b56bc9dea7152cbc33661677cd0e4f41"
-  integrity sha512-6NPG7zSm3Hm5vsytS0Vf4duVKT3nLwEHHCBokVNygTPgrJeYajR0wO2ldcvc44Ir29MHAi3k4arTKF1hW49Abw==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-3.3.2.tgz#5f4312b03068cee02cf33dd34990c45949b9c808"
+  integrity sha512-siGI+ahPiReGoZzlFyw7bQf8ICzFijh+bdK/jZeSUIceAMk2/kMq/Fxr5iFzDlXnBbeyDkxLhap7gZcUxWdmXQ==
   dependencies:
-    "@uppy/companion-client" "^3.4.1"
-    "@uppy/utils" "^5.5.1"
+    "@uppy/companion-client" "^3.5.0"
+    "@uppy/utils" "^5.5.2"
     tus-js-client "^3.0.0"
 
-"@uppy/utils@^5.4.3", "@uppy/utils@^5.5.1", "@uppy/utils@^5.5.2":
+"@uppy/utils@^5.4.3", "@uppy/utils@^5.5.2":
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.5.2.tgz#374af59a16b26bf25dd2c17975aff52af3d54f89"
   integrity sha512-3vGx0L3t2ikZ1fgQxM2ztHDfx0hnC8QYFi+Wtc+8tNpiClzlJQHyOWLfBJ0mW0yREVXoITqa6mxev+/Zc3oVzA==

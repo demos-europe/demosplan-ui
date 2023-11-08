@@ -140,7 +140,6 @@ export default {
       this.$emit('modal:toggled', this.isOpenModal)
 
       if (this.isOpenModal === true) {
-        this.preventScroll(true)
         this.lastFocusedElement = document.activeElement
         // On toggle get all focusable elements and focus the first one (after everything is rendered)
         this.$nextTick(() => {

@@ -12,7 +12,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#624](https://github.com/demos-europe/demosplan-ui/pull/624)) Use proper import for buildSuggestion ([@salis-demos](https://github.com/salis-demos))
 - ([#621](https://github.com/demos-europe/demosplan-ui/pull/621)) Bump Vue Peer dependency to 2.5.17 ([@spiess-demos](https://github.com/spiess-demos))
 - ([#615](https://github.com/demos-europe/demosplan-ui/pull/615)) **Breaking:** Change DpBulkEditHeader Props ([@ahmad-demos](https://github.com/@ahmad-demos))
-- ([#630](https://github.com/demos-europe/demosplan-ui/pull/630)) Stickier.js: Remove extra check for stickToDirection that has been added wherever the function _bindBottom is called, because otherwise the element has not enough space and the bottom of the element is not reachable([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#630](https://github.com/demos-europe/demosplan-ui/pull/630)) Stickier.js: Remove extra check for stickToDirection that has been added wherever the function _bindBottom is called, because otherwise the element has not enough space and the bottom of the element is not reachable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Added
 - ([#629](https://github.com/demos-europe/demosplan-ui/pull/629)) Allow to use all available slots from vue-multiselect in DpMultiselect ([@salis-demos](https://github.com/salis-demos))

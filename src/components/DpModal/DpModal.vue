@@ -150,7 +150,7 @@ export default {
           }
         })
       } else {
-        this.preventScroll(false)
+        this.preventScroll(false) // it could be removed after dropping the assessment table
         this.lastFocusedElement.focus()
       }
     },

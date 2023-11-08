@@ -9,7 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#603](https://github.com/demos-europe/demosplan-ui/pull/603)) Remove DpHeightLimit, DpSwitcher, and DpTextWrapper components. ([@ahmad-demos](https://github.com/@ahmad-demos))
 
 ### Changed
-- ([#633](https://github.com/demos-europe/demosplan-ui/pull/633)) Call the preventScroll function in the toggle method for cases where the @after-leave transition does not work correctly (AssignEntityModal) ([@sakutademos](https://github.com/sakutademos))
+- ([#633](https://github.com/demos-europe/demosplan-ui/pull/633)) DpModal: Call the preventScroll function within the toggle method in cases where the @after-leave transition does not work correctly (AssignEntityModal) ([@sakutademos](https://github.com/sakutademos))
 - ([#624](https://github.com/demos-europe/demosplan-ui/pull/624)) Use proper import for buildSuggestion ([@salis-demos](https://github.com/salis-demos))
 - ([#622](https://github.com/demos-europe/demosplan-ui/pull/622)) Improve validation notifications in the DpValidation action by incorporating invalid fields and displaying unique fields only ([@sakutademos](https://github.com/sakutademos))
 - ([#621](https://github.com/demos-europe/demosplan-ui/pull/621)) Bump Vue Peer dependency to 2.5.17 ([@spiess-demos](https://github.com/spiess-demos))

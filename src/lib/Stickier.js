@@ -176,7 +176,7 @@ class Stickier {
         this._log('element context above viewport - initial position is bottom of context')
         this._bindBottom()
       } else if (scroll.top > element.top) {
-        if ((element.height + scroll.top - elementScroll) >= context.bottom && this.stickToDirection !== 'top') {
+        if ((element.height + scroll.top - elementScroll) >= context.bottom) {
           this._log('element ends below context - initial position is bottom of context')
           this._bindBottom()
         } else {
@@ -189,7 +189,7 @@ class Stickier {
         if (scroll.top <= element.top) {
           this._log('fixed element reached top of container')
           this._unsetPosition()
-        } else if ((element.height + scroll.top - elementScroll) >= context.bottom && this.stickToDirection !== 'top') {
+        } else if ((element.height + scroll.top - elementScroll) >= context.bottom) {
           this._log('fixed element reached bottom of container')
           this._bindBottom()
         } else if (doesNotFit) {

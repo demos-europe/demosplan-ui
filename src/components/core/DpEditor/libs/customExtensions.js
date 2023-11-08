@@ -1,5 +1,5 @@
 import Anonymize from './editorAnonymize'
-import * as buildSuggestion from './editorBuildSuggestion'
+import buildSuggestion from './editorBuildSuggestion'
 import CustomDelete from './editorCustomDelete'
 import CustomImage from './editorCustomImage'
 import CustomInsert from './editorCustomInsert'

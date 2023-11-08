@@ -68,6 +68,11 @@ const meta: Meta<typeof DpEditableList> = {
                 this.deleteItem(index)
                 this.resetForm()
             })
+
+            this.$on('showUpdateForm', (index) => {
+                this.formFields.item = this.entries[index].item
+                this.itemIndex = index
+            })
         },
         template: `
           <dp-editable-list
@@ -100,8 +105,10 @@ const meta: Meta<typeof DpEditableList> = {
 
 interface IDpEditableList {
     entries: object[]
+    delete: object
     reset: object
     saveEntry: object
+    showUpdateForm: object
 }
 
 type Story = StoryObj<IDpEditableList>
@@ -120,7 +127,9 @@ export const Default: Story = {
         ],
     },
     argTypes: {
+        delete: { action: 'delete' },
         reset: { action: 'reset' },
-        saveEntry: { action: 'saveEntry' }
+        saveEntry: { action: 'saveEntry' },
+        showUpdateForm: { action: 'showUpdateForm' }
     }
 }

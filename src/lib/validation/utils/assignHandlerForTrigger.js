@@ -45,17 +45,17 @@ export default function assignHandlerForTrigger (triggerButton, form) {
       invalidCustomErrorFields.forEach(field => {
         dplan.notify.notify('error', Translator.trans(field.validationMessage))
       })
-      const nonEmptyFieldNames = [...new Set(
-        validatedForm.invalidFields
-          .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
-          .filter(Boolean)
-      )]
 
       if (invalidCustomErrorFields.length === 0 || invalidCustomErrorFields.length < validatedForm.invalidFields) {
-        const fieldsString = nonEmptyFieldNames ? nonEmptyFieldNames.join(', ') : ' '
+        const nonEmptyUniqueFieldNames = validatedForm.invalidFields
+          .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
+          .filter(Boolean)
+          .filter((field, idx, arr) => arr.indexOf(field) === idx)
+
+        const fieldsString = nonEmptyUniqueFieldNames ? nonEmptyUniqueFieldNames.join(', ') : ' '
         const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
 
-        nonEmptyFieldNames.length ? dplan.notify.notify('error', errorMandatoryFields) : dplan.notify.notify('error', de.error.mandatoryFields.default)
+        nonEmptyUniqueFieldNames.length ? dplan.notify.notify('error', errorMandatoryFields) : dplan.notify.notify('error', de.error.mandatoryFields.default)
       }
 
       scrollToVisibleElement(validatedForm.invalidFields[0])

@@ -43,16 +43,12 @@
         {{ Translator.trans('explanation.noentries') }}
       </template>
 
-      <template v-slot:option="props">
+      <template
+        v-for="slot in subSlots"
+        v-slot:[slot]="props">
         <slot
           :props="props"
-          name="option" />
-      </template>
-
-      <template v-slot:tag="props">
-        <slot
-          :props="props"
-          name="tag" />
+          :name="slot" />
       </template>
 
       <!-- put more slots here -->
@@ -234,6 +230,17 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+
+    /**
+     * If necessary, slots can be added
+     * according to this List
+     * https://vue-multiselect.js.org/#sub-slots
+     */
+    subSlots: {
+      type: Array,
+      required: false,
+      default: () => ['option', 'tag']
     },
 
     tagPlaceholder: {

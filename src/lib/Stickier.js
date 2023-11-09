@@ -36,8 +36,8 @@ class Stickier {
   ) {
     // Set up variables from options
     this.element = stickyElement
-    this.context = contextElement || this.element.parentElement
-    this.container = containerElement || this.element.parentElement
+    this.context = contextElement || this.element.offsetParent
+    this.container = containerElement || this.element.offsetParent
     this.elementOffset = elementOffset
     this.stickToDirection = stickToDirection
     this.stickFromBreakpoint = stickFromBreakpoint

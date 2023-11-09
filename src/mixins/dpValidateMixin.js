@@ -45,11 +45,10 @@ export default {
         customErrors.forEach(error => dplan.notify.notify('error', Translator.trans(error)))
 
         if (customErrors.length === 0) {
-          const nonEmptyFieldNames = invalidFields
+          const nonEmptyUniqueFieldNames = invalidFields
             .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
             .filter(Boolean)
-
-          const nonEmptyUniqueFieldNames = nonEmptyFieldNames.filter((field, idx, arr) => arr.indexOf(field) === idx)
+            .filter((field, idx, arr) => arr.indexOf(field) === idx)
 
           if (nonEmptyUniqueFieldNames.length) {
             const fieldsString = nonEmptyUniqueFieldNames ? nonEmptyUniqueFieldNames.join(', ') : ' '

@@ -7,8 +7,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 
 - ([#634](https://github.com/demos-europe/demosplan-ui/pull/634)) Use filter() function to show unique fields in the error messages instead of using Javascript Set ([@sakutademos](https://github.com/sakutademos))
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Set engines for node, npm ([@spiess-demos](https://github.com/spiess-demos))
+- ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
+- ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engines for node, npm ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3 - 2023-11-08
 

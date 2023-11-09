@@ -49,7 +49,7 @@ export default {
             .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
             .filter(Boolean)
 
-          const nonEmptyUniqueFieldNames = nonEmptyFieldNames.filter((field, idx) => nonEmptyFieldNames.indexOf(field) === idx)
+          const nonEmptyUniqueFieldNames = nonEmptyFieldNames.filter((field, idx, arr) => arr.indexOf(field) === idx)
 
           if (nonEmptyUniqueFieldNames.length) {
             const fieldsString = nonEmptyUniqueFieldNames ? nonEmptyUniqueFieldNames.join(', ') : ' '

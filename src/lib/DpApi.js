@@ -127,7 +127,7 @@ const handleResponseMessages = function (responseMeta) {
  * Perform rudimentary response validation, handle response messages.
  *
  * @param {Object} response
- *                    The response provided by the fetch API around the XMLHttpRequest instance.
+ *                    The response provided by the fetch API.
  *                    See https://developer.mozilla.org/en-US/docs/Web/API/Response
  * @param {Object} [messages]
  *                    Define messages to display with response codes that are expected to be returned

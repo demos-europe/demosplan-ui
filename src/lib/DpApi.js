@@ -104,9 +104,7 @@ const dpRpc = function (method, parameters, id = null) {
  * Perform an external API call without any default headers
  */
 const externalApi = async (url, data) => {
-  const response = await fetch(url, data)
-
-  return await response.json()
+  return await fetch(url, data)
 }
 
 /**

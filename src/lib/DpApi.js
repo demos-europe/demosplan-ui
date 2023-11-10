@@ -52,13 +52,23 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
     url = `${url}?${stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })}`
   }
 
-  const response = await fetch(url, payload)
-  const content = await response.json()
+  try {
+    const response = await fetch(url, payload)
+    const content = await response.json()
 
-  return {
-    data: content,
-    status: response.status,
-    ok: response.ok
+    return {
+      data: content,
+      status: response.status,
+      ok: response.ok
+    }
+  } catch (error) {
+    console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)
+
+    return {
+      data: null,
+      status: '400',
+      ok: 'Bad Request'
+    }
   }
 })
 

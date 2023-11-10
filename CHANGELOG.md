@@ -7,7 +7,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
-- ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engines for node, npm ([@spiess-demos](https://github.com/spiess-demos))
+- ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engine for node to the same version used in demosplan-core development setup ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.1 - 2023-11-09
 

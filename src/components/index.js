@@ -1,67 +1,62 @@
-import dataTableSearch from './DpDataTable/DataTableSearch'
-import DpAccordion from './DpAccordion/DpAccordion'
-import DpAutocomplete from './DpAutocomplete/DpAutocomplete'
-import DpButton from './DpButton/DpButton'
-import DpButtonIcon from './DpButtonIcon/DpButtonIcon'
-import DpButtonRow from './DpButtonRow/DpButtonRow'
-import DpBadge from './DpBadge/DpBadge'
-import DpCard from './DpCard/DpCard'
-import DpCheckbox from './DpCheckbox/DpCheckbox'
-import DpCheckboxGroup from './DpCheckboxGroup/DpCheckboxGroup'
-import DpColumnSelector from './DpDataTable/DpColumnSelector'
-import DpContextualHelp from './DpContextualHelp/DpContextualHelp'
-import DpDataTable from './DpDataTable/DpDataTable'
-import DpDataTableExtended from './DpDataTable/DpDataTableExtended'
-import DpDatepicker from './DpDatepicker/DpDatepicker'
-import DpDateRangePicker from './DpDateRangePicker/DpDateRangePicker'
-import DpDatetimePicker from './DpDatetimePicker/DpDatetimePicker'
-import DpDetails from './DpDetails/DpDetails'
-import DpDraggable from './DpDraggable/DpDraggable'
-import DpFlyout from './DpFlyout/DpFlyout'
-import DpFormRow from './DpFormRow/DpFormRow'
-import DpHeightLimit from './DpHeightLimit/DpHeightLimit'
-import DpIcon from './DpIcon/DpIcon'
-import DpInlineNotification from './DpInlineNotification/DpInlineNotification'
-import DpInput from './DpInput/DpInput'
-import DpLabel from './DpLabel/DpLabel'
-import DpLoading from './DpLoading/DpLoading'
-import DpModal from './DpModal/DpModal'
-import DpMultiselect from './DpMultiselect/DpMultiselect'
-import DpMultistepNav from './DpMultistepNav/DpMultistepNav'
-import DpPager from './DpPager/DpPager'
-import DpProgressBar from './DpProgressBar/DpProgressBar'
-import DpRadio from './DpRadio/DpRadio'
-import DpResettableInput from './DpResettableInput/DpResettableInput'
-import DpSearchField from './DpSearchField/DpSearchField'
-import DpSelect from './DpSelect/DpSelect'
-import DpSelectPageItemCount from './DpDataTable/DpSelectPageItemCount'
-import DpSkeletonBox from './DpSkeletonBox/DpSkeletonBox'
-import DpSlidebar from './DpSlidebar/DpSlidebar'
-import DpSlidingPagination from './DpSlidingPagination/DpSlidingPagination'
-import DpSplitButton from './DpSplitButton/DpSplitButton'
-import DpStickyElement from './DpStickyElement/DpStickyElement'
+import dataTableSearch from './DpDataTableExtended/DataTableSearch'
+import DpAccordion from './DpAccordion'
+import DpAutocomplete from './DpAutocomplete'
+import DpButton from './DpButton'
+import DpButtonIcon from './DpButtonIcon'
+import DpButtonRow from './DpButtonRow'
+import DpBadge from './DpBadge'
+import DpCard from './DpCard'
+import DpCheckbox from './DpCheckbox'
+import DpCheckboxGroup from './DpCheckboxGroup'
+import DpColumnSelector from './DpColumnSelector'
+import DpContextualHelp from './DpContextualHelp'
+import DpDataTable from './DpDataTable'
+import DpDataTableExtended from './DpDataTableExtended'
+import DpDatepicker from './DpDatepicker'
+import DpDateRangePicker from './DpDateRangePicker'
+import DpDatetimePicker from './DpDatetimePicker'
+import DpDetails from './DpDetails'
+import DpDraggable from './DpDraggable'
+import DpFlyout from './DpFlyout'
+import DpFormRow from './DpFormRow'
+import DpIcon from './DpIcon'
+import DpInlineNotification from './DpInlineNotification'
+import DpInput from './DpInput'
+import DpLabel from './DpLabel'
+import DpLoading from './DpLoading'
+import DpModal from './DpModal'
+import DpMultiselect from './DpMultiselect'
+import DpMultistepNav from './DpMultistepNav'
+import DpNotification from './DpNotification'
+import DpPager from './DpPager'
+import DpProgressBar from './DpProgressBar'
+import DpRadio from './DpRadio'
+import DpResettableInput from './DpResettableInput'
+import DpSearchField from './DpSearchField'
+import DpSelect from './DpSelect'
+import DpSelectPageItemCount from './DpDataTableExtended/DpSelectPageItemCount'
+import DpSkeletonBox from './DpSkeletonBox'
+import DpSlidebar from './DpSlidebar'
+import DpSlidingPagination from './DpSlidingPagination'
+import DpSplitButton from './DpSplitButton'
+import DpStickyElement from './DpStickyElement'
 import DpTab from './DpTabs/DpTab'
 import DpTabs from './DpTabs/DpTabs'
-import DpTextArea from './DpTextArea/DpTextArea'
-import DpTimePicker from './DpTimePicker/DpTimePicker'
-import DpToggle from './DpToggle/DpToggle'
-import DpToggleForm from './DpToggleForm/DpToggleForm'
-import DpTooltip from './DpTooltip/DpTooltip'
-import DpTooltipIcon from './DpTooltipIcon/DpTooltipIcon'
-import DpTreeList from './DpTreeList/DpTreeList'
+import DpTextArea from './DpTextArea'
+import DpTimePicker from './DpTimePicker'
+import DpToggle from './DpToggle'
+import DpTooltip from './DpTooltip'
+import DpTooltipIcon from './DpTooltipIcon'
+import DpTreeList from './DpTreeList'
 
 import {
   DpAnonymizeText,
   DpBulkEditHeader,
   DpEditableList,
   DpEditor,
-  DpNotifyContainer,
-  DpNotifyMessage,
   DpObscure,
-  DpSwitcher,
   DpTableCard,
   DpTableCardListHeader,
-  DpTextWrapper,
   DpTransitionExpand,
   DpUploadFiles,
   DpVideoPlayer,
@@ -98,13 +93,11 @@ export {
   DpEditor,
   DpFlyout,
   DpFormRow,
-  DpHeightLimit,
   DpInlineNotification,
   DpModal,
   DpMultiselect,
   DpMultistepNav,
-  DpNotifyContainer,
-  DpNotifyMessage,
+  DpNotification,
   DpObscure,
   DpPager,
   DpProgressBar,
@@ -118,16 +111,13 @@ export {
   DpSlidingPagination,
   DpSplitButton,
   DpStickyElement,
-  DpSwitcher,
   DpTab,
   DpTableCard,
   DpTableCardListHeader,
   DpTabs,
   DpTextArea,
-  DpTextWrapper,
   DpTimePicker,
   DpToggle,
-  DpToggleForm,
   DpTooltip,
   DpTooltipIcon,
   DpTransitionExpand,

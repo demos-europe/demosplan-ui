@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
+import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpTreeListCheckbox',
@@ -52,7 +52,7 @@ export default {
   computed: {
     label () {
       if (this.checkAll) {
-        return this.toggleCheckedStatus(de.deselect.all, 'aria.select.all')
+        return this.toggleCheckedStatus(de.operations.deselect.all, de.aria.select.all)
       }
 
       return this.toggleCheckedStatus(de.aria.deselect.element, de.aria.select.element)
@@ -65,7 +65,7 @@ export default {
     },
 
     toggleCheckedStatus (deselect, select) {
-      return Translator.trans(this.checked ? deselect : select)
+      return this.checked ? deselect : select
     }
   }
 }

@@ -1,4 +1,4 @@
-import DpCheckbox from '../../src/components/DpCheckbox/DpCheckbox'
+import DpCheckbox from '~/components/DpCheckbox/DpCheckbox'
 import { runBooleanAttrTests } from './shared/Attributes'
 import { runLabelTests } from './shared/Label'
 import { shallowMount } from '@vue/test-utils'
@@ -9,6 +9,8 @@ describe('DpCheckbox', () => {
       id: 'checkboxId'
     }
   })
+
+  runLabelTests(wrapper)
 
   const checkbox = wrapper.find('input[type="checkbox"]')
   runBooleanAttrTests(wrapper, checkbox, 'required')

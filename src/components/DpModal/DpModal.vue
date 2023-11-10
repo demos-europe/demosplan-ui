@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
-import { de } from '../shared/translations'
-import { prefixClassMixin } from '../../mixins'
+import DpIcon from '~/components/DpIcon'
+import { de } from '~/components/shared/translations'
+import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpModal',
@@ -106,7 +106,7 @@ export default {
 
   methods: {
     getFocusableElements () {
-      const elementList = this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])')
+      const elementList = Array.from(this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])'))
 
       if (elementList.length <= 0) {
         this.focusableElements = []
@@ -150,6 +150,7 @@ export default {
           }
         })
       } else {
+        this.preventScroll(false) // it could be removed after dropping the assessment table
         this.lastFocusedElement.focus()
       }
     },

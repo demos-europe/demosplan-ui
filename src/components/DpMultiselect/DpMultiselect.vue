@@ -43,16 +43,12 @@
         {{ Translator.trans('explanation.noentries') }}
       </template>
 
-      <template v-slot:option="props">
+      <template
+        v-for="slot in subSlots"
+        v-slot:[slot]="props">
         <slot
           :props="props"
-          name="option" />
-      </template>
-
-      <template v-slot:tag="props">
-        <slot
-          :props="props"
-          name="tag" />
+          :name="slot" />
       </template>
 
       <!-- put more slots here -->
@@ -83,8 +79,8 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
-import { dpValidateMultiselectDirective } from '../../lib/validation'
+import { de } from '~/components/shared/translations'
+import { dpValidateMultiselectDirective } from '~/lib/validation'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -236,6 +232,17 @@ export default {
       default: ''
     },
 
+    /**
+     * If necessary, slots can be added
+     * according to this List
+     * https://vue-multiselect.js.org/#sub-slots
+     */
+    subSlots: {
+      type: Array,
+      required: false,
+      default: () => ['option', 'tag']
+    },
+
     tagPlaceholder: {
       type: String,
       required: false,
@@ -258,8 +265,8 @@ export default {
   data () {
     return {
       translations: {
-        deselectAll: de.deselect.all,
-        selectAll: de.select.all
+        deselectAll: de.operations.deselect.all,
+        selectAll: de.operations.select.all
       }
     }
   }

@@ -24,10 +24,10 @@
 </template>
 
 <script lang="ts">
-import DpIcon from '../DpIcon/DpIcon.vue'
+import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { Tooltip } from '../../directives'
-import { SIZES as ICON_SIZES } from './../DpIcon/util/iconVariables'
+import { Tooltip } from '~/directives'
+import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconVariables'
 
 export default {
   name: 'DpButton',

@@ -37,17 +37,26 @@ export default {
       default: false
     },
 
+    /**
+     * The ID of the Datepicker component is derived from this prop.
+     */
     id: {
       type: String,
       required: true
     },
 
+    /**
+     * Upper date limit.
+     */
     maxDate: {
       type: String,
       required: false,
       default: ''
     },
 
+    /**
+     * Lower date limit.
+     */
     minDate: {
       type: String,
       required: false,
@@ -72,6 +81,9 @@ export default {
       default: false
     },
 
+    /**
+     * Expects ISO date
+     */
     value: {
       type: String,
       required: false,

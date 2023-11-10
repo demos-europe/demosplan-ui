@@ -8,12 +8,56 @@ import DpEditor from './DpEditor'
 
 # Editor
 
-A rich text editor component based on tiptap.
+The Editor component renders a rich text editor consisting of a menu bar supporting common editor interactions and a text field.
 
-- defines a menubar with a number of buttons and an editor
-- use this component without the inline-editing-wrapper TiptapEditText.vue if you want to add a text editor to a form element (as in new statement view)
-- use this component with the inline-editing-wrapper TiptapEditText.vue if you want to save the text directly via inline-editing (as in assessment table)
-- the editor-content component needs a prop with editor instance to work correctly
 
-To properly set the content we have to update this.currentValue and use editor.setContent() - both actions are needed!
-To use boilerplates we need to mount tiptap editor, where boilerplate modal is imported dynamically. The boilerplates are stored in boilerplates vuex store, which is also registered dynamically if boilerplate prop is specified.
+Uploading images can be enabled via the imageButton prop. When using `imageButton`,
+the `routes.getFileByHash` prop must be set to an existing route which returns a file by its hash (see second example).
+
+The slot `button` can be used to add additional buttons to the toolbar.
+
+The slot `modal` can be used to add a modal component to DpEditor. The function `handleInsertText` 
+is exposed to the `modal` slot to enable the modal component to add text to the editor instance.
+
+## Default usage
+
+```html
+<dp-editor
+    v-model="values.text"
+    ref="editor">
+</dp-editor>
+```
+
+## Custom usage
+
+```html
+<dp-editor
+    :toolbar-items="{
+        fullscreenButton: true,
+        headings: [2,3,4],
+        imageButton: true,
+        insertAndDelete: true,
+        linkButton: true,
+        strikethrough: true,
+        table: true
+    }"
+    :routes="{
+        getFileByHash: (hash) => RoutingFunction(hash)
+    }"
+    :value="value">
+    <template v-slot:modal="modalProps">
+        <dp-modal
+            id="editorModal"
+            ref="editorModal"
+            @insert="text => modalProps.handleInsertText(textFromParentComponent)">
+            Add an component
+        </dp-modal>
+    </template>
+    <template v-slot:button>
+        <dp-button
+              :text="Add Text"
+              variant="subtle"
+              @click.stop="$refs.editorModal.toggle()" />
+    </template>
+</dp-editor>
+```

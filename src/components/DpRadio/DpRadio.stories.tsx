@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpRadio from './DpRadio.vue'
+import DpRadio from './'
 
 const meta: Meta<typeof DpRadio> = {
     component: DpRadio,

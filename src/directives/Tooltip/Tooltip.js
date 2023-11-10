@@ -1,5 +1,5 @@
 import { VPopover as Popover } from 'v-tooltip'
-import { destroyTooltip, initTooltip } from '../../components/DpTooltip/utils/tooltip'
+import { destroyTooltip, initTooltip, updateTooltip } from '~/components/DpTooltip/utils/tooltip'
 
 /**
  * @deprecated Use DpTooltip instead
@@ -43,8 +43,43 @@ VPopover.options = { ...VPopover.options, ...tooltipConfig }
  */
 const Tooltip = {
   inserted: function (element, binding) {
-    initTooltip(element, binding.value, { placement: 'top' })
+    let content = binding.value
+    let options = { place: 'top' }
+
+    if (binding.value && typeof binding.value === 'object') {
+      content = binding.value.content
+
+      if (binding.value.container) {
+        options = { ...options, container: binding.value.container }
+      }
+
+      if (binding.value.classes) {
+        options = { ...options, classes: binding.value.classes }
+      }
+    }
+
+    initTooltip(element, content, options)
   },
+
+  update: function (element, binding) {
+    let content = binding.value
+    let options = { place: 'top' }
+
+    if (binding.value && typeof binding.value === 'object') {
+      content = binding.value.content
+
+      if (binding.value.container) {
+        options = { ...options, container: binding.value.container }
+      }
+
+      if (binding.value.classes) {
+        options = { ...options, classes: binding.value.classes }
+      }
+    }
+
+    updateTooltip(element, content, options)
+  },
+
   unbind: function (element) {
     destroyTooltip(element)
   }

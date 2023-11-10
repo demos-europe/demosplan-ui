@@ -12,16 +12,21 @@ const de = {
       element: 'Auswahl für Element aufheben'
     },
     select: {
+      all: 'Alle Elemente auswählen',
       element: 'Element auswählen'
-    }
+    },
+    collapse: {
+      all: 'Alle Elemente zuklappen',
+      element: 'Element zuklappen'
+    },
+    expand: {
+      all: 'Alle Elemente ausklappen',
+      element: 'Element ausklappen'
+    },
   },
-  cancel: "Abbrechen",
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
-  deselect: {
-    all: 'Alle abwählen'
-  },
   editor: {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
@@ -76,12 +81,23 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
-  placeholderAutoSuggest: "Suchbegriff...",
-  save: "Speichern",
-  select: {
-    all: 'Alle auswählen',
-    placeholder: 'Bitte wählen Sie einen Eintrag aus.'
+  operations: {
+    abort: "Abbrechen",
+    add: 'Hinzufügen',
+    delete: 'Löschen',
+    deselect: {
+      all: 'Auswahl aufheben'
+    },
+    new: 'Neu',
+    none: 'Keine',
+    save: "Speichern",
+    select: {
+      all: 'Alle auswählen',
+      placeholder: 'Bitte wählen Sie einen Eintrag aus.'
+    },
+    update: 'Aktualisierung'
   },
+  placeholderAutoSuggest: "Suchbegriff...",
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
@@ -99,7 +115,8 @@ const de = {
   upload: {
     failed: 'Fehler beim Upload von Datei %{file}',
     select: {
-      image(maxUploadSize) { return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})` }
+      image(maxUploadSize) { return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})` },
+      pdf({ browse, maxUploadSize }) { return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})` }
     }
   },
   validation: {

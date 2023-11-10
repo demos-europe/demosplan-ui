@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
+
 export default {
   name: 'DpTreeListToggle',
 
@@ -48,8 +50,8 @@ export default {
     label () {
       // Here, the relatively generic term "element" is chosen to keep the wording generic.
       return this.toggleAll
-        ? Translator.trans(this.value ? 'aria.collapse.all' : 'aria.expand.all')
-        : Translator.trans(this.value ? 'aria.collapse' : 'aria.expand')
+        ? this.value ? de.aria.collapse.all : de.aria.expand.all
+        : this.value ? de.aria.collapse : de.aria.expand
     }
   },
 

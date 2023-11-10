@@ -170,11 +170,11 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
-import { de } from '../shared/translations'
+import { CleanHtml } from '~/directives'
+import { de } from '~/components/shared/translations'
 import DomPurify from 'dompurify'
-import DpDraggable from '../DpDraggable/DpDraggable'
-import DpLoading from '../DpLoading/DpLoading'
+import DpDraggable from '~/components/DpDraggable'
+import DpLoading from '~/components/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 
@@ -379,7 +379,7 @@ export default {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
         headerExpandHint: de.expandAll,
-        headerSelectHint: de.select.all,
+        headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
         tableLoadingData: de.loadingData,

@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
-import DpButton from '../DpButton/DpButton'
+import { de } from '~/components/shared/translations'
+import DpButton from '~/components/DpButton'
 
 export default {
   name: 'DpButtonRow',
@@ -85,7 +85,7 @@ export default {
     primaryText: {
       type: String,
       required: false,
-      default: de.save
+      default: de.operations.save
     },
 
     /**
@@ -103,7 +103,7 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: de.cancel
+      default: de.operations.abort
     },
 
     /**

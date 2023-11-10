@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpStickyElement from './DpStickyElement.vue'
+import DpStickyElement from './'
 
 interface IDpStickyElement {
     applyZIndex: boolean,

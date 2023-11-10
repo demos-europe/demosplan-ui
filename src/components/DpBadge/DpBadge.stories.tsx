@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpBadge from './DpBadge.vue'
+import DpBadge from './'
 
 interface IDpBadge {
   text: string

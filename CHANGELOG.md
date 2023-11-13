@@ -8,6 +8,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engine for node to the same version used in demosplan-core development setup ([@spiess-demos](https://github.com/spiess-demos))
+- ([#506](https://github.com/demos-europe/demosplan-ui/pull/506)) Replace internal from DpApi/DpRpc. Move from axios to native fetch ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.1 - 2023-11-09
 
@@ -55,7 +56,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 - ([#537](https://github.com/demos-europe/demosplan-ui/pull/537)) Rename DpNotifyMessage to DpNotification ([@ahmad-demos](https://github.com/@ahmad-demos))
 - ([#374](https://github.com/demos-europe/demosplan-ui/pull/374)) Bump Tiptap from v1 to v2 ([@salisdemos](https://github.com/salisdemos))
-- ([#506](https://github.com/demos-europe/demosplan-ui/pull/506)) Replace internal from DpApi/DpRpc. Move from axios to native fetch ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 - ([#556](https://github.com/demos-europe/demosplan-ui/pull/556)) Add DpTreeList documentation to Storybook & Fix getComputedStyle error ([@ahmad-demos](https://github.com/@ahmad-demos))

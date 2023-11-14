@@ -61,7 +61,7 @@ const Tooltip = {
     initTooltip(element, content, options)
   },
 
-  update: function (element, binding) {
+  updated: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 

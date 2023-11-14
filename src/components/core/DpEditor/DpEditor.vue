@@ -948,7 +948,7 @@ export default {
     },
 
     resetEditor () {
-      this.editor.setContent('')
+      this.editor.commands.setContent('')
     },
 
     setSelectionByEditor (nodeBefore, nodeAfter, attrs) {

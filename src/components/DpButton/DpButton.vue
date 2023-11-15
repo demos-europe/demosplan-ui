@@ -2,9 +2,9 @@
   <component
     :is="element"
     :type="isButtonElement && type"
-    :href="!isButtonElement && sanitizedHref"
+    :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
-    :aria-hidden="busy"
+    :aria-hidden="busy ?? null"
     v-tooltip="iconOnly ? text : null"
     v-on="$listeners">
     <dp-icon
@@ -46,8 +46,8 @@ export default {
      */
     busy: {
       required: false,
-      type: Boolean,
-      default: false
+      type: [Boolean, null],
+      default: null
     },
 
     /**

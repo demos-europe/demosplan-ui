@@ -4,7 +4,7 @@
     class="space-inline-s">
     <dp-button
       v-if="primary"
-      :busy="busy"
+      :busy="busy ?? null"
       :disabled="disabled"
       :text="primaryText"
       :variant="variant"
@@ -46,9 +46,9 @@ export default {
      * The primary button may have a "busy" state to indicate system progress.
      */
     busy: {
-      type: Boolean,
+      type: [Boolean, null],
       required: false,
-      default: false
+      default: null
     },
 
     /**

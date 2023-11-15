@@ -42,7 +42,7 @@ VPopover.options = { ...VPopover.options, ...tooltipConfig }
  * @param text{String|HTML}
  */
 const Tooltip = {
-  inserted: function (element, binding) {
+  mounted: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 

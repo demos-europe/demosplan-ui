@@ -1,7 +1,7 @@
 <template>
   <component
     :is="element"
-    :type="isButtonElement && type"
+    :type="isButtonElement ? type : null"
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
     :aria-hidden="busy ? true : null"

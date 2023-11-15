@@ -4,7 +4,7 @@
     :type="isButtonElement && type"
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
-    :aria-hidden="busy ?? null"
+    :aria-hidden="busy ? true : null"
     v-tooltip="iconOnly ? text : null"
     v-on="$listeners">
     <dp-icon

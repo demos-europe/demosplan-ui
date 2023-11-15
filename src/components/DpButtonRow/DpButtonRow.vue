@@ -4,7 +4,7 @@
     class="space-inline-s">
     <dp-button
       v-if="primary"
-      :busy="busy ?? null"
+      :busy="busy ? true : null"
       :disabled="disabled"
       :text="primaryText"
       :variant="variant"

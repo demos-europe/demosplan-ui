@@ -13,6 +13,7 @@
       }" />
     <dp-upload
       :allowed-file-types="allowedFileTypes"
+      :allow-multiple-uploads="allowMultipleUploads"
       :basic-auth="basicAuth"
       :chunk-size="chunkSize"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
@@ -75,6 +76,14 @@ export default {
       type: [Array, String],
       required: true,
       default: 'pdf'
+    },
+
+    /**
+     * Allow users to upload more files after uploading some
+     */
+    allowMultipleUploads: {
+      type: Boolean,
+      default: false
     },
 
     basicAuth: {

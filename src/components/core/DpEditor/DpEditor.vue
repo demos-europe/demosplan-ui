@@ -290,7 +290,7 @@
           so we can save the text entered in the textarea via a form element -->
           <input
             v-if="hiddenInput !== ''"
-            :data-dp-validate-if="dataDpValidateIf || false"
+            :data-dp-validate-if="dataDpValidateIf ? true : null"
             type="hidden"
             :id="hiddenInput"
             :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"

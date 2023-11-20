@@ -147,7 +147,7 @@ export default {
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.useUrlFragment) {
       window.removeEventListener('hashchange', this.handleHashChange)
     }

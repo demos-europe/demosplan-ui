@@ -7,7 +7,7 @@
       :aria-expanded="isVisible.toString()"
       :data-cy="dataCy"
       :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
-      class="btn--blank o-link--default">
+      class="btn--blank o-link--default text-left">
       <i
         class="width-s fa"
         :class="{'fa-caret-right': !isVisible, 'fa-caret-down': isVisible}"

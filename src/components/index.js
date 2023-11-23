@@ -1,6 +1,8 @@
 import dataTableSearch from './DpDataTableExtended/DataTableSearch'
 import DpAccordion from './DpAccordion'
+import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
+import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButton from './DpButton'
 import DpButtonIcon from './DpButtonIcon'
 import DpButtonRow from './DpButtonRow'
@@ -17,8 +19,11 @@ import DpDateRangePicker from './DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker'
 import DpDetails from './DpDetails'
 import DpDraggable from './DpDraggable'
+import DpEditor from './DpEditor'
+import DpEditableList from './DpEditableList'
 import DpFlyout from './DpFlyout'
 import DpFormRow from './DpFormRow'
+import { getFileIdsByHash } from './DpUpload/utils/GetFileIdsByHash'
 import DpIcon from './DpIcon'
 import DpInlineNotification from './DpInlineNotification'
 import DpInput from './DpInput'
@@ -28,6 +33,7 @@ import DpModal from './DpModal'
 import DpMultiselect from './DpMultiselect'
 import DpMultistepNav from './DpMultistepNav'
 import DpNotification from './DpNotification'
+import DpObscure from './DpObscure'
 import DpPager from './DpPager'
 import DpProgressBar from './DpProgressBar'
 import DpRadio from './DpRadio'
@@ -47,21 +53,10 @@ import DpTimePicker from './DpTimePicker'
 import DpToggle from './DpToggle'
 import DpTooltip from './DpTooltip'
 import DpTooltipIcon from './DpTooltipIcon'
+import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
-
-import {
-  DpAnonymizeText,
-  DpBulkEditHeader,
-  DpEditableList,
-  DpEditor,
-  DpObscure,
-  DpTableCard,
-  DpTableCardListHeader,
-  DpTransitionExpand,
-  DpUploadFiles,
-  DpVideoPlayer,
-  getFileIdsByHash,
-} from './core/'
+import DpUploadFiles from './DpUpload/DpUploadFiles'
+import DpVideoPlayer from './DpVideoPlayer'
 
 export {
   dataTableSearch,
@@ -112,8 +107,6 @@ export {
   DpSplitButton,
   DpStickyElement,
   DpTab,
-  DpTableCard,
-  DpTableCardListHeader,
   DpTabs,
   DpTextArea,
   DpTimePicker,

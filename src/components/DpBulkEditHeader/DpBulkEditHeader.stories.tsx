@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpBulkEditHeader from './'
-import DpButton from '~/components/DpButton'
+import { DpBulkEditHeader, DpButton } from '~/components'
 
 const meta: Meta<typeof DpBulkEditHeader> = {
     component: DpBulkEditHeader,

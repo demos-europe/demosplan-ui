@@ -80,7 +80,7 @@ const Tooltip = {
     updateTooltip(element, content, options)
   },
 
-  unbind: function (element) {
+  unmounted: function (element) {
     destroyTooltip(element)
   }
 }

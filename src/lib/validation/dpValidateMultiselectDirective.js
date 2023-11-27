@@ -1,7 +1,7 @@
 import validateMultiselect from './utils/validateMultiselect'
 
 const dpValidateMultiselectDirective = {
-  mounted (el, binding) {
+  inserted (el, binding) {
     if(!binding.value) {
       return
     }

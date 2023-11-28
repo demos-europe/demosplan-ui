@@ -33,7 +33,7 @@
 
 <script setup>
 import { CleanHtml as vCleanhtml } from '~/directives'
-import { onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
 
 const props = defineProps( {
   activeId: {
@@ -62,8 +62,12 @@ const props = defineProps( {
 
 const emit = defineEmits(['change'])
 const slots = useSlots()
-const tabs = slots.default()[0].children.filter(child => child.type.name === 'DpTab')
+
 const activeTabId = ref(null)
+
+const tabs = computed(() => {
+  return slots.default()[0].children.filter(child => child.type.name === 'DpTab')
+})
 
 /**
  * When users click the back button, the tabs should behave accordingly.
@@ -91,7 +95,7 @@ const handleTabChange = (id) => {
  * @return {boolean}
  */
 const isTabId = (id) => {
-  return tabs.map(tab => tab.props.id).includes(id)
+  return tabs.value.map(tab => tab.props.id).includes(id)
 }
 
 const setActiveTab = (id) => {
@@ -110,7 +114,7 @@ const setInitialTab = () => {
   } else if (props.activeId) {
     handleTabChange(props.activeId)
   } else {
-    handleTabChange(tabs[0].props.id)
+    handleTabChange(tabs.value[0].props.id)
   }
 }
 

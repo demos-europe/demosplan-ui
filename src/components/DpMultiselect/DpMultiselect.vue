@@ -27,9 +27,10 @@
         value
       }"
       :data-cy="dataCy"
+      :model-value="value"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
-      @input="newVal => $emit('input', newVal)"
+      @update:model-value="newVal => $emit('input', newVal)"
       @open="newVal => $emit('open', newVal)"
       @remove="newVal => $emit('remove', newVal)"
       @search-change="newVal => $emit('search-change', newVal)"

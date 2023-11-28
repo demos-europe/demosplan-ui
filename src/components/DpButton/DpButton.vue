@@ -1,12 +1,11 @@
 <template>
   <component
     :is="element"
-    :type="isButtonElement && type"
-    :href="!isButtonElement && sanitizedHref"
+    :type="isButtonElement ? type : null"
+    :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
-    :aria-hidden="busy"
-    v-tooltip="iconOnly ? text : null"
-    v-on="$listeners">
+    :aria-hidden="busy ? true : null"
+    v-tooltip="iconOnly ? text : null">
     <dp-icon
       v-if="icon"
       aria-hidden="true"
@@ -46,8 +45,8 @@ export default {
      */
     busy: {
       required: false,
-      type: Boolean,
-      default: false
+      type: [Boolean, null],
+      default: null
     },
 
     /**

@@ -60,7 +60,7 @@ export default {
     initTooltip(this.tooltipHook, value, { place: this.placement, container: this.container })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     destroyTooltip(this.tooltipHook)
   }
 }

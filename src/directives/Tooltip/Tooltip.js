@@ -42,7 +42,7 @@ VPopover.options = { ...VPopover.options, ...tooltipConfig }
  * @param text{String|HTML}
  */
 const Tooltip = {
-  inserted: function (element, binding) {
+  mounted: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 
@@ -61,7 +61,7 @@ const Tooltip = {
     initTooltip(element, content, options)
   },
 
-  update: function (element, binding) {
+  updated: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 
@@ -80,7 +80,7 @@ const Tooltip = {
     updateTooltip(element, content, options)
   },
 
-  unbind: function (element) {
+  unmounted: function (element) {
     destroyTooltip(element)
   }
 }

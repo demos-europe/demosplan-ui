@@ -259,8 +259,11 @@ export default {
   },
 
   watch: {
-    tableItems () {
-      this.updateFields()
+    tableItems: {
+      handler () {
+        this.updateFields()
+      },
+      deep: true
     }
   },
 

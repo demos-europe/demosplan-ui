@@ -45,7 +45,7 @@
         ]"
         :style="isTruncatable ?? elementStyle(field)">
         <slot
-          v-if="$scopedSlots[field](item)[0].children.length > 0"
+          v-if="$slots[field](item)[0].children.length > 0"
           :name="field"
           v-bind="item" />
         <span

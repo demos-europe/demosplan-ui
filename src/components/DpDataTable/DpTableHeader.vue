@@ -26,7 +26,7 @@
     <template v-for="(hf, idx) in headerFields">
       <component
         :is="isResizable ? DpResizableColumn : 'th'"
-        :is-last="headerFields.length === idx"
+        :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
         :idx="idx">
         <slot

@@ -21,7 +21,7 @@ const dpValidateMultiselectDirective = {
     el.addEventListener('mouseup', validateMultiselectField)
   },
 
-  componentUpdated (el, binding) {
+  updated (el, binding) {
     if(!binding.value) {
       return
     }

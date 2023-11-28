@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#640](https://github.com/demos-europe/demosplan-ui/pull/640)) Fix resetContent in DpEditor ([@salis-demos](https://github.com/salis-demos))
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engine for node to the same version used in demosplan-core development setup ([@spiess-demos](https://github.com/spiess-demos))
 - ([#506](https://github.com/demos-europe/demosplan-ui/pull/506)) Replace internal from DpApi/DpRpc. Move from axios to native fetch ([@salisdemos](https://github.com/salisdemos))

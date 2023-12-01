@@ -5,7 +5,8 @@
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
     :aria-hidden="busy ? true : null"
-    v-tooltip="iconOnly ? text : null">
+    v-tooltip="iconOnly ? text : null"
+    @click="$emit('click', $event)">
     <dp-icon
       v-if="icon"
       aria-hidden="true"
@@ -38,6 +39,10 @@ export default {
   directives: {
     tooltip: Tooltip
   },
+
+  emits: [
+    'click'
+  ],
 
   props: {
     /**

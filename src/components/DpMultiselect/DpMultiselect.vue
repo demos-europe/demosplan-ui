@@ -95,6 +95,18 @@ export default {
     dpValidateMultiselectDirective
   },
 
+  emits: [
+    'close',
+    'input',
+    'open',
+    'remove',
+    'search-change',
+    'select',
+    'select-all',
+    'tag',
+    'unselect-all'
+  ],
+
   props: {
     closeOnSelect: {
       type: Boolean,

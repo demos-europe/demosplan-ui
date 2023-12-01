@@ -15,6 +15,7 @@ const tokensToTailwind = (tokens) => {
 
 const borderRadius = tokensToTailwind(require('./tokens/dist/js/rounded').rounded)
 const boxShadow = tokensToTailwind(require('./tokens/dist/js/boxShadow')['box-shadow'])
+const spacing = tokensToTailwind(require('./tokens/dist/js/space').space)
 const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpoints)
 const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
 
@@ -43,6 +44,7 @@ module.exports = {
     borderRadius,
     boxShadow,
     screens,
+    spacing,
     zIndex,
     extend: {
       flexShrink: {

@@ -46,11 +46,8 @@
 </template>
 
 <script>
-import DpButtonRow from '../DpButtonRow/DpButtonRow'
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
-import DpInput from '../DpInput/DpInput'
-import DpModal from '../DpModal/DpModal'
 import { de } from '../shared/translations'
+import { DpButtonRow, DpCheckbox, DpInput, DpModal } from '~/components'
 import { dpValidateMixin } from '../../mixins'
 
 export default {

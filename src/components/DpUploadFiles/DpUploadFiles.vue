@@ -187,7 +187,7 @@ export default {
      * you can find all available keys here
      * @see https://github.com/transloadit/uppy/blob/master/packages/%40uppy/locales/src/de_DE.js
      * some are already overwritten here
-     * @see ./src/components/DpUpload/utils/UppyTranslations.js
+     * @see ./src/components/DpUploadFiles/utils/UppyTranslations.js
      */
     translations: {
       type: Object,

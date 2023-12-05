@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#664](https://github.com/demos-europe/demosplan-ui/pull/664)) Fixes prod build due to typescript errors ([@muellerdemos](https://github.com/muellerdemos))
+
 ## v0.3.2 - 2023-12-05
 
 ### Changed

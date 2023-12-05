@@ -12,7 +12,9 @@ const meta: Meta<typeof DpEditableList> = {
             return { args }
         },
         template: `
-            <dp-editable-list v-bind="args">
+            <dp-editable-list
+              v-bind="args"
+              :entries="args.entries">
                 <template v-slot:list="{ entry }">
                   <span>{{ entry.mail }}
                       <input

@@ -42,7 +42,7 @@ export default {
 
   props: {
     /**
-     * When waiting for an axios response, the visual state of the button can be changed via the `busy` property.
+     * While waiting for a network response, the visual state of the button can be changed via the `busy` property.
      */
     busy: {
       required: false,

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import hasOwnProp from '../utils/hasOwnProp'
 import { stringify } from 'qs'
 import { v4 as uuid } from 'uuid'
@@ -27,38 +26,56 @@ const api2defaultHeaders = {
 
 const getHeaders = function (params) {
   const headers = params.url.includes('api/2.0/')
-    ? { ...api2defaultHeaders, ...params.headers }
-    : { ...apiDefaultHeaders, ...params.headers }
+    ? new Headers({ ...api2defaultHeaders, ...params.headers })
+    : new Headers({ ...apiDefaultHeaders, ...params.headers })
 
   // Add current procedure id only if set
   if (currentProcedureId !== null) {
-    headers['X-Demosplan-Procedure-Id'] = currentProcedureId
+    headers.append('X-Demosplan-Procedure-Id', currentProcedureId)
   }
   return headers
 }
 
-const doRequest = (params) => {
-  return axios({
-    ...{ data: {} },
-    ...params,
-    headers: getHeaders(params)
-  })
-}
+const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
+  const payload = {
+    method,
+    options,
+    params,
+    headers: getHeaders({ ...params, url })
+  }
+
+  if (method.toUpperCase() !== 'GET') {
+    payload.body = JSON.stringify(data)
+  } else if (options.serialize === true) {
+    delete payload.options.serialize
+
+    url = `${url}?${stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })}`
+  }
+
+  try {
+    const response = await fetch(url, payload)
+    const content = await response.json()
+
+    return {
+      data: content,
+      status: response.status,
+      ok: response.ok
+    }
+  } catch (error) {
+    console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)
+
+    return {
+      data: null,
+      status: '400',
+      ok: 'Bad Request'
+    }
+  }
+})
 
 const dpApi = doRequest
+
 dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => {
-  if (options.serialize === true) {
-    const config = {
-      paramsSerializer: (params) => stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' }),
-      headers: getHeaders({ ...params, url })
-    }
-    delete options.serialize
-    return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
-  } else {
-    return doRequest({ method: 'get', url, data: {}, params, options })
-  }
-}
+dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'get', url, params, options })
 dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
 dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
 dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'delete', url, params, options })
@@ -78,29 +95,26 @@ const dpRpc = function (method, parameters, id = null) {
     jsonrpc: '2.0',
     method: method,
     id: id === null ? uuid() : id,
-    params: parameters
+    params: parameters,
   }
 
   return doRequest({
-    method: 'post',
     url: Routing.generate('rpc_generic_post'),
-    data
+    method: 'POST',
+    data,
+    params: {
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }
   })
 }
 
 /**
  * Perform an external API call without any default headers
  */
-const externalApi = function (url) {
-  const contentType = axios.defaults.headers.common['Content-Type']
-  delete axios.defaults.headers.common['Content-Type']
-
-  return axios.get(url).then(response => {
-    // Restore the Content-Type header
-    axios.defaults.headers.common['Content-Type'] = contentType
-
-    return response
-  })
+const externalApi = async (url, data) => {
+  return await fetch(url, data)
 }
 
 /**
@@ -123,8 +137,8 @@ const handleResponseMessages = function (responseMeta) {
  * Perform rudimentary response validation, handle response messages.
  *
  * @param {Object} response
- *                    The axios wrapper around the XMLHttpRequest instance.
- *                    See https://github.com/axios/axios#response-schema for documentation.
+ *                    The response provided by the fetch API.
+ *                    See https://developer.mozilla.org/en-US/docs/Web/API/Response
  * @param {Object} [messages]
  *                    Define messages to display with response codes that are expected to be returned
  *                    from a certain endpoint.

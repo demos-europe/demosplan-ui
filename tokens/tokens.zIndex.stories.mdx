@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Z-Index"/>
 
@@ -24,16 +25,19 @@ These tokens give guidance on where to place interface elements in the global
 For components that require a new stacking context, the Tailwind utility `isolate` can be used. Within this new context,
 the same z-index tokens can be used, again.
 
-| SCSS Variable         | Tailwind Class | Description                                                                                                                     |
-|-----------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `$dp-z-ultimate`      | `z-ultimate`   | Use for notifications and tooltips that are triggered from within layers that are normally stacked above tooltips.               |
-| `$dp-z-modal`         | `z-modal`      | Use for modals. Modals should be the topmost elements.                                                                          |
-| `$dp-z-fixed`         | `z-fixed`      | Use for fixed, sticky, and fullscreen elements.                                                                                 |
-| `$dp-z-flyout`        | `z-flyout`     | Use for flyout components.                                                                                                     |
-| `$dp-z-tooltip`       | `z-tooltip`    | Use for tooltip components.                                                                                                    |
-| `$dp-z-above-zero`    | `z-above-zero` | Stack an element above elements that do not have a stacking order applied, but below elements with other z-indexes applied.     |
-| `$dp-z-zero`          | `z-zero`       | Stack an element on the default layer.                                                                                          |
-| `$dp-z-below-zero`    | `z-below-zero` | Stack an element behind elements that do not have a stacking order applied.                                                     |
+<Table
+  headers={['SCSS Variable', 'Tailwind Class', 'Description']}
+  rows={[
+    ["$dp-z-ultimate", "z-ultimate", "Use for notifications and tooltips that are triggered from within layers that are normally stacked above tooltips."],
+    ["$dp-z-modal", "z-modal", "Use for modals. Modals should be the topmost elements."],
+    ["$dp-z-fixed", "z-fixed", "Use for fixed, sticky, and fullscreen elements."],
+    ["$dp-z-flyout", "z-flyout", "Use for flyout components."],
+    ["$dp-z-tooltip", "z-tooltip", "Use for tooltip components."],
+    ["$dp-z-above-zero", "z-above-zero", "Stack an element above elements that do not have a stacking order applied, but below elements with other z-indexes applied."],
+    ["$dp-z-zero", "z-zero", "Stack an element on the default layer."],
+    ["$dp-z-below-zero", "z-below-zero", "Stack an element behind elements that do not have a stacking order applied."]
+  ]}
+/>
 
 ## Usage example - Scss
 

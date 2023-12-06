@@ -3,6 +3,9 @@
     "0": {
       "value": "0px"
     },
+    "px": {
+      "value": "1px"
+    },
     "0.5": {
       "value": "3px"
     },
@@ -25,25 +28,31 @@
       "value": "36px"
     },
     "6": {
-      "value": "54px"
+      "value": "48px"
     },
     "7": {
-      "value": "80px"
+      "value": "65px"
     },
     "8": {
-      "value": "120px"
+      "value": "90px"
     },
     "9": {
-      "value": "180px"
+      "value": "125px"
     },
     "10": {
-      "value": "275px"
+      "value": "170px"
     },
     "11": {
-      "value": "410px"
+      "value": "230px"
     },
     "12": {
-      "value": "615px"
+      "value": "320px"
+    },
+    "13": {
+      "value": "440px"
+    },
+    "14": {
+      "value": "600px"
     }
   }
 }

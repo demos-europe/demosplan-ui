@@ -21,6 +21,7 @@ const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
 
 module.exports = {
   content: [
+    './tokens/*.mdx',
     './src/components/**/*.{js,vue}',
     './src/directives/**/*.js'
   ],

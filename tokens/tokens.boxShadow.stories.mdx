@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Box Shadow"/>
 
@@ -6,12 +7,15 @@ import { Meta } from '@storybook/addon-docs'
 
 The BoxShadow tokens add shadow effects around an element's frame.
 
-| SCSS Variable      | Tailwind Class | Description                                                                                                  |
-|--------------------|----------------|--------------------------------------------------------------------------------------------------------------|
-| `$dp-box-shadow`   | `.shadow`      | Default elevation. Use for Cards + Buttons.                                                                 |
-| `$dp-box-shadow-md`| `.shadow-md`   | Medium elevation. Use for Elevated Cards + Buttons.                                                         |
-| `$dp-box-shadow-lg`| `.shadow-lg`   | Highest elevation. Use for Modals.                                                                          |
-| `$dp-box-shadow-xl`| `.shadow-xl`   | Extra shadow optimized for boxes that take up 100% width or height of viewport. Use e.g. for Sidebar, BottomBar. |
+<Table
+  headers={['Scss Variable', 'Tailwind Class', 'Description']}
+  rows={[
+    ["$dp-box-shadow", ".shadow", "Default elevation. Use for Cards + Buttons."],
+    ["$dp-box-shadow-md", ".shadow-md", "Medium elevation. Use for Elevated Cards + Buttons."],
+    ["$dp-box-shadow-lg", ".shadow-lg", "Highest elevation. Use for Modals."],
+    ["$dp-box-shadow-xl", ".shadow-xl", "Extra shadow optimized for boxes that take up 100% width or height of viewport. Use e.g. for Sidebar, BottomBar."]
+  ]}
+/>
 
 Detailed use cases for each can be found in the token description.
 

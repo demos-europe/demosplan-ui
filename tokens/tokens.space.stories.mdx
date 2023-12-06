@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
+
+<Meta title="Design Tokens/Space"/>
+
+# Spacing tokens
+
+Spacing tokens define the spacing scale available with demosplan-ui.
+
+<Table
+  headers={['Scss Variable', 'Tailwind Class Part', 'InuitCSS Class', 'Value']}
+  rows={[
+    ["$dp-space-0", "0", "", "0px"],
+    ["$dp-space-0_5", "0.5", "", "3px"],
+    ["$dp-space-1", "1", "$inuit-base-spacing-unit--tiny", "6px"],
+    ["$dp-space-1_5", "1.5", "", "9px"],
+    ["$dp-space-2", "2", "$inuit-base-spacing-unit--small", "12px"],
+    ["$dp-space-3", "3", "", "18px"],
+    ["$dp-space-4", "4", "$inuit-base-spacing-unit", "24px"],
+    ["$dp-space-5", "5", "", "36px"],
+    ["$dp-space-6", "6", "$inuit-base-spacing-unit--large", "48px"],
+    ["$dp-space-7", "7", "", "65px"],
+    ["$dp-space-8", "8", "", "90px"],
+    ["$dp-space-9", "9", "", "125px"],
+    ["$dp-space-10", "10", "", "170px"],
+    ["$dp-space-11", "11", "", "230px"],
+    ["$dp-space-12", "12", "", "320px"],
+    ["$dp-space-13", "13", "", "440px"],
+    ["$dp-space-14", "14", "", "600px"]
+  ]}
+/>
+
+<ul className="list-none space-y-2 shadow p-2 inline-block">
+  <li className="w-0 bg-blue-500">0</li>
+  <li className="w-px bg-blue-500">px</li>
+  <li className="w-0.5 bg-blue-500">0.5</li>
+  <li className="w-1 bg-blue-500">1</li>
+  <li className="w-1.5 bg-blue-500">1.5</li>
+  <li className="w-2 bg-blue-500">2</li>
+  <li className="w-3 bg-blue-500">3</li>
+  <li className="w-4 bg-blue-500">4</li>
+  <li className="w-5 bg-blue-500">5</li>
+  <li className="w-6 bg-blue-500">6</li>
+  <li className="w-7 bg-blue-500">7</li>
+  <li className="w-8 bg-blue-500">8</li>
+  <li className="w-9 bg-blue-500">9</li>
+  <li className="w-10 bg-blue-500">10</li>
+  <li className="w-11 bg-blue-500">11</li>
+  <li className="w-12 bg-blue-500">12</li>
+  <li className="w-13 bg-blue-500">13</li>
+  <li className="w-14 bg-blue-500">14</li>
+</ul>
+
+While the values `0.5` to `6` follow a linear progression with "in-betweens",
+the bigger values follow a geometric progression (each step is 1.371 x its predecessor).
+This geometric progression aims to reduce the overall number of available steps while
+ensuring each step is easily distinguishable from the others.
+
+## Usage example - Scss
+
+Spacing tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+
+```scss
+@import '@demos-europe/demosplan-ui/tokens/scss/space';
+```
+
+Then, they can be used within Scss code:
+
+```scss
+.huge-element {
+    width: $dp-space-14;
+}
+```
+
+## Usage example - Tailwind utility class
+
+As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
+They replace the default classes mentioned in the [Tailwind documentation](https://tailwindcss.com/docs/customizing-spacing).
+Instead, the custom spacing scale shown here spacing scale is inherited by the padding, margin, width, height, maxHeight,
+gap, inset, space, translate, scrollMargin, and scrollPadding core plugins of Tailwind.
+
+<div className="w-6 h-6 space-y-2 gap-1.5 bg-blue-500">
+  Css is awesome.
+</div>

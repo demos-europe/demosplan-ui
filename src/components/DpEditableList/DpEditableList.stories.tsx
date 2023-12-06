@@ -13,7 +13,7 @@ const meta: Meta<typeof DpEditableList> = {
                 formFields: {
                     item: ''
                 },
-                entries: args.entries,
+                entries: args['entries'],
                 itemIndex: null
             }
         },
@@ -27,9 +27,8 @@ const meta: Meta<typeof DpEditableList> = {
                 })
             },
 
-            deleteItem (index) {
+            deleteItem (index: any) {
                 this.entries.splice(index, 1)
-                this.updateExtraItems(index)
             },
 
             handleSubmit (index) {
@@ -56,7 +55,7 @@ const meta: Meta<typeof DpEditableList> = {
             },
 
             updateExtraItems (index, extraItems) {
-                this.$emit('updated', (index, extraItems))
+                this.$emit('updated', [index, extraItems])
             },
 
             updateItems (index) {

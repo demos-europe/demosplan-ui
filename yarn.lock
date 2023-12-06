@@ -801,6 +801,39 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
+"@babel/plugin-transform-react-display-name@^7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-display-name/-/plugin-transform-react-display-name-7.23.3.tgz#70529f034dd1e561045ad3c8152a267f0d7b6200"
+  integrity sha512-GnvhtVfA2OAtzdX58FJxU19rhoGeQzyVndw3GgtdECQvQFXPEZIOVULHVZGAYmOgmqjXpVpfocAbSjh99V/Fqw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-react-jsx-development@^7.22.5":
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.22.5.tgz#e716b6edbef972a92165cd69d92f1255f7e73e87"
+  integrity sha512-bDhuzwWMuInwCYeDeMzyi7TaBgRQei6DqxhbyniL7/VG4RSS7HtSL2QbY4eESy1KJqlWt8g3xeEBGPuo+XqC8A==
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.22.5"
+
+"@babel/plugin-transform-react-jsx@^7.22.15", "@babel/plugin-transform-react-jsx@^7.22.5":
+  version "7.23.4"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.23.4.tgz#393f99185110cea87184ea47bcb4a7b0c2e39312"
+  integrity sha512-5xOpoPguCZCRbo/JeHlloSkTA8Bld1J/E1/kLfD1nsuiW1m8tduTA1ERCgIZokDflX/IBzKcqR3l7VlRgiIfHA==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.22.5"
+    "@babel/helper-module-imports" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/plugin-syntax-jsx" "^7.23.3"
+    "@babel/types" "^7.23.4"
+
+"@babel/plugin-transform-react-pure-annotations@^7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.23.3.tgz#fabedbdb8ee40edf5da96f3ecfc6958e3783b93c"
+  integrity sha512-qMFdSS+TUhB7Q/3HVPnEdYJDQIk57jkntAwSuz9xfSE4n+3I+vHYCli3HoHawN1Z3RfCz/y1zXA/JXjG6cVImQ==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.22.5"
+    "@babel/helper-plugin-utils" "^7.22.5"
+
 "@babel/plugin-transform-regenerator@^7.23.3":
   version "7.23.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-regenerator/-/plugin-transform-regenerator-7.23.3.tgz#141afd4a2057298602069fce7f2dc5173e6c561c"
@@ -997,6 +1030,18 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
+"@babel/preset-react@^7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.23.3.tgz#f73ca07e7590f977db07eb54dbe46538cc015709"
+  integrity sha512-tbkHOS9axH6Ysf2OUEqoSZ6T3Fa2SrNH6WTWSPBboxKzdxNc9qOICeLXkNG0ZEwbQ1HY8liwOce4aN/Ceyuq6w==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/helper-validator-option" "^7.22.15"
+    "@babel/plugin-transform-react-display-name" "^7.23.3"
+    "@babel/plugin-transform-react-jsx" "^7.22.15"
+    "@babel/plugin-transform-react-jsx-development" "^7.22.5"
+    "@babel/plugin-transform-react-pure-annotations" "^7.23.3"
+
 "@babel/preset-typescript@^7.13.0", "@babel/preset-typescript@^7.21.4", "@babel/preset-typescript@^7.23.0":
   version "7.23.3"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.23.3.tgz#14534b34ed5b6d435aa05f1ae1c5e7adcc01d913"
@@ -1056,7 +1101,7 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/types@^7.0.0", "@babel/types@^7.20.7", "@babel/types@^7.21.4", "@babel/types@^7.22.15", "@babel/types@^7.22.19", "@babel/types@^7.22.5", "@babel/types@^7.23.0", "@babel/types@^7.23.5", "@babel/types@^7.3.3", "@babel/types@^7.4.4", "@babel/types@^7.6.1", "@babel/types@^7.9.6":
+"@babel/types@^7.0.0", "@babel/types@^7.20.7", "@babel/types@^7.21.4", "@babel/types@^7.22.15", "@babel/types@^7.22.19", "@babel/types@^7.22.5", "@babel/types@^7.23.0", "@babel/types@^7.23.4", "@babel/types@^7.23.5", "@babel/types@^7.3.3", "@babel/types@^7.4.4", "@babel/types@^7.6.1", "@babel/types@^7.9.6":
   version "7.23.5"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.23.5.tgz#48d730a00c95109fa4393352705954d74fb5b602"
   integrity sha512-ON5kSOJwVO6xXVRTvOI0eOnWe7VdUcIpsovGo9U/Br4Ie4UVFQTboO2cYnDhAGU6Fp+UxSiT+pMft0SMHfuq6w==

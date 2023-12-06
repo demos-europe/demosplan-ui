@@ -55,7 +55,7 @@ import DpTooltip from './DpTooltip'
 import DpTooltipIcon from './DpTooltipIcon'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
-import DpUploadFiles from './DpUploadFiles/DpUploadFiles'
+import DpUploadFiles from './DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
 
 export {

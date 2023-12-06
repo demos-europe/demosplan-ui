@@ -1,4 +1,5 @@
 import React from 'react'
+
 const Table = ({headers, rows}) => (
   <table>
     <thead>
@@ -19,4 +20,5 @@ const Table = ({headers, rows}) => (
     </tbody>
   </table>
 )
+
 export default Table

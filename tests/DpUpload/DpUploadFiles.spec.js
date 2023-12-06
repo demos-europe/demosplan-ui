@@ -1,4 +1,4 @@
-import DpUploadFiles from '~/components/DpUploadFiles/DpUploadFiles'
+import DpUploadFiles from '~/components/DpUploadFiles'
 import { shallowMount } from '@vue/test-utils'
 
 

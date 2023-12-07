@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#668](https://github.com/demos-europe/demosplan-ui/pull/668)) Consolidate spacing tokens, add them to Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Fixed
 
 - ([#664](https://github.com/demos-europe/demosplan-ui/pull/664)) Fixes prod build due to typescript errors ([@muellerdemos](https://github.com/muellerdemos))

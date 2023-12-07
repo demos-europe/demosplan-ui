@@ -13,7 +13,7 @@ const Table = ({headers, rows}) => (
     {rows.map((row, rowIndex) => (
       <tr key={rowIndex}>
         {row.map((cell, cellIndex) => (
-          <td className={headers[cellIndex] !== 'Description' ? 'whitespace-nowrap' : '-'} key={cellIndex}>{cell}</td>
+          <td className={headers[cellIndex] !== 'Description' ? 'whitespace-nowrap' : null} key={cellIndex}>{cell}</td>
         ))}
       </tr>
     ))}

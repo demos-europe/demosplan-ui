@@ -9,7 +9,6 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-mdx-gfm",
     ({
       name: "@storybook/addon-styling-webpack",
       options: {

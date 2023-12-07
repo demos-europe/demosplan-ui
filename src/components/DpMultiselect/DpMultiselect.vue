@@ -36,12 +36,16 @@
       @search-change="newVal => $emit('search-change', newVal)"
       @select="newVal => $emit('select', newVal)"
       @tag="newVal => $emit('tag', newVal)">
-      <template v-slot:noResult>
-        {{ Translator.trans('autocomplete.noResults') }}
+      <template v-slot:noOptions>
+        <slot name="noOptions">
+          {{ Translator.trans('explanation.noentries') }}
+        </slot>
       </template>
 
-      <template v-slot:noOptions>
-        {{ Translator.trans('explanation.noentries') }}
+      <template v-slot:noResult>
+        <slot name="noResult">
+          {{ Translator.trans('autocomplete.noResults') }}
+        </slot>
       </template>
 
       <template
@@ -57,23 +61,27 @@
       <template
         v-if="selectionControls"
         v-slot:beforeList="props">
-        <div class="border-bottom">
-          <button
-            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === options.length === 0"
-            type="button"
-            v-text="translations.selectAll"
-            @click="$emit('select-all')">
-          </button>
+        <slot
+          name="beforeList"
+          :props="props">
+          <div class="border-bottom">
+            <button
+                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+                :disabled="value.length === options.length === 0"
+                type="button"
+                v-text="translations.selectAll"
+                @click="$emit('select-all')">
+            </button>
 
-          <button
-            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === 0"
-            type="button"
-            v-text="translations.deselectAll"
-            @click="$emit('unselect-all')">
-          </button>
-        </div>
+            <button
+                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+                :disabled="value.length === 0"
+                type="button"
+                v-text="translations.deselectAll"
+                @click="$emit('unselect-all')">
+            </button>
+          </div>
+        </slot>
       </template>
     </vue-multiselect>
   </div>

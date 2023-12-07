@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpFormRow from './'
-import DpSelect from '~/components/DpSelect'
+import { DpFormRow, DpSelect } from '~/components'
 
 const meta: Meta<typeof DpFormRow> = {
     component: DpFormRow,

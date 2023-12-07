@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs'
+import DpEditableList from './'
+
+<Meta
+    title="Components/EditableList"
+    component={DpEditableList}
+/>
+
+# EditableList
+
+The EditableList component used to enable users to add, remove, or modify items within a list,
+such as a to-do list, a list of contacts, or any other type of data.
+
+The component might include features like inline editing, or buttons for adding and removing items.
+
+## Custom usage
+
+```html
+<dp-editable-list
+    :entries="args.entries"
+    v-bind="args">
+    <template v-slot:list="entry">
+        <span>
+          {{ entry.mail }}
+          <input
+              class="hide-visually"
+              type="email"
+              :value="entry.mail">
+        </span>
+    </template>
+    <template v-slot:form="entry">
+      <input
+          id="emailAddress"
+          type="email"
+          v-model="entry.mail"/>
+    </template>
+</dp-editable-list>
+```

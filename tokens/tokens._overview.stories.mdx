@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Overview"/>
 
@@ -34,11 +35,15 @@ Tokens are made up of the following scheme:
 Tokens can be utilized through Tailwind Utility Classes and SCSS Variables. As we're currently migrating to Tailwind,
 not all tokens are already available as Tailwind classes.
 
-| Token          | SCSS Variable  | Tailwind Utility Class |
-|----------------|----------------|------------------------|
-| Box Shadow     |       ✔        |          ✔             |
-| Breakpoints    |       ✔        |          ✔             |
-| Color          |       ✔        |                        |
-| Font Size      |       ✔        |                        |
-| Border Radius  |       ✔        |          ✔             |
-| Z-Index        |       ✔        |          ✔             |
+<Table
+  headers={['Token', 'Scss Variable', 'Tailwind Utility Class']}
+  rows={[
+    ["Border Radius", "✔", "✔"],
+    ["Box Shadow", "✔", "✔"],
+    ["Breakpoints", "✔", "✔"],
+    ["Color", "✔", ""],
+    ["Font Size", "✔", ""],
+    ["Space", "✔", "✔"],
+    ["Z-Index", "✔", "✔"]
+  ]}
+/>

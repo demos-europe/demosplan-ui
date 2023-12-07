@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Rounded"/>
 
@@ -7,14 +8,17 @@ import { Meta } from '@storybook/addon-docs'
 
 These tokens define the way things may be rounded in demosplan.
 
-| SCSS Variable         | Tailwind Class   | Description                                                                                                                                                            |
-|-----------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$dp-rounded-full`    | `rounded-full`   | Full - use to craft pill-like elements.                                                                                                                                |
-| `$dp-rounded-lg`      | `rounded-lg`     | Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via `rounded.DEFAULT`. |
-| `$dp-rounded-md`      | `rounded-md`     | Medium - The "next best" radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded.                          |
-| `$dp-rounded-default` | `rounded`        | Default - The standard for UI elements that shall appear rounded. Use this value for form elements and other smaller UI elements. When in doubt, pick this one.        |
-| `$dp-rounded-sm`      | `rounded-sm`     | Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have `rounded.DEFAULT` applied as border-radius.                |
-| `$dp-rounded-none`    | `rounded-none`   | No border radius.                                                                                                                                                      |
+<Table
+  headers={['Scss Variable', 'Tailwind Class', 'Description']}
+  rows={[
+    ["$dp-rounded-full", "rounded-full", "Full - use to craft pill-like elements."],
+    ["$dp-rounded-lg", "rounded-lg", "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via `rounded.DEFAULT`."],
+    ["$dp-rounded-md", "rounded-md", "Medium - The 'next best' radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded."],
+    ["$dp-rounded-default", "rounded", "Default - The standard for UI elements that shall appear rounded. Use this value for form elements and other smaller UI elements. When in doubt, pick this one."],
+    ["$dp-rounded-sm", "rounded-sm", "Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have `rounded.DEFAULT` applied as border-radius."],
+    ["$dp-rounded-none", "rounded-none", "No border radius."]
+  ]}
+/>
 
 ## Usage example - Scss
 
@@ -43,5 +47,5 @@ As Tailwind is configured with these variables, too, they can be used as tailwin
 ```html
 <div class="rounded-sm">
   I'm just a little label in a big world.
-</div
+</div>
 ```

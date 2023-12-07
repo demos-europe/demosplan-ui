@@ -1,7 +1,7 @@
 
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
-import DpObscure from '~/components/core/DpObscure.vue'
+import DpObscure from '~/components/DpObscure'
 
 /* Mock hasPermission for the sake of testing */
 // TODO: hasPermission should probably live in the webpack world

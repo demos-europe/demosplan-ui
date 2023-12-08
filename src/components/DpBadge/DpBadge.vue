@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`rounded-sm ${colorClasses} ${sizeClasses} badge`"
+    :class="`rounded ${colorClasses} ${sizeClasses} badge`"
     v-text="text" />
 </template>
 

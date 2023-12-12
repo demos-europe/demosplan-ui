@@ -21,15 +21,16 @@
 
 <script>
 import { attributes, length } from '~/shared'
+import { defineAsyncComponent } from 'vue'
 import { maxlengthHint } from '~/utils'
 
 export default {
   name: 'DpTextArea',
 
   components: {
-    DpLabel: async () => {
+    DpLabel: defineAsyncComponent(async () => {
       return await import('../DpLabel/DpLabel')
-    }
+    })
   },
 
   props: {

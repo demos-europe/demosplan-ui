@@ -4,6 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.3 - 2023-12-11
+
+### Changed
+
+- ([#674](https://github.com/demos-europe/demosplan-ui/pull/674)) use Tailwind class instead of demosplan-core class
+
+### Fixed
+
+- ([#673](https://github.com/demos-europe/demosplan-ui/pull/673)) lock style-dictionary at 3.8.0
+
 ## v0.3.2 - 2023-12-08
 
 ### Changed

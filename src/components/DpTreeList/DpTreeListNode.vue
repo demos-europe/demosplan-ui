@@ -1,6 +1,7 @@
 <template>
   <li
     class="border--top relative"
+    :id="nodeId"
     data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
@@ -64,8 +65,7 @@
       :is-draggable="hasDraggableChildren"
       :node-id="nodeId"
       :on-move="onMove"
-      :opts="options.draggable"
-      v-model="tree">
+      :opts="options.draggable">
       <dp-tree-list-node
         v-for="child in children"
         v-show="true === isExpanded"

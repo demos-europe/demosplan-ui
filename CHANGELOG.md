@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#686](https://github.com/demos-europe/demosplan-ui/pull/686)) **breaking** add checkResponse to doRequest,
+  so it gets called every time a api request is fired.
+  It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
+
 ### Fixed
 
 - ([#685](https://github.com/demos-europe/demosplan-ui/pull/685)) Adjust internal imports to resolve properly

@@ -47,7 +47,10 @@
 
 <script>
 import { de } from '../shared/translations'
-import { DpButtonRow, DpCheckbox, DpInput, DpModal } from '~/components'
+import DpButtonRow from '~/components/DpButtonRow'
+import DpCheckbox from '~/components/DpCheckbox'
+import DpInput from '~/components/DpInput'
+import DpModal from '~/components/DpModal'
 import { dpValidateMixin } from '../../mixins'
 
 export default {

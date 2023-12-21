@@ -54,7 +54,9 @@
 
 <script>
 import { de } from '../shared/translations'
-import { DpInput, DpModal, DpUploadFiles } from '~/components'
+import DpInput from '~/components/DpInput'
+import DpModal from '~/components/DpModal'
+import DpUploadFiles from '~/components/DpUploadFiles'
 
 export default {
   name: 'DpUploadModal',

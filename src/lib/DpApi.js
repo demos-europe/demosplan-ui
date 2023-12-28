@@ -54,7 +54,7 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
   try {
     const response = await fetch(url, payload)
-    const content = await response.json()
+    const content = response.status === 204 ? null : await response.json()
 
     return {
       data: content,

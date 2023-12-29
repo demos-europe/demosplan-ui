@@ -54,12 +54,16 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
   try {
     const response = await fetch(url, payload)
-    const content = response.status === 204 ? null : await response.json()
+    const contentTypeHeader = response.headers.get('Content-Type')
+    const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
+    const content = contentType.includes('json') ? await response.json() : null
 
     return {
       data: content,
       status: response.status,
-      ok: response.ok
+      ok: response.ok,
+      statusText: response.statusText,
+      url: response.url
     }
   } catch (error) {
     console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)

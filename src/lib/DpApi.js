@@ -74,11 +74,11 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
 const dpApi = doRequest
 
-dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'get', url, params, options })
-dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
-dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
-dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'delete', url, params, options })
+dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'POST', url, data, params, options })
+dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'GET', url, params, options })
+dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PUT', url, data, params, options })
+dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PATCH', url, data, params, options })
+dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'DELETE', url, params, options })
 
 /**
  * Do a JsonRpc call.

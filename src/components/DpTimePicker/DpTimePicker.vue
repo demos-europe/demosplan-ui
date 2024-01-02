@@ -12,7 +12,7 @@
       v-if="!isMobileDevice"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
-      class="w-9"
+      class="w-8"
       button-variant="small"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
@@ -26,7 +26,7 @@
     <dp-input
       v-else
       :id="`timeInput:${id}`"
-      class="w-9"
+      class="w-8"
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"

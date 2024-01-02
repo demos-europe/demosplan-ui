@@ -34,7 +34,7 @@
           hint: translations.altTextHint,
           text: translations.altText,
         }" />
-      <div class="u-mt text--right width-100p space-inline-s">
+      <div class="u-mt text--right w-full space-inline-s">
         <button
           class="btn btn--primary"
           type="button"

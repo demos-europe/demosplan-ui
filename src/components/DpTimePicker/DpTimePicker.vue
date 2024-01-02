@@ -12,7 +12,7 @@
       v-if="!isMobileDevice"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
-      class="width-100"
+      class="w-9"
       button-variant="small"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
@@ -26,7 +26,7 @@
     <dp-input
       v-else
       :id="`timeInput:${id}`"
-      class="width-100"
+      class="w-9"
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"
@@ -38,7 +38,7 @@
       class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
       :class="{ 'hidden': !showFlyout }"
       tabindex="0">
-      <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll height-130">
+      <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll h-9">
         <li
           v-for="hour in availableHours"
           :key="`${id}:hour:${hour}`"
@@ -55,7 +55,7 @@
         </li>
       </ul>
       <ul
-        class="u-m-0_25 height-130"
+        class="u-m-0_25 h-9"
         :class="minutes.length > 5 ? 'overflow-y-scroll' : ''">
         <li
           v-for="minute in availableMinutes"

@@ -9,7 +9,7 @@
       :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
       class="btn--blank o-link--default text-left">
       <i
-        class="width-s fa"
+        class="w-2 fa"
         :class="{'fa-caret-right': !isVisible, 'fa-caret-down': isVisible}"
         aria-hidden="true" />
       <span :class="compressed ? 'font-size-medium' : 'o-accordion--title'">{{ title }}</span>

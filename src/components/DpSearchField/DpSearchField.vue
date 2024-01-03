@@ -1,5 +1,5 @@
 <template>
-  <span :class="{ 'inline-block width-100p': inputWidth !== ''}">
+  <span :class="{ 'inline-block w-full': inputWidth !== ''}">
     <dp-resettable-input
       id="searchField"
       data-cy="searchField"

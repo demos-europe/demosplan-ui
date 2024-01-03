@@ -99,7 +99,7 @@ export default {
         locale: 'DE-de',
         dateFormat: 'dd.mm.yyyy',
         id: this.id,
-        inputClass: 'o-form__control-input width-100p'
+        inputClass: 'o-form__control-input w-full'
       }
     }
   },

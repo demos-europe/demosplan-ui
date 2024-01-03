@@ -6,7 +6,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
+- ([#690](https://github.com/demos-europe/demosplan-ui/pull/690)) DpApi method: handles cases where the response does not contain content and cannot be parsed as JSON ([@sakutademos](https://github.com/sakutademos))
 - ([#685](https://github.com/demos-europe/demosplan-ui/pull/685)) Adjust internal imports to resolve properly
+
+### Changed
+
+- ([#693](https://github.com/demos-europe/demosplan-ui/pull/693)) Use Tailwind utility classes for width and height
+
 
 ## v0.3.3 - 2023-12-11
 

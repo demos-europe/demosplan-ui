@@ -2,7 +2,7 @@
   <div>
     <select
       :id="selectId"
-      class="o-form__control-select width-auto u-mr-0_25"
+      class="o-form__control-select w-auto u-mr-0_25"
       @change="e => $emit('changed-count', parseInt(e.target.value))">
       <option
         v-for="option in pageCountOptions"

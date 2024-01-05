@@ -12,11 +12,23 @@ import { ref } from 'vue'
 
 const wrapper = ref<HTMLElement | null>(null)
 const list = ref([])
+
 const emit = defineEmits(
-  ['add']
+  [
+    'add',
+    'end'
+  ]
 )
 
 const props = defineProps({
+  /*
+     * Content you want to display in the draggable.
+     */
+  contentData: {
+    type: Array,
+    required: true
+  },
+
   /*
    * Set to true if items should be draggable between different lists
    */
@@ -99,15 +111,22 @@ const props = defineProps({
   }
 })
 
+list.value = props.contentData
+
 useSortable(
   wrapper,
   list,
   {
     disabled: !props.isDraggable,
     group: props.dragAcrossBranches ? 'treelistgroup' : props.groupId,
-    onChange: (e: Event) => { props.handleChange(e, props.nodeId, wrapper)},
+    onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
-    onEnd: (e: Event) => props.handleDrag('end', e),
+    onEnd: (e) => {
+      props.handleDrag('end', e)
+
+      const currentElement = list.value[e.oldIndex]
+      emit('end', e, currentElement)
+    },
     onMove: (e: Event) => props.onMove(e),
     onStart: (e: Event) => props.handleDrag('start', e),
     ...props.opts

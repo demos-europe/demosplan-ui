@@ -19,21 +19,21 @@ const apiDefaultHeaders = {
 }
 
 const api2defaultHeaders = {
-  Accept: 'application/vnd.api+json',
+  'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken
 }
 
-const getHeaders = function (params) {
-  const headers = params.url.includes('api/2.0/')
-    ? new Headers({ ...api2defaultHeaders, ...params.headers })
-    : new Headers({ ...apiDefaultHeaders, ...params.headers })
+const demosplanProcedureHeaders = {
+  'X-Demosplan-Procedure-Id': currentProcedureId
+}
 
-  // Add current procedure id only if set
-  if (currentProcedureId !== null) {
-    headers.append('X-Demosplan-Procedure-Id', currentProcedureId)
+const getHeaders = function ({ headers, url }) {
+  return {
+    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
+    ...headers
   }
-  return headers
 }
 
 const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
@@ -45,7 +45,11 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
   }
 
   if (method.toUpperCase() !== 'GET') {
-    payload.body = JSON.stringify(data)
+    if (data instanceof FormData) {
+      payload.body = data
+    } else {
+      payload.body = JSON.stringify(data)
+    }
   } else if (options.serialize === true) {
     delete payload.options.serialize
 
@@ -112,7 +116,7 @@ const dpRpc = function (method, parameters, id = null) {
     data,
     params: {
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     }
   })
@@ -202,7 +206,7 @@ function makeFormPost (payload, url) {
   }
 
   return dpApi({
-    method: 'post',
+    method: 'POST',
     url: url,
     data: postData,
     headers: { 'Content-Type': 'multipart/form-data' }

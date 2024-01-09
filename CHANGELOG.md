@@ -10,7 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Send DpApi request headers in uppercase format ([@spiess-demos](https://github.com/spiess-demos))
+- ([#706](https://github.com/demos-europe/demosplan-ui/pull/706)) Send DpApi request headers in uppercase format ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.4 - 2024-01-05
 

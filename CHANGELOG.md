@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.4 - 2024-01-09
+
 ### Fixed
 
 - ([#703](https://github.com/demos-europe/demosplan-ui/pull/703)) Don't stringify form data for post requests ([@gruenbergerdemos](https://github.com/gruenbergerdemos))

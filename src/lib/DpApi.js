@@ -19,21 +19,21 @@ const apiDefaultHeaders = {
 }
 
 const api2defaultHeaders = {
-  Accept: 'application/vnd.api+json',
+  'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken
 }
 
-const getHeaders = function (params) {
-  const headers = params.url.includes('api/2.0/')
-    ? new Headers({ ...api2defaultHeaders, ...params.headers })
-    : new Headers({ ...apiDefaultHeaders, ...params.headers })
+const demosplanProcedureHeaders = {
+  'X-Demosplan-Procedure-Id': currentProcedureId
+}
 
-  // Add current procedure id only if set
-  if (currentProcedureId !== null) {
-    headers.append('X-Demosplan-Procedure-Id', currentProcedureId)
+const getHeaders = function ({ headers, url }) {
+  return {
+    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
+    ...headers
   }
-  return headers
 }
 
 const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
@@ -116,7 +116,7 @@ const dpRpc = function (method, parameters, id = null) {
     data,
     params: {
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     }
   })

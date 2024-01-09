@@ -45,7 +45,11 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
   }
 
   if (method.toUpperCase() !== 'GET') {
-    payload.body = JSON.stringify(data)
+    if (data instanceof FormData) {
+      payload.body = data
+    } else {
+      payload.body = JSON.stringify(data)
+    }
   } else if (options.serialize === true) {
     delete payload.options.serialize
 
@@ -202,7 +206,7 @@ function makeFormPost (payload, url) {
   }
 
   return dpApi({
-    method: 'post',
+    method: 'POST',
     url: url,
     data: postData,
     headers: { 'Content-Type': 'multipart/form-data' }

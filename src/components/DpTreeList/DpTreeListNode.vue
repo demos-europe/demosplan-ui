@@ -58,6 +58,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
+      :content-data="draggable ? children : null"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"

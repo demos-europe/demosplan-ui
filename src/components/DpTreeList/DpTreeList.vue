@@ -31,6 +31,7 @@
       ref="treeList"
       :drag-across-branches="opts.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
+      :content-data="draggable ? treeData : null"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
@@ -232,12 +233,17 @@ export default {
 
     /**
      * Set `dragging` to true if called via `start` event of draggable, else to false.
-     * @param eventType
-     * @param e
+     * @param eventType {String} 'start' | 'end'
+     * @param event {Event}
+     * @param item {Object}
+     * @param item.attributes {Object}
+     * @param item.id {String}
+     * @param item.type {String}
+     * @param parentId {String}
      * @emits <start|end>
      */
-    handleDrag (eventType, e) {
-      this.$emit(eventType, e)
+    handleDrag (eventType, event, item, parentId) {
+      this.$emit(eventType, event, item, parentId)
       this.dragging = (eventType === 'start')
     },
 

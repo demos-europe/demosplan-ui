@@ -122,10 +122,10 @@ useSortable(
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {
-      props.handleDrag('end', e)
-
       const currentElement = list.value[e.oldIndex]
-      emit('end', e, currentElement)
+
+      props.handleDrag('end', e, currentElement, props.nodeId)
+      emit('end', e, currentElement, props.nodeId)
     },
     onMove: (e: Event) => props.onMove(e),
     onStart: (e: Event) => props.handleDrag('start', e),

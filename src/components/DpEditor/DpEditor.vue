@@ -271,7 +271,7 @@
             <button
               v-if="toolbar.fullscreenButton"
               @click="fullscreen"
-              :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float--right')]"
+              :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
               type="button"
               :aria-label="Translator.trans('editor.fullscreen')"
               v-tooltip="Translator.trans('editor.fullscreen')">

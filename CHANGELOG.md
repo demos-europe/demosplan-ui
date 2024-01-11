@@ -10,6 +10,18 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   so it gets called every time a api request is fired.
   It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
 
+## v0.3.5 - 2024-01-09
+
+### Fixed
+
+- ([#703](https://github.com/demos-europe/demosplan-ui/pull/703)) Don't stringify form data for post requests ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+
+- ([#706](https://github.com/demos-europe/demosplan-ui/pull/706)) Send DpApi request headers in uppercase format ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.4 - 2024-01-05
+
 ### Fixed
 
 - ([#690](https://github.com/demos-europe/demosplan-ui/pull/690)) DpApi method: handles cases where the response does not contain content and cannot be parsed as JSON ([@sakutademos](https://github.com/sakutademos))

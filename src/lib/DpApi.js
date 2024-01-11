@@ -213,4 +213,4 @@ function makeFormPost (payload, url) {
   })
 }
 
-export { dpApi, handleResponseMessages, checkResponse, dpRpc, makeFormPost, externalApi }
+export { dpApi, handleResponseMessages, dpRpc, makeFormPost, externalApi }

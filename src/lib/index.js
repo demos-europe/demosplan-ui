@@ -1,4 +1,4 @@
-import { checkResponse, dpApi, dpRpc, externalApi, handleResponseMessages, makeFormPost } from './DpApi'
+import { dpApi, dpRpc, externalApi, handleResponseMessages, makeFormPost } from './DpApi'
 import { convertSize, getFileInfo, getFileTypes, mimeTypes } from './FileInfo'
 import { highlightActiveLinks } from './HighlightHashLink'
 import ActionMenu from './ActionMenu'
@@ -13,7 +13,6 @@ import TableWrapper from './TableWrapper'
 
 export {
   ActionMenu,
-  checkResponse,
   Confirm,
   convertSize,
   Detabinator,

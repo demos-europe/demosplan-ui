@@ -27,6 +27,10 @@ StyleDictionary.registerTransform({
     if (token.path[0] === 'z-index') {
       token.path[0] = 'z'
     }
+    // Scss does not like variable names with dots in them, but Tailwind does, apparently.
+    if (token.path[0] === 'space') {
+      token.path[1] = token.path[1].replace('.', '_')
+    }
     // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
     if (token.path[1] === 'DEFAULT') {
       token.path.splice(1, 1)

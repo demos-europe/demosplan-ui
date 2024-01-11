@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Breakpoints"/>
 
@@ -6,12 +7,15 @@ import { Meta } from '@storybook/addon-docs'
 
 The following breakpoints are available:
 
-| SCSS Variable           | Tailwind Class  | Value  |
-|-------------------------|-----------------|--------|
-| `$dp-breakpoints-sm`    | `sm:`           | 620px  |
-| `$dp-breakpoints-md`    | `md:`           | 904px  |
-| `$dp-breakpoints-lg`    | `lg:`           | 1200px |
-| `$dp-breakpoints-xl`    | `xl:`           | 1400px |
+<Table
+  headers={['Scss Variable', 'Tailwind Class', 'Value']}
+  rows={[
+    ["$dp-breakpoints-sm", "sm:", "620px"],
+    ["$dp-breakpoints-md", "md:", "904px"],
+    ["$dp-breakpoints-lg", "lg:", "1200px"],
+    ["$dp-breakpoints-xl", "xl:", "1400px"]
+  ]}
+/>
 
 ## Usage example - Scss
 

@@ -19,21 +19,21 @@ const apiDefaultHeaders = {
 }
 
 const api2defaultHeaders = {
-  Accept: 'application/vnd.api+json',
+  'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken
 }
 
-const getHeaders = function (params) {
-  const headers = params.url.includes('api/2.0/')
-    ? new Headers({ ...api2defaultHeaders, ...params.headers })
-    : new Headers({ ...apiDefaultHeaders, ...params.headers })
+const demosplanProcedureHeaders = {
+  'X-Demosplan-Procedure-Id': currentProcedureId
+}
 
-  // Add current procedure id only if set
-  if (currentProcedureId !== null) {
-    headers.append('X-Demosplan-Procedure-Id', currentProcedureId)
+const getHeaders = function ({ headers, url }) {
+  return {
+    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
+    ...headers
   }
-  return headers
 }
 
 const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
@@ -45,7 +45,11 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
   }
 
   if (method.toUpperCase() !== 'GET') {
-    payload.body = JSON.stringify(data)
+    if (data instanceof FormData) {
+      payload.body = data
+    } else {
+      payload.body = JSON.stringify(data)
+    }
   } else if (options.serialize === true) {
     delete payload.options.serialize
 
@@ -54,12 +58,20 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
   try {
     const response = await fetch(url, payload)
-    const content = await response.json()
+    const contentTypeHeader = response.headers.get('Content-Type')
+    const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
+    const content = contentType.includes('json')
+      ? await response.json()
+      : contentType.includes('text')
+      ? await response.text()
+      : null
 
     return {
       data: content,
       status: response.status,
-      ok: response.ok
+      ok: response.ok,
+      statusText: response.statusText,
+      url: response.url
     }
   } catch (error) {
     console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)
@@ -74,11 +86,11 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
 const dpApi = doRequest
 
-dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'get', url, params, options })
-dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
-dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
-dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'delete', url, params, options })
+dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'POST', url, data, params, options })
+dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'GET', url, params, options })
+dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PUT', url, data, params, options })
+dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PATCH', url, data, params, options })
+dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'DELETE', url, params, options })
 
 /**
  * Do a JsonRpc call.
@@ -104,7 +116,7 @@ const dpRpc = function (method, parameters, id = null) {
     data,
     params: {
       headers: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     }
   })
@@ -194,7 +206,7 @@ function makeFormPost (payload, url) {
   }
 
   return dpApi({
-    method: 'post',
+    method: 'POST',
     url: url,
     data: postData,
     headers: { 'Content-Type': 'multipart/form-data' }

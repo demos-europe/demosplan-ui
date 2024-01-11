@@ -66,10 +66,16 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
       ? await response.text()
       : null
 
-    return {
+    const returnData = await checkResponse({
       data: content,
-      status: response.status,
       ok: response.ok,
+      status: response.status
+    }, options.messages || null)
+
+    return {
+      data: returnData,
+      ok: response.ok,
+      status: response.status,
       statusText: response.statusText,
       url: response.url
     }
@@ -173,7 +179,9 @@ const checkResponse = function (response, messages) {
        */
     } else if (dplan !== undefined && dplan.debug && hasOwnProp(response, 'errors') && hasOwnProp(response, 'meta') && hasOwnProp(response.meta, 'messages')) {
       handleResponseMessages(response.meta)
-    } else if (messages && hasOwnProp(messages, response.status)) {
+    }
+
+    if (messages && hasOwnProp(messages, response.status)) {
       /*
        * The generic api (/api/2.0/{resourceType}) does not specify success messages.
        * Instead, custom messages passed by the calling component are displayed here.
@@ -182,7 +190,7 @@ const checkResponse = function (response, messages) {
     }
 
     if (response.status >= 400) {
-      // @improve handle 404, 500 specially?
+      // handle error cases
       reject(response.data)
     } else if (response.status === 200) {
       // Got data!

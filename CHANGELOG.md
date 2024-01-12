@@ -4,22 +4,52 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.5 - 2024-01-09
+
 ### Fixed
 
-- ([#664](https://github.com/demos-europe/demosplan-ui/pull/664)) Fixes prod build due to typescript errors ([@muellerdemos](https://github.com/muellerdemos))
+- ([#703](https://github.com/demos-europe/demosplan-ui/pull/703)) Don't stringify form data for post requests ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
-## v0.3.2 - 2023-12-05
+### Changed
+
+- ([#706](https://github.com/demos-europe/demosplan-ui/pull/706)) Send DpApi request headers in uppercase format ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.4 - 2024-01-05
+
+### Fixed
+
+- ([#690](https://github.com/demos-europe/demosplan-ui/pull/690)) DpApi method: handles cases where the response does not contain content and cannot be parsed as JSON ([@sakutademos](https://github.com/sakutademos))
+- ([#685](https://github.com/demos-europe/demosplan-ui/pull/685)) Adjust internal imports to resolve properly
+
+### Changed
+
+- ([#693](https://github.com/demos-europe/demosplan-ui/pull/693)) Use Tailwind utility classes for width and height
+
+
+## v0.3.3 - 2023-12-11
+
+### Changed
+
+- ([#674](https://github.com/demos-europe/demosplan-ui/pull/674)) use Tailwind class instead of demosplan-core class
+
+### Fixed
+
+- ([#673](https://github.com/demos-europe/demosplan-ui/pull/673)) lock style-dictionary at 3.8.0
+
+## v0.3.2 - 2023-12-08
 
 ### Changed
 
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Bump @uppy/core to 3.7.0, @uppy/tus to 3.4.0, and @uppy/progress-bar to 3.0.4 ([@spiess-demos](https://github.com/spiess-demos))
 - ([#638](https://github.com/demos-europe/demosplan-ui/pull/638)) Set engine for node to the same version used in demosplan-core development setup ([@spiess-demos](https://github.com/spiess-demos))
 - ([#506](https://github.com/demos-europe/demosplan-ui/pull/506)) Replace internal from DpApi/DpRpc. Move from axios to native fetch ([@salisdemos](https://github.com/salisdemos))
+- ([#668](https://github.com/demos-europe/demosplan-ui/pull/668)) Consolidate spacing tokens, add them to Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Fixed
 
 - ([#652](https://github.com/demos-europe/demosplan-ui/pull/652)) Fix slots for DpMultiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#640](https://github.com/demos-europe/demosplan-ui/pull/640)) Fix resetContent in DpEditor ([@salisdemos](https://github.com/salisdemos))
+- ([#664](https://github.com/demos-europe/demosplan-ui/pull/664)) Fixes prod build due to typescript errors ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.3.1 - 2023-11-09
 

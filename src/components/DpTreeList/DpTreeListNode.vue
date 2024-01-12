@@ -52,7 +52,7 @@
         v-model="isExpanded" />
       <div
         v-else
-        class="min-width-25" />
+        class="min-w-4" />
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"

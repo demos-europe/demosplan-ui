@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs'
+import DpEditor from './'
+
+<Meta
+    title="Components/Editor"
+    component={DpEditor}
+/>
+
+# Editor
+
+The Editor component renders a rich text editor consisting of a menu bar supporting common editor interactions and a text field.
+
+
+Uploading images can be enabled via the imageButton prop. When using `imageButton`,
+the `routes.getFileByHash` prop must be set to an existing route which returns a file by its hash (see second example).
+
+The slot `button` can be used to add additional buttons to the toolbar.
+
+The slot `modal` can be used to add a modal component to DpEditor. The function `handleInsertText` 
+is exposed to the `modal` slot to enable the modal component to add text to the editor instance.
+
+## Default usage
+
+```html
+<dp-editor
+    v-model="values.text"
+    ref="editor">
+</dp-editor>
+```
+
+## Custom usage
+
+```html
+<dp-editor
+    :toolbar-items="{
+        fullscreenButton: true,
+        headings: [2,3,4],
+        imageButton: true,
+        insertAndDelete: true,
+        linkButton: true,
+        strikethrough: true,
+        table: true
+    }"
+    :routes="{
+        getFileByHash: (hash) => RoutingFunction(hash)
+    }"
+    :value="value">
+    <template v-slot:modal="modalProps">
+        <dp-modal
+            id="editorModal"
+            ref="editorModal"
+            @insert="text => modalProps.handleInsertText(textFromParentComponent)">
+            Add an component
+        </dp-modal>
+    </template>
+    <template v-slot:button>
+        <dp-button
+              :text="Add Text"
+              variant="subtle"
+              @click.stop="$refs.editorModal.toggle()" />
+    </template>
+</dp-editor>
+```

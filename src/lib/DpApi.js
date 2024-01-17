@@ -67,8 +67,8 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
     const content = contentType.includes('json')
         ? await response.json()
         : contentType.includes('text')
-            ? await response.text()
-            : null
+        ? await response.text()
+        : null
 
     return {
       data: content,

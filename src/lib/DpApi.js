@@ -65,10 +65,10 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
     const content = contentType.includes('json')
-        ? await response.json()
-        : contentType.includes('text')
-        ? await response.text()
-        : null
+      ? await response.json()
+      : contentType.includes('text')
+      ? await response.text()
+      : null
 
     return {
       data: content,

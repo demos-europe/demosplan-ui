@@ -31,7 +31,6 @@ const demosplanProcedureHeaders = {
   'X-Demosplan-Procedure-Id': currentProcedureId
 }
 
-
 const getHeaders = function ({ headers, url }) {
   return {
     ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),

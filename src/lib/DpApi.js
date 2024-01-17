@@ -18,7 +18,7 @@ if (typeof dplan !== 'undefined') {
 
 const apiDefaultHeaders = {
   'X-JWT-Authorization': 'Bearer ' + jwtToken,
-  'X-Csrf-Token': csrfToken
+  'x-csrf-token': csrfToken
 }
 
 const api2defaultHeaders = {

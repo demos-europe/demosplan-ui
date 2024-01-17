@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 let currentProcedureId = null
 let jwtToken = null
+let csrfToken = null
 
 if (typeof dplan !== 'undefined') {
   if (hasOwnProp(dplan, 'procedureId')) {
@@ -11,6 +12,7 @@ if (typeof dplan !== 'undefined') {
   }
   if (hasOwnProp(dplan, 'jwtToken')) {
     jwtToken = dplan.jwtToken
+    csrfToken = dplan.csrfToken
   }
 }
 
@@ -21,16 +23,18 @@ const apiDefaultHeaders = {
 const api2defaultHeaders = {
   'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
+  'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'X-Csrf-Token': csrfToken
 }
 
 const demosplanProcedureHeaders = {
   'X-Demosplan-Procedure-Id': currentProcedureId
 }
 
+
 const getHeaders = function ({ headers, url }) {
   return {
-    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(url.includes('api/2.0/') || url.includes('rpc/2.0') ? api2defaultHeaders : apiDefaultHeaders),
     ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
     ...headers
   }
@@ -61,10 +65,10 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
     const content = contentType.includes('json')
-      ? await response.json()
-      : contentType.includes('text')
-      ? await response.text()
-      : null
+        ? await response.json()
+        : contentType.includes('text')
+            ? await response.text()
+            : null
 
     return {
       data: content,

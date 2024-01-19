@@ -1,6 +1,7 @@
 <template>
   <dp-flyout
     :has-menu="false"
+    :data-cy="dataCy"
     @close="trackSelection">
     <template v-slot:trigger>
       <span v-text="triggerText" />
@@ -37,6 +38,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     selectableColumns: {
       type: Array,
       required: false,

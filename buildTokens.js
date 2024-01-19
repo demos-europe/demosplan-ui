@@ -37,6 +37,7 @@ StyleDictionary.registerTransformGroup({
  * This format is a customized version of the implementation
  * in `formattedVariables`. It applies some transformations
  * to scss variables according to the conventions in demosplan-ui.
+ * See https://github.com/amzn/style-dictionary/blob/17f4cb2f30bd002dfd55d6ef8c5bee4138de8d64/lib/common/formatHelpers/formattedVariables.js#L46
  */
 StyleDictionary.registerFormat({
   name: 'scss/customVariables',

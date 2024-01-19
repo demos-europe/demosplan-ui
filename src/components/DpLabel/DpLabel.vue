@@ -16,7 +16,7 @@
     </span>
     <i
       v-if="tooltip !== ''"
-      :class="prefixClass('fa fa-question-circle u-mt-0_125 ml-auto')"
+      :class="prefixClass('fa fa-question-circle u-mt-0_125')"
       :aria-label="ariaLabel"
       v-tooltip="tooltip" />
   </label>

@@ -2,6 +2,7 @@
   <div>
     <vue-multiselect
       v-bind="{
+        allowEmpty,
         closeOnSelect,
         customLabel,
         deselectGroupLabel,
@@ -103,6 +104,12 @@ export default {
   },
 
   props: {
+    allowEmpty: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     closeOnSelect: {
       type: Boolean,
       required: false,

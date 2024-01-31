@@ -9,6 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
 - ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
 - ([#714](https://github.com/demos-europe/demosplan-ui/pull/714/files)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
+- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5 - 2024-01-09
 

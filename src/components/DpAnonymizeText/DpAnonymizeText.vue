@@ -4,7 +4,7 @@
       v-if="editor"
       :editor="editor"
       :tippy-options="{ duration: 100 }">
-      <div class="editor-menububble__wrapper is-active">
+      <div class="editor-menububble__wrapper is-active bottom-0">
         <button
           v-if="editor.isActive('anonymize')"
           class="editor-menububble__button whitespace-nowrap"
@@ -106,7 +106,6 @@ export default {
   },
 
   mounted () {
-    debugger
     this.editor = new Editor({
       content: this.value,
       editable: true,

@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.7 - 2024-02-12
+
 ### Changed
 
 - ([#742](https://github.com/demos-europe/demosplan-ui/pull/742)) Bump @tiptap to 2.2.2 ([@spiess-demos](https://github.com/spiess-demos))

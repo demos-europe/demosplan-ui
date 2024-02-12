@@ -38,8 +38,8 @@ export default Mark.create({
 
   renderHTML: ({ HTMLAttributes, options }) => {
     return ['span', mergeAttributes(
-      { class: 'anonymize-me' },
-      HTMLAttributes
+      HTMLAttributes,
+      { class: 'anonymize-me' }
     ), 0]
   },
 

@@ -14,6 +14,7 @@
       type="button"
       aria-haspopup="true"
       class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap"
+      :data-cy="dataCy"
       @click="toggle">
       <slot
         name="trigger"
@@ -45,6 +46,12 @@ export default {
       type: String,
       default: 'right',
       validator: (prop) => ['left', 'right'].includes(prop)
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     disabled: {

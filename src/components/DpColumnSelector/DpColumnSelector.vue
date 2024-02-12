@@ -1,6 +1,7 @@
 <template>
   <dp-flyout
     :has-menu="false"
+    :data-cy="dataCy"
     @close="trackSelection">
     <template v-slot:trigger>
       <span v-text="triggerText" />
@@ -11,6 +12,7 @@
     <div class="space-stack-xs u-pv-0_25">
       <dp-checkbox
         v-for="([value, label]) in selectableColumns"
+        :data-cy="`columnSelector:${value}`"
         :id="`columnSelector:${value}`"
         :key="value"
         :checked="selectedColumns.has(value)"
@@ -37,6 +39,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     selectableColumns: {
       type: Array,
       required: false,

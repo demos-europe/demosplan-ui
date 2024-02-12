@@ -4,6 +4,26 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.7 - 2024-02-12
+
+### Changed
+
+- ([#742](https://github.com/demos-europe/demosplan-ui/pull/742)) Bump @tiptap to 2.2.2 ([@spiess-demos](https://github.com/spiess-demos))
+- ([#737](https://github.com/demos-europe/demosplan-ui/pull/737)) Bump webpack to 5.90.1 ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.6 - 2024-02-07
+
+### Fixed
+
+- ([#729](https://github.com/demos-europe/demosplan-ui/pull/729)) Fix DpAnonymizeText functionality ([@sakutademos](https://github.com/sakutademos))
+
+### Added
+
+- ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
+- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
+- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
+- ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.5 - 2024-01-09
 
 ### Fixed

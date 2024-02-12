@@ -22,7 +22,7 @@
           hint: translations.linkHint,
           text: Translator.trans('url')
         }"
-        :pattern="isVisible === true ? '(^https?://.*|^//.*)' : null"
+        :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
         :required="isVisible"
         type="url" />
       <dp-checkbox

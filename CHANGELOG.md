@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5 - 2024-01-09
 

@@ -19,6 +19,7 @@
         name,
         options,
         placeholder,
+        required,
         searchable,
         selectGroupLabel,
         selectLabel,

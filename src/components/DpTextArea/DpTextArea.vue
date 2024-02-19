@@ -54,7 +54,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'accordionToggle'
+      default: 'textAreaElement'
     },
 
     disabled: {

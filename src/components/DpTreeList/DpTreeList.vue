@@ -292,7 +292,7 @@ export default {
       this.selectedNodesObject = {}
       this.allElementsSelected = false
 
-      this.$emit('node-selection-change', this. this.selectedNodes)
+      this.$emit('node-selection-change', this.selectedNodes)
     }
   },
 

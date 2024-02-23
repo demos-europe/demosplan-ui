@@ -253,7 +253,7 @@ export default {
 
       filteredSelections.forEach(selection => this.setSelectionState(selection))
 
-      this.$emit('node-selection-change', this.selectedNodesObject)
+      this.$emit('node-selection-change', this.selectedNodes)
     },
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.

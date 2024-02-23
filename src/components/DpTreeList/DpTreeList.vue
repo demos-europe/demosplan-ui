@@ -168,6 +168,10 @@ export default {
       return `margin-left: ${margin}px;`
     },
 
+    selectedNodes () {
+      return Object.keys(this.selectedNodesObject).map(id => this.selectedNodesObject[id])
+    },
+
     /**
      * The `tree` getter is called whenever this.treeData is changed from outside DpTreeList.
      * The setter is called whenever the tree structure is changed from within the draggable instance.
@@ -279,7 +283,7 @@ export default {
     },
 
     unselectAll () {
-      Object.values(this.selectedNodesObject).forEach(node => {
+      this.selectedNodes.forEach(node => {
         if (this.$refs['node_' + node.id]) {
           this.$refs['node_' + node.id][0].setSelectionState(false)
         }
@@ -288,7 +292,7 @@ export default {
       this.selectedNodesObject = {}
       this.allElementsSelected = false
 
-      this.$emit('node-selection-change', this.selectedNodesObject)
+      this.$emit('node-selection-change', this. this.selectedNodes)
     }
   },
 

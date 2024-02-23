@@ -75,6 +75,7 @@
         :children="child.children || []"
         :handle-change="handleChange"
         :handle-drag="handleDrag"
+        :leaf-only="isLeafOnly"
         :level="level + 1"
         :node="child"
         :node-id="child.id"
@@ -157,6 +158,12 @@ export default {
       required: true
     },
 
+    leafOnly: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     level: {
       type: Number,
       required: true
@@ -199,7 +206,8 @@ export default {
   data () {
     return {
       isExpanded: false,
-      isSelected: false
+      isSelected: false,
+      isLeafOnly: this.leafOnly
     }
   },
 
@@ -325,12 +333,19 @@ export default {
     },
 
     setSelectionState ({ selectionState, selections = [], fromParent = false }) {
+      this.isSelected = selectionState
+      const type = this.isBranch === true ? 'branch' : 'leaf'
+
+      if (this.leafOnly && type === 'branch') {
+        return
+      }
+
       const selectionsCpy = [...selections]
 
-      this.isSelected = selectionState
       selectionsCpy.push({
         nodeId: this.nodeId,
-        nodeType: this.isBranch === true ? 'branch' : 'leaf',
+        node: this.node,
+        nodeType: type,
         selectionState: selectionState
       })
 

@@ -47,6 +47,7 @@
         :draggable="draggable"
         :handle-change="handleChange"
         :handle-drag="handleDrag"
+        :leaf-only="isLeafOnly"
         :level="0"
         :node="node"
         :node-id="node.id"
@@ -112,6 +113,12 @@ export default {
       default: true
     },
 
+    leafOnly: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     /*
      * Callback to be executed on move event of draggable.
      * It can be used to cancel drag by returning false.
@@ -138,6 +145,7 @@ export default {
     return {
       allElementsExpanded: false,
       allElementsSelected: false,
+      isLeafOnly: this.leafOnly,
 
       /*
        * To be able to control the appearance of nodes when hovered vs. when dragged,
@@ -158,10 +166,6 @@ export default {
     checkboxIndentationStyle () {
       const margin = this.opts.dragBranches || this.opts.dragLeaves ? dragHandleWidth : 0
       return `margin-left: ${margin}px;`
-    },
-
-    selectedNodes () {
-      return Object.keys(this.selectedNodesObject).map(id => this.selectedNodesObject[id])
     },
 
     /**
@@ -245,7 +249,7 @@ export default {
 
       filteredSelections.forEach(selection => this.setSelectionState(selection))
 
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', this.selectedNodesObject)
     },
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
@@ -275,7 +279,7 @@ export default {
     },
 
     unselectAll () {
-      this.selectedNodes.forEach(node => {
+      Object.values(this.selectedNodesObject).forEach(node => {
         if (this.$refs['node_' + node.id]) {
           this.$refs['node_' + node.id][0].setSelectionState(false)
         }
@@ -284,7 +288,7 @@ export default {
       this.selectedNodesObject = {}
       this.allElementsSelected = false
 
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', this.selectedNodesObject)
     }
   },
 

@@ -28,16 +28,16 @@
     <!-- Tree List -->
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
+      ref="treeList"
       :drag-across-branches="opts.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
+      :content-data="draggable ? treeData : null"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
       :is-draggable="draggable"
       :on-move="onMove"
-      :opts="opts.draggable"
-      ref="treeList"
-      v-model="tree">
+      :opts="opts.draggable">
       <dp-tree-list-node
         v-for="node in treeData"
         :ref="`node_${node.id}`"
@@ -212,30 +212,38 @@ export default {
      * The change event fires whenever the order of items is changed by a drag interaction.
      * The handler then emits an event that is being bubbled up the tree.
      * @see https://github.com/SortableJS/Vue.Draggable#events
-     * @param action
+     * @param evt
      * @param nodeId
      * @emits draggable:change
      */
-    handleChange (action, nodeId) {
+    handleChange (evt, nodeId) {
       // The event should only be emitted if an element is moved inside or into a folder.
-      if (hasOwnProp(action, 'added') || hasOwnProp(action, 'moved')) {
-        const { element, newIndex } = hasOwnProp(action, 'moved') ? action.moved : action.added
+      if (evt.type === 'change') {
+        const { newIndex } = evt
+
         const payload = {
-          elementId: element.id,
+          elementId: evt.item.id,
           newIndex: newIndex,
           parentId: nodeId
         }
+
         this.$emit('draggable:change', payload)
       }
     },
 
     /**
      * Set `dragging` to true if called via `start` event of draggable, else to false.
-     * @param eventType
+     * @param eventType {String} 'start' | 'end'
+     * @param event {Event}
+     * @param item {Object}
+     * @param item.attributes {Object}
+     * @param item.id {String}
+     * @param item.type {String}
+     * @param parentId {String}
      * @emits <start|end>
      */
-    handleDrag (eventType) {
-      this.$emit(eventType)
+    handleDrag (eventType, event, item, parentId) {
+      this.$emit(eventType, event, item, parentId)
       this.dragging = (eventType === 'start')
     },
 

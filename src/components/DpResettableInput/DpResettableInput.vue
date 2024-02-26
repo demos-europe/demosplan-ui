@@ -1,11 +1,11 @@
 <template>
   <div class="relative">
     <dp-input
+      v-bind="inputAttributes"
       :id="id"
       :data-cy="dataCy"
       has-icon
       :required="required"
-      v-bind="inputAttributes"
       @blur="$emit('blur', currentValue)"
       @input="$emit('input', currentValue)"
       @enter="$emit('enter', currentValue)"

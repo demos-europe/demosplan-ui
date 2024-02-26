@@ -11,7 +11,7 @@
       :id="nameOrId"
       :data-cy="dataCy"
       :required="required"
-      :name="name !== '' ? name : false"
+      :name="name !== '' ? name : null"
       class="o-form__control-select"
       :class="[disabled ? ' bg-color--grey-light-2' : '', classes]"
       :disabled="disabled"

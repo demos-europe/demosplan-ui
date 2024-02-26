@@ -3,7 +3,7 @@ import DpLabel from '~/components/DpLabel/DpLabel.vue'
 
 describe('DpLabel', () => {
   const wrapper = shallowMount(DpLabel, {
-    propsData: {
+    props: {
       for: 'test for',
       hint: '',
       text: 'test text'

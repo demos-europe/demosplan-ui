@@ -59,7 +59,7 @@
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
-          v-for="slot in Object.keys($scopedSlots)"
+          v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
             :name="slot"
@@ -70,7 +70,7 @@
 
     <!-- Footer -->
     <div
-      v-if="$slots['footer']"
+      v-if="$slots.footer"
       ref="footer"
       class="c-treelist__footer o-sticky">
       <div class="u-p-0_5 bg-color--white">
@@ -83,7 +83,6 @@
 <script>
 import { deepMerge, hasOwnProp } from '~/utils'
 import DpDraggable from '../DpDraggable/DpDraggable'
-import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
@@ -323,7 +322,7 @@ export default {
 
     this.initFixedControls()
 
-    bus.$on('checked', this.handleSelectEvent)
+    this.$root.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

@@ -4,16 +4,16 @@
       v-if="label !== ''"
       v-bind="labelProps" /><!--
  --><textarea
+      v-bind="allowedAttributes"
       :name="name"
       :id="id"
       class="o-form__control-textarea"
       :class="{ 'grow': growToParent, 'h-7': reducedHeight }"
-      :data-dp-validate-if="dataDpValidateIf"
+      :data-dp-validate-if="dataDpValidateIf ? true : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :data-cy="dataCy"
       :disabled="disabled"
       :maxlength="maxlength"
-      v-bind="allowedAttributes"
       v-model="currentValue"
       @input="$emit('input', currentValue)"
       :required="required" />
@@ -22,15 +22,16 @@
 
 <script>
 import { attributes, length } from '~/shared'
+import { defineAsyncComponent } from 'vue'
 import { maxlengthHint } from '~/utils'
 
 export default {
   name: 'DpTextArea',
 
   components: {
-    DpLabel: async () => {
+    DpLabel: defineAsyncComponent(async () => {
       return await import('../DpLabel/DpLabel')
-    }
+    })
   },
 
   props: {

@@ -8,7 +8,6 @@
       'is-expanded': isExpanded,
       'o-flyout--menu': hasMenu
     }"
-    v-click-outside="close"
     data-cy="flyoutTrigger">
     <button
       :disabled="disabled"
@@ -32,13 +31,13 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+// import ClickOutside from 'vue-click-outside'
 
 export default {
   name: 'DpFlyout',
 
   directives: {
-    ClickOutside
+    // ClickOutside
   },
 
   props: {

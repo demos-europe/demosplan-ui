@@ -88,7 +88,7 @@
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
-          v-for="slot in Object.keys($scopedSlots)"
+          v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
             :name="slot"
@@ -101,7 +101,6 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
-import bus from './utils/bus'
 import DpDraggable from '~/components/DpDraggable'
 import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
@@ -334,7 +333,7 @@ export default {
         selectionState: selectionState
       })
 
-      bus.$emit('checked', selectionsCpy)
+      this.$root.$emit('checked', selectionsCpy)
       if (fromParent === false) {
         this.$emit('node-selected', selectionsCpy)
       }

@@ -9,6 +9,7 @@
       }" /><!--
  --><select
       :id="nameOrId"
+      :data-cy="dataCy"
       :required="required"
       :name="name !== '' ? name : false"
       class="o-form__control-select"
@@ -65,6 +66,12 @@ export default {
       type: [Array, String],
       required: false,
       default: ''
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'selectElement'
     },
 
     disabled: {

@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 let currentProcedureId = null
 let jwtToken = null
+let csrfToken = null
 
 if (typeof dplan !== 'undefined') {
   if (hasOwnProp(dplan, 'procedureId')) {
@@ -11,11 +12,13 @@ if (typeof dplan !== 'undefined') {
   }
   if (hasOwnProp(dplan, 'jwtToken')) {
     jwtToken = dplan.jwtToken
+    csrfToken = dplan.csrfToken
   }
 }
 
 const apiDefaultHeaders = {
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
+  'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'x-csrf-token': csrfToken
 }
 
 const api2defaultHeaders = {

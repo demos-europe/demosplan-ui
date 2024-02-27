@@ -2,6 +2,7 @@
   <div>
     <vue-multiselect
       v-bind="{
+        allowEmpty,
         clearOnSelect,
         closeOnSelect,
         customLabel,
@@ -19,6 +20,7 @@
         name,
         options,
         placeholder,
+        required,
         searchable,
         selectGroupLabel,
         selectLabel,
@@ -104,6 +106,12 @@ export default {
   },
 
   props: {
+    allowEmpty: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     clearOnSelect: {
       type: Boolean,
       required: false,

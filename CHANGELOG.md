@@ -7,6 +7,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#748](https://github.com/demos-europe/demosplan-ui/pull/748)) Fix required for multiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect (hotfix from v0.3.5-1) ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.5-1 - 2024-02-13
+
+### Fixed
+
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.7 - 2024-02-12
 

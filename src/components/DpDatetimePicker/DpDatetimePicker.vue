@@ -9,6 +9,7 @@
     <div class="o-form__control-wrapper o-form__group">
       <dp-datepicker
         class="o-form__group-item shrink"
+        :data-cy="dataCy.date"
         :calendars-after="2"
         :disabled="disabled"
         :id="`datePicker:${id}`"
@@ -19,6 +20,7 @@
         @input="$emit('input', currentDatetime)" />
       <dp-time-picker
         class="o-form__group-item"
+        :data-cy="dataCy.time"
         :disabled="disabled"
         :id="`timePicker:${id}`"
         v-model="time"
@@ -54,6 +56,15 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+      validator: (prop) => {
+        return Object.keys(prop).every(key => ['date', 'time'].includes(key))
+      }
+    },
+
     disabled: {
       type: Boolean,
       required: false,

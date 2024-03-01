@@ -53,6 +53,7 @@
         :on-move="onMove"
         :options="opts"
         :parent-selected="allElementsSelected"
+        :selection-by-prop="isSelectionByProp"
         @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
         @node-selected="handleSelectEvent"
@@ -131,6 +132,12 @@ export default {
     treeData: {
       type: Array,
       required: true
+    },
+
+    selectionByProp: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
@@ -138,6 +145,7 @@ export default {
     return {
       allElementsExpanded: false,
       allElementsSelected: false,
+      isSelectionByProp: this.selectionByProp,
 
       /*
        * To be able to control the appearance of nodes when hovered vs. when dragged,
@@ -176,6 +184,20 @@ export default {
 
       set (payload) {
         this.$emit('tree:change', payload)
+      }
+    }
+  },
+
+  watch: {
+    allElementsSelected (val) {
+      if (!this.selectionByProp) {
+        if (this.options.selectOn.parentSelect && val === true && this.isSelected === false) {
+          this.setSelectionState({ selectionState: val, fromParent: true })
+        }
+
+        if (this.options.deselectOn.parentDeselect && val === false && this.isSelected === true) {
+          this.setSelectionState({ selectionState: val, fromParent: true })
+        }
       }
     }
   },

@@ -13,10 +13,10 @@
       </div>
       <dp-tree-list-checkbox
         v-if="isSelectable"
-        :checked="isSelected"
+        :checked="selectionByProp ? node.isSelected : isSelected"
         :name="checkboxIdentifier"
         :string-value="nodeId"
-        @check="setSelectionState({ selectionState: !isSelected })" />
+        @check="setSelectionState({ selectionState: selectionByProp ? !node.isSelected : !isSelected })" />
       <div
         class="flex grow items-start"
         :style="indentationStyle">
@@ -82,6 +82,7 @@
         :options="options"
         :parent-id="nodeId"
         :parent-selected="isSelected"
+        :selection-by-prop="selectionByProp"
         @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
         @node-selected="handleChildSelectionChange"
@@ -193,13 +194,20 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    selectionByProp: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
 
   data () {
     return {
       isExpanded: false,
-      isSelected: false
+      isSelected: false,
+      isSelectionByProp: this.selectionByProp
     }
   },
 
@@ -291,12 +299,14 @@ export default {
 
   watch: {
     parentSelected (val) {
-      if (this.options.selectOn.parentSelect && val === true && this.isSelected === false) {
-        this.setSelectionState({ selectionState: val, fromParent: true })
-      }
+      if (!this.selectionByProp) {
+        if (this.options.selectOn.parentSelect && val === true && this.isSelected === false) {
+          this.setSelectionState({ selectionState: val, fromParent: true })
+        }
 
-      if (this.options.deselectOn.parentDeselect && val === false && this.isSelected === true) {
-        this.setSelectionState({ selectionState: val, fromParent: true })
+        if (this.options.deselectOn.parentDeselect && val === false && this.isSelected === true) {
+          this.setSelectionState({ selectionState: val, fromParent: true })
+        }
       }
     }
   },
@@ -310,34 +320,66 @@ export default {
       this.$emit('draggable:change', payload)
     },
 
-    handleChildSelectionChange (selections) {
-      // Extract child selection state from the latest selection event
-      const childSelectionState = selections[selections.length - 1].selectionState
+    generateSelectedObjectForList (selectionState) {
+      this.isSelected = selectionState
 
-      if (this.options.deselectOn.childDeselect && childSelectionState === false && this.isSelected === true) {
-        this.setSelectionState({ selectionState: childSelectionState, selections })
-      } else if (this.options.selectOn.childSelect && childSelectionState === true && this.isSelected === false) {
-        this.setSelectionState({ selectionState: childSelectionState, selections })
-        // Just bubble the event if the current node doesn't require any changes
-      } else {
-        this.$emit('node-selected', selections)
+      return {
+        nodeId: this.nodeId,
+        nodeType: this.isBranch === true ? 'branch' : 'leaf',
+        selectionState: selectionState
       }
+    },
+
+    handleChildSelectionChange (selections) {
+      if (!this.selectionByProp) {
+        // Extract child selection state from the latest selection event
+        const childSelectionState = selections[selections.length - 1].selectionState
+
+        if (this.options.deselectOn.childDeselect && childSelectionState === false && this.isSelected === true) {
+          this.setSelectionState({ selectionState: childSelectionState, selections })
+        } else if (this.options.selectOn.childSelect && childSelectionState === true && this.isSelected === false) {
+          this.setSelectionState({ selectionState: childSelectionState, selections })
+          // Just bubble the event if the current node doesn't require any changes
+        } else {
+          this.$emit('node-selected', selections)
+        }
+      }
+    },
+
+    setNodeAndChildrenSelection (selectionState) {
+      this.node.isSelected = selectionState
+
+      if (this.node.children && this.node.children.length > 0) {
+        this.setSelectionRecursively(this.node.children, selectionState)
+      }
+    },
+
+    // Update isSelected property of the parent element and call recursively updateSelectedStatus on children
+    setSelectionRecursively (childObjects, state) {
+      childObjects.forEach(childObj => {
+        childObj.isSelected = state
+
+        if (childObj.children && childObj.children.length > 0) {
+          this.setSelectionRecursively(childObj.children, state)
+        }
+      })
     },
 
     setSelectionState ({ selectionState, selections = [], fromParent = false }) {
       const selectionsCpy = [...selections]
 
-      this.isSelected = selectionState
-      selectionsCpy.push({
-        nodeId: this.nodeId,
-        nodeType: this.isBranch === true ? 'branch' : 'leaf',
-        selectionState: selectionState
-      })
+      if (this.selectionByProp) {
+        this.setNodeAndChildrenSelection(selectionState)
+      } else {
+        const selectedObj = this.generateSelectedObjectForList(selectionState)
+        selectionsCpy.push(selectedObj)
+
+        if (fromParent === false) {
+          this.$emit('node-selected', selectionsCpy)
+        }
+      }
 
       bus.$emit('checked', selectionsCpy)
-      if (fromParent === false) {
-        this.$emit('node-selected', selectionsCpy)
-      }
     }
   },
 

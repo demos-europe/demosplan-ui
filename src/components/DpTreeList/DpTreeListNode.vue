@@ -308,22 +308,6 @@ export default {
       this.$emit('draggable:change', payload)
     },
 
-    /*handleChildSelectionChange (selections) {
-      if (!this.selectionByProp) {
-        // Extract child selection state from the latest selection event
-        const childSelectionState = selections[selections.length - 1].selectionState
-
-        if (this.options.deselectOn.childDeselect && childSelectionState === false && this.isSelected === true) {
-          this.setSelectionState({ selectionState: childSelectionState, selections })
-        } else if (this.options.selectOn.childSelect && childSelectionState === true && this.isSelected === false) {
-          this.setSelectionState({ selectionState: childSelectionState, selections })
-          // Just bubble the event if the current node doesn't require any changes
-        } else {
-          this.$emit('node-selected', selections)
-        }
-      }
-    },*/
-
     setNodeAndChildrenSelection (selectionState) {
       this.node.nodeId = this.nodeId
       this.node.nodeIsSelected = selectionState

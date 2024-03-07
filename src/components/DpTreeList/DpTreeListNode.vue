@@ -68,7 +68,7 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="child in children"
-        v-if="true === isExpanded"
+        v-show="true === isExpanded"
         :ref="`node_${child.id}`"
         :key="child.id"
         :check-branch="checkBranch"

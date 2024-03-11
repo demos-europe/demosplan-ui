@@ -68,7 +68,7 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="child in children"
-        v-show="true === isExpanded"
+        v-if="true === isExpanded"
         :ref="`node_${child.id}`"
         :key="child.id"
         :check-branch="checkBranch"
@@ -115,6 +115,8 @@ export default {
     DpTreeListCheckbox,
     DpTreeListToggle
   },
+
+  inject: ['provided'],
 
   directives: {
     tooltip: Tooltip
@@ -339,6 +341,9 @@ export default {
   },
 
   mounted () {
+    // If element is mounted via "toggleAll" in root component, expand it immediately
+    this.isExpanded = this.provided.allElementsExpanded
+
     this.$root.$on('treelist:toggle-all', (expanded) => (this.isExpanded = expanded))
   }
 }

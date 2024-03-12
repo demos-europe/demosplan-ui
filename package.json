@@ -152,10 +152,9 @@
     }
   },
   "scripts": {
-    "build:css": "tailwindcss -i ./style/index.css -o ./style/style.css",
     "build:storybook": "storybook build",
     "build:tokens": "node buildTokens.js",
-    "prepack": "yarn build && yarn build:tokens && yarn build:css",
+    "prepack": "yarn build && yarn build:tokens",
     "storybook": "storybook dev -p 6006",
     "build": "yarn test && yarn build:prod",
     "build:dev": "webpack --mode=development",

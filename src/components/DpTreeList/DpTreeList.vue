@@ -287,6 +287,17 @@ export default {
       this.$root.$emit('treelist:toggle-all', !this.allElementsExpanded)
       this.allElementsExpanded = !this.allElementsExpanded
     },
+
+    unselectAll () {
+      this.selectedNodesObjects.forEach(node => {
+        if (this.$refs['node_' + node.id]) {
+          this.$refs['node_' + node.id][0].setSelectionState(false)
+        }
+      })
+      this.selectedNodesObjects = []
+      this.allElementsSelected = false
+      this.$emit('node-selection-change', this.selectedNodesObjects)
+    }
   },
 
   mounted () {

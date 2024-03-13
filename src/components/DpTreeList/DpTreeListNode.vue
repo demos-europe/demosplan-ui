@@ -290,11 +290,7 @@ export default {
 
   watch: {
     parentSelected (val) {
-      if (this.options.selectOn.parentSelect && val === true && this.node.nodeIsSelected === false) {
-        this.setSelectionState(val)
-      }
-
-      if (this.options.deselectOn.parentDeselect && val === false && this.node.nodeIsSelected === true) {
+      if (this.options.selectOn.parentSelect || this.options.deselectOn.parentDeselect) {
         this.setSelectionState(val)
       }
     }

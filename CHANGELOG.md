@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed 
-- ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Add properties such as nodeIsSelected, nodeType, and nodeId to each node object and recursively updates their children nodes. This eliminates the need for intermediate steps, resulting in enhanced overall performance ([@sakutademos](https://github.com/sakutademos))
+- ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Improve render performance of the DpTreeList component ([@sakutademos](https://github.com/sakutademos))
 
 ### Removed
 

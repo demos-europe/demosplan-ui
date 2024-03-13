@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Removed
+
+- ([#779](https://github.com/demos-europe/demosplan-ui/pull/779)) Remove `build:css` script ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Fixed
 
 - ([#777](https://github.com/demos-europe/demosplan-ui/pull/777)) DpEditor: fix condition for console.warn ([@hwiem](https://github.com/hwiem))

@@ -1088,7 +1088,7 @@ export default {
       this.$el.closest('form').addEventListener('reset', this.resetEditor)
     }
 
-    if (this.toolbar.imageButton ^ this.tusEndpoint) {
+    if (this.toolbar.imageButton ^ !!this.tusEndpoint) {
       console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
   },

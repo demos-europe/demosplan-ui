@@ -68,7 +68,7 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="child in children"
-        v-if="true === isExpanded"
+        v-show="true === isExpanded"
         :ref="`node_${child.id}`"
         :key="child.id"
         :check-branch="checkBranch"
@@ -83,7 +83,7 @@
         :parent-id="nodeId"
         @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
-        @node-selected="$emit('node-selected')"
+        @node-selected="handleChildSelectionChange(child)"
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
@@ -307,6 +307,17 @@ export default {
 
     bubbleDraggableChange (payload) {
       this.$emit('draggable:change', payload)
+    },
+
+    handleChildSelectionChange (child) {
+      if (this.options.deselectOn.childDeselect && child.nodeIsSelected === false && this.node.nodeIsSelected === true) {
+        this.setSelectionState(child.nodeIsSelected)
+      } else if (this.options.selectOn.childSelect && child.nodeIsSelected === true && this.node.nodeIsSelected === false) {
+        this.setSelectionState(child.nodeIsSelected)
+        // Just bubble the event if the current node doesn't require any changes
+      } else {
+        this.$emit('node-selected')
+      }
     },
 
     setNodeAndChildrenSelection (selectionState) {

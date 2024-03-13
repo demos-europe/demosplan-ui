@@ -116,8 +116,6 @@ export default {
     DpTreeListToggle
   },
 
-  inject: ['provided'],
-
   directives: {
     tooltip: Tooltip
   },
@@ -347,9 +345,6 @@ export default {
   },
 
   mounted () {
-    // If element is mounted via "toggleAll" in root component, expand it immediately
-    this.isExpanded = this.provided.allElementsExpanded
-
     this.$root.$on('treelist:toggle-all', (expanded) => (this.isExpanded = expanded))
   }
 }

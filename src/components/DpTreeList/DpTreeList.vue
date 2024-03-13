@@ -99,21 +99,6 @@ export default {
     DpTreeListToggle
   },
 
-  provide () {
-    const provided = {}
-
-    // As provide/inject intentionally is not reactive in Vue2, it has to be implemented by hand.
-    Object.defineProperty(provided, 'allElementsExpanded', {
-      enumerable: true,
-      get: () => this.allElementsExpanded,
-      set: (value) => this.allElementsExpanded = value
-    })
-
-    return {
-      provided
-    }
-  },
-
   props: {
     branchIdentifier: {
       type: Function,

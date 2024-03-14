@@ -10,6 +10,7 @@
  --><select
       :id="nameOrId"
       :data-cy="dataCy"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       :required="required"
       :name="name !== '' ? name : false"
       class="o-form__control-select"
@@ -72,6 +73,12 @@ export default {
       type: String,
       required: false,
       default: 'selectElement'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     disabled: {

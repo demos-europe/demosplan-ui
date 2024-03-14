@@ -30,7 +30,7 @@
         value
       }"
       :data-cy="dataCy"
-      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"

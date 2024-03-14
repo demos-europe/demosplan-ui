@@ -30,6 +30,7 @@
         value
       }"
       :data-cy="dataCy"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
@@ -134,6 +135,12 @@ export default {
       type: String,
       required: false,
       default: 'multiselect'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     deselectLabel: {

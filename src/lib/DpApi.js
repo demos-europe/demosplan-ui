@@ -39,28 +39,34 @@ const getHeaders = function ({ headers, url }) {
   }
 }
 
+const appendSerializedUrlParams = (url, params) => {
+  if (!params || Object.keys(params).length === 0) {
+    return url
+  }
+  params = stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })
+
+  // Url params may be already appended before passing it to dpApi, this must be handled accordingly.
+  return url.includes('?') ? `${url}&${params}` : `${url}?${params}`
+}
+
 const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
-  const payload = {
-    method,
-    options,
-    params,
-    headers: getHeaders({ ...params, url })
+  const fetchOptions = {
+    headers: getHeaders({ ...params, url }),
+    method
   }
 
   if (method.toUpperCase() !== 'GET') {
     if (data instanceof FormData) {
-      payload.body = data
+      fetchOptions.body = data
     } else {
-      payload.body = JSON.stringify(data)
+      fetchOptions.body = JSON.stringify(data)
     }
-  } else if (options.serialize === true) {
-    delete payload.options.serialize
-
-    url = `${url}?${stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })}`
+  } else {
+    url = appendSerializedUrlParams(url, params)
   }
 
   try {
-    const response = await fetch(url, payload)
+    const response = await fetch(url, fetchOptions)
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
     const content = contentType.includes('json')
@@ -77,7 +83,7 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
       url: response.url
     }
   } catch (error) {
-    console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)
+    console.error('DpAPI[doRequest] failed: ', error, 'fetchOptions: ', fetchOptions)
 
     return {
       data: null,

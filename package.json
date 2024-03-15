@@ -1,6 +1,6 @@
 {
   "name": "@demos-europe/demosplan-ui",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "license": "MIT",
   "private": false,
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",

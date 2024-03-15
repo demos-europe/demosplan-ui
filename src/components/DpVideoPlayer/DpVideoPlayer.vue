@@ -3,6 +3,7 @@
     <video
       :aria-labelledby="ariaLabelledby"
       :id="id"
+      controls
       playsinline
       :data-poster="poster">
       <source

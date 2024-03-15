@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.8 - 2024-03-15
+
 ### Added
 
 - ([#783](https://github.com/demos-europe/demosplan-ui/pull/783)) Improve error validation for DpMultiselect and DpSelect components ([@sakutademos](https://github.com/sakutademos))
@@ -23,12 +25,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#777](https://github.com/demos-europe/demosplan-ui/pull/777)) DpEditor: fix condition for console.warn ([@hwiem](https://github.com/hwiem))
 - ([#748](https://github.com/demos-europe/demosplan-ui/pull/748)) Fix required for multiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect (hotfix from v0.3.5-1) ([@spiess-demos](https://github.com/spiess-demos))
-
-## v0.3.5-1 - 2024-02-13
-
-### Fixed
-
-- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.7 - 2024-02-12
 
@@ -50,6 +46,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
 - ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
 - ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.5-1 - 2024-02-13
+
+### Fixed
+
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5 - 2024-01-09
 

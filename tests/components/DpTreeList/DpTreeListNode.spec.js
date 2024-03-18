@@ -1,3 +1,4 @@
+import { node, nodeChildren, updatedNodes } from './DpTreeListTestData'
 import { shallowMount } from '@vue/test-utils'
 import DpTreeListNode from '~/components/DpTreeList/DpTreeListNode.vue'
 import DpTreeListToggle from '~/components/DpTreeList/DpTreeListToggle.vue'
@@ -13,89 +14,13 @@ describe('DpTreeListNode', () => {
 
   beforeEach(() => {
     propsData = {
-      children: [{
-        "id": "2",
-        "type": "elements",
-        "attributes": {},
-        "children": [{
-          "id": "3",
-          "type": "elements",
-          "attributes": {},
-          "children": [
-            {
-              "attributes": {},
-              "children": [],
-              "id": "4",
-              "type": "singleDocument"
-            },
-            {
-              "attributes": {},
-              "children": [],
-              "id": "5",
-              "type": "singleDocument"
-            }
-          ]
-        },
-          {
-            "id": "6",
-            "type": "elements",
-            "attributes": {},
-            "children": [{
-              "attributes": {},
-              "children": [],
-              "id": "7",
-              "type": "singleDocument"
-            }]
-          }
-        ]
-      }],
+      children: nodeChildren,
       draggable: true,
       handleChange: jest.fn(),
       handleDrag: jest.fn(),
       checkBranch: mockCheckBranch,
       level: 0,
-      node: {
-        "id": "1",
-        "type": "elements",
-        "attributes": {},
-        "children": [{
-          "id": "2",
-          "type": "elements",
-          "attributes": {},
-          "children": [{
-              "id": "3",
-              "type": "elements",
-              "attributes": {},
-              "children": [
-                {
-                  "attributes": {},
-                  "children": [],
-                  "id": "4",
-                  "type": "singleDocument"
-                },
-                {
-                  "attributes": {},
-                  "children": [],
-                  "id": "5",
-                  "type": "singleDocument"
-                }
-              ]
-            },
-            {
-              "id": "6",
-              "type": "elements",
-              "attributes": {},
-              "children": [{
-                  "attributes": {},
-                  "children": [],
-                  "id": "7",
-                  "type": "singleDocument"
-                }
-              ]
-            }
-          ]
-        }]
-      },
+      node: node,
       nodeId: '1',
       onMove: jest.fn(),
       options: {},
@@ -164,69 +89,9 @@ describe('DpTreeListNode', () => {
       mocks
     })
 
-    const updatedNodes = {
-      "id": "1",
-      "type": "elements",
-      "attributes": {},
-      "nodeIsSelected": true,
-      "nodeType": "branch",
-      "nodeId": "1",
-      "children": [{
-        "id": "2",
-        "type": "elements",
-        "attributes": {},
-        "nodeIsSelected": true,
-        "nodeType": "branch",
-        "nodeId": "2",
-        "children": [{
-          "id": "3",
-          "type": "elements",
-          "attributes": {},
-          "nodeIsSelected": true,
-          "nodeType": "branch",
-          "nodeId": "3",
-          "children": [{
-              "id": "4",
-              "type": "singleDocument",
-              "nodeIsSelected": true,
-              "nodeType": "leaf",
-              "nodeId": "4",
-              "attributes": {},
-              "children": []
-            },
-            {
-              "id": "5",
-              "type": "singleDocument",
-              "nodeIsSelected": true,
-              "nodeType": "leaf",
-              "nodeId": "5",
-              "attributes": {},
-              "children": []
-            }
-          ]
-        },
-          {
-            "id": "6",
-            "type": "elements",
-            "attributes": {},
-            "nodeIsSelected": true,
-            "nodeType": "branch",
-            "nodeId": "6",
-            "children": [{
-              "id": "7",
-              "type": "singleDocument",
-              "nodeIsSelected": true,
-              "nodeType": "leaf",
-              "nodeId": "7",
-              "attributes": {},
-              "children": []
-            }]
-          }
-        ]
-      }]
-    }
+    const expectedResult = updatedNodes
     wrapper.vm.setNodeAndChildrenSelection(true)
 
-    expect(wrapper.vm.node).toEqual(updatedNodes)
+    expect(wrapper.vm.node).toEqual(expectedResult)
   })
 })

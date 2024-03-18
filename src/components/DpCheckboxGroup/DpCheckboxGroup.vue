@@ -15,7 +15,7 @@
         text: option.label
       }"
       :name="option.name || ''"
-      :data-cy="dataCy !== '' ? dataCy : false"
+      :data-cy="dataCy !== '' ? dataCy + option.id : false"
       @change="$emit('update', selected)" />
   </fieldset>
 </template>
@@ -37,7 +37,7 @@ export default {
 
   props: {
     dataCy: {
-      type: [String, Array],
+      type: String,
       required: false
     },
 

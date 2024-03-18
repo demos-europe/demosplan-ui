@@ -110,7 +110,7 @@ describe('DpTreeListNode', () => {
     }
 
     stubs = {
-      'dp-tree-list-toggle': DpTreeListToggle
+      DpTreeListToggle
     }
   })
 

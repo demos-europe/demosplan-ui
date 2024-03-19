@@ -10,7 +10,7 @@
       :disabled="startDisabled"
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
-      :data-cy="dataCy.startDate"
+      :data-cy="`${dataCy}:startDate`"
       @input="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
@@ -23,7 +23,7 @@
       :disabled="endDisabled"
       :value="endValue"
       :required="required"
-      :data-cy="dataCy.endDate"
+      :data-cy="`${dataCy}:endDate`"
       @input="handleInputEndDate" />
   </div>
 </template>
@@ -53,12 +53,9 @@ export default {
     },
 
     dataCy: {
-      type: Object,
+      type: String,
       required: false,
-      default: () => ({}),
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['endDate', 'startDate'].includes(key))
-      }
+      default: 'dataRangePicker'
     },
 
     endDisabled: {

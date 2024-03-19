@@ -38,7 +38,8 @@ export default {
   props: {
     dataCy: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
 
     options: {

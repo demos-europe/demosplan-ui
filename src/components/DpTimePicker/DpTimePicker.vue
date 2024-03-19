@@ -104,7 +104,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'timepicker'
+      default: 'timePicker'
     },
 
     disabled: {

@@ -26,7 +26,7 @@
       :value="currentTime" />
     <dp-input
       v-else
-      :data-cy="`${dataCy}:mobile`"
+      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       class="w-8"
       type="time"

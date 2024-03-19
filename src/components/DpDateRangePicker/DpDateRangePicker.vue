@@ -55,7 +55,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'dataRangePicker'
+      default: 'dateRangePicker'
     },
 
     endDisabled: {

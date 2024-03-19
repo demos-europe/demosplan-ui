@@ -59,7 +59,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'pick'
+      default: 'dateTimePicker'
     },
 
     disabled: {

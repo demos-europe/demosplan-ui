@@ -15,6 +15,7 @@
     <button
       v-if="!inputAttributes.disabled"
       class="btn--blank o-link--default"
+      data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"
       @click="resetValue">

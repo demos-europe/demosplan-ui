@@ -31,6 +31,10 @@ describe('DpTreeList', () => {
   it('returns an empty array if a nodes "nodeIsSelected" state is false', () => {
     wrapper = shallowMount(DpTreeList, {
       propsData: {
+        branchIdentifier: jest.fn(),
+        draggable: true,
+        onMove: jest.fn(),
+        options: {},
         treeData: [
           mockNode
         ]
@@ -45,6 +49,10 @@ describe('DpTreeList', () => {
   it('returns an array with the selected nodes if the node has a positive "nodeIsSelected" state', () => {
     wrapper = shallowMount(DpTreeList, {
       propsData: {
+        branchIdentifier: jest.fn(),
+        draggable: true,
+        onMove: jest.fn(),
+        options: {},
         treeData: [
           mockUpdatedNodes
         ]

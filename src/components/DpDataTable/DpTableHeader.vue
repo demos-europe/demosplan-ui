@@ -1,6 +1,7 @@
 <template>
   <tr
     ref="tableHeader"
+    :data-cy="dataCy !== '' ? dataCy : false"
     :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
       v-if="isDraggable"
@@ -79,6 +80,12 @@ export default {
     checked: {
       type: Boolean,
       required: true
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     hasFlyout: {

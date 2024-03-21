@@ -13,6 +13,7 @@
       :basic-auth="basicAuth"
       ref="uploadModal"
       :get-file-by-hash="routes.getFileByHash"
+      :procedure-id="procedureId"
       :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
@@ -465,6 +466,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    procedureId: {
+      type: String,
+      required: false
     },
 
     readonly: {

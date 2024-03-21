@@ -82,6 +82,11 @@ export default {
       required: true
     },
 
+    procedureId: {
+      type: String,
+      required: false
+    },
+
     /**
      * Global path for file uploader endpoint.
      */
@@ -125,7 +130,11 @@ export default {
     },
 
     setFile ({ hash }) {
-      this.fileUrl = this.getFileByHash(hash)
+      if (this.procedureId) {
+        this.fileUrl = this.getFileByHash(hash, this.procedureId)
+      } else {
+        this.fileUrl = this.getFileByHash(hash)
+      }
       // Force-update the component so that DpModal updates and therefore check for new focusable elements
       this.$forceUpdate()
     },

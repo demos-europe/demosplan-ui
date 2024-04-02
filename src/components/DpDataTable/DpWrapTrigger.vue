@@ -1,7 +1,7 @@
 <template>
   <button
-      :data-cy="dataCy !== '' ? dataCy : false"
-      class="c-data-table__wrap-trigger o-link--default btn--blank">
+      class="c-data-table__wrap-trigger o-link--default btn--blank"
+      :data-cy="dataCy !== '' ? dataCy : false">
     <dp-icon
       aria-hidden="true"
       :aria-label="ariaLabel"

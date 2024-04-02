@@ -10,6 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#812](https://github.com/demos-europe/demosplan-ui/pull/812)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#798](https://github.com/demos-europe/demosplan-ui/pull/798)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#773](https://github.com/demos-europe/demosplan-ui/pull/773)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 

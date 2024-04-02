@@ -51,8 +51,8 @@
       class="c-data-table__cell--narrow"
       @click="toggleExpandAll()">
       <dp-wrap-trigger
-          data-cy="isExpandableWrapTrigger"
-          :title="translations.headerExpandHint" />
+        data-cy="isExpandableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
     <th
       v-if="isTruncatable"
@@ -60,8 +60,8 @@
       class="c-data-table__cell--narrow"
       @click="toggleWrapAll()">
       <dp-wrap-trigger
-          data-cy="isTruncatableWrapTrigger"
-          :title="translations.headerExpandHint" />
+        data-cy="isTruncatableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
   </tr>
 </template>

@@ -213,6 +213,15 @@ export default {
         removeFingerprintOnSuccess: true,
         headers
       })
+
+      // Access the hidden input element, that accepted files array.
+      const uppyInputs = document.querySelectorAll('.uppy-DragDrop-input')
+      if (uppyInputs) {
+        uppyInputs.forEach((uppyInput, index) => {
+          // Add data-cy attribute
+          uppyInput.setAttribute('data-cy', `uppyDragDropInput:${index}`)
+        })
+      }
     }
   },
 
@@ -267,15 +276,6 @@ export default {
       this.currentFileId = ''
       this.$emit('upload-success', newFile)
     })
-
-    // Access the hidden input element, that accepted files array.
-    const uppyInputs = document.querySelectorAll('.uppy-DragDrop-input')
-    if (uppyInputs) {
-      uppyInputs.forEach((uppyInput, index) => {
-        // Add data-cy attribute
-        uppyInput.setAttribute('data-cy', `uppyDragDropInput:${index}`)
-      })
-    }
   },
 
   beforeDestroy () {

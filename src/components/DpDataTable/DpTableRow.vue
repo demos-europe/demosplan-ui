@@ -79,7 +79,9 @@
       :class="{ 'is-open': expanded }"
       :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
       @click="toggleExpand(item[trackBy])">
-      <dp-wrap-trigger :expanded="expanded" />
+      <dp-wrap-trigger
+        :data-cy="`isExpandableWrapTrigger:${$attrs.index}`"
+        :expanded="expanded" />
     </td>
 
     <td
@@ -88,7 +90,9 @@
       :class="{ 'is-open': wrapped }"
       :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
       @click="toggleWrap(item[trackBy])">
-      <dp-wrap-trigger :expanded="wrapped" />
+      <dp-wrap-trigger
+        :data-cy="`isTruncatableWrapTrigger:${$attrs.index}`"
+        :expanded="wrapped" />
     </td>
   </tr>
 </template>

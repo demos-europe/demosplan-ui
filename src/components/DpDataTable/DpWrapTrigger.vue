@@ -1,5 +1,7 @@
 <template>
-  <button class="c-data-table__wrap-trigger o-link--default btn--blank">
+  <button
+    class="c-data-table__wrap-trigger o-link--default btn--blank"
+    :data-cy="dataCy !== '' ? dataCy : false">
     <dp-icon
       aria-hidden="true"
       :aria-label="ariaLabel"
@@ -19,6 +21,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'wrapTriggerIcon'
+    },
+
     expanded: {
       type: Boolean,
       required: false,

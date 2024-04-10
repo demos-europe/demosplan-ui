@@ -59,7 +59,7 @@
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
-          v-for="slot in Object.keys($slots)"
+          v-for="slot in Object.keys($scopedSlots)"
           v-slot:[slot]="scope">
           <slot
             :name="slot"
@@ -145,7 +145,7 @@ export default {
       dragging: false,
 
       opts: {},
-      selectedNodesObject: {}
+      selectedNodesObjects: []
     }
   },
 
@@ -157,10 +157,6 @@ export default {
     checkboxIndentationStyle () {
       const margin = this.opts.dragBranches || this.opts.dragLeaves ? dragHandleWidth : 0
       return `margin-left: ${margin}px;`
-    },
-
-    selectedNodes () {
-      return Object.keys(this.selectedNodesObject).map(id => this.selectedNodesObject[id])
     },
 
     /**
@@ -207,6 +203,23 @@ export default {
       })
     },
 
+    getAllSelectedNodesObjects (treeData) {
+      let selectedNodes = []
+
+      treeData.forEach(node => {
+        if (node.nodeIsSelected) {
+          selectedNodes.push(node)
+        }
+
+        if (node.children && node.children.length > 0) {
+          const selectedChildNodes = this.getAllSelectedNodesObjects(node.children)
+          selectedNodes = selectedNodes.concat(selectedChildNodes)
+        }
+      })
+
+      return selectedNodes
+    },
+
     /**
      * Handler for the draggable `change` event.
      * The change event fires whenever the order of items is changed by a drag interaction.
@@ -239,12 +252,11 @@ export default {
       this.dragging = (eventType === 'start')
     },
 
-    handleSelectEvent (selections) {
-      const filteredSelections = this.filterSelectableNodes(selections)
+    handleSelectEvent () {
+      this.selectedNodesObjects = this.getAllSelectedNodesObjects(this.treeData)
+      const filteredSelections = this.filterSelectableNodes(this.selectedNodesObjects)
 
-      filteredSelections.forEach(selection => this.setSelectionState(selection))
-
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', filteredSelections)
     },
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
@@ -256,34 +268,20 @@ export default {
       }
     },
 
-    setSelectionState (elem) {
-      if (elem.selectionState === true) {
-        this.selectedNodesObject = { ...this.selectedNodesObject, ...{ [elem.nodeId]: elem } }
-      }
-
-      if (elem.selectionState === false) {
-        const selectionCpy = { ...this.selectedNodesObject }
-        delete selectionCpy[elem.nodeId]
-        this.selectedNodesObject = selectionCpy
-      }
-    },
-
     toggleAll () {
       this.$root.$emit('treelist:toggle-all', !this.allElementsExpanded)
       this.allElementsExpanded = !this.allElementsExpanded
     },
 
     unselectAll () {
-      this.selectedNodes.forEach(node => {
+      this.selectedNodesObjects.forEach(node => {
         if (this.$refs['node_' + node.id]) {
           this.$refs['node_' + node.id][0].setSelectionState(false)
         }
       })
-
-      this.selectedNodesObject = {}
+      this.selectedNodesObjects = []
       this.allElementsSelected = false
-
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', this.selectedNodesObjects)
     }
   },
 
@@ -321,8 +319,6 @@ export default {
     this.opts = deepMerge(defaults, this.options)
 
     this.initFixedControls()
-
-    this.$root.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

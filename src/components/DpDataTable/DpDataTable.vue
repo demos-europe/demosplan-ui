@@ -2,6 +2,7 @@
   <div>
     <table
       ref="tableEl"
+      :data-cy="`${dataCy}:table`"
       :class="tableClass">
       <caption class="hide-visually" v-text="tableDescription" />
       <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
@@ -17,6 +18,7 @@
 
       <thead>
         <dp-table-header
+          :data-cy="`${dataCy}:header`"
           :checked="allSelected"
           :has-flyout="hasFlyout"
           :header-fields="headerFields"
@@ -42,6 +44,7 @@
         <template v-for="(item, idx) in items">
           <dp-table-row
             :ref="`tableRows[${idx}]`"
+            :data-cy="`${dataCy}:row:${idx}`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
             :fields="fields"
@@ -192,6 +195,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'dateTable'
+    },
+
     // Adds flyout menu
     hasFlyout: {
       type: Boolean,

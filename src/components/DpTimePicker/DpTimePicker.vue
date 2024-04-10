@@ -9,6 +9,7 @@
       :text="label" />
     <dp-resettable-input
       v-if="!isMobileDevice"
+      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
       class="w-8"
@@ -24,6 +25,7 @@
       :value="currentTime" />
     <dp-input
       v-else
+      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       class="w-8"
       type="time"
@@ -98,6 +100,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'timePicker'
+    },
+
     disabled: {
       type: Boolean,
       required: false,

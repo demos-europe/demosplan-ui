@@ -3,6 +3,7 @@
     <vue-multiselect
       v-bind="{
         allowEmpty,
+        clearOnSelect,
         closeOnSelect,
         customLabel,
         deselectGroupLabel,
@@ -19,6 +20,7 @@
         name,
         options,
         placeholder,
+        required,
         searchable,
         selectGroupLabel,
         selectLabel,
@@ -28,6 +30,7 @@
         value
       }"
       :data-cy="dataCy"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
       :model-value="value"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
@@ -123,6 +126,12 @@ export default {
       default: true
     },
 
+    clearOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     closeOnSelect: {
       type: Boolean,
       required: false,
@@ -139,6 +148,12 @@ export default {
       type: String,
       required: false,
       default: 'multiselect'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     deselectLabel: {

@@ -4,6 +4,39 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#803](https://github.com/demos-europe/demosplan-ui/pull/803)) dpApi: remove "option" argument ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#815](https://github.com/demos-europe/demosplan-ui/pull/815)) Add data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#812](https://github.com/demos-europe/demosplan-ui/pull/812)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#798](https://github.com/demos-europe/demosplan-ui/pull/798)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#773](https://github.com/demos-europe/demosplan-ui/pull/773)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.3.8 - 2024-03-15
+
+### Added
+
+- ([#783](https://github.com/demos-europe/demosplan-ui/pull/783)) Improve error validation for DpMultiselect and DpSelect components ([@sakutademos](https://github.com/sakutademos))
+
+### Changed 
+
+- ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Improve render performance of the DpTreeList component ([@sakutademos](https://github.com/sakutademos))
+- ([#784](https://github.com/demos-europe/demosplan-ui/pull/784)) dpApi.get: Always serialize request params ([@spiess-demos](https://github.com/spiess-demos))
+
+### Removed
+
+- ([#779](https://github.com/demos-europe/demosplan-ui/pull/779)) Remove `build:css` script ([@spiess-demos](https://github.com/spiess-demos))
+
+### Fixed
+
+- ([#777](https://github.com/demos-europe/demosplan-ui/pull/785)) DpVideoPlayer: fix plyr import ([@hwiem](https://github.com/hwiem))
+- ([#777](https://github.com/demos-europe/demosplan-ui/pull/777)) DpEditor: fix condition for console.warn ([@hwiem](https://github.com/hwiem))
+- ([#748](https://github.com/demos-europe/demosplan-ui/pull/748)) Fix required for multiselect ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect (hotfix from v0.3.5-1) ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.7 - 2024-02-12
 
 ### Changed
@@ -19,10 +52,17 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#739](https://github.com/demos-europe/demosplan-ui/pull/739)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
 - ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
 - ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
 - ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.5-1 - 2024-02-13
+
+### Fixed
+
+- ([#747](https://github.com/demos-europe/demosplan-ui/pull/747)) Add missing prop clearOnSelect to DpMultiselect ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5 - 2024-01-09
 

@@ -9,6 +9,8 @@
       }" /><!--
  --><select
       :id="nameOrId"
+      :data-cy="dataCy"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       :required="required"
       :name="name !== '' ? name : null"
       class="o-form__control-select"
@@ -63,6 +65,18 @@ export default {
      */
     classes: {
       type: [Array, String],
+      required: false,
+      default: ''
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'selectElement'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
       required: false,
       default: ''
     },

@@ -11,6 +11,7 @@
       :class="{ 'grow': growToParent, 'h-7': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf ? true : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
+      :data-cy="dataCy"
       :disabled="disabled"
       :maxlength="maxlength"
       v-model="currentValue"
@@ -49,6 +50,12 @@ export default {
       type: [Boolean, String],
       required: false,
       default: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'textAreaElement'
     },
 
     disabled: {

@@ -16,7 +16,8 @@
       :href="href"
       :text="secondaryText"
       :variant="variant"
-      @click.prevent="$emit('secondary-action')" />
+      @click.prevent="$emit('secondary-action')"
+      data-cy="abortButton" />
     <slot />
   </div>
 </template>

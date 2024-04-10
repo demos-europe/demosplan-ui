@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Plyr from 'plyr/dist/plyr.polyfilled.min'
 export default {
   name: 'DpVideoPlayer',
 
@@ -80,29 +81,23 @@ export default {
     }
   },
 
-  created () {
-    this.player = import('plyr/dist/plyr.polyfilled.min')
-  },
-
   mounted () {
-    this.player.then(Plyr => {
-      // eslint-disable-next-line new-cap
-      this.player = new Plyr.default('#' + this.id, {
-        iconUrl: this.iconUrl,
-        // For a full list of available controls see https://github.com/sampotts/plyr/blob/master/CONTROLS.md
-        controls: [
-          'play-large',
-          'play',
-          'progress',
-          'duration',
-          'mute',
-          'volume',
-          'captions',
-          'settings',
-          'download',
-          'fullscreen'
-        ]
-      })
+    // eslint-disable-next-line new-cap
+    this.player = new Plyr('#' + this.id, {
+      iconUrl: this.iconUrl,
+      // For a full list of available controls see https://github.com/sampotts/plyr/blob/master/CONTROLS.md
+      controls: [
+        'play-large',
+        'play',
+        'progress',
+        'duration',
+        'mute',
+        'volume',
+        'captions',
+        'settings',
+        'download',
+        'fullscreen'
+      ]
     })
   }
 }

@@ -56,7 +56,8 @@
 
       <button
         @click.prevent="resetForm"
-        class="btn btn--secondary u-ml-0_5">
+        class="btn btn--secondary u-ml-0_5"
+        data-cy="editableList:abort">
         {{ translationKeys.abort }}
       </button>
     </div>

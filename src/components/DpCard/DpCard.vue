@@ -8,6 +8,7 @@
       </span>
       <dp-contextual-help
         v-if="headingTooltip !== ''"
+        class="inline-block"
         :text="headingTooltip" />
     </h4><!--
  --><slot />

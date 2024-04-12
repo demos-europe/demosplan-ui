@@ -1,6 +1,7 @@
 <template>
   <tr
     ref="tableHeader"
+    :data-cy="dataCy !== '' ? dataCy : false"
     :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
       v-if="isDraggable"
@@ -49,14 +50,18 @@
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleExpandAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
+      <dp-wrap-trigger
+        data-cy="isExpandableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
     <th
       v-if="isTruncatable"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleWrapAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
+      <dp-wrap-trigger
+        data-cy="isTruncatableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
   </tr>
 </template>
@@ -79,6 +84,12 @@ export default {
     checked: {
       type: Boolean,
       required: true
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     hasFlyout: {

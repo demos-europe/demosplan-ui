@@ -4,16 +4,16 @@
       v-if="editor"
       :editor="editor"
       :tippy-options="{ duration: 100 }">
-      <div class="editor-menububble__wrapper">
+      <div class="editor-menububble__wrapper is-active bottom-0">
         <button
           v-if="editor.isActive('anonymize')"
-          class="editor-menububble__button is-active"
+          class="editor-menububble__button whitespace-nowrap"
           @click="editor.chain().focus().toggleUnanonymize().run()">
           {{ translations.unanonymize }}
         </button>
         <button
           v-else
-          class="editor-menububble__button"
+          class="editor-menububble__button whitespace-nowrap"
           @click="editor.chain().focus().toggleAnonymize().run()">
           {{ translations.anonymize }}
         </button>

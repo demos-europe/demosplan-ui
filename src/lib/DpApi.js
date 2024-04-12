@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid'
 
 let currentProcedureId = null
 let jwtToken = null
+let csrfToken = null
 
 if (typeof dplan !== 'undefined') {
   if (hasOwnProp(dplan, 'procedureId')) {
@@ -11,11 +12,13 @@ if (typeof dplan !== 'undefined') {
   }
   if (hasOwnProp(dplan, 'jwtToken')) {
     jwtToken = dplan.jwtToken
+    csrfToken = dplan.csrfToken
   }
 }
 
 const apiDefaultHeaders = {
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
+  'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'x-csrf-token': csrfToken
 }
 
 const api2defaultHeaders = {
@@ -36,28 +39,34 @@ const getHeaders = function ({ headers, url }) {
   }
 }
 
-const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {} }) => {
-  const payload = {
-    method,
-    options,
-    params,
-    headers: getHeaders({ ...params, url })
+const appendSerializedUrlParams = (url, params) => {
+  if (!params || Object.keys(params).length === 0) {
+    return url
+  }
+  params = stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })
+
+  // Url params may be already appended before passing it to dpApi, this must be handled accordingly.
+  return url.includes('?') ? `${url}&${params}` : `${url}?${params}`
+}
+
+const doRequest = (async ({ method = 'GET', url, data = {}, headers, params }) => {
+  const fetchOptions = {
+    headers: getHeaders({ headers, url }),
+    method
   }
 
   if (method.toUpperCase() !== 'GET') {
     if (data instanceof FormData) {
-      payload.body = data
+      fetchOptions.body = data
     } else {
-      payload.body = JSON.stringify(data)
+      fetchOptions.body = JSON.stringify(data)
     }
-  } else if (options.serialize === true) {
-    delete payload.options.serialize
-
-    url = `${url}?${stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })}`
+  } else {
+    url = appendSerializedUrlParams(url, params)
   }
 
   try {
-    const response = await fetch(url, payload)
+    const response = await fetch(url, fetchOptions)
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
     const content = contentType.includes('json')
@@ -80,7 +89,7 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
       url: response.url
     }
   } catch (error) {
-    console.error('DpAPI[doRequest] failed: ', error, 'Payload: ', payload)
+    console.error('DpAPI[doRequest] failed: ', error, 'fetchOptions: ', fetchOptions)
 
     return {
       data: null,
@@ -92,38 +101,35 @@ const doRequest = (async ({ url, method = 'GET', data = {}, params, options = {}
 
 const dpApi = doRequest
 
-dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'POST', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'GET', url, params, options })
-dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PUT', url, data, params, options })
-dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PATCH', url, data, params, options })
-dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'DELETE', url, params, options })
+dpApi.post = (url, params = {}, data = {}) => doRequest({ method: 'POST', url, data, params })
+dpApi.get = (url, params = {}) => doRequest({ method: 'GET', url, params })
+dpApi.put = (url, params = {}, data = {}) => doRequest({ method: 'PUT', url, data, params })
+dpApi.patch = (url, params = {}, data = {}) => doRequest({ method: 'PATCH', url, data, params })
+dpApi.delete = (url, params = {}, data = {}) => doRequest({ method: 'DELETE', url, params })
 
 /**
- * Do a JsonRpc call.
+ * Submit a request to the rpc_generic_post API, which implements JSON-RPC 2.0.
  *
- * Id is optional and defaults to a UUID v4.
- *
- * @param {string} method
- * @param {object} parameters
- * @param {string} id
+ * @param {string} method     This is the RPC method (aka. action) to be invoked,
+ *                            not the Http request method (which is "POST" in any case).
+ * @param {object} params     Data to be used by the RPC method.
+ * @param {string|null} id    Request id. Optional, defaults to a UUID v4.
  * @return {Promise}
  */
-const dpRpc = function (method, parameters, id = null) {
+const dpRpc = function (method, params, id = null) {
   const data = {
     jsonrpc: '2.0',
-    method: method,
-    id: id === null ? uuid() : id,
-    params: parameters,
+    method,
+    params,
+    id: id === null ? uuid() : id
   }
 
   return doRequest({
-    url: Routing.generate('rpc_generic_post'),
     method: 'POST',
+    url: Routing.generate('rpc_generic_post'),
     data,
-    params: {
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    headers: {
+      'Content-Type': 'application/json'
     }
   })
 }

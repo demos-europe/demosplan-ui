@@ -20,9 +20,6 @@ function getFileIdsByHash (hashes, route) {
           }
         }
       }
-    },
-    {
-      serialize: true
     }
   )
     .then(({ data }) => {

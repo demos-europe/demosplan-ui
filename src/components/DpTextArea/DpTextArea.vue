@@ -10,6 +10,7 @@
       :class="{ 'grow': growToParent, 'h-7': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
+      :data-cy="dataCy"
       :disabled="disabled"
       :maxlength="maxlength"
       v-bind="allowedAttributes"
@@ -48,6 +49,12 @@ export default {
       type: [Boolean, String],
       required: false,
       default: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'textAreaElement'
     },
 
     disabled: {

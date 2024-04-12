@@ -8,6 +8,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#829](https://github.com/demos-europe/demosplan-ui/pull/829)) Adjust DpContextualHelp Styling ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#803](https://github.com/demos-europe/demosplan-ui/pull/803)) dpApi: remove "option" argument ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Added

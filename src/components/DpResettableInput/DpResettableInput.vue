@@ -7,7 +7,7 @@
       has-icon
       :required="required"
       @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
       :pattern="pattern"
@@ -37,6 +37,8 @@ export default {
     DpIcon,
     DpInput
   },
+
+  emits: ['update:modelValue'],
 
   props: {
     dataCy: {
@@ -84,7 +86,7 @@ export default {
       default: false
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -93,7 +95,7 @@ export default {
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.modelValue
     }
   },
 
@@ -108,8 +110,8 @@ export default {
   },
 
   watch: {
-    value: function () {
-      this.currentValue = this.value
+    modelValue: function () {
+      this.currentValue = this.modelValue
     }
   },
 

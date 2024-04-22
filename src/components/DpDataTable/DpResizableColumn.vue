@@ -4,6 +4,7 @@
     ref="resizableColumn"
     class="c-data-table__resizable"
     :class="{ 'u-pr-0' : isLast }"
+    :data-col-field="headerField.field"
     :data-col-idx="idx">
     <slot/>
     <dp-resize-handle
@@ -39,7 +40,13 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    }
+    },
+
+    nextHeader: {
+      type: Object,
+      required: false,
+      default: null
+    },
   },
 
   data () {
@@ -66,13 +73,17 @@ export default {
       this.resize = this.$refs.resizableColumn
       this.currentHandle = this.resize.getElementsByClassName('c-data-table__resize-handle')[0]
       this.currentHandle.classList.add('is-active')
-      this.nextEl = document.querySelector(`th[data-col-idx='${idx + 1}']`)
+      this.nextEl = document.querySelector(`th[data-col-idx='${idx + 1}']`) // could be replaced with data-field
       this.dragStart = true
       this.cursorStart = e.pageX
       const resizeBound = this.resize.getBoundingClientRect()
       this.resizeWidth = resizeBound.width
-      const nextBound = this.nextEl.getBoundingClientRect()
-      this.nextWidth = nextBound.width
+
+      if (this.nextEl) { // check the table width
+        const nextBound = this.nextEl.getBoundingClientRect()
+        this.nextWidth = nextBound.width
+      }
+
       this.namedFunc = (e) => this.resizeEl(e, idx)
       const bodyEl = document.getElementsByTagName('body')[0]
       bodyEl.classList.add('resizing')
@@ -89,7 +100,9 @@ export default {
 
         if (newWidth > 25 && newNextWidth > 25) {
           this.resize.style.width = newWidth + 'px'
+          sessionStorage.setItem(`data-col-field=${this.headerField.field}`, this.resize.style.width)
           this.nextEl.style.width = newNextWidth + 'px'
+          sessionStorage.setItem(`data-col-field=${this.nextHeader.field}`, this.nextEl.style.width)
         }
       }
     },

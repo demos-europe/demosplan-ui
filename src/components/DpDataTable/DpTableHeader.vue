@@ -29,6 +29,7 @@
         v-if="isResizable"
         :is-last="headerFields.length === idx"
         :header-field="hf"
+        :next-header="headerFields[idx + 1]"
         :idx="idx">
         <slot :name="`header-${hf.field}`">
           <span v-if="hf.label" v-text="hf.label" />

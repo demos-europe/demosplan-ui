@@ -469,6 +469,25 @@ export default {
   watch: {
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
+    },
+
+    headerFields () {
+      if (this.isResizable) {
+        this.$nextTick(() => {
+          const defaultWidth = '150px'
+          const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+          const tableHeaders = firstRow ? firstRow.children : null
+
+          tableHeaders.forEach(tableHeader => {
+            const field = tableHeader.getAttribute('data-col-field')
+            const savedWidth = sessionStorage.getItem(`data-col-field=${field}`)
+
+            const width = savedWidth || defaultWidth
+            tableHeader.style.width = width
+            sessionStorage.setItem(`data-col-field=${field}`, width)
+          })
+        })
+      }
     }
   },
 
@@ -597,8 +616,8 @@ export default {
      * Therefore, we have a normal table, get the auto-sized cell width and set the layout to fixed afterwards.
      */
     if (this.isResizable || this.isTruncatable) {
-      const firstRow = this.tableEl.firstChild
-      const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
+      const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+      const tableHeaders = firstRow ? firstRow.children : null
       tableHeaders.forEach(tableHeader => {
         /**
          * Some of childNodes of the first table row are not Element nodes but comments or text.
@@ -606,8 +625,11 @@ export default {
          * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
          */
         if(tableHeader.nodeType === 1) {
-          const width = tableHeader.getBoundingClientRect().width
-          tableHeader.style.width = width + 'px'
+          const field = tableHeader.getAttribute('data-col-field')
+          const savedWidth = sessionStorage.getItem(`data-col-field=${field}`)
+          const width = savedWidth || `${tableHeader.getBoundingClientRect().width}px`
+          tableHeader.style.width = width
+          sessionStorage.setItem(`data-col-field=${field}`, width)
         }
       })
 
@@ -616,12 +638,13 @@ export default {
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
-        const tableRows = Array.from(this.tableEl.children[1].children)
-        tableRows.forEach(tableRow => {
-          Array.from(tableRow.children).forEach(cell => {
-            cell.firstChild.style.width = null
-            cell.firstChild.style.maxWidth = null
-            cell.firstChild.style.minWidth = null
+        Array.from(tableHeaders).forEach(tableRow => {
+          Array.from(tableRow).forEach(cell => {
+            if (cell.firstChild) {
+              cell.firstChild.style.width = null
+              cell.firstChild.style.maxWidth = null
+              cell.firstChild.style.minWidth = null
+            }
           })
         })
       }

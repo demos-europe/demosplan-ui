@@ -467,27 +467,19 @@ export default {
   },
 
   watch: {
-    shouldBeSelectedItems () {
-      this.forceElementSelections(this.shouldBeSelectedItems)
-    },
-
     headerFields () {
       if (this.isResizable) {
         this.$nextTick(() => {
-          const defaultWidth = '150px'
           const firstRow = this.tableEl.getElementsByTagName('tr')[0]
           const tableHeaders = firstRow ? firstRow.children : null
 
-          tableHeaders.forEach(tableHeader => {
-            const field = tableHeader.getAttribute('data-col-field')
-            const savedWidth = sessionStorage.getItem(`data-col-field=${field}`)
-
-            const width = savedWidth || defaultWidth
-            tableHeader.style.width = width
-            sessionStorage.setItem(`data-col-field=${field}`, width)
-          })
+          this.setColsWidth(tableHeaders)
         })
       }
+    },
+
+    shouldBeSelectedItems () {
+      this.forceElementSelections(this.shouldBeSelectedItems)
     }
   },
 
@@ -531,6 +523,24 @@ export default {
 
     resetSelection () {
       this.toggleSelectAll(false)
+    },
+
+    setColsWidth (headers) {
+      headers.forEach(tableHeader => {
+        /**
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
+         */
+        if(tableHeader.nodeType === 1) {
+          const headerField = tableHeader.getAttribute('data-col-field')
+          const savedColWidth = sessionStorage.getItem(`data-col-field=${field}`)
+          const width = savedColWidth || `${tableHeader.getBoundingClientRect().width}px`
+          tableHeader.style.width = width
+
+          this.updateSessionStorage(headerField, width)
+        }
+      })
     },
 
     setElementSelections (elements, status) {
@@ -587,6 +597,12 @@ export default {
       }, {})
 
       this.allWrapped = status
+    },
+
+    updateSessionStorage (storageName, value) {
+      if (storageName) {
+        sessionStorage.setItem(`data-col-field=${storageName}`, value)
+      }
     }
   },
 
@@ -618,20 +634,8 @@ export default {
     if (this.isResizable || this.isTruncatable) {
       const firstRow = this.tableEl.getElementsByTagName('tr')[0]
       const tableHeaders = firstRow ? firstRow.children : null
-      tableHeaders.forEach(tableHeader => {
-        /**
-         * Some of childNodes of the first table row are not Element nodes but comments or text.
-         * This originates in the Vue template compiler leaving empty html comments when rendering
-         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
-         */
-        if(tableHeader.nodeType === 1) {
-          const field = tableHeader.getAttribute('data-col-field')
-          const savedWidth = sessionStorage.getItem(`data-col-field=${field}`)
-          const width = savedWidth || `${tableHeader.getBoundingClientRect().width}px`
-          tableHeader.style.width = width
-          sessionStorage.setItem(`data-col-field=${field}`, width)
-        }
-      })
+
+      this.setColsWidth(tableHeaders)
 
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')

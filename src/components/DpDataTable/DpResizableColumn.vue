@@ -79,7 +79,7 @@ export default {
       const resizeBound = this.resize.getBoundingClientRect()
       this.resizeWidth = resizeBound.width
 
-      if (this.nextEl) { // check the table width
+      if (this.nextEl) {
         const nextBound = this.nextEl.getBoundingClientRect()
         this.nextWidth = nextBound.width
       }
@@ -98,11 +98,16 @@ export default {
         const newWidth = this.resizeWidth + mouseMoved
         const newNextWidth = this.nextWidth - mouseMoved
 
-        if (newWidth > 25 && newNextWidth > 25) {
-          this.resize.style.width = newWidth + 'px'
-          sessionStorage.setItem(`data-col-field=${this.headerField.field}`, this.resize.style.width)
+        if (newWidth <= 25 || newNextWidth <= 25) {
+          return
+        }
+
+        this.resize.style.width = newWidth + 'px'
+        this.updateSessionStorage(this.headerField.field, this.resize.style.width)
+
+        if (this.nextEl) {
           this.nextEl.style.width = newNextWidth + 'px'
-          sessionStorage.setItem(`data-col-field=${this.nextHeader.field}`, this.nextEl.style.width)
+          this.updateSessionStorage(this.nextHeader.field, this.nextEl.style.width)
         }
       }
     },
@@ -113,6 +118,10 @@ export default {
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
       document.querySelector('body').removeEventListener('mouseup', this.stopResize)
       document.querySelector('body').classList.remove('resizing')
+    },
+
+    updateSessionStorage (field, width) {
+      sessionStorage.setItem(`data-col-field=${field}`, width)
     }
   }
 }

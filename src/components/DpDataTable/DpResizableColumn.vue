@@ -73,7 +73,7 @@ export default {
       this.resize = this.$refs.resizableColumn
       this.currentHandle = this.resize.getElementsByClassName('c-data-table__resize-handle')[0]
       this.currentHandle.classList.add('is-active')
-      this.nextEl = document.querySelector(`th[data-col-idx='${idx + 1}']`) // could be replaced with data-field
+      this.nextEl = document.querySelector(`th[data-col-idx='${idx + 1}']`)
       this.dragStart = true
       this.cursorStart = e.pageX
       const resizeBound = this.resize.getBoundingClientRect()

@@ -32,9 +32,13 @@ export default {
     VueOmnibox
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   mixins: [prefixClassMixin],
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     height: {

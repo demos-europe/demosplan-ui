@@ -38,7 +38,11 @@ export default {
     DpInput
   },
 
-  emits: ['update:modelValue'],
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:model-value'],
 
   props: {
     dataCy: {
@@ -110,7 +114,7 @@ export default {
   },
 
   watch: {
-    modelValue: function () {
+    modelValue () {
       this.currentValue = this.modelValue
     }
   },

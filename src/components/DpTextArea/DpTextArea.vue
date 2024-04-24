@@ -34,7 +34,11 @@ export default {
     })
   },
 
-  emits: ['update:modelValue'],
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:model-value'],
 
   props: {
     attributes: attributes('textarea'),

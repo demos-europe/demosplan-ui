@@ -50,9 +50,13 @@ export default {
     DpLabel
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   mixins: [prefixClassMixin],
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     /**
@@ -268,7 +272,7 @@ export default {
   },
 
   watch: {
-    modelValue: function () {
+    modelValue () {
       this.currentValue = this.modelValue
     }
   },

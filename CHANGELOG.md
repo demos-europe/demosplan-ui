@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#834](https://github.com/demos-europe/demosplan-ui/pull/834)) DpButton: add icon size class ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.3.9 - 2024-04-12
 
 ### Changed

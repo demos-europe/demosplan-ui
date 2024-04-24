@@ -20,7 +20,7 @@
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @input="val => handleInput(val)"
+      @update:model-value="val => handleInput(val)"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime" />
     <dp-input
@@ -30,8 +30,8 @@
       class="w-8"
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-      :value="currentTime"
-      @input="val => handleInput(val)"
+      :model-value="currentTime"
+      @update:model-value="val => handleInput(val)"
       autocomplete="off" />
 
     <div
@@ -95,6 +95,12 @@ export default {
     DpResettableInput
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:model-value'],
+
   directives: {
     // ClickOutside
   },
@@ -139,7 +145,7 @@ export default {
     },
 
     // Expects ISO datetime
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: DEFAULT_TIME
@@ -233,8 +239,8 @@ export default {
       }
     },
 
-    value () {
-      this.updateTime(this.value)
+    modelValue () {
+      this.updateTime(this.modelValue)
     }
   },
 
@@ -315,7 +321,7 @@ export default {
       if (type === 'minute') {
         this.setMinutes(val)
       }
-      this.$emit('input', this.currentTime)
+      this.$emit('update:modelValue', this.currentTime)
     },
 
     handleKeyDown (e) {

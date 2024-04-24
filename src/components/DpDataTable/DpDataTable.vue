@@ -534,7 +534,7 @@ export default {
          */
         if(tableHeader.nodeType === 1) {
           const headerField = tableHeader.getAttribute('data-col-field')
-          const savedColWidth = sessionStorage.getItem(`data-col-field=${field}`)
+          const savedColWidth = sessionStorage.getItem(`data-col-field=${headerField}`)
           const width = savedColWidth || `${tableHeader.getBoundingClientRect().width}px`
           tableHeader.style.width = width
 

@@ -25,7 +25,7 @@
         :id="`timePicker:${id}`"
         v-model="time"
         :min-value="minTime"
-        @input="$emit('input', currentDatetime)" />
+        @input="$emit('update:modelValue', currentDatetime)" />
       <input
         type="hidden"
         :disabled="disabled"
@@ -55,6 +55,12 @@ export default {
     }),
     DpTimePicker
   },
+
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:model-value'],
 
   props: {
     dataCy: {
@@ -138,7 +144,7 @@ export default {
     },
 
     // Expects ISO datetime
-    value: {
+    modelValue: {
       type: String,
       required: true
     }
@@ -171,7 +177,7 @@ export default {
   },
 
   watch: {
-    value: function (newVal) {
+    modelValue (newVal) {
       this.setDatetime(newVal)
     }
   },
@@ -187,7 +193,7 @@ export default {
   },
 
   mounted () {
-    this.setDatetime(this.value)
+    this.setDatetime(this.modelValue)
   }
 }
 </script>

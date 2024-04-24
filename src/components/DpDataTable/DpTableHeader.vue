@@ -60,7 +60,7 @@
     </th>
     <th
       v-if="isTruncatable"
-      :data-col-field="isResizable ? 'truncatable' : null"
+      :data-col-field="isResizable ? 'wrap' : null"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleWrapAll()">

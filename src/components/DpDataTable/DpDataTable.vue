@@ -515,6 +515,17 @@ export default {
       this.selectedElements = this.filterElementSelections()
     },
 
+    getColWidthFromHeaderField (field) {
+      const headerField = this.headerFields.find(headerField => headerField.field === field)
+
+      return headerField && headerField.colWidth ? headerField.colWidth : null
+    },
+
+
+    getFixedColWidth (field) {
+      return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
+    },
+
     removeHoveredClass(idx) {
       const tableRow = this.$refs.tableRows[idx]
 
@@ -535,9 +546,15 @@ export default {
         if(tableHeader.nodeType === 1) {
           const headerField = tableHeader.getAttribute('data-col-field')
           const savedColWidth = sessionStorage.getItem(`data-col-field=${headerField}`)
-          const width = savedColWidth || `${tableHeader.getBoundingClientRect().width}px`
-          tableHeader.style.width = width
+          const fixedWidth = this.getFixedColWidth(headerField)  // some columns, such as 'flyout' and 'wrap', should not be resizable; their width is fixed; the getBoundingClientRect() function should not be applied to them
+          const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
+          const width = fixedWidth
+              || savedColWidth
+              || headerFieldWidth
+              || `${tableHeader.getBoundingClientRect().width}px`
+
+          tableHeader.style.width = width
           this.updateSessionStorage(headerField, width)
         }
       })

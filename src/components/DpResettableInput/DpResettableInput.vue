@@ -7,9 +7,9 @@
       has-icon
       :required="required"
       @blur="$emit('blur', currentValue)"
-      @update:model-value="$emit('update:modelValue', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
+      @update:model-value="$emit('update:modelValue', currentValue)"
       :pattern="pattern"
       v-model="currentValue" />
     <button

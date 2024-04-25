@@ -7,7 +7,7 @@
       has-icon
       :required="required"
       @blur="$emit('blur', currentValue)"
-      @input="$emit('update:modelValue', currentValue)"
+      @update:model-value="$emit('update:modelValue', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
       :pattern="pattern"

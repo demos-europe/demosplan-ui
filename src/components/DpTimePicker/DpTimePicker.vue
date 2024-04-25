@@ -16,13 +16,13 @@
       button-variant="small"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
+      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+      :model-value="currentTime"
       @reset="handleReset"
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @update:model-value="val => handleInput(val)"
-      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-      :value="currentTime" />
+      @update:model-value="val => handleInput(val)" />
     <dp-input
       v-else
       :data-cy="dataCy"

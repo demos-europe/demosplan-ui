@@ -8,10 +8,10 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="startDisabled"
-      :value="startValue"
+      :model-value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
-      @input="handleInputStartDate" />
+      @update:model-value="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
       :id="endId"
@@ -21,10 +21,10 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="endDisabled"
-      :value="endValue"
+      :model-value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
-      @input="handleInputEndDate" />
+      @update:model-value="handleInputEndDate" />
   </div>
 </template>
 

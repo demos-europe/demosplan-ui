@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import DpResizeHandle from './DpResizeHandle'
 import { hasOwnProp } from '../../utils'
+import { sessionStorageMixin } from '~/mixins'
+import DpResizeHandle from './DpResizeHandle'
 
 export default {
   name: 'DpResizableColumn',
@@ -24,6 +25,8 @@ export default {
   components: {
     DpResizeHandle
   },
+
+  mixins: [sessionStorageMixin],
 
   props: {
     idx: {
@@ -103,11 +106,11 @@ export default {
         }
 
         this.resize.style.width = newWidth + 'px'
-        this.updateSessionStorage(this.headerField.field, this.resize.style.width)
+        this.updateSessionStorage(`dpDataTable:data-col-field=${this.headerField.field}`, this.resize.style.width)
 
         if (this.nextEl) {
           this.nextEl.style.width = newNextWidth + 'px'
-          this.updateSessionStorage(this.nextHeader.field, this.nextEl.style.width)
+          this.updateSessionStorage(`dpDataTable:data-col-field=${this.nextHeader.field}`, this.nextEl.style.width)
         }
       }
     },
@@ -118,10 +121,6 @@ export default {
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
       document.querySelector('body').removeEventListener('mouseup', this.stopResize)
       document.querySelector('body').classList.remove('resizing')
-    },
-
-    updateSessionStorage (field, width) {
-      sessionStorage.setItem(`data-col-field=${field}`, width)
     }
   }
 }

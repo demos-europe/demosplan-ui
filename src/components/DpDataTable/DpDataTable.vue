@@ -175,6 +175,7 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
+import { sessionStorageMixin } from '~/mixins'
 import DomPurify from 'dompurify'
 import DpDraggable from '~/components/DpDraggable'
 import DpLoading from '~/components/DpLoading'
@@ -194,6 +195,8 @@ export default {
   directives: {
     cleanhtml: CleanHtml
   },
+
+  mixins: [sessionStorageMixin],
 
   props: {
     dataCy: {
@@ -545,17 +548,22 @@ export default {
          */
         if (tableHeaderEl.nodeType === 1) {
           const headerField = tableHeaderEl.getAttribute('data-col-field')
-          const savedColWidth = sessionStorage.getItem(`data-col-field=${headerField}`)
-          const fixedWidth = this.getFixedColWidth(headerField)  // some columns, such as 'flyout' and 'wrap', should not be resizable; their width is fixed; the getBoundingClientRect() function should not be applied to them
+          const storageName = `dpDataTable:data-col-field=${headerField}`
+          const sessionColWidth = this.getItemFromSessionStorage(storageName)
+          /**
+           * Some columns, such as 'flyout' and 'wrap', should not be resizable;
+           * their width is fixed; the getBoundingClientRect() function should not be applied to them
+           */
+          const fixedWidth = this.getFixedColWidth(headerField)
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-              || savedColWidth
+              || sessionColWidth
               || headerFieldWidth
               || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
-          this.updateSessionStorage(headerField, width)
+          this.updateSessionStorage(storageName, width)
         }
       })
     },
@@ -614,12 +622,6 @@ export default {
       }, {})
 
       this.allWrapped = status
-    },
-
-    updateSessionStorage (storageName, value) {
-      if (storageName) {
-        sessionStorage.setItem(`data-col-field=${storageName}`, value)
-      }
     }
   },
 

@@ -471,9 +471,9 @@ export default {
       if (this.isResizable) {
         this.$nextTick(() => {
           const firstRow = this.tableEl.getElementsByTagName('tr')[0]
-          const tableHeaders = firstRow ? firstRow.children : null
+          const tableHeaderElements = firstRow ? firstRow.children : null
 
-          this.setColsWidth(tableHeaders)
+          this.setColsWidth(tableHeaderElements)
         })
       }
     },
@@ -537,14 +537,14 @@ export default {
     },
 
     setColsWidth (headers) {
-      headers.forEach(tableHeader => {
+      Array.from(headers).forEach(tableHeaderEl => {
         /**
          * Some of childNodes of the first table row are not Element nodes but comments or text.
          * This originates in the Vue template compiler leaving empty html comments when rendering
          * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
          */
-        if(tableHeader.nodeType === 1) {
-          const headerField = tableHeader.getAttribute('data-col-field')
+        if (tableHeaderEl.nodeType === 1) {
+          const headerField = tableHeaderEl.getAttribute('data-col-field')
           const savedColWidth = sessionStorage.getItem(`data-col-field=${headerField}`)
           const fixedWidth = this.getFixedColWidth(headerField)  // some columns, such as 'flyout' and 'wrap', should not be resizable; their width is fixed; the getBoundingClientRect() function should not be applied to them
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
@@ -552,9 +552,9 @@ export default {
           const width = fixedWidth
               || savedColWidth
               || headerFieldWidth
-              || `${tableHeader.getBoundingClientRect().width}px`
+              || `${tableHeaderEl.getBoundingClientRect().width}px`
 
-          tableHeader.style.width = width
+          tableHeaderEl.style.width = width
           this.updateSessionStorage(headerField, width)
         }
       })
@@ -650,23 +650,21 @@ export default {
      */
     if (this.isResizable || this.isTruncatable) {
       const firstRow = this.tableEl.getElementsByTagName('tr')[0]
-      const tableHeaders = firstRow ? firstRow.children : null
+      const tableHeaderElements = firstRow ? firstRow.children : null
 
-      this.setColsWidth(tableHeaders)
+      this.setColsWidth(tableHeaderElements)
 
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
-        Array.from(tableHeaders).forEach(tableRow => {
-          Array.from(tableRow).forEach(cell => {
-            if (cell.firstChild) {
-              cell.firstChild.style.width = null
-              cell.firstChild.style.maxWidth = null
-              cell.firstChild.style.minWidth = null
-            }
-          })
+        Array.from(tableHeaderElements).forEach(th => {
+          if (th.firstChild) {
+            th.firstChild.style.width = null
+            th.firstChild.style.maxWidth = null
+            th.firstChild.style.minWidth = null
+          }
         })
       }
     }

@@ -8,7 +8,7 @@ export default {
 
     getItemFromSessionStorage (storageName) {
       if (storageName) {
-        return JSON.parse(sessionStorage.getItem(storageName))
+        return JSON.parse(sessionStorage.getItem(storageName)) || null
       }
     },
 

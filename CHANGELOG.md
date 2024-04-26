@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.10 - 2024-04-26
+
 ### Changed
 - ([#835](https://github.com/demos-europe/demosplan-ui/pull/835)) DpDataTable: enhance column resizing functionality; save the width to sessionStorage ([@sakutademos](https://github.com/sakutademos))
 

@@ -5,10 +5,10 @@
     :label="label"
     :options="options"
     :placeholder="placeholder"
-    :model-value="currentQuery"
+    :value="currentQuery"
+    @input="emitAndFetch"
     @searched="emit($event, 'searched')"
-    @selected="emit($event, 'selected')"
-    @update:model-value="emitAndFetch">
+    @selected="emit($event, 'selected')">
     <template
       v-for="(_, slotName) in $slots"
       v-slot:[slotName]="slotData">

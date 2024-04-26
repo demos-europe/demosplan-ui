@@ -5,6 +5,7 @@
     :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
       v-if="isDraggable"
+      :data-col-field="isResizable ? 'dragHandle' : null"
       scope="col"
       class="c-data-table__cell--narrow">
       <dp-icon
@@ -13,6 +14,7 @@
     </th>
     <th
       v-if="isSelectable"
+      :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow">
       <input
@@ -29,6 +31,7 @@
         v-if="isResizable"
         :is-last="headerFields.length === idx"
         :header-field="hf"
+        :next-header="headerFields[idx + 1]"
         :idx="idx">
         <slot :name="`header-${hf.field}`">
           <span v-if="hf.label" v-text="hf.label" />
@@ -44,6 +47,7 @@
     </template>
     <th
       v-if="hasFlyout"
+      :data-col-field="isResizable ? 'flyout' : null"
       scope="col" />
     <th
       v-if="isExpandable"
@@ -56,6 +60,7 @@
     </th>
     <th
       v-if="isTruncatable"
+      :data-col-field="isResizable ? 'wrap' : null"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleWrapAll()">

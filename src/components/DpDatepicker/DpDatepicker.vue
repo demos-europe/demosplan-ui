@@ -142,8 +142,20 @@ export default {
   },
 
   methods: {
+    isValidDate (dateString) {
+      // Attempt to create a Date object from the given string
+      const date = new Date(dateString);
+
+      // Check if the created date is valid
+      // Also, check if the input string is not 'Invalid Date'
+      return !isNaN(date.getTime()) && date.toString() !== 'Invalid Date';
+    },
+
     emitUpdate (e) {
       const currentVal = e.target.value
+      const isValid = this.isValidDate(currentVal)
+      console.log('isValid', isValid)
+      console.log('currectVal', currentVal)
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
       this.$emit('input', valueToEmit)

@@ -164,6 +164,7 @@ export default {
   },
 
   mounted () {
+    // https://github.com/mathislucka/a11y-datepicker
     const config = {
       ...this.calendarsAfter > 0 ? { monthsAfterCurrent: this.calendarsAfter } : {},
       ...this.calendarsBefore > 0 ? { monthsBeforeCurrent: this.calendarsBefore } : {},

@@ -150,7 +150,11 @@ export default {
   methods: {
     addErrorFieldnameAttribute () {
       const datePickerInput = document.getElementsByName(this.name)[0]
-      datePickerInput.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname) // this attribute is required by the validation to showcase the field name in case of an error
+      /**
+       * To ensure proper error handling, this attribute needs to be added every time the Datepicker is mounted and updated.
+       * This attribute is needed by the validation to display the field name in case of an error
+       */
+      datePickerInput.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
     },
 
     emitUpdate (e) {

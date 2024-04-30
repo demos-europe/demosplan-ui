@@ -31,6 +31,12 @@ export default {
       default: 'datepicker'
     },
 
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     disabled: {
       type: Boolean,
       required: false,
@@ -142,29 +148,22 @@ export default {
   },
 
   methods: {
-    isValidDate (dateString) {
-      // Attempt to create a Date object from the given string
-      const date = new Date(dateString);
-
-      // Check if the created date is valid
-      // Also, check if the input string is not 'Invalid Date'
-      return !isNaN(date.getTime()) && date.toString() !== 'Invalid Date';
+    addErrorFieldnameAttribute () {
+      const datePickerInput = document.getElementsByName(this.name)[0]
+      datePickerInput.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname) // this attribute is required by the validation to showcase the field name in case of an error
     },
 
     emitUpdate (e) {
       const currentVal = e.target.value
-      const isValid = this.isValidDate(currentVal)
-      console.log('isValid', isValid)
-      console.log('currectVal', currentVal)
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
+      this.addErrorFieldnameAttribute()
     }
   },
 
   mounted () {
-    // https://github.com/mathislucka/a11y-datepicker
     const config = {
       ...this.calendarsAfter > 0 ? { monthsAfterCurrent: this.calendarsAfter } : {},
       ...this.calendarsBefore > 0 ? { monthsBeforeCurrent: this.calendarsBefore } : {},
@@ -177,6 +176,7 @@ export default {
     }
     this.datepicker = Datepicker(config)
     this.value !== '' && this.datepicker.setDate(this.value)
+    this.addErrorFieldnameAttribute()
   }
 }
 </script>

@@ -56,7 +56,7 @@ export default {
 
   mixins: [prefixClassMixin],
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     /**

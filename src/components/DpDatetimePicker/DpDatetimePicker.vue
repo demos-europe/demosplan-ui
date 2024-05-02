@@ -17,7 +17,7 @@
         :min-date="minDate"
         :required="required"
         v-model="date"
-        @update:model-value="$emit('update:modelValue', currentDatetime)" />
+        @update:modelValue="$emit('update:modelValue', currentDatetime)" />
       <dp-time-picker
         class="o-form__group-item"
         :data-cy="`${dataCy}:time`"

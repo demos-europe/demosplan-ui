@@ -31,7 +31,7 @@
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :model-value="currentTime"
-      @update:model-value="val => handleInput(val)"
+      @update:modelValue="val => handleInput(val)"
       autocomplete="off" />
 
     <div

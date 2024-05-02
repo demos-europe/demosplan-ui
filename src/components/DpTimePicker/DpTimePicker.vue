@@ -22,7 +22,7 @@
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @update:model-value="val => handleInput(val)" />
+      @update:modelValue="val => handleInput(val)" />
     <dp-input
       v-else
       :data-cy="dataCy"

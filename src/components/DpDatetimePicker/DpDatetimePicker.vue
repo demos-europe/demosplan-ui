@@ -25,7 +25,7 @@
         :id="`timePicker:${id}`"
         v-model="time"
         :min-value="minTime"
-        @update:model-value="$emit('update:modelValue', currentDatetime)" />
+        @update:modelValue="$emit('update:modelValue', currentDatetime)" />
       <input
         type="hidden"
         :disabled="disabled"

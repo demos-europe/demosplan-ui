@@ -60,7 +60,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     dataCy: {

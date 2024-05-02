@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- () DpInput: fix "length" prop validation ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.10 - 2024-04-26
 
 ### Changed

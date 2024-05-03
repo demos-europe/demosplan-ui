@@ -103,6 +103,10 @@ export default {
     VueMultiselect
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   directives: {
     dpValidateMultiselectDirective
   },

@@ -18,83 +18,83 @@
       </colgroup>
 
       <thead>
-        <dp-table-header
-          :data-cy="`${dataCy}:header`"
-          :checked="allSelected"
-          :has-flyout="hasFlyout"
-          :header-fields="headerFields"
-          :indeterminate="indeterminate"
-          :is-draggable="isDraggable"
-          :is-expandable="isExpandable"
-          :is-resizable="isResizable"
-          :is-selectable="isSelectable"
-          :is-sticky="hasStickyHeader"
-          :is-truncatable="isTruncatable"
-          :translations="headerTranslations"
-          @toggle-expand-all="toggleExpandAll"
-          @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll">
-          <template v-slot:[`header-${field}`] v-for="field in fields">
-            <slot :name="`header-${field}`" />
-          </template>
-        </dp-table-header>
+      <dp-table-header
+        :data-cy="`${dataCy}:header`"
+        :checked="allSelected"
+        :has-flyout="hasFlyout"
+        :header-fields="headerFields"
+        :indeterminate="indeterminate"
+        :is-draggable="isDraggable"
+        :is-expandable="isExpandable"
+        :is-resizable="isResizable"
+        :is-selectable="isSelectable"
+        :is-sticky="hasStickyHeader"
+        :is-truncatable="isTruncatable"
+        :translations="headerTranslations"
+        @toggle-expand-all="toggleExpandAll"
+        @toggle-select-all="toggleSelectAll"
+        @toggle-wrap-all="toggleWrapAll">
+        <template v-slot:[`header-${field}`] v-for="field in fields">
+          <slot :name="`header-${field}`" />
+        </template>
+      </dp-table-header>
       </thead>
 
       <!-- not draggable -->
       <tbody v-if="!isDraggable && !isLoading">
-        <template v-for="(item, idx) in items">
-          <dp-table-row
-            ref="tableRows"
-            :data-cy="`${dataCy}:row:${idx}`"
-            :index="idx"
-            :checked="elementSelections[item[trackBy]] || false"
-            :fields="fields"
-            :has-flyout="hasFlyout"
-            :header-fields="headerFields"
-            :is-draggable="isDraggable"
-            :is-expandable="isExpandable"
-            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
-            :is-resizable="isResizable"
-            :is-selectable="isSelectable"
-            :is-selectable-name="isSelectableName"
-            :is-truncatable="isTruncatable"
-            :item="item"
-            :search-term="searchTerm"
-            :track-by="trackBy"
-            :wrapped="wrappedElements[item[trackBy]] || false"
-            @toggle-expand="toggleExpand"
-            @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap">
-            <template
-              v-slot:[field]="item"
-              v-for="field in fields">
-              <slot
-                :name="field"
-                v-bind="item" />
-            </template>
-            <template v-slot:flyout="item">
-              <slot
-                name="flyout"
-                v-bind="item" />
-            </template>
-          </dp-table-row>
+      <template v-for="(item, idx) in items">
+        <dp-table-row
+          ref="tableRows"
+          :data-cy="`${dataCy}:row:${idx}`"
+          :index="idx"
+          :checked="elementSelections[item[trackBy]] || false"
+          :fields="fields"
+          :has-flyout="hasFlyout"
+          :header-fields="headerFields"
+          :is-draggable="isDraggable"
+          :is-expandable="isExpandable"
+          :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+          :is-locked-message="mergedTranslations.lockedForSelection"
+          :is-resizable="isResizable"
+          :is-selectable="isSelectable"
+          :is-selectable-name="isSelectableName"
+          :is-truncatable="isTruncatable"
+          :item="item"
+          :search-term="searchTerm"
+          :track-by="trackBy"
+          :wrapped="wrappedElements[item[trackBy]] || false"
+          @toggle-expand="toggleExpand"
+          @toggle-select="toggleSelect"
+          @toggle-wrap="toggleWrap">
+          <template
+            v-slot:[field]="item"
+            v-for="field in fields">
+            <slot
+              :name="field"
+              v-bind="item" />
+          </template>
+          <template v-slot:flyout="item">
+            <slot
+              name="flyout"
+              v-bind="item" />
+          </template>
+        </dp-table-row>
 
-          <!-- DpTableRowExpanded -->
-          <tr
-            v-if="expandedElements[item[trackBy]] || false"
-            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
-            <td
-              :class="{ 'opacity-70': isLoading }"
-              :colspan="colCount"
-              @mouseenter="addHoveredClass(idx)"
-              @mouseleave="removeHoveredClass(idx)">
-              <slot
-                name="expandedContent"
-                v-bind="item" />
-            </td>
-          </tr>
-        </template>
+        <!-- DpTableRowExpanded -->
+        <tr
+          v-if="expandedElements[item[trackBy]] || false"
+          :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+          <td
+            :class="{ 'opacity-70': isLoading }"
+            :colspan="colCount"
+            @mouseenter="addHoveredClass(idx)"
+            @mouseleave="removeHoveredClass(idx)">
+            <slot
+              name="expandedContent"
+              v-bind="item" />
+          </td>
+        </tr>
+      </template>
       </tbody>
 
       <!-- draggable -->
@@ -558,9 +558,9 @@ export default {
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-              || sessionColWidth
-              || headerFieldWidth
-              || `${tableHeaderEl.getBoundingClientRect().width}px`
+            || sessionColWidth
+            || headerFieldWidth
+            || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
           this.updateSessionStorage(storageName, width)
@@ -603,7 +603,9 @@ export default {
       this.elementSelections = this.setElementSelections(this.items, status)
       this.selectedElements = this.filterElementSelections()
       this.$emit('items-selected', this.selectedElements)
-      this.$emit('items-toggled', this.items.map(el => { return { id: el[this.trackBy] } }), status)
+      this.$emit('items-toggled', this.items.map(el => {
+        return { id: el[this.trackBy] }
+      }), status)
 
       // Used by multi-page selection in SegmentsList to determine whether to track selected or deselected items.
       this.$emit('select-all', status)
@@ -636,7 +638,7 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
-  beforeUpdate() {
+  beforeUpdate () {
     this.headerCellCount = this.headerFields.length
   },
 

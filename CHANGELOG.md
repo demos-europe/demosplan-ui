@@ -7,6 +7,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#843](https://github.com/demos-europe/demosplan-ui/pull/843)) DpInput: fix "length" prop validation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#841](https://github.com/demos-europe/demosplan-ui/pull/841)) Fix the DpDatepicker error validation ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.3.10 - 2024-04-26
 

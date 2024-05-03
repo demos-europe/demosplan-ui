@@ -2,7 +2,7 @@ import getScrollTop from '../../../utils/getScrollTop'
 import prefixClass from '../../../utils/prefixClass'
 
 function getAllInputsArray (form) {
-  return Array.from(form.querySelectorAll('[pattern], [required], input[type="email"], input[name="r_startdate"], input[name="r_enddate"], .tiptap__input--hidden.is-required, .multiselect.is-required, fieldset.is-required, [minlength], [maxlength], [data-dp-validate-maxlength], [data-dp-validate-should-equal]'))
+  return Array.from(form.querySelectorAll('[pattern], [required], [data-ad-id], input[name="r_enddate"], .tiptap__input--hidden.is-required, .multiselect.is-required, fieldset.is-required, [minlength], [maxlength], [data-dp-validate-maxlength], [data-dp-validate-should-equal]'))
 }
 
 function shouldValidate (input) {
@@ -16,8 +16,7 @@ function shouldValidate (input) {
     isRequired ||
     input.hasAttribute('pattern') ||
     input.getAttribute('type') === 'email' ||
-    input.getAttribute('name') === 'r_startdate' ||
-    input.getAttribute('name') === 'r_enddate' ||
+    input.hasAttribute('data-ad-id') ||
     input.hasAttribute('minlength') ||
     input.hasAttribute('maxlength') ||
     input.hasAttribute('data-dp-validate-maxlength') ||

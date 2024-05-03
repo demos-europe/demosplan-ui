@@ -44,10 +44,10 @@
 </template>
 
 <script>
+import { prefixClassMixin, sessionStorageMixin } from '~/mixins'
 import DpLabel from '../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
-import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpUploadFiles',
@@ -58,7 +58,7 @@ export default {
     DpUploadedFileList
   },
 
-  mixins: [prefixClassMixin],
+  mixins: [prefixClassMixin, sessionStorageMixin],
 
   provide () {
     return {
@@ -233,9 +233,7 @@ export default {
 
   watch: {
     storageName () {
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
   },
 
@@ -251,9 +249,7 @@ export default {
       }
 
       this.uploadedFiles.push(file)
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     },
 
     clearFilesList () {
@@ -281,20 +277,12 @@ export default {
       }
 
       this.uploadedFiles = this.uploadedFiles.filter(el => el.hash !== file.hash)
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
-    },
-
-    updateSessionStorage () {
-      sessionStorage.setItem(this.storageName, JSON.stringify(this.uploadedFiles))
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
   },
 
   mounted () {
-    if (this.storageName) {
-      this.uploadedFiles = JSON.parse(sessionStorage.getItem(this.storageName)) || []
-    }
+    this.uploadedFiles = this.getItemFromSessionStorage(this.storageName) || []
   }
 }
 </script>

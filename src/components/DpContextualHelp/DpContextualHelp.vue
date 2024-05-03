@@ -3,6 +3,7 @@
     :aria-label="ariaLabel"
     :icon="icon"
     :size="size"
+    class="inline-block"
     v-tooltip="text" />
 </template>
 

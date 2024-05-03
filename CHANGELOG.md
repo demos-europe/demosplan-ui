@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.11 - 2024-05-03
+
 ### Fixed
 
 - ([#843](https://github.com/demos-europe/demosplan-ui/pull/843)) DpInput: fix "length" prop validation ([@spiess-demos](https://github.com/spiess-demos))

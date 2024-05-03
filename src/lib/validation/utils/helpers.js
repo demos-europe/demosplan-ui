@@ -16,7 +16,7 @@ function shouldValidate (input) {
     isRequired ||
     input.hasAttribute('pattern') ||
     input.getAttribute('type') === 'email' ||
-    input.hasAttribute('data-ad-id') ||
+    input.hasAttribute('data-ad-id') || /* this attribute is used to get the input of the Datepicker */
     input.hasAttribute('minlength') ||
     input.hasAttribute('maxlength') ||
     input.hasAttribute('data-dp-validate-maxlength') ||

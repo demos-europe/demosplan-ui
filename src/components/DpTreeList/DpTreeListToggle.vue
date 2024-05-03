@@ -63,7 +63,7 @@ export default {
 
   methods: {
     toggle () {
-      this.$emit('update:modelValue', !this.modelValue)
+      this.$emit('update:model-value', !this.modelValue)
     }
   }
 }

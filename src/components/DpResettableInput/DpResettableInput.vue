@@ -9,7 +9,7 @@
       @blur="$emit('blur', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
-      @update:modelValue="$emit('update:modelValue', currentValue)"
+      @update:model-value="$emit('update:model-value', currentValue)"
       :pattern="pattern"
       v-model="currentValue" />
     <button
@@ -42,7 +42,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     dataCy: {

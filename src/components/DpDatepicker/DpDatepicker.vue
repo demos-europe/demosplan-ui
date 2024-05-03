@@ -16,7 +16,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     calendarsAfter: {
@@ -152,7 +152,7 @@ export default {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
-      this.$emit('update:modelValue', valueToEmit)
+      this.$emit('update:model-value', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
     }
   },

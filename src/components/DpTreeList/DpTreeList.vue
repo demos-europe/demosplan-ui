@@ -21,7 +21,7 @@
           class="color--grey"
           :model-value="allElementsExpanded"
           toggle-all
-          @update:modelValue="toggleAll" />
+          @update:model-value="toggleAll" />
       </div>
     </div>
 

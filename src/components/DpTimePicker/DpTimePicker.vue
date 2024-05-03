@@ -22,7 +22,7 @@
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @update:modelValue="val => handleInput(val)" />
+      @update:model-value="val => handleInput(val)" />
     <dp-input
       v-else
       :data-cy="dataCy"
@@ -31,7 +31,7 @@
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :model-value="currentTime"
-      @update:modelValue="val => handleInput(val)"
+      @update:model-value="val => handleInput(val)"
       autocomplete="off" />
 
     <div
@@ -99,7 +99,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   directives: {
     // ClickOutside
@@ -321,7 +321,7 @@ export default {
       if (type === 'minute') {
         this.setMinutes(val)
       }
-      this.$emit('update:modelValue', this.currentTime)
+      this.$emit('update:model-value', this.currentTime)
     },
 
     handleKeyDown (e) {

@@ -38,7 +38,7 @@ export default {
 
   mixins: [prefixClassMixin],
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     height: {
@@ -98,7 +98,7 @@ export default {
     },
 
     emitAndFetch (value) {
-      this.emit(value, 'update:modelValue')
+      this.emit(value, 'update:model-value')
       this.currentQuerry = value
       if (value.length >= 3) this.fetchOptions(value)
     },

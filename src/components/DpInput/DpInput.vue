@@ -32,7 +32,7 @@
       v-model="currentValue"
       @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
-      @input="$emit('update:modelValue', currentValue)"
+      @input="$emit('update:model-value', currentValue)"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
 
   mixins: [prefixClassMixin],
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     /**

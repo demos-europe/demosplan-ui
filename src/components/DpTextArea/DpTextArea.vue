@@ -15,7 +15,7 @@
       :disabled="disabled"
       :maxlength="maxlength"
       v-model="currentValue"
-      @input="$emit('update:modelValue', currentValue)"
+      @input="$emit('update:model-value', currentValue)"
       :required="required" />
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
 
   props: {
     attributes: attributes('textarea'),

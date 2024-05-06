@@ -367,12 +367,18 @@ export default {
     DpUploadModal
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   directives: {
     cleanhtml: CleanHtml,
     tooltip: Tooltip
   },
 
   mixins: [prefixClassMixin],
+
+  emits: ['update:model-value'],
 
   props: {
     /**
@@ -517,7 +523,7 @@ export default {
       default: () => ([])
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: true
     }
@@ -662,7 +668,7 @@ export default {
   },
 
   watch: {
-    value (newValue) {
+    modelValue (newValue) {
       if (!this.editor.focused && this.editor.getHTML() !== newValue) {
         this.currentValue = newValue
         this.editor.commands.setContent(newValue, false)
@@ -702,7 +708,7 @@ export default {
 
       this.editor.commands.setContent(newText)
       this.currentValue = newText
-      this.$emit('input', this.currentValue)
+      this.$emit('update:model-value', this.currentValue)
     },
 
     collectExtensions () {
@@ -974,7 +980,7 @@ export default {
       const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
       this.currentValue = this.currentValue.replace(regex, '<dp-obscure>$1</dp-obscure>')
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
-      this.$emit('input', isEmpty ? '' : this.currentValue)
+      this.$emit('update:model-value', isEmpty ? '' : this.currentValue)
     },
 
     showLinkPrompt (_command, attrs) {
@@ -1020,7 +1026,7 @@ export default {
   },
 
   created () {
-    this.currentValue = this.value
+    this.currentValue = this.modelValue
     this.prepareInitText()
   },
 

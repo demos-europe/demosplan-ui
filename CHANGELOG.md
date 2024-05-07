@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Tailwind: add "hide-scrollbar" class ([@spiess-demos](https://github.com/spiess-demos))
+- ([#847](https://github.com/demos-europe/demosplan-ui/pull/847)) Tailwind: add "hide-scrollbar" class ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.12 - 2024-05-06
 

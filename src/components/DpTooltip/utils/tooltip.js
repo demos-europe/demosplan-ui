@@ -8,6 +8,7 @@ let handleTimeoutForDestroy = null
 let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
+  console.log('deleteTooltip', tooltipEl)
   if (tooltipEl) {
     tooltipEl.remove()
   }
@@ -32,16 +33,8 @@ const getZIndex = (element) => {
   return z
 }
 
-const hideTooltip = (tooltipEl) => {
-  if (tooltipEl) {
-    tooltipEl.classList.add('z-below-zero')
-    tooltipEl.classList.add('opacity-0')
-  }
-
-  handleTimeoutForDestroy = setTimeout(() => deleteTooltip(tooltipEl), 300)
-}
-
 const createTooltip = (id, container, classes) => {
+  console.log('create tooltip', document.getElementById(id))
   const value = tooltips[id]
   // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =
@@ -72,7 +65,7 @@ const initTooltip = (el, value, options) => {
     options,
     zIndex
   )
-  handleHideTooltip = () => hideTooltip(document.getElementById(el.getAttribute('aria-describedby')))
+  handleHideTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
   el.addEventListener('mouseenter', handleShowTooltip)
   el.addEventListener('focus', handleShowTooltip)
@@ -83,8 +76,6 @@ const initTooltip = (el, value, options) => {
 const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     createTooltip(id, container, classes)
-  } else {
-    clearTimeout(handleTimeoutForDestroy)
   }
 
   const tooltipEl = document.getElementById(id)
@@ -109,11 +100,11 @@ const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', c
     zIndex: Number(zIndex) + 1
   })
 
- /*
-   * Handles the position of the arrow -  e.g. if the Tooltip is on the top,
-   * we want to place the arrow at the bottom, and so on. `placement` can be
-   * 'bottom-start' etc as well, so we have to make sure to only take the first part.
-   */
+  /*
+    * Handles the position of the arrow -  e.g. if the Tooltip is on the top,
+    * we want to place the arrow at the bottom, and so on. `placement` can be
+    * 'bottom-start' etc as well, so we have to make sure to only take the first part.
+    */
   const { x: arrowX, y: arrowY } = middlewareData.arrow
   const opposedSide = {
     top: 'bottom',

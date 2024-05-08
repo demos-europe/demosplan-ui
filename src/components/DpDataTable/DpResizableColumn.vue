@@ -81,41 +81,30 @@ export default {
       this.cursorStart = e.pageX
       const resizeBound = this.resize.getBoundingClientRect()
       this.resizeWidth = resizeBound.width
-
-      if (this.nextEl) {
-        const nextBound = this.nextEl.getBoundingClientRect()
-        this.nextWidth = nextBound.width
-      }
-
       this.namedFunc = (e) => this.resizeEl(e, idx)
       const bodyEl = document.getElementsByTagName('body')[0]
+
       bodyEl.classList.add('resizing')
       bodyEl.addEventListener('mousemove', this.namedFunc)
       bodyEl.addEventListener('mouseup', this.stopResize)
     },
 
-    resizeEl (e, idx) {
+    resizeEl (e) {
       if (this.dragStart) {
         const cursorPos = e.pageX
         const mouseMoved = cursorPos - this.cursorStart
         const newWidth = this.resizeWidth + mouseMoved
-        const newNextWidth = this.nextWidth - mouseMoved
 
-        if (newWidth <= 25 || newNextWidth <= 25) {
+        if (newWidth <= 25) {
           return
         }
 
         this.resize.style.width = newWidth + 'px'
         this.updateSessionStorage(`dpDataTable:data-col-field=${this.headerField.field}`, this.resize.style.width)
-
-        if (this.nextEl) {
-          this.nextEl.style.width = newNextWidth + 'px'
-          this.updateSessionStorage(`dpDataTable:data-col-field=${this.nextHeader.field}`, this.nextEl.style.width)
-        }
       }
     },
 
-    stopResize (e) {
+    stopResize () {
       this.currentHandle.classList.remove('is-active')
       this.dragStart = false
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)

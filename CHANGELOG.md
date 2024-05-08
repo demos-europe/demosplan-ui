@@ -8,11 +8,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#847](https://github.com/demos-europe/demosplan-ui/pull/847)) Tailwind: add "scrollbar-none" class ([@spiess-demos](https://github.com/spiess-demos))
 
+### Fixed
+- 
+- ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.3.12 - 2024-05-06
 
 ### Fixed
 
-- ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
 - ([#844](https://github.com/demos-europe/demosplan-ui/pull/844)) Prevent changing Width on following DataTable Element, while resizing ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.11 - 2024-05-03

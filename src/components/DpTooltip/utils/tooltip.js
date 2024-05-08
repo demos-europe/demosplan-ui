@@ -8,7 +8,6 @@ let handleTimeoutForDestroy = null
 let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
-  console.log('deleteTooltip', tooltipEl)
   if (tooltipEl) {
     tooltipEl.remove()
   }
@@ -34,7 +33,6 @@ const getZIndex = (element) => {
 }
 
 const createTooltip = (id, container, classes) => {
-  console.log('create tooltip', document.getElementById(id))
   const value = tooltips[id]
   // this has to be in sync with the Template in DpTooltip
   const tooltipHtml =

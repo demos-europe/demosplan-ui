@@ -2,8 +2,8 @@ import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { v4 as uuid } from 'uuid'
 
 // We need empty Variables for our show/hide methods, so we can destroy them later on.
-let handleShowTooltip = null
-let handleHideTooltip = null
+let handleCreateTooltip = null
+let handleRemoveTooltip = null
 let handleTimeoutForDestroy = null
 let tooltips = {}
 
@@ -16,10 +16,10 @@ const deleteTooltip = (tooltipEl) => {
 const destroyTooltip = (wrapperEl) => {
   const tooltipEl = document.getElementById(wrapperEl.getAttribute('aria-describedby'))
 
-  wrapperEl.removeEventListener('mouseenter', handleShowTooltip)
-  wrapperEl.removeEventListener('focus', handleShowTooltip)
-  wrapperEl.removeEventListener('mouseleave', handleHideTooltip)
-  wrapperEl.removeEventListener('blur', handleHideTooltip)
+  wrapperEl.removeEventListener('mouseenter', handleCreateTooltip)
+  wrapperEl.removeEventListener('focus', handleCreateTooltip)
+  wrapperEl.removeEventListener('mouseleave', handleRemoveTooltip)
+  wrapperEl.removeEventListener('blur', handleRemoveTooltip)
 
   deleteTooltip(tooltipEl)
 }
@@ -32,22 +32,6 @@ const getZIndex = (element) => {
   return z
 }
 
-const createTooltip = (id, container, classes) => {
-  const value = tooltips[id]
-  // this has to be in sync with the Template in DpTooltip
-  const tooltipHtml =
-    `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
-    `<div class="tooltip__arrow" data-tooltip-arrow></div>` +
-    `<div class="tooltip__inner">${value}</div>` +
-    `</div>`
-
-  const range = document.createRange()
-
-  const content = range.createContextualFragment(tooltipHtml)
-
-  document.querySelector(container).appendChild(content)
-}
-
 const initTooltip = (el, value, options) => {
   if (!value) return
 
@@ -57,23 +41,33 @@ const initTooltip = (el, value, options) => {
 
   el.setAttribute('aria-describedby', id)
 
-  handleShowTooltip = () => showTooltip(
+  handleCreateTooltip = () => showTooltip(
     id,
     el,
     options,
     zIndex
   )
-  handleHideTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
+  handleRemoveTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
-  el.addEventListener('mouseenter', handleShowTooltip)
-  el.addEventListener('focus', handleShowTooltip)
-  el.addEventListener('mouseleave', handleHideTooltip)
-  el.addEventListener('blur', handleHideTooltip)
+  el.addEventListener('mouseenter', handleCreateTooltip)
+  el.addEventListener('focus', handleCreateTooltip)
+  el.addEventListener('mouseleave', handleRemoveTooltip)
+  el.addEventListener('blur', handleRemoveTooltip)
 }
 
 const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    createTooltip(id, container, classes)
+    const value = tooltips[id]
+    // this has to be in sync with the Template in DpTooltip
+    const tooltipHtml =
+      `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
+      `<div class="tooltip__arrow" data-tooltip-arrow></div>` +
+      `<div class="tooltip__inner">${value}</div>` +
+      `</div>`
+    const range = document.createRange()
+    const content = range.createContextualFragment(tooltipHtml)
+
+    document.querySelector(container).appendChild(content)
   }
 
   const tooltipEl = document.getElementById(id)

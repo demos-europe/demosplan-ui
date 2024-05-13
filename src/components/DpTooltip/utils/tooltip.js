@@ -41,7 +41,7 @@ const initTooltip = (el, value, options) => {
 
   el.setAttribute('aria-describedby', id)
 
-  handleCreateTooltip = () => showTooltip(
+  handleCreateTooltip = () => createTooltip(
     id,
     el,
     options,
@@ -55,7 +55,7 @@ const initTooltip = (el, value, options) => {
   el.addEventListener('blur', handleRemoveTooltip)
 }
 
-const showTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
+const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     const value = tooltips[id]
     // this has to be in sync with the Template in DpTooltip
@@ -128,7 +128,7 @@ const updateTooltip = (wrapper, value, options) => {
 
   if (tooltipEl) {
     deleteTooltip(tooltipEl)
-    showTooltip(wrapperId, wrapper, options, zIndex)
+    createTooltip(wrapperId, wrapper, options, zIndex)
   }
 }
 

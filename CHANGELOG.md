@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Fix the validation of the relation when the 'data-dp-validate-if' is provided ([@sakutademos](https://github.com/sakutademos))
+
 ### Added
 
 - ([#847](https://github.com/demos-europe/demosplan-ui/pull/847)) Tailwind: add "scrollbar-none" class ([@spiess-demos](https://github.com/spiess-demos))

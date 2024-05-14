@@ -21,7 +21,8 @@ function assignHandlersForSingleInput (input) {
       allConditions.forEach(condition => {
         const comparisonType = condition.indexOf('!==') > -1 ? 'isNotEqual' : 'isEqual'
         const matchers = condition.split(comparisonType === 'isNotEqual' ? '!==' : '===')
-        const form = input.closest('[data-dp-validate]')
+        const validationContainer = input.closest('[data-dp-validate]')
+        const form = (validationContainer.tagName === 'FIELDSET') ? validationContainer.form : validationContainer
 
         try {
           const inputToCheck = form.querySelector(matchers[0]) // It has to be a valid querySelector, which means that numerical ids will throw an error
@@ -59,7 +60,15 @@ function assignHandlersForSingleInput (input) {
     case 'fieldset':
       checkboxes = Array.from(input.querySelectorAll('input[type="checkbox"]'))
       radios = Array.from(input.querySelectorAll('input[type="radio"]'))
-      fieldsToCheck = checkboxes.length > 0 ? checkboxes : (radios.length > 0 ? radios : [])
+
+      if (checkboxes.length > 0) {
+        fieldsToCheck = checkboxes
+      } else if (radios.length > 0) {
+        fieldsToCheck = radios
+      } else {
+        fieldsToCheck = []
+      }
+
       fieldsToCheck.forEach(checkbox => checkbox.addEventListener('blur', () => validateFieldset(input)))
       fieldsToCheck.forEach(checkbox => checkbox.addEventListener('change', () => validateFieldset(input)))
       observeValidationRelations(input, () => validateFieldset(input))

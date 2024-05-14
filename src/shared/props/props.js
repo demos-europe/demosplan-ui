@@ -26,21 +26,19 @@
  * to the actual textarea element without further transformation), or String (but containing an integer),
  * to not be forced to transform it to int in every template with `:maxlength="'<Number>'"`.
  */
-const length = () => {
-  return {
-    type: [Boolean, String],
-    required: false,
-    default: false,
-    validator: (string) => {
-      /*
-       * The `string !== true` check actually tests for the empty string being passed
-       * to the property, which internally is converted to the boolean "true". That way,
-       * using the `maxlength` attr without assigning a value to it throws an error.
-       * On the other hand it should not be possible to pass values that can't be
-       * converted into a whole number.
-       */
-      return string !== true && Number(string) % 1 === 0
-    }
+const length = {
+  type: [Boolean, String],
+  required: false,
+  default: false,
+  validator: (string) => {
+    /*
+     * The `string !== true` check actually tests for the empty string being passed
+     * to the property, which internally is converted to the boolean "true". That way,
+     * using the `maxlength` attr without assigning a value to it throws an error.
+     * On the other hand it should not be possible to pass values that can't be
+     * converted into a whole number.
+     */
+    return string !== true && Number(string) % 1 === 0
   }
 }
 

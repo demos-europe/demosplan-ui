@@ -8,6 +8,7 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="startDisabled"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
@@ -21,6 +22,7 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="endDisabled"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
       :value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
@@ -56,6 +58,12 @@ export default {
       type: String,
       required: false,
       default: 'dateRangePicker'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     endDisabled: {

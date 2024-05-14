@@ -4,12 +4,41 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#847](https://github.com/demos-europe/demosplan-ui/pull/847)) Tailwind: add "scrollbar-none" class ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.12 - 2024-05-06
+
+### Fixed
+
+- ([#844](https://github.com/demos-europe/demosplan-ui/pull/844)) Prevent changing Width on following DataTable Element, while resizing ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.11 - 2024-05-03
+
+### Fixed
+
+- ([#843](https://github.com/demos-europe/demosplan-ui/pull/843)) DpInput: fix "length" prop validation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#841](https://github.com/demos-europe/demosplan-ui/pull/841)) Fix the DpDatepicker error validation ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.10 - 2024-04-26
+
+### Changed
+- ([#835](https://github.com/demos-europe/demosplan-ui/pull/835)) DpDataTable: enhance column resizing functionality; save the width to sessionStorage ([@sakutademos](https://github.com/sakutademos))
+
+### Added
+- ([#834](https://github.com/demos-europe/demosplan-ui/pull/834)) DpButton: add icon size class ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.9 - 2024-04-12
+
 ### Changed
 
+- ([#829](https://github.com/demos-europe/demosplan-ui/pull/829)) Adjust DpContextualHelp Styling ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#803](https://github.com/demos-europe/demosplan-ui/pull/803)) dpApi: remove "option" argument ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Added
 
+- ([#815](https://github.com/demos-europe/demosplan-ui/pull/815)) Add data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#812](https://github.com/demos-europe/demosplan-ui/pull/812)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#798](https://github.com/demos-europe/demosplan-ui/pull/798)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#773](https://github.com/demos-europe/demosplan-ui/pull/773)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

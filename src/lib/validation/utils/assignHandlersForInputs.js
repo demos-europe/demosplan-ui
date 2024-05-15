@@ -22,7 +22,7 @@ function assignHandlersForSingleInput (input) {
         const comparisonType = condition.indexOf('!==') > -1 ? 'isNotEqual' : 'isEqual'
         const matchers = condition.split(comparisonType === 'isNotEqual' ? '!==' : '===')
         const validationContainer = input.closest('[data-dp-validate]')
-        const form = (validationContainer.tagName === 'FIELDSET') ? validationContainer.form : validationContainer
+        const form = validationContainer.tagName === 'FIELDSET' && validationContainer.form ? validationContainer.form : validationContainer
 
         try {
           const inputToCheck = form.querySelector(matchers[0]) // It has to be a valid querySelector, which means that numerical ids will throw an error

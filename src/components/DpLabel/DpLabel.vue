@@ -74,12 +74,6 @@ export default {
     }
   },
 
-  data () {
-    return {
-      ariaLabel: de.contextualHelp
-    }
-  },
-
   computed: {
     /**
      * List of Hints

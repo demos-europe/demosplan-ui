@@ -17,7 +17,6 @@
     <dp-contextual-help
       v-if="tooltip !== ''"
       :class="prefixClass('mt-px ml-0.5')"
-      :aria-label="ariaLabel"
       :text="tooltip" />
   </label>
 </template>
@@ -26,7 +25,7 @@
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
-import DpContextualHelp from '~/components/DpContextualHelp/DpContextualHelp.vue'
+import DpContextualHelp from '~/components/DpContextualHelp'
 
 export default {
   name: 'DpLabel',

@@ -222,6 +222,15 @@ export default {
           uppyInput.setAttribute('data-cy', `uppyDragDropInput:${index}`)
         })
       }
+
+      // Access to the Uppy Upload Button.
+      const uppyButtons = document.querySelectorAll('.uppy-DragDrop-container')
+      if (uppyButtons) {
+        uppyButtons.forEach((uppyButton, index) => {
+          // Add data-cy attribute
+          uppyButton.setAttribute('data-cy', `uppyDragDropButton:${index}`)
+        })
+      }
     }
   },
 

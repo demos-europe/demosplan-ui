@@ -14,25 +14,25 @@
           v-cleanhtml="h" />
       </span>
     </span>
-    <i
+    <dp-contextual-help
       v-if="tooltip !== ''"
-      :class="prefixClass('fa fa-question-circle u-mt-0_125 ml-auto')"
-      :aria-label="ariaLabel"
-      v-tooltip="tooltip" />
+      :class="prefixClass('mt-px ml-0.5')"
+      :text="tooltip" />
   </label>
 </template>
 
 <script>
-import { CleanHtml, Tooltip } from '~/directives'
+import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
+import DpContextualHelp from '~/components/DpContextualHelp'
 
 export default {
   name: 'DpLabel',
+  components: { DpContextualHelp },
 
   directives: {
-    cleanhtml: CleanHtml,
-    tooltip: Tooltip
+    cleanhtml: CleanHtml
   },
 
   mixins: [prefixClassMixin],
@@ -71,12 +71,6 @@ export default {
       type: Boolean,
       required: false,
       default: false
-    }
-  },
-
-  data () {
-    return {
-      ariaLabel: de.contextualHelp
     }
   },
 

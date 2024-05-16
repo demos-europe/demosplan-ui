@@ -30,6 +30,16 @@ const props = defineProps({
     required: true
   },
 
+
+  /*
+   * Set to true if items should be draggable between different lists
+   */
+  dragAcrossBranches: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
+
   /*
    * Set to true if the content should be draggable and false if not.
    */
@@ -110,6 +120,7 @@ useSortable(
   list,
   {
     disabled: !props.isDraggable,
+    group: props.dragAcrossBranches ? 'treelistgroup' : props.groupId,
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {

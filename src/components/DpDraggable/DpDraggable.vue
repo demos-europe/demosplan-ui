@@ -1,6 +1,7 @@
 <template>
   <component
     :is="draggableTag"
+    :id="groupId"
     ref="wrapper">
     <slot />
   </component>
@@ -22,20 +23,11 @@ const emit = defineEmits(
 
 const props = defineProps({
   /*
-     * Content you want to display in the draggable.
-     */
+  * Content you want to display in the draggable.
+  */
   contentData: {
     type: Array,
     required: true
-  },
-
-  /*
-   * Set to true if items should be draggable between different lists
-   */
-  dragAcrossBranches: {
-    type: Boolean,
-    required: false,
-    default: true
   },
 
   /*
@@ -118,7 +110,6 @@ useSortable(
   list,
   {
     disabled: !props.isDraggable,
-    group: props.dragAcrossBranches ? 'treelistgroup' : props.groupId,
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {

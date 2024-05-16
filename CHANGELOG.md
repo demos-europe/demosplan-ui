@@ -8,6 +8,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#851](https://github.com/demos-europe/demosplan-ui/pull/851)) DpLabel: replace the tooltip directive with the DpContextualHelp component ([@sakutademos](https://github.com/sakutademos))
 
+### Fixed
+
+- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckbox: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.3.13 - 2024-05-15
 
 ### Added

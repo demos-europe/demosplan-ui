@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Fix the validation of the relation when the 'data-dp-validate-if' is provided ([@sakutademos](https://github.com/sakutademos))
+- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
 
 ### Added
 

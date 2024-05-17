@@ -15,7 +15,7 @@
         text: option.label
       }"
       :name="option.name || ''"
-      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : false"
+      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
       @change="$emit('update', selected)" />
   </fieldset>
 </template>

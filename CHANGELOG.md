@@ -10,7 +10,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckbox: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
+- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckboxGroup: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
+- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.3.13 - 2024-05-15
 

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#859](https://github.com/demos-europe/demosplan-ui/pull/859)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
 ### Fixed
 
 - ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))

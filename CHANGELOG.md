@@ -9,6 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
 - ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
 - ([#860](https://github.com/demos-europe/demosplan-ui/pull/860)) DpDatePicker: set attribute only if datePickerInput is defined ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#865](https://github.com/demos-europe/demosplan-ui/pull/865)) DpApi: Don't set Content-Type header for FormData ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## v0.3.14 - 2024-05-16
 

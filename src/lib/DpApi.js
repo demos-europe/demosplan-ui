@@ -214,8 +214,7 @@ function makeFormPost (payload, url) {
   return dpApi({
     method: 'POST',
     url: url,
-    data: postData,
-    headers: { 'Content-Type': 'multipart/form-data' }
+    data: postData
   })
 }
 

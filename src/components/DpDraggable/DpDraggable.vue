@@ -1,6 +1,7 @@
 <template>
   <component
     :is="draggableTag"
+    :id="groupId"
     ref="wrapper">
     <slot />
   </component>

@@ -63,6 +63,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#834](https://github.com/demos-europe/demosplan-ui/pull/834)) DpButton: add icon size class ([@sakutademos](https://github.com/sakutademos))
 
+### Changed
+
+- ([#686](https://github.com/demos-europe/demosplan-ui/pull/686)) **breaking** add checkResponse to doRequest,
+  so it gets called every time a api request is fired.
+  It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
+
 ## v0.3.9 - 2024-04-12
 
 ### Changed

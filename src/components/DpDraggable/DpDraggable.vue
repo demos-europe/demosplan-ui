@@ -127,7 +127,12 @@ useSortable(
       props.handleDrag('end', e, currentElement, props.nodeId)
       emit('end', e, currentElement, props.nodeId)
     },
-    onMove: (e: Event) => props.onMove(e),
+    onMove: (e) => {
+      const targetElementId = e.related.id
+      const isAllowedTarget = targetElementId === props.groupId || targetElementId === 'treelistgroup'
+
+      props.onMove(e, isAllowedTarget, props.groupId)
+    },
     onStart: (e: Event) => props.handleDrag('start', e),
     ...props.opts
   }

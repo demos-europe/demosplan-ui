@@ -1,6 +1,7 @@
 <template>
   <li
     class="border--top relative"
+    :id="nodeId"
     data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
@@ -55,17 +56,17 @@
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
-      :drag-across-branches="options.dragAcrossBranches"
+      :drag-across-branches="options.dragAcrossBranches ? optons.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
+      :content-data="draggable ? children : null"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
-      :is-draggable="hasDraggableChildren"
+      :is-draggable="hasDraggableChildren ? hasDraggableChildren : null"
       :node-id="nodeId"
       :on-move="onMove"
-      :opts="options.draggable"
-      v-model="tree">
+      :opts="options.draggable">
       <dp-tree-list-node
         v-for="child in children"
         v-show="true === isExpanded"

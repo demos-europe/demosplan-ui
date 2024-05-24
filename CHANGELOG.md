@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#856](https://github.com/demos-europe/demosplan-ui/pull/856)) Bump @tiptap to 2.4.0 ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Added
 
 - ([#868](https://github.com/demos-europe/demosplan-ui/pull/868)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

@@ -3,6 +3,7 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+## v0.3.16 - 2024-05-24
 
 ### Changed
 

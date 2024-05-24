@@ -29,13 +29,13 @@
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
       ref="treeList"
-      :drag-across-branches="opts.dragAcrossBranches"
+      :drag-across-branches="opts.dragAcrossBranches ? opts.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
       :content-data="draggable ? treeData : null"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
-      :is-draggable="draggable"
+      :is-draggable="draggable ? draggable : null"
       :on-move="onMove"
       :opts="opts.draggable">
       <dp-tree-list-node

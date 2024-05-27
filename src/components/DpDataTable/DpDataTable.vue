@@ -53,7 +53,7 @@
           :header-fields="headerFields"
           :is-draggable="isDraggable"
           :is-expandable="isExpandable"
-          :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+          :is-locked="lockCheckboxBy(item)"
           :is-locked-message="mergedTranslations.lockedForSelection"
           :is-resizable="isResizable"
           :is-selectable="isSelectable"
@@ -117,7 +117,7 @@
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-loading="isLoading"
-            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked="lockCheckboxBy(item)"
             :is-locked-message="mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
             :is-selectable="isSelectable"
@@ -318,13 +318,13 @@ export default {
     },
 
     /**
-     * Use a Boolean Property of the Item to set the Checkbox to a locked state.
+     * Use a custom function to set an item's checkbox to a locked state.
      * This should only be set if `isSelectable` is true.
      */
     lockCheckboxBy: {
-      type: String,
+      type: Function,
       required: false,
-      default: null
+      default: () => () => false
     },
 
     /**

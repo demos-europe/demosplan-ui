@@ -42,11 +42,13 @@
       :is-resizable="isResizable"
       :is-selectable="isSelectable"
       :is-truncatable="isTruncatable"
-      @items-selected="emitSelectedItems"
       :items="onPageItems"
+      :lock-checkbox-by="lockCheckboxBy"
       :search-string="searchString"
       :should-be-selected-items="currentlySelectedItems"
-      :track-by="trackBy">
+      :track-by="trackBy"
+      :translations="translations"
+      @items-selected="emitSelectedItems">
       <template
         v-for="el in sortableFilteredFields"
         v-slot:[`header-${el.field}`]="element">
@@ -198,6 +200,16 @@ export default {
     },
 
     /**
+     * Use a custom function to set an item's checkbox to a locked state.
+     * This should only be set if `isSelectable` is true.
+     */
+    lockCheckboxBy: {
+      type: Function,
+      required: false,
+      default: () => () => false
+    },
+
+    /**
      * {Array{Object} {fieldName1, fieldName2, ...} The field names have to match the field values from the headerFields.
      * has to be a computed in the parent (can't be in data)
      */
@@ -211,6 +223,12 @@ export default {
       type: String,
       required: false,
       default: 'id'
+    },
+
+    translations: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
 

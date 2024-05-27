@@ -3,6 +3,11 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+
+### Added
+
+- ([#856](https://github.com/demos-europe/demosplan-ui/pull/856)) Utils: add resistFingerprintingDuckTest ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.16 - 2024-05-24
 
 ### Changed

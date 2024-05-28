@@ -419,7 +419,7 @@ export default {
       if (this.multiPageSelectionItemsTotal > 0) {
         return this.multiPageSelectionItemsToggled === this.multiPageSelectionItemsTotal || this.multiPageAllSelected
       } else {
-        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.items.length
+        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.selectableItems.length
       }
     },
 
@@ -466,6 +466,10 @@ export default {
 
     searchTermSet () {
       return this.searchTerm.source !== '(?:)'
+    },
+
+    selectableItems () {
+      return this.lockCheckboxBy ? this.items.filter(item => !item[this.lockCheckboxBy]) : this.items
     }
   },
 
@@ -600,10 +604,10 @@ export default {
     },
 
     toggleSelectAll (status = this.allSelected === false) {
-      this.elementSelections = this.setElementSelections(this.items, status)
+      this.elementSelections = this.setElementSelections(this.selectableItems, status)
       this.selectedElements = this.filterElementSelections()
       this.$emit('items-selected', this.selectedElements)
-      this.$emit('items-toggled', this.items.map(el => {
+      this.$emit('items-toggled', this.selectableItems.map(el => {
         return { id: el[this.trackBy] }
       }), status)
 

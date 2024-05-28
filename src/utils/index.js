@@ -9,6 +9,7 @@ import getAnimationEventName from './getAnimationEventName'
 import getScrollTop from './getScrollTop'
 import hasOwnProp from './hasOwnProp'
 import prefixClass from './prefixClass'
+import resistFingerprintingDuckTest from './resistFingerprintingDuckTest'
 import sortAlphabetically from './sortAlphabetically'
 import throttle from './throttle'
 import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
@@ -33,6 +34,7 @@ export {
   hasOwnProp,
   maxlengthHint,
   minlengthHint,
+  resistFingerprintingDuckTest,
   sortAlphabetically,
   throttle,
   prefixClass,

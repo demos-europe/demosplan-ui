@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable to select "locked" items. Before all items per page where selected, independed of the the lock state ([@salisdemos](https://github.com/salisdemos))
+
 ### Added
 
 - ([#875](https://github.com/demos-europe/demosplan-ui/pull/875)) Utils: add resistFingerprintingDuckTest ([@spiess-demos](https://github.com/spiess-demos))
@@ -12,7 +16,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable to select "locked" items. Before all items per page where selected, independed of the the lock state ([@salisdemos](https://github.com/salisdemos))
 - ([#856](https://github.com/demos-europe/demosplan-ui/pull/856)) Bump @tiptap to 2.4.0 ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Added

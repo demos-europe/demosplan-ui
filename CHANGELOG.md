@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable to select "locked" items. Before all items per page where selected, independed of the the lock state ([@salisdemos](https://github.com/salisdemos))
+- ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable from selecting "locked" items. Before, all items per page were selected, independent of the lock state ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 

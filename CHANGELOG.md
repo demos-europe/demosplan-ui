@@ -4,15 +4,42 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#875](https://github.com/demos-europe/demosplan-ui/pull/875)) Utils: add resistFingerprintingDuckTest ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.16 - 2024-05-24
+
+### Changed
+
+- ([#856](https://github.com/demos-europe/demosplan-ui/pull/856)) Bump @tiptap to 2.4.0 ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#868](https://github.com/demos-europe/demosplan-ui/pull/868)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.3.15 - 2024-05-22
+
+### Added
+
+- ([#859](https://github.com/demos-europe/demosplan-ui/pull/859)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Fixed
+
+- ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
+- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
+- ([#860](https://github.com/demos-europe/demosplan-ui/pull/860)) DpDatePicker: set attribute only if datePickerInput is defined ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#865](https://github.com/demos-europe/demosplan-ui/pull/865)) DpApi: Don't set Content-Type header for FormData ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.14 - 2024-05-16
+
 ### Changed
 
 - ([#851](https://github.com/demos-europe/demosplan-ui/pull/851)) DpLabel: replace the tooltip directive with the DpContextualHelp component ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
 
-- ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
-- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckboxGroup: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
-- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
+- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckbox: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.3.13 - 2024-05-15
 

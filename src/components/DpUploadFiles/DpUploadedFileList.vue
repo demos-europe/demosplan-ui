@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h4 :class="prefixClass('u-mb-0_25')">
+    <h4
+      :class="prefixClass('u-mb-0_25')"
+      data-cy="uploadFile:uploadedFiles">
       {{ Translator.trans('uploaded.files') }}
     </h4>
     <ul :class="prefixClass('o-list space-stack-xs')">

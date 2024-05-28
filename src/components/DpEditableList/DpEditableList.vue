@@ -6,7 +6,7 @@
       <li
         v-for="(entry, index) in entries"
         :key="index"
-        data-cy="entryItem">
+        :data-cy="`${dataCy}:entryItem`">
         <!--both v-bind below are important and should not be removed (one is for the source data to be passed from parent component, second is for when the source data (entries) is an object)-->
         <slot
           name="list"
@@ -19,7 +19,7 @@
             @click.prevent="showUpdateForm(index)"
             :aria-label="translationKeys.update"
             class="btn-icns u-m-0 u-ml-0_5"
-            data-cy="updateEntry">
+            :data-cy="`${dataCy}:updateEntry`">
             <i
               class="fa fa-pencil"
               aria-hidden="true" />
@@ -28,7 +28,7 @@
             @click.prevent="deleteEntry(index)"
             :aria-label="translationKeys.delete"
             class="btn-icns u-m-0 u-pl-0"
-            data-cy="deleteEntry">
+            :data-cy="`${dataCy}:deleteEntry`">
             <i
               class="fa fa-trash"
               aria-hidden="true" />
@@ -50,14 +50,14 @@
       <button
         @click.prevent="saveEntry"
         class="btn btn--primary"
-        :data-cy="currentlyUpdating !== '' ? 'saveEntry' : 'addEntry'">
+        :data-cy="currentlyUpdating !== '' ? `${dataCy}:saveEntry` : `${dataCy}:addEntry`">
         {{ currentlyUpdating !== '' ? translationKeys.update : translationKeys.add }}
       </button>
 
       <button
         @click.prevent="resetForm"
         class="btn btn--secondary u-ml-0_5"
-        data-cy="editableList:abort">
+        :data-cy="`${dataCy}:abort`">
         {{ translationKeys.abort }}
       </button>
     </div>
@@ -66,7 +66,7 @@
       @click.prevent="showNewForm()"
       class="btn btn--primary"
       v-if="false === isFormVisible && true === hasPermissionToEdit"
-      data-cy="showInput">
+      :data-cy="`${dataCy}:showInput`">
       {{ translationKeys.new }}
     </button>
   </div>
@@ -78,6 +78,12 @@ import { de } from '~/components/shared/translations'
 export default {
   name: 'DpEditableList',
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'editableList'
+    },
+
     entries: {
       required: true,
       type: [Array, Object],

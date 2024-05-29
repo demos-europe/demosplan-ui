@@ -213,6 +213,12 @@ export default {
       type: String,
       required: false,
       default: 'id'
+    },
+
+    translations: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
 

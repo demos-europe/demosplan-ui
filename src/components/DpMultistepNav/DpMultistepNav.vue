@@ -3,7 +3,7 @@
     <button
       v-for="(step, idx) in steps"
       :key="`step_${idx}`"
-      :data-cy="`${dataCy}:${idx}`"
+      :data-cy="`${dataCy}:${step.label.replace(/\s+/g, '-').toLowerCase()}`"
       :disabled="idx > activeStep"
       @click="changeStep(idx)"
       class="btn--blank"

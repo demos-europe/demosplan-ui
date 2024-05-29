@@ -3,6 +3,7 @@
     <button
       v-for="(step, idx) in steps"
       :key="`step_${idx}`"
+      :data-cy="`${dataCy}:${idx}`"
       :disabled="idx > activeStep"
       @click="changeStep(idx)"
       class="btn--blank"
@@ -36,6 +37,12 @@ export default {
       type: Number,
       required: false,
       default: 0
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'multistepNav'
     },
 
     steps: {

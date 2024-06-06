@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#891](https://github.com/demos-europe/demosplan-ui/pull/891)) DpDataTabele: Escape whitespaces and plus signs for searching ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.17 - 2024-05-30
 
 ### Changed

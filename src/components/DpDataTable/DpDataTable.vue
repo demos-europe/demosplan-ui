@@ -460,7 +460,7 @@ export default {
       if (this.searchString === null || this.searchString.length < 1) {
         return new RegExp()
       }
-      const searchTerm = this.searchString.replace(/\s*/ig, '\\s*')
+      const searchTerm = this.escapeSpecialCharacters(this.searchString)
       return new RegExp(searchTerm, 'ig')
     },
 
@@ -495,6 +495,23 @@ export default {
       const tableRow = this.$refs.tableRows[idx]
 
       return tableRow.$el.classList.add('is-hovered-content')
+    },
+
+    /**
+     * This method is used to escape special characters in a string.
+     * It specifically targets spaces and plus signs.
+     *
+     * @param {string} string - The string to be processed.
+     * @returns {string} - The processed string with special characters escaped.
+     */
+    escapeSpecialCharacters (string) {
+      return string.replace(/[\s+]/g, (match) => {
+        if (match === ' ') {
+          return '\\s*';
+        } else if (match === '+') {
+          return '\\+';
+        }
+      })
     },
 
     extractTranslations (keys) {

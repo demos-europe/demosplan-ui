@@ -2,6 +2,7 @@
   <div :class="containerWidth !== '' ? prefixClass(containerWidth) : false">
     <dp-label
       v-if="label.text !== ''"
+      :class="{ 'hide-visually': label.hidden }"
       v-bind="{
         ...label,
         for: id,
@@ -133,12 +134,13 @@ export default {
       type: Object,
       default: () => ({
         bold: true,
+        hidden: false,
         hint: '',
         text: '',
         tooltip: ''
       }),
       validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text', 'tooltip'].includes(key))
+        return Object.keys(prop).every(key => ['bold', 'hidden', 'hint', 'text', 'tooltip'].includes(key))
       }
     },
 

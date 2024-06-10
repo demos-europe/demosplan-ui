@@ -2,13 +2,13 @@
   <div :class="containerWidth !== '' ? prefixClass(containerWidth) : false">
     <dp-label
       v-if="label.text !== ''"
-      :class="{ 'hide-visually': label.hidden }"
       v-bind="{
         ...label,
         for: id,
         hint: labelHint,
         required: required
-      }" /><!--
+      }"
+      :class="{ 'hide-visually': label.hidden }" /><!--
  --><input
       :id="id"
       :name="name !== '' ? name : null"

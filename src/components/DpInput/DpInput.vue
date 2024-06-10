@@ -7,7 +7,8 @@
         for: id,
         hint: labelHint,
         required: required
-      }" /><!--
+      }"
+      :class="{ 'hide-visually': label.hidden }" /><!--
  --><input
       :id="id"
       :name="name !== '' ? name : null"
@@ -133,12 +134,13 @@ export default {
       type: Object,
       default: () => ({
         bold: true,
+        hidden: false,
         hint: '',
         text: '',
         tooltip: ''
       }),
       validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text', 'tooltip'].includes(key))
+        return Object.keys(prop).every(key => ['bold', 'hidden', 'hint', 'text', 'tooltip'].includes(key))
       }
     },
 

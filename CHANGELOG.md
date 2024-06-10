@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#892](https://github.com/demos-europe/demosplan-ui/pull/892)) DpInput: Add hidden attribute for label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.17 - 2024-05-30
 
 ### Changed

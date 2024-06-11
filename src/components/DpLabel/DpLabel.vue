@@ -1,6 +1,6 @@
 <template>
   <label
-    :class="prefixClass(['o-form__label flex', bold ? 'weight--bold' : 'weight--normal', hints.length > 0 ? 'has-hint' : ''])"
+    :class="prefixClass(['o-form__label flex', bold ? 'weight--bold' : 'weight--normal', hints.length > 0 ? 'has-hint' : '', hide ?? 'sr-only'])"
     :for="labelFor">
     <span>
       <span v-cleanhtml="text" /><span v-if="required">*</span>
@@ -47,6 +47,13 @@ export default {
     for: {
       type: String,
       required: true
+    },
+
+    // This is used to hide the label visually, but keep it accessible for screen readers
+    hide: {
+      type: Boolean,
+      required: false,
+      default: false
     },
 
     // Can be string or array (the second element being the "maxlength" hint).

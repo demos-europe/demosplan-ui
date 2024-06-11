@@ -4,12 +4,24 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#891](https://github.com/demos-europe/demosplan-ui/pull/891)) DpDataTabele: Escape whitespaces and plus signs for searching ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Added
+
+- ([#893](https://github.com/demos-europe/demosplan-ui/pull/893)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#892](https://github.com/demos-europe/demosplan-ui/pull/892)) DpInput: Add hidden attribute for label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#894](https://github.com/demos-europe/demosplan-ui/pull/894)) DpLabel: Add hidden attribute for visually hiding the label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.17 - 2024-05-30
+
 ### Changed
 
 - ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable from selecting "locked" items. Before, all items per page were selected, independent of the lock state ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 
+- ([#881](https://github.com/demos-europe/demosplan-ui/pull/881)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#875](https://github.com/demos-europe/demosplan-ui/pull/875)) Utils: add resistFingerprintingDuckTest ([@spiess-demos](https://github.com/spiess-demos))
 - ([#879](https://github.com/demos-europe/demosplan-ui/pull/879)) DpDataTableExtended: Add prop for translations to pass on to DpDataTable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 

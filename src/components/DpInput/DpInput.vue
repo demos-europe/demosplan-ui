@@ -133,13 +133,13 @@ export default {
       type: Object,
       default: () => ({
         bold: true,
-        hidden: false,
+        hide: false,
         hint: '',
         text: '',
         tooltip: ''
       }),
       validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hidden', 'hint', 'text', 'tooltip'].includes(key))
+        return Object.keys(prop).every(key => ['bold', 'hide', 'hint', 'text', 'tooltip'].includes(key))
       }
     },
 

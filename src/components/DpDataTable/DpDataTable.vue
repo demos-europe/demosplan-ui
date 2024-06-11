@@ -505,13 +505,9 @@ export default {
      * @returns {string} - The processed string with special characters escaped.
      */
     escapeSpecialCharacters (string) {
-      return string.replace(/[\s+]/g, (match) => {
-        if (match === ' ') {
-          return '\\s*';
-        } else if (match === '+') {
-          return '\\+';
-        }
-      })
+      return string
+        .replace(/(\s)/g, ' ')
+        .replace(/([+])/g, '\\$&')
     },
 
     extractTranslations (keys) {

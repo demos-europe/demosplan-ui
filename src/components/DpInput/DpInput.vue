@@ -7,8 +7,7 @@
         for: id,
         hint: labelHint,
         required: required
-      }"
-      :class="{ 'hide-visually': label.hidden }" /><!--
+      }" /><!--
  --><input
       :id="id"
       :name="name !== '' ? name : null"

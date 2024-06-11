@@ -14,6 +14,7 @@
             id="search"
             name="search"
             class="o-form__control-input"
+            data-cy="dataTableExtended:search"
             v-model="searchString"
             @input="updateFields(null)">
 

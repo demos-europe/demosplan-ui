@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
 ## v0.3.18 - 2024-06-12
 
 ### Fixed
@@ -12,7 +16,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#893](https://github.com/demos-europe/demosplan-ui/pull/893)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#892](https://github.com/demos-europe/demosplan-ui/pull/892)) DpInput: Add hidden attribute for label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#894](https://github.com/demos-europe/demosplan-ui/pull/894)) DpLabel: Add hidden attribute for visually hiding the label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))

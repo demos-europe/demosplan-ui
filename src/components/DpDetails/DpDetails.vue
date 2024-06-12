@@ -6,7 +6,7 @@
     <summary
       :aria-expanded="isOpen"
       class="o-details__trigger o-link--default cursor-pointer inline-block"
-      :data-cy="`${dataCy}:summary`"
+      :data-cy="`${dataCy}:detailsSummary`"
       role="button"
       @click="isOpen = !isOpen">
       <i

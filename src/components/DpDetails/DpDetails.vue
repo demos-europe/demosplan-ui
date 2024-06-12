@@ -1,10 +1,12 @@
 <template>
   <details
     class="o-details space-stack-xs"
+    :data-cy="`${dataCy}:detailsWrapper`"
     role="group">
     <summary
       :aria-expanded="isOpen"
       class="o-details__trigger o-link--default cursor-pointer inline-block"
+      :data-cy="`${dataCy}:summary`"
       role="button"
       @click="isOpen = !isOpen">
       <i
@@ -13,7 +15,7 @@
         aria-hidden="true" />
       <strong v-cleanhtml="summary" />
     </summary>
-    <div>
+    <div :data-cy="`${dataCy}:detailsContent`">
       <slot />
     </div>
   </details>
@@ -30,6 +32,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'details'
+    },
+
     /**
      * The short summary of the content, which is also used as a trigger.
      */

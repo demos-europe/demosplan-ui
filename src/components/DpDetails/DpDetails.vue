@@ -35,7 +35,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'details'
+      default: 'detailsElement'
     },
 
     /**

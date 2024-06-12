@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
 ## v0.3.18 - 2024-06-12
 
 ### Fixed

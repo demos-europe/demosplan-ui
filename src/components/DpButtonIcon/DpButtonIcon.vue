@@ -9,7 +9,7 @@
     <i
       :class="`fa ${icon}`"
       aria-hidden="true" />
-    <span class="hide-visually">{{ text }}</span>
+    <span class="sr-only">{{ text }}</span>
   </button>
 </template>
 

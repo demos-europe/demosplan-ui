@@ -4,7 +4,7 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
-      <caption class="hide-visually" v-text="tableDescription" />
+      <caption class="sr-only" v-text="tableDescription" />
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />

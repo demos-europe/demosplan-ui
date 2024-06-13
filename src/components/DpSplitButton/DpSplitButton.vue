@@ -20,7 +20,7 @@
       @click="toggleDropdown"
       @keyup.esc.prevent="isOpen ? isOpen = !isOpen : ''">
       <i class="fa fa-caret-down c-splitbutton__trigger-icon" />
-      <span class="hide-visually">{{ Translator.trans(isOpen ? 'dropdown.close' : 'dropdown.open') }}</span>
+      <span class="sr-only">{{ Translator.trans(isOpen ? 'dropdown.close' : 'dropdown.open') }}</span>
     </button>
     <div
       v-if="hasDropdownContent"

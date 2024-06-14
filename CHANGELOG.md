@@ -11,6 +11,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 
 - ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.18 - 2024-06-12
 

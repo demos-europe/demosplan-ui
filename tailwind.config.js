@@ -25,7 +25,6 @@ module.exports = {
     './src/components/**/*.{js,vue}',
     './src/directives/**/*.js'
   ],
-  important: true, // Utilities should always win https://sebastiandedeyne.com/why-we-use-important-with-tailwind/
   plugins: [
     plugin(function({ addUtilities }) {
       addUtilities({

@@ -84,7 +84,7 @@ const meta: Meta<typeof DpEditableList> = {
                 <span>
                   {{ entry.item }}
                   <input
-                      class="hide-visually"
+                      class="sr-only"
                       type="email"
                       :value="entry.item">
                 </span>

@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li data-cy="uploadFile:uploadedFileItem">
     <span
       aria-hidden="true"
       v-if="file.mimeType === 'txt'">
@@ -23,6 +23,7 @@
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
         :aria-label="translations.removeFile"
+        data-cy="uploadFile:uploadedFileDeleteItem"
         @click="removeFile">
         <i
           :class="prefixClass('fa fa-trash')"

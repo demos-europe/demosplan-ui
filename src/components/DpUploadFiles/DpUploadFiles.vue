@@ -1,7 +1,7 @@
 <template>
   <fieldset :class="prefixClass('layout')">
     <legend
-      class="hide-visually"
+      class="sr-only"
       v-text="Translator.trans('upload.files')" />
     <dp-label
       v-if="label.text"

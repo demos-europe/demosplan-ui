@@ -13,7 +13,7 @@
       :icon="icon"
       :size="iconSize" />
     <span
-      :class="{'hide-visually': hideText}"
+      :class="{'sr-only': hideText}"
       v-text="text" />
     <dp-icon
       v-if="iconAfter"

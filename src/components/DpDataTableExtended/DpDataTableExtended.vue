@@ -14,6 +14,7 @@
             id="search"
             name="search"
             class="o-form__control-input"
+            data-cy="dataTableExtended:search"
             v-model="searchString"
             @input="updateFields(null)">
 
@@ -35,18 +36,10 @@
     </dp-sticky-element>
 
     <dp-data-table
-      :has-flyout="hasFlyout"
-      :header-fields="headerFields"
-      :is-expandable="isExpandable"
-      :is-loading="isLoading"
-      :is-resizable="isResizable"
-      :is-selectable="isSelectable"
-      :is-truncatable="isTruncatable"
+      v-bind="$props"
       @items-selected="emitSelectedItems"
       :items="onPageItems"
-      :search-string="searchString"
-      :should-be-selected-items="currentlySelectedItems"
-      :track-by="trackBy">
+      :should-be-selected-items="currentlySelectedItems">
       <template
         v-for="(el, i) in sortableFilteredFields"
         v-slot:[`header-${el.field}`]="el">
@@ -198,6 +191,16 @@ export default {
     },
 
     /**
+     * Use a Boolean Property of the Item to set the Checkbox to a locked state.
+     * This should only be set if `isSelectable` is true.
+     */
+    lockCheckboxBy: {
+      type: String,
+      required: false,
+      default: null
+    },
+
+    /**
      * {Array{Object} {fieldName1, fieldName2, ...} The field names have to match the field values from the headerFields.
      * has to be a computed in the parent (can't be in data)
      */
@@ -211,6 +214,12 @@ export default {
       type: String,
       required: false,
       default: 'id'
+    },
+
+    translations: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
 

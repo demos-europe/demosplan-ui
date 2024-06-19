@@ -25,7 +25,6 @@ module.exports = {
     './src/components/**/*.{js,vue}',
     './src/directives/**/*.js'
   ],
-  important: true, // Utilities should always win https://sebastiandedeyne.com/why-we-use-important-with-tailwind/
   plugins: [
     plugin(function({ addUtilities }) {
       addUtilities({
@@ -38,6 +37,16 @@ module.exports = {
           'word-break': 'break-word',
           'hyphens': 'auto'
         },
+        /**
+         * Hide scrollbar while keeping the element scrollable.
+         * See https://stackoverflow.com/a/63756377/6234391
+         */
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            'display': 'none'
+          }
+        }
       })
     })
   ],

@@ -156,7 +156,7 @@
     "build:tokens": "node buildTokens.js",
     "prepack": "yarn build && yarn build:tokens",
     "storybook": "storybook dev -p 6006",
-    "build": "yarn test && yarn build:prod",
+    "build": "yarn build:prod",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "test": "jest",

@@ -23,7 +23,8 @@ module.exports = {
   content: [
     './tokens/*.mdx',
     './src/components/**/*.{js,vue}',
-    './src/directives/**/*.js'
+    './src/directives/**/*.js',
+    './.storybook/**/*.jsx'
   ],
   plugins: [
     plugin(function({ addUtilities }) {
@@ -63,3 +64,29 @@ module.exports = {
     }
   }
 }
+
+/*
+
+    backgroundColor: {
+      interactive: {
+        active:       'var(--dp-bgColor-interactive-active)',
+        DEFAULT:      'var(--dp-bgColor-interactive, var(--dp-color-palette-blue-base, #006fd0))',
+        hover:        'var(--dp-bgColor-interactive-hover)',
+        muted:        'var(--dp-bgColor-interactive-muted)',
+        subtleActive: 'var(--dp-bgColor-interactive-subtle-active)',
+        subtleHover:  'var(--dp-bgColor-interactive-subtle-hover)'
+      },
+      message: {
+        debug:        'var(--dp-bgColor-message-debug)',
+        info:         'var(--dp-bgColor-message-info)',
+        warning:      'var(--dp-bgColor-message-warning)',
+        severe:       'var(--dp-bgColor-message-severe)',
+        success:      'var(--dp-bgColor-message-success)'
+      },
+      DEFAULT: {
+        DEFAULT:      'var(--dp-bgColor)',
+        light:        'var(--dp-bgColor-light)',
+        medium:       'var(--dp-bgColor-medium)',
+      }
+    },
+ */

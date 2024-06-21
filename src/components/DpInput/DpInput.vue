@@ -32,7 +32,7 @@
       v-model="currentValue"
       @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
-      @input="$emit('input', currentValue)"
+      @input="$emit('update:model-value', currentValue)"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -50,7 +50,13 @@ export default {
     DpLabel
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   mixins: [prefixClassMixin],
+
+  emits: ['update:model-value'],
 
   props: {
     /**
@@ -210,7 +216,7 @@ export default {
       default: 'text'
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -228,7 +234,7 @@ export default {
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.modelValue
     }
   },
 
@@ -267,8 +273,8 @@ export default {
   },
 
   watch: {
-    value: function () {
-      this.currentValue = this.value
+    modelValue () {
+      this.currentValue = this.modelValue
     }
   },
 

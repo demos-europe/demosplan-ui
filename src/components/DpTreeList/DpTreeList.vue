@@ -19,9 +19,9 @@
         </div>
         <dp-tree-list-toggle
           class="color--grey"
-          @input="toggleAll"
-          :value="allElementsExpanded"
-          toggle-all />
+          :model-value="allElementsExpanded"
+          toggle-all
+          @update:model-value="toggleAll" />
       </div>
     </div>
 

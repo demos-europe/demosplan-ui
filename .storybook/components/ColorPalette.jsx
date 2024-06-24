@@ -6,13 +6,13 @@ const extractPaletteColors = (tokens) => {
     for (let key in tokens) {
         if (typeof tokens[key] === 'object' && tokens[key] !== null) {
             if (tokens[key].value) {
-                let item = tokens[key].attributes.item;
-                let subitem = tokens[key].attributes.subitem;
-                let keyName = subitem ? `${item}-${subitem}` : item;
+                const { item, subitem, state } = tokens[key].attributes || {}
+                const keyName = [item, subitem, state].filter(Boolean).join('-')
                 result.push({
                     twClass: 'bg-' + keyName,
                     name: keyName,
-                    value: tokens[key].value
+                    value: tokens[key].value,
+                    description: tokens[key].$description
                 })
             } else {
                 result.push(...extractPaletteColors(tokens[key]))
@@ -22,24 +22,30 @@ const extractPaletteColors = (tokens) => {
     return result
 }
 
-const tokens = require('../../tokens/dist/js/color.palette').color.palette
-const colors = extractPaletteColors(tokens)
+const colors = {
+    brand: extractPaletteColors(require('../../tokens/dist/js/color.brand').color.brand),
+    data: extractPaletteColors(require('../../tokens/dist/js/color.data').color.data),
+    palette: extractPaletteColors(require('../../tokens/dist/js/color.palette').color.palette),
+    ui: extractPaletteColors(require('../../tokens/dist/js/color.ui').color.ui),
+}
 
-const ColorPalette = () => (
+const ColorPalette = ({namespace}) => (
   <table>
     <thead>
     <tr>
-        <th className="whitespace-nowrap">Farbe</th>
+        <th className="whitespace-nowrap">Color</th>
         <th className="whitespace-nowrap">Name</th>
-        <th className="whitespace-nowrap">Hex-Wert</th>
+        <th className="whitespace-nowrap">Hex value</th>
+        <th className="whitespace-nowrap">Description</th>
     </tr>
     </thead>
     <tbody>
-    {colors.map((color, index) => (
+    {colors[namespace].map((color, index) => (
         <tr key={index}>
             <td><div className={classNames(color.twClass, 'w-4 h-4')}></div></td>
-            <td>{color.name}</td>
-            <td>{color.value}</td>
+            <td className="whitespace-nowrap">{color.name}</td>
+            <td className="whitespace-nowrap">{color.value}</td>
+            <td>{color.description}</td>
         </tr>
     ))}
     </tbody>

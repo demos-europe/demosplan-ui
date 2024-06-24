@@ -82,12 +82,14 @@ $dp-color-main: $dp-color-yellow-base;
 Color palettes resemble all colors available within demosplan-ui. Available color palettes contain 7 steps:
 a base color, 2 shades and 4 lights. The colors are complemented with white, black, and neutral.
 
-<ColorPalette />
+<ColorPalette namespace={'palette'} />
 
 ### Brand colors
 
 For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist. Like message, status,
 and interaction tokens, they are aliased to palette tokens.
+
+<ColorPalette namespace={'brand'} />
 
 ### Functional (UI) colors
 
@@ -120,6 +122,8 @@ The tokens are to be used for elements on a white background.
 
 **More ui tokens are still to be documented.**
 
+<ColorPalette namespace={'ui'} />
+
 ### Data visualization colors
 
 The 4 distinct data color palettes can be used for data visualizations with a defined number of needed colors
@@ -127,6 +131,8 @@ that differentiate from each other. Like palette colors, they contain hex values
 
 These are generated with https://colorbrewer2.org/#type=diverging&scheme=BrBG&n=8 to be colorblind safe
 and intentionally separate from other color palettes.
+
+<ColorPalette namespace={'data'} />
 
 Although these colors are universally used for charts, they need to be refined into "sequential", "categorical",
 and "diverging" when appropriate. Read more if the need arises:

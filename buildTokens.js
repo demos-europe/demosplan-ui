@@ -7,7 +7,7 @@ const {
   sortByReference
 } = StyleDictionary.formatHelpers
 
-const prefix = 'dp-'
+const prefix = 'dp'
 
 const tokensPath = 'tokens/src/**/*.json'
 
@@ -17,20 +17,9 @@ const files = glob
     .replace('tokens/src/', '')
     .replace('color/', '')
     .replace('.json', ''))
-  // Do not render tokens only used internally
-  .filter(filePath => !filePath.startsWith('_'))
+    .filter(filePath => !filePath.startsWith('_')) // Do not render tokens only used internally
 
-const twFormatValue = (tokenType, value) => {
-  let formattedValue
-  switch (tokenType) {
-    case 'color':
-    default:
-      formattedValue = value
-  }
-  return formattedValue
-}
-
-// Helper function to resolve token values with fallback
+// Resolve token values with fallback, for css variables nesting
 function resolveValue(token, dictionary) {
   let value = token.value
   const seen = new Set()
@@ -44,7 +33,15 @@ function resolveValue(token, dictionary) {
   return value
 }
 
-const transformTokenName = (tokenName, tokenPath) => {
+/**
+ * In the json tokens sources, some nesting is used for better structuring token groups.
+ * However th
+ * @param tokenName
+ * @param tokenPath
+ * @param targetFormat
+ * @return {*}
+ */
+const transformTokenName = (tokenName, tokenPath, targetFormat) => {
   // The domain part within color tokens should not be part of the variable name.
   if (tokenPath[0] === 'color') {
     tokenName = tokenName.replace(/-(brand|data|palette|ui)/g, '')
@@ -60,21 +57,49 @@ const transformTokenName = (tokenName, tokenPath) => {
     tokenName = tokenName.replace(/z-index-/g, 'z-')
   }
 
+  if (targetFormat === 'scss') {
+    // Scss does not like variable names with dots in them, but Tailwind does, apparently.
+    if (tokenPath[0] === 'space') {
+      tokenName = tokenName.replace(/\./g, '_')
+    }
+
+    // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
+    tokenName = tokenName.replace(/DEFAULT/ig, '')
+  }
+
+  if (targetFormat === 'tailwind') {
+    if (tokenPath[0] === 'color') {
+      tokenName = tokenName.replace(/color-/g, '')
+    }
+  }
+
   return tokenName
 }
 
 /**
- * Custom format that generate tailwind color config based on css variables
+ * For Tailwind, we want to only generate color tokens via StyleDictionary.
+ */
+const filterTailwindFiles = (filePath) => {
+  return (token) => {
+    return token.filePath.includes(filePath)
+      && token.$type === 'color'
+      && token.$status !== 'Deprecated'
+  }
+}
+
+/**
+ * Custom format that generates javascript modules ready to be used as Tailwind config files.
+ * The values use a nested set of css variables to enable theming on multiple levels.
  */
 StyleDictionary.registerFormat({
-  name: 'tw/css-variables',
+  name: 'tailwind/variables',
   formatter({ dictionary }) {
     const cssVariables = {}
 
     dictionary.allTokens.forEach(token => {
-      let tokenName = transformTokenName(token.name, token.path)
+      const tokenName = transformTokenName(token.name, token.path, 'tailwind')
 
-      const varName = `--${tokenName.replace(/\./g, '-')}`;
+      const varName = `--${prefix}-${transformTokenName(token.name, token.path).replace(/\./g, '-')}`;
       let fallback = resolveValue(token, dictionary)
 
       let current = token
@@ -82,31 +107,23 @@ StyleDictionary.registerFormat({
       while (current.original && current.original.value.startsWith('{')) {
         const ref = dictionary.getReferences(current.original.value)[0]
         let refName = transformTokenName(ref.name, ref.path)
-        refName = `--${refName.replace(/\./g, '-')}`
+        refName = `--${prefix}-${refName.replace(/\./g, '-')}`
         cssVar += `, var(${refName}`
 
         current = ref
       }
 
       cssVar += `, ${fallback})`.repeat(cssVar.match(/var\(/g).length)
-      cssVariables[tokenName.replace(/\./g, '-')] = cssVar + ';'
+
+      // `resolveValue` appends an unneeded hex value at the end of each cssVar.
+      let regex = /#([0-9a-fA-F]{6})\), #([0-9a-fA-F]{6})/
+      let replaced = cssVar.replace(regex, '#$1)')
+
+      cssVariables[tokenName.replace(/\./g, '-')] = replaced + ';'
     })
 
     return `module.exports = ${JSON.stringify(cssVariables, null, 2)};`
   }
-})
-
-// Adds prefix to variables
-StyleDictionary.registerTransform({
-  name: 'name/scss',
-  type: 'name',
-  transformer: (token) => prefix + token.path.join('-')
-})
-
-// Adds prefix transform to default scss transform group
-StyleDictionary.registerTransformGroup({
-  name: 'custom/scss',
-  transforms: StyleDictionary.transformGroup.scss.concat(['name/scss'])
 })
 
 /**
@@ -129,32 +146,7 @@ StyleDictionary.registerFormat({
 
     const tokens = allTokens
       .map(token => {
-        let formattedVar = propertyFormatter(token)
-
-        // The domain part within color tokens should not be part of the variable name.
-        if (token.path[0] === 'color') {
-          formattedVar = formattedVar.replace(/-(brand|data|palette|ui)/g, '')
-        }
-
-        // The domain part within font-size tokens should not be part of the variable name.
-        if (token.path[0] === 'font-size') {
-          formattedVar = formattedVar.replace(/-(scale|brand|heading|ui)/g, '')
-        }
-
-        // The key "z-index" should be shortened in the variable name to match Tailwind syntax
-        if (token.path[0] === 'z-index') {
-          formattedVar = formattedVar.replace(/z-index-/g, 'z-')
-        }
-
-        // Scss does not like variable names with dots in them, but Tailwind does, apparently.
-        if (token.path[0] === 'space') {
-          formattedVar = formattedVar.replace(/\./g, '_')
-        }
-
-        // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
-        formattedVar = formattedVar.replace(/-DEFAULT/g, '')
-
-        return formattedVar
+        return transformTokenName(propertyFormatter(token), token.path, 'scss')
       })
       .filter(function(strVal) { return !!strVal })
       .join('\n')
@@ -163,18 +155,12 @@ StyleDictionary.registerFormat({
   }
 })
 
-/**
- * For Tailwind, we want to only generate color tokens via StyleDictionary.
- */
-const filterTwFiles = (filePath) => {
-  return (token) => token.filePath.includes(filePath) && token.$type === 'color'
-}
-
 const StyleDictionaryExtended = StyleDictionary.extend({
   source: [tokensPath],
   platforms: {
     scss: {
-      transformGroup: 'custom/scss',
+      transformGroup: 'scss',
+      prefix,
       buildPath: 'tokens/dist/scss/',
       files: files.map((filePath) => {
         return {
@@ -203,13 +189,12 @@ const StyleDictionaryExtended = StyleDictionary.extend({
     },
     web: {
       transformGroup: 'web',
-      prefix: 'dp',
-      buildPath: 'tokens/dist/tw/',
+      buildPath: 'tokens/dist/tailwind/',
       files: files.map((filePath) => {
         return {
           destination: `${filePath}.js`,
-          format: 'tw/css-variables',
-          filter: filterTwFiles(filePath)
+          format: 'tailwind/variables',
+          filter: filterTailwindFiles(filePath)
         }
       }),
     },

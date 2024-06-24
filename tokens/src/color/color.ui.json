@@ -315,14 +315,15 @@
         }
       },
       "selection": {
-        "$description": "Color used to visualize selected elements.",
         "$status": "{_status.review}",
         "text": {
+          "$description": "Color used to visualize selected elements.",
           "value": "{color.palette.blue.dark-1}",
           "themeable": true,
           "$type": "color"
         },
         "bg": {
+          "$description": "Background Color used to visualize selected elements.",
           "value": "{color.palette.blue.light-3}",
           "themeable": true,
           "$type": "color"
@@ -330,14 +331,20 @@
       },
       "border": {
         "default": {
+          "$status": "{_status.deprecated}",
+          "value": "{color.ui.border.neutral}",
+          "themeable": true,
+          "$type": "color"
+        },
+        "neutral": {
           "$description": "Color used for borders.",
           "value": "{color.palette.neutral.light-2}",
           "themeable": true,
           "$type": "color"
         }
       },
-      "background": {
-        "default": {
+      "surface": {
+        "DEFAULT": {
           "$description": "Default color used for backgrounds.",
           "value": "{color.palette.white}",
           "themeable": true,
@@ -352,6 +359,26 @@
         "medium": {
           "$description": "Medium background color for boxes etc.",
           "value": "{color.palette.neutral.light-3}",
+          "themeable": true,
+          "$type": "color"
+        }
+      },
+      "background": {
+        "DEFAULT": {
+          "$status": "{_status.deprecated}",
+          "value": "{color.ui.surface.DEFAULT}",
+          "themeable": true,
+          "$type": "color"
+        },
+        "light": {
+          "$status": "{_status.deprecated}",
+          "value": "{color.ui.surface.light}",
+          "themeable": true,
+          "$type": "color"
+        },
+        "medium": {
+          "$status": "{_status.deprecated}",
+          "value": "{color.ui.surface.medium}",
           "themeable": true,
           "$type": "color"
         }

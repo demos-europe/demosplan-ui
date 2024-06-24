@@ -19,6 +19,13 @@ const spacing = tokensToTailwind(require('./tokens/dist/js/space').space)
 const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpoints)
 const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
 
+const colors = {
+  ...require('./tokens/dist/tailwind/color.palette'),
+  ...require('./tokens/dist/tailwind/color.data'),
+  ...require('./tokens/dist/tailwind/color.brand'),
+  ...require('./tokens/dist/tailwind/color.ui')
+}
+
 module.exports = {
   content: [
     './tokens/*.mdx',
@@ -54,6 +61,7 @@ module.exports = {
   theme: {
     borderRadius,
     boxShadow,
+    colors,
     screens,
     spacing,
     zIndex,

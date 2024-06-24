@@ -7,7 +7,7 @@ const extractPaletteColors = (tokens) => {
         if (typeof tokens[key] === 'object' && tokens[key] !== null) {
             if (tokens[key].value) {
                 const { item, subitem, state } = tokens[key].attributes || {}
-                const keyName = [item, subitem, state].filter(Boolean).join('-')
+                const keyName = [item, subitem, state].filter(Boolean).join('-').replace(/-DEFAULT/g, '')
                 result.push({
                     twClass: 'bg-' + keyName,
                     name: keyName,

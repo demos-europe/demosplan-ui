@@ -7,7 +7,7 @@ const {
   sortByReference
 } = StyleDictionary.formatHelpers
 
-const prefix = 'dp'
+const prefix = 'dp-'
 
 const tokensPath = 'tokens/src/**/*.json'
 
@@ -33,6 +33,32 @@ function resolveValue(token, dictionary) {
   return value
 }
 
+// Adds prefix to variables. Keeps uppercase path parts, which is needed later.
+StyleDictionary.registerTransform({
+  name: 'name/scss',
+  type: 'name',
+  transformer: (token) => prefix + token.path.join('-')
+})
+
+// Adds prefix transform to default scss transform group
+StyleDictionary.registerTransformGroup({
+  name: 'custom/scss',
+  transforms: StyleDictionary.transformGroup.scss.concat(['name/scss'])
+})
+
+// Adds prefix to variables. Keeps uppercase path parts, which is needed later.
+StyleDictionary.registerTransform({
+  name: 'name/web',
+  type: 'name',
+  transformer: (token) => token.path.join('-')
+})
+
+// Adds prefix transform to default scss transform group
+StyleDictionary.registerTransformGroup({
+  name: 'custom/web',
+  transforms: StyleDictionary.transformGroup.web.concat(['name/web'])
+})
+
 /**
  * In the json tokens sources, some nesting is used for better structuring token groups.
  * However th
@@ -57,14 +83,14 @@ const transformTokenName = (tokenName, tokenPath, targetFormat) => {
     tokenName = tokenName.replace(/z-index-/g, 'z-')
   }
 
+  // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
+  tokenName = tokenName.replace(/-DEFAULT/g, '')
+
   if (targetFormat === 'scss') {
     // Scss does not like variable names with dots in them, but Tailwind does, apparently.
     if (tokenPath[0] === 'space') {
       tokenName = tokenName.replace(/\./g, '_')
     }
-
-    // "DEFAULT" is a Tailwind convention that should not be part of the Scss name
-    tokenName = tokenName.replace(/DEFAULT/ig, '')
   }
 
   if (targetFormat === 'tailwind') {
@@ -99,7 +125,7 @@ StyleDictionary.registerFormat({
     dictionary.allTokens.forEach(token => {
       const tokenName = transformTokenName(token.name, token.path, 'tailwind')
 
-      const varName = `--${prefix}-${transformTokenName(token.name, token.path).replace(/\./g, '-')}`;
+      const varName = `--${prefix}${transformTokenName(token.name, token.path).replace(/\./g, '-')}`;
       let fallback = resolveValue(token, dictionary)
 
       let current = token
@@ -107,7 +133,7 @@ StyleDictionary.registerFormat({
       while (current.original && current.original.value.startsWith('{')) {
         const ref = dictionary.getReferences(current.original.value)[0]
         let refName = transformTokenName(ref.name, ref.path)
-        refName = `--${prefix}-${refName.replace(/\./g, '-')}`
+        refName = `--${prefix}${refName.replace(/\./g, '-')}`
         cssVar += `, var(${refName}`
 
         current = ref
@@ -159,7 +185,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
   source: [tokensPath],
   platforms: {
     scss: {
-      transformGroup: 'scss',
+      transformGroup: 'custom/scss',
       prefix,
       buildPath: 'tokens/dist/scss/',
       files: files.map((filePath) => {
@@ -180,7 +206,9 @@ const StyleDictionaryExtended = StyleDictionary.extend({
         return {
           destination: `${filePath}.js`,
           format: 'javascript/module',
-          filter: (token) => token.filePath.includes(filePath),
+          filter: (token) => {
+            return token.filePath.includes(filePath) && token.$status !== 'Deprecated'
+          },
           options: {
             outputReferences: true
           }
@@ -188,7 +216,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
       })
     },
     web: {
-      transformGroup: 'web',
+      transformGroup: 'custom/web',
       buildPath: 'tokens/dist/tailwind/',
       files: files.map((filePath) => {
         return {

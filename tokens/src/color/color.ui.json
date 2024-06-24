@@ -364,7 +364,7 @@
         }
       },
       "background": {
-        "DEFAULT": {
+        "default": {
           "$status": "{_status.deprecated}",
           "value": "{color.ui.surface.DEFAULT}",
           "themeable": true,

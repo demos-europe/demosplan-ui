@@ -28,6 +28,7 @@ import DpIcon from './DpIcon'
 import DpInlineNotification from './DpInlineNotification'
 import DpInput from './DpInput'
 import DpLabel from './DpLabel'
+import DpLink from './DpLink'
 import DpLoading from './DpLoading'
 import DpModal from './DpModal'
 import DpMultiselect from './DpMultiselect'
@@ -68,6 +69,7 @@ export {
   DpIcon,
   DpInput,
   DpLabel,
+  DpLink,
   DpLoading,
   DpAnonymizeText,
   DpAutocomplete,

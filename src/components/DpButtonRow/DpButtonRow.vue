@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[`text--${align}`, $attrs.class]"
+    :class="[`text-${align}`, $attrs.class]"
     class="space-inline-s">
     <dp-button
       v-if="primary"

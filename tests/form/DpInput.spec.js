@@ -5,7 +5,7 @@ import { shallowMount } from '@vue/test-utils'
 
 describe('DpInput', () => {
   const wrapper = shallowMount(DpInput, {
-    propsData: {
+    props: {
       id: 'inputId'
     }
   })
@@ -23,7 +23,7 @@ describe('DpInput', () => {
   it('emits an event on input with the new value as argument', async () => {
     const newValue = 'some text'
     const componentWrapper = shallowMount(DpInput, {
-      propsData: {
+      props: {
         id: 'inputId'
       }
     })
@@ -35,7 +35,7 @@ describe('DpInput', () => {
 
   it('emits an event on keydown enter', () => {
     const componentWrapper = shallowMount(DpInput, {
-      propsData: {
+      props: {
         id: 'inputId'
       }
     })

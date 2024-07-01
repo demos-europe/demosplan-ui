@@ -27,23 +27,19 @@
         :checked="checked" />
     </th>
     <template v-for="(hf, idx) in headerFields">
-      <dp-resizable-column
-        v-if="isResizable"
-        :is-last="headerFields.length === idx"
+      <component
+        :is="isResizable ? DpResizableColumn : 'th'"
+        :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
         :next-header="headerFields[idx + 1]"
         :idx="idx">
-        <slot :name="`header-${hf.field}`">
-          <span v-if="hf.label" v-text="hf.label" />
-        </slot>
-      </dp-resizable-column>
-      <th
-        v-else
-        scope="col">
-        <slot :name="`header-${hf.field}`">
-          <span v-if="hf.label" v-text="hf.label" />
-        </slot>
-      </th>
+        <slot
+          v-if="$slots[`header-${hf.field}`]()[0].children.length > 0"
+          :name="`header-${hf.field}`" />
+        <span
+          v-else-if="hf.label"
+          v-text="hf.label" />
+      </component>
     </template>
     <th
       v-if="hasFlyout"
@@ -81,7 +77,6 @@ export default {
 
   components: {
     DpIcon,
-    DpResizableColumn,
     DpWrapTrigger
   },
 
@@ -157,6 +152,12 @@ export default {
   watch: {
     indeterminate () {
       this.setIndeterminate()
+    }
+  },
+
+  computed: {
+    DpResizableColumn () {
+      return DpResizableColumn
     }
   },
 

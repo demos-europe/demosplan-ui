@@ -2,7 +2,7 @@
   <div :class="prefixClass('o-form__element--checkbox')">
     <input
       :id="id"
-      :name="name !== '' ? name : false"
+      :name="name !== '' ? name : null"
       :class="prefixClass('o-form__control-input')"
       type="checkbox"
       :required="required"
@@ -11,7 +11,7 @@
       autocomplete="off"
       :checked="checked"
       :value="valueToSend"
-      :data-cy="dataCy !== '' ? dataCy : false"
+      :data-cy="dataCy !== '' ? dataCy : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"
       true-value="1"

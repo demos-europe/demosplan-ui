@@ -31,10 +31,10 @@
   },
   "include": [
     "./src/**/*.ts",
-    "./src/**/*.tsx",
+    // "./src/**/*.tsx", // Otherwise it gets compiled during build which trows errors
     "./src/**/*.vue",
     "./tests/**/*.ts",
-    "./tests/**/*.tsx",
+    // "./tests/**/*.tsx", // Otherwise it gets compiled during build which trows errors
     "./vue-shims.d.ts"
   ]
 }

@@ -203,10 +203,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.$root.$on('modal:toggle', (modalId) => this.toggleByEvent(modalId))
-  },
-
   updated () {
     // When component is re-rendered, we have to collect all focusable elements again, as new ones may have appeared
     this.$nextTick(() => this.getFocusableElements())

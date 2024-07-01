@@ -31,9 +31,10 @@
       }"
       :data-cy="dataCy"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
+      :model-value="value"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
-      @input="newVal => $emit('input', newVal)"
+      @update:model-value="newVal => $emit('input', newVal)"
       @open="newVal => $emit('open', newVal)"
       @remove="newVal => $emit('remove', newVal)"
       @search-change="newVal => $emit('search-change', newVal)"
@@ -105,6 +106,18 @@ export default {
   directives: {
     dpValidateMultiselectDirective
   },
+
+  emits: [
+    'close',
+    'input',
+    'open',
+    'remove',
+    'search-change',
+    'select',
+    'select-all',
+    'tag',
+    'unselect-all'
+  ],
 
   props: {
     allowEmpty: {

@@ -1,12 +1,12 @@
 <template>
   <component
     :is="element"
-    :type="isButtonElement && type"
-    :href="!isButtonElement && sanitizedHref"
+    :type="isButtonElement ? type : null"
+    :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
-    :aria-hidden="busy"
+    :aria-hidden="busy ? true : null"
     v-tooltip="iconOnly ? text : null"
-    v-on="$listeners">
+    @click="$emit('click', $event)">
     <dp-icon
       v-if="icon"
       aria-hidden="true"
@@ -40,14 +40,18 @@ export default {
     tooltip: Tooltip
   },
 
+  emits: [
+    'click'
+  ],
+
   props: {
     /**
      * While waiting for a network response, the visual state of the button can be changed via the `busy` property.
      */
     busy: {
       required: false,
-      type: Boolean,
-      default: false
+      type: [Boolean, null],
+      default: null
     },
 
     /**

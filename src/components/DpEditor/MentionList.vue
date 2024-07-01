@@ -41,8 +41,11 @@ export default {
   },
 
   watch: {
-    items() {
-      this.selectedIndex = 0
+    items: {
+      handler () {
+        this.selectedIndex = 0
+      },
+      deep: true
     },
   },
 

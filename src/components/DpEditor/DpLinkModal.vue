@@ -4,44 +4,42 @@
     content-classes="u-1-of-3"
     data-dp-validate="linkModal"
     @modal:toggled="setVisible">
-    <template>
-      <h3>
-        {{ hasLink ? translations.linkEdit : translations.linkInsert }}
-      </h3>
-      <div class="space-stack-m">
-        <dp-input
-          id="link_text"
-          v-model="text"
-          :label="{
-            text: translations.linkText
-          }"
-          :required="isVisible" />
-        <dp-input
-          id="link_url"
-          v-model="url"
-          :label="{
-            hint: translations.linkHint,
-            text: Translator.trans('url')
-          }"
-          :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
-          :required="isVisible"
-          type="url" />
-        <dp-checkbox
-          id="newTab"
-          v-model="newTab"
-          :label="{
-            text: translations.newTab
-          }" />
-        <dp-button-row
-          class="u-mt"
-          primary
-          :primary-text="Translator.trans('insert')"
-          secondary
-          :secondary-text="Translator.trans('remove')"
-          @primary-action="dpValidateAction('linkModal', () => emitAndClose('insert'), false)"
-          @secondary-action="emitAndClose('remove')" />
-      </div>
-    </template>
+    <h3>
+      {{ hasLink ? translations.linkEdit : translations.linkInsert }}
+    </h3>
+    <div class="space-stack-m">
+      <dp-input
+        id="link_text"
+        v-model="text"
+        :label="{
+          text: translations.linkText
+        }"
+        :required="isVisible" />
+      <dp-input
+        id="link_url"
+        v-model="url"
+        :label="{
+          hint: translations.linkHint,
+          text: Translator.trans('url')
+        }"
+        :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
+        :required="isVisible"
+        type="url" />
+      <dp-checkbox
+        id="newTab"
+        v-model="newTab"
+        :label="{
+          text: translations.newTab
+        }" />
+      <dp-button-row
+        class="u-mt"
+        primary
+        :primary-text="Translator.trans('insert')"
+        secondary
+        :secondary-text="Translator.trans('remove')"
+        @primary-action="dpValidateAction('linkModal', () => emitAndClose('insert'), false)"
+        @secondary-action="emitAndClose('remove')" />
+    </div>
   </dp-modal>
 </template>
 

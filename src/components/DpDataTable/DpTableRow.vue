@@ -23,7 +23,7 @@
         v-else
         type="checkbox"
         class="u-m-0 align-middle"
-        data-cy="selectItem"
+        :data-cy="`selectItem:${$attrs.index}`"
         :name="isSelectableName || null"
         :value="isSelectableName ? item[trackBy] : null"
         :checked="checked"

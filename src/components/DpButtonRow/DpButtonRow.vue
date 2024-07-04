@@ -5,19 +5,19 @@
     <dp-button
       v-if="primary"
       :busy="busy"
+      :data-cy="`${dataCy}:saveButton`"
       :disabled="disabled"
       :text="primaryText"
       :variant="variant"
-      @click.prevent="$emit('primary-action')"
-      data-cy="saveButton" />
+      @click.prevent="$emit('primary-action')" />
     <dp-button
       v-if="secondary"
       color="secondary"
+      :data-cy="`${dataCy}:abortButton`"
       :href="href"
       :text="secondaryText"
       :variant="variant"
-      @click.prevent="$emit('secondary-action')"
-      data-cy="abortButton" />
+      @click.prevent="$emit('secondary-action')" />
     <slot />
   </div>
 </template>
@@ -50,6 +50,12 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'buttonRow'
     },
 
     /**

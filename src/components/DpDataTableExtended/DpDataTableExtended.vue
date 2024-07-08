@@ -50,8 +50,8 @@
             :key="element.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="Translator.trans('table.cols.sort') + ': ' + element.label"
-              :title="Translator.trans('table.cols.sort') + ': ' + element.label"
+              :aria-label="translations.colsSort + ': ' + element.label"
+              :title="translations.colsSort + ': ' + element.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(element.field)"
               type="button">
@@ -101,6 +101,7 @@ import DpSlidingPagination from '~/components/DpSlidingPagination'
 import DpStickyElement from '~/components/DpStickyElement'
 import { hasOwnProp } from '~/utils'
 import { tableSelectAllItems } from '~/mixins'
+import {de} from "~/components/shared/translations";
 
 export default {
   name: 'DpDataTableExtended',
@@ -234,7 +235,10 @@ export default {
       isHighlighted: '',
       itemsPerPage: this.initItemsPerPage,
       searchString: '',
-      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null
+      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
+      translations: {
+        colsSort: de.table.colsSort
+      }
     }
   },
 

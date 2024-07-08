@@ -24,6 +24,7 @@ const de = {
       element: 'Element ausklappen'
     },
   },
+  autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
@@ -53,6 +54,10 @@ const de = {
   explanationNoentries: "Es sind keine Einträge vorhanden.",
   file: {
     remove: 'Datei entfernen'
+  },
+  hint: {
+    dismiss: 'Hinweis ausblenden',
+    show: 'Hinweis einblenden'
   },
   image: {
     alt: {
@@ -102,6 +107,7 @@ const de = {
     openNew: 'in neuem Tab öffnen'
   },
   table: {
+    colsSort: 'Spalten sortieren nach',
     colsSelect: 'Spalten auswählen'
   },
   tag: {

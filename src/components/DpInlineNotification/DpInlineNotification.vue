@@ -14,7 +14,7 @@
       <button
         v-if="dismissible"
         class="btn--blank o-link--default weight--bold"
-        v-text="Translator.trans('hint.dismiss')"
+        v-text="translations.hintDismiss"
         @click="dismiss" />
     </div>
   </div>
@@ -22,7 +22,7 @@
     v-else
     class="flow-root">
     <button
-      :aria-label="Translator.trans('hint.show')"
+      :aria-label="translations.hintShow"
       class="btn--blank color--grey float-right"
       @click="show">
       <dp-icon
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpIcon from '~/components/DpIcon'
 import lscache from 'lscache'
 
@@ -84,7 +85,11 @@ export default {
         info: 'fa-info-circle',
         warning: 'fa-exclamation-triangle'
       },
-      isDismissed: true
+      isDismissed: true,
+      translations: {
+        hintDismiss: de.hint.dismiss,
+        hintShow: de.hint.show
+      }
     }
   },
 

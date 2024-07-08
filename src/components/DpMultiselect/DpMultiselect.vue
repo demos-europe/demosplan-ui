@@ -41,13 +41,13 @@
       @tag="newVal => $emit('tag', newVal)">
       <template v-slot:noOptions>
         <slot name="noOptions">
-          {{ Translator.trans('explanation.noentries') }}
+          {{ translations.explanationNoentries }}
         </slot>
       </template>
 
       <template v-slot:noResult>
         <slot name="noResult">
-          {{ Translator.trans('autocomplete.noResults') }}
+          {{ translations.autocompleteNoResults }}
         </slot>
       </template>
 
@@ -295,7 +295,9 @@ export default {
   data () {
     return {
       translations: {
+        autocompleteNoResults: de.autocompleteNoResults,
         deselectAll: de.operations.deselect.all,
+        explanationNoentries: de.explanationNoentries,
         selectAll: de.operations.select.all
       }
     }

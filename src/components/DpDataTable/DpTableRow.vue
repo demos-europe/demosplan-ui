@@ -77,7 +77,7 @@
       v-if="isExpandable"
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': expanded }"
-      :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
+      :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleExpand(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isExpandableWrapTrigger:${$attrs.index}`"
@@ -88,7 +88,7 @@
       v-if="isTruncatable"
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': wrapped }"
-      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
+      :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleWrap(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isTruncatableWrapTrigger:${$attrs.index}`"
@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
@@ -236,6 +237,15 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    }
+  },
+
+  data () {
+    return {
+      translations: {
+        ariaCollapse: de.aria.collapse.element,
+        ariaExpand: de.aria.expand.element
+      }
     }
   },
 

@@ -1,7 +1,7 @@
 <template>
   <dp-modal
     ref="uploadModal"
-    content-classes="u-2-of-3-lap-up u-1-of-2-desk-up">
+    content-classes="w-fit">
     <template>
       <h3
         v-if="editAltTextOnly"
@@ -13,7 +13,7 @@
         class="u-mb">
         {{ translations.insertImage }}
       </h3>
-      <div v-show="editAltTextOnly === false">
+      <div v-if="!editAltTextOnly">
         <dp-upload-files
           allowed-file-types="img"
           :basic-auth="basicAuth"
@@ -25,6 +25,11 @@
           :translations="{ dropHereOr: translations.uploadImage('20MB')}"
           :tus-endpoint="tusEndpoint"
           @upload-success="setFile" />
+      </div>
+      <div v-else>
+        <img
+          :alt="altText"
+          :src="this.imgSrc">
       </div>
       <dp-input
         id="altText"
@@ -96,6 +101,7 @@ export default {
       fileUrl: '',
       altText: '',
       editAltTextOnly: false,
+      imgSrc: '',
       translations: {
         altText: de.altText.default,
         altTextHint: de.image.alt.explanation,
@@ -138,6 +144,7 @@ export default {
       } else if (data) {
         this.editAltTextOnly = data.editAltOnly
         this.altText = data.currentAlt
+        this.imgSrc = data.imgSrc
       }
 
       this.$refs.uploadModal.toggle()

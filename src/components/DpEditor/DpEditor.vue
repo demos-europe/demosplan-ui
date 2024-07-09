@@ -1076,7 +1076,7 @@ export default {
 
     this.$root.$on('open-image-alt-modal', (e, id) => {
       this.editingImage = id
-      this.openUploadModal({ editAltOnly: true, currentAlt: e.target.getAttribute('alt') })
+      this.openUploadModal({ editAltOnly: true, currentAlt: e.target.getAttribute('alt'), imgSrc: e.target.getAttribute('src') })
     })
     /*
      * On form-reset the editor has to be cleared manually.

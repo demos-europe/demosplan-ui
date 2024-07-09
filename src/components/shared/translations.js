@@ -71,7 +71,8 @@ const de = {
     },
     edit: 'Bild bearbeiten',
     insert: 'Bild einfügen',
-    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]'
+    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]',
+    preview: 'Bildvorschau'
   },
   input: {
     text: {

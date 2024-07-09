@@ -102,6 +102,7 @@ const de = {
     insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',
+    remove: 'Entfernen',
     save: "Speichern",
     select: {
       all: 'Alle auswählen',
@@ -123,6 +124,7 @@ const de = {
   },
   placeholderAutoSuggest: "Suchbegriff...",
   search: 'Suche',
+  searching: 'Suchen',
   tab: {
     openNew: 'in neuem Tab öffnen'
   },

@@ -13,11 +13,12 @@
       class="align-top"
       data-cy="handleSearch"
       @click="handleSearch"
-      :text="Translator.trans('searching')" />
+      :text="translations.searching" />
   </span>
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpButton from '~/components/DpButton'
 import DpResettableInput from '~/components/DpResettableInput'
 
@@ -54,6 +55,9 @@ export default {
 
   data () {
     return {
+      translations: {
+        searching: de.searching
+      },
       searchTerm: this.initSearchTerm,
       searchTermApplied: ''
     }

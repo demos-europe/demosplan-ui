@@ -56,8 +56,8 @@ export default {
   data () {
     return {
       translations: {
-        search: de.search,
-        searching: de.searching
+        search: de.search.text,
+        searching: de.search.searching
       },
       searchTerm: this.initSearchTerm,
       searchTermApplied: ''

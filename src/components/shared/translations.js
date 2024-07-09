@@ -32,6 +32,9 @@ const de = {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
     fullscreen: 'Vollbild',
+    headingLevel (level) {
+      return `Überschrift ${level}. Ebene`
+    },
     italic: 'Kursiv',
     link: {
       edit: 'Link bearbeiten',
@@ -76,9 +79,15 @@ const de = {
   },
   input: {
     text: {
-      exactlength({ requiredlength, cssClass, count }) { return `Geben Sie exakt ${requiredlength} Zeichen ein. Aktuell sind <span class="${cssClass}"> ${count} </span> Zeichen eingegeben.` },
-      maxlength({ cssClass, count, max }) { return `Noch <span class="${cssClass}"> ${count} </span> von maximal ${max} Zeichen verfügbar.`},
-      minlength({ cssClass, count, min }) { return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`}
+      exactlength({ requiredlength, cssClass, count }) {
+        return `Geben Sie exakt ${requiredlength} Zeichen ein. Aktuell sind <span class="${cssClass}"> ${count} </span> Zeichen eingegeben.`
+      },
+      maxlength({ cssClass, count, max }) {
+        return `Noch <span class="${cssClass}"> ${count} </span> von maximal ${max} Zeichen verfügbar.`
+      },
+      minlength({ cssClass, count, min }) {
+        return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`
+      }
     }
   },
   item: {
@@ -115,16 +124,25 @@ const de = {
     amountMultipleOf: 'von',
     amountMultipleLabel: 'Wählen Sie, wieviele von insgesamt {results} {items} pro Seite ausgegeben werden sollen.',
     amountMultipleItems: 'Einträgen',
-    gotoPageFromPages ({ page, total }) { return `Gehe zu Seite ${page} von ${total}` },
+    gotoPageFromPages ({ page, total }) {
+      return `Gehe zu Seite ${page} von ${total}`
+    },
     label: 'Seitennavigation',
     next: 'Nächste Seite',
-    pageFromPagesCurrentPage ({ page, total }) { return `Seite ${page} von ${total}, aktuelle Seite` },
+    pageFromPagesCurrentPage ({ page, total }) {
+      return `Seite ${page} von ${total}, aktuelle Seite`
+    },
     perPage: 'Einträge anzeigen',
     previous: 'Vorherige Seite'
   },
   placeholderAutoSuggest: "Suchbegriff...",
-  search: 'Suche',
-  searching: 'Suchen',
+  search: {
+    noResults (searchterm) {
+      return `Für den Suchbegriff <span style=\"background-color: yellow;\">${searchterm}</span> konnten keine Einträge gefunden werden.`
+    },
+    searching: 'Suchen',
+    text: 'Suche',
+  },
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
@@ -145,8 +163,12 @@ const de = {
     failed: 'Fehler beim Upload von Datei %{file}',
     files: 'Dateien hochladen',
     select: {
-      image(maxUploadSize) { return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})` },
-      pdf({ browse, maxUploadSize }) { return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})` }
+      image(maxUploadSize) {
+        return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})`
+      },
+      pdf({ browse, maxUploadSize }) {
+        return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})`
+      }
     },
     uploadedFiles: 'Hochgeladene Dateien',
   },

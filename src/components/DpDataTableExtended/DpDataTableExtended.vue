@@ -238,7 +238,7 @@ export default {
       sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
       translations: {
         colsSort: de.table.colsSort,
-        search: de.search,
+        search: de.search.text,
         pagerPerPage: de.pager.perPage
       }
     }

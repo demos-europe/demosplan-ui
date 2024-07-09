@@ -395,7 +395,7 @@ export default {
         headerExpandHint: de.expandAll,
         headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
-        searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
+        searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
         tableLoadingData: de.loadingData,
         tableNoElements: de.explanationNoentries
       },

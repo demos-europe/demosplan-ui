@@ -39,13 +39,13 @@
           class="btn btn--primary"
           type="button"
           @click="emitAndClose()">
-          {{ Translator.trans('insert') }}
+          {{ translations.insert }}
         </button>
         <button
           class="btn btn--secondary"
           type="button"
           @click="resetAndClose()">
-          {{ Translator.trans('abort') }}
+          {{ translations.abort }}
         </button>
       </div>
     </template>
@@ -99,7 +99,9 @@ export default {
       translations: {
         altText: de.altText.default,
         altTextHint: de.image.alt.explanation,
+        abort: de.operations.abort,
         editImage: de.image.edit,
+        insert: de.operations.insert,
         insertImage: de.image.insert,
         uploadImage: de.upload.select.image
       }

@@ -31,15 +31,19 @@ const de = {
   editor: {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
+    fullscreen: 'Vollbild',
     italic: 'Kursiv',
     link: {
       edit: 'Link bearbeiten',
+      editOrInsert: 'Link einfügen/bearbeiten',
       insert: 'Link einfügen',
       hint: 'URLs sollten mit \'https://\' beginnen.'
     },
+    orderedList: 'Nummerierte Liste',
     redo: 'Wiederholen',
     underline: 'Unterstrichen',
-    undo: 'Rückgängig'
+    undo: 'Rückgängig',
+    unorderedList: 'Aufzählung'
   },
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
@@ -89,10 +93,12 @@ const de = {
   operations: {
     abort: "Abbrechen",
     add: 'Hinzufügen',
+    close: 'einklappen',
     delete: 'Löschen',
     deselect: {
       all: 'Auswahl aufheben'
     },
+    insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',
     save: "Speichern",
@@ -100,9 +106,22 @@ const de = {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.'
     },
+    open: 'ausklappen',
     update: 'Aktualisierung'
   },
+  pager: {
+    amountMultipleOf: 'von',
+    amountMultipleLabel: 'Wählen Sie, wieviele von insgesamt {results} {items} pro Seite ausgegeben werden sollen.',
+    amountMultipleItems: 'Einträgen',
+    gotoPageFromPages ({ page, total }) { return `Gehe zu Seite ${page} von ${total}` },
+    label: 'Seitennavigation',
+    next: 'Nächste Seite',
+    pageFromPagesCurrentPage ({ page, total }) { return `Seite ${page} von ${total}, aktuelle Seite` },
+    perPage: 'Einträge anzeigen',
+    previous: 'Vorherige Seite'
+  },
   placeholderAutoSuggest: "Suchbegriff...",
+  search: 'Suche',
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
@@ -118,12 +137,15 @@ const de = {
     inserted: 'Dieser Text wurde hinzugefügt',
     marked: 'markierter Text'
   },
+  url: 'URL',
   upload: {
     failed: 'Fehler beim Upload von Datei %{file}',
+    files: 'Dateien hochladen',
     select: {
       image(maxUploadSize) { return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})` },
       pdf({ browse, maxUploadSize }) { return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})` }
-    }
+    },
+    uploadedFiles: 'Hochgeladene Dateien',
   },
   validation: {
     error: {

@@ -1,10 +1,10 @@
 <template>
   <sliding-pagination
-    :aria-pagination-label="Translator.trans('pager.label')"
-    :aria-goto-page-label="Translator.trans('pager.goto.page.from.pages', { page: current, total: total })"
-    :aria-previous-page-label="Translator.trans('pager.previous')"
-    :aria-next-page-label="Translator.trans('pager.next')"
-    :aria-current-page-label="Translator.trans('pager.page.from.pages.current.page', { page: current, total: total })"
+    :aria-pagination-label="translations.pagerLabel"
+    :aria-goto-page-label="translations.gotoPageFromPages"
+    :aria-previous-page-label="translations.pagerPrevious"
+    :aria-next-page-label="translations.pagerNext"
+    :aria-current-page-label="translations.pageFromPagesCurrentPage"
     :class-map="{
       componentClass: prefixClass('c-sliding-pagination'),
       list: prefixClass('c-sliding-pagination__list'),
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClass } from '~/utils'
 import SlidingPagination from 'vue-sliding-pagination'
 
@@ -38,6 +39,18 @@ export default {
     total: {
       type: Number,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      translations: {
+        gotoPageFromPages: de.pager.gotoPageFromPages({ page: this.current, total: this.total }),
+        pageFromPagesCurrentPage: de.pager.pageFromPagesCurrentPage({ page: this.current, total: this.total }),
+        pagerLabel: de.pager.label,
+        pagerPrevious: de.pager.previous,
+        pagerNext: de.pager.next,
+      }
     }
   },
 

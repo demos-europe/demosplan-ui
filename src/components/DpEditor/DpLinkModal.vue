@@ -21,7 +21,7 @@
           v-model="url"
           :label="{
             hint: translations.linkHint,
-            text: Translator.trans('url')
+            text: translations.url
           }"
           :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
           :required="isVisible"
@@ -76,7 +76,8 @@ export default {
         linkHint: de.editor.link.hint,
         linkInsert: de.editor.link.insert,
         linkText: de.link.text,
-        newTab: de.tab.openNew
+        newTab: de.tab.openNew,
+        url: de.url
       },
       url: ''
     }

@@ -2,7 +2,7 @@
   <fieldset :class="prefixClass('layout')">
     <legend
       class="sr-only"
-      v-text="Translator.trans('upload.files')" />
+      v-text="translations.uploadFiles" />
     <dp-label
       v-if="label.text"
       class="layout__item"
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClassMixin, sessionStorageMixin } from '~/mixins'
 import DpLabel from '../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
@@ -227,6 +228,9 @@ export default {
   data () {
     return {
       fileHashes: [],
+      translations: {
+        uploadFiles: de.upload.files,
+      },
       uploadedFiles: []
     }
   },

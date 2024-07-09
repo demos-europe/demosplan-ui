@@ -7,7 +7,7 @@
           <label
             class="inline"
             for="search">
-            {{ Translator.trans('search') }}
+            {{ translations.search }}
           </label>
           <input
             type="text"
@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="Translator.trans('pager.per.page')" />
+            :label-text="translations.pagerPerPage" />
         </div>
       </div>
     </dp-sticky-element>
@@ -101,7 +101,7 @@ import DpSlidingPagination from '~/components/DpSlidingPagination'
 import DpStickyElement from '~/components/DpStickyElement'
 import { hasOwnProp } from '~/utils'
 import { tableSelectAllItems } from '~/mixins'
-import {de} from "~/components/shared/translations";
+import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpDataTableExtended',
@@ -237,7 +237,9 @@ export default {
       searchString: '',
       sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
       translations: {
-        colsSort: de.table.colsSort
+        colsSort: de.table.colsSort,
+        search: de.search,
+        pagerPerPage: de.pager.perPage
       }
     }
   },

@@ -175,8 +175,8 @@
                 @click="editor.chain().focus().toggleBulletList().run()"
                 :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.unordered.list')"
-                v-tooltip="Translator.trans('editor.unordered.list')"
+                :aria-label="translations.unorderedList"
+                v-tooltip="translations.unorderedList"
                 :disabled="readonly">
                 <i :class="prefixClass('fa fa-list-ul')" />
               </button>
@@ -185,8 +185,8 @@
                 @click="editor.chain().focus().toggleOrderedList().run()"
                 :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.ordered.list')"
-                v-tooltip="Translator.trans('editor.ordered.list')"
+                :aria-label="translations.orderedList"
+                v-tooltip="translations.orderedList"
                 :disabled="readonly">
                 <i :class="prefixClass('fa fa-list-ol')" />
               </button>
@@ -226,7 +226,7 @@
               @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))"
               :class="prefixClass('menubar__button')"
               type="button"
-              v-tooltip="Translator.trans('editor.link.edit.insert')">
+              v-tooltip="translations.link.editOrInsert">
               <i :class="prefixClass('fa fa-link')" />
             </button>
             <!-- Insert images-->
@@ -273,8 +273,8 @@
               @click="fullscreen"
               :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
               type="button"
-              :aria-label="Translator.trans('editor.fullscreen')"
-              v-tooltip="Translator.trans('editor.fullscreen')">
+              :aria-label="translations.fullscreen"
+              v-tooltip="translations.fullscreen">
               <i
                 :class="prefixClass('fa fa-arrows-alt')"
                 aria-hidden="true" />

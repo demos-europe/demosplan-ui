@@ -4,7 +4,7 @@
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search' }"
+      :input-attributes="{ placeholder: translations.search, type: 'search' }"
       @reset="handleReset"
       @enter="handleSearch"
       v-model="searchTerm" /><!--
@@ -56,6 +56,7 @@ export default {
   data () {
     return {
       translations: {
+        search: de.search,
         searching: de.searching
       },
       searchTerm: this.initSearchTerm,

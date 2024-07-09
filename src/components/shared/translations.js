@@ -153,6 +153,7 @@ const de = {
   validation: {
     error: {
       city: 'Bitte verwenden Sie ausschließlich Buchstaben und Leerzeichen.',
+      fileUpload: 'Beim Upload der Datei ist ein Fehler aufgetreten.',
       email: 'Bitte geben Sie eine gültige E-Mail-Adresse an.',
       format: 'Bitte verwenden Sie das korrekte Format.',
       zipCode: 'Bitte geben Sie genau 5 Zahlen ein (z.B. \'12345\').'

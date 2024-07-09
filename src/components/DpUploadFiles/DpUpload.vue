@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { de as german } from "~/components/shared/translations"
 import { de } from './utils/UppyTranslations'
 import { hasOwnProp } from '../../utils'
 import { getFileTypes } from '../../lib'
@@ -242,7 +243,7 @@ export default {
 
     this.uppy.on('upload-error', (file, error, response) => {
       console.error(error)
-      dplan.notify.error(Translator.trans('error.fileupload'))
+      dplan.notify.error(german.validation.error.fileUpload)
       this.$emit('file-error', { file, error, response })
     })
 

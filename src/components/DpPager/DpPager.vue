@@ -25,15 +25,16 @@
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-        {{ Translator.trans('pager.amount.multiple.of') }}
+        {{ translations.amountMultipleOf }}
         <span data-cy="totalItems">{{ totalItems }}</span>
-        {{ Translator.trans('pager.amount.multiple.items') }}
+        {{ translations.amountMultipleItems }}
       </span>
     </label>
   </div>
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpMultiselect from '~/components/DpMultiselect'
 import DpSlidingPagination from '~/components/DpSlidingPagination'
 
@@ -79,7 +80,11 @@ export default {
 
   data () {
     return {
-      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems
+      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems,
+      translations: {
+        amountMultipleOf: de.pager.amountMultipleOf,
+        amountMultipleItems: de.pager.amountMultipleItems
+      }
     }
   },
 

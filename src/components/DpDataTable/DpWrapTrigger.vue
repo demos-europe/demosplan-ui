@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpIcon from '~/components/DpIcon'
 
 export default {
@@ -34,9 +35,18 @@ export default {
     }
   },
 
+  data () {
+    return {
+      translations: {
+        ariaCollapse: de.aria.collapse.element,
+        ariaExpand: de.aria.expand.element
+      },
+    }
+  },
+
   computed: {
     ariaLabel () {
-      return Translator.trans(this.expanded ? 'aria.collapse' : 'aria.expand')
+      return this.expanded ? this.translations.ariaCollapse : this.translations.ariaExpand
     },
 
     icon () {

@@ -29,6 +29,7 @@
       <div v-else>
         <img
           :alt="altText"
+          class="mb-4"
           :src="this.imgSrc">
       </div>
       <dp-input

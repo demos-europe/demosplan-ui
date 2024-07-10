@@ -62,7 +62,6 @@ const de = {
     }
   },
   expandAll: "Alle Elemente ausklappen",
-  explanationNoentries: "Es sind keine Einträge vorhanden.",
   file: {
     remove: 'Datei entfernen'
   },
@@ -104,6 +103,7 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
+  noEntriesAvailable: "Es sind keine Einträge vorhanden.",
   operations: {
     abort: "Abbrechen",
     add: 'Hinzufügen',

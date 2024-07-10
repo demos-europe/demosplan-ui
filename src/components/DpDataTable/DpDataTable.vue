@@ -397,7 +397,7 @@ export default {
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
         tableLoadingData: de.loadingData,
-        tableNoElements: de.explanationNoentries
+        tableNoElements: de.noEntriesAvailable
       },
       elementSelections: {},
       expandedElements: {},

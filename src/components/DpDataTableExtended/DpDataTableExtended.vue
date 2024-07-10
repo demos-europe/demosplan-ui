@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="translations.pagerPerPage" />
+            :label-text="translations.showEntries" />
         </div>
       </div>
     </dp-sticky-element>
@@ -239,7 +239,7 @@ export default {
       translations: {
         colsSort: de.table.colsSort,
         search: de.search.text,
-        pagerPerPage: de.pager.perPage
+        showEntries: de.pager.showEntries
       }
     }
   },

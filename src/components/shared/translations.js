@@ -138,7 +138,7 @@ const de = {
     currentPageOfPages ({ page, total }) {
       return `Seite ${page} von ${total}, aktuelle Seite`
     },
-    perPage: 'Einträge anzeigen',
+    showEntries: 'Einträge anzeigen',
     previous: 'Vorherige Seite'
   },
   placeholderAutoSuggest: "Suchbegriff...",

@@ -127,7 +127,7 @@ const de = {
   pager: {
     multipleOf: 'von',
     multipleItems: 'Einträgen',
-    gotoPageFromPages ({ page, total }) {
+    goToPageOfPages ({ page, total }) {
       return `Gehe zu Seite ${page} von ${total}`
     },
     selectNumberOfItems ({ results, items }) {

@@ -25,9 +25,9 @@
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-        {{ translations.amountMultipleOf }}
+        {{ translations.multipleOf }}
         <span data-cy="totalItems">{{ totalItems }}</span>
-        {{ translations.amountMultipleItems }}
+        {{ translations.multipleItems }}
       </span>
     </label>
   </div>
@@ -82,8 +82,12 @@ export default {
     return {
       itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems,
       translations: {
-        amountMultipleOf: de.pager.amountMultipleOf,
-        amountMultipleItems: de.pager.amountMultipleItems
+        multipleOf: de.pager.multipleOf,
+        multipleItems: de.pager.multipleItems,
+        selectNumberOfItems: de.pager.selectNumberOfItems({
+          results: this.totalItems,
+          items: this.multipleItems
+        })
       }
     }
   },

@@ -125,11 +125,13 @@ const de = {
     update: 'Aktualisierung'
   },
   pager: {
-    amountMultipleOf: 'von',
-    amountMultipleLabel: 'Wählen Sie, wieviele von insgesamt {results} {items} pro Seite ausgegeben werden sollen.',
-    amountMultipleItems: 'Einträgen',
+    multipleOf: 'von',
+    multipleItems: 'Einträgen',
     gotoPageFromPages ({ page, total }) {
       return `Gehe zu Seite ${page} von ${total}`
+    },
+    selectNumberOfItems ({ results, items }) {
+      return `Wählen Sie, wieviele von insgesamt ${results} ${items} pro Seite ausgegeben werden sollen.`
     },
     label: 'Seitennavigation',
     next: 'Nächste Seite',

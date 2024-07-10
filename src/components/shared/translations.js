@@ -37,7 +37,7 @@ const de = {
     cut: 'Ausschneiden (Strg + X)',
     fullscreen: 'Vollbild',
     headingLevel (level) {
-      return `Überschrift ${level}. Ebene`
+      return `Überschrift ${level}`
     },
     italic: 'Kursiv',
     link: {

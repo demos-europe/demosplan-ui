@@ -35,18 +35,9 @@ export default {
     }
   },
 
-  data () {
-    return {
-      translations: {
-        ariaCollapse: de.aria.collapse.element,
-        ariaExpand: de.aria.expand.element
-      },
-    }
-  },
-
   computed: {
     ariaLabel () {
-      return this.expanded ? this.translations.ariaCollapse : this.translations.ariaExpand
+      return this.expanded ? de.aria.collapse.element : de.aria.expand.element
     },
 
     icon () {

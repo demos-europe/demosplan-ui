@@ -93,7 +93,12 @@ export default {
     return {
       currentFileHash: '',
       currentFileId: '',
-      uppy: null
+      uppy: null,
+      uppyTranslations: {
+        strings: {
+          ...de().strings, ...this.translations
+        }
+      },
     }
   },
 
@@ -159,7 +164,6 @@ export default {
     },
 
     initialize () {
-      const locale = { strings: { ...de().strings, ...this.translations } }
       this.uppy = new Uppy({
         disabled: true,
         autoProceed: true,
@@ -170,14 +174,14 @@ export default {
           maxNumberOfFiles: this.maxNumberOfFiles
         },
         onBeforeFileAdded: this.handleOnBeforeFileAdded,
-        locale: locale
+        locale: this.uppyTranslations
       })
 
       this.uppy.use(DragDrop, {
         target: this.$refs.fileInput,
         width: '100%',
         note: null,
-        locale: locale
+        locale: this.uppyTranslations
       })
 
       this.uppy.use(ProgressBar, {
@@ -242,7 +246,7 @@ export default {
 
     this.uppy.on('upload-error', (file, error, response) => {
       console.error(error)
-      dplan.notify.error(de().strings.errorFileUpload)
+      dplan.notify.error(this.uppyTranslations.errorFileUpload)
       this.$emit('file-error', { file, error, response })
     })
 

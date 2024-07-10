@@ -133,12 +133,12 @@ const de = {
     selectNumberOfItems ({ results, items }) {
       return `Wählen Sie, wieviele von insgesamt ${results} ${items} pro Seite ausgegeben werden sollen.`
     },
-    label: 'Seitennavigation',
     next: 'Nächste Seite',
     currentPageOfPages ({ page, total }) {
       return `Seite ${page} von ${total}, aktuelle Seite`
     },
     showEntries: 'Einträge anzeigen',
+    pageNavigation: 'Seitennavigation',
     previous: 'Vorherige Seite'
   },
   placeholderAutoSuggest: "Suchbegriff...",

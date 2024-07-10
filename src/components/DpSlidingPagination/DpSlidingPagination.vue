@@ -1,6 +1,6 @@
 <template>
   <sliding-pagination
-    :aria-pagination-label="translations.pagerLabel"
+    :aria-pagination-label="translations.pageNavigation"
     :aria-goto-page-label="translations.goToPageOfPages"
     :aria-previous-page-label="translations.pagerPrevious"
     :aria-next-page-label="translations.pagerNext"
@@ -47,7 +47,7 @@ export default {
       translations: {
         gotoPageFromPages: de.pager.goToPageOfPages({ page: this.current, total: this.total }),
         currentPageOfPages: de.pager.currentPageOfPages({ page: this.current, total: this.total }),
-        pagerLabel: de.pager.label,
+        pageNavigation: de.pager.pageNavigation,
         pagerPrevious: de.pager.previous,
         pagerNext: de.pager.next,
       }

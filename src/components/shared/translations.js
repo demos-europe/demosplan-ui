@@ -135,7 +135,7 @@ const de = {
     },
     label: 'Seitennavigation',
     next: 'Nächste Seite',
-    pageFromPagesCurrentPage ({ page, total }) {
+    currentPageOfPages ({ page, total }) {
       return `Seite ${page} von ${total}, aktuelle Seite`
     },
     perPage: 'Einträge anzeigen',

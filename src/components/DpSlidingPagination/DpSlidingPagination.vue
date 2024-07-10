@@ -1,10 +1,10 @@
 <template>
   <sliding-pagination
     :aria-pagination-label="translations.pagerLabel"
-    :aria-goto-page-label="translations.gotoPageFromPages"
+    :aria-goto-page-label="translations.goToPageOfPages"
     :aria-previous-page-label="translations.pagerPrevious"
     :aria-next-page-label="translations.pagerNext"
-    :aria-current-page-label="translations.pageFromPagesCurrentPage"
+    :aria-current-page-label="translations.currentPageOfPages"
     :class-map="{
       componentClass: prefixClass('c-sliding-pagination'),
       list: prefixClass('c-sliding-pagination__list'),
@@ -45,8 +45,8 @@ export default {
   data () {
     return {
       translations: {
-        gotoPageFromPages: de.pager.gotoPageFromPages({ page: this.current, total: this.total }),
-        pageFromPagesCurrentPage: de.pager.pageFromPagesCurrentPage({ page: this.current, total: this.total }),
+        gotoPageFromPages: de.pager.goToPageOfPages({ page: this.current, total: this.total }),
+        currentPageOfPages: de.pager.currentPageOfPages({ page: this.current, total: this.total }),
         pagerLabel: de.pager.label,
         pagerPrevious: de.pager.previous,
         pagerNext: de.pager.next,

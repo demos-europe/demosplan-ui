@@ -50,8 +50,8 @@ export default {
       isOpen: false,
       hasDropdownContent: false,
       translations: {
-        open: de.operations.open,
-        close: de.operations.close
+        open: de.dropdown.open,
+        close: de.dropdown.close
       }
     }
   },

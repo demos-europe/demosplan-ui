@@ -28,6 +28,10 @@ const de = {
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
+  dropdown: {
+    close: "Einklappen",
+    open: "Ausklappen"
+  },
   editor: {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',

@@ -44,6 +44,13 @@
       <tbody
         v-if="!isDraggable && !isLoading"
         :data-cy="`${dataCy}:tbody`">
+      <dp-modal
+          ref="imgModal"
+          content-classes="w-fit">
+        <img
+            :alt="this.clickedImg.alt"
+            :src="this.clickedImg.src">
+      </dp-modal>
       <template v-for="(item, idx) in items">
         <dp-table-row
           ref="tableRows"
@@ -181,6 +188,7 @@ import { sessionStorageMixin } from '~/mixins'
 import DomPurify from 'dompurify'
 import DpDraggable from '~/components/DpDraggable'
 import DpLoading from '~/components/DpLoading'
+import DpModal from '~/components/DpModal'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 
@@ -191,6 +199,7 @@ export default {
     DpTableRow,
     DpTableHeader,
     DpLoading,
+    DpModal,
     DpDraggable
   },
 
@@ -389,6 +398,10 @@ export default {
     return {
       allExpanded: false,
       allWrapped: false,
+      clickedImg: {
+        alt: '',
+        src: ''
+      },
       defaultTranslations: {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
@@ -493,6 +506,17 @@ export default {
   },
 
   methods: {
+    addClickListenerToImages () {
+      if (this.$refs.tableRows) {
+        this.$refs.tableRows.forEach((row) => {
+          const images = row.$el.querySelectorAll('img');
+          images.forEach((img) => {
+            img.addEventListener('click', this.imageClicked);
+          });
+        });
+      }
+    },
+
     addHoveredClass(idx) {
       const tableRow = this.$refs.tableRows[idx]
 
@@ -546,6 +570,12 @@ export default {
 
     getFixedColWidth (field) {
       return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
+    },
+
+    imageClicked (event) {
+      this.clickedImg.src = event.target.src
+      this.clickedImg.alt = event.target.alt
+      this.$refs.imgModal.toggle()
     },
 
     removeHoveredClass(idx) {
@@ -702,6 +732,9 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
+    this.$nextTick(() => {
+      this.addClickListenerToImages()
+    })
   }
 }
 </script>

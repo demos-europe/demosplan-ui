@@ -47,7 +47,7 @@
         v-if="isBranch"
         class="self-start"
         :disabled="!hasToggle"
-        v-tooltip="Translator.trans(!hasToggle ? translations.noElementsExisting : '')"
+        v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         v-model="isExpanded" />
       <div
         v-else

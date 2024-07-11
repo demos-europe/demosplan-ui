@@ -46,8 +46,24 @@ const de = {
       insert: 'Link einfügen',
       hint: 'URLs sollten mit \'https://\' beginnen.'
     },
+    mark: {
+      delete: 'Als entfernt markieren',
+      element: 'Markieren',
+      insert: 'Als hinzugefügt markieren'
+    },
     orderedList: 'Nummerierte Liste',
     redo: 'Wiederholen',
+    table: {
+      addColumnAfter: 'Spalte rechts einfügen',
+      addColumnBefore: 'Spalte links einfügen',
+      addRowAfter: 'Zeile unterhalb einfügen',
+      addRowBefore: 'Zeile oberhalb einfügen',
+      create: 'Tabelle einfügen',
+      delete: 'Tabelle löschen',
+      deleteColumn: 'Spalte löschen',
+      deleteRow: 'Zeile löschen',
+      toggleCellMerge: 'Zelle verbinden / Verbindung aufheben'
+    },
     underline: 'Unterstrichen',
     undo: 'Rückgängig',
     unorderedList: 'Aufzählung'
@@ -103,9 +119,10 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
-  noEntriesAvailable: "Es sind keine Einträge vorhanden.",
+  noElementsExisting: 'Keine Elemente vorhanden',
+  noEntriesAvailable: 'Es sind keine Einträge vorhanden.',
   operations: {
-    abort: "Abbrechen",
+    abort: 'Abbrechen',
     add: 'Hinzufügen',
     close: 'einklappen',
     delete: 'Löschen',
@@ -116,7 +133,7 @@ const de = {
     new: 'Neu',
     none: 'Keine',
     remove: 'Entfernen',
-    save: "Speichern",
+    save: 'Speichern',
     select: {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.'
@@ -181,6 +198,7 @@ const de = {
   validation: {
     error: {
       city: 'Bitte verwenden Sie ausschließlich Buchstaben und Leerzeichen.',
+      default: 'Bitte verwenden Sie das korrekte Format.',
       fileUpload: 'Beim Upload der Datei ist ein Fehler aufgetreten.',
       email: 'Bitte geben Sie eine gültige E-Mail-Adresse an.',
       format: 'Bitte verwenden Sie das korrekte Format.',

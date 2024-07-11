@@ -95,7 +95,7 @@ export default function validateInput (input) {
             input.setCustomValidity(de.validation.error.format)
         }
       } else {
-        input.setCustomValidity(Translator.trans('validation.error.default')) // Theoretically this must not happen hence its not that helpful
+        input.setCustomValidity(de.validation.error.default) // Theoretically this must not happen hence its not that helpful
       }
     } catch (err) {
       // Fail silently if setCustomValidity threw an error

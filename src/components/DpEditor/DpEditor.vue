@@ -144,7 +144,7 @@
                   @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                  {{ Translator.trans(button.label) }}
+                  {{ button.label }}
                 </button>
               </div>
               &#10072;
@@ -158,8 +158,8 @@
                 :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
                 type="button"
                 :disabled="readonly"
-                :aria-label="Translator.trans(button.label)"
-                v-tooltip="Translator.trans(button.label)"
+                :aria-label="button.label"
+                v-tooltip="button.label"
                 @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                 @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                 @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
@@ -263,7 +263,7 @@
                   @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
-                  {{ Translator.trans(button.label) }}
+                  {{ button.label }}
                 </button>
               </div>
             </div>
@@ -543,48 +543,48 @@ export default {
         isOpen: false,
         buttons: [
           {
-            label: 'editor.table.create',
+            label: de.editor.table.create,
             command: () => this.editor.commands.insertTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
             name: 'createTable'
           },
           {
-            label: 'editor.table.delete',
+            label: de.editor.table.delete,
             command: () => this.editor.commands.deleteTable(),
             name: 'deleteTable'
           },
           {
-            label: 'editor.table.addColumnBefore',
+            label: de.editor.table.addColumnBefore',
             command: () => this.editor.commands.addColumnBefore(),
             name: 'addColumnBefore'
           },
           {
-            label: 'editor.table.addColumnAfter',
+            label: de.editor.table.addColumnAfter,
             command: () => this.editor.commands.addColumnAfter(),
             name: 'addColumnAfter'
 
           },
           {
-            label: 'editor.table.deleteColumn',
+            label: de.editor.table.deleteColumn,
             command: () => this.editor.commands.deleteColumn(),
             name: 'deleteColumn'
           },
           {
-            label: 'editor.table.addRowBefore',
+            label: de.editor.table.addRowBefore,
             command: () => this.editor.commands.addRowBefore(),
             name: 'addRowBefore'
           },
           {
-            label: 'editor.table.addRowAfter',
+            label: de.editor.table.addRowAfter,
             command: () => this.editor.commands.addRowAfter(),
             name: 'addRowAfter'
           },
           {
-            label: 'editor.table.deleteRow',
+            label: de.editor.table.deleteRow,
             command: () => this.editor.commands.deleteRow(),
             name: 'deleteRow'
           },
           {
-            label: 'editor.table.toggleCellMerge',
+            label: de.editor.table.toggleCellMerge,
             command: () => this.editor.commands.mergeOrSplit(),
             name: 'toggleCellMerge'
           }
@@ -769,12 +769,12 @@ export default {
 
         this.diffMenu.buttons = [
           {
-            label: 'editor.diff.insert',
+            label: de.editor.mark.insert,
             command: () => this.editor.chain().focus().toggleInsert().run(),
             name: 'insert'
           },
           {
-            label: 'editor.diff.delete',
+            label: de.editor.mark.delete,
             command: () => this.editor.chain().focus().toggleDelete().run(),
             name: 'delete'
           }
@@ -785,7 +785,7 @@ export default {
         extensions.push(CustomMark)
 
         this.diffMenu.buttons.unshift({
-          label: 'editor.mark',
+          label: de.editor.mark.element,
           command: () => this.editor.chain().focus().toggleMarkText().run(),
           name: 'mark'
         })

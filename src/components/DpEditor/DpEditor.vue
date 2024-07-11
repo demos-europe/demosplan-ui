@@ -803,10 +803,25 @@ export default {
       return extensions
     },
 
-    cut () {
+    async cut () {
       const selection = window.getSelection()
 
-      selection.deleteFromDocument()
+      if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(selection.toString())
+          selection.deleteFromDocument()
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        // If Browser don't support Clipboard API.
+        try {
+          document.execCommand('cut')
+          selection.deleteFromDocument()
+        } catch (err) {
+          console.error(err)
+        }
+      }
     },
 
     executeSubMenuButtonAction (button, menu, activateOne = false) {

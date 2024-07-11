@@ -194,6 +194,7 @@ const de = {
       }
     },
     uploadedFiles: 'Hochgeladene Dateien',
+    warningFileType: 'Der von Ihnen hochgeladene Dateityp ist nicht erlaubt.'
   },
   validation: {
     error: {

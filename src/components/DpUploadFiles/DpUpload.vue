@@ -30,7 +30,7 @@ export default {
      */
     allowedFileTypesWarning: {
       type: String,
-      default: 'warning.filetype'
+      default: this.uppyTranslations.strings.warningFileType
     },
 
     /**
@@ -259,7 +259,7 @@ export default {
     })
 
     this.uppy.on('restriction-failed', () => {
-      dplan.notify.warning(Translator.trans(this.allowedFileTypesWarning))
+      dplan.notify.warning(this.allowedFileTypesWarning)
     })
 
     /*

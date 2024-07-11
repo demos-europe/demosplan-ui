@@ -15,7 +15,8 @@ const de = () => {
       errorFileUpload: german.validation.error.fileUpload,
       failedToUpload: german.upload.failed,
       // This string is clickable and opens the system file selection dialog.
-      browse: german.computer
+      browse: german.computer,
+      warningFileType: german.upload.warningFileType
     }
   }
 }

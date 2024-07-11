@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))
+
 ### Added
 
 - ([#916](https://github.com/demos-europe/demosplan-ui/pull/916)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

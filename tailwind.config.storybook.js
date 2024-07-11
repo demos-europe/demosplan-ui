@@ -12,4 +12,15 @@ const config = {
   ]
 }
 
+
+delete config.theme.backgroundColor
+
+config.theme.colors = {
+  ...require('./tokens/dist/tailwind/backgroundColor'),
+  ...require('./tokens/dist/tailwind/color.palette'),
+  ...require('./tokens/dist/tailwind/color'),
+  ...require('./tokens/dist/tailwind/color.brand'),
+  ...require('./tokens/dist/tailwind/color.data'),
+}
+
 module.exports = config

@@ -6,6 +6,6 @@
 
 @layer base {
     :root {
-        --dp-color-palette-blue-base: #0023d0;
+        /* nothing overridden here. */
     }
 }

@@ -61,7 +61,7 @@ StyleDictionary.registerTransformGroup({
 
 /**
  * In the json tokens sources, some nesting is used for better structuring token groups.
- * However th
+ * This must be resolved when transforming them into target formats.
  * @param tokenName
  * @param tokenPath
  * @param targetFormat
@@ -70,7 +70,13 @@ StyleDictionary.registerTransformGroup({
 const transformTokenName = (tokenName, tokenPath, targetFormat) => {
   // The domain part within color tokens should not be part of the variable name.
   if (tokenPath[0] === 'color') {
-    tokenName = tokenName.replace(/-(brand|data|palette|ui)/g, '')
+    tokenName = tokenName.replace(/-(brand|data|palette|ui-tailwind|ui)/g, '')
+
+    if (tokenPath[1] === 'ui-tailwind' && tokenPath[2] !== 'color') {
+      tokenName = tokenName.replace(/color-/g, '')
+    } else if (tokenPath[1] === 'ui-tailwind' && tokenPath[2] === 'color') {
+      tokenName = tokenName.replace(/color-color-/g, 'color-')
+    }
   }
 
   // The domain part within font-size tokens should not be part of the variable name.
@@ -94,24 +100,18 @@ const transformTokenName = (tokenName, tokenPath, targetFormat) => {
   }
 
   if (targetFormat === 'tailwind') {
-    if (tokenPath[0] === 'color') {
+    if (tokenPath[0] === 'color' || tokenPath[1] === 'ui-tailwind') {
       tokenName = tokenName.replace(/color-/g, '')
+    }
+    if (tokenPath[0] === 'color' && tokenPath[1] === 'ui-tailwind') {
+      tokenName = tokenName.replace(/(textColor|backgroundColor|borderColor)-/g, '')
     }
   }
 
   return tokenName
 }
 
-/**
- * For Tailwind, we want to only generate color tokens via StyleDictionary.
- */
-const filterTailwindFiles = (filePath) => {
-  return (token) => {
-    return token.filePath.includes(filePath)
-      && token.$type === 'color'
-      && token.$status !== 'Deprecated'
-  }
-}
+const corePlugins = ['color', 'color.palette', 'color.brand', 'color.data', 'textColor', 'backgroundColor', 'borderColor']
 
 /**
  * Custom format that generates javascript modules ready to be used as Tailwind config files.
@@ -119,13 +119,15 @@ const filterTailwindFiles = (filePath) => {
  */
 StyleDictionary.registerFormat({
   name: 'tailwind/variables',
-  formatter({ dictionary }) {
-    const cssVariables = {}
+  formatter({ dictionary, file  }) {
+    const groupedTokens = {}
+    corePlugins.forEach(plugin => {
+      groupedTokens[plugin] = {}
+    })
 
     dictionary.allTokens.forEach(token => {
       const tokenName = transformTokenName(token.name, token.path, 'tailwind')
-
-      const varName = `--${prefix}${transformTokenName(token.name, token.path).replace(/\./g, '-')}`;
+      const varName = `--${prefix}${transformTokenName(token.name, token.path).replace(/\./g, '-')}`
       let fallback = resolveValue(token, dictionary)
 
       let current = token
@@ -141,14 +143,20 @@ StyleDictionary.registerFormat({
 
       cssVar += `, ${fallback})`.repeat(cssVar.match(/var\(/g).length)
 
-      // `resolveValue` appends an unneeded hex value at the end of each cssVar.
       let regex = /#([0-9a-fA-F]{6})\), #([0-9a-fA-F]{6})/
       let replaced = cssVar.replace(regex, '#$1)')
 
-      cssVariables[tokenName.replace(/\./g, '-')] = replaced + ';'
+      // Sort token definition into respective group
+      corePlugins.forEach(plugin => {
+        const isCorePluginDefinition = token.path[2] === plugin
+        const isColorDefinition = token.path[1] === plugin.replace('color.', '') && token.path[0] === 'color'
+        if (isCorePluginDefinition || isColorDefinition) {
+          groupedTokens[plugin][tokenName.replace(/\./g, '-')] = replaced + ';'
+        }
+      })
     })
 
-    return `module.exports = ${JSON.stringify(cssVariables, null, 2)};`
+    return `module.exports = ${JSON.stringify(groupedTokens[file.destination.replace('.js', '')], null, 2)};`
   }
 })
 
@@ -188,16 +196,17 @@ const StyleDictionaryExtended = StyleDictionary.extend({
       transformGroup: 'custom/scss',
       prefix,
       buildPath: 'tokens/dist/scss/',
-      files: files.map((filePath) => {
-        return {
-          destination: `_${filePath}.scss`,
-          format: 'scss/customVariables',
-          filter: (token) => token.filePath.includes(filePath),
-          options: {
-            outputReferences: true
+      files: files
+        .map((filePath) => {
+          return {
+            destination: `_${filePath}.scss`,
+            format: 'scss/customVariables',
+            filter: (token) => token.filePath.includes(filePath) && !token.filePath.includes('color.ui-tailwind'),
+            options: {
+              outputReferences: true
+            }
           }
-        }
-      })
+        })
     },
     js: {
       transformGroup: 'js',
@@ -218,11 +227,10 @@ const StyleDictionaryExtended = StyleDictionary.extend({
     web: {
       transformGroup: 'custom/web',
       buildPath: 'tokens/dist/tailwind/',
-      files: files.map((filePath) => {
+      files: corePlugins.map((plugin) => {
         return {
-          destination: `${filePath}.js`,
-          format: 'tailwind/variables',
-          filter: filterTailwindFiles(filePath)
+          destination: `${plugin}.js`,
+          format: 'tailwind/variables'
         }
       }),
     },

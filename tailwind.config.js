@@ -20,10 +20,24 @@ const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpo
 const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
 
 const colors = {
-  ...require('./tokens/dist/tailwind/color.palette'),
-  ...require('./tokens/dist/tailwind/color.data'),
+  ...require('./tokens/dist/tailwind/color'),
   ...require('./tokens/dist/tailwind/color.brand'),
-  ...require('./tokens/dist/tailwind/color.ui')
+  ...require('./tokens/dist/tailwind/color.data'),
+}
+
+const backgroundColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/backgroundColor'),
+}
+
+const borderColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/borderColor'),
+}
+
+const textColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/textColor'),
 }
 
 module.exports = {
@@ -59,11 +73,14 @@ module.exports = {
     })
   ],
   theme: {
+    backgroundColor,
+    borderColor,
     borderRadius,
     boxShadow,
     colors,
     screens,
     spacing,
+    textColor,
     zIndex,
     extend: {
       flexShrink: {
@@ -72,29 +89,3 @@ module.exports = {
     }
   }
 }
-
-/*
-
-    backgroundColor: {
-      interactive: {
-        active:       'var(--dp-bgColor-interactive-active)',
-        DEFAULT:      'var(--dp-bgColor-interactive, var(--dp-color-palette-blue-base, #006fd0))',
-        hover:        'var(--dp-bgColor-interactive-hover)',
-        muted:        'var(--dp-bgColor-interactive-muted)',
-        subtleActive: 'var(--dp-bgColor-interactive-subtle-active)',
-        subtleHover:  'var(--dp-bgColor-interactive-subtle-hover)'
-      },
-      message: {
-        debug:        'var(--dp-bgColor-message-debug)',
-        info:         'var(--dp-bgColor-message-info)',
-        warning:      'var(--dp-bgColor-message-warning)',
-        severe:       'var(--dp-bgColor-message-severe)',
-        success:      'var(--dp-bgColor-message-success)'
-      },
-      DEFAULT: {
-        DEFAULT:      'var(--dp-bgColor)',
-        light:        'var(--dp-bgColor-light)',
-        medium:       'var(--dp-bgColor-medium)',
-      }
-    },
- */

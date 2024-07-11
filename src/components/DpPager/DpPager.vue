@@ -2,7 +2,7 @@
   <div class="c-pager__dropdown">
     <label
       class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
-      :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
+      :aria-label="translations.selectNumberOfItems">
         <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
           class="inline-block"

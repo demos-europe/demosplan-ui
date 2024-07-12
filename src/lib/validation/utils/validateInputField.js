@@ -78,7 +78,7 @@ export default function validateInput (input) {
     try {
       if (errorLabel) {
         // Custom error label from data-dp-validate-error
-        input.setCustomValidity(Translator.trans(errorLabel))
+        input.setCustomValidity(errorLabel)
       } else if (inputPattern) {
         // Error label based on pattern
         switch (inputPattern) {

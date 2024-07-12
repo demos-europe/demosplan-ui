@@ -553,7 +553,7 @@ export default {
             name: 'deleteTable'
           },
           {
-            label: de.editor.table.addColumnBefore',
+            label: de.editor.table.addColumnBefore,
             command: () => this.editor.commands.addColumnBefore(),
             name: 'addColumnBefore'
           },

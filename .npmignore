@@ -3,4 +3,5 @@ node_modules
 .github
 .storybook
 yarn.lock
+tests
 

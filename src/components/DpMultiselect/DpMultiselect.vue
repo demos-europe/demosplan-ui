@@ -2,6 +2,8 @@
   <div>
     <vue-multiselect
       v-bind="{
+        allowEmpty,
+        clearOnSelect,
         closeOnSelect,
         customLabel,
         deselectGroupLabel,
@@ -18,6 +20,7 @@
         name,
         options,
         placeholder,
+        required,
         searchable,
         selectGroupLabel,
         selectLabel,
@@ -27,6 +30,7 @@
         value
       }"
       :data-cy="dataCy"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
       @input="newVal => $emit('input', newVal)"
@@ -35,24 +39,24 @@
       @search-change="newVal => $emit('search-change', newVal)"
       @select="newVal => $emit('select', newVal)"
       @tag="newVal => $emit('tag', newVal)">
-      <template v-slot:noResult>
-        {{ Translator.trans('autocomplete.noResults') }}
-      </template>
-
       <template v-slot:noOptions>
-        {{ Translator.trans('explanation.noentries') }}
+        <slot name="noOptions">
+          {{ Translator.trans('explanation.noentries') }}
+        </slot>
       </template>
 
-      <template v-slot:option="props">
-        <slot
-          :props="props"
-          name="option" />
+      <template v-slot:noResult>
+        <slot name="noResult">
+          {{ Translator.trans('autocomplete.noResults') }}
+        </slot>
       </template>
 
-      <template v-slot:tag="props">
+      <template
+        v-for="slot in subSlots"
+        v-slot:[slot]="props">
         <slot
           :props="props"
-          name="tag" />
+          :name="slot" />
       </template>
 
       <!-- put more slots here -->
@@ -60,29 +64,35 @@
       <template
         v-if="selectionControls"
         v-slot:beforeList="props">
-        <div class="border-bottom">
-          <button
-            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === options.length === 0"
-            type="button"
-            v-text="Translator.trans('select.all')"
-            @click="$emit('select-all')">
-          </button>
+        <slot
+          name="beforeList"
+          :props="props">
+          <div class="border-bottom">
+            <button
+                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+                :disabled="value.length === options.length === 0"
+                type="button"
+                v-text="translations.selectAll"
+                @click="$emit('select-all')">
+            </button>
 
-          <button
-            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === 0"
-            type="button"
-            v-text="Translator.trans('unselect.all')"
-            @click="$emit('unselect-all')">
-          </button>
-        </div>
+            <button
+                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+                :disabled="value.length === 0"
+                type="button"
+                v-text="translations.deselectAll"
+                @click="$emit('unselect-all')">
+            </button>
+          </div>
+        </slot>
       </template>
     </vue-multiselect>
   </div>
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
+import { dpValidateMultiselectDirective } from '~/lib/validation'
 import VueMultiselect from 'vue-multiselect'
 
 export default {
@@ -92,7 +102,23 @@ export default {
     VueMultiselect
   },
 
+  directives: {
+    dpValidateMultiselectDirective
+  },
+
   props: {
+    allowEmpty: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
+    clearOnSelect: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     closeOnSelect: {
       type: Boolean,
       required: false,
@@ -109,6 +135,12 @@ export default {
       type: String,
       required: false,
       default: 'multiselect'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     deselectLabel: {
@@ -191,7 +223,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('choose')
+      default: de.choose
     },
 
     required: {
@@ -230,10 +262,21 @@ export default {
       default: ''
     },
 
+    /**
+     * If necessary, slots can be added
+     * according to this List
+     * https://vue-multiselect.js.org/#sub-slots
+     */
+    subSlots: {
+      type: Array,
+      required: false,
+      default: () => ['option', 'tag']
+    },
+
     tagPlaceholder: {
       type: String,
       required: false,
-      default: () => Translator.trans('tag.create')
+      default: de.tag.create
     },
 
     trackBy: {
@@ -246,6 +289,15 @@ export default {
       type: [String, Number, Array, Object],
       required: false,
       default: ''
+    }
+  },
+
+  data () {
+    return {
+      translations: {
+        deselectAll: de.operations.deselect.all,
+        selectAll: de.operations.select.all
+      }
     }
   }
 }

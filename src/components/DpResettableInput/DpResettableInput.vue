@@ -15,6 +15,7 @@
     <button
       v-if="!inputAttributes.disabled"
       class="btn--blank o-link--default"
+      data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"
       @click="resetValue">
@@ -26,8 +27,8 @@
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
-import DpInput from '../DpInput/DpInput'
+import DpIcon from '~/components/DpIcon'
+import DpInput from '~/components/DpInput'
 
 export default {
   name: 'DpResettableInput',

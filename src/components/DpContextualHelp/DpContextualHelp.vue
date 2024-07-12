@@ -1,20 +1,47 @@
 <template>
-  <i
-    class="fa fa-question-circle"
-    :aria-label="Translator.trans('contextual.help')"
+  <dp-icon
+    :aria-label="ariaLabel"
+    :icon="icon"
+    :size="size"
+    class="inline-block"
     v-tooltip="text" />
 </template>
 
 <script>
-import { Tooltip } from '../../directives'
+import { de } from '~/components/shared/translations'
+import DpIcon from '~/components/DpIcon'
+import { SIZES } from '~/components/DpIcon/util/iconVariables'
+import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpContextualHelp',
 
+  components: {
+    DpIcon
+  },
+
   props: {
     /**
-     * A translation key representing the actual tooltip content.
-     * May actually be any string including html.
+     * The icon displayed as trigger for the tooltip.
+     */
+    icon: {
+      type: String,
+      required: false,
+      default: 'question'
+    },
+
+    /**
+     * The icon size. May be small, medium, or large.
+     */
+    size: {
+      type: String,
+      required: false,
+      default: 'medium',
+      validator: (prop) => Object.keys(SIZES).includes(prop)
+    },
+
+    /**
+     * A string representing the actual tooltip content. May include html.
      */
     text: {
       type: String,
@@ -24,6 +51,12 @@ export default {
 
   directives: {
     tooltip: Tooltip
+  },
+
+  data () {
+    return {
+      ariaLabel: de.contextualHelp
+    }
   }
 }
 </script>

@@ -16,13 +16,15 @@
       :href="href"
       :text="secondaryText"
       :variant="variant"
-      @click.prevent="$emit('secondary-action')" />
+      @click.prevent="$emit('secondary-action')"
+      data-cy="abortButton" />
     <slot />
   </div>
 </template>
 
 <script>
-import DpButton from '../DpButton/DpButton'
+import { de } from '~/components/shared/translations'
+import DpButton from '~/components/DpButton'
 
 export default {
   name: 'DpButtonRow',
@@ -84,7 +86,7 @@ export default {
     primaryText: {
       type: String,
       required: false,
-      default: () => Translator.trans('save')
+      default: de.operations.save
     },
 
     /**
@@ -102,7 +104,7 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: () => Translator.trans('abort')
+      default: de.operations.abort
     },
 
     /**

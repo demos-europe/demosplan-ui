@@ -1,0 +1,57 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import DpInlineNotification from './'
+
+<Meta
+    title="Components/InlineNotification"
+    component={DpInlineNotification}
+/>
+
+# DpInlineNotification
+
+The `DpInlineNotification` component renders inline notification message.
+
+export const Template = (args, { argTypes }) => ({
+    props: Object.keys(argTypes),
+    components: { DpInlineNotification },
+    template: `<dp-inline-notification v-bind="$props" />`
+});
+
+## Default usage
+
+```html
+<dp-inline-notification
+  :message="error message"
+  type="error" />
+```
+
+## Props:
+
+### Dismissible
+
+A notification may be too prominent if permanently visible. In that case it can be dismissed.
+
+A small icon will take the place of the notification to bring it back if needed.
+
+<Canvas>
+    <Story
+      name="Dismissible"
+      args={{
+          dismissible: true
+      }}>
+      {Template.bind({})}
+    </Story>
+</Canvas>
+
+### DismissibleKey
+
+If set, the dismissed state will be preserved via localStorage.
+
+<Canvas>
+    <Story
+      name="DismissibleKey"
+      args={{
+          dismissibleKey: 'Key'
+      }}>
+      {Template.bind({})}
+    </Story>
+</Canvas>

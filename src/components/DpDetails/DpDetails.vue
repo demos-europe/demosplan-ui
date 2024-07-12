@@ -8,7 +8,7 @@
       role="button"
       @click="isOpen = !isOpen">
       <i
-        class="fa width-s text--center"
+        class="fa w-2 text--center"
         :class="{'fa-caret-down': isOpen, 'fa-caret-right': !isOpen}"
         aria-hidden="true" />
       <strong v-cleanhtml="summary" />
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { CleanHtml } from '../../directives/CleanHtml/CleanHtml'
+import { CleanHtml } from '~/directives/CleanHtml/CleanHtml'
 
 export default {
   name: 'DpDetails',

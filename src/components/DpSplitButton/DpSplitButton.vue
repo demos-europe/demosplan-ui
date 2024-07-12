@@ -11,6 +11,7 @@
     </slot><!--
  --><button
       v-if="hasDropdownContent"
+      data-cy="splitButtonTrigger"
       class="c-splitbutton__trigger"
       :class="{'is-open': isOpen}"
       type="button"

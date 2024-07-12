@@ -15,13 +15,14 @@
         text: option.label
       }"
       :name="option.name || ''"
+      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
       @change="$emit('update', selected)" />
   </fieldset>
 </template>
 
 <script>
-import { CleanHtml } from '../../directives'
-import DpCheckbox from '../DpCheckbox/DpCheckbox'
+import { CleanHtml } from '~/directives'
+import DpCheckbox from '~/components/DpCheckbox'
 
 export default {
   name: 'DpCheckboxGroup',
@@ -35,6 +36,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     options: {
       type: Array,
       required: true
@@ -72,7 +79,7 @@ export default {
   methods: {
     setSelected () {
       this.options.forEach(option => {
-        Vue.set(this.selected, option.id, false)
+        this.selected[option.id] = false
       })
     }
   },

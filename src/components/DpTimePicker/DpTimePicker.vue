@@ -10,9 +10,10 @@
       :text="label" />
     <dp-resettable-input
       v-if="!isMobileDevice"
+      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
-      class="width-100"
+      class="w-8"
       button-variant="small"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
@@ -25,8 +26,9 @@
       :value="currentTime" />
     <dp-input
       v-else
+      :data-cy="dataCy"
       :id="`timeInput:${id}`"
-      class="width-100"
+      class="w-8"
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"
@@ -35,10 +37,10 @@
 
     <div
       ref="flyout"
-      v-show="showFlyout"
       class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
+      :class="{ 'hidden': !showFlyout }"
       tabindex="0">
-      <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll height-130">
+      <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll h-9">
         <li
           v-for="hour in availableHours"
           :key="`${id}:hour:${hour}`"
@@ -55,7 +57,7 @@
         </li>
       </ul>
       <ul
-        class="u-m-0_25 height-130"
+        class="u-m-0_25 h-9"
         :class="minutes.length > 5 ? 'overflow-y-scroll' : ''">
         <li
           v-for="minute in availableMinutes"
@@ -78,9 +80,9 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
-import DpInput from '../DpInput/DpInput'
-import DpLabel from '../DpLabel/DpLabel'
-import DpResettableInput from '../DpResettableInput/DpResettableInput'
+import DpInput from '~/components/DpInput'
+import DpLabel from '~/components/DpLabel'
+import DpResettableInput from '~/components/DpResettableInput'
 import isMobile from 'ismobilejs'
 
 const DEFAULT_TIME = '00:00'
@@ -99,6 +101,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'timePicker'
+    },
+
     disabled: {
       type: Boolean,
       required: false,

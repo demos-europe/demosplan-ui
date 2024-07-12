@@ -1,4 +1,5 @@
 import { shouldValidate, toggleErrorClass } from './helpers'
+import { de } from '~/components/shared/translations'
 import { regexp } from './validateEmail'
 
 export default function validateInput (input) {
@@ -82,16 +83,16 @@ export default function validateInput (input) {
         // Error label based on pattern
         switch (inputPattern) {
           case '^[0-9]{5}$':
-            input.setCustomValidity(Translator.trans('validation.error.zipcode'))
+            input.setCustomValidity(de.validation.error.zipCode)
             break
           case '[A-Za-zÄäÜüÖöß ]+':
-            input.setCustomValidity(Translator.trans('validation.error.city'))
+            input.setCustomValidity(de.validation.error.city)
             break
           case 'email':
-            input.setCustomValidity(Translator.trans('validation.error.email'))
+            input.setCustomValidity(de.validation.error.email)
             break
           default:
-            input.setCustomValidity(Translator.trans('validation.error.default'))
+            input.setCustomValidity(de.validation.error.format)
         }
       } else {
         input.setCustomValidity(Translator.trans('validation.error.default')) // Theoretically this must not happen hence its not that helpful

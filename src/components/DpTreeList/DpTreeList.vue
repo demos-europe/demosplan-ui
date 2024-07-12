@@ -81,14 +81,13 @@
 </template>
 
 <script>
-import { deepMerge, hasOwnProp } from '../../utils'
+import { deepMerge, hasOwnProp } from '~/utils'
 import DpDraggable from '../DpDraggable/DpDraggable'
-import { Stickier } from '../../lib'
-import bus from './utils/bus'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
 import { dragHandleWidth } from './utils/constants'
+import { Stickier } from '~/lib'
 
 export default {
   name: 'DpTreeList',
@@ -146,7 +145,7 @@ export default {
       dragging: false,
 
       opts: {},
-      selectedNodesObject: {}
+      selectedNodesObjects: []
     }
   },
 
@@ -158,10 +157,6 @@ export default {
     checkboxIndentationStyle () {
       const margin = this.opts.dragBranches || this.opts.dragLeaves ? dragHandleWidth : 0
       return `margin-left: ${margin}px;`
-    },
-
-    selectedNodes () {
-      return Object.keys(this.selectedNodesObject).map(id => this.selectedNodesObject[id])
     },
 
     /**
@@ -208,6 +203,23 @@ export default {
       })
     },
 
+    getAllSelectedNodesObjects (treeData) {
+      let selectedNodes = []
+
+      treeData.forEach(node => {
+        if (node.nodeIsSelected) {
+          selectedNodes.push(node)
+        }
+
+        if (node.children && node.children.length > 0) {
+          const selectedChildNodes = this.getAllSelectedNodesObjects(node.children)
+          selectedNodes = selectedNodes.concat(selectedChildNodes)
+        }
+      })
+
+      return selectedNodes
+    },
+
     /**
      * Handler for the draggable `change` event.
      * The change event fires whenever the order of items is changed by a drag interaction.
@@ -240,32 +252,19 @@ export default {
       this.dragging = (eventType === 'start')
     },
 
-    handleSelectEvent (selections) {
-      const filteredSelections = this.filterSelectableNodes(selections)
+    handleSelectEvent () {
+      this.selectedNodesObjects = this.getAllSelectedNodesObjects(this.treeData)
+      const filteredSelections = this.filterSelectableNodes(this.selectedNodesObjects)
 
-      filteredSelections.forEach(selection => this.setSelectionState(selection))
-
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', filteredSelections)
     },
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
     initFixedControls () {
-      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0)
+      this.stickyHeader = new Stickier(this.$refs.header, this.$refs.treeList.$el, 0, 'top')
 
       if (this.$slots.footer) {
         this.stickyFooter = new Stickier(this.$refs.footer, this.$refs.treeList.$el, 0, 'bottom')
-      }
-    },
-
-    setSelectionState (elem) {
-      if (elem.selectionState === true) {
-        this.selectedNodesObject = { ...this.selectedNodesObject, ...{ [elem.nodeId]: elem } }
-      }
-
-      if (elem.selectionState === false) {
-        const selectionCpy = { ...this.selectedNodesObject }
-        delete selectionCpy[elem.nodeId]
-        this.selectedNodesObject = selectionCpy
       }
     },
 
@@ -275,16 +274,14 @@ export default {
     },
 
     unselectAll () {
-      this.selectedNodes.forEach(node => {
+      this.selectedNodesObjects.forEach(node => {
         if (this.$refs['node_' + node.id]) {
           this.$refs['node_' + node.id][0].setSelectionState(false)
         }
       })
-
-      this.selectedNodesObject = {}
+      this.selectedNodesObjects = []
       this.allElementsSelected = false
-
-      this.$emit('node-selection-change', this.selectedNodes)
+      this.$emit('node-selection-change', this.selectedNodesObjects)
     }
   },
 
@@ -322,8 +319,6 @@ export default {
     this.opts = deepMerge(defaults, this.options)
 
     this.initFixedControls()
-
-    bus.$on('checked', this.handleSelectEvent)
   }
 }
 </script>

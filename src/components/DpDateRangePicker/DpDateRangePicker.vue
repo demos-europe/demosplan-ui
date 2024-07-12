@@ -8,9 +8,10 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="startDisabled"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
-      data-cy="startDateDescription"
+      :data-cy="`${dataCy}:startDate`"
       @input="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
@@ -21,16 +22,17 @@
       :calendars-after="calendarsAfter"
       :calendars-before="calendarsBefore"
       :disabled="endDisabled"
+      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
       :value="endValue"
       :required="required"
-      data-cy="endDateDescription"
+      :data-cy="`${dataCy}:endDate`"
       @input="handleInputEndDate" />
   </div>
 </template>
 
 <script>
-import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import { formatDate } from '../../utils'
+import DpDatepicker from '~/components/DpDatepicker'
+import { formatDate } from '~/utils'
 
 export default {
   name: 'DpDateRangePicker',
@@ -50,6 +52,18 @@ export default {
       type: Number,
       required: false,
       default: 0
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'dateRangePicker'
+    },
+
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     endDisabled: {

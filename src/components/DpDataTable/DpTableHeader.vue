@@ -1,9 +1,11 @@
 <template>
   <tr
     ref="tableHeader"
+    :data-cy="dataCy !== '' ? dataCy : false"
     :class="{ 'c-data-table__sticky-header': isSticky }">
     <th
       v-if="isDraggable"
+      :data-col-field="isResizable ? 'dragHandle' : null"
       scope="col"
       class="c-data-table__cell--narrow">
       <dp-icon
@@ -12,6 +14,7 @@
     </th>
     <th
       v-if="isSelectable"
+      :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow">
       <input
@@ -28,6 +31,7 @@
         v-if="isResizable"
         :is-last="headerFields.length === idx"
         :header-field="hf"
+        :next-header="headerFields[idx + 1]"
         :idx="idx">
         <slot :name="`header-${hf.field}`">
           <span v-if="hf.label" v-text="hf.label" />
@@ -43,26 +47,32 @@
     </template>
     <th
       v-if="hasFlyout"
+      :data-col-field="isResizable ? 'flyout' : null"
       scope="col" />
     <th
       v-if="isExpandable"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleExpandAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
+      <dp-wrap-trigger
+        data-cy="isExpandableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
     <th
       v-if="isTruncatable"
+      :data-col-field="isResizable ? 'wrap' : null"
       scope="col"
       class="c-data-table__cell--narrow"
       @click="toggleWrapAll()">
-      <dp-wrap-trigger :title="translations.headerExpandHint" />
+      <dp-wrap-trigger
+        data-cy="isTruncatableWrapTrigger"
+        :title="translations.headerExpandHint" />
     </th>
   </tr>
 </template>
 
 <script>
-import DpIcon from '../DpIcon/DpIcon'
+import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DpResizableColumn from './DpResizableColumn'
 
@@ -79,6 +89,12 @@ export default {
     checked: {
       type: Boolean,
       required: true
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     hasFlyout: {

@@ -11,7 +11,7 @@
       v-if="icon"
       aria-hidden="true"
       :icon="icon"
-      size="small" />
+      :size="iconSize" />
     <span
       :class="{'hide-visually': hideText}"
       v-text="text" />
@@ -19,14 +19,15 @@
       v-if="iconAfter"
       aria-hidden="true"
       :icon="iconAfter"
-      size="small" />
+      :size="iconSize" />
   </component>
 </template>
 
-<script>
-import DpIcon from '../DpIcon/DpIcon'
+<script lang="ts">
+import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { Tooltip } from '../../directives'
+import { Tooltip } from '~/directives'
+import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconVariables'
 
 export default {
   name: 'DpButton',
@@ -41,7 +42,7 @@ export default {
 
   props: {
     /**
-     * When waiting for an axios response, the visual state of the button can be changed via the `busy` property.
+     * While waiting for a network response, the visual state of the button can be changed via the `busy` property.
      */
     busy: {
       required: false,
@@ -89,6 +90,16 @@ export default {
     },
 
     /**
+     * Define the size of the button icons.
+     */
+    iconSize: {
+      required: false,
+      type: String,
+      default: 'small',
+      validator: prop => Object.keys(ICON_SIZES).includes(prop)
+    },
+
+    /**
      * Icon that will be placed after button text.
      */
     iconAfter: {
@@ -122,7 +133,7 @@ export default {
       required: false,
       type: String,
       default: 'button',
-      validator: (prop) => ['button', 'submit'].includes(prop)
+      validator: (prop: string): boolean  => ['button', 'submit'].includes(prop)
     },
 
     /**
@@ -147,7 +158,7 @@ export default {
       return [
         'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
-        this.iconOnly && 'icon-only',
+        this.iconOnly && `icon-only ${this.iconSize}`,
         this.rounded && 'rounded-full',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
         ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]

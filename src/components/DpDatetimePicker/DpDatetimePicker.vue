@@ -9,6 +9,7 @@
     <div class="o-form__control-wrapper o-form__group">
       <dp-datepicker
         class="o-form__group-item shrink"
+        :data-cy="`${dataCy}:date`"
         :calendars-after="2"
         :disabled="disabled"
         :id="`datePicker:${id}`"
@@ -19,6 +20,7 @@
         @input="$emit('input', currentDatetime)" />
       <dp-time-picker
         class="o-form__group-item"
+        :data-cy="`${dataCy}:time`"
         :disabled="disabled"
         :id="`timePicker:${id}`"
         v-model="time"
@@ -35,10 +37,10 @@
 </template>
 
 <script>
+import DpDatepicker from '~/components/DpDatepicker'
+import DpTimePicker from '~/components/DpTimePicker'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
-import DpDatepicker from '../DpDatepicker/DpDatepicker'
-import DpTimePicker from '../DpTimePicker/DpTimePicker'
 
 dayjs.extend(customParseFormat)
 
@@ -54,6 +56,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'dateTimePicker'
+    },
+
     disabled: {
       type: Boolean,
       required: false,

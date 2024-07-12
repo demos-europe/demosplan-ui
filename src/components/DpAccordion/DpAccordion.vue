@@ -5,11 +5,11 @@
       v-if="title !== ''"
       @click="() => toggle()"
       :aria-expanded="isVisible.toString()"
-      data-cy="accordionToggle"
+      :data-cy="dataCy"
       :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
-      class="btn--blank o-link--default">
+      class="btn--blank o-link--default text-left">
       <i
-        class="width-s fa"
+        class="w-2 fa"
         :class="{'fa-caret-right': !isVisible, 'fa-caret-down': isVisible}"
         aria-hidden="true" />
       <span :class="compressed ? 'font-size-medium' : 'o-accordion--title'">{{ title }}</span>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import DpTransitionExpand from '../core/DpTransitionExpand'
+import DpTransitionExpand from '~/components/DpTransitionExpand'
 
 export default {
   name: 'DpAccordion',
@@ -34,6 +34,12 @@ export default {
   },
 
   props: {
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'accordionToggle'
+    },
+
     fontWeight: {
       type: String,
       required: false,

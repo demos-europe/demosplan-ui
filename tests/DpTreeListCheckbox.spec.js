@@ -1,12 +1,9 @@
-import DpTreeListCheckbox from '../src/components/DpTreeList/DpTreeListCheckbox'
+import DpTreeListCheckbox from '~/components/DpTreeList/DpTreeListCheckbox'
+import { de } from '../src/components/shared/translations'
 
 import { shallowMount } from '@vue/test-utils'
 
-window.Translator = {
-  trans: jest.fn(key => key)
-}
-
-describe('should return result aria.deselect_all when props are: checked = true, checkAll = true', () => {
+describe('should return result \'Auswahl aufheben\' when props are: checked = true, checkAll = true', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
     propsData: {
       checked: true,
@@ -15,8 +12,8 @@ describe('should return result aria.deselect_all when props are: checked = true,
     }
   })
 
-  it('returns aria.deselect_all', () => {
-    expect(wrapper.vm.label).toEqual('aria.deselect_all')
+  it('returns operations.deselect.all', () => {
+    expect(wrapper.vm.label).toEqual(de.operations.deselect.all)
   })
 })
 
@@ -30,11 +27,11 @@ describe('should return result aria.select.all when props are: checked = false, 
   })
 
   it('returns aria.select.all', () => {
-    expect(wrapper.vm.label).toEqual('aria.select.all')
+    expect(wrapper.vm.label).toEqual(de.aria.select.all)
   })
 })
 
-describe('should return result aria.deselect when props are: checked = true, checkAll = false', () => {
+describe('should return result \'Auswahl für Element aufheben\' when props are: checked = true, checkAll = false', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
     propsData: {
       checked: true,
@@ -43,12 +40,12 @@ describe('should return result aria.deselect when props are: checked = true, che
     }
   })
 
-  it('returns aria.deselect', () => {
-    expect(wrapper.vm.label).toEqual('aria.deselect')
+  it('returns \'Auswahl für Element aufheben\'', () => {
+    expect(wrapper.vm.label).toEqual('Auswahl für Element aufheben')
   })
 })
 
-describe('should return result aria.select when props are: checked = false, checkAll = false', () => {
+describe('should return result \'Element auswählen\' when props are: checked = false, checkAll = false', () => {
   const wrapper = shallowMount(DpTreeListCheckbox, {
     propsData: {
       checked: false,
@@ -57,8 +54,8 @@ describe('should return result aria.select when props are: checked = false, chec
     }
   })
 
-  it('returns aria.select', () => {
-    expect(wrapper.vm.label).toEqual('aria.select')
+  it('returns \'Element auswählen\'', () => {
+    expect(wrapper.vm.label).toEqual('Element auswählen')
   })
 })
 

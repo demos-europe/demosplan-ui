@@ -1,13 +1,13 @@
 <template>
   <div
-    :class="{'o-sticky--border': border, 'u-z-fixed': applyZIndex}"
+    :class="{'o-sticky--border': border, 'z-fixed': applyZIndex}"
     class="o-sticky bg-color--white">
     <slot />
   </div>
 </template>
 
 <script>
-import { Stickier } from '../../lib'
+import { Stickier } from '~/lib'
 
 export default {
   name: 'DpStickyElement',

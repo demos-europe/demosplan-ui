@@ -31,5 +31,5 @@ export {
   SideNav,
   Stickier,
   Sticky,
-  TableWrapper,
+  TableWrapper
 }

@@ -1,7 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
 import { action } from '@storybook/addon-actions'
-
-import DpButton from './DpButton'
+import DpButton from './'
+import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconVariables'
 
 <Meta
   argTypes={{
@@ -22,6 +22,10 @@ import DpButton from './DpButton'
     },
     variant: {
       options: ['solid', 'outline', 'subtle'],
+      control: { type: 'select' }
+    },
+    iconSize: {
+      options: Object.keys(ICON_SIZES),
       control: { type: 'select' }
     }
   }}

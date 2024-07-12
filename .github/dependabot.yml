@@ -7,3 +7,18 @@ updates:
         time: "09:00"
         timezone: Europe/Berlin
     open-pull-requests-limit: 10
+    groups:
+      babel:
+        patterns:
+          - "@babel*"
+      storybook:
+        patterns:
+          - "@storybook*"
+          - "storybook"
+      tiptap:
+        patterns:
+          - "@tiptap*"
+      vue:
+        patterns:
+          - "vue"
+          - "vue-template-compiler"

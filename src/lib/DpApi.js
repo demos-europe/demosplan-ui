@@ -1,10 +1,10 @@
-import axios from 'axios'
 import hasOwnProp from '../utils/hasOwnProp'
 import { stringify } from 'qs'
 import { v4 as uuid } from 'uuid'
 
 let currentProcedureId = null
 let jwtToken = null
+let csrfToken = null
 
 if (typeof dplan !== 'undefined') {
   if (hasOwnProp(dplan, 'procedureId')) {
@@ -12,95 +12,127 @@ if (typeof dplan !== 'undefined') {
   }
   if (hasOwnProp(dplan, 'jwtToken')) {
     jwtToken = dplan.jwtToken
+    csrfToken = dplan.csrfToken
   }
 }
 
 const apiDefaultHeaders = {
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
+  'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'x-csrf-token': csrfToken
 }
 
 const api2defaultHeaders = {
-  Accept: 'application/vnd.api+json',
+  'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken
 }
 
-const getHeaders = function (params) {
-  const headers = params.url.includes('api/2.0/')
-    ? { ...api2defaultHeaders, ...params.headers }
-    : { ...apiDefaultHeaders, ...params.headers }
+const demosplanProcedureHeaders = {
+  'X-Demosplan-Procedure-Id': currentProcedureId
+}
 
-  // Add current procedure id only if set
-  if (currentProcedureId !== null) {
-    headers['X-Demosplan-Procedure-Id'] = currentProcedureId
+const getHeaders = function ({ headers, url }) {
+  return {
+    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
+    ...headers
   }
-  return headers
 }
 
-const doRequest = (params) => {
-  return axios({
-    ...{ data: {} },
-    ...params,
-    headers: getHeaders(params)
-  })
+const appendSerializedUrlParams = (url, params) => {
+  if (!params || Object.keys(params).length === 0) {
+    return url
+  }
+  params = stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' })
+
+  // Url params may be already appended before passing it to dpApi, this must be handled accordingly.
+  return url.includes('?') ? `${url}&${params}` : `${url}?${params}`
 }
+
+const doRequest = (async ({ method = 'GET', url, data = {}, headers, params }) => {
+  const fetchOptions = {
+    headers: getHeaders({ headers, url }),
+    method
+  }
+
+  if (method.toUpperCase() !== 'GET') {
+    if (data instanceof FormData) {
+      fetchOptions.body = data
+    } else {
+      fetchOptions.body = JSON.stringify(data)
+    }
+  } else {
+    url = appendSerializedUrlParams(url, params)
+  }
+
+  try {
+    const response = await fetch(url, fetchOptions)
+    const contentTypeHeader = response.headers.get('Content-Type')
+    const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
+    const content = contentType.includes('json')
+      ? await response.json()
+      : contentType.includes('text')
+      ? await response.text()
+      : null
+
+    return {
+      data: content,
+      status: response.status,
+      ok: response.ok,
+      statusText: response.statusText,
+      url: response.url
+    }
+  } catch (error) {
+    console.error('DpAPI[doRequest] failed: ', error, 'fetchOptions: ', fetchOptions)
+
+    return {
+      data: null,
+      status: '400',
+      ok: 'Bad Request'
+    }
+  }
+})
 
 const dpApi = doRequest
-dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'post', url, data, params, options })
-dpApi.get = (url, params = {}, options = {}) => {
-  if (options.serialize === true) {
-    const config = {
-      paramsSerializer: (params) => stringify(params, { encodeValuesOnly: true, arrayFormat: 'brackets' }),
-      headers: getHeaders({ ...params, url })
-    }
-    delete options.serialize
-    return axios.create(config).request({ method: 'get', data: {}, url, params, ...options })
-  } else {
-    return doRequest({ method: 'get', url, data: {}, params, options })
-  }
-}
-dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'put', url, data, params, options })
-dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'patch', url, data, params, options })
-dpApi.delete = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'delete', url, params, options })
+
+dpApi.post = (url, params = {}, data = {}) => doRequest({ method: 'POST', url, data, params })
+dpApi.get = (url, params = {}) => doRequest({ method: 'GET', url, params })
+dpApi.put = (url, params = {}, data = {}) => doRequest({ method: 'PUT', url, data, params })
+dpApi.patch = (url, params = {}, data = {}) => doRequest({ method: 'PATCH', url, data, params })
+dpApi.delete = (url, params = {}, data = {}) => doRequest({ method: 'DELETE', url, params })
 
 /**
- * Do a JsonRpc call.
+ * Submit a request to the rpc_generic_post API, which implements JSON-RPC 2.0.
  *
- * Id is optional and defaults to a UUID v4.
- *
- * @param {string} method
- * @param {object} parameters
- * @param {string} id
+ * @param {string} method     This is the RPC method (aka. action) to be invoked,
+ *                            not the Http request method (which is "POST" in any case).
+ * @param {object} params     Data to be used by the RPC method.
+ * @param {string|null} id    Request id. Optional, defaults to a UUID v4.
  * @return {Promise}
  */
-const dpRpc = function (method, parameters, id = null) {
+const dpRpc = function (method, params, id = null) {
   const data = {
     jsonrpc: '2.0',
-    method: method,
-    id: id === null ? uuid() : id,
-    params: parameters
+    method,
+    params,
+    id: id === null ? uuid() : id
   }
 
   return doRequest({
-    method: 'post',
+    method: 'POST',
     url: Routing.generate('rpc_generic_post'),
-    data
+    data,
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
 }
 
 /**
  * Perform an external API call without any default headers
  */
-const externalApi = function (url) {
-  const contentType = axios.defaults.headers.common['Content-Type']
-  delete axios.defaults.headers.common['Content-Type']
-
-  return axios.get(url).then(response => {
-    // Restore the Content-Type header
-    axios.defaults.headers.common['Content-Type'] = contentType
-
-    return response
-  })
+const externalApi = async (url, data) => {
+  return await fetch(url, data)
 }
 
 /**
@@ -123,8 +155,8 @@ const handleResponseMessages = function (responseMeta) {
  * Perform rudimentary response validation, handle response messages.
  *
  * @param {Object} response
- *                    The axios wrapper around the XMLHttpRequest instance.
- *                    See https://github.com/axios/axios#response-schema for documentation.
+ *                    The response provided by the fetch API.
+ *                    See https://developer.mozilla.org/en-US/docs/Web/API/Response
  * @param {Object} [messages]
  *                    Define messages to display with response codes that are expected to be returned
  *                    from a certain endpoint.
@@ -180,10 +212,9 @@ function makeFormPost (payload, url) {
   }
 
   return dpApi({
-    method: 'post',
+    method: 'POST',
     url: url,
-    data: postData,
-    headers: { 'Content-Type': 'multipart/form-data' }
+    data: postData
   })
 }
 

@@ -1,7 +1,5 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs'
-
-import DpIcon from './DpIcon'
-
+import DpIcon from './'
 import { ICONS } from './util/iconVariables'
 
 <Meta
@@ -24,7 +22,8 @@ import { ICONS } from './util/iconVariables'
 
 # Icon
 
-The `DpIcon` component renders svg icons - mostly from fontawesome v5.
+The `DpIcon` component renders SVG icons, exposing a selected set of [PhosphorIcons](https://phosphoricons.com/) in regular variants
+and some icons in filled variants.
 
 export const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),
@@ -241,7 +240,11 @@ Use to illustrate the action of copying something somewhere.
 </Canvas>
 
 ### Delete
-The infamous trash can is used to indicate destructive actions.
+
+The delete icon is used to indicate destructive actions.
+
+For non-destructive actions, like removing items from a list, use [`xmark`](#xmark) instead.
+
 <Canvas>
     <Story
         name="Delete"
@@ -379,6 +382,29 @@ Use to illustrate that an item is edited by someone else.
     </Story>
 </Canvas>
 
+### Phone
+<Canvas>
+  <Story
+    name="Phone"
+    args={{
+      icon: 'phone'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Question
+Use to communicate helpful content, e.g. for Tooltip triggers.
+<Canvas>
+  <Story
+    name="Question"
+    args={{
+      icon: 'question'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
 ### Refresh
 <Canvas>
     <Story
@@ -410,6 +436,18 @@ Use to illustrate that an item is edited by someone else.
         }}>
         {Template.bind({})}
     </Story>
+</Canvas>
+
+### Severe
+Use to illustrate severe/error notifications.
+<Canvas>
+  <Story
+    name="Severe"
+    args={{
+      icon: 'severe'
+    }}>
+    {Template.bind({})}
+  </Story>
 </Canvas>
 
 ### Success
@@ -469,13 +507,27 @@ Use to illustrate that an item is not being edited by someone else.
     </Story>
 </Canvas>
 
+### Warning
+Use to illustrate warning notifications. Also, this is the default icon if `DpIcon` is called with an unsupported icon name.
+<Canvas>
+  <Story
+    name="Warning"
+    args={{
+      icon: 'warning'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
 
 ### Xmark
 
 Use for these cases:
 
 * In tables, it can indicate success vs. error in columns with limited space in tandem with the "check" icon
+* As a button icon, it is used to cancel an action
 * In form fields, it can be the trigger to clear the field
+
+Do <strong>not use</strong> the xmark icon for destructive actions. Use [`delete`](#delete) instead.
 
 <Canvas>
     <Story

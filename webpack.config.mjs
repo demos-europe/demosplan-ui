@@ -18,12 +18,6 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
-const transpileNodeModules = [
-    'tiptap',
-    'tiptap-commands',
-    'tiptap-extensions',
-].map(module => resolve('node_modules/' + module))
-
 const webpackConfig = {
     entry: resolve('./src/index.js'),
     experiments: {
@@ -64,7 +58,6 @@ const webpackConfig = {
             {
                 test: /\.(js|jsx)$/i,
                 exclude: /node_modules/,
-                include: transpileNodeModules,
                 loader: 'babel-loader'
             },
             {

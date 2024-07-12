@@ -27,7 +27,7 @@
     <button
       :aria-label="Translator.trans('hint.show')"
       class="btn--blank color--grey float-right"
-      data-cy="showHint"
+      :data-cy="`${dataCy}:showHint`"
       @click="show">
       <dp-icon
         icon="info"

@@ -16,7 +16,7 @@
       <button
         v-if="dismissible"
         class="btn--blank o-link--default weight--bold"
-        data-cy="hideHint"
+        :data-cy="`${dataCy}:hideHint`"
         v-text="Translator.trans('hint.dismiss')"
         @click="dismiss" />
     </div>

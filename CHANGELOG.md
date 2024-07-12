@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.19 - 2024-07-12
+
 ### Fixed
 
 - ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))

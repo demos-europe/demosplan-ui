@@ -30,7 +30,7 @@ export default {
      */
     allowedFileTypesWarning: {
       type: String,
-      default: this.uppyTranslations.strings.warningFileType
+      default: de().strings.warningFileType
     },
 
     /**

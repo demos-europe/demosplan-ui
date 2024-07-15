@@ -2,7 +2,7 @@
   <fieldset :class="prefixClass('layout')">
     <legend
       class="sr-only"
-      v-text="translations.uploadFiles" />
+      v-text="TransKeys.uploadFiles" />
     <dp-label
       v-if="label.text"
       class="layout__item"
@@ -228,7 +228,7 @@ export default {
   data () {
     return {
       fileHashes: [],
-      translations: {
+      TransKeys: {
         uploadFiles: de.upload.files,
       },
       uploadedFiles: []

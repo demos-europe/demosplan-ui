@@ -7,7 +7,7 @@
           <label
             class="inline"
             for="search">
-            {{ translations.search }}
+            {{ TransKeys.search }}
           </label>
           <input
             type="text"
@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="translations.showEntries" />
+            :label-text="TransKeys.showEntries" />
         </div>
       </div>
     </dp-sticky-element>
@@ -50,8 +50,8 @@
             :key="element.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="translations.colsSort + ': ' + element.label"
-              :title="translations.colsSort + ': ' + element.label"
+              :aria-label="TransKeys.colsSort + ': ' + element.label"
+              :title="TransKeys.colsSort + ': ' + element.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(element.field)"
               type="button">
@@ -236,7 +236,7 @@ export default {
       itemsPerPage: this.initItemsPerPage,
       searchString: '',
       sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
-      translations: {
+      TransKeys: {
         colsSort: de.table.colsSort,
         search: de.search.text,
         showEntries: de.pager.showEntries

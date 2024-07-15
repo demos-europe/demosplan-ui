@@ -96,7 +96,7 @@ export default {
     this.setRatio(updateSize)
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     if (this.observer) {
       this.observer.disconnect()
     }

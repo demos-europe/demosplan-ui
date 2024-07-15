@@ -94,6 +94,12 @@ export default {
 
     const updateSize = (this.node.attrs.height > 0) === false || this.node.attrs.height === Infinity
     this.setRatio(updateSize)
+  },
+
+  beforeDestroy() {
+    if (this.observer) {
+      this.observer.disconnect()
+    }
   }
 }
 </script>

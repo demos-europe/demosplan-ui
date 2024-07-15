@@ -572,9 +572,10 @@ export default {
       return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
     },
 
-    imageClicked (event) {
-      this.clickedImg.src = event.target.src
-      this.clickedImg.alt = event.target.alt
+    imageClicked ({ target }) {
+      this.clickedImg.src = target.src
+      this.clickedImg.alt = target.alt
+
       this.$refs.imgModal.toggle()
     },
 

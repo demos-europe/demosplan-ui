@@ -59,7 +59,7 @@ export default {
       img.onload = () => {
         this.ratioFactor = img.width / img.height
 
-        // If the width is not set jet, set it to the image original dimensions
+        // If the width is not set yet, set it to the image original dimensions
         if (updateSize) {
           this.updateImageDimensions()
         }
@@ -89,8 +89,7 @@ export default {
 
     this.initResizeObserver()
 
-    // May or not may be necessary
-    // this.$refs.imagewrapper.$el.style.width = this.node.attrs.width + 'px'
+    this.$refs.imagewrapper.$el.style.width = this.node.attrs.width + 'px'
 
     const updateSize = (this.node.attrs.height > 0) === false || this.node.attrs.height === Infinity
     this.setRatio(updateSize)

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs'
-import ColorModule from '../.storybook/components/ColorModule'
-import ColorPalette from '../.storybook/components/ColorPalette'
+import ColorTableGrouped from '../.storybook/components/ColorTableGrouped'
+import ColorTable from '../.storybook/components/ColorTable'
 import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Color"/>
@@ -135,25 +135,25 @@ When building UI with a focus on functionality, not brand, the following semanti
 
 #### Tokens available for all corePlugins
 
-<ColorModule module={'color'} />
+<ColorTableGrouped module={'color'} />
 
 #### Text colors
 
-<ColorModule module={'textColor'} />
+<ColorTableGrouped module={'textColor'} />
 
 #### Background colors
 
-<ColorModule module={'backgroundColor'} />
+<ColorTableGrouped module={'backgroundColor'} />
 
 #### Border colors
 
-<ColorModule module={'borderColor'} />
+<ColorTableGrouped module={'borderColor'} />
 
 ### Brand colors
 
 For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist.
 
-<ColorPalette namespace={'brand'} />
+<ColorTable namespace={'brand'} />
 
 ### Data visualization colors
 
@@ -163,7 +163,7 @@ that differentiate from each other. Like palette colors, they contain hex values
 These are generated with https://colorbrewer2.org/#type=diverging&scheme=BrBG&n=8 to be colorblind safe
 and intentionally separate from other color palettes.
 
-<ColorPalette namespace={'data'} />
+<ColorTable namespace={'data'} />
 
 Although these colors are universally used for charts, they need to be refined into "sequential", "categorical",
 and "diverging" when appropriate. Read more if the need arises:
@@ -181,4 +181,4 @@ a base color, 2 shades and 4 lights. The colors are complemented with white, bla
 
 <Notice content={'Palette colors are not meant nor made to be used directly - instead, the functional colors defined above should be utilized.'} />
 
-<ColorPalette namespace={'palette'} />
+<ColorTable namespace={'palette'} />

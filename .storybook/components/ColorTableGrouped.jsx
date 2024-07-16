@@ -48,7 +48,7 @@ tailwindModules.forEach(token => {
     })
 })
 
-const ColorModule = ({module}) => (
+const ColorTableGrouped = ({module}) => (
   <table>
     <thead>
     <tr>
@@ -73,8 +73,8 @@ const ColorModule = ({module}) => (
   </table>
 )
 
-ColorModule.propTypes = {
+ColorTableGrouped.propTypes = {
     module: PropTypes.string.isRequired
 }
 
-export default ColorModule
+export default ColorTableGrouped

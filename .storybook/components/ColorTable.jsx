@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -29,7 +28,7 @@ const colors = {
     palette: extractPaletteColors(require('../../tokens/dist/js/color.palette').color.palette),
 }
 
-const ColorPalette = ({namespace}) => (
+const ColorTable = ({namespace}) => (
   <table>
     <thead>
     <tr>
@@ -52,8 +51,8 @@ const ColorPalette = ({namespace}) => (
   </table>
 )
 
-ColorPalette.propTypes = {
+ColorTable.propTypes = {
     namespace: PropTypes.string.isRequired
 }
 
-export default ColorPalette
+export default ColorTable

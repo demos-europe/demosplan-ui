@@ -9,7 +9,7 @@
       ref="image"
       :src="node.attrs.src"
       :title="imageTitle"
-      @click.ctrl="$root.$emit('open-image-alt-modal', $event, id)">
+      @click.ctrl="$root.$emit('open-image-alt-modal',  { event: $event, imgId: id, editorId: editor.options.id })">
   </node-view-wrapper>
 </template>
 

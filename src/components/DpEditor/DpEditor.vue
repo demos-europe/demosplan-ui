@@ -355,6 +355,7 @@ import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
 import { prefixClassMixin } from '~/mixins'
+import { v4 as uuid } from 'uuid'
 
 export default {
   name: 'DpEditor',
@@ -1041,6 +1042,7 @@ export default {
 
   mounted () {
     this.editor = new Editor({
+      id: uuid(),
       editable: !this.readonly,
       extensions: this.collectExtensions(),
       content: this.currentValue,
@@ -1089,9 +1091,12 @@ export default {
       }
     })
 
-    this.$root.$on('open-image-alt-modal', (e, id) => {
-      this.editingImage = id
-      this.openUploadModal({ editAltOnly: true, currentAlt: e.target.getAttribute('alt'), imgSrc: e.target.getAttribute('src') })
+    this.$root.$on('open-image-alt-modal', ({ event, imgId, editorId }) => {
+      if (this.editor.options.id !== editorId) {
+        return
+      }
+      this.editingImage = imgId
+      this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })
     /*
      * On form-reset the editor has to be cleared manually.

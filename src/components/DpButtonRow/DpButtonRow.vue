@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[`text-${align}`, $attrs.class]"
+    :class="[`text-${alignment}`, $attrs.class]"
     class="space-inline-s">
     <dp-button
       v-if="primary"
@@ -37,7 +37,7 @@ export default {
     /**
      * Specifies if the buttons should align left or right inside their container.
      */
-    align: {
+    alignment: {
       type: String,
       required: false,
       default: 'right'

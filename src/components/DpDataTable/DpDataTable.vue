@@ -4,7 +4,7 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
-      <caption class="hide-visually" v-text="tableDescription" />
+      <caption class="sr-only" v-text="tableDescription" />
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
@@ -41,7 +41,9 @@
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable && !isLoading">
+      <tbody
+        v-if="!isDraggable && !isLoading"
+        :data-cy="`${dataCy}:tbody`">
       <template v-for="(item, idx) in items">
         <dp-table-row
           ref="tableRows"

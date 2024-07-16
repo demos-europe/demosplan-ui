@@ -4,6 +4,24 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
+
+- ([#926](https://github.com/demos-europe/demosplan-ui/pull/926)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#921](https://github.com/demos-europe/demosplan-ui/pull/921)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#916](https://github.com/demos-europe/demosplan-ui/pull/916)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#912](https://github.com/demos-europe/demosplan-ui/pull/912)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#908](https://github.com/demos-europe/demosplan-ui/pull/908)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Changed
+
+- ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#902](https://github.com/demos-europe/demosplan-ui/pull/902)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.18 - 2024-06-12
 
 ### Fixed

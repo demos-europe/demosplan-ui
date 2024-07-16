@@ -138,11 +138,7 @@ export default {
     },
 
     toggleModal (data) {
-      const willCloseModal = this.$refs.uploadModal.isOpenModal === true
-
-      if (willCloseModal) {
-        this.$refs.uploader.clearFilesList()
-      } else if (data) {
+      if (data) {
         this.editAltTextOnly = data.editAltOnly
         this.altText = data.currentAlt
         this.imgSrc = data.imgSrc

@@ -2,17 +2,6 @@
   "color": {
     "ui-tailwind": {
       "$description": "Tokens that are transformed to be applied to distinct Tailwind corePlugins.",
-      "borderRadius": {
-        "$description": "are these corePlugins??",
-        "button": {
-          // value
-        }
-      },
-      "borderWidth": {
-        "button": {
-          // value
-        }
-      },
       "color": {
         "$description": "Tokens that are allowed to be used with any corePlugin.",
         "interactive": {
@@ -43,12 +32,12 @@
           "$type": "color"
         },
         "muted": {
-          "$description": "Default color for text that should stand out a little less. Has sufficient contrast on white.",
+          "$description": "Color for text that should stand out a little less. Has sufficient contrast on white.",
           "value": "{color.palette.neutral.base}",
           "$type": "color"
         },
         "on-dark": {
-          "$description": "Default color for text that has sufficient contrast on dark backgrounds.",
+          "$description": "Color for text that has sufficient contrast on dark backgrounds.",
           "value": "{color.palette.white}",
           "$type": "color"
         },
@@ -60,147 +49,153 @@
         "message": {
           "info": {
             "DEFAULT": {
-              "$description": "message-info-text -> text-message-info",
+              "$description": "Text color to communicate uncritical information within system feedback components.",
               "value": "{color.palette.blue.dark-2}",
               "$type": "color"
             },
             "icon": {
-              "$description": "message-info-fill -> text-message-info-icon",
+              "$description": "Icon color to communicate uncritical information within system feedback components.",
               "value": "{color.palette.blue.dark-1}",
               "$type": "color"
             },
             "interactive": {
+              "$description": "Color for interactive text to communicate uncritical information within system feedback components.",
               "value": "{color.palette.blue.base}",
               "$type": "color"
             }
           },
           "warning": {
             "DEFAULT": {
-              "$description": "message-warning-text",
+              "$description": "Text color to noticeably communicate uncritical information within system feedback components.",
               "value": "{color.palette.yellow.dark-2}",
               "$type": "color"
             },
             "icon": {
-              "$description": "message-warning-fill",
+              "$description": "Icon color to noticeably communicate uncritical information within system feedback components.",
               "value": "{color.palette.yellow.dark-2}",
               "$type": "color"
             },
             "interactive": {
+              "$description": "Color for interactive text to noticeably communicate uncritical information within system feedback components.",
               "value": "{color.palette.yellow.dark-2}",
               "$type": "color"
             }
           },
           "severe": {
             "DEFAULT": {
-              "$description": "message-severe-text",
+              "$description": "Text color to communicate importance, danger, and immediate action within system feedback components.",
               "value": "{color.palette.red.dark-2}",
               "$type": "color"
             },
             "icon": {
-              "$description": "message-severe-fill",
+              "$description": "Icon color to communicate importance, danger, and immediate action within system feedback components.",
               "value": "{color.palette.red.dark-1}",
               "$type": "color"
             },
             "interactive": {
+              "$description": "Color for interactive text to communicate importance, danger, and immediate action within system feedback components.",
               "value": "{color.palette.red.dark-1}",
               "$type": "color"
             }
           },
           "success": {
             "DEFAULT": {
-              "$description": "message-success-text",
+              "$description": "Text color to communicate successful state change within system feedback components.",
               "value": "{color.palette.green.dark-2}",
               "$type": "color"
             },
             "icon": {
-              "$description": "message-success-fill",
+              "$description": "Icon color to communicate successful state change within system feedback components.",
               "value": "{color.palette.green.dark-1}",
               "$type": "color"
             },
             "interactive": {
+              "$description": "Color for interactive text to communicate successful state change within system feedback components.",
               "value": "{color.palette.green.base}",
               "$type": "color"
             }
           },
           "debug": {
             "DEFAULT": {
-              "$description": "message-debug-text",
+              "$description": "Text color to communicate information for debugging purposes within system feedback components.",
               "value": "{color.palette.purple.dark-2}",
               "$type": "color"
             },
             "icon": {
-              "$description": "message-debug-fill",
+              "$description": "Icon color to communicate information for debugging purposes within system feedback components.",
               "value": "{color.palette.purple.dark-1}",
               "$type": "color"
             },
             "interactive": {
+              "$description": "Color for interactive text to communicate information for debugging purposes within system feedback components.",
               "value": "{color.palette.purple.dark-1}",
               "$type": "color"
             }
           }
         },
         "selected": {
-          "$description": "Color used to visualize selected elements. (was: selection-text)",
+          "$description": "Color used to visualize selected elements (ex: selection-text).",
           "value": "{color.palette.blue.dark-1}",
           "$type": "color"
         },
         "status": {
           "progress": {
-            "$description": "Use these colors to communicate that something is in progress",
             "DEFAULT": {
-              "$description": "status-progress-text -> text-status-progress",
+              "$description": "Text color to communicate that something is in progress (ex: status-progress-text).",
               "value": "{color.palette.blue.dark-1}",
               "$type": "color"
             },
             "icon": {
-              "$description": "status-progress-fill -> text-status-progress-icon",
+              "$description": "Icon color to communicate that something is in progress (ex: status-progress-fill).",
               "value": "{color.palette.blue.base}",
               "$type": "color"
             }
           },
           "changed": {
-            "$description": "Use these colors to communicate something has moved or changed.",
             "DEFAULT": {
+              "$description": "Text color to communicate something has moved or changed.",
               "value": "{color.palette.yellow.dark-2}",
               "$type": "color"
             },
             "icon": {
+              "$description": "Icon color to communicate something has moved or changed.",
               "value": "{color.palette.yellow.dark-1}",
               "$type": "color"
             }
           },
           "failed": {
-            "$description": "Use these colors to communicate that an action or validation has failed on an item.",
             "DEFAULT": {
+              "$description": "Text color to communicate that an action or validation has failed on an item.",
               "value": "{color.palette.red.dark-1}",
               "$type": "color"
             },
             "icon": {
+              "$description": "Icon color to communicate that an action or validation has failed on an item.",
               "value": "{color.palette.red.base}",
               "$type": "color"
             }
           },
           "complete": {
-            "$description": "Use these colors to communicate that an action has completed, or something has been added.",
             "DEFAULT": {
+              "$description": "Text color to communicate that an action has completed, or something has been added.",
               "value": "{color.palette.green.dark-1}",
               "$type": "color"
             },
-            "fill": {
+            "icon": {
+              "$description": "Icon color to communicate that an action has completed, or something has been added.",
               "value": "{color.palette.green.base}",
               "$type": "color"
             }
           },
           "neutral": {
-            "$description": "Use these colors if no other option applies.",
             "DEFAULT": {
+              "$description": "Text color to communicate neutral or unknown status.",
               "value": "{color.palette.neutral.dark-1}",
-              "themeable": true,
               "$type": "color"
             },
             "icon": {
+              "$description": "Icon color to communicate neutral or unknown status.",
               "value": "{color.palette.neutral.base}",
-              "themeable": true,
               "$type": "color"
             }
           }
@@ -227,30 +222,64 @@
         },
         "message": {
           "info": {
+            "$description": "Background color to communicate uncritical information within system feedback components.",
             "value": "{color.palette.blue.light-3}",
             "$type": "color"
           },
           "warning": {
+            "$description": "Background color to noticeably communicate uncritical information within system feedback components.",
             "value": "{color.palette.yellow.light-3}",
             "$type": "color"
           },
           "severe": {
+            "$description": "Background color to communicate importance, danger, and immediate action within system feedback components.",
             "value": "{color.palette.red.light-3}",
             "$type": "color"
           },
           "success": {
+            "$description": "Background color to communicate successful state change within system feedback components.",
             "value": "{color.palette.green.light-3}",
             "$type": "color"
           },
           "debug": {
+            "$description": "Background color to communicate information for debugging purposes within system feedback components.",
             "value": "{color.palette.purple.light-3}",
             "$type": "color"
           }
         },
         "selected": {
-          "$description": "Background Color used to visualize selected elements. (was: selection-bg)",
+          "$description": "Background Color used to visualize selected elements (ex: selection-bg).",
           "value": "{color.palette.blue.light-3}",
           "$type": "color"
+        },
+        "status": {
+          "progress": {
+            "$description": "Background color to communicate that something is in progress (ex: status-progress-text).",
+            "value": "{color.palette.blue.base}",
+            "$type": "color"
+          },
+          "changed": {
+            "$description": "Background color to communicate something has moved or changed.",
+            "value": "{color.palette.yellow.base}",
+            "$type": "color"
+          },
+          "failed": {
+            "$description": "Background color to communicate that an action or validation has failed on an item.",
+            "value": "{color.palette.red.base}",
+            "$type": "color"
+          },
+          "complete": {
+            "$description": "Background color to communicate that an action has completed, or something has been added.",
+            "value": "{color.palette.green.base}",
+            "$type": "color"
+          },
+          "neutral": {
+            "DEFAULT": {
+              "$description": "Text color to communicate neutral or unknown status.",
+              "value": "{color.palette.neutral.dark-1}",
+              "$type": "color"
+            }
+          }
         },
         "surface": {
           "$description": "Colors to apply to the main interface areas of the application",
@@ -280,7 +309,7 @@
             "$type": "color"
           },
           "deleted-muted": {
-            "$description": "Background color for deleted (del) text.",
+            "$description": "Background color for deleted (del) areas of text.",
             "value": "{color.palette.yellow.light-3}",
             "$type": "color"
           },
@@ -294,7 +323,7 @@
             "value": "{color.palette.blue.light-4}",
             "$type": "color"
           },
-            "marked": {
+          "marked": {
             "$description": "Background color for highlighting portions of text.",
             "value": "{color.palette.blue.light-3}",
             "$type": "color"
@@ -304,33 +333,39 @@
       "borderColor": {
         "message": {
           "info": {
+            "$description": "Border color to communicate uncritical information within system feedback components.",
             "value": "{color.palette.blue.light-1}",
             "$type": "color"
           },
           "warning": {
+            "$description": "Border color to noticeably communicate uncritical information within system feedback components.",
             "value": "{color.palette.yellow.base}",
             "$type": "color"
           },
           "severe": {
+            "$description": "Border color to communicate importance, danger, and immediate action within system feedback components.",
             "value": "{color.palette.red.light-1}",
             "$type": "color"
           },
           "success": {
+            "$description": "Border color to communicate successful state change within system feedback components.",
             "value": "{color.palette.green.light-1}",
             "$type": "color"
           },
           "debug": {
+            "$description": "Border color to communicate information for debugging purposes within system feedback components.",
             "value": "{color.palette.purple.light-1}",
             "$type": "color"
           }
         },
         "neutral": {
-          "$description": "Color used for borders.",
+          "$description": "Default color used for borders within the application.",
           "value": "{color.palette.neutral.light-2}",
           "$type": "color"
         },
         "status": {
           "failed": {
+            "$description": "Border color to communicate that an action or validation has failed on an item.",
             "value": "{color.palette.red.base}",
             "$type": "color"
           }

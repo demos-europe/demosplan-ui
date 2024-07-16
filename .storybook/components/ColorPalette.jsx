@@ -27,10 +27,7 @@ const colors = {
     brand: extractPaletteColors(require('../../tokens/dist/js/color.brand').color.brand),
     data: extractPaletteColors(require('../../tokens/dist/js/color.data').color.data),
     palette: extractPaletteColors(require('../../tokens/dist/js/color.palette').color.palette),
-    ui: extractPaletteColors(require('../../tokens/dist/js/color.ui').color.ui),
 }
-
-// @TODO require color.ui-tailwind and separate different groups, to focus on TW availability
 
 const ColorPalette = ({namespace}) => (
   <table>
@@ -45,8 +42,8 @@ const ColorPalette = ({namespace}) => (
     <tbody>
     {colors[namespace].map((color) => (
         <tr key={color.name}>
-            <td><div className={classNames(color.twClass, 'w-4 h-4')}></div></td>
-            <td className="whitespace-nowrap">{color.name}</td>
+            <td><div className="w-4 h-4" style={{ backgroundColor: color.value}}></div></td>
+            <td className="whitespace-nowrap">{ namespace !== 'palette' ? '(text|bg|border)-' + color.name : color.name}</td>
             <td className="whitespace-nowrap">{color.value}</td>
             <td>{color.description}</td>
         </tr>

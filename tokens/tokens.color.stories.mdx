@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs'
+import ColorModule from '../.storybook/components/ColorModule'
 import ColorPalette from '../.storybook/components/ColorPalette'
 import Notice from '../.storybook/components/Notice'
 
@@ -12,9 +13,12 @@ import Notice from '../.storybook/components/Notice'
 
 # Color tokens
 
-The demosplan-ui color tokens are grouped into **palette** (the raw values which should not be used directly), **brand** (for
-colors used in branded context), **message** and **status** (to communicate system state), **data** (for data visualization)
-and **interaction** (to indicate interaction).
+The demosplan-ui color tokens are grouped into <a target="_self" href="#brand-colors">**brand**</a> (for colors used in branded context),
+<a target="_self" href="#data-visualization-colors">**data**</a> (for data visualization) and
+<a target="_self" href="#functional-semantic-color-tokens">**semantic tokens**</a> for visualizing **message**, **status**
+(to communicate system state) and **interactive** (to indicate possible interaction), alongside tokens for **text**, **surface**,
+and **border** colors used throughout the interface. A full list of all palette colors (the raw color values which cannot
+be used directly) can be found <a target="_self" href="#palette-colors">here</a>.
 
 Tokens are available as <a target="_self" href="#tailwind-utility-classes">Tailwind utility classes</a> and <a target="_self" href="#scss-variables">SCSS variables</a>.
 
@@ -56,19 +60,6 @@ will also be overridden. This way, it is possible to globally override colors, o
     --dp-color-interactive-hover: #e100bd;
 }
 ```
-
-#### Available colors for Tailwind utility classes
-
-**brand**, **data** and **interactive** colors are enabled for all Tailwind corePlugins that apply color.
-A full list of available corePlugins that apply color can be found [in the config.full.js stub for tailwind](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js) - each plugin that applies `theme('colors')`.
-
-<div class="bg-main p-3">This means that a brand color is available as `bg-main` or `text-main` (and all other corePlugins that apply color).</div>
-
-**backgroundColor**, **borderColor** and **textColor** modules each define additional available ui colors.
-
-<div class="bg-message-warning text-message-warning p-3">This means that the usage of certain semantic tokens is tied to the property they are to be used with.</div>
-
-**palette** colors are not enabled to be used Tailwind classes.
 
 ### SCSS Variables
 
@@ -131,47 +122,36 @@ $dp-color-main: $dp-color-yellow-base;
 // Use tokens...
 ```
 
-## Available tokens
+## Available color tokens
 
-### Functional (UI) colors
+**brand**, **data** and **interactive** colors are enabled for all Tailwind corePlugins that apply color.
+A full list of those corePlugins can be found [in the config.full.js stub for tailwind](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js) - each plugin that applies `theme('colors')`.
 
-When building UI with a focus on functionality, not brand, the *interactive*, *message*, and *status* tokens can be utilized.
+**backgroundColor**, **borderColor** and **textColor** corePlugins each define additional available ui colors.
 
-#### Interactive
+### Functional (semantic) color tokens
 
-Be it links, buttons, or other elements users can interact with: whenever an interface element should convey
-its interactive nature, the *interactive* tokens can be used.
+When building UI with a focus on functionality, not brand, the following semantic tokens can be used.
 
-#### Message
+#### Tokens available for all corePlugins
 
-Message color is used to communicate system feedback. For each group, the following tokens exist:
+<ColorModule module={'color'} />
 
-- `-bg` Background color
-- `-border` Border color
-- `-interactive` Color for links and other interactive elements
-- `-fill` Fill color for icons or other svg
-- `-text` Text color
+#### Text colors
 
-#### Status
+<ColorModule module={'textColor'} />
 
-System state is typically communicated via icons (maybe in condensed table rows) or as colored text. For these cases,
-the following *status* tokens can be used:
+#### Background colors
 
-- `-fill` Fill color for icons or other svg
-- `-text` Text color
+<ColorModule module={'backgroundColor'} />
 
-The tokens are to be used for elements on a white background.
+#### Border colors
 
-**More ui tokens are still to be documented.**
-
-<ColorPalette namespace={'ui'} />
+<ColorModule module={'borderColor'} />
 
 ### Brand colors
 
-For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist. Like message, status,
-and interaction tokens, they are aliased to palette tokens.
-
-**Brand colors are enabled for all Tailwind corePlugins that apply color.**
+For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist.
 
 <ColorPalette namespace={'brand'} />
 

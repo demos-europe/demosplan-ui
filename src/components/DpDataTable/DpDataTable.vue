@@ -41,7 +41,9 @@
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable && !isLoading">
+      <tbody
+        v-if="!isDraggable && !isLoading"
+        :data-cy="`${dataCy}:tbody`">
       <template v-for="(item, idx) in items">
         <dp-table-row
           ref="tableRows"

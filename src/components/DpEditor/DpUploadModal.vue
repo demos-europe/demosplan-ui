@@ -44,8 +44,8 @@
         <button
           class="btn btn--primary"
           type="button"
-          @click="emitAndClose()">
-          {{ Translator.trans('insert') }}
+          @click="emitAndClose()"
+          v-text="editAltTextOnly ? Translator.trans('save') : Translator.trans('insert')">
         </button>
         <button
           class="btn btn--secondary"

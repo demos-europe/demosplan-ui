@@ -46,7 +46,8 @@
         :data-cy="`${dataCy}:tbody`">
       <dp-modal
           ref="imgModal"
-          content-classes="w-fit">
+          content-classes="w-fit"
+          data-cy="table:imgModal">
         <img
             :alt="this.clickedImg.alt"
             :src="this.clickedImg.src">

@@ -7,7 +7,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))
-- ([#919](https://github.com/demos-europe/demosplan-ui/pull/919)) DpResizableImage: Disconnect image observer before destroying component ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Added
 

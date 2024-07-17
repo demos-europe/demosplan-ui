@@ -61,7 +61,7 @@ const ColorTableGrouped = ({module}) => (
     {Object.keys(groupedTokens[module]).map((color) => (
         <tr className="align-top" key={color.name}>
             <td className="whitespace-nowrap">
-                <div className={'w-4 h-4'} style={{ backgroundColor: groupedTokens[module][color].value}}></div>
+                <div className={'w-4 h-4'} style={{ backgroundColor: groupedTokens[module][color].value, border: '1px solid hsla(203, 50%, 30%, 0.15)'}}></div>
             </td>
             <td className="whitespace-nowrap">{groupedTokens[module][color].nameModified}</td>
             <td className="whitespace-nowrap">{groupedTokens[module][color].value}</td>

@@ -41,7 +41,7 @@ const ColorTable = ({namespace}) => (
     <tbody>
     {colors[namespace].map((color) => (
         <tr key={color.name}>
-            <td><div className="w-4 h-4" style={{ backgroundColor: color.value}}></div></td>
+            <td><div className="w-4 h-4" style={{ backgroundColor: color.value, border: '1px solid hsla(203, 50%, 30%, 0.15)'}}></div></td>
             <td className="whitespace-nowrap">{ namespace !== 'palette' ? '(text|bg|border)-' + color.name : color.name}</td>
             <td className="whitespace-nowrap">{color.value}</td>
             <td>{color.description}</td>

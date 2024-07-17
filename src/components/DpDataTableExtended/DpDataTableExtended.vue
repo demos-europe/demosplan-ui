@@ -7,7 +7,7 @@
           <label
             class="inline"
             for="search">
-            {{ TransKeys.search }}
+            {{ translations.search }}
           </label>
           <input
             type="text"
@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="TransKeys.showEntries" />
+            :label-text="translations.showEntries" />
         </div>
       </div>
     </dp-sticky-element>
@@ -50,8 +50,8 @@
             :key="element.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="TransKeys.colsSort + ': ' + element.label"
-              :title="TransKeys.colsSort + ': ' + element.label"
+              :aria-label="translations.colsSort + ': ' + element.label"
+              :title="translations.colsSort + ': ' + element.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(element.field)"
               type="button">
@@ -220,7 +220,11 @@ export default {
     translations: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({
+        colsSort: de.table.colsSort,
+        search: de.search.text,
+        showEntries: de.pager.showEntries
+      })
     }
   },
 
@@ -235,12 +239,7 @@ export default {
       isHighlighted: '',
       itemsPerPage: this.initItemsPerPage,
       searchString: '',
-      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
-      TransKeys: {
-        colsSort: de.table.colsSort,
-        search: de.search.text,
-        showEntries: de.pager.showEntries
-      }
+      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null
     }
   },
 

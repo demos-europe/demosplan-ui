@@ -86,7 +86,7 @@ export default {
         multipleItems: de.pager.multipleItems,
         selectNumberOfItems: de.pager.selectNumberOfItems({
           results: this.totalItems,
-          items: this.multipleItems
+          items: this.translations.multipleItems
         })
       }
     }

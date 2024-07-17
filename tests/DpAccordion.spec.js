@@ -7,7 +7,7 @@ describe('DpAccordion', () => {
 
   beforeEach(() => {
     wrapper = shallowMount(DpAccordion, {
-      propsData: {
+      props: {
         dataCy: 'accordionToggle',
         fontWeight: 'bold',
         compressed: false,

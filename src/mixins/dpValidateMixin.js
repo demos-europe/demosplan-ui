@@ -42,7 +42,7 @@ export default {
         const customErrors = invalidFields
           .filter(element => element.hasAttribute('data-dp-validate-error'))
           .map(element => element.dataset.dpValidateError)
-        customErrors.forEach(error => dplan.notify.notify('error', error))
+        customErrors.forEach(error => dplan.notify.notify('error', Translator.trans(error)))
 
         if (customErrors.length === 0) {
           const nonEmptyUniqueFieldNames = invalidFields

@@ -7,6 +7,7 @@
     <img
       :alt="node.attrs.alt"
       ref="image"
+      data-cy="editor:resizableImage"
       :src="node.attrs.src"
       :title="imageTitle"
       @click.ctrl="$root.$emit('open-image-alt-modal',  { event: $event, imgId: id, editorId: editor.options.id })">

@@ -2,6 +2,7 @@
   <dp-modal
     ref="uploadModal"
     content-classes="w-fit"
+    data-cy="editor:uploadModal"
     @modal:toggled="(isOpen) => { if (!isOpen) reset() }">
     <template>
       <h3
@@ -37,6 +38,7 @@
         id="altText"
         v-model="altText"
         class="u-mb"
+        data-cy="uploadModal:altText"
         :label="{
           hint: translations.altTextHint,
           text: translations.altText,
@@ -44,12 +46,14 @@
       <div class="u-mt text--right w-full space-inline-s">
         <button
           class="btn btn--primary"
+          data-cy="uploadModal:save"
           type="button"
           @click="emitAndClose()"
           v-text="editAltTextOnly ? Translator.trans('save') : Translator.trans('insert')">
         </button>
         <button
           class="btn btn--secondary"
+          data-cy="uploadModal:abort"
           type="button"
           @click="handleAbort()">
           {{ Translator.trans('abort') }}

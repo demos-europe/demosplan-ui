@@ -1,7 +1,8 @@
 <template>
   <dp-modal
     ref="uploadModal"
-    content-classes="w-fit">
+    content-classes="w-fit"
+    @modal:toggled="(isOpen) => { if (!isOpen) reset() }">
     <template>
       <h3
         v-if="editAltTextOnly"
@@ -50,7 +51,7 @@
         <button
           class="btn btn--secondary"
           type="button"
-          @click="resetAndClose()">
+          @click="handleAbort()">
           {{ Translator.trans('abort') }}
         </button>
       </div>
@@ -114,21 +115,30 @@ export default {
   },
 
   methods: {
+    closeModal () {
+      this.$emit('close')
+      this.toggleModal()
+    },
+
     emitAndClose () {
       if (this.editAltTextOnly) {
         this.$emit('add-alt', this.altText)
       } else if (this.fileUrl) {
         this.$emit('insert-image', this.fileUrl, this.altText)
       }
-      this.resetAndClose()
+      this.reset()
+      this.closeModal()
     },
 
-    resetAndClose () {
+    handleAbort () {
+      this.reset()
+      this.closeModal()
+    },
+
+    reset () {
       this.altText = ''
       this.fileUrl = ''
       this.editAltTextOnly = false
-      this.$emit('close')
-      this.toggleModal()
     },
 
     setFile ({ hash }) {

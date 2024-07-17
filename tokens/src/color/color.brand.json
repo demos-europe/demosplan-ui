@@ -5,32 +5,38 @@
       "main": {
         "$description": "Loudest brand color. Currently reserved for header and tabs on public detail page.",
         "value": "{color.palette.blue.base}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       },
       "main-contrast": {
         "$description": "Should pass AAA contrast check with the value of 'main'.",
         "value": "{color.palette.white}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       },
       "alt": {
         "$description": "The second most prominent brand representation in the color scheme.",
         "value": "{color.palette.teal.base}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       },
       "alt-contrast": {
         "$description": "Should pass AAA contrast check with the value of 'alt'.",
         "value": "{color.palette.white}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       },
       "highlight": {
         "$description": "Brand accent color to be used sparingly when raising awareness for important elements.",
         "value": "{color.palette.red.dark-1}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       },
       "highlight-contrast": {
         "$description": "Should pass AAA contrast check with the value of 'highlight'.",
         "value": "{color.palette.white}",
-        "themeable":  true
+        "themeable":  true,
+        "$type": "color"
       }
     }
   }

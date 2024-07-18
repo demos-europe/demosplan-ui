@@ -17,7 +17,7 @@ describe('DpAccordion', () => {
     })
   })
 
-  it('renders component correctly', () => {
+  it('the component is mounted', () => {
     expect(wrapper.exists()).toBe(true)
   })
 

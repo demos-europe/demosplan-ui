@@ -131,6 +131,7 @@ export default {
       } else if (this.fileUrl) {
         this.$emit('insert-image', this.fileUrl, this.altText)
       }
+
       this.closeAndReset()
     },
 

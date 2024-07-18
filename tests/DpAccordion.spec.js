@@ -64,7 +64,7 @@ describe('DpAccordion', () => {
     expect(wrapper.find('button').classes()).toContain('weight--normal')
   })
 
-  it('applies the correct font size class based on the compressed prop', async () => {
+  it('displays a reduced font size if "compressed" is set to "true"', async () => {
     await wrapper.setProps({ compressed: true })
     expect(wrapper.find('span').classes()).toContain('font-size-medium')
   })

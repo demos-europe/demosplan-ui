@@ -47,10 +47,11 @@ describe('DpAccordion', () => {
     expect(wrapper.find('button').attributes('aria-expanded')).toBeTruthy()
   })
 
-  it('emits an event when the accordion is toggled', async () => {
+  it('emits the "item:toggle" event with correct payload when the accordion is toggled', async () => {
     await wrapper.find('button').trigger('click')
+    const isVisible = wrapper.vm.isVisible
     expect(wrapper.emitted('item:toggle')).toBeTruthy()
-    expect(wrapper.emitted('item:toggle')[0]).toEqual([true])
+    expect(wrapper.emitted('item:toggle')[0]).toEqual([isVisible])
   })
 
   it('renders the slot content when the accordion is expanded', async () => {

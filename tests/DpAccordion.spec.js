@@ -21,10 +21,19 @@ describe('DpAccordion', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('renders with the correct title and default props', () => {
+  it('displays the title passed in as a prop', () => {
     expect(wrapper.find('button').text()).toContain('Test Title')
+  })
+
+  it('displays the title as "bold" if "fontWeight" is set to "bold"', () => {
     expect(wrapper.find('button').classes()).toContain('weight--bold')
+  })
+
+  it('sets "aria-expanded" to false if "isOpen" is false', () => {
     expect(wrapper.find('button').attributes('aria-expanded')).toBe('false')
+  })
+
+  it('renders the given data-cy attribute', () => {
     expect(wrapper.find('button').attributes('data-cy')).toContain('accordionToggle')
   })
 
@@ -32,7 +41,10 @@ describe('DpAccordion', () => {
     expect(wrapper.vm.isVisible).toBe(false)
     await wrapper.find('button').trigger('click')
     expect(wrapper.vm.isVisible).toBe(true)
-    expect(wrapper.find('button').attributes('aria-expanded')).toBe('true')
+  })
+
+  it('sets aria-expanded to true when the accordion button is clicked', async () => {
+    expect(wrapper.find('button').attributes('aria-expanded')).toBeTruthy()
   })
 
   it('emits an event when the accordion is toggled', async () => {

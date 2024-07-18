@@ -1102,6 +1102,7 @@ export default {
       if (this.editor.options.id !== editorId) {
         return
       }
+
       this.editingImage = imgId
       this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })

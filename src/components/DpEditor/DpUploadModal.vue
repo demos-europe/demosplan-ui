@@ -55,7 +55,7 @@
           class="btn btn--secondary"
           data-cy="uploadModal:abort"
           type="button"
-          @click="handleAbort()">
+          @click="closeAndReset()">
           {{ Translator.trans('abort') }}
         </button>
       </div>
@@ -119,7 +119,8 @@ export default {
   },
 
   methods: {
-    closeModal () {
+    closeAndReset () {
+      this.reset()
       this.$emit('close')
       this.toggleModal()
     },
@@ -130,13 +131,7 @@ export default {
       } else if (this.fileUrl) {
         this.$emit('insert-image', this.fileUrl, this.altText)
       }
-      this.reset()
-      this.closeModal()
-    },
-
-    handleAbort () {
-      this.reset()
-      this.closeModal()
+      this.closeAndReset()
     },
 
     reset () {

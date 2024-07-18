@@ -3887,9 +3887,9 @@
     p-retry "^6.1.0"
 
 "@uppy/core@^3.0.1":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.12.0.tgz#b3e320bfb62869f7dcb9bfd0692c4e29c56c1ad1"
-  integrity sha512-kLkbJfDvJsjR2fIJdEFtLLVGNVxQS+Gtm1z4SxYVmJEm7ZNePsVsDABHasr2CI0jWKcq0PEQACr7wRBpNDkpKA==
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-3.13.1.tgz#01b42684b5c08186033bb8c86bbfb5a1d8b5ae94"
+  integrity sha512-iQGAUO4ziQRpfv7kix6tO6JOWqjI0K4vt8AynvHWzDPZxYSba3zd6RojGNPsYWSR7Xv+dRXYx+GU8oTiK1FRUA==
   dependencies:
     "@transloadit/prettier-bytes" "^0.3.4"
     "@uppy/store-default" "^3.2.2"

@@ -702,9 +702,6 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
-    this.$nextTick(() => {
-      this.addClickListenerToImages()
-    })
   }
 }
 </script>

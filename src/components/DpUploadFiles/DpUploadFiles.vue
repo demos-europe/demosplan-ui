@@ -2,7 +2,7 @@
   <fieldset :class="prefixClass('layout')">
     <legend
       class="sr-only"
-      v-text="TransKeys.uploadFiles" />
+      v-text="mergedTranslations.uploadFiles" />
     <dp-label
       v-if="label.text"
       class="layout__item"
@@ -18,7 +18,7 @@
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
-      :translations="translations"
+      :translations="mergedTranslations"
       :tus-endpoint="tusEndpoint"
       @upload-success="handleUpload" /><!--
 
@@ -228,9 +228,10 @@ export default {
   data () {
     return {
       fileHashes: [],
-      TransKeys: {
+      defaultTranslations: {
         uploadFiles: de.upload.files,
       },
+      mergedTranslations: {},
       uploadedFiles: []
     }
   },
@@ -283,6 +284,10 @@ export default {
       this.uploadedFiles = this.uploadedFiles.filter(el => el.hash !== file.hash)
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
+  },
+
+  created () {
+    this.mergedTranslations = { ...this.defaultTranslations, ...this.translations }
   },
 
   mounted () {

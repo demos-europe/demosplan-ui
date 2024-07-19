@@ -6,11 +6,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#947](https://github.com/demos-europe/demosplan-ui/pull/947)) DpButtonRow: add validator ([@sakutademos](https://github.com/sakutademos))
 - ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Fixed
 
-- ([#947](https://github.com/demos-europe/demosplan-ui/pull/947)) DpButtonRow: add validator ([@sakutademos](https://github.com/sakutademos))
 - ([#911](https://github.com/demos-europe/demosplan-ui/pull/911)) DpButtonRow: update class ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.3.20 - 2024-07-17

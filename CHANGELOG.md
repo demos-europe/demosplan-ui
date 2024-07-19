@@ -4,7 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-## v0.3.19 - 2024-07-17
+### Fixed
+
+- ([#911](https://github.com/demos-europe/demosplan-ui/pull/911)) DpButtonRow: update class ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.20 - 2024-07-17
 
 ### Added
 

@@ -43,7 +43,7 @@
           hint: translations.altTextHint,
           text: translations.altText,
         }" />
-      <div class="u-mt text--right w-full space-inline-s">
+      <div class="u-mt text-right w-full space-inline-s">
         <button
           class="btn btn--primary"
           data-cy="uploadModal:save"

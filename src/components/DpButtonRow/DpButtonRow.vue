@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[`text-${alignment}`, $attrs.class]"
+    :class="[align, $attrs.class]"
     class="space-inline-s">
     <dp-button
       v-if="primary"
@@ -122,6 +122,12 @@ export default {
       type: String,
       default: 'solid',
       validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
+    }
+  },
+
+  computed: {
+    align () {
+      return this.alignment === 'left' ? 'text-left' : 'text-right'
     }
   }
 }

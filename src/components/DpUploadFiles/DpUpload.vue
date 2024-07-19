@@ -246,7 +246,7 @@ export default {
 
     this.uppy.on('upload-error', (file, error, response) => {
       console.error(error)
-      dplan.notify.error(this.uppyTranslations.errorFileUpload)
+      dplan.notify.error(this.uppyTranslations.strings.errorFileUpload)
       this.$emit('file-error', { file, error, response })
     })
 

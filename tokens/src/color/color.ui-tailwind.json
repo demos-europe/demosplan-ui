@@ -141,12 +141,17 @@
         "status": {
           "progress": {
             "DEFAULT": {
-              "$description": "Text color to communicate that something is in progress (ex: status-progress-text).",
+              "$description": "Text color to communicate that something is in progress.",
               "value": "{color.palette.blue.dark-1}",
               "$type": "color"
             },
+            "fill": {
+              "$description": "Fill color to communicate that something is in progress. Use for charts.",
+              "value": "{color.palette.blue.base}",
+              "$type": "color"
+            },
             "icon": {
-              "$description": "Icon color to communicate that something is in progress (ex: status-progress-fill).",
+              "$description": "Icon color to communicate that something is in progress.",
               "value": "{color.palette.blue.base}",
               "$type": "color"
             }
@@ -155,6 +160,11 @@
             "DEFAULT": {
               "$description": "Text color to communicate something has moved or changed.",
               "value": "{color.palette.yellow.dark-2}",
+              "$type": "color"
+            },
+            "fill": {
+              "$description": "Fill color to communicate something has moved or changed. Use for charts.",
+              "value": "{color.palette.yellow.base}",
               "$type": "color"
             },
             "icon": {
@@ -169,6 +179,11 @@
               "value": "{color.palette.red.dark-1}",
               "$type": "color"
             },
+            "fill": {
+              "$description": "Fill color to communicate that an action or validation has failed on an item. Use for charts.",
+              "value": "{color.palette.red.base}",
+              "$type": "color"
+            },
             "icon": {
               "$description": "Icon color to communicate that an action or validation has failed on an item.",
               "value": "{color.palette.red.base}",
@@ -181,6 +196,11 @@
               "value": "{color.palette.green.dark-1}",
               "$type": "color"
             },
+            "fill": {
+              "$description": "Fill color to communicate that an action has completed, or something has been added. Use for charts.",
+              "value": "{color.palette.green.base}",
+              "$type": "color"
+            },
             "icon": {
               "$description": "Icon color to communicate that an action has completed, or something has been added.",
               "value": "{color.palette.green.base}",
@@ -191,6 +211,11 @@
             "DEFAULT": {
               "$description": "Text color to communicate neutral or unknown status.",
               "value": "{color.palette.neutral.dark-1}",
+              "$type": "color"
+            },
+            "fill": {
+              "$description": "Fill color to communicate neutral or unknown status. Use for charts.",
+              "value": "{color.palette.neutral.base}",
               "$type": "color"
             },
             "icon": {

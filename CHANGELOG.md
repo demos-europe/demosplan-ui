@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Fixed
 
 - ([#911](https://github.com/demos-europe/demosplan-ui/pull/911)) DpButtonRow: update class ([@sakutademos](https://github.com/sakutademos))
@@ -23,6 +27,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#929](https://github.com/demos-europe/demosplan-ui/pull/929)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#926](https://github.com/demos-europe/demosplan-ui/pull/926)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#921](https://github.com/demos-europe/demosplan-ui/pull/921)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#916](https://github.com/demos-europe/demosplan-ui/pull/916)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

@@ -7,7 +7,7 @@
           <label
             class="inline"
             for="search">
-            {{ translations.search }}
+            {{ defaultTranslations.search }}
           </label>
           <input
             type="text"
@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="translations.showEntries" />
+            :label-text="defaultTranslations.showEntries" />
         </div>
       </div>
     </dp-sticky-element>
@@ -50,8 +50,8 @@
             :key="element.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="translations.colsSort + ': ' + element.label"
-              :title="translations.colsSort + ': ' + element.label"
+              :aria-label="defaultTranslations.colsSort + ': ' + element.label"
+              :title="defaultTranslations.colsSort + ': ' + element.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(element.field)"
               type="button">
@@ -220,17 +220,19 @@ export default {
     translations: {
       type: Object,
       required: false,
-      default: () => ({
-        colsSort: de.table.colsSort,
-        search: de.search.text,
-        showEntries: de.pager.showEntries
-      })
+      default: () => ({})
     }
   },
 
   data () {
     return {
       currentPage: 1,
+      defaultTranslations: {
+        colsSort: de.table.colsSort,
+        search: de.search.text,
+        showEntries: de.pager.showEntries
+      },
+      mergedTranslations: {},
       filteredItems: [],
       filters: this.headerFields.reduce((obj, item) => {
         obj[item.field] = true
@@ -347,6 +349,10 @@ export default {
       }
       this.filteredItems = sortedList
     }
+  },
+
+  created () {
+    this.mergedTranslations = { ...this.defaultTranslations, ...this.translations }
   },
 
   mounted () {

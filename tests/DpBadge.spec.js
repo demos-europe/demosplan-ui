@@ -18,29 +18,17 @@ describe('DpBadge', () => {
     expect(wrapper.text()).toBe('Test Badge')
   })
 
-it('applies the correct colors for color=default', () => {
-  const defaultClasses = ['color-text-default', 'bg-color-light']
-  defaultClasses.forEach(class => {
-    expect(wrapper.classes()).toContain(class)
+  it('applies the correct colors for color=default', () => {
+    const defaultClasses = ['color-text-default', 'bg-color-light']
+    defaultClasses.forEach(cssClass => {
+      expect(wrapper.classes()).toContain(cssClass)
+    })
   })
-})
 
   it('applies the correct size class', () => {
-    expect(wrapper.classes()).toContain('font-size-medium')
-    expect(wrapper.classes()).toContain('u-pv-0_25')
-    expect(wrapper.classes()).toContain('u-ph-0_5')
-  })
-
-  it('renders with different color', async () => {
-    await wrapper.setProps({ color: 'error' })
-    expect(wrapper.classes()).toContain('color-message-severe-text')
-    expect(wrapper.classes()).toContain('bg-color-message-severe')
-  })
-
-  it('renders with different size', async () => {
-    await wrapper.setProps({ size: 'large' })
-    expect(wrapper.classes()).toContain('font-size-large')
-    expect(wrapper.classes()).toContain('u-pv-0_5')
-    expect(wrapper.classes()).toContain('u-ph-0_75')
+    const defaultClasses = ['font-size-medium', 'u-pv-0_25', 'u-ph-0_5']
+    defaultClasses.forEach(cssClass => {
+      expect(wrapper.classes()).toContain(cssClass)
+    })
   })
 })

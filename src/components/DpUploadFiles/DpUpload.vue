@@ -1,5 +1,7 @@
 <template>
-  <div ref="fileInput" />
+  <div
+    :data-cy="dataCy"
+    ref="fileInput" />
 </template>
 
 <script>
@@ -54,6 +56,12 @@ export default {
       type: Number,
       default: Infinity,
       required: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'upload'
     },
 
     /**

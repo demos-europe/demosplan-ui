@@ -29,12 +29,13 @@
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
             <!-- Cut -->
             <button
-              @click="cut"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.cut"
-              v-tooltip="translations.cut"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:cut"
+              :disabled="readonly"
+              type="button"
+              @click="cut"
+              v-tooltip="translations.cut">
               <i
                 :class="prefixClass('fa fa-scissors')"
                 aria-hidden="true" />
@@ -42,24 +43,26 @@
             &#10072;
             <!-- Undo -->
             <button
-              @click="editor.chain().focus().undo().run()"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.undo"
-              v-tooltip="translations.undo"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:undo"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().undo().run()"
+              v-tooltip="translations.undo">
               <i
                 :class="prefixClass('fa fa-reply')"
                 aria-hidden="true" />
             </button>
             <!-- Redo -->
             <button
-              @click="editor.chain().focus().redo().run()"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.redo"
-              v-tooltip="translations.redo"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:redo"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().redo().run()"
+              v-tooltip="translations.redo">
               <i
                 :class="prefixClass('fa fa-share')"
                 aria-hidden="true" />
@@ -69,12 +72,13 @@
               <!-- Bold -->
 
               <button
-                @click="editor.chain().focus().toggleBold().run()"
-                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
-                type="button"
                 :aria-label="translations.bold"
-                v-tooltip="translations.bold"
-                :disabled="readonly">
+                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
+                data-cy="editor:bold"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleBold().run()"
+                v-tooltip="translations.bold">
                 <i
                   :class="prefixClass('fa fa-bold')"
                   aria-hidden="true" />
@@ -82,24 +86,26 @@
 
               <!-- Italic -->
               <button
-                @click="editor.chain().focus().toggleItalic().run()"
-                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
-                type="button"
                 :aria-label="translations.italic"
-                v-tooltip="translations.italic"
-                :disabled="readonly">
+                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
+                data-cy="editor:italic"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleItalic().run()"
+                v-tooltip="translations.italic">
                 <i
                   :class="prefixClass('fa fa-italic')"
                   aria-hidden="true" />
               </button>
               <!-- Underline -->
               <button
-                @click="editor.chain().focus().toggleUnderline().run()"
-                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                type="button"
                 :aria-label="translations.underline"
-                v-tooltip="translations.underline"
-                :disabled="readonly">
+                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                data-cy="editor:underline"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleUnderline().run()"
+                v-tooltip="translations.underline">
                 <i
                   :class="prefixClass('fa fa-underline')"
                   aria-hidden="true" />
@@ -108,12 +114,13 @@
             <!-- Strike through -->
             <button
               v-if="toolbar.strikethrough"
-              @click="editor.chain().focus().toggleStrike().run()"
-              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-              type="button"
               :aria-label="translations.strikethrough"
-              v-tooltip="translations.strikethrough"
-              :disabled="readonly">
+              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              data-cy="editor:strikethrough"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().toggleStrike().run()"
+              v-tooltip="translations.strikethrough">
               <i
                 :class="prefixClass('fa fa-strikethrough')"
                 aria-hidden="true" />
@@ -123,10 +130,10 @@
               :class="prefixClass('inline-block relative')">
               <button
                 :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                :disabled="readonly"
                 type="button"
                 @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
-                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
-                :disabled="readonly">
+                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)">
                 <dp-icon
                   class="align-text-top inline-block"
                   icon="highlighter" />
@@ -355,6 +362,7 @@ import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
 import { prefixClassMixin } from '~/mixins'
+import { v4 as uuid } from 'uuid'
 
 export default {
   name: 'DpEditor',
@@ -1042,6 +1050,7 @@ export default {
 
   mounted () {
     this.editor = new Editor({
+      id: uuid(),
       editable: !this.readonly,
       extensions: this.collectExtensions(),
       content: this.currentValue,
@@ -1090,9 +1099,13 @@ export default {
       }
     })
 
-    this.$root.$on('open-image-alt-modal', (e, id) => {
-      this.editingImage = id
-      this.openUploadModal({ editAltOnly: true, currentAlt: e.target.getAttribute('alt') })
+    this.$root.$on('open-image-alt-modal', ({ event, imgId, editorId }) => {
+      if (this.editor.options.id !== editorId) {
+        return
+      }
+
+      this.editingImage = imgId
+      this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })
     /*
      * On form-reset the editor has to be cleared manually.

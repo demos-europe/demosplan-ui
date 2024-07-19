@@ -18,10 +18,12 @@ describe('DpBadge', () => {
     expect(wrapper.text()).toBe('Test Badge')
   })
 
-  it('applies the correct color class', () => {
-    expect(wrapper.classes()).toContain('color-text-default')
-    expect(wrapper.classes()).toContain('bg-color-light')
+it('applies the correct colors for color=default', () => {
+  const defaultClasses = ['color-text-default', 'bg-color-light']
+  defaultClasses.forEach(class => {
+    expect(wrapper.classes()).toContain(class)
   })
+})
 
   it('applies the correct size class', () => {
     expect(wrapper.classes()).toContain('font-size-medium')

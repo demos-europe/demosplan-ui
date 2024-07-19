@@ -49,7 +49,7 @@
           data-cy="uploadModal:save"
           type="button"
           @click="emitAndClose()"
-          v-text="editAltTextOnly ? Translator.trans('save') : translations.insert">
+          v-text="editAltTextOnly ? translations.save : translations.insert">
         </button>
         <button
           class="btn btn--secondary"
@@ -115,6 +115,7 @@ export default {
         editImage: de.image.edit,
         insert: de.operations.insert,
         insertImage: de.image.insert,
+        save: de.operations.save,
         uploadImage: de.upload.select.image
       }
     }

@@ -40,7 +40,8 @@ export default {
     alignment: {
       type: String,
       required: false,
-      default: 'right'
+      default: 'right',
+      validator: (prop) => ['right', 'left'].includes(prop)
     },
 
     /**

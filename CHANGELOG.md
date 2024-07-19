@@ -4,6 +4,20 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+## v0.3.19 - 2024-07-17
+
+### Added
+
+- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are not longer available. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+## v0.3.19 - 2024-07-12
+
 ### Fixed
 
 - ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))
@@ -17,6 +31,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#912](https://github.com/demos-europe/demosplan-ui/pull/912)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#908](https://github.com/demos-europe/demosplan-ui/pull/908)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#919](https://github.com/demos-europe/demosplan-ui/pull/919)) Add enlarging images on click for DpEditor ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Changed
 
@@ -27,7 +42,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#891](https://github.com/demos-europe/demosplan-ui/pull/891)) DpDataTabele: Escape whitespaces and plus signs for searching ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#891](https://github.com/demos-europe/demosplan-ui/pull/891)) DpDataTable: Escape whitespaces and plus signs for searching ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Added
 

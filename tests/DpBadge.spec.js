@@ -14,7 +14,7 @@ describe('DpBadge', () => {
     })
   })
 
-  it('renders the correct text', () => {
+  it('renders the text passed in as prop', () => {
     expect(wrapper.text()).toBe('Test Badge')
   })
 

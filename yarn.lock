@@ -1213,9 +1213,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@braintree/sanitize-url@^7.0.0":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-7.0.3.tgz#f79bfb9828bbf8031e9811fc38fc2c220b347a5b"
-  integrity sha512-NFSRlcnXOS+VdopYWQyzlaFYRRqaf75bbqidO/c7PBakT+3C0Fm287hyZwvc11HVRSUj1QXl+rb4u1pemh57yA==
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-7.0.4.tgz#a7ddd6d55dfb89e341f5684c9717ee24fef62301"
+  integrity sha512-hPYRrKFoI+nuckPgDJfyYAkybFvheo4usS0Vw0HNAe+fmGBQA5Az37b/yStO284atBoqqdOUhKJ3d9Zw3PQkcQ==
 
 "@colors/colors@1.5.0":
   version "1.5.0"

@@ -1,4 +1,4 @@
-type IconAlias =
+export type IconAlias =
   'ai' // alias for 'robot'
   | 'cancel' // alias for 'xmark' -> 'x'
   | 'chevron-down' // alias for 'caret-down'
@@ -26,13 +26,28 @@ type IconAlias =
   | 'userSolid' // alias for 'user', weight: fill
   | 'xmark' // alias for 'x'
 
+export type AliasedPhosphorIconName =
+  'arrows-clockwise'
+  | 'circle-notch'
+  | 'clock-counter-clockwise'
+  | 'corners-in'
+  | 'corners-out'
+  | 'dots-six-vertical'
+  | 'download-simple'
+  | 'envelope-simple'
+  | 'gear-six'
+  | 'lock-simple'
+  | 'lock-simple-open'
+  | 'magnifying-glass'
+  | 'pencil-simple'
+  | 'robot'
+  | 'warning-diamond'
 
-export type IconName =
-  | 'arrow-down'
+export type PhosphorIconName =
+  'arrow-down'
   | 'arrow-left'
   | 'arrow-right'
   | 'arrow-up'
-  | 'arrows-clockwise'
   | 'caret-down'
   | 'caret-left'
   | 'caret-right'
@@ -41,39 +56,30 @@ export type IconName =
   | 'caret-double-up'
   | 'check'
   | 'check-circle'
-  | 'circle-notch'
   | 'clock'
-  | 'clock-counter-clockwise'
   | 'copy'
-  | 'corners-in'
-  | 'corners-out'
-  | 'dots-six-vertical'
-  | 'download-simple'
-  | 'envelope-simple'
   | 'file'
-  | 'gear-six'
   | 'highlighter'
   | 'hourglass'
   | 'info'
-  | 'lock-simple'
-  | 'lock-simple-open'
-  | 'magnifying-glass'
-  | 'pencil-simple'
   | 'plus'
   | 'phone'
   | 'question'
-  | 'robot'
-  | 'signOut'
+  | 'sign-out'
   | 'tag'
-  | 'trash-simple'
   | 'user'
-  | 'usersThree'
+  | 'users-three'
   | 'warning'
-  | 'warning-diamond'
   | 'x'
   | 'x-circle'
+
+export type IconName =
+  | PhosphorIconName
+  | AliasedPhosphorIconName
   | IconAlias
 
 export type IconSize = 'small' | 'medium' | 'large' | 'xlarge'
 
 export type IconWeight = 'light' | 'regular' | 'bold' | 'fill'
+
+export type IconProportion = 'landscape' | 'portrait' | 'square'

@@ -44,11 +44,19 @@ import {
   PhX,
   PhXCircle
 } from '@phosphor-icons/vue'
+import {
+  AliasedPhosphorIconName,
+  IconAlias,
+  IconName,
+  IconProportion,
+  IconSize,
+  PhosphorIconName} from '../../../../types'
+import type { Component } from 'vue'
 
 // ICONS
 
 // icon names that are used and already correspond to the phosphor icon name
-const mappedIconNames = {
+const mappedIconNames: Record<PhosphorIconName, Component> = {
   'arrow-down': PhArrowDown,
   'arrow-left': PhArrowLeft,
   'arrow-right': PhArrowRight,
@@ -80,7 +88,7 @@ const mappedIconNames = {
 }
 
 // icon names that are not used yet but should replace the aliases
-const mappedAliasedIconNames = {
+const mappedAliasedIconNames: Record<AliasedPhosphorIconName, Component> = {
   'arrows-clockwise': PhArrowsClockwise,
   'circle-notch': PhCircleNotch,
   'clock-counter-clockwise': PhClockCounterClockwise,
@@ -99,7 +107,7 @@ const mappedAliasedIconNames = {
 }
 
 // icon names that are used as aliases - the phosphor icon has a different name
-const mappedIconAliases = {
+const mappedIconAliases: Record<IconAlias, Component> = {
   'ai': PhRobot,
   'cancel': PhX,
   'chevron-down': PhArrowDown,
@@ -130,7 +138,7 @@ const mappedIconAliases = {
 
 // ICON PROPORTIONS
 
-const iconsProportions = {
+const iconsProportions: Record<string, IconProportion> = {
   'arrow-down': 'portrait',
   'arrow-left': 'landscape',
   'arrow-right': 'landscape',
@@ -146,7 +154,7 @@ const iconsProportions = {
   'envelope-simple': 'landscape'
 }
 
-const aliasedIconsProportions = {
+const aliasedIconsProportions: Record<string, IconProportion> = {
   'chevron-down': 'landscape', // alias for caret-down
   'chevron-left': 'portrait', // alias for caret-left
   'chevron-right': 'portrait', // alias for caret-right
@@ -157,18 +165,18 @@ const aliasedIconsProportions = {
 
 // EXPORTS
 
-export const iconComponents = {
+export const iconComponents: Record<IconName, Component> = {
   ...mappedIconNames,
   ...mappedAliasedIconNames,
   ...mappedIconAliases
 }
 
-export const proportions = {
+export const proportions: Record<string, IconProportion> = {
   ...iconsProportions,
   ...aliasedIconsProportions
 }
 
-export const SIZES = {
+export const SIZES: Record<IconSize, number> = {
   'small': 16,
   'medium': 20,
   'large': 24,

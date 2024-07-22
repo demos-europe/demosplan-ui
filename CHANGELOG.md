@@ -8,6 +8,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#947](https://github.com/demos-europe/demosplan-ui/pull/947)) DpButtonRow: add validator ([@sakutademos](https://github.com/sakutademos))
 - ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
 - ([#919](https://github.com/demos-europe/demosplan-ui/pull/919)) Add enlarging images on click for DpEditor ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#929](https://github.com/demos-europe/demosplan-ui/pull/929)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

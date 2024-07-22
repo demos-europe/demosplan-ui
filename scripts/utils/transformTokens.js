@@ -48,14 +48,14 @@ const transformTailwindTokenValue = (token, formatterArguments) => {
     current = ref
   }
 
-  cssVar += `, ${fallback})`.repeat(cssVar.match(/var\(/g).length)
+  // Add final fallback, close with brackets corresponding to the amount of "var" usages found
+  cssVar += `, ${fallback}` + ')'.repeat(cssVar.match(/var\(/g).length)
 
-  let regex = /#([0-9a-fA-F]{6})\), #([0-9a-fA-F]{6})/
-  return cssVar.replace(regex, '#$1)')
+  return cssVar
 }
 
 const transformTailwindTokensGrouped = (formatterArguments, corePluginsColor) => {
-  const { dictionary, file, platform } = formatterArguments
+  const { dictionary, file } = formatterArguments
   const groupedTokens = {}
 
   corePluginsColor.forEach(plugin => {
@@ -82,18 +82,24 @@ const transformTailwindTokensGrouped = (formatterArguments, corePluginsColor) =>
   return `module.exports = ${JSON.stringify(groupedTokens[file.destination.replace('.js', '')], null, 2)};`
 }
 
-const isDestinationToken = (file, token) => {
+const isDestination = (file, token) => {
   const filePart = file.destination.replace('.js', '')
   const dashedTokenPath = dashToLowerCamel(token.path[0])
   return dashedTokenPath === filePart
 }
 
+const isDeprecated = (token) => token['$status'] === 'Deprecated'
+
+const isTailwindExcluded = (token) => {
+  return token.path[0] === 'fontSize' && token.path[1] === 'scale'
+}
+
 const transformTailwindTokensFlat = (formatterArguments) => {
-  const { dictionary, file, platform } = formatterArguments
+  const { dictionary, file } = formatterArguments
   const tokens = {}
 
   dictionary.allTokens.forEach(token => {
-    if (!isDestinationToken(file, token) || token['$status'] === 'Deprecated' || token.path[0] === 'fontSize' && token.path[1] === 'scale') {
+    if (!isDestination(file, token) || isDeprecated(token) || isTailwindExcluded(token)) {
       return
     }
 
@@ -162,7 +168,7 @@ const transformTailwindTokenName = (token, keepPluginName = false) => {
     }
 
     if (['boxShadow', 'breakpoints', 'fontSize', 'rounded', 'space', 'zIndex'].includes(tokenPath[0])) {
-      declaration = declaration.replace(/(boxShadow|breakpoints|fontSize|rounded|space|zIndex)?-/g, '')
+      declaration = declaration.replace(/(boxShadow|breakpoints|fontSize|rounded|space|zIndex)-/g, '')
     }
   }
 
@@ -175,9 +181,7 @@ const transformTailwindTokenName = (token, keepPluginName = false) => {
 
   // "DEFAULT" is a Tailwind convention that should not be part of the declaration key.
   declaration = declaration.replace(/-DEFAULT/g, '')
-  if (token.path[0] === 'zIndex') {
-    console.log(declaration)
-  }
+
   return declaration
 }
 
@@ -203,7 +207,7 @@ const transformDeclarationScss = (declaration, tokenPath) => {
 }
 
 const transformScssTokens = ({dictionary, options, file}) => {
-  const { outputReferences, themeable = false, formatting } = options
+  const { outputReferences, formatting } = options
 
   let { allTokens } = dictionary
 

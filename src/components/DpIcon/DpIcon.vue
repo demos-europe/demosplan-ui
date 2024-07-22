@@ -4,10 +4,6 @@
     :class="proportionClass" />
 </template>
 
-<script lang="ts">
-
-</script>
-
 <script setup lang="ts">
 import {
   computed,

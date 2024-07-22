@@ -1,7 +1,7 @@
 <template>
   <fieldset :class="prefixClass('layout')">
     <legend
-      class="hide-visually"
+      class="sr-only"
       v-text="Translator.trans('upload.files')" />
     <dp-label
       v-if="label.text"
@@ -17,6 +17,7 @@
       :basic-auth="basicAuth"
       :chunk-size="chunkSize"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
+      :data-cy="dataCy"
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
       :translations="translations"
@@ -99,6 +100,12 @@ export default {
       type: Number,
       default: Infinity,
       required: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'uploadFile'
     },
 
     /**

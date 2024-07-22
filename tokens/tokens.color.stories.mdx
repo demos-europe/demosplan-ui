@@ -1,4 +1,7 @@
 import { Meta } from '@storybook/addon-docs'
+import ColorTableGrouped from '../.storybook/components/ColorTableGrouped'
+import ColorTable from '../.storybook/components/ColorTable'
+import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Color"/>
 
@@ -10,13 +13,57 @@ import { Meta } from '@storybook/addon-docs'
 
 # Color tokens
 
-The demosplan-ui color tokens are grouped into *palette* (the raw values which should not be used directly), *brand* (for
-colors used in branded context), *message* and *status* (to communicate system state), *data* (for data visualization)
-and *interaction* (to indicate interaction). Apart from *brand*, colors are not meant to be themeable.
+The demosplan-ui color tokens are grouped into <a target="_self" href="#brand-colors">**brand**</a> (for colors used in branded context),
+<a target="_self" href="#data-visualization-colors">**data**</a> (for data visualization) and
+<a target="_self" href="#functional-semantic-color-tokens">**semantic tokens**</a> for visualizing **message**, **status**
+(to communicate system state) and **interactive** (to indicate possible interaction), alongside tokens for **text**, **surface**,
+and **border** colors used throughout the interface. A full list of all palette colors (the raw color values which cannot
+be used directly) can be found <a target="_self" href="#palette-colors">here</a>.
+
+Tokens are available as <a target="_self" href="#tailwind-utility-classes">Tailwind utility classes</a> and <a target="_self" href="#scss-variables">SCSS variables</a>.
+
+<Notice content={
+  `Note that the naming scheme for ui colors differs between Tailwind and SCSS, as SCSS follows a legacy naming scheme,
+   while Tailwind enforces the property name or short name as the first part of the selector.`
+} />
 
 ## How to use and override color tokens
 
-Color tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+### Tailwind utility classes
+
+To use tokens via Tailwind utility classes, the `tailwind.config.js` provided by demosplan-ui
+must be merged into the config of the consuming application:
+
+```
+const config = {
+  ...require('@demos-europe/demosplan-ui/tailwind.config'),
+  content: [ // Files to watch for tailwind classes ],
+  // Other config values
+}
+
+module.exports = config
+```
+
+Then, they can be applied to markup that is matched in the `content` definition.
+
+#### Overriding Tailwind colors
+
+Tailwind classes are defined to use a cascade of CSS variables. Each selector that inherits from a variable
+will also be overridden. This way, it is possible to globally override colors, or to override a specific variable:
+
+```
+:root {
+    // Globally override a palette color
+    --dp-color-blue-base: #2400d0;
+
+    // Override a specific variable
+    --dp-color-interactive-hover: #e100bd;
+}
+```
+
+### SCSS Variables
+
+To use tokens via SCSS variables, they have to be imported at first:
 
 ```
 @import '@demos-europe/demosplan-ui/tokens/scss/color.palette';
@@ -39,8 +86,9 @@ Then, tokens can be used within Scss code:
 }
 ```
 
-To override the value of a specific token, define the override
-before importing the provided file:
+#### Overriding SCSS Variables
+
+To override the value of a specific token, define the override before importing the provided file:
 
 ```
 // Set a new color for just this one token:
@@ -55,7 +103,7 @@ $dp-color-interactive-hover: #9700ff;
 
 If you want to override tokens with other token values, you
 would have to import those first. Also, by importing alias
-tokens afterwards, they are as well assigned the changed values.
+tokens afterward, they are as well assigned the changed values.
 
 ```
 @import '@demos-europe/demosplan-ui/tokens/scss/color.palette';
@@ -74,48 +122,38 @@ $dp-color-main: $dp-color-yellow-base;
 // Use tokens...
 ```
 
-## Available tokens
+## Available color tokens
 
-### Palette colors
+**brand**, **data** and **interactive** colors are enabled for all Tailwind corePlugins that apply color.
+A full list of those corePlugins can be found [in the config.full.js stub for tailwind](https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js) - each plugin that applies `theme('colors')`.
 
-Color palettes resemble all colors available within demosplan-ui. Available color palettes contain 7 steps:
-a base color, 2 shades and 4 lights. The colors are complemented with white, black, and neutral.
+**backgroundColor**, **borderColor** and **textColor** corePlugins each define additional available ui colors.
+
+### Functional (semantic) color tokens
+
+When building UI with a focus on functionality, not brand, the following semantic tokens can be used.
+
+#### Tokens available for all corePlugins
+
+<ColorTableGrouped module={'color'} />
+
+#### Text colors
+
+<ColorTableGrouped module={'textColor'} />
+
+#### Background colors
+
+<ColorTableGrouped module={'backgroundColor'} />
+
+#### Border colors
+
+<ColorTableGrouped module={'borderColor'} />
 
 ### Brand colors
 
-For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist. Like message, status,
-and interaction tokens, they are aliased to palette tokens.
+For contexts that require to express brand, the *main*, *alt*, and *highlight* tokens exist.
 
-### Functional (UI) colors
-
-When building UI with a focus on functionality, not brand, the *interactive*, *message*, and *status* tokens can be utilized.
-
-#### Interactive
-
-Be it links, buttons, or other elements users can interact with: whenever an interface element should convey
-its interactive nature, the *interactive* tokens can be used.
-
-#### Message
-
-Message color is used to communicate system feedback. For each group, the following tokens exist:
-
-- `-bg` Background color
-- `-border` Border color
-- `-interactive` Color for links and other interactive elements
-- `-fill` Fill color for icons or other svg
-- `-text` Text color
-
-#### Status
-
-System state is typically communicated via icons (maybe in condensed table rows) or as colored text. For these cases,
-the following *status* tokens can be used:
-
-- `-fill` Fill color for icons or other svg
-- `-text` Text color
-
-The tokens are to be used for elements on a white background.
-
-**More ui tokens are still to be documented.**
+<ColorTable namespace={'brand'} />
 
 ### Data visualization colors
 
@@ -125,6 +163,8 @@ that differentiate from each other. Like palette colors, they contain hex values
 These are generated with https://colorbrewer2.org/#type=diverging&scheme=BrBG&n=8 to be colorblind safe
 and intentionally separate from other color palettes.
 
+<ColorTable namespace={'data'} />
+
 Although these colors are universally used for charts, they need to be refined into "sequential", "categorical",
 and "diverging" when appropriate. Read more if the need arises:
 
@@ -133,3 +173,12 @@ and "diverging" when appropriate. Read more if the need arises:
 - https://medium.com/design-ibm/inclusive-color-sequences-for-data-viz-in-6-steps-712869b910c2
 - https://medium.com/carbondesign/color-palettes-and-accessibility-features-for-data-visualization-7869f4874fca
 - https://blog.graphiq.com/finding-the-right-color-palettes-for-data-visualizations-fcd4e707a283
+
+### Palette colors
+
+Color palettes resemble all colors available within demosplan-ui. Available color palettes contain 7 steps:
+a base color, 2 shades and 4 lights. The colors are complemented with white, black, and neutral.
+
+<Notice content={'Palette colors are not meant nor made to be used directly - instead, the functional colors defined above should be utilized.'} />
+
+<ColorTable namespace={'palette'} />

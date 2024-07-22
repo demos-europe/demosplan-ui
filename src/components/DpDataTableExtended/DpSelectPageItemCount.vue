@@ -3,9 +3,11 @@
     <select
       :id="selectId"
       class="o-form__control-select w-auto u-mr-0_25"
+      data-cy="selectPageMenu"
       @change="e => $emit('changed-count', parseInt(e.target.value))">
       <option
         v-for="option in pageCountOptions"
+        :data-cy="`selectPageItem:${option}`"
         :value="option"
         :selected="option === currentItemCount">
         {{ option }}

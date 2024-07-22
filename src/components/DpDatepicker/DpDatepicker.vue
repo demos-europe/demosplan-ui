@@ -160,7 +160,7 @@ export default {
        * This attribute is needed for validation to display the field name in case of an error
        * and must be set every time the Datepicker is mounted or updated.
        */
-      datePickerInput.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
+      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
     },
 
     emitUpdate (e) {

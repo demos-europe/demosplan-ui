@@ -1,7 +1,9 @@
 <template>
   <dp-modal
     ref="uploadModal"
-    content-classes="u-2-of-3-lap-up u-1-of-2-desk-up">
+    content-classes="w-fit"
+    data-cy="editor:uploadModal"
+    @modal:toggled="(isOpen) => { if (!isOpen) reset() }">
     <h3
       v-if="editAltTextOnly"
       class="u-mb">
@@ -12,7 +14,7 @@
       class="u-mb">
       {{ translations.insertImage }}
     </h3>
-    <div v-show="editAltTextOnly === false">
+    <div v-if="!editAltTextOnly">
       <dp-upload-files
         allowed-file-types="img"
         :basic-auth="basicAuth"
@@ -25,25 +27,34 @@
         :tus-endpoint="tusEndpoint"
         @upload-success="setFile" />
     </div>
+    <div v-else>
+      <img
+        :alt="altText"
+        class="mb-4"
+        :src="this.imgSrc">
+    </div>
     <dp-input
       id="altText"
       v-model="altText"
       class="u-mb"
+      data-cy="uploadModal:altText"
       :label="{
         hint: translations.altTextHint,
         text: translations.altText,
       }" />
-    <div class="u-mt text--right w-full space-inline-s">
+    <div class="u-mt text-right w-full space-inline-s">
       <button
         class="btn btn--primary"
+        data-cy="uploadModal:save"
         type="button"
-        @click="emitAndClose()">
-        {{ Translator.trans('insert') }}
+        @click="emitAndClose()"
+        v-text="editAltTextOnly ? Translator.trans('save') : Translator.trans('insert')">
       </button>
       <button
         class="btn btn--secondary"
+        data-cy="uploadModal:abort"
         type="button"
-        @click="resetAndClose()">
+        @click="closeAndReset()">
         {{ Translator.trans('abort') }}
       </button>
     </div>
@@ -94,6 +105,7 @@ export default {
       fileUrl: '',
       altText: '',
       editAltTextOnly: false,
+      imgSrc: '',
       translations: {
         altText: de.altText.default,
         altTextHint: de.image.alt.explanation,
@@ -105,21 +117,26 @@ export default {
   },
 
   methods: {
+    closeAndReset () {
+      this.reset()
+      this.$emit('close')
+      this.toggleModal()
+    },
+
     emitAndClose () {
       if (this.editAltTextOnly) {
         this.$emit('add-alt', this.altText)
       } else if (this.fileUrl) {
         this.$emit('insert-image', this.fileUrl, this.altText)
       }
-      this.resetAndClose()
+
+      this.closeAndReset()
     },
 
-    resetAndClose () {
+    reset () {
       this.altText = ''
       this.fileUrl = ''
       this.editAltTextOnly = false
-      this.$emit('close')
-      this.toggleModal()
     },
 
     setFile ({ hash }) {
@@ -129,13 +146,10 @@ export default {
     },
 
     toggleModal (data) {
-      const willCloseModal = this.$refs.uploadModal.isOpenModal === true
-
-      if (willCloseModal) {
-        this.$refs.uploader.clearFilesList()
-      } else if (data) {
+      if (data) {
         this.editAltTextOnly = data.editAltOnly
         this.altText = data.currentAlt
+        this.imgSrc = data.imgSrc
       }
 
       this.$refs.uploadModal.toggle()

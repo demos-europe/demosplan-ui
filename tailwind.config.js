@@ -19,13 +19,34 @@ const spacing = tokensToTailwind(require('./tokens/dist/js/space').space)
 const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpoints)
 const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
 
+const colors = {
+  ...require('./tokens/dist/tailwind/color'),
+  ...require('./tokens/dist/tailwind/color.brand'),
+  ...require('./tokens/dist/tailwind/color.data'),
+}
+
+const backgroundColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/backgroundColor'),
+}
+
+const borderColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/borderColor'),
+}
+
+const textColor = {
+  ...colors,
+  ...require('./tokens/dist/tailwind/textColor'),
+}
+
 module.exports = {
   content: [
     './tokens/*.mdx',
     './src/components/**/*.{js,vue}',
-    './src/directives/**/*.js'
+    './src/directives/**/*.js',
+    './.storybook/**/*.jsx'
   ],
-  important: true, // Utilities should always win https://sebastiandedeyne.com/why-we-use-important-with-tailwind/
   plugins: [
     plugin(function({ addUtilities }) {
       addUtilities({
@@ -38,14 +59,28 @@ module.exports = {
           'word-break': 'break-word',
           'hyphens': 'auto'
         },
+        /**
+         * Hide scrollbar while keeping the element scrollable.
+         * See https://stackoverflow.com/a/63756377/6234391
+         */
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            'display': 'none'
+          }
+        }
       })
     })
   ],
   theme: {
+    backgroundColor,
+    borderColor,
     borderRadius,
     boxShadow,
+    colors,
     screens,
     spacing,
+    textColor,
     zIndex,
     extend: {
       flexShrink: {

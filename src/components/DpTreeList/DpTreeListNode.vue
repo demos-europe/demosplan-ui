@@ -1,7 +1,5 @@
 <template>
-  <li
-    class="border--top relative"
-    data-cy="treeListNode">
+  <li class="border--top relative">
     <div class="c-treelist__node flex">
       <div
         class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
@@ -43,7 +41,7 @@
         </div>
       </div>
       <dp-tree-list-toggle
-        data-cy="treeListToggle"
+        data-cy="treeListChildToggle"
         v-if="isBranch"
         class="self-start"
         :disabled="!hasToggle"
@@ -57,6 +55,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
+      data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"
@@ -67,8 +66,9 @@
       :opts="options.draggable"
       v-model="tree">
       <dp-tree-list-node
-        v-for="child in children"
+        v-for="(child, idx) in children"
         v-show="true === isExpanded"
+        :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"
         :check-branch="checkBranch"

@@ -1,23 +1,23 @@
 <template>
   <div
-    :class="[`text--${align}`, $attrs.class]"
+    :class="[align, $attrs.class]"
     class="space-inline-s">
     <dp-button
       v-if="primary"
       :busy="busy ? true : null"
+      :data-cy="`${dataCy}:saveButton`"
       :disabled="disabled"
       :text="primaryText"
       :variant="variant"
-      @click.prevent="$emit('primary-action')"
-      data-cy="saveButton" />
+      @click.prevent="$emit('primary-action')" />
     <dp-button
       v-if="secondary"
       color="secondary"
+      :data-cy="`${dataCy}:abortButton`"
       :href="href"
       :text="secondaryText"
       :variant="variant"
-      @click.prevent="$emit('secondary-action')"
-      data-cy="abortButton" />
+      @click.prevent="$emit('secondary-action')" />
     <slot />
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
     /**
      * Specifies if the buttons should align left or right inside their container.
      */
-    align: {
+    alignment: {
       type: String,
       required: false,
       default: 'right'
@@ -55,6 +55,12 @@ export default {
       type: [Boolean, null],
       required: false,
       default: null
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'buttonRow'
     },
 
     /**
@@ -121,6 +127,12 @@ export default {
       type: String,
       default: 'solid',
       validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
+    }
+  },
+
+  computed: {
+    align () {
+      return this.alignment === 'left' ? 'text-left' : 'text-right'
     }
   }
 }

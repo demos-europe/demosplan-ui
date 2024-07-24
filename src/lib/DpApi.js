@@ -192,7 +192,7 @@ const checkResponse = function (response, messages) {
       reject(response.data)
     } else if (response.status >= 200 && response.status < 400) {
       // Got data!
-      resolve(response.data)
+      resolve(response.data ? response.data : null)
     } else {
       // Got no data
       resolve(null)

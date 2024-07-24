@@ -53,7 +53,7 @@ StyleDictionary.registerTransformGroup({
  */
 StyleDictionary.registerFormat({
   name: 'tailwind/variables',
-  formatter: (formatterArguments) => transformTailwindTokens(formatterArguments, corePluginsColor, corePlugins)
+  formatter: (formatterArguments) => transformTailwindTokens(formatterArguments, corePluginsColor)
 })
 
 /**

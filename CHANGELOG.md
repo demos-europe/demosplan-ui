@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### changed
+
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/954)) Allow all 2xx and 3xx as response Codes in DpApi (not only 200). ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.3.21 - 2024-07-22
 
 ### Added

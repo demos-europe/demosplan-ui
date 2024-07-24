@@ -33,14 +33,18 @@
         :header-field="hf"
         :next-header="headerFields[idx + 1]"
         :idx="idx">
-        <slot :name="`header-${hf.field}`">
+        <slot
+          :name="`header-${hf.field}`"
+          v-bind="hf">
           <span v-if="hf.label" v-text="hf.label" />
         </slot>
       </dp-resizable-column>
       <th
         v-else
         scope="col">
-        <slot :name="`header-${hf.field}`">
+        <slot
+          :name="`header-${hf.field}`"
+          v-bind="hf">
           <span v-if="hf.label" v-text="hf.label" />
         </slot>
       </th>

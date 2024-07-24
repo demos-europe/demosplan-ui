@@ -232,7 +232,6 @@ export default {
         search: de.search.text,
         showEntries: de.pager.showEntries
       },
-      mergedTranslations: {},
       filteredItems: [],
       filters: this.headerFields.reduce((obj, item) => {
         obj[item.field] = true
@@ -349,10 +348,6 @@ export default {
       }
       this.filteredItems = sortedList
     }
-  },
-
-  created () {
-    this.mergedTranslations = { ...this.defaultTranslations, ...this.translations }
   },
 
   mounted () {

@@ -3,7 +3,7 @@
     :is="element"
     :type="isButtonElement ? type : null"
     :href="!isButtonElement ? sanitizedHref : null"
-    :class="classes"
+    :class="[...classes, ...spacingClasses]"
     :aria-hidden="busy ? true : null"
     v-tooltip="iconOnly ? text : null"
     @click="emit('click', $event)">
@@ -66,7 +66,7 @@ const props = defineProps({
   },
 
   /**
-   * When passing an href, a link is rendered instead of a button element.
+   * When passing a href, a link is rendered instead of a button element.
    * The value of its `href` attribute is sanitized, defaulting to `'about:blank'` for unsafe values.
    */
   href: {
@@ -145,18 +145,28 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
+const iconOnly = computed(() => (!!props.icon || !!props.iconAfter) && props.hideText)
+
 const classes = computed(() => [
-  'btn inline-flex items-center space-inline-xs',
+  'inline-flex items-center leading-[18px]', //  @TODO leading to be configured using space tokens -> leading-3
   props.busy && 'is-busy pointer-events-none',
-  iconOnly && `icon-only ${props.iconSize}`,
-  props.rounded && 'rounded-full',
-  ['primary', 'secondary', 'warning'].includes(props.color) && btnClasses.color[props.color],
-  ['solid', 'outline', 'subtle'].includes(props.variant) && btnClasses.variant[props.variant]
+  props.rounded ? 'rounded-full' : 'rounded-md', // @TODO rounded-button
+  btnClasses[props.color][props.variant]
 ])
+
+const spacingClasses = computed(() => {
+  let padding = 'px-2 py-1'
+  if (iconOnly) {
+    padding = props.iconSize === 'large' ? 'p-0.5' : 'p-1' // @TODO tweak these values. data-cy="editorFullscreen" icon-size="large"
+  }
+  return [
+    'space-x-1',
+    padding
+  ]
+})
 
 const element = computed(() => isButtonElement ? 'button' : 'a')
 
-const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const isButtonElement = computed(() => props.href === '#')
 
@@ -171,15 +181,25 @@ onMounted(() => {
 })
 
 const btnClasses = {
-  color: {
-    primary: 'btn--primary',
-    secondary: 'btn--secondary',
-    warning: 'btn--warning'
+  primary: {
+    solid: `
+      bg-interactive text-on-dark
+      hover:bg-interactive-hover
+      active:bg-interactive-active
+      focus:bg-interactive-hover focus-visible:bg-interactive-hover
+    `,
+    outline: 'bg-surface ',
+    subtle: 'bg-surface hover:bg-interactive-subtle-hover active:bg-interactive-subtle-active',
   },
-  variant: {
-    solid: 'btn--solid',
-    outline: 'btn--outline',
-    subtle: 'btn--subtle'
+  secondary: {
+    solid: '',
+    outline: '',
+    subtle: ''
+  },
+  warning: {
+    solid: '',
+    outline: '',
+    subtle: ''
   }
 }
 </script>

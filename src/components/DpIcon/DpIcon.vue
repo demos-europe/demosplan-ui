@@ -46,7 +46,7 @@ const props = defineProps({
     type: String as PropType<IconSize>,
     required: false,
     default: 'medium',
-    validator: (prop: IconSize) => ['small', 'medium', 'large', 'xlarge'].includes(prop)
+    validator: (prop: IconSize) => Object.keys(SIZES).includes(prop)
   },
 
   weight: {

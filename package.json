@@ -70,7 +70,6 @@
     "@storybook/preview-api": "^7.0.27",
     "@storybook/theming": "^7.0.27",
     "@storybook/types": "^7.0.27",
-    "@storybook/vue": "7.6.17",
     "@storybook/vue-webpack5": "7.6.17",
     "@storybook/vue3": "^7.0.27",
     "@types/eslint": "^9",

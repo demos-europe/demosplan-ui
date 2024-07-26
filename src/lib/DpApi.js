@@ -190,9 +190,9 @@ const checkResponse = function (response, messages) {
     if (response.status >= 400) {
       // @improve handle 404, 500 specially?
       reject(response.data)
-    } else if (response.status === 200) {
+    } else if (response.status >= 200 && response.status < 400) {
       // Got data!
-      resolve(response.data)
+      resolve(response.data ? response.data : null)
     } else {
       // Got no data
       resolve(null)

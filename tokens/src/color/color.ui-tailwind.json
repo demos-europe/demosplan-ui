@@ -22,7 +22,52 @@
             "value": "{color.palette.blue.dark-2}",
             "themeable": true,
             "$type": "color"
+          },
+          "subtle-hover": {
+            "$description": "Color for hover state of bigger areas or subtle buttons.",
+            "value": "{color.palette.blue.light-4}",
+            "$type": "color"
+          },
+          "subtle-active": {
+            "$description": "Color for active state of bigger areas or subtle buttons.",
+            "value": "{color.palette.blue.light-3}",
+            "$type": "color"
+          },
+          "secondary": {
+            "$description": "Color for interactive elements that should appear less prominent.",
+            "value": "{color.palette.neutral.base}",
+            "$type": "color"
+          },
+          "secondary-hover": {
+            "$description": "Color for hover state of interactive elements that should appear less prominent.",
+            "value": "{color.palette.neutral.dark-1}",
+            "$type": "color"
+          },
+          "secondary-active": {
+            "$description": "Color for active state of interactive elements that should appear less prominent.",
+            "value": "{color.palette.neutral.dark-2}",
+            "$type": "color"
+          },
+          "secondary-subtle": {
+            "$description": "Color for interactive elements that should appear less prominent.",
+            "value": "{color.ui-tailwind.backgroundColor.surface.DEFAULT}",
+            "$type": "color"
+          },
+          "secondary-subtle-hover": {
+            "$description": "Color for hover state of interactive elements that should appear less prominent.",
+            "value": "{color.ui-tailwind.backgroundColor.surface.light}",
+            "$type": "color"
+          },
+          "secondary-subtle-active": {
+            "$description": "Color for active state of interactive elements that should appear less prominent.",
+            "value": "{color.ui-tailwind.backgroundColor.surface.medium}",
+            "$type": "color"
           }
+        },
+        "on-dark": {
+          "$description": "Color for text or borders that has sufficient contrast on dark surface.",
+          "value": "{color.palette.white}",
+          "$type": "color"
         }
       },
       "textColor": {
@@ -34,11 +79,6 @@
         "muted": {
           "$description": "Color for text that should stand out a little less. Has sufficient contrast on white.",
           "value": "{color.palette.neutral.base}",
-          "$type": "color"
-        },
-        "on-dark": {
-          "$description": "Color for text that has sufficient contrast on dark backgrounds.",
-          "value": "{color.palette.white}",
           "$type": "color"
         },
         "marked": {
@@ -229,16 +269,6 @@
       "backgroundColor": {
         "$description": "Tokens that are meant to be used with the backgroundColor corePlugin.",
         "interactive": {
-          "subtle-hover": {
-            "$description": "Background color for hover state of bigger areas or subtle buttons.",
-            "value": "{color.palette.neutral.light-4}",
-            "$type": "color"
-          },
-          "subtle-active": {
-            "$description": "Background color for active state of bigger areas or subtle buttons.",
-            "value": "{color.palette.neutral.light-3}",
-            "$type": "color"
-          },
           "muted": {
             "$description": "Background color for interactive elements that reveal their base state on:hover of a parent element, eg. in a table row. Note that this is not to be conflated with the disabled state, which is communicated via opacity.",
             "value": "{color.palette.neutral.light-1}",

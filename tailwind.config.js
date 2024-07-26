@@ -23,6 +23,7 @@ const colors = {
   ...require('./tokens/dist/tailwind/color'),
   ...require('./tokens/dist/tailwind/color.brand'),
   ...require('./tokens/dist/tailwind/color.data'),
+  'transparent': 'transparent'
 }
 
 const backgroundColor = {

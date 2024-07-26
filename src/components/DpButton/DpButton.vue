@@ -145,19 +145,53 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
-const iconOnly = computed(() => (!!props.icon || !!props.iconAfter) && props.hideText)
+const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-  'inline-flex items-center leading-[18px]', //  @TODO leading to be configured using space tokens -> leading-3
+  'inline-flex items-center leading-[16px]', //  @TODO leading to be configured using space tokens -> leading-3
   props.busy && 'is-busy pointer-events-none',
-  props.rounded ? 'rounded-full' : 'rounded-md', // @TODO rounded-button
-  btnClasses[props.color][props.variant]
+  props.rounded ? 'rounded-full' : 'rounded-md', // @TODO rounded-md _> rounded-button
+  getColorClasses(props.color, props.variant)
 ])
 
+const getColorClasses = (color: ButtonColor, variant: ButtonVariant) => {
+  const colors = colorClasses[color]
+  let renderedColors = ''
+  switch (variant) {
+    case 'solid':
+      renderedColors = colors.solidOutlineSubtle + colors.solidOutline + colors.solid
+      break
+    case 'outline':
+      renderedColors = colors.solidOutlineSubtle + colors.solidOutline + colors.outlineSubtle
+      break
+    case 'subtle':
+      renderedColors = colors.solidOutlineSubtle + colors.outlineSubtle + colors.subtle
+      break
+    default:
+      break
+  }
+  return renderedColors
+}
+
 const spacingClasses = computed(() => {
+  // Default padding for text buttons, resulting in a 30px height that matches input fields.
   let padding = 'px-2 py-1'
-  if (iconOnly) {
-    padding = props.iconSize === 'large' ? 'p-0.5' : 'p-1' // @TODO tweak these values. data-cy="editorFullscreen" icon-size="large"
+
+  // The small and large iconOnly buttons create a scale alongside the medium iconOnly button which shares its 30px height with input fields.
+  if (iconOnly.value) {
+    switch (props.iconSize) {
+      case 'large':
+        padding = 'p-1.5'
+        break
+      case 'small':
+        padding = 'p-0.5'
+        break
+      case 'medium':
+        padding = 'p-[5px]'
+        break
+      default:
+        break
+    }
   }
   return [
     'space-x-1',
@@ -166,7 +200,6 @@ const spacingClasses = computed(() => {
 })
 
 const element = computed(() => isButtonElement ? 'button' : 'a')
-
 
 const isButtonElement = computed(() => props.href === '#')
 
@@ -180,25 +213,85 @@ onMounted(() => {
   }
 })
 
-const btnClasses = {
+const colorClasses = {
   primary: {
+    /**
+     * solidOutlineSubtle: classes that apply to all button color variants.
+     *
+     * @TODO instead of hardcoding #005eb1 here, focus-visible:outline-interactive-hover/50 could be used.
+     * However, for this to work, token css variables would have to be rendered within @layer base with modern rbg
+     * syntax, to be able to utilize the "<alpha-value>" placeholder to support opacity on css variables.
+     * See
+     * - https://tailwindcss.com/docs/customizing-colors#using-css-variables
+     * - https://www.natestephens.dev/opacity-with-css-variable-color
+     */
+    solidOutlineSubtle: ` outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#005eb1]/50 `,
+    /**
+     * solidOutline: classes that apply to "solid" and "outline" button color variants.
+     *
+     * Solid buttons have a 1px border with the same color as the bg color, to be the same overall size as outline buttons.
+     * The same border is applied to outline buttons.
+     */
+    solidOutline: `
+      border border-interactive
+      hover:border-interactive-hover
+      focus:border-interactive-hover
+      focus-visible:border-interactive-hover
+      active:border-interactive-active `,
+    // outlineSubtle: classes that apply to "outline" and "subtle" button color variants.
+    outlineSubtle: `
+      bg-surface text-interactive
+      hover:bg-interactive-subtle-hover hover:text-interactive-hover
+      focus:bg-interactive-subtle-hover focus:text-interactive-hover
+      focus-visible:bg-interactive-subtle-hover focus-visible:text-interactive-hover
+      active:bg-interactive-subtle-active active:text-interactive-active `,
+    // solid: classes that only apply to "solid" button color variant.
     solid: `
       bg-interactive text-on-dark
       hover:bg-interactive-hover
-      active:bg-interactive-active
-      focus:bg-interactive-hover focus-visible:bg-interactive-hover
-    `,
-    outline: 'bg-surface ',
-    subtle: 'bg-surface hover:bg-interactive-subtle-hover active:bg-interactive-subtle-active',
+      focus:bg-interactive-hover
+      focus-visible:bg-interactive-hover
+      active:bg-interactive-active `,
+    // subtle: classes that only apply to "subtle" button color variant.
+    subtle: `
+      border border-on-dark
+      hover:border-interactive-subtle-hover
+      focus:border-interactive-subtle-hover
+      focus-visible:border-interactive-subtle-hover
+      active:border-interactive-subtle-active `
   },
   secondary: {
-    solid: '',
-    outline: '',
-    subtle: ''
+    solidOutlineSubtle: ' outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#005eb1]/50 ',
+    solidOutline: `
+      border border-interactive-secondary
+      hover:border-interactive-secondary-hover
+      focus:border-interactive-secondary-hover
+      focus-visible:border-interactive-secondary-hover
+      active:border-interactive-secondary-active `,
+    outlineSubtle: `
+      bg-surface text-interactive-secondary
+      hover:bg-interactive-secondary-subtle-hover hover:text-interactive-secondary-subtle-hover
+      focus:bg-interactive-secondary-subtle-hover focus:text-interactive-secondary-subtle-hover
+      focus-visible:bg-interactive-secondary-subtle-hover focus-visible:text-interactive-secondary-subtle-hover
+      active:bg-interactive-secondary-subtle-active active:text-interactive-secondary-subtle-active `,
+    solid: `
+      bg-interactive-secondary text-on-dark
+      hover:bg-interactive-secondary-hover
+      focus:bg-interactive-secondary-hover
+      focus-visible:bg-interactive-secondary-hover
+      active:bg-interactive-secondary-active `,
+    subtle: `
+      border border-on-dark
+      hover:border-interactive-secondary-subtle-hover
+      focus:border-interactive-secondary-subtle-hover
+      focus-visible:border-interactive-secondary-subtle-hover
+      active:border-interactive-secondary-subtle-active `
   },
   warning: {
+    solidOutlineSubtle: '',
+    solidOutline: '',
+    outlineSubtle: '',
     solid: '',
-    outline: '',
     subtle: ''
   }
 }

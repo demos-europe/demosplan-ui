@@ -34,34 +34,76 @@
             "$type": "color"
           },
           "secondary": {
-            "$description": "Color for interactive elements that should appear less prominent.",
-            "value": "{color.palette.neutral.base}",
-            "$type": "color"
+            "$description": "Colors for secondary button",
+            "DEFAULT": {
+              "$description": "Color for interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.base}",
+              "$type": "color"
+            },
+            "hover": {
+              "$description": "Color for hover state of interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.dark-1}",
+              "$type": "color"
+            },
+            "active": {
+              "$description": "Color for active state of interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.dark-2}",
+              "$type": "color"
+            },
+            "subtle": {
+              "$description": "Colors for secondary button (outline and subtle bg/border).",
+              "DEFAULT": {
+                "$description": "Color for interactive elements that should appear less prominent.",
+                "value": "{color.palette.white}",
+                "$type": "color"
+              },
+              "hover": {
+                "$description": "Color for hover state of interactive elements that should appear less prominent.",
+                "value": "{color.palette.neutral.light-4}",
+                "$type": "color"
+              },
+              "active": {
+                "$description": "Color for active state of interactive elements that should appear less prominent.",
+                "value": "{color.palette.neutral.light-3}",
+                "$type": "color"
+              }
+            }
           },
-          "secondary-hover": {
-            "$description": "Color for hover state of interactive elements that should appear less prominent.",
-            "value": "{color.palette.neutral.dark-1}",
-            "$type": "color"
-          },
-          "secondary-active": {
-            "$description": "Color for active state of interactive elements that should appear less prominent.",
-            "value": "{color.palette.neutral.dark-2}",
-            "$type": "color"
-          },
-          "secondary-subtle": {
-            "$description": "Color for interactive elements that should appear less prominent.",
-            "value": "{color.ui-tailwind.backgroundColor.surface.DEFAULT}",
-            "$type": "color"
-          },
-          "secondary-subtle-hover": {
-            "$description": "Color for hover state of interactive elements that should appear less prominent.",
-            "value": "{color.ui-tailwind.backgroundColor.surface.light}",
-            "$type": "color"
-          },
-          "secondary-subtle-active": {
-            "$description": "Color for active state of interactive elements that should appear less prominent.",
-            "value": "{color.ui-tailwind.backgroundColor.surface.medium}",
-            "$type": "color"
+          "warning": {
+            "$description": "Colors for warning button",
+            "DEFAULT": {
+              "$description": "Color for interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.base}",
+              "$type": "color"
+            },
+            "hover": {
+              "$description": "Color for hover state of interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.dark-1}",
+              "$type": "color"
+            },
+            "active": {
+              "$description": "Color for active state of interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.dark-2}",
+              "$type": "color"
+            },
+            "subtle": {
+              "$description": "Colors for warning button (outline and subtle bg/border).",
+              "DEFAULT": {
+                "$description": "Color for interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.white}",
+                "$type": "color"
+              },
+              "hover": {
+                "$description": "Color for hover state of interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.red.light-4}",
+                "$type": "color"
+              },
+              "active": {
+                "$description": "Color for active state of interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.red.light-3}",
+                "$type": "color"
+              }
+            }
           }
         },
         "on-dark": {

@@ -179,7 +179,7 @@ const transformTailwindTokenName = (token, keepPluginName = false) => {
     declaration = declaration.replace(/color-color-/g, 'color-')
   }
 
-  // "DEFAULT" is a Tailwind convention that should not be part of the declaration key.
+  // "DEFAULT" is a Tailwind convention which should not be part of the declaration key.
   declaration = declaration.replace(/-DEFAULT/g, '')
 
   return declaration

@@ -4,6 +4,7 @@ const tailwindTheme = {
   borderRadius: require('./tokens/dist/tailwind/rounded'),
   boxShadow: require('./tokens/dist/tailwind/boxShadow'),
   fontSize: require('./tokens/dist/tailwind/fontSize'),
+  lineHeight: require('./tokens/dist/tailwind/space'),
   screens: require('./tokens/dist/tailwind/breakpoints'),
   spacing: require('./tokens/dist/tailwind/space'),
   zIndex: require('./tokens/dist/tailwind/zIndex'),

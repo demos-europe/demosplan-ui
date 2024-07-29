@@ -148,9 +148,9 @@ const emit = defineEmits(['click'])
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-  'inline-flex items-center leading-[16px]', //  @TODO leading to be configured using space tokens -> leading-3
+  'inline-flex items-center leading-3',
   props.busy && 'is-busy pointer-events-none',
-  props.rounded ? 'rounded-full' : 'rounded-md', // @TODO rounded-md _> rounded-button
+  props.rounded ? 'rounded-full' : 'rounded-button',
   getColorClasses(props.color, props.variant)
 ])
 

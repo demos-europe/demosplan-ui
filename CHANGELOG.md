@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#961](https://github.com/demos-europe/demosplan-ui/pull/961)) DpEditor: Allow class attribute in custom links ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.22 - 2024-07-26
 
 ### Changed

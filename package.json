@@ -157,7 +157,7 @@
   },
   "scripts": {
     "build:storybook": "storybook build",
-    "build:tokens": "node buildTokens.js",
+    "build:tokens": "node scripts/buildTokens.js",
     "prepack": "yarn build && yarn build:tokens",
     "storybook": "storybook dev -p 6006",
     "build": "yarn test && yarn build:prod",

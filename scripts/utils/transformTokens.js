@@ -74,7 +74,7 @@ const transformTailwindTokensGrouped = (formatterArguments, corePluginsColor) =>
     // Sort token definition into respective group
     corePluginsColor.forEach(plugin => {
       if (token.path[2] === plugin || ['brand', 'data'].includes(token.path[1]) && plugin === 'color') {
-        groupedTokens[plugin][tokenName] = replaced + ';'
+        groupedTokens[plugin][tokenName] = replaced
       }
     })
   })
@@ -104,9 +104,7 @@ const transformTailwindTokensFlat = (formatterArguments) => {
     }
 
     const tokenName = transformTailwindTokenName(token)
-    const tokenValue = transformTailwindTokenValue(token, formatterArguments)
-
-    tokens[tokenName] = tokenValue + ';'
+    tokens[tokenName] = transformTailwindTokenValue(token, formatterArguments)
   })
 
   return `module.exports = ${JSON.stringify(tokens, null, 2)};`

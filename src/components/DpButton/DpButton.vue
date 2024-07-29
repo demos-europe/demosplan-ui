@@ -148,36 +148,35 @@ const emit = defineEmits(['click'])
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-  'inline-flex items-center leading-3',
-  ...colorClasses.value,
-  ...spacingClasses.value,
-  props.busy && 'bg-busy animate-busy pointer-events-none',
-  props.rounded ? 'rounded-full' : 'rounded-button'
+    'inline-flex items-center leading-3',
+    ...colorClasses.value,
+    ...spacingClasses.value,
+    props.busy && 'bg-busy animate-busy pointer-events-none',
+    props.rounded ? 'rounded-full' : 'rounded-button'
 ])
 
 const colorClasses = computed(() => {
-  const colors = allColorClasses[props.color]
-  const renderedColors = [colors.solidOutlineSubtle]
-  switch (props.variant) {
-    case 'solid':
-      renderedColors.push(colors.solidOutline, colors.solid)
-      break
-    case 'outline':
-      renderedColors.push(colors.solidOutline, colors.outlineSubtle)
-      break
-    case 'subtle':
-      renderedColors.push(colors.outlineSubtle, colors.subtle)
-      break
-    default:
-      break
-  }
-  return renderedColors
+    const colors = allColorClasses[props.color]
+    const renderedColors = [colors.solidOutlineSubtle]
+    switch (props.variant) {
+        case 'solid':
+            renderedColors.push(colors.solidOutline, colors.solid)
+            break
+        case 'outline':
+            renderedColors.push(colors.solidOutline, colors.outlineSubtle)
+            break
+        case 'subtle':
+            renderedColors.push(colors.outlineSubtle, colors.subtle)
+            break
+        default:
+            break
+    }
+    return renderedColors
 })
 
 const spacingClasses = computed(() => {
-  // Default padding for text buttons, resulting in a 30px height that matches input fields.
-  let padding = 'px-2 py-1'
-
+    // Default padding for text buttons, resulting in a 30px height that matches input fields.
+    let padding = 'px-2 py-1'
   // The small and large iconOnly buttons create a scale alongside the medium iconOnly button which shares its 30px height with input fields.
   if (iconOnly.value) {
     switch (props.iconSize) {

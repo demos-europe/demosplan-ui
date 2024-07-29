@@ -1,44 +1,31 @@
 const plugin = require('tailwindcss/plugin')
 
-/**
- * Transform a StyleDictionary js module representation of the tokens object
- * into a simplified object to be consumable for the Tailwind config.
- * It filters out tokens that are aliases for other tokens.
- * @param tokens The original object
- * @return {{[p: string]: unknown}}
- */
-const tokensToTailwind = (tokens) => {
-  const tokensArray = Object.values(tokens)
-  const filteredTokens = tokensArray.filter(({ original }) => original.value.includes('{') === false)
-  return Object.fromEntries(filteredTokens.map(({ attributes, value }) => [attributes.type, value]))
+const tailwindTheme = {
+  borderRadius: require('./tokens/dist/tailwind/rounded'),
+  boxShadow: require('./tokens/dist/tailwind/boxShadow'),
+  fontSize: require('./tokens/dist/tailwind/fontSize'),
+  screens: require('./tokens/dist/tailwind/breakpoints'),
+  spacing: require('./tokens/dist/tailwind/space'),
+  zIndex: require('./tokens/dist/tailwind/zIndex'),
+  colors: {
+    ...require('./tokens/dist/tailwind/color'),
+    'transparent': 'transparent'
+  }
 }
 
-const borderRadius = tokensToTailwind(require('./tokens/dist/js/rounded').rounded)
-const boxShadow = tokensToTailwind(require('./tokens/dist/js/boxShadow')['box-shadow'])
-const spacing = tokensToTailwind(require('./tokens/dist/js/space').space)
-const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpoints)
-const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
+const tailwindCorePluginsColor = ['backgroundColor', 'borderColor', 'textColor']
 
-const colors = {
-  ...require('./tokens/dist/tailwind/color'),
-  ...require('./tokens/dist/tailwind/color.brand'),
-  ...require('./tokens/dist/tailwind/color.data'),
-  'transparent': 'transparent'
-}
+tailwindCorePluginsColor.forEach(corePlugin => {
+  tailwindTheme[corePlugin] = {
+    ...tailwindTheme.colors,
+    ...require(`./tokens/dist/tailwind/${corePlugin}`)
+  }
+})
 
-const backgroundColor = {
-  ...colors,
-  ...require('./tokens/dist/tailwind/backgroundColor'),
-}
-
-const borderColor = {
-  ...colors,
-  ...require('./tokens/dist/tailwind/borderColor'),
-}
-
-const textColor = {
-  ...colors,
-  ...require('./tokens/dist/tailwind/textColor'),
+tailwindTheme.extend = {
+  flexShrink: {
+    2: '2'
+  }
 }
 
 module.exports = {
@@ -73,20 +60,5 @@ module.exports = {
       })
     })
   ],
-  theme: {
-    backgroundColor,
-    borderColor,
-    borderRadius,
-    boxShadow,
-    colors,
-    screens,
-    spacing,
-    textColor,
-    zIndex,
-    extend: {
-      flexShrink: {
-        2: '2'
-      }
-    }
-  }
+  theme: tailwindTheme
 }

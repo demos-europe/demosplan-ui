@@ -1,5 +1,5 @@
 {
-  "box-shadow": {
+  "boxShadow": {
     "DEFAULT": {
       "$description": "Default elevation. Use for Cards + Buttons.",
       "value": "0 1px 4px rgb(0 0 0 / 22%), 0 1px 2px rgb(0 0 0 / 26%)",
@@ -8,7 +8,7 @@
     },
     "1": {
       "$status": "{_status.deprecated}",
-      "value": "{box-shadow.DEFAULT}",
+      "value": "{boxShadow.DEFAULT}",
       "$type": "shadow"
     },
     "md": {
@@ -19,7 +19,7 @@
     },
     "2": {
       "$status": "{_status.deprecated}",
-      "value": "{box-shadow.md}",
+      "value": "{boxShadow.md}",
       "$type": "shadow"
     },
     "lg": {
@@ -30,7 +30,7 @@
     },
     "3": {
       "$status": "{_status.deprecated}",
-      "value": "{box-shadow.lg}",
+      "value": "{boxShadow.lg}",
       "$type": "shadow"
     },
     "xl": {
@@ -41,7 +41,7 @@
     },
     "4": {
       "$status": "{_status.deprecated}",
-      "value": "{box-shadow.xl}",
+      "value": "{boxShadow.xl}",
       "$type": "shadow"
     }
   }

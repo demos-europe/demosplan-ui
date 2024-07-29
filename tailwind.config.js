@@ -26,7 +26,16 @@ tailwindCorePluginsColor.forEach(corePlugin => {
 tailwindTheme.extend = {
   flexShrink: {
     2: '2'
-  }
+  },
+  animation: {
+    busy: 'busy 1.5s linear infinite',
+  },
+  keyframes: {
+    busy: {
+      'from': { 'background-position': '0 0' },
+      'to': { 'background-position': '30px 30px' },
+    },
+  },
 }
 
 module.exports = {
@@ -57,6 +66,13 @@ module.exports = {
           '&::-webkit-scrollbar': {
             'display': 'none'
           }
+        },
+        /**
+         * Visualize indeterminate system action. Use in conjunction with "animate-busy".
+         */
+        '.bg-busy': {
+          'background-image': 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent)',
+          'background-size': '60px 60px'
         }
       })
     })

@@ -3,7 +3,7 @@
     :is="element"
     :type="isButtonElement ? type : null"
     :href="!isButtonElement ? sanitizedHref : null"
-    :class="[...classes, ...spacingClasses]"
+    :class="classes"
     :aria-hidden="busy ? true : null"
     v-tooltip="iconOnly ? text : null"
     @click="emit('click', $event)">
@@ -149,29 +149,30 @@ const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideTex
 
 const classes = computed(() => [
   'inline-flex items-center leading-3',
-  props.busy && 'is-busy pointer-events-none',
-  props.rounded ? 'rounded-full' : 'rounded-button',
-  getColorClasses(props.color, props.variant)
+  ...colorClasses.value,
+  ...spacingClasses.value,
+  props.busy && 'bg-busy animate-busy pointer-events-none',
+  props.rounded ? 'rounded-full' : 'rounded-button'
 ])
 
-const getColorClasses = (color: ButtonColor, variant: ButtonVariant) => {
-  const colors = colorClasses[color]
-  let renderedColors = ''
-  switch (variant) {
+const colorClasses = computed(() => {
+  const colors = allColorClasses[props.color]
+  const renderedColors = [colors.solidOutlineSubtle]
+  switch (props.variant) {
     case 'solid':
-      renderedColors = colors.solidOutlineSubtle + colors.solidOutline + colors.solid
+      renderedColors.push(colors.solidOutline, colors.solid)
       break
     case 'outline':
-      renderedColors = colors.solidOutlineSubtle + colors.solidOutline + colors.outlineSubtle
+      renderedColors.push(colors.solidOutline, colors.outlineSubtle)
       break
     case 'subtle':
-      renderedColors = colors.solidOutlineSubtle + colors.outlineSubtle + colors.subtle
+      renderedColors.push(colors.outlineSubtle, colors.subtle)
       break
     default:
       break
   }
   return renderedColors
-}
+})
 
 const spacingClasses = computed(() => {
   // Default padding for text buttons, resulting in a 30px height that matches input fields.
@@ -213,7 +214,7 @@ onMounted(() => {
   }
 })
 
-const colorClasses = {
+const allColorClasses = {
   primary: {
     /**
      * solidOutlineSubtle: classes that apply to all button color variants.
@@ -225,7 +226,9 @@ const colorClasses = {
      * - https://tailwindcss.com/docs/customizing-colors#using-css-variables
      * - https://www.natestephens.dev/opacity-with-css-variable-color
      */
-    solidOutlineSubtle: ` outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#005eb1]/50 `,
+    solidOutlineSubtle: `
+      outline outline-4 outline-offset-0 outline-transparent
+      focus-visible:outline-[#005eb1]/50 focus-visible:z-above-zero`,
     /**
      * solidOutline: classes that apply to "solid" and "outline" button color variants.
      *

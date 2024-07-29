@@ -56,7 +56,7 @@ import type { Component } from 'vue'
 // ICONS
 
 // icon names that are used and already correspond to the phosphor icon name
-const mappedIconNames: Record<PhosphorIconName, Component> = {
+const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component> = {
   'arrow-down': PhArrowDown,
   'arrow-left': PhArrowLeft,
   'arrow-right': PhArrowRight,
@@ -84,26 +84,22 @@ const mappedIconNames: Record<PhosphorIconName, Component> = {
   'users-three': PhUsersThree,
   'warning': PhWarning,
   'x': PhX,
-  'x-circle': PhXCircle
-}
-
-// icon names that are not used yet but should replace the aliases
-const mappedAliasedIconNames: Record<AliasedPhosphorIconName, Component> = {
-  'arrows-clockwise': PhArrowsClockwise,
-  'circle-notch': PhCircleNotch,
-  'clock-counter-clockwise': PhClockCounterClockwise,
-  'corners-in': PhCornersIn,
-  'corners-out': PhCornersOut,
-  'dots-six-vertical': PhDotsSixVertical,
-  'download-simple': PhDownloadSimple,
-  'envelope-simple': PhEnvelopeSimple,
-  'gear-six': PhGearSix,
-  'lock-simple': PhLockSimple,
-  'lock-simple-open': PhLockSimpleOpen,
-  'magnifying-glass': PhMagnifyingGlass,
-  'pencil-simple': PhPencilSimple,
-  'robot': PhRobot,
-  'warning-diamond': PhWarningDiamond,
+  'x-circle': PhXCircle,
+  'arrows-clockwise': PhArrowsClockwise, // alias: refresh
+  'circle-notch': PhCircleNotch, // alias: spinner
+  'clock-counter-clockwise': PhClockCounterClockwise, // alias: history
+  'corners-in': PhCornersIn, // alias: compress
+  'corners-out': PhCornersOut, // alias: expand
+  'dots-six-vertical': PhDotsSixVertical, // alias: drag-handle
+  'download-simple': PhDownloadSimple, // alias: download
+  'envelope-simple': PhEnvelopeSimple, // alias: mail
+  'gear-six': PhGearSix, // alias: settings
+  'lock-simple': PhLockSimple, // alias: lock
+  'lock-simple-open': PhLockSimpleOpen, // alias: unlock
+  'magnifying-glass': PhMagnifyingGlass, // alias: search
+  'pencil-simple': PhPencilSimple, // alias: edit
+  'robot': PhRobot, // alias: ai
+  'warning-diamond': PhWarningDiamond, // alias: severe
 }
 
 // icon names that are used as aliases - the phosphor icon has a different name
@@ -166,8 +162,7 @@ const aliasedIconsProportions: Record<string, IconProportion> = {
 // EXPORTS
 
 export const iconComponents: Record<IconName, Component> = {
-  ...mappedIconNames,
-  ...mappedAliasedIconNames,
+  ...mappedIcons,
   ...mappedIconAliases
 }
 

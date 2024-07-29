@@ -1,7 +1,7 @@
 <template>
   <draggable
-      v-model="content"
       v-bind="opts"
+      v-model="content"
       v-on="$listeners"
       :disabled="false === isDraggable"
       :group="dragAcrossBranches ? 'treelistgroup' : groupId"

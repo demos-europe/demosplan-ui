@@ -58,9 +58,9 @@ export default {
      * you want to override the label.
      */
     ariaLabelledby: {
-      type: [String, Boolean],
+      type: [String, null],
       required: false,
-      default: false
+      default: null
     },
 
     /**

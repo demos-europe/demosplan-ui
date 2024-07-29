@@ -4,7 +4,7 @@
     class="space-inline-s">
     <dp-button
       v-if="primary"
-      :busy="busy"
+      :busy="busy ? true : null"
       :data-cy="`${dataCy}:saveButton`"
       :disabled="disabled"
       :text="primaryText"
@@ -33,6 +33,11 @@ export default {
     DpButton
   },
 
+  emits: [
+    'primary-action',
+    'secondary-action'
+  ],
+
   props: {
     /**
      * Specifies if the buttons should align left or right inside their container.
@@ -47,9 +52,9 @@ export default {
      * The primary button may have a "busy" state to indicate system progress.
      */
     busy: {
-      type: Boolean,
+      type: [Boolean, null],
       required: false,
-      default: false
+      default: null
     },
 
     dataCy: {

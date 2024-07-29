@@ -10,6 +10,7 @@ window.Translator = {
 }
 
 describe('DpSelect', () => {
+
   const options = [
     { label: 'option1', value: 'value1' },
     { label: 'option2', value: 'value2' },
@@ -17,7 +18,7 @@ describe('DpSelect', () => {
   ]
 
   const wrapper = shallowMountWithGlobalMocks(DpSelect, {
-    propsData: { options }
+    props: { options }
   })
   runLabelTests(wrapper)
 
@@ -27,7 +28,7 @@ describe('DpSelect', () => {
   it('displays a placeholder if showPlaceholder is true', () => {
     const placeholder = de.operations.select.placeholder
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
-      propsData: {
+      props: {
         options,
         placeholder,
         showPlaceholder: true
@@ -42,7 +43,7 @@ describe('DpSelect', () => {
   it('does not display a placeholder if showPlaceholder is false', () => {
     const placeholder = de.operations.select.placeholder
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
-      propsData: {
+      props: {
         options,
         placeholder,
         showPlaceholder: false
@@ -50,18 +51,20 @@ describe('DpSelect', () => {
     })
 
     const placeholderOption = componentWrapper.find('option[data-id="placeholder"]')
+    console.log(placeholderOption)
     expect(placeholderOption.exists()).toBe(false)
   })
 
   it('emits an event on select with the selected value as argument', async () => {
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
-      propsData: {
+      props: {
         options
       }
     })
 
-    const selectOptions = componentWrapper.findAll('select > option')
-    await selectOptions.at(2).setSelected()
+    await componentWrapper
+      .find('select')
+      .setValue(options[1].value)
 
     expect(componentWrapper.find('option:checked').element.value).toBe(options[1].value)
     expect(componentWrapper.emitted().select).toEqual([[options[1].value]])

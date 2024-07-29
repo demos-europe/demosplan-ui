@@ -21,7 +21,7 @@ describe('DpTreeList', () => {
   })
 
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   it('renders component correctly', () => {
@@ -30,7 +30,7 @@ describe('DpTreeList', () => {
 
   it('returns an empty array if a nodes "nodeIsSelected" state is false', () => {
     wrapper = shallowMount(DpTreeList, {
-      propsData: {
+      props: {
         branchIdentifier: jest.fn(),
         draggable: true,
         onMove: jest.fn(),
@@ -48,7 +48,7 @@ describe('DpTreeList', () => {
 
   it('returns an array with the selected nodes if the node has a positive "nodeIsSelected" state', () => {
     wrapper = shallowMount(DpTreeList, {
-      propsData: {
+      props: {
         branchIdentifier: jest.fn(),
         draggable: true,
         onMove: jest.fn(),

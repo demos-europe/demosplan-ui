@@ -286,7 +286,7 @@ export default {
     })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.uppy) {
       this.uppy.close()
     }

@@ -31,6 +31,12 @@ export default {
       default: 'datepicker'
     },
 
+    dataDpValidateErrorFieldname: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
     disabled: {
       type: Boolean,
       required: false,
@@ -142,12 +148,22 @@ export default {
   },
 
   methods: {
+    addErrorFieldnameAttribute () {
+      const datePickerInput = document.getElementsByName(this.name)[0]
+      /**
+       * This attribute is needed for validation to display the field name in case of an error
+       * and must be set every time the Datepicker is mounted or updated.
+       */
+      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
+    },
+
     emitUpdate (e) {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
+      this.addErrorFieldnameAttribute()
     }
   },
 
@@ -164,6 +180,7 @@ export default {
     }
     this.datepicker = Datepicker(config)
     this.value !== '' && this.datepicker.setDate(this.value)
+    this.addErrorFieldnameAttribute()
   }
 }
 </script>

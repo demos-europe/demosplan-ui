@@ -4,7 +4,7 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
-      <caption class="hide-visually" v-text="tableDescription" />
+      <caption class="sr-only" v-text="tableDescription" />
       <colgroup
         v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
@@ -18,83 +18,89 @@
       </colgroup>
 
       <thead>
-        <dp-table-header
-          :data-cy="`${dataCy}:header`"
-          :checked="allSelected"
-          :has-flyout="hasFlyout"
-          :header-fields="headerFields"
-          :indeterminate="indeterminate"
-          :is-draggable="isDraggable"
-          :is-expandable="isExpandable"
-          :is-resizable="isResizable"
-          :is-selectable="isSelectable"
-          :is-sticky="hasStickyHeader"
-          :is-truncatable="isTruncatable"
-          :translations="headerTranslations"
-          @toggle-expand-all="toggleExpandAll"
-          @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll">
-          <template v-slot:[`header-${field}`] v-for="field in fields">
-            <slot :name="`header-${field}`" />
-          </template>
-        </dp-table-header>
+      <dp-table-header
+        :data-cy="`${dataCy}:header`"
+        :checked="allSelected"
+        :has-flyout="hasFlyout"
+        :header-fields="headerFields"
+        :indeterminate="indeterminate"
+        :is-draggable="isDraggable"
+        :is-expandable="isExpandable"
+        :is-resizable="isResizable"
+        :is-selectable="isSelectable"
+        :is-sticky="hasStickyHeader"
+        :is-truncatable="isTruncatable"
+        :translations="headerTranslations"
+        @toggle-expand-all="toggleExpandAll"
+        @toggle-select-all="toggleSelectAll"
+        @toggle-wrap-all="toggleWrapAll">
+        <template
+          v-for="field in headerFields"
+          v-slot:[`header-${field.field}`]="field">
+          <slot
+            :name="`header-${field.field}`"
+            v-bind="field" />
+        </template>
+      </dp-table-header>
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable && !isLoading">
-        <template v-for="(item, idx) in items">
-          <dp-table-row
-            ref="tableRows"
-            :data-cy="`${dataCy}:row:${idx}`"
-            :index="idx"
-            :checked="elementSelections[item[trackBy]] || false"
-            :fields="fields"
-            :has-flyout="hasFlyout"
-            :header-fields="headerFields"
-            :is-draggable="isDraggable"
-            :is-expandable="isExpandable"
-            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
-            :is-resizable="isResizable"
-            :is-selectable="isSelectable"
-            :is-selectable-name="isSelectableName"
-            :is-truncatable="isTruncatable"
-            :item="item"
-            :search-term="searchTerm"
-            :track-by="trackBy"
-            :wrapped="wrappedElements[item[trackBy]] || false"
-            @toggle-expand="toggleExpand"
-            @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap">
-            <template
-              v-slot:[field]="item"
-              v-for="field in fields">
-              <slot
-                :name="field"
-                v-bind="item" />
-            </template>
-            <template v-slot:flyout="item">
-              <slot
-                name="flyout"
-                v-bind="item" />
-            </template>
-          </dp-table-row>
+      <tbody
+        v-if="!isDraggable && !isLoading"
+        :data-cy="`${dataCy}:tbody`">
+      <template v-for="(item, idx) in items">
+        <dp-table-row
+          ref="tableRows"
+          :data-cy="`${dataCy}:row:${idx}`"
+          :index="idx"
+          :checked="elementSelections[item[trackBy]] || false"
+          :fields="fields"
+          :has-flyout="hasFlyout"
+          :header-fields="headerFields"
+          :is-draggable="isDraggable"
+          :is-expandable="isExpandable"
+          :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+          :is-locked-message="mergedTranslations.lockedForSelection"
+          :is-resizable="isResizable"
+          :is-selectable="isSelectable"
+          :is-selectable-name="isSelectableName"
+          :is-truncatable="isTruncatable"
+          :item="item"
+          :search-term="searchTerm"
+          :track-by="trackBy"
+          :wrapped="wrappedElements[item[trackBy]] || false"
+          @toggle-expand="toggleExpand"
+          @toggle-select="toggleSelect"
+          @toggle-wrap="toggleWrap">
+          <template
+            v-slot:[field]="item"
+            v-for="field in fields">
+            <slot
+              :name="field"
+              v-bind="item" />
+          </template>
+          <template v-slot:flyout="item">
+            <slot
+              name="flyout"
+              v-bind="item" />
+          </template>
+        </dp-table-row>
 
-          <!-- DpTableRowExpanded -->
-          <tr
-            v-if="expandedElements[item[trackBy]] || false"
-            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
-            <td
-              :class="{ 'opacity-70': isLoading }"
-              :colspan="colCount"
-              @mouseenter="addHoveredClass(idx)"
-              @mouseleave="removeHoveredClass(idx)">
-              <slot
-                name="expandedContent"
-                v-bind="item" />
-            </td>
-          </tr>
-        </template>
+        <!-- DpTableRowExpanded -->
+        <tr
+          v-if="expandedElements[item[trackBy]] || false"
+          :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+          <td
+            :class="{ 'opacity-70': isLoading }"
+            :colspan="colCount"
+            @mouseenter="addHoveredClass(idx)"
+            @mouseleave="removeHoveredClass(idx)">
+            <slot
+              name="expandedContent"
+              v-bind="item" />
+          </td>
+        </tr>
+      </template>
       </tbody>
 
       <!-- draggable -->
@@ -175,6 +181,7 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
+import { sessionStorageMixin } from '~/mixins'
 import DomPurify from 'dompurify'
 import DpDraggable from '~/components/DpDraggable'
 import DpLoading from '~/components/DpLoading'
@@ -194,6 +201,8 @@ export default {
   directives: {
     cleanhtml: CleanHtml
   },
+
+  mixins: [sessionStorageMixin],
 
   props: {
     dataCy: {
@@ -416,7 +425,7 @@ export default {
       if (this.multiPageSelectionItemsTotal > 0) {
         return this.multiPageSelectionItemsToggled === this.multiPageSelectionItemsTotal || this.multiPageAllSelected
       } else {
-        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.items.length
+        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.selectableItems.length
       }
     },
 
@@ -457,16 +466,31 @@ export default {
       if (this.searchString === null || this.searchString.length < 1) {
         return new RegExp()
       }
-      const searchTerm = this.searchString.replace(/\s*/ig, '\\s*')
+      const searchTerm = this.escapeSpecialCharacters(this.searchString)
       return new RegExp(searchTerm, 'ig')
     },
 
     searchTermSet () {
       return this.searchTerm.source !== '(?:)'
+    },
+
+    selectableItems () {
+      return this.lockCheckboxBy ? this.items.filter(item => !item[this.lockCheckboxBy]) : this.items
     }
   },
 
   watch: {
+    headerFields () {
+      if (this.isResizable) {
+        this.$nextTick(() => {
+          const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+          const tableHeaderElements = firstRow ? firstRow.children : null
+
+          this.setColsWidth(tableHeaderElements)
+        })
+      }
+    },
+
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
     }
@@ -477,6 +501,19 @@ export default {
       const tableRow = this.$refs.tableRows[idx]
 
       return tableRow.$el.classList.add('is-hovered-content')
+    },
+
+    /**
+     * This method is used to escape special characters in a string.
+     * It specifically targets spaces and plus signs.
+     *
+     * @param {string} string - The string to be processed.
+     * @returns {string} - The processed string with special characters escaped.
+     */
+    escapeSpecialCharacters (string) {
+      return string
+        .replace(/(\s)/g, ' ')
+        .replace(/([+])/g, '\\$&')
     },
 
     extractTranslations (keys) {
@@ -504,6 +541,17 @@ export default {
       this.selectedElements = this.filterElementSelections()
     },
 
+    getColWidthFromHeaderField (field) {
+      const headerField = this.headerFields.find(headerField => headerField.field === field)
+
+      return headerField && headerField.colWidth ? headerField.colWidth : null
+    },
+
+
+    getFixedColWidth (field) {
+      return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
+    },
+
     removeHoveredClass(idx) {
       const tableRow = this.$refs.tableRows[idx]
 
@@ -512,6 +560,35 @@ export default {
 
     resetSelection () {
       this.toggleSelectAll(false)
+    },
+
+    setColsWidth (headers) {
+      Array.from(headers).forEach(tableHeaderEl => {
+        /**
+         * Some of childNodes of the first table row are not Element nodes but comments or text.
+         * This originates in the Vue template compiler leaving empty html comments when rendering
+         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
+         */
+        if (tableHeaderEl.nodeType === 1) {
+          const headerField = tableHeaderEl.getAttribute('data-col-field')
+          const storageName = `dpDataTable:data-col-field=${headerField}`
+          const sessionColWidth = this.getItemFromSessionStorage(storageName)
+          /**
+           * Some columns, such as 'flyout' and 'wrap', should not be resizable;
+           * their width is fixed; the getBoundingClientRect() function should not be applied to them
+           */
+          const fixedWidth = this.getFixedColWidth(headerField)
+          const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
+
+          const width = fixedWidth
+            || sessionColWidth
+            || headerFieldWidth
+            || `${tableHeaderEl.getBoundingClientRect().width}px`
+
+          tableHeaderEl.style.width = width
+          this.updateSessionStorage(storageName, width)
+        }
+      })
     },
 
     setElementSelections (elements, status) {
@@ -546,10 +623,12 @@ export default {
     },
 
     toggleSelectAll (status = this.allSelected === false) {
-      this.elementSelections = this.setElementSelections(this.items, status)
+      this.elementSelections = this.setElementSelections(this.selectableItems, status)
       this.selectedElements = this.filterElementSelections()
       this.$emit('items-selected', this.selectedElements)
-      this.$emit('items-toggled', this.items.map(el => { return { id: el[this.trackBy] } }), status)
+      this.$emit('items-toggled', this.selectableItems.map(el => {
+        return { id: el[this.trackBy] }
+      }), status)
 
       // Used by multi-page selection in SegmentsList to determine whether to track selected or deselected items.
       this.$emit('select-all', status)
@@ -582,7 +661,7 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
-  beforeUpdate() {
+  beforeUpdate () {
     this.headerCellCount = this.headerFields.length
   },
 
@@ -597,32 +676,22 @@ export default {
      * Therefore, we have a normal table, get the auto-sized cell width and set the layout to fixed afterwards.
      */
     if (this.isResizable || this.isTruncatable) {
-      const firstRow = this.tableEl.firstChild
-      const tableHeaders = Array.prototype.slice.call(firstRow.childNodes)
-      tableHeaders.forEach(tableHeader => {
-        /**
-         * Some of childNodes of the first table row are not Element nodes but comments or text.
-         * This originates in the Vue template compiler leaving empty html comments when rendering
-         * falsy `v-if` blocks. We allow only nodeType "Element" to access its `getBoundingClientRect` api.
-         */
-        if(tableHeader.nodeType === 1) {
-          const width = tableHeader.getBoundingClientRect().width
-          tableHeader.style.width = width + 'px'
-        }
-      })
+      const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+      const tableHeaderElements = firstRow ? firstRow.children : null
+
+      this.setColsWidth(tableHeaderElements)
 
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
-        const tableRows = Array.from(this.tableEl.children[1].children)
-        tableRows.forEach(tableRow => {
-          Array.from(tableRow.children).forEach(cell => {
-            cell.firstChild.style.width = null
-            cell.firstChild.style.maxWidth = null
-            cell.firstChild.style.minWidth = null
-          })
+        Array.from(tableHeaderElements).forEach(th => {
+          if (th.firstChild) {
+            th.firstChild.style.width = null
+            th.firstChild.style.maxWidth = null
+            th.firstChild.style.minWidth = null
+          }
         })
       }
     }

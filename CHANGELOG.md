@@ -10,6 +10,150 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   so it gets called every time a api request is fired.
   It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
 
+## v0.3.24 - 2024-07-29
+
+### Fixed
+- ([#962](https://github.com/demos-europe/demosplan-ui/pull/962)) Make spacing tokens work with Tailwindcss 3.4.7. ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+- ([#961](https://github.com/demos-europe/demosplan-ui/pull/961)) DpEditor: Allow class attribute in custom links ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/953)) BREAKING: Bump Yarn to v4.2.2 ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.23 - 2024-07-26
+
+### Changed
+
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/954)) Allow all 2xx and 3xx as response Codes in DpApi (not only 200). ([@salisdemos](https://github.com/salisdemos))
+
+### Fixed
+
+- ([#955](https://github.com/demos-europe/demosplan-ui/pull/955)) BREAKING: Pass headerFields-Data to tableHeader slot so the content gets rendered ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.21 - 2024-07-22
+
+### Added
+
+- ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
+- ([#919](https://github.com/demos-europe/demosplan-ui/pull/919)) Add enlarging images on click for DpEditor ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#929](https://github.com/demos-europe/demosplan-ui/pull/929)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Fixed
+
+- ([#911](https://github.com/demos-europe/demosplan-ui/pull/911)) DpButtonRow: update class ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.20 - 2024-07-17
+
+### Added
+
+- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are not longer available. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+## v0.3.19 - 2024-07-12
+
+### Fixed
+
+- ([#917](https://github.com/demos-europe/demosplan-ui/pull/917)) Fix cut methode for TipTap Editor. ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Added
+
+- ([#926](https://github.com/demos-europe/demosplan-ui/pull/926)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#921](https://github.com/demos-europe/demosplan-ui/pull/921)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#916](https://github.com/demos-europe/demosplan-ui/pull/916)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#912](https://github.com/demos-europe/demosplan-ui/pull/912)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#908](https://github.com/demos-europe/demosplan-ui/pull/908)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#895](https://github.com/demos-europe/demosplan-ui/pull/895)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Changed
+
+- ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#902](https://github.com/demos-europe/demosplan-ui/pull/902)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.18 - 2024-06-12
+
+### Fixed
+
+- ([#891](https://github.com/demos-europe/demosplan-ui/pull/891)) DpDataTable: Escape whitespaces and plus signs for searching ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Added
+
+- ([#893](https://github.com/demos-europe/demosplan-ui/pull/893)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#892](https://github.com/demos-europe/demosplan-ui/pull/892)) DpInput: Add hidden attribute for label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#894](https://github.com/demos-europe/demosplan-ui/pull/894)) DpLabel: Add hidden attribute for visually hiding the label ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.17 - 2024-05-30
+
+### Changed
+
+- ([#878](https://github.com/demos-europe/demosplan-ui/pull/878)) BREAKING: Prevent "select all" in DpDataTable from selecting "locked" items. Before, all items per page were selected, independent of the lock state ([@salisdemos](https://github.com/salisdemos))
+
+### Added
+
+- ([#881](https://github.com/demos-europe/demosplan-ui/pull/881)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#875](https://github.com/demos-europe/demosplan-ui/pull/875)) Utils: add resistFingerprintingDuckTest ([@spiess-demos](https://github.com/spiess-demos))
+- ([#879](https://github.com/demos-europe/demosplan-ui/pull/879)) DpDataTableExtended: Add prop for translations to pass on to DpDataTable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.16 - 2024-05-24
+
+### Changed
+
+- ([#856](https://github.com/demos-europe/demosplan-ui/pull/856)) Bump @tiptap to 2.4.0 ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+
+- ([#868](https://github.com/demos-europe/demosplan-ui/pull/868)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+## v0.3.15 - 2024-05-22
+
+### Added
+
+- ([#859](https://github.com/demos-europe/demosplan-ui/pull/859)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+
+### Fixed
+
+- ([#848](https://github.com/demos-europe/demosplan-ui/pull/848)) Don't show Tooltips after mouseout (prevent Tooltips from created twice) ([@salisdemos](https://github.com/salisdemos))
+- ([#850](https://github.com/demos-europe/demosplan-ui/pull/850)) Input validation: use form as validation container ([@sakutademos](https://github.com/sakutademos))
+- ([#860](https://github.com/demos-europe/demosplan-ui/pull/860)) DpDatePicker: set attribute only if datePickerInput is defined ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#865](https://github.com/demos-europe/demosplan-ui/pull/865)) DpApi: Don't set Content-Type header for FormData ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.14 - 2024-05-16
+
+### Changed
+
+- ([#851](https://github.com/demos-europe/demosplan-ui/pull/851)) DpLabel: replace the tooltip directive with the DpContextualHelp component ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+
+- ([#858](https://github.com/demos-europe/demosplan-ui/pull/858)) DpCheckbox: fix vue warning related to type checking ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.13 - 2024-05-15
+
+### Added
+
+- ([#847](https://github.com/demos-europe/demosplan-ui/pull/847)) Tailwind: add "scrollbar-none" class ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.12 - 2024-05-06
+
+### Fixed
+
+- ([#844](https://github.com/demos-europe/demosplan-ui/pull/844)) Prevent changing Width on following DataTable Element, while resizing ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.11 - 2024-05-03
+
+### Fixed
+
+- ([#843](https://github.com/demos-europe/demosplan-ui/pull/843)) DpInput: fix "length" prop validation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#841](https://github.com/demos-europe/demosplan-ui/pull/841)) Fix the DpDatepicker error validation ([@sakutademos](https://github.com/sakutademos))
+
+## v0.3.10 - 2024-04-26
+
+### Changed
+- ([#835](https://github.com/demos-europe/demosplan-ui/pull/835)) DpDataTable: enhance column resizing functionality; save the width to sessionStorage ([@sakutademos](https://github.com/sakutademos))
+
+### Added
+- ([#834](https://github.com/demos-europe/demosplan-ui/pull/834)) DpButton: add icon size class ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.3.9 - 2024-04-12
 
 ### Changed

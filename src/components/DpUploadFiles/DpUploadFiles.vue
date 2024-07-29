@@ -1,7 +1,7 @@
 <template>
   <fieldset :class="prefixClass('layout')">
     <legend
-      class="hide-visually"
+      class="sr-only"
       v-text="Translator.trans('upload.files')" />
     <dp-label
       v-if="label.text"
@@ -16,6 +16,7 @@
       :basic-auth="basicAuth"
       :chunk-size="chunkSize"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
+      :data-cy="dataCy"
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
       :translations="translations"
@@ -44,10 +45,10 @@
 </template>
 
 <script>
+import { prefixClassMixin, sessionStorageMixin } from '~/mixins'
 import DpLabel from '../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
-import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpUploadFiles',
@@ -58,7 +59,7 @@ export default {
     DpUploadedFileList
   },
 
-  mixins: [prefixClassMixin],
+  mixins: [prefixClassMixin, sessionStorageMixin],
 
   provide () {
     return {
@@ -90,6 +91,12 @@ export default {
       type: Number,
       default: Infinity,
       required: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'uploadFile'
     },
 
     /**
@@ -233,9 +240,7 @@ export default {
 
   watch: {
     storageName () {
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
   },
 
@@ -251,9 +256,7 @@ export default {
       }
 
       this.uploadedFiles.push(file)
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     },
 
     clearFilesList () {
@@ -281,20 +284,12 @@ export default {
       }
 
       this.uploadedFiles = this.uploadedFiles.filter(el => el.hash !== file.hash)
-      if (this.storageName) {
-        this.updateSessionStorage()
-      }
-    },
-
-    updateSessionStorage () {
-      sessionStorage.setItem(this.storageName, JSON.stringify(this.uploadedFiles))
+      this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
   },
 
   mounted () {
-    if (this.storageName) {
-      this.uploadedFiles = JSON.parse(sessionStorage.getItem(this.storageName)) || []
-    }
+    this.uploadedFiles = this.getItemFromSessionStorage(this.storageName) || []
   }
 }
 </script>

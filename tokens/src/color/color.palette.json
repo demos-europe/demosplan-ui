@@ -4,251 +4,309 @@
       "$description": "The raw hex values that other color tokens inherit from. Do not use directly.",
       "black": {
         "value": "#000",
-        "themeable": true
+        "themeable": true,
+        "$type": "color"
       },
       "white": {
         "value": "#fff",
-        "themeable": true
+        "themeable": true,
+        "$type": "color"
       },
       "neutral": {
         "$description": "Greyscale palette.",
         "light-4": {
           "value": "#f5f5f5",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#ebe9e9",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#d3d3d3",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#aeaeae",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#757575",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#595959",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#333333",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "blue": {
         "light-4": {
           "value": "#ebf5ff",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#cee6fb",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#82c5ff",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#44a8ff",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#006fd0",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#005eb1",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#004078",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "red": {
         "light-4": {
           "value": "#fff0f0",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#fcdddd",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#ffb3b3",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#fc5e5e",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#e52222",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#b20000",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#820000",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "teal": {
         "light-4": {
           "value": "#e6fbff",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#bcedf6",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#66cee2",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#29acc4",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#0095b0",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#007286",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#004f5D",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "green": {
         "light-4": {
           "value": "#effbef",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#def7de",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#93e293",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#5cba5c",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#228b22",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#186218",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#064006",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "yellow": {
         "light-4": {
           "value": "#fff7e5",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#ffefca",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#ffe5a7",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#ffd87c",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#ffbe24",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#d09200",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#845d01",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "purple": {
         "light-4": {
           "value": "#f3ecf8",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#dfcced",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#bf99db",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#a572cd",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#8f4fc0",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#5e00a6",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#4b0085",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       },
       "magenta": {
         "light-4": {
           "value": "#fdedf2",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-3": {
           "value": "#fbdbe5",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-2": {
           "value": "#ff9fbd",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "light-1": {
           "value": "#e73e79",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "base": {
           "value": "#d4004b",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-1": {
           "value": "#960739",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         },
         "dark-2": {
           "value": "#650324",
-          "themeable": true
+          "themeable": true,
+          "$type": "color"
         }
       }
     }

@@ -198,9 +198,9 @@ const checkResponse = function (response, messages) {
     if (response.status >= 400) {
       // handle error cases
       reject(response.data)
-    } else if (response.status === 200) {
+    } else if (response.status >= 200 && response.status < 400) {
       // Got data!
-      resolve(response.data)
+      resolve(response.data ? response.data : null)
     } else {
       // Got no data
       resolve(null)
@@ -222,8 +222,7 @@ function makeFormPost (payload, url) {
   return dpApi({
     method: 'POST',
     url: url,
-    data: postData,
-    headers: { 'Content-Type': 'multipart/form-data' }
+    data: postData
   })
 }
 

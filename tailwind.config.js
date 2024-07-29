@@ -1,31 +1,37 @@
 const plugin = require('tailwindcss/plugin')
 
-/**
- * Transform a StyleDictionary js module representation of the tokens object
- * into a simplified object to be consumable for the Tailwind config.
- * It filters out tokens that are aliases for other tokens.
- * @param tokens The original object
- * @return {{[p: string]: unknown}}
- */
-const tokensToTailwind = (tokens) => {
-  const tokensArray = Object.values(tokens)
-  const filteredTokens = tokensArray.filter(({ original }) => original.value.includes('{') === false)
-  return Object.fromEntries(filteredTokens.map(({ attributes, value }) => [attributes.type, value]))
+const tailwindTheme = {
+  borderRadius: require('./tokens/dist/tailwind/rounded'),
+  boxShadow: require('./tokens/dist/tailwind/boxShadow'),
+  fontSize: require('./tokens/dist/tailwind/fontSize'),
+  screens: require('./tokens/dist/tailwind/breakpoints'),
+  spacing: require('./tokens/dist/tailwind/space'),
+  zIndex: require('./tokens/dist/tailwind/zIndex'),
+  colors: require('./tokens/dist/tailwind/color')
 }
 
-const borderRadius = tokensToTailwind(require('./tokens/dist/js/rounded').rounded)
-const boxShadow = tokensToTailwind(require('./tokens/dist/js/boxShadow')['box-shadow'])
-const spacing = tokensToTailwind(require('./tokens/dist/js/space').space)
-const screens = tokensToTailwind(require('./tokens/dist/js/breakpoints').breakpoints)
-const zIndex = tokensToTailwind(require('./tokens/dist/js/zIndex')['z-index'])
+const tailwindCorePluginsColor = ['backgroundColor', 'borderColor', 'textColor']
+
+tailwindCorePluginsColor.forEach(corePlugin => {
+  tailwindTheme[corePlugin] = {
+    ...tailwindTheme.colors,
+    ...require(`./tokens/dist/tailwind/${corePlugin}`)
+  }
+})
+
+tailwindTheme.extend = {
+  flexShrink: {
+    2: '2'
+  }
+}
 
 module.exports = {
   content: [
     './tokens/*.mdx',
     './src/components/**/*.{js,vue}',
-    './src/directives/**/*.js'
+    './src/directives/**/*.js',
+    './.storybook/**/*.jsx'
   ],
-  important: true, // Utilities should always win https://sebastiandedeyne.com/why-we-use-important-with-tailwind/
   plugins: [
     plugin(function({ addUtilities }) {
       addUtilities({
@@ -38,19 +44,18 @@ module.exports = {
           'word-break': 'break-word',
           'hyphens': 'auto'
         },
+        /**
+         * Hide scrollbar while keeping the element scrollable.
+         * See https://stackoverflow.com/a/63756377/6234391
+         */
+        '.scrollbar-none': {
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            'display': 'none'
+          }
+        }
       })
     })
   ],
-  theme: {
-    borderRadius,
-    boxShadow,
-    screens,
-    spacing,
-    zIndex,
-    extend: {
-      flexShrink: {
-        2: '2'
-      }
-    }
-  }
+  theme: tailwindTheme
 }

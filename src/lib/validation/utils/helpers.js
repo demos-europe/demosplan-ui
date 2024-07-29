@@ -2,7 +2,7 @@ import getScrollTop from '../../../utils/getScrollTop'
 import prefixClass from '../../../utils/prefixClass'
 
 function getAllInputsArray (form) {
-  return Array.from(form.querySelectorAll('[pattern], [required], input[type="email"], .tiptap__input--hidden.is-required, .multiselect.is-required, fieldset.is-required, [minlength], [maxlength], [data-dp-validate-maxlength], [data-dp-validate-should-equal]'))
+  return Array.from(form.querySelectorAll('[pattern], [required], input[type="email"], [data-ad-id], .tiptap__input--hidden.is-required, .multiselect.is-required, fieldset.is-required, [minlength], [maxlength], [data-dp-validate-maxlength], [data-dp-validate-should-equal]'))
 }
 
 function shouldValidate (input) {
@@ -16,6 +16,7 @@ function shouldValidate (input) {
     isRequired ||
     input.hasAttribute('pattern') ||
     input.getAttribute('type') === 'email' ||
+    input.hasAttribute('data-ad-id') || /* this attribute is used to get the input of the Datepicker */
     input.hasAttribute('minlength') ||
     input.hasAttribute('maxlength') ||
     input.hasAttribute('data-dp-validate-maxlength') ||
@@ -29,7 +30,13 @@ function validateConditionsFulfilled (input) {
   return allConditions.some(condition => {
     const comparisonType = condition.indexOf('!==') > -1 ? 'isNotEqual' : 'isEqual'
     const matchers = condition.split(comparisonType === 'isNotEqual' ? '!==' : '===')
-    const form = input.closest('[data-dp-validate]')
+    const validationContainer = input.closest('[data-dp-validate]')
+    /**
+     Use the form as the validation container. This is necessary because in some cases, such as wizard,
+     the value of the 'data-dp-validate-if' attribute may refer to a different fieldset.
+     By using the form, this condition can be found throughout the entire form.
+     */
+    const form = validationContainer.tagName === 'FIELDSET' && validationContainer.form ? validationContainer.form : validationContainer
 
     try {
       const inputToCheck = form.querySelector(matchers[0]) // It has to be a valid querySelector, which means that numerical ids will throw an error

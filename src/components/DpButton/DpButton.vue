@@ -13,7 +13,7 @@
       :icon="icon"
       :size="iconSize" />
     <span
-      :class="{'hide-visually': hideText}"
+      :class="{'sr-only': hideText}"
       v-text="text" />
     <dp-icon
       v-if="iconAfter"
@@ -158,7 +158,7 @@ export default {
       return [
         'btn inline-flex items-center space-inline-xs',
         this.busy && 'is-busy pointer-events-none',
-        this.iconOnly && 'icon-only',
+        this.iconOnly && `icon-only ${this.iconSize}`,
         this.rounded && 'rounded-full',
         ['primary', 'secondary', 'warning'].includes(this.color) && classes.color[this.color],
         ['solid', 'outline', 'subtle'].includes(this.variant) && classes.variant[this.variant]

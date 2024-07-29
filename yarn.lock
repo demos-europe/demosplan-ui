@@ -1743,6 +1743,7 @@ __metadata:
     "@floating-ui/dom": "npm:^1.4.5"
     "@jest/globals": "npm:^29.5.0"
     "@jest/transform": "npm:^29.5.0"
+    "@phosphor-icons/vue": "npm:^2.2.1"
     "@storybook/addon-actions": "npm:7.6.17"
     "@storybook/addon-docs": "npm:7.6.17"
     "@storybook/addon-essentials": "npm:7.6.17"
@@ -2998,6 +2999,15 @@ __metadata:
   version: 0.1.1
   resolution: "@one-ini/wasm@npm:0.1.1"
   checksum: 10c0/54700e055037f1a63bfcc86d24822203b25759598c2c3e295d1435130a449108aebc119c9c2e467744767dbe0b6ab47a182c61aa1071ba7368f5e20ab197ba65
+  languageName: node
+  linkType: hard
+
+"@phosphor-icons/vue@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@phosphor-icons/vue@npm:2.2.1"
+  peerDependencies:
+    vue: ">=3.2.39"
+  checksum: 10c0/15bf74b5d281a94c91679c4115c93f70144748c63848273b8d9a1ca7856ee65c94ce0c8b0d75d97d566b42e6affd2f95a3dcead286d5f70751a040141442a0e2
   languageName: node
   linkType: hard
 

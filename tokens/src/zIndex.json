@@ -1,5 +1,5 @@
 {
-  "z-index": {
+  "zIndex": {
     "below-zero": {
       "$description": "Stack an element behind elements that do not have a stacking order applied.",
       "value": "-10"

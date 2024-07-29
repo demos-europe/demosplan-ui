@@ -4,6 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.22 - 2024-07-26
+
+### Changed
+
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/954)) Allow all 2xx and 3xx as response Codes in DpApi (not only 200). ([@salisdemos](https://github.com/salisdemos))
+
+### Fixed
+
+- ([#955](https://github.com/demos-europe/demosplan-ui/pull/955)) BREAKING: Pass headerFields-Data to tableHeader slot so the content gets rendered ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.3.21 - 2024-07-22
 
 ### Added

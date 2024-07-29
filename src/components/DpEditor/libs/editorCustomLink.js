@@ -22,6 +22,9 @@ export default Link.extend({
       },
       target: {
         default: null
+      },
+      class: {
+        default: null
       }
     }
   },

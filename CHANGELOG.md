@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.25 - 2024-07-30
+
+- update prosemirror dependencies to resolve version conflics with tiptap
+
 ## v0.3.24 - 2024-07-29
 
 ### Fixed

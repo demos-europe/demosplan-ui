@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Roleback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.3.25 - 2024-07-30
 
 - update prosemirror dependencies to resolve version conflics with tiptap

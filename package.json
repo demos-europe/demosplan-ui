@@ -178,6 +178,5 @@
     "build:prod": "webpack --mode=production --define-process-env-node-env=production",
     "test": "jest",
     "watch": "webpack --watch"
-  },
-  "packageManager": "yarn@4.2.2"
+  }
 }

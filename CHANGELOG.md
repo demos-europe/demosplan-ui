@@ -10,6 +10,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   so it gets called every time a api request is fired.
   It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
 
+## v0.3.26 - 2024-07-30
+
+### Fixed
+
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Roleback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.25 - 2024-07-30
+
+- update prosemirror dependencies to resolve version conflics with tiptap
+
 ## v0.3.24 - 2024-07-29
 
 ### Fixed

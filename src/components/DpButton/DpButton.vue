@@ -4,7 +4,8 @@
     :type="isButtonElement ? type : null"
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
-    :aria-hidden="busy ? true : null"
+    :disabled="disabled"
+    :aria-hidden="busy"
     v-tooltip="iconOnly ? text : null"
     @click="emit('click', $event)">
     <dp-icon
@@ -28,7 +29,7 @@ import { computed, defineProps, onMounted, PropType } from 'vue'
 import { IconName, IconSize } from '../../../types'
 import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
+import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
 
 type ButtonColor = 'primary' | 'secondary' | 'warning'
@@ -53,6 +54,12 @@ const props = defineProps({
     required: false,
     default: 'primary',
     validator: (prop: ButtonColor) => ['primary', 'secondary', 'warning'].includes(prop)
+  },
+
+  disabled: {
+    type: [Boolean, null],
+    required: false,
+    default: null
   },
 
   /**
@@ -148,10 +155,11 @@ const emit = defineEmits(['click'])
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-    'inline-flex items-center leading-3',
+    'inline-flex items-center leading-3 text-button select-none',
     ...colorClasses.value,
     ...spacingClasses.value,
     props.busy && 'bg-busy animate-busy pointer-events-none',
+    props.disabled && 'opacity-40 pointer-events-none',
     props.rounded ? 'rounded-full' : 'rounded-button'
 ])
 
@@ -174,9 +182,14 @@ const colorClasses = computed(() => {
     return renderedColors
 })
 
+// Visually compensate button padding for icons with portrait proportions
+const iconPortrait = computed(() => !props.hideText && ICON_PROPORTIONS[props.icon] === 'portrait')
+const iconAfterPortrait = computed(() => !props.hideText && ICON_PROPORTIONS[props.iconAfter] === 'portrait')
+
 const spacingClasses = computed(() => {
-    // Default padding for text buttons, resulting in a 30px height that matches input fields.
-    let padding = 'px-2 py-1'
+  // Default padding for text buttons, resulting in a 30px height that matches input fields.
+  let padding = `${iconPortrait.value ? 'pl-1' : 'pl-2'} py-1 ${iconAfterPortrait.value ? 'pr-1' : 'pr-2'}`
+
   // The small and large iconOnly buttons create a scale alongside the medium iconOnly button which shares its 30px height with input fields.
   if (iconOnly.value) {
     switch (props.iconSize) {
@@ -218,7 +231,7 @@ const allColorClasses = {
     /**
      * solidOutlineSubtle: classes that apply to all button color variants.
      *
-     * @TODO instead of hardcoding #005eb1 here, focus-visible:outline-interactive-hover/50 could be used.
+     * Instead of hardcoding #005eb1 here, focus-visible:outline-interactive-hover/50 could be used.
      * However, for this to work, token css variables would have to be rendered within @layer base with modern rbg
      * syntax, to be able to utilize the "<alpha-value>" placeholder to support opacity on css variables.
      * See

@@ -20,9 +20,9 @@ const tooltipConfig = {
   },
   defaultOffset: 12,
   defaultTemplate: `
-    <div class="z-tooltip cursor-help max-w-13" role="tooltip">
-      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -translate-y-1 -translate-x-1"></div>
-      <div class="px-2 pt-1 pb-1.5 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark"></div>
+    <div class="z-tooltip cursor-help max-w-13 absolute" role="tooltip">
+      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1"></div>
+      <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded"></div>
     </div>`,
   popover: {
     defaultPlacement: 'top',

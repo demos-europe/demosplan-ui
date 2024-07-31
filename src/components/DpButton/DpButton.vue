@@ -1,3 +1,4 @@
+<!--suppress GrazieInspection -->
 <template>
   <component
     :is="element"
@@ -73,7 +74,7 @@ const props = defineProps({
   },
 
   /**
-   * When passing a href, a link is rendered instead of a button element.
+   * When passing an href, a link is rendered instead of a button element.
    * The value of its `href` attribute is sanitized, defaulting to `'about:blank'` for unsafe values.
    */
   href: {

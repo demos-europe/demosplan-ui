@@ -402,6 +402,12 @@
             "value": "{color.palette.neutral.light-3}",
             "themeable": true,
             "$type": "color"
+          },
+          "dark": {
+            "$description": "Dark background color for tooltips etc.",
+            "value": "{color.palette.neutral.dark-2}",
+            "themeable": true,
+            "$type": "color"
           }
         },
         "text": {

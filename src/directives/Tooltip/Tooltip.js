@@ -19,7 +19,11 @@ const tooltipConfig = {
     hide: 100
   },
   defaultOffset: 12,
-  defaultTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip__arrow"></div><div class="tooltip__inner"></div></div>',
+  defaultTemplate: `
+    <div class="z-tooltip cursor-help max-w-13" role="tooltip">
+      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -translate-y-1 -translate-x-1"></div>
+      <div class="px-2 pt-1 pb-1.5 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark"></div>
+    </div>`,
   popover: {
     defaultPlacement: 'top',
     defaultBaseClass: 'tooltip',

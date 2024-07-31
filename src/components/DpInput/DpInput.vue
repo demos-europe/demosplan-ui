@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerWidth !== '' ? prefixClass(containerWidth) : null">
+  <div :class="containerClasses">
     <dp-label
       v-if="label.text !== ''"
       v-bind="{
@@ -227,7 +227,8 @@ const classes = computed(() => {
     'px-1 py-0.5 max-w-full rounded-input',
     'text-base leading-4 bg-surface',
     'outline outline-1 outline-offset-0 outline-transparent',
-    'focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero'
+    'focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero',
+    'required:shadow-none'
   ]
 
   if (!(size.value && size.value > 0)) {
@@ -250,10 +251,13 @@ const classes = computed(() => {
   return cssClasses.join(' ')
 })
 
-const containerWidth = computed(() => (width.value === 'auto' || (size.value && size.value > 0)) ? '' : width.value)
+const containerClasses = computed(() => [
+  (width.value !== 'auto' && (size.value && size.value > 0)) && width.value,
+  labelHint.value.length ? 'space-y-1' : 'space-y-0.5'
+])
 
 const labelHint = computed(() => {
-  const hint = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []
+  const hint: string[] = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []
 
   if (maxlength.value && !minlength.value) {
     hint.push(maxlengthHint(currentValue.value.length, maxlength.value))

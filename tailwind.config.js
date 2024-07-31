@@ -46,7 +46,13 @@ module.exports = {
     './.storybook/**/*.jsx'
   ],
   plugins: [
-    plugin(function({ addUtilities }) {
+    plugin(function({ addBase, addUtilities }) {
+      addBase({
+        html: {
+          'color': require('./tokens/dist/tailwind/textColor').default,
+        }
+      })
+
       addUtilities({
         /**
          * This overrides the Tailwind class of the same name with some

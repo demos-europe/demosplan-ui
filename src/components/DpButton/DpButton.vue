@@ -1,3 +1,4 @@
+<!--suppress GrazieInspection -->
 <template>
   <component
     :is="element"

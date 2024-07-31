@@ -41,7 +41,7 @@
 import { computed, ref, toRefs, watch } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
-import { length} from '~/shared'
+import { length } from '~/shared'
 
 const props = defineProps({
   /**
@@ -213,7 +213,7 @@ const props = defineProps({
    */
   width: {
     type: String,
-    default: 'u-1-of-1'
+    default: 'w-full'
   }
 })
 
@@ -223,11 +223,30 @@ const { value, maxlength, minlength, width, size, label } = toRefs(props)
 const currentValue = ref(value.value)
 
 const classes = computed(() => {
-  let cssClasses: string[] = []
-  cssClasses = (size.value && size.value > 0) ? [] : [...cssClasses, 'u-1-of-1']
-  cssClasses = props.readonly || props.disabled ? [...cssClasses, 'bg-color--grey-light-2'] : cssClasses
-  cssClasses = props.type !== 'search' ? [...cssClasses, 'o-form__control-input'] : [...cssClasses, 'o-form__control-search']
-  cssClasses = props.hasIcon ? [...cssClasses, 'u-pr'] : cssClasses
+  let cssClasses: string[] = [
+    'px-1 py-0.5 max-w-full rounded-input',
+    'text-base leading-4 bg-surface',
+    'outline outline-1 outline-offset-0 outline-transparent',
+    'focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero'
+  ]
+
+  if (!(size.value && size.value > 0)) {
+    cssClasses.push('w-full')
+  }
+
+  if (props.readonly || props.disabled) {
+    cssClasses.push('bg-surface-light border-none cursor-default')
+  } else {
+    cssClasses.push('text-input bg-surface border border-input cursor-text')
+  }
+
+  if (props.hasIcon) {
+    cssClasses.push('pr-4')
+  }
+
+  // o-form__control-search is nowhere styled directly
+  // cssClasses = props.type !== 'search' ? [...cssClasses, 'o-form__control-input'] : [...cssClasses, 'o-form__control-search']
+
   return cssClasses.join(' ')
 })
 

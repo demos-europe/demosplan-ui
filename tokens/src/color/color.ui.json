@@ -118,6 +118,11 @@
           "value": "{color.palette.neutral.dark-2}",
           "$type": "color"
         },
+        "input": {
+          "$description": "Color for text within input fields.",
+          "value": "{color.palette.neutral.base}",
+          "$type": "color"
+        },
         "muted": {
           "$description": "Color for text that should stand out a little less. Has sufficient contrast on white.",
           "value": "{color.palette.neutral.base}",
@@ -454,6 +459,16 @@
             "value": "{color.palette.purple.light-1}",
             "$type": "color"
           }
+        },
+        "input": {
+          "$description": "Border color for input elements.",
+          "value": "{color.palette.neutral.light-1}",
+          "$type": "color"
+        },
+        "input-disabled": {
+          "$description": "Border color for disabled input elements.",
+          "value": "{color.palette.neutral.light-3}",
+          "$type": "color"
         },
         "neutral": {
           "$description": "Default color used for borders within the application.",

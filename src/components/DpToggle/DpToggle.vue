@@ -24,14 +24,20 @@
 export default {
   name: 'DpToggle',
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:model-value'],
+
   props: {
-    value: {
+    disabled: {
       type: Boolean,
       required: false,
       default: false
     },
 
-    disabled: {
+    modelValue: {
       type: Boolean,
       required: false,
       default: false
@@ -41,19 +47,19 @@ export default {
   computed: {
     backgroundStyles () {
       return {
-        backgroundColor: this.value ? '#3490dc' : '#dae1e7'
+        backgroundColor: this.modelValue ? '#3490dc' : '#dae1e7'
       }
     },
 
     indicatorStyles () {
-      return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
+      return { transform: this.modelValue ? 'translateX(1rem)' : 'translateX(0)' }
     }
   },
 
   methods: {
     toggle () {
       if (this.disabled === false) {
-        this.$emit('input', !this.value)
+        this.$emit('update:model-value', !this.modelValue)
       }
     }
   }

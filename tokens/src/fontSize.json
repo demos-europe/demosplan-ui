@@ -129,6 +129,10 @@
         "$status": "{_status.deprecated}",
         "value": "{fontSize.ui.xxs}",
         "themeable": true
+      },
+      "button": {
+        "$description": "Use for button fontSize.",
+        "value": "{fontSize.scale.3}"
       }
     }
   }

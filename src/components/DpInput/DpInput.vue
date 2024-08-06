@@ -249,7 +249,7 @@ const classes = computed(() => {
 })
 
 const containerClasses = computed(() => {
-  let _classes = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
+  let _classes: string[] = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
 
   if (width.value !== 'auto' && size.value && size.value > 0) {
     _classes.push(width.value)

@@ -47,6 +47,10 @@
     "button": {
       "$description": "Default radius for buttons.",
       "value": "{rounded.md}"
+    },
+    "input": {
+      "$description": "Default radius for input fields.",
+      "value": "{rounded.md}"
     }
   }
 }

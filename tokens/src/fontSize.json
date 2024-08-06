@@ -51,15 +51,18 @@
       "$description": "The [h1-h6] sizes are used to create visual hierarchy with heading-like entities that structure long-form content. Do not use them when styling interface elements. Use [large|small] instead.",
       "h1": {
         "value": "{fontSize.scale.6}",
-        "themeable": true
+        "themeable": true,
+        "$lineHeight": "1.3"
       },
       "h2": {
         "value": "{fontSize.scale.5}",
-        "themeable": true
+        "themeable": true,
+        "$lineHeight": "1.3"
       },
       "h3": {
         "value": "{fontSize.scale.4}",
-        "themeable": true
+        "themeable": true,
+        "$lineHeight": "1.3"
       },
       "h4": {
         "value": "{fontSize.scale.3}",
@@ -67,18 +70,21 @@
       },
       "h5": {
         "value": "{fontSize.scale.2}",
-        "themeable": true
+        "themeable": true,
+        "$lineHeight": "1.3"
       },
       "h6": {
         "value": "{fontSize.scale.1}",
-        "themeable": true
+        "themeable": true,
+        "$lineHeight": "1.3"
       }
     },
     "ui": {
       "$description": "The [large|medium|small|smaller|smallest] font sizes are used to create hierarchy between interface elements via font size, like tabs, action buttons and the like. Do not use it to create visual hierarchy with long text. Go for [h1-h6] tokens instead.",
       "xl": {
         "$description": "Use for heading title, like in StatementSegmentsList component for title of Statement",
-        "value": "{fontSize.scale.5}"
+        "value": "{fontSize.scale.5}",
+        "$lineHeight": "1.3"
       },
       "larger": {
         "$status": "{_status.deprecated}",
@@ -87,7 +93,8 @@
       },
       "lg": {
         "$description": "Tabs, Action buttons, \"more important\" ui",
-        "value": "{fontSize.scale.4}"
+        "value": "{fontSize.scale.4}",
+        "$lineHeight": "1.4"
       },
       "large": {
         "$status": "{_status.deprecated}",
@@ -96,7 +103,8 @@
       },
       "base": {
         "$description": "Body copy and other text that should be readable",
-        "value": "{fontSize.scale.3}"
+        "value": "{fontSize.scale.3}",
+        "$lineHeight": "1.5"
       },
       "medium": {
         "$status": "{_status.deprecated}",
@@ -105,7 +113,8 @@
       },
       "sm": {
         "$description": "Less important text that still has to be readable",
-        "value": "{fontSize.scale.2}"
+        "value": "{fontSize.scale.2}",
+        "$lineHeight": "1.4"
       },
       "small": {
         "$status": "{_status.deprecated}",
@@ -114,7 +123,8 @@
       },
       "xs": {
         "$description": "Even smaller text that is hardly readable; do not use it. Please.",
-        "value": "{fontSize.scale.1}"
+        "value": "{fontSize.scale.1}",
+        "$lineHeight": "1.3"
       },
       "smaller": {
         "$status": "{_status.deprecated}",
@@ -123,7 +133,8 @@
       },
       "xxs": {
         "$description": "Use only for very short text that is used as visual cue inside labels.",
-        "value": "{fontSize.scale.0}"
+        "value": "{fontSize.scale.0}",
+        "$lineHeight": "1.3"
       },
       "smallest": {
         "$status": "{_status.deprecated}",

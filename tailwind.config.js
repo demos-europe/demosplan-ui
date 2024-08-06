@@ -46,7 +46,13 @@ module.exports = {
     './.storybook/**/*.jsx'
   ],
   plugins: [
-    plugin(function({ addUtilities }) {
+    plugin(function({ addBase, addUtilities }) {
+      addBase({
+        html: {
+          'color': require('./tokens/dist/tailwind/textColor').default,
+        }
+      })
+
       addUtilities({
         /**
          * This overrides the Tailwind class of the same name with some
@@ -73,6 +79,12 @@ module.exports = {
         '.bg-busy': {
           'background-image': 'linear-gradient(135deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent)',
           'background-size': '60px 60px'
+        },
+        /**
+         * Visualize invalid input elements. Applied by dpValidateMixin.
+         */
+        '.is-invalid': {
+          '@apply outline-interactive-warning border-interactive-warning': {},
         }
       })
     })

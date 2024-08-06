@@ -223,38 +223,40 @@ const { value, maxlength, minlength, width, size, label } = toRefs(props)
 const currentValue = ref(value.value)
 
 const classes = computed(() => {
-  let cssClasses: string[] = [
-    'px-1 py-0.5 max-w-full rounded-input',
-    'text-base leading-4 bg-surface',
-    'outline outline-1 outline-offset-0 outline-transparent',
-    'focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero',
-    'required:shadow-none'
+  let _classes: string[] = [
+   `px-1 py-0.5 max-w-full rounded-input
+    text-base leading-4 bg-surface
+    outline outline-1 outline-offset-0 outline-transparent
+    focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
+    required:shadow-none`
   ]
 
   if (!(size.value && size.value > 0)) {
-    cssClasses.push('w-full')
+    _classes.push('w-full')
   }
 
   if (props.readonly || props.disabled) {
-    cssClasses.push('bg-surface-light border-none cursor-default')
+    _classes.push('bg-surface-light border-none cursor-default')
   } else {
-    cssClasses.push('text-input bg-surface border border-input cursor-text')
+    _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
   if (props.hasIcon) {
-    cssClasses.push('pr-4')
+    _classes.push('pr-4')
   }
 
-  // o-form__control-search is nowhere styled directly
-  // cssClasses = props.type !== 'search' ? [...cssClasses, 'o-form__control-input'] : [...cssClasses, 'o-form__control-search']
-
-  return cssClasses.join(' ')
+  return _classes.join(' ')
 })
 
-const containerClasses = computed(() => [
-  (width.value !== 'auto' && (size.value && size.value > 0)) && width.value,
-  labelHint.value.length ? 'space-y-1' : 'space-y-0.5'
-])
+const containerClasses = computed(() => {
+  let _classes = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
+
+  if (width.value !== 'auto' && size.value && size.value > 0) {
+    _classes.push(width.value)
+  }
+
+  return _classes
+})
 
 const labelHint = computed(() => {
   const hint: string[] = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []

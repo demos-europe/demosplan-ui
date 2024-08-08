@@ -3,7 +3,7 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
-
+## v0.3.28 - 2024-08-08
 ### Added
 - ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 

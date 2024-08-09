@@ -1,0 +1,9 @@
+services:
+  demosplan_ui_local:
+    image: node:18-alpine # Set to node:20-alpine for node 20
+    environment:
+      - TZ=Europe/Berlin # Jest tests related to date fail with a UTC container
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "tail -f /dev/null"

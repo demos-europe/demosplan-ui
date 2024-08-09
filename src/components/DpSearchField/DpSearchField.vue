@@ -4,7 +4,7 @@
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search' }"
+      :input-attributes="{ placeholder: translations.search, type: 'search' }"
       @reset="handleReset"
       @enter="handleSearch"
       v-model="searchTerm" /><!--
@@ -13,11 +13,12 @@
       class="align-top"
       data-cy="handleSearch"
       @click="handleSearch"
-      :text="Translator.trans('searching')" />
+      :text="translations.searching" />
   </span>
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpButton from '~/components/DpButton'
 import DpResettableInput from '~/components/DpResettableInput'
 
@@ -54,6 +55,10 @@ export default {
 
   data () {
     return {
+      translations: {
+        search: de.search.text,
+        searching: de.search.searching
+      },
       searchTerm: this.initSearchTerm,
       searchTermApplied: ''
     }

@@ -49,14 +49,14 @@
           data-cy="uploadModal:save"
           type="button"
           @click="emitAndClose()"
-          v-text="editAltTextOnly ? Translator.trans('save') : Translator.trans('insert')">
+          v-text="editAltTextOnly ? translations.save : translations.insert">
         </button>
         <button
           class="btn btn--secondary"
           data-cy="uploadModal:abort"
           type="button"
           @click="closeAndReset()">
-          {{ Translator.trans('abort') }}
+          {{ translations.abort }}
         </button>
       </div>
     </template>
@@ -111,8 +111,11 @@ export default {
       translations: {
         altText: de.altText.default,
         altTextHint: de.image.alt.explanation,
+        abort: de.operations.abort,
         editImage: de.image.edit,
+        insert: de.operations.insert,
         insertImage: de.image.insert,
+        save: de.operations.save,
         uploadImage: de.upload.select.image
       }
     }

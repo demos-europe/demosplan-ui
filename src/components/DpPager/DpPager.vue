@@ -2,7 +2,7 @@
   <div class="c-pager__dropdown">
     <label
       class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
-      :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
+      :aria-label="translations.selectNumberOfItems">
         <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
           class="inline-block"
@@ -25,15 +25,16 @@
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-        {{ Translator.trans('pager.amount.multiple.of') }}
+        {{ translations.multipleOf }}
         <span data-cy="totalItems">{{ totalItems }}</span>
-        {{ Translator.trans('pager.amount.multiple.items') }}
+        {{ translations.multipleItems }}
       </span>
     </label>
   </div>
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpMultiselect from '~/components/DpMultiselect'
 import DpSlidingPagination from '~/components/DpSlidingPagination'
 
@@ -79,7 +80,15 @@ export default {
 
   data () {
     return {
-      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems
+      itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems,
+      translations: {
+        multipleOf: de.pager.multipleOf,
+        multipleItems: de.pager.multipleItems,
+        selectNumberOfItems: de.pager.selectNumberOfItems({
+          results: this.totalItems,
+          items: de.pager.multipleItems
+        })
+      }
     }
   },
 

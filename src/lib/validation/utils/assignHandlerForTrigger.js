@@ -43,7 +43,7 @@ export default function assignHandlerForTrigger (triggerButton, form) {
       // Display custom error messages defined via `data-dp-validate-error` as notifications
       const invalidCustomErrorFields = validatedForm.invalidFields.filter(field => field.dataset.dpValidateError)
       invalidCustomErrorFields.forEach(field => {
-        dplan.notify.notify('error', Translator.trans(field.validationMessage))
+        dplan.notify.notify('error', field.validationMessage)
       })
 
       if (invalidCustomErrorFields.length === 0 || invalidCustomErrorFields.length < validatedForm.invalidFields) {

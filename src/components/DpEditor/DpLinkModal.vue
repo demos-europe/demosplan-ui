@@ -21,7 +21,7 @@
           v-model="url"
           :label="{
             hint: translations.linkHint,
-            text: Translator.trans('url')
+            text: translations.url
           }"
           :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
           :required="isVisible"
@@ -35,9 +35,9 @@
         <dp-button-row
           class="u-mt"
           primary
-          :primary-text="Translator.trans('insert')"
+          :primary-text="translations.insert"
           secondary
-          :secondary-text="Translator.trans('remove')"
+          :secondary-text="translations.remove"
           @primary-action="dpValidateAction('linkModal', () => emitAndClose('insert'), false)"
           @secondary-action="emitAndClose('remove')" />
       </div>
@@ -72,11 +72,14 @@ export default {
       newTab: false,
       text: '',
       translations: {
+        insert: de.operations.insert,
         linkEdit: de.editor.link.edit,
         linkHint: de.editor.link.hint,
         linkInsert: de.editor.link.insert,
         linkText: de.link.text,
-        newTab: de.tab.openNew
+        remove: de.operations.remove,
+        newTab: de.tab.openNew,
+        url: de.url
       },
       url: ''
     }

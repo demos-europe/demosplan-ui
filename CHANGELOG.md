@@ -3,7 +3,13 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+
+### Fixed
+
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.28 - 2024-08-08
+
 ### Added
 - ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
@@ -11,7 +17,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Roleback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.25 - 2024-07-30
 

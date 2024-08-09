@@ -167,10 +167,6 @@
   "scripts": {
     "build:storybook": "storybook build",
     "build:tokens": "node scripts/buildTokens.js",
-    "c:dev": "yarn c:up && yarn c:shell",
-    "c:down": "docker compose -f docker-compose.local.yml down",
-    "c:shell": "docker compose -f docker-compose.local.yml exec demosplan_ui_local sh",
-    "c:up": "docker compose -f docker-compose.local.yml up -d",
     "prepack": "yarn build && yarn build:tokens",
     "storybook": "storybook dev -p 6006",
     "build": "yarn test && yarn build:prod",

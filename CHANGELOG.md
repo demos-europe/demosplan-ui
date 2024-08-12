@@ -4,6 +4,38 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.28 - 2024-08-08
+
+### Added
+- ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.27 - 2024-07-30
+
+### Fixed
+
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.25 - 2024-07-30
+
+- update prosemirror dependencies to resolve version conflics with tiptap
+
+## v0.3.24 - 2024-07-29
+
+### Fixed
+- ([#962](https://github.com/demos-europe/demosplan-ui/pull/962)) Make spacing tokens work with Tailwindcss 3.4.7. ([@spiess-demos](https://github.com/spiess-demos))
+
+### Added
+- ([#961](https://github.com/demos-europe/demosplan-ui/pull/961)) DpEditor: Allow class attribute in custom links ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/953)) BREAKING: Bump Yarn to v4.2.2 ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.23 - 2024-07-26
+
 ### Changed
 
 - ([#954](https://github.com/demos-europe/demosplan-ui/pull/954)) Allow all 2xx and 3xx as response Codes in DpApi (not only 200). ([@salisdemos](https://github.com/salisdemos))

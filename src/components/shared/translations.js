@@ -124,7 +124,6 @@ const de = {
   operations: {
     abort: 'Abbrechen',
     add: 'Hinzufügen',
-    close: 'einklappen',
     delete: 'Löschen',
     deselect: {
       all: 'Auswahl aufheben'
@@ -138,7 +137,6 @@ const de = {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.'
     },
-    open: 'ausklappen',
     update: 'Aktualisierung'
   },
   pager: {

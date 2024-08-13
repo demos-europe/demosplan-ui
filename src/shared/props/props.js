@@ -19,7 +19,7 @@
  */
 
 /**
- * Can be used e.g for maxLength to Limit the maximum allowed number of characters to the given amount.
+ * Can be used e.g. for maxLength to limit the maximum allowed number of characters to the given amount.
  * If set, it renders a hint with a counter of the characters yet available.
  *
  * The type may be Boolean just to allow for the falsy default (making it possible to pass it down
@@ -29,7 +29,7 @@
 const length = {
   type: [Boolean, String],
   required: false,
-  default: false,
+  default: null,
   validator: (string) => {
     /*
      * The `string !== true` check actually tests for the empty string being passed

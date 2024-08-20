@@ -1,6 +1,4 @@
-import {
-  Mark,
-} from '@tiptap/core'
+import { Mark } from '@tiptap/core'
 import { de } from '../../shared/translations'
 
 export default Mark.create({

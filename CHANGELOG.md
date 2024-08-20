@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#994](https://github.com/demos-europe/demosplan-ui/pull/994)) BREAKING: Bump Yarn to v4.2.2 (again) ([@salisdemos](https://github.com/salisdemos))
+
 ### Fixed
 
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))

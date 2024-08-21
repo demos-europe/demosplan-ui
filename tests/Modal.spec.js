@@ -15,7 +15,7 @@ describe('Modal', () => {
     window.dplan = () => { return {} }
 
     const instance = shallowMountWithGlobalMocks(DpModal, {
-      propsData: {
+      props: {
         modalId: 'test'
       },
       slots: {

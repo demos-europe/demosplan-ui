@@ -36,33 +36,23 @@
       :class="{ 'c-data-table__resizable': isTruncatable }"
       :data-col-idx="`${idx}`">
       <div
-        v-if="isTruncatable"
-        class="break-words"
-        :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
-        :style="elementStyle(field)">
+        :class="[
+          isTruncatable ?? 'break-words',
+          isTruncatable
+            ? wrapped
+              ? 'c-data-table__resizable--wrapped'
+              : 'c-data-table__resizable--truncated'
+            : ''
+        ]"
+        :style="isTruncatable ?? elementStyle(field)">
         <slot
+          v-if="$slots[field](item)[0].children.length > 0"
           :name="field"
-          v-bind="item" >
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span
-             v-else
-             v-text="item[field]" />
-        </slot>
+          v-bind="item" />
+        <span
+          v-else
+          v-html="highlighted(field)" />
       </div>
-      <template v-else>
-        <slot
-          :name="field"
-          v-bind="item">
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span
-            v-text="item[field]"
-            v-else />
-        </slot>
-      </template>
     </td>
 
     <td
@@ -253,6 +243,11 @@ export default {
     highlighted () {
       return (field) => {
         let itemValue = this.item[field]
+
+        if (this.searchTerm === '') {
+          return itemValue
+        }
+
         itemValue = DomPurify.sanitize(itemValue)
 
         return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
@@ -278,6 +273,7 @@ export default {
       }
     }
   },
+
   methods: {
     toggleSelect (id) {
       this.$emit('toggle-select', id)
@@ -290,6 +286,8 @@ export default {
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
     }
+  },
+  mounted () {
   }
 }
 </script>

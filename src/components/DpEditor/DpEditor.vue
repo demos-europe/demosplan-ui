@@ -297,7 +297,7 @@
           so we can save the text entered in the textarea via a form element -->
           <input
             v-if="hiddenInput !== ''"
-            :data-dp-validate-if="dataDpValidateIf || false"
+            :data-dp-validate-if="dataDpValidateIf ? true : null"
             type="hidden"
             :id="hiddenInput"
             :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
@@ -343,7 +343,7 @@ import { CleanHtml, Tooltip } from '~/directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
-} from '@tiptap/vue-2'
+} from '@tiptap/vue-3'
 import {
   buildSuggestion,
   CustomDelete,
@@ -691,7 +691,7 @@ export default {
     addAltTextToImage (text) {
       this.$root.$emit('update-image:' + this.editingImage, { alt: text })
       this.resetEditingImage()
-      this.setValue()
+      this.emitValue()
     },
 
     appendText (text) {
@@ -993,11 +993,16 @@ export default {
       }
     },
 
-    setValue () {
+    transformObscureTag (value) {
+      const regex = new RegExp(`<span class="${this.prefixClass('u-obscure')}">(.*?)<\\/span>`, 'g')
+
+      return value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+    },
+
+    emitValue () {
       this.currentValue = this.editor.getHTML()
-      const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
-      this.currentValue = this.currentValue.replace(regex, '<dp-obscure>$1</dp-obscure>')
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
+
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 
@@ -1057,7 +1062,7 @@ export default {
       disableInputRules: true,
       disablePasteRules: true,
       onUpdate: () => {
-        this.setValue()
+        this.emitValue()
       },
       editorProps: {
         handleDrop: (_view, _event, _slice, moved) => {
@@ -1090,11 +1095,15 @@ export default {
           // Strip img tags from pasted and dropped content
           returnContent = returnContent.replace(/<img.*?>/g, '')
 
+          returnContent = this.transformObscureTag(returnContent)
+
           return returnContent
         }
       },
 
       onInit: ({ view }) => {
+        this.currentValue = this.transformObscureTag(this.editor.getHTML())
+
         view._props.handleScrollToSelection = customHandleScrollToSelection
       }
     })
@@ -1122,7 +1131,7 @@ export default {
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.editor) {
       this.editor.destroy()
       if (this.manuallyResetForm) {
@@ -1191,10 +1200,12 @@ function getColorFromCSS (className) {
   div.className = className
   div.id = 'tmpIdToGetColor'
   body.appendChild(div)
+
   const tmpDiv = document.getElementById('tmpIdToGetColor')
   const color = window.getComputedStyle(tmpDiv).getPropertyValue('color')
 
   body.removeChild(tmpDiv)
+
   return color
 }
 </script>

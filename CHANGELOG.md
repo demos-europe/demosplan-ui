@@ -4,8 +4,20 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.0 - 2024-08-21
+
+**Upgrade to Vue 3**
+
+This library now emits a Vue 3 build. While it still has some Vue 2 dependencies, this is a huge step towards
+full Vue 3 compatibility. Please be cautioned that this release may therefore be a bit less stable than
+previous ones.
+
+If you still find yourself requiring the Vue 2 only version, you may want to upgrade the version requirement
+to `~0.3.*` in your package.json.
+
 ### Fixed
 
+- ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.28 - 2024-08-08

@@ -1,6 +1,5 @@
 <template>
   <div
-    v-click-outside="close"
     class="c-splitbutton">
     <slot>
       <button
@@ -35,14 +34,14 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+// import ClickOutside from 'vue-click-outside'
 import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpSplitButton',
 
   directives: {
-    ClickOutside
+    // ClickOutside
   },
 
   data () {

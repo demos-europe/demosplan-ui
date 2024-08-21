@@ -51,6 +51,9 @@ const transformTailwindTokenValue = (token, formatterArguments) => {
   // Add final fallback, close with brackets corresponding to the amount of "var" usages found
   cssVar += `, ${fallback}` + ')'.repeat(cssVar.match(/var\(/g).length)
 
+  if (token.path[0] === 'fontSize' && token.original.$lineHeight) {
+    cssVar = [cssVar, token.original.$lineHeight]
+  }
   return cssVar
 }
 

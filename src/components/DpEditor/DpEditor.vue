@@ -297,7 +297,7 @@
           so we can save the text entered in the textarea via a form element -->
           <input
             v-if="hiddenInput !== ''"
-            :data-dp-validate-if="dataDpValidateIf || false"
+            :data-dp-validate-if="dataDpValidateIf ? true : null"
             type="hidden"
             :id="hiddenInput"
             :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
@@ -343,7 +343,7 @@ import { CleanHtml, Tooltip } from '~/directives'
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
-} from '@tiptap/vue-2'
+} from '@tiptap/vue-3'
 import {
   buildSuggestion,
   CustomDelete,
@@ -1130,7 +1130,7 @@ export default {
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.editor) {
       this.editor.destroy()
       if (this.manuallyResetForm) {

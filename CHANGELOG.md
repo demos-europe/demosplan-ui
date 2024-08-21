@@ -4,8 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-### Fixed
+## v0.3.29 - 2024-08-21
 
+### Fixed
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
 
@@ -17,8 +18,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## v0.3.27 - 2024-07-30
 
 ### Fixed
-
 - ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.26
+- 
+- lost in space
 
 ## v0.3.25 - 2024-07-30
 

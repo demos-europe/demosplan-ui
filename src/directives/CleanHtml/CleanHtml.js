@@ -47,10 +47,10 @@ const setSanitizedInnerHTML = (el, binding) => {
 }
 
 const CleanHtml = {
-  bind: function (el, binding) {
+  beforeMount: function (el, binding) {
     setSanitizedInnerHTML(el, binding)
   },
-  update: function (el, binding) {
+  updated: function (el, binding) {
     if (binding.value !== binding.oldValue) {
       setSanitizedInnerHTML(el, binding)
     }

@@ -87,7 +87,7 @@
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
-          v-for="slot in Object.keys($scopedSlots)"
+          v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
             :name="slot"

@@ -51,7 +51,7 @@
           v-bind="item" />
         <span
           v-else
-          v-html="highlighted(field)" />
+          v-cleanhtml="highlighted(field)" />
       </div>
     </td>
 
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
@@ -99,6 +100,10 @@ export default {
   components: {
     DpIcon,
     DpWrapTrigger
+  },
+
+  directives: {
+    cleanhtml: CleanHtml
   },
 
   props: {

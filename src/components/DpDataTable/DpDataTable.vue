@@ -33,14 +33,20 @@
         @toggle-expand-all="toggleExpandAll"
         @toggle-select-all="toggleSelectAll"
         @toggle-wrap-all="toggleWrapAll">
-        <template v-slot:[`header-${field}`] v-for="field in fields">
-          <slot :name="`header-${field}`" />
+        <template
+          v-for="field in headerFields"
+          v-slot:[`header-${field.field}`]="field">
+          <slot
+            :name="`header-${field.field}`"
+            v-bind="field" />
         </template>
       </dp-table-header>
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable && !isLoading">
+      <tbody
+        v-if="!isDraggable && !isLoading"
+        :data-cy="`${dataCy}:tbody`">
         <template v-for="(item, idx) in items">
           <dp-table-row
             :ref="`tableRows[${idx}]`"

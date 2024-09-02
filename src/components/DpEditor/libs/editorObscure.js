@@ -11,7 +11,7 @@
 import {
   Mark,
   markInputRule,
-  markPasteRule,
+  markPasteRule
 } from '@tiptap/core'
 
 const markInputRegex = /(?:<o>)([^<o>]+)(?:<o>)$/

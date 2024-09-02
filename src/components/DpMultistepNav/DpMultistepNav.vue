@@ -7,7 +7,7 @@
       :disabled="idx > activeStep"
       @click="changeStep(idx)"
       class="btn--blank"
-      :aria-label="step.title ? Translator.trans(step.title) : Translator.trans(step.label)"
+      :aria-label="step.title ? step.title : step.label"
       :class="[
         prefixClass('c-multistep__step'),
         idx === activeStep ? prefixClass('is-active') : '',
@@ -18,7 +18,7 @@
           v-if="step.icon"
           aria-hidden="true"
           :class="[prefixClass(step.icon), prefixClass('fa u-mr-0_25')]" />
-        {{ Translator.trans(step.label) }}
+        {{ step.label }}
       </span>
     </button>
   </nav>

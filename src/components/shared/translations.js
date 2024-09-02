@@ -24,21 +24,49 @@ const de = {
       element: 'Element ausklappen'
     },
   },
+  autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
+  dropdown: {
+    close: "Einklappen",
+    open: "Ausklappen"
+  },
   editor: {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
+    fullscreen: 'Vollbild',
+    headingLevel (level) {
+      return `Überschrift ${level}`
+    },
     italic: 'Kursiv',
     link: {
       edit: 'Link bearbeiten',
+      editOrInsert: 'Link einfügen/bearbeiten',
       insert: 'Link einfügen',
       hint: 'URLs sollten mit \'https://\' beginnen.'
     },
+    mark: {
+      delete: 'Als entfernt markieren',
+      element: 'Markieren',
+      insert: 'Als hinzugefügt markieren'
+    },
+    orderedList: 'Nummerierte Liste',
     redo: 'Wiederholen',
+    table: {
+      addColumnAfter: 'Spalte rechts einfügen',
+      addColumnBefore: 'Spalte links einfügen',
+      addRowAfter: 'Zeile unterhalb einfügen',
+      addRowBefore: 'Zeile oberhalb einfügen',
+      create: 'Tabelle einfügen',
+      delete: 'Tabelle löschen',
+      deleteColumn: 'Spalte löschen',
+      deleteRow: 'Zeile löschen',
+      toggleCellMerge: 'Zelle verbinden / Verbindung aufheben'
+    },
     underline: 'Unterstrichen',
-    undo: 'Rückgängig'
+    undo: 'Rückgängig',
+    unorderedList: 'Aufzählung'
   },
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
@@ -50,9 +78,12 @@ const de = {
     }
   },
   expandAll: "Alle Elemente ausklappen",
-  explanationNoentries: "Es sind keine Einträge vorhanden.",
   file: {
     remove: 'Datei entfernen'
+  },
+  hint: {
+    dismiss: 'Hinweis ausblenden',
+    show: 'Hinweis einblenden'
   },
   image: {
     alt: {
@@ -62,13 +93,20 @@ const de = {
     },
     edit: 'Bild bearbeiten',
     insert: 'Bild einfügen',
-    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]'
+    placeholder: '[An dieser Stelle wird ihr Bild angezeigt]',
+    preview: 'Bildvorschau'
   },
   input: {
     text: {
-      exactlength({ requiredlength, cssClass, count }) { return `Geben Sie exakt ${requiredlength} Zeichen ein. Aktuell sind <span class="${cssClass}"> ${count} </span> Zeichen eingegeben.` },
-      maxlength({ cssClass, count, max }) { return `Noch <span class="${cssClass}"> ${count} </span> von maximal ${max} Zeichen verfügbar.`},
-      minlength({ cssClass, count, min }) { return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`}
+      exactlength({ requiredlength, cssClass, count }) {
+        return `Geben Sie exakt ${requiredlength} Zeichen ein. Aktuell sind <span class="${cssClass}"> ${count} </span> Zeichen eingegeben.`
+      },
+      maxlength({ cssClass, count, max }) {
+        return `Noch <span class="${cssClass}"> ${count} </span> von maximal ${max} Zeichen verfügbar.`
+      },
+      minlength({ cssClass, count, min }) {
+        return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`
+      }
     }
   },
   item: {
@@ -81,27 +119,56 @@ const de = {
   obscure: {
     title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
   },
+  noElementsExisting: 'Keine Elemente vorhanden',
+  noEntriesAvailable: 'Es sind keine Einträge vorhanden.',
   operations: {
-    abort: "Abbrechen",
+    abort: 'Abbrechen',
     add: 'Hinzufügen',
     delete: 'Löschen',
     deselect: {
       all: 'Auswahl aufheben'
     },
+    insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',
-    save: "Speichern",
+    remove: 'Entfernen',
+    save: 'Speichern',
     select: {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.'
     },
     update: 'Aktualisierung'
   },
+  pager: {
+    multipleOf: 'von',
+    multipleItems: 'Einträgen',
+    goToPageOfPages ({ page, total }) {
+      return `Gehe zu Seite ${page} von ${total}`
+    },
+    selectNumberOfItems ({ results, items }) {
+      return `Wählen Sie, wieviele von insgesamt ${results} ${items} pro Seite ausgegeben werden sollen.`
+    },
+    next: 'Nächste Seite',
+    currentPageOfPages ({ page, total }) {
+      return `Seite ${page} von ${total}, aktuelle Seite`
+    },
+    showEntries: 'Einträge anzeigen',
+    pageNavigation: 'Seitennavigation',
+    previous: 'Vorherige Seite'
+  },
   placeholderAutoSuggest: "Suchbegriff...",
+  search: {
+    noResults (searchterm) {
+      return `Für den Suchbegriff <span style=\"background-color: yellow;\">${searchterm}</span> konnten keine Einträge gefunden werden.`
+    },
+    searching: 'Suchen',
+    text: 'Suche',
+  },
   tab: {
     openNew: 'in neuem Tab öffnen'
   },
   table: {
+    colsSort: 'Spalten sortieren nach',
     colsSelect: 'Spalten auswählen'
   },
   tag: {
@@ -112,16 +179,26 @@ const de = {
     inserted: 'Dieser Text wurde hinzugefügt',
     marked: 'markierter Text'
   },
+  url: 'URL',
   upload: {
     failed: 'Fehler beim Upload von Datei %{file}',
+    files: 'Dateien hochladen',
     select: {
-      image(maxUploadSize) { return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})` },
-      pdf({ browse, maxUploadSize }) { return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})` }
-    }
+      image(maxUploadSize) {
+        return `Bild zum Upload hierher ziehen oder vom %{browse} auswählen (max. ${maxUploadSize})`
+      },
+      pdf({ browse, maxUploadSize }) {
+        return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})`
+      }
+    },
+    uploadedFiles: 'Hochgeladene Dateien',
+    warningFileType: 'Der von Ihnen hochgeladene Dateityp ist nicht erlaubt.'
   },
   validation: {
     error: {
       city: 'Bitte verwenden Sie ausschließlich Buchstaben und Leerzeichen.',
+      default: 'Bitte verwenden Sie das korrekte Format.',
+      fileUpload: 'Beim Upload der Datei ist ein Fehler aufgetreten.',
       email: 'Bitte geben Sie eine gültige E-Mail-Adresse an.',
       format: 'Bitte verwenden Sie das korrekte Format.',
       zipCode: 'Bitte geben Sie genau 5 Zahlen ein (z.B. \'12345\').'

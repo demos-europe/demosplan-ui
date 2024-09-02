@@ -92,6 +92,7 @@ to `~0.3.*` in your package.json.
 
 ### Changed
 
+- ([#918](https://github.com/demos-europe/demosplan-ui/pull/918)) Remove Translator usages ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#902](https://github.com/demos-europe/demosplan-ui/pull/902)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 

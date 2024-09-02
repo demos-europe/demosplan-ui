@@ -7,7 +7,7 @@
           <label
             class="inline"
             for="search">
-            {{ Translator.trans('search') }}
+            {{ defaultTranslations.search }}
           </label>
           <input
             type="text"
@@ -30,7 +30,7 @@
             @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="Translator.trans('pager.per.page')" />
+            :label-text="defaultTranslations.showEntries" />
         </div>
       </div>
     </dp-sticky-element>
@@ -50,8 +50,8 @@
             :key="el.field"
             class="o-hellip--nowrap relative u-pr-0_75">
             <button
-              :aria-label="Translator.trans('table.cols.sort') + ': ' + el.label"
-              :title="Translator.trans('table.cols.sort') + ': ' + el.label"
+              :aria-label="defaultTranslations.colsSort + ': ' + el.label"
+              :title="defaultTranslations.colsSort + ': ' + el.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               @click="setOrder(el.field)"
               type="button">
@@ -101,6 +101,7 @@ import DpSlidingPagination from '~/components/DpSlidingPagination'
 import DpStickyElement from '~/components/DpStickyElement'
 import { hasOwnProp } from '~/utils'
 import { tableSelectAllItems } from '~/mixins'
+import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpDataTableExtended',
@@ -226,6 +227,11 @@ export default {
   data () {
     return {
       currentPage: 1,
+      defaultTranslations: {
+        colsSort: de.table.colsSort,
+        search: de.search.text,
+        showEntries: de.pager.showEntries
+      },
       filteredItems: [],
       filters: this.headerFields.reduce((obj, item) => {
         obj[item.field] = true

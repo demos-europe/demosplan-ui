@@ -3,13 +3,15 @@
     <template v-if="isEmbeddedSource">
       <div
         :id="id"
+        :data-cy="dataCy"
         :data-plyr-embed-id="primarySource.embedId"
         :data-plyr-provider="primarySource.provider" />
     </template>
     <template v-else>
       <video
-          :aria-labelledby="ariaLabelledby"
           :id="id"
+          :aria-labelledby="ariaLabelledby"
+          :data-cy="dataCy"
           playsinline
           :data-poster="poster">
         <source
@@ -20,11 +22,11 @@
         <track
             v-for="track in tracks"
             :key="track.src"
-            :src="track.src"
-            :srclang="track.srclang"
-            :label="track.label"
+            :default="!!track.default"
             :kind="track.kind"
-            :default="!!track.default">
+            :label="track.label"
+            :src="track.src"
+            :srclang="track.srclang">
       </video>
     </template>
   </div>
@@ -43,6 +45,12 @@ export default {
       type: [String, Boolean],
       required: false,
       default: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'videoplayer'
     },
 
     /**

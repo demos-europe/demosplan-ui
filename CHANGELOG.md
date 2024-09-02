@@ -4,14 +4,49 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.0 - 2024-08-21
+
+**Upgrade to Vue 3**
+
+This library now emits a Vue 3 build. While it still has some Vue 2 dependencies, this is a huge step towards
+full Vue 3 compatibility. Please be cautioned that this release may therefore be a bit less stable than
+previous ones.
+
+If you still find yourself requiring the Vue 2 only version, you may want to upgrade the version requirement
+to `~0.3.*` in your package.json.
+
 ### Fixed
 
+- ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.28 - 2024-08-08
+
+### Added
+- ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.27 - 2024-07-30
+
+### Fixed
+
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.25 - 2024-07-30
+
+- update prosemirror dependencies to resolve version conflics with tiptap
+
+## v0.3.24 - 2024-07-29
+
+### Fixed
 - ([#962](https://github.com/demos-europe/demosplan-ui/pull/962)) Make spacing tokens work with Tailwindcss 3.4.7. ([@spiess-demos](https://github.com/spiess-demos))
 
 ### Added
 - ([#961](https://github.com/demos-europe/demosplan-ui/pull/961)) DpEditor: Allow class attribute in custom links ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
-## v0.3.22 - 2024-07-26
+### Changed
+- ([#954](https://github.com/demos-europe/demosplan-ui/pull/953)) BREAKING: Bump Yarn to v4.2.2 ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.23 - 2024-07-26
 
 ### Changed
 
@@ -57,6 +92,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#918](https://github.com/demos-europe/demosplan-ui/pull/918)) Remove Translator usages ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#902](https://github.com/demos-europe/demosplan-ui/pull/902)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 

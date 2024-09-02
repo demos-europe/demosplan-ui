@@ -3,7 +3,7 @@
     <h4
       :class="prefixClass('u-mb-0_25')"
       data-cy="uploadFile:uploadedFiles">
-      {{ Translator.trans('uploaded.files') }}
+      {{ translations.uploadedFiles }}
     </h4>
     <ul :class="prefixClass('o-list space-stack-xs')">
       <dp-uploaded-file
@@ -18,6 +18,7 @@
 <script>
 import DpUploadedFile from './DpUploadedFile'
 import { prefixClassMixin } from '~/mixins'
+import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpUploadedFileList',
@@ -34,6 +35,14 @@ export default {
       required: false,
       default: () => ([])
     }
-  }
+  },
+
+  data () {
+    return {
+      translations: {
+        uploadedFiles: de.upload.uploadedFiles,
+      },
+    }
+  },
 }
 </script>

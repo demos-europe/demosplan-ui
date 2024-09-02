@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1005](https://github.com/demos-europe/demosplan-ui/pull/1005)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.29 - 2024-08-21
 
 ### Fixed

@@ -50,7 +50,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'videoplayer'
+      default: 'videoPlayer'
     },
 
     /**

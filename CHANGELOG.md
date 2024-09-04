@@ -20,6 +20,17 @@ to `~0.3.*` in your package.json.
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
 
+## v0.3.30 - 2024-09-04
+
+### Added
+- ([#1005](https://github.com/demos-europe/demosplan-ui/pull/1005)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.29 - 2024-08-21
+
+### Fixed
+- ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.28 - 2024-08-08
 
 ### Added

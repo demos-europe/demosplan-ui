@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1012](https://github.com/demos-europe/demosplan-ui/pull/1012)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.4.0 - 2024-08-21
 

@@ -69,13 +69,13 @@
               v-slot:[field]="item"
               v-for="field in fields">
               <slot
-                :name="field"
-                v-bind="item" />
+                v-bind="item"
+                :name="field" />
             </template>
             <template v-slot:flyout="item">
               <slot
-                name="flyout"
-                v-bind="item" />
+                v-bind="item"
+                name="flyout" />
             </template>
           </dp-table-row>
 
@@ -89,8 +89,8 @@
               @mouseenter="addHoveredClass(idx)"
               @mouseleave="removeHoveredClass(idx)">
               <slot
-                name="expandedContent"
-                v-bind="item" />
+                v-bind="item"
+              name="expandedContent" />
             </td>
           </tr>
         </template>
@@ -135,13 +135,13 @@
               v-for="(field, idx) in fields"
               :key="idx">
               <slot
-                :name="field"
-                v-bind="item" />
+                v-bind="item"
+                :name="field" />
             </template>
             <template v-slot:flyout="item">
               <slot
-                name="flyout"
-                v-bind="item" />
+                v-bind="item"
+                name="flyout" />
             </template>
           </dp-table-row>
         </template>

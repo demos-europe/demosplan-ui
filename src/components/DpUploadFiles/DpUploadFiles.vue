@@ -5,12 +5,12 @@
       v-text="Translator.trans('upload.files')" />
     <dp-label
       v-if="label.text"
-      class="layout__item"
       v-bind="{
         for: id,
         required: required,
         ...label
-      }" />
+      }"
+      class="layout__item" />
     <dp-upload
       :allowed-file-types="allowedFileTypes"
       :allow-multiple-uploads="allowMultipleUploads"

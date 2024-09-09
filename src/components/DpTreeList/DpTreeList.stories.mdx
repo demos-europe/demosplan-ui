@@ -18,9 +18,9 @@ where data has a hierarchical relationship.
 
 ```html
 <dp-tree-list
-    :tree-data="args.treeData"
-    :options="args.options"
-    v-bind="args">
+  v-bind="args"
+  :tree-data="args.treeData"
+  :options="args.options">
   <template v-slot:header>
     <div class="layout--flush">
       <div class="layout__item u-5-of-12">

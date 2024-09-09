@@ -18,9 +18,9 @@ The component features a visually prominent style and showcases the number of se
 <div>
   <dp-bulk-edit-header
       v-if="selectedItemsCount.length > 0"
+      v-bind="args"
       :selected-items-text="selectedItemsCount.length + ' ' + 'Elements selected'"
-      @reset-selection="resetSelection"
-      v-bind="args">
+      @reset-selection="resetSelection">
     <dp-button
         text="Delete"
         icon="delete"

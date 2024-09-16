@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpButtonRow from './'
 
 interface IDpButtonRow {
@@ -25,7 +25,7 @@ const meta: Meta<typeof DpButtonRow> = {
         setup() {
             return { args }
         },
-        template: `<dp-button-row primary secondary v-bind="args"></dp-button-row>`,
+        template: `<dp-button-row v-bind="args" primary secondary ></dp-button-row>`,
     })
 }
 

@@ -123,6 +123,7 @@ useSortable(
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {
+      console.log('DpDatatable, on End', e, list.value[e.oldIndex])
       const currentElement = list.value[e.oldIndex]
 
       props.handleDrag('end', e, currentElement, props.nodeId)

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpButton from './'
 
 const meta: Meta<typeof DpButton> = {

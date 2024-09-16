@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpEditableList from './'
 
 const meta: Meta<typeof DpEditableList> = {
@@ -75,8 +75,8 @@ const meta: Meta<typeof DpEditableList> = {
         },
         template: `
           <dp-editable-list
+              v-bind="args" 
               :entries="entries"
-              v-bind="args"
               @reset="resetForm"
               @saveEntry="handleSubmit(itemIndex !== null ? itemIndex : 'new')"
               ref="listComponent">

@@ -17,8 +17,8 @@
       :data-cy="dataCy"
       @click="toggle">
       <slot
-        name="trigger"
-        v-bind:isExpanded="isExpanded">
+        v-bind:isExpanded="isExpanded"
+        name="trigger">
         <i class="fa fa-ellipsis-h" />
       </slot>
     </button>

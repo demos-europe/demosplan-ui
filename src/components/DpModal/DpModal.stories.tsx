@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpModal from './'
 
 const meta: Meta<typeof DpModal> = {
@@ -21,9 +21,9 @@ const meta: Meta<typeof DpModal> = {
               Open Modal
             </a>
             <dp-modal
+                v-bind="args"
                 id="openModal"
-                ref="openModal"
-                v-bind="args">
+                ref="openModal">
               <template v-slot:header>
                 Short, descriptive modal title
               </template>

@@ -84,14 +84,7 @@ const config = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            compatConfig: {
-              MODE: 2
-            }
-          }
-        }
+        loader: 'vue-loader'
       }
     ],
   },

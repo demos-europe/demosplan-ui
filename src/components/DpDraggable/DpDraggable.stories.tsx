@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpDraggable from './'
 
 interface IDpDraggable {
@@ -16,7 +16,7 @@ const meta: Meta<typeof DpDraggable> = {
         setup() {
             return { args }
         },
-        template: `<dp-draggable v-model="args.contentData" v-bind="args">
+        template: `<dp-draggable v-bind="args" v-model="args.contentData" >
           <div
               class="o-sortablelist__item u-pv-0_5 u-pl-0_5 border--top"
               v-for="item in args.contentData"

@@ -15,9 +15,9 @@ The Modal component intentionally interrupts a user's page experience, disabling
 
 ```html
 <dp-modal
+    v-bind="args"
     id="openModal"
-    ref="openModal"
-    v-bind="args">
+    ref="openModal">
     <template v-slot:header>
         Short, descriptive modal title
     </template>

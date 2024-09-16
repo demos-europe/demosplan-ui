@@ -62,8 +62,8 @@
           v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
-            :name="slot"
-            v-bind="scope" />
+            v-bind="scope"
+            :name="slot" />
         </template>
       </dp-tree-list-node>
     </component>

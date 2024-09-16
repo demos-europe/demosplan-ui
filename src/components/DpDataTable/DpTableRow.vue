@@ -47,8 +47,8 @@
         :style="isTruncatable ?? elementStyle(field)">
         <slot
           v-if="$slots[field](item)[0].children.length > 0"
-          :name="field"
-          v-bind="item" />
+          v-bind="item"
+          :name="field" />
         <span
           v-else
           v-html="highlighted(field)" />
@@ -59,8 +59,8 @@
       v-if="hasFlyout"
       class="overflow-visible">
       <slot
-        name="flyout"
-        v-bind="item" />
+        v-bind="item"
+        name="flyout" />
     </td>
 
     <td

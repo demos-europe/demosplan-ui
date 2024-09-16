@@ -58,7 +58,7 @@ module.exports = {
     return config
   },
   framework: {
-    name: "@storybook/vue-webpack5",
+    name: "@storybook/vue3-webpack5",
     options: {}
   },
   docs: {

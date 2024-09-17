@@ -3,6 +3,8 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+### Added
+- ([#1019](https://github.com/demos-europe/demosplan-ui/pull/1019)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Fixed
 - ([#1012](https://github.com/demos-europe/demosplan-ui/pull/1012)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))

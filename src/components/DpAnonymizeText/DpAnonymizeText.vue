@@ -1,33 +1,32 @@
 <template>
   <div class="border">
-    test
-<!--    <bubble-menu-->
-<!--      v-if="editor"-->
-<!--      :editor="editor"-->
-<!--      :tippy-options="{ duration: 100 }">-->
-<!--      <div class="editor-menububble__wrapper is-active bottom-0">-->
-<!--        <button-->
-<!--          v-if="editor.isActive('anonymize')"-->
-<!--          class="editor-menububble__button whitespace-nowrap"-->
-<!--          @click="editor.chain().focus().toggleUnanonymize().run()">-->
-<!--          {{ translations.unanonymize }}-->
-<!--        </button>-->
-<!--        <button-->
-<!--          v-else-->
-<!--          class="editor-menububble__button whitespace-nowrap"-->
-<!--          @click="editor.chain().focus().toggleAnonymize().run()">-->
-<!--          {{ translations.anonymize }}-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </bubble-menu>-->
-<!--    <editor-content-->
-<!--      autocomplete="off"-->
-<!--      autocorrect="off"-->
-<!--      autocapitalize="off"-->
-<!--      spellcheck="false"-->
-<!--      ref="editorContent"-->
-<!--      class="editor-content"-->
-<!--      :editor="editor" />-->
+    <bubble-menu
+      v-if="editor"
+      :editor="editor"
+      :tippy-options="{ duration: 100 }">
+      <div class="editor-menububble__wrapper is-active bottom-0">
+        <button
+          v-if="editor.isActive('anonymize')"
+          class="editor-menububble__button whitespace-nowrap"
+          @click="editor.chain().focus().toggleUnanonymize().run()">
+          {{ translations.unanonymize }}
+        </button>
+        <button
+          v-else
+          class="editor-menububble__button whitespace-nowrap"
+          @click="editor.chain().focus().toggleAnonymize().run()">
+          {{ translations.anonymize }}
+        </button>
+      </div>
+    </bubble-menu>
+    <editor-content
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      ref="editorContent"
+      class="editor-content"
+      :editor="editor" />
   </div>
 </template>
 

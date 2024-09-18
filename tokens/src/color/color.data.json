@@ -5,97 +5,125 @@
       "11": {
         "$description": "11 Step palette",
         "1": {
-          "value": "#a50026"
+          "value": "#a50026",
+          "$type": "color"
         },
         "2": {
-          "value": "#d73027"
+          "value": "#d73027",
+          "$type": "color"
         },
         "3": {
-          "value": "#f46d43"
+          "value": "#f46d43",
+          "$type": "color"
         },
         "4": {
-          "value": "#fdae61"
+          "value": "#fdae61",
+          "$type": "color"
         },
         "5": {
-          "value": "#fee090"
+          "value": "#fee090",
+          "$type": "color"
         },
         "6": {
-          "value": "#ffffbf"
+          "value": "#ffffbf",
+          "$type": "color"
         },
         "7": {
-          "value": "#e0f3f8"
+          "value": "#e0f3f8",
+          "$type": "color"
         },
         "8": {
-          "value": "#abd9e9"
+          "value": "#abd9e9",
+          "$type": "color"
         },
         "9": {
-          "value": "#74add1"
+          "value": "#74add1",
+          "$type": "color"
         },
         "10": {
-          "value": "#4575b4"
+          "value": "#4575b4",
+          "$type": "color"
         },
         "11": {
-          "value": "#313695"
+          "value": "#313695",
+          "$type": "color"
         }
       },
       "8": {
         "$description": "8 Step palette",
         "1": {
-          "value": "#d73027"
+          "value": "#d73027",
+          "$type": "color"
         },
         "2": {
-          "value": "#f46d43"
+          "value": "#f46d43",
+          "$type": "color"
         },
         "3": {
-          "value": "#fdae61"
+          "value": "#fdae61",
+          "$type": "color"
         },
         "4": {
-          "value": "#fee090"
+          "value": "#fee090",
+          "$type": "color"
         },
         "5": {
-          "value": "#e0f3f8"
+          "value": "#e0f3f8",
+          "$type": "color"
         },
         "6": {
-          "value": "#abd9e9"
+          "value": "#abd9e9",
+          "$type": "color"
         },
         "7": {
-          "value": "#74add1"
+          "value": "#74add1",
+          "$type": "color"
         },
         "8": {
-          "value": "#4575b4"
+          "value": "#4575b4",
+          "$type": "color"
         }
       },
       "6": {
         "$description": "6 Step palette",
         "1": {
-          "value": "#d73027"
+          "value": "#d73027",
+          "$type": "color"
         },
         "2": {
-          "value": "#fc8d59"
+          "value": "#fc8d59",
+          "$type": "color"
         },
         "3": {
-          "value": "#fee090"
+          "value": "#fee090",
+          "$type": "color"
         },
         "4": {
-          "value": "#e0f3f8"
+          "value": "#e0f3f8",
+          "$type": "color"
         },
         "5": {
-          "value": "#91bfdb"
+          "value": "#91bfdb",
+          "$type": "color"
         },
         "6": {
-          "value": "#4575b4"
+          "value": "#4575b4",
+          "$type": "color"
         }
       },
       "3": {
         "$description": "3 Step palette",
         "1": {
-          "value": "#fc8d59"
+          "value": "#fc8d59",
+          "$type": "color"
         },
         "2": {
-          "value": "#f1f1a3"
+          "value": "#f1f1a3",
+          "$type": "color"
         },
         "3": {
-          "value": "#91bfdb"
+          "value": "#91bfdb",
+          "$type": "color"
         }
       }
     }

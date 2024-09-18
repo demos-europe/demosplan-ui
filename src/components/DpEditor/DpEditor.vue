@@ -29,12 +29,13 @@
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
             <!-- Cut -->
             <button
-              @click="cut"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.cut"
-              v-tooltip="translations.cut"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:cut"
+              :disabled="readonly"
+              type="button"
+              @click="cut"
+              v-tooltip="translations.cut">
               <i
                 :class="prefixClass('fa fa-scissors')"
                 aria-hidden="true" />
@@ -42,24 +43,26 @@
             &#10072;
             <!-- Undo -->
             <button
-              @click="editor.chain().focus().undo().run()"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.undo"
-              v-tooltip="translations.undo"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:undo"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().undo().run()"
+              v-tooltip="translations.undo">
               <i
                 :class="prefixClass('fa fa-reply')"
                 aria-hidden="true" />
             </button>
             <!-- Redo -->
             <button
-              @click="editor.chain().focus().redo().run()"
-              :class="prefixClass('menubar__button')"
-              type="button"
               :aria-label="translations.redo"
-              v-tooltip="translations.redo"
-              :disabled="readonly">
+              :class="prefixClass('menubar__button')"
+              data-cy="editor:redo"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().redo().run()"
+              v-tooltip="translations.redo">
               <i
                 :class="prefixClass('fa fa-share')"
                 aria-hidden="true" />
@@ -69,12 +72,13 @@
               <!-- Bold -->
 
               <button
-                @click="editor.chain().focus().toggleBold().run()"
-                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
-                type="button"
                 :aria-label="translations.bold"
-                v-tooltip="translations.bold"
-                :disabled="readonly">
+                :class="[editor.isActive('bold') ? prefixClass('is-active'): '', prefixClass('menubar__button')]"
+                data-cy="editor:bold"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleBold().run()"
+                v-tooltip="translations.bold">
                 <i
                   :class="prefixClass('fa fa-bold')"
                   aria-hidden="true" />
@@ -82,24 +86,26 @@
 
               <!-- Italic -->
               <button
-                @click="editor.chain().focus().toggleItalic().run()"
-                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
-                type="button"
                 :aria-label="translations.italic"
-                v-tooltip="translations.italic"
-                :disabled="readonly">
+                :class="[editor.isActive('italic') ? prefixClass('is-active') : '', prefixClass('menubar__button') ]"
+                data-cy="editor:italic"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleItalic().run()"
+                v-tooltip="translations.italic">
                 <i
                   :class="prefixClass('fa fa-italic')"
                   aria-hidden="true" />
               </button>
               <!-- Underline -->
               <button
-                @click="editor.chain().focus().toggleUnderline().run()"
-                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-                type="button"
                 :aria-label="translations.underline"
-                v-tooltip="translations.underline"
-                :disabled="readonly">
+                :class="[editor.isActive('underline') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                data-cy="editor:underline"
+                :disabled="readonly"
+                type="button"
+                @click="editor.chain().focus().toggleUnderline().run()"
+                v-tooltip="translations.underline">
                 <i
                   :class="prefixClass('fa fa-underline')"
                   aria-hidden="true" />
@@ -108,12 +114,13 @@
             <!-- Strike through -->
             <button
               v-if="toolbar.strikethrough"
-              @click="editor.chain().focus().toggleStrike().run()"
-              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
-              type="button"
               :aria-label="translations.strikethrough"
-              v-tooltip="translations.strikethrough"
-              :disabled="readonly">
+              :class="[editor.isActive('strike') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+              data-cy="editor:strikethrough"
+              :disabled="readonly"
+              type="button"
+              @click="editor.chain().focus().toggleStrike().run()"
+              v-tooltip="translations.strikethrough">
               <i
                 :class="prefixClass('fa fa-strikethrough')"
                 aria-hidden="true" />
@@ -123,10 +130,10 @@
               :class="prefixClass('inline-block relative')">
               <button
                 :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
+                :disabled="readonly"
                 type="button"
                 @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
-                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
-                :disabled="readonly">
+                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)">
                 <dp-icon
                   class="align-text-top inline-block"
                   icon="highlighter" />
@@ -144,7 +151,7 @@
                   @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
-                  {{ Translator.trans(button.label) }}
+                  {{ button.label }}
                 </button>
               </div>
               &#10072;
@@ -158,8 +165,8 @@
                 :class="[editor.isActive(button.name) ? prefixClass('is-active') : '' , prefixClass('menubar__button')]"
                 type="button"
                 :disabled="readonly"
-                :aria-label="Translator.trans(button.label)"
-                v-tooltip="Translator.trans(button.label)"
+                :aria-label="button.label"
+                v-tooltip="button.label"
                 @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                 @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                 @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
@@ -175,8 +182,8 @@
                 @click="editor.chain().focus().toggleBulletList().run()"
                 :class="[editor.isActive('bullet_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.unordered.list')"
-                v-tooltip="Translator.trans('editor.unordered.list')"
+                :aria-label="translations.unorderedList"
+                v-tooltip="translations.unorderedList"
                 :disabled="readonly">
                 <i :class="prefixClass('fa fa-list-ul')" />
               </button>
@@ -185,8 +192,8 @@
                 @click="editor.chain().focus().toggleOrderedList().run()"
                 :class="[editor.isActive('ordered_list') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
-                :aria-label="Translator.trans('editor.ordered.list')"
-                v-tooltip="Translator.trans('editor.ordered.list')"
+                :aria-label="translations.orderedList"
+                v-tooltip="translations.orderedList"
                 :disabled="readonly">
                 <i :class="prefixClass('fa fa-list-ol')" />
               </button>
@@ -202,7 +209,7 @@
                 type="button"
                 :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
-                v-tooltip="Translator.trans('editor.heading.level', { level: heading })"
+                v-tooltip="translations.headingLevel"
                 :disabled="readonly">
                 {{ `H${heading}` }}
               </button>
@@ -226,7 +233,7 @@
               @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))"
               :class="prefixClass('menubar__button')"
               type="button"
-              v-tooltip="Translator.trans('editor.link.edit.insert')">
+              v-tooltip="translations.link.editOrInsert">
               <i :class="prefixClass('fa fa-link')" />
             </button>
             <!-- Insert images-->
@@ -263,7 +270,7 @@
                   @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
                   @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
-                  {{ Translator.trans(button.label) }}
+                  {{ button.label }}
                 </button>
               </div>
             </div>
@@ -273,8 +280,8 @@
               @click="fullscreen"
               :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
               type="button"
-              :aria-label="Translator.trans('editor.fullscreen')"
-              v-tooltip="Translator.trans('editor.fullscreen')">
+              :aria-label="translations.fullscreen"
+              v-tooltip="translations.fullscreen">
               <i
                 :class="prefixClass('fa fa-arrows-alt')"
                 aria-hidden="true" />
@@ -355,6 +362,7 @@ import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
 import { prefixClassMixin } from '~/mixins'
+import { v4 as uuid } from 'uuid'
 
 export default {
   name: 'DpEditor',
@@ -543,48 +551,48 @@ export default {
         isOpen: false,
         buttons: [
           {
-            label: 'editor.table.create',
+            label: de.editor.table.create,
             command: () => this.editor.commands.insertTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
             name: 'createTable'
           },
           {
-            label: 'editor.table.delete',
+            label: de.editor.table.delete,
             command: () => this.editor.commands.deleteTable(),
             name: 'deleteTable'
           },
           {
-            label: 'editor.table.addColumnBefore',
+            label: de.editor.table.addColumnBefore,
             command: () => this.editor.commands.addColumnBefore(),
             name: 'addColumnBefore'
           },
           {
-            label: 'editor.table.addColumnAfter',
+            label: de.editor.table.addColumnAfter,
             command: () => this.editor.commands.addColumnAfter(),
             name: 'addColumnAfter'
 
           },
           {
-            label: 'editor.table.deleteColumn',
+            label: de.editor.table.deleteColumn,
             command: () => this.editor.commands.deleteColumn(),
             name: 'deleteColumn'
           },
           {
-            label: 'editor.table.addRowBefore',
+            label: de.editor.table.addRowBefore,
             command: () => this.editor.commands.addRowBefore(),
             name: 'addRowBefore'
           },
           {
-            label: 'editor.table.addRowAfter',
+            label: de.editor.table.addRowAfter,
             command: () => this.editor.commands.addRowAfter(),
             name: 'addRowAfter'
           },
           {
-            label: 'editor.table.deleteRow',
+            label: de.editor.table.deleteRow,
             command: () => this.editor.commands.deleteRow(),
             name: 'deleteRow'
           },
           {
-            label: 'editor.table.toggleCellMerge',
+            label: de.editor.table.toggleCellMerge,
             command: () => this.editor.commands.mergeOrSplit(),
             name: 'toggleCellMerge'
           }
@@ -640,6 +648,7 @@ export default {
       }, this.toolbarItems),
       translations: {
         ...de.editor,
+        headingLevel: de.editor.headingLevel({ level: this.heading }),
         insertImage: de.image.insert,
         obscureTitle: de.obscure.title
       }
@@ -682,7 +691,7 @@ export default {
     addAltTextToImage (text) {
       this.$root.$emit('update-image:' + this.editingImage, { alt: text })
       this.resetEditingImage()
-      this.setValue()
+      this.emitValue()
     },
 
     appendText (text) {
@@ -768,12 +777,12 @@ export default {
 
         this.diffMenu.buttons = [
           {
-            label: 'editor.diff.insert',
+            label: de.editor.mark.insert,
             command: () => this.editor.chain().focus().toggleInsert().run(),
             name: 'insert'
           },
           {
-            label: 'editor.diff.delete',
+            label: de.editor.mark.delete,
             command: () => this.editor.chain().focus().toggleDelete().run(),
             name: 'delete'
           }
@@ -784,7 +793,7 @@ export default {
         extensions.push(CustomMark)
 
         this.diffMenu.buttons.unshift({
-          label: 'editor.mark',
+          label: de.editor.mark.element,
           command: () => this.editor.chain().focus().toggleMarkText().run(),
           name: 'mark'
         })
@@ -803,10 +812,25 @@ export default {
       return extensions
     },
 
-    cut () {
+    async cut () {
       const selection = window.getSelection()
 
-      selection.deleteFromDocument()
+      if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(selection.toString())
+          selection.deleteFromDocument()
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        // If Browser don't support Clipboard API.
+        try {
+          document.execCommand('cut')
+          selection.deleteFromDocument()
+        } catch (err) {
+          console.error(err)
+        }
+      }
     },
 
     executeSubMenuButtonAction (button, menu, activateOne = false) {
@@ -969,11 +993,16 @@ export default {
       }
     },
 
-    setValue () {
+    transformObscureTag (value) {
+      const regex = new RegExp(`<span class="${this.prefixClass('u-obscure')}">(.*?)<\\/span>`, 'g')
+
+      return value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+    },
+
+    emitValue () {
       this.currentValue = this.editor.getHTML()
-      const regex = new RegExp('<span class="' + this.prefixClass('u-obscure') + '">(.*?)<\\/span>', 'g')
-      this.currentValue = this.currentValue.replace(regex, '<dp-obscure>$1</dp-obscure>')
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
+
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 
@@ -1026,13 +1055,14 @@ export default {
 
   mounted () {
     this.editor = new Editor({
+      id: uuid(),
       editable: !this.readonly,
       extensions: this.collectExtensions(),
       content: this.currentValue,
       disableInputRules: true,
       disablePasteRules: true,
       onUpdate: () => {
-        this.setValue()
+        this.emitValue()
       },
       editorProps: {
         handleDrop: (_view, _event, _slice, moved) => {
@@ -1065,18 +1095,26 @@ export default {
           // Strip img tags from pasted and dropped content
           returnContent = returnContent.replace(/<img.*?>/g, '')
 
+          returnContent = this.transformObscureTag(returnContent)
+
           return returnContent
         }
       },
 
       onInit: ({ view }) => {
+        this.currentValue = this.transformObscureTag(this.editor.getHTML())
+
         view._props.handleScrollToSelection = customHandleScrollToSelection
       }
     })
 
-    this.$root.$on('open-image-alt-modal', (e, id) => {
-      this.editingImage = id
-      this.openUploadModal({ editAltOnly: true, currentAlt: e.target.getAttribute('alt') })
+    this.$root.$on('open-image-alt-modal', ({ event, imgId, editorId }) => {
+      if (this.editor.options.id !== editorId) {
+        return
+      }
+
+      this.editingImage = imgId
+      this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })
     /*
      * On form-reset the editor has to be cleared manually.
@@ -1162,10 +1200,12 @@ function getColorFromCSS (className) {
   div.className = className
   div.id = 'tmpIdToGetColor'
   body.appendChild(div)
+
   const tmpDiv = document.getElementById('tmpIdToGetColor')
   const color = window.getComputedStyle(tmpDiv).getPropertyValue('color')
 
   body.removeChild(tmpDiv)
+
   return color
 }
 </script>

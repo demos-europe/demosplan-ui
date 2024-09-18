@@ -9,6 +9,7 @@
     <button
       type="button"
       class="btn btn--secondary float-right"
+      data-cy="resetSelection"
       @click="$emit('reset-selection')">
       {{ deselect }}
     </button>

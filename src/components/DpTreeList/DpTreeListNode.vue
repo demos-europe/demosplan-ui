@@ -44,11 +44,11 @@
         </div>
       </div>
       <dp-tree-list-toggle
-        data-cy="treeListToggle"
+        data-cy="treeListChildToggle"
         v-if="isBranch"
         class="self-start"
         :disabled="!hasToggle"
-        v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
+        v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         v-model="isExpanded" />
       <div
         v-else
@@ -59,6 +59,7 @@
       :drag-across-branches="options.dragAcrossBranches ? optons.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
       :content-data="draggable ? children : null"
+      data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"
@@ -68,8 +69,9 @@
       :on-move="onMove"
       :opts="options.draggable">
       <dp-tree-list-node
-        v-for="child in children"
+        v-for="(child, idx) in children"
         v-show="true === isExpanded"
+        :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"
         :check-branch="checkBranch"
@@ -101,6 +103,7 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
+import { de } from "~/components/shared/translations"
 import DpDraggable from '~/components/DpDraggable'
 import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
@@ -198,6 +201,9 @@ export default {
   data () {
     return {
       isExpanded: false,
+      translations: {
+        noElementsExisting: de.noElementsExisting
+      }
     }
   },
 

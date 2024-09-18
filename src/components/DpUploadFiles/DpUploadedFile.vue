@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li data-cy="uploadFile:uploadedFileItem">
     <span
       aria-hidden="true"
       v-if="file.mimeType === 'txt'">
@@ -8,8 +8,9 @@
     </span>
     <span v-if="isImage">
       <img
+        :alt="file.name"
         :src="getFileByHash(file.hash)"
-        :aria-label="Translator.trans('image.preview')"
+        :aria-label="translations.imagePreview"
         width="50px">
     </span>
     <span
@@ -23,6 +24,7 @@
         type="button"
         :class="prefixClass('btn-icns u-m-0')"
         :aria-label="translations.removeFile"
+        data-cy="uploadFile:uploadedFileDeleteItem"
         @click="removeFile">
         <i
           :class="prefixClass('fa fa-trash')"
@@ -54,6 +56,7 @@ export default {
   data () {
     return {
       translations: {
+        imagePreview: de.image.preview,
         removeFile: de.file.remove
       }
     }

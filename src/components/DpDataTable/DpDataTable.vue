@@ -4,7 +4,7 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
-      <caption class="hide-visually" v-text="tableDescription" />
+      <caption class="sr-only" v-text="tableDescription" />
       <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
         <col v-if="isSelectable" />
@@ -17,30 +17,36 @@
       </colgroup>
 
       <thead>
-        <dp-table-header
-          :data-cy="`${dataCy}:header`"
-          :checked="allSelected"
-          :has-flyout="hasFlyout"
-          :header-fields="headerFields"
-          :indeterminate="indeterminate"
-          :is-draggable="isDraggable"
-          :is-expandable="isExpandable"
-          :is-resizable="isResizable"
-          :is-selectable="isSelectable"
-          :is-sticky="hasStickyHeader"
-          :is-truncatable="isTruncatable"
-          :translations="headerTranslations"
-          @toggle-expand-all="toggleExpandAll"
-          @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll">
-          <template v-slot:[`header-${field}`] v-for="field in fields">
-            <slot :name="`header-${field}`" />
-          </template>
-        </dp-table-header>
+      <dp-table-header
+        :data-cy="`${dataCy}:header`"
+        :checked="allSelected"
+        :has-flyout="hasFlyout"
+        :header-fields="headerFields"
+        :indeterminate="indeterminate"
+        :is-draggable="isDraggable"
+        :is-expandable="isExpandable"
+        :is-resizable="isResizable"
+        :is-selectable="isSelectable"
+        :is-sticky="hasStickyHeader"
+        :is-truncatable="isTruncatable"
+        :translations="headerTranslations"
+        @toggle-expand-all="toggleExpandAll"
+        @toggle-select-all="toggleSelectAll"
+        @toggle-wrap-all="toggleWrapAll">
+        <template
+          v-for="field in headerFields"
+          v-slot:[`header-${field.field}`]="field">
+          <slot
+            :name="`header-${field.field}`"
+            v-bind="field" />
+        </template>
+      </dp-table-header>
       </thead>
 
       <!-- not draggable -->
-      <tbody v-if="!isDraggable && !isLoading">
+      <tbody
+        v-if="!isDraggable && !isLoading"
+        :data-cy="`${dataCy}:tbody`">
         <template v-for="(item, idx) in items">
           <dp-table-row
             :ref="`tableRows[${idx}]`"
@@ -79,21 +85,21 @@
             </template>
           </dp-table-row>
 
-          <!-- DpTableRowExpanded -->
-          <tr
-            v-if="expandedElements[item[trackBy]] || false"
-            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
-            <td
-              :class="{ 'opacity-70': isLoading }"
-              :colspan="colCount"
-              @mouseenter="addHoveredClass(idx)"
-              @mouseleave="removeHoveredClass(idx)">
-              <slot
-                name="expandedContent"
-                v-bind="item" />
-            </td>
-          </tr>
-        </template>
+        <!-- DpTableRowExpanded -->
+        <tr
+          v-if="expandedElements[item[trackBy]] || false"
+          :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+          <td
+            :class="{ 'opacity-70': isLoading }"
+            :colspan="colCount"
+            @mouseenter="addHoveredClass(idx)"
+            @mouseleave="removeHoveredClass(idx)">
+            <slot
+              name="expandedContent"
+              v-bind="item" />
+          </td>
+        </tr>
+      </template>
       </tbody>
 
       <dp-draggable
@@ -397,9 +403,9 @@ export default {
         headerExpandHint: de.expandAll,
         headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
-        searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
+        searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
         tableLoadingData: de.loadingData,
-        tableNoElements: de.explanationNoentries
+        tableNoElements: de.noEntriesAvailable
       },
       elementSelections: {},
       expandedElements: {},
@@ -423,7 +429,7 @@ export default {
       if (this.multiPageSelectionItemsTotal > 0) {
         return this.multiPageSelectionItemsToggled === this.multiPageSelectionItemsTotal || this.multiPageAllSelected
       } else {
-        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.items.length
+        return this.items.filter(item => this.elementSelections[item[this.trackBy]]).length === this.selectableItems.length
       }
     },
 
@@ -464,12 +470,16 @@ export default {
       if (this.searchString === null || this.searchString.length < 1) {
         return new RegExp()
       }
-      const searchTerm = this.searchString.replace(/\s*/ig, '\\s*')
+      const searchTerm = this.escapeSpecialCharacters(this.searchString)
       return new RegExp(searchTerm, 'ig')
     },
 
     searchTermSet () {
       return this.searchTerm.source !== '(?:)'
+    },
+
+    selectableItems () {
+      return this.lockCheckboxBy ? this.items.filter(item => !item[this.lockCheckboxBy]) : this.items
     }
   },
 
@@ -495,6 +505,19 @@ export default {
       const tableRow = this.$refs.tableRows[idx]
 
       return tableRow.$el.classList.add('is-hovered-content')
+    },
+
+    /**
+     * This method is used to escape special characters in a string.
+     * It specifically targets spaces and plus signs.
+     *
+     * @param {string} string - The string to be processed.
+     * @returns {string} - The processed string with special characters escaped.
+     */
+    escapeSpecialCharacters (string) {
+      return string
+        .replace(/(\s)/g, ' ')
+        .replace(/([+])/g, '\\$&')
     },
 
     extractTranslations (keys) {
@@ -562,9 +585,9 @@ export default {
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-              || sessionColWidth
-              || headerFieldWidth
-              || `${tableHeaderEl.getBoundingClientRect().width}px`
+            || sessionColWidth
+            || headerFieldWidth
+            || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
           this.updateSessionStorage(storageName, width)
@@ -604,10 +627,12 @@ export default {
     },
 
     toggleSelectAll (status = this.allSelected === false) {
-      this.elementSelections = this.setElementSelections(this.items, status)
+      this.elementSelections = this.setElementSelections(this.selectableItems, status)
       this.selectedElements = this.filterElementSelections()
       this.$emit('items-selected', this.selectedElements)
-      this.$emit('items-toggled', this.items.map(el => { return { id: el[this.trackBy] } }), status)
+      this.$emit('items-toggled', this.selectableItems.map(el => {
+        return { id: el[this.trackBy] }
+      }), status)
 
       // Used by multi-page selection in SegmentsList to determine whether to track selected or deselected items.
       this.$emit('select-all', status)
@@ -640,7 +665,7 @@ export default {
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
   },
 
-  beforeUpdate() {
+  beforeUpdate () {
     this.headerCellCount = this.headerFields.length
   },
 

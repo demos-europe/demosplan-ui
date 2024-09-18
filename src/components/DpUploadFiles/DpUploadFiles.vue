@@ -1,8 +1,8 @@
 <template>
   <fieldset :class="prefixClass('layout')">
     <legend
-      class="hide-visually"
-      v-text="Translator.trans('upload.files')" />
+      class="sr-only"
+      v-text="mergedTranslations.uploadFiles" />
     <dp-label
       v-if="label.text"
       class="layout__item"
@@ -17,9 +17,10 @@
       :basic-auth="basicAuth"
       :chunk-size="chunkSize"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1')]"
+      :data-cy="dataCy"
       :max-number-of-files="maxNumberOfFiles"
       :max-file-size="maxFileSize"
-      :translations="translations"
+      :translations="mergedTranslations"
       :tus-endpoint="tusEndpoint"
       @upload-success="handleUpload" /><!--
 
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClassMixin, sessionStorageMixin } from '~/mixins'
 import DpLabel from '../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
@@ -99,6 +101,12 @@ export default {
       type: Number,
       default: Infinity,
       required: false
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: 'uploadFile'
     },
 
     /**
@@ -236,6 +244,10 @@ export default {
   data () {
     return {
       fileHashes: [],
+      defaultTranslations: {
+        uploadFiles: de.upload.files,
+      },
+      mergedTranslations: {},
       uploadedFiles: []
     }
   },
@@ -288,6 +300,10 @@ export default {
       this.uploadedFiles = this.uploadedFiles.filter(el => el.hash !== file.hash)
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }
+  },
+
+  created () {
+    this.mergedTranslations = { ...this.defaultTranslations, ...this.translations }
   },
 
   mounted () {

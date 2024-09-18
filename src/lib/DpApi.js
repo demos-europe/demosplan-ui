@@ -145,7 +145,7 @@ const handleResponseMessages = function (responseMeta) {
   if (hasOwnProp(responseMeta, 'messages')) {
     for (const type in responseMeta.messages) {
       for (const message in responseMeta.messages[type]) {
-        dplan.notify.notify(type, Translator.trans(responseMeta.messages[type][message]))
+        dplan.notify.notify(type, responseMeta.messages[type][message])
       }
     }
   }
@@ -184,15 +184,15 @@ const checkResponse = function (response, messages) {
        * The generic api (/api/2.0/{resourceType}) does not specify success messages.
        * Instead, custom messages passed by the calling component are displayed here.
        */
-      dplan.notify.notify(messages[response.status].type, Translator.trans(messages[response.status].text))
+      dplan.notify.notify(messages[response.status].type, messages[response.status].text)
     }
 
     if (response.status >= 400) {
       // @improve handle 404, 500 specially?
       reject(response.data)
-    } else if (response.status === 200) {
+    } else if (response.status >= 200 && response.status < 400) {
       // Got data!
-      resolve(response.data)
+      resolve(response.data ? response.data : null)
     } else {
       // Got no data
       resolve(null)
@@ -214,8 +214,7 @@ function makeFormPost (payload, url) {
   return dpApi({
     method: 'POST',
     url: url,
-    data: postData,
-    headers: { 'Content-Type': 'multipart/form-data' }
+    data: postData
   })
 }
 

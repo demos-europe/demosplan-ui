@@ -1,57 +1,90 @@
 <template>
-  <svg
-    class="c-icon"
-    :class="proportionClass"
-    :height="pxSize"
-    :width="pxSize"
-    viewBox="0 0 256 256"
-    xmlns="http://www.w3.org/2000/svg">
-    <path :d="path" />
-  </svg>
+  <component
+    :is="_icon"
+    :class="proportionClass" />
 </template>
 
-<script>
-import { ICONS, SIZES } from './util/iconVariables'
-import { hasOwnProp } from '~/utils'
+<script setup lang="ts">
+import {
+  computed,
+  markRaw,
+  PropType,
+  provide,
+  toRefs,
+  watchEffect
+} from 'vue'
 
-export default {
-  name: 'DpIcon',
+import {
+  iconComponents,
+  proportions,
+  SIZES
+} from './util/iconConfig'
 
-  props: {
-    icon: {
-      type: String,
-      required: true
-    },
+import {
+  IconName,
+  IconSize,
+  IconWeight
+} from '../../../types'
 
-    size: {
-      type: String,
-      required: false,
-      default: 'medium',
-      validator: (prop) => Object.keys(SIZES).includes(prop)
-    }
+import type { Component } from 'vue'
+
+const props = defineProps({
+  icon: {
+    type: String as PropType<IconName>,
+    required: true,
+    validator: (prop: IconName) => Object.keys(iconComponents).includes(prop)
   },
 
-  computed: {
-    pxSize () {
-      return SIZES[this.size]
-    },
+  /**
+   * Size of the icon
+   * Small: 16
+   * Medium: 20
+   * Large: 24
+   * Xlarge: 32
+   */
+  size: {
+    type: String as PropType<IconSize>,
+    required: false,
+    default: 'medium',
+    validator: (prop: IconSize) => Object.keys(SIZES).includes(prop)
+  },
 
-    path () {
-      if (hasOwnProp(ICONS[this.icon], 'path') && !!ICONS[this.icon].path) {
-        return ICONS[this.icon].path
-      } else {
-        console.warn(`DpIcon is called with an unsupported "icon" value.`)
-        return ICONS.warning.path
-      }
-    },
-
-    /**
-     * To enable authors to adapt spacing to different icon proportions, a selector
-     * is applied based on the width/height proportions of the path element.
-     */
-    proportionClass () {
-      return ICONS[this.icon]?.proportions || 'square'
-    }
+  weight: {
+    type: String as PropType<IconWeight>,
+    required: false,
+    default: 'regular',
+    validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop)
   }
-}
+})
+
+/**
+ * To enable authors to adapt spacing to different icon proportions, a selector
+ * is applied based on the width/height proportions of the path element.
+ */
+const proportionClass = computed(() => {
+  return proportions[props.icon] || 'square'
+})
+
+const { icon, size, weight } = toRefs(props)
+
+let _icon: Component
+
+/**
+ * Icons may be reactive.
+ * However, it seems like <component :is /> needs an extra invitation to be reactive.
+ */
+watchEffect(() => {
+  const iconComponent = iconComponents[icon.value as IconName]
+
+  if (iconComponent) {
+    _icon = markRaw(iconComponent)
+  }
+})
+
+/**
+ * PhosphorIcons may be provided props globally.
+ * See https://github.com/phosphor-icons/vue#composition
+ */
+provide('size', SIZES[size.value])
+provide('weight', weight.value)
 </script>

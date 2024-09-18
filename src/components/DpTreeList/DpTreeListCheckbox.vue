@@ -8,7 +8,7 @@
       :checked="checked"
       :value="stringValue"
       @click="check">
-    <span class="hide-visually">{{ label }}</span>
+    <span class="sr-only">{{ label }}</span>
   </label>
 </template>
 

@@ -1,5 +1,3 @@
-
-import { createLocalVue, shallowMount } from '@vue/test-utils'
 import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 import DpObscure from '~/components/DpObscure'
 

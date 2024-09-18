@@ -19,6 +19,7 @@
         </div>
         <dp-tree-list-toggle
           class="color--grey"
+          data-cy="treeListNodeToggle"
           @input="toggleAll"
           :value="allElementsExpanded"
           toggle-all />
@@ -31,6 +32,7 @@
       ref="treeList"
       :drag-across-branches="opts.dragAcrossBranches ? opts.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
+      data-cy="treeListNode"
       :content-data="draggable ? treeData : null"
       draggable-tag="ul"
       :handle-change="handleChange"
@@ -39,7 +41,8 @@
       :on-move="onMove"
       :opts="opts.draggable">
       <dp-tree-list-node
-        v-for="node in treeData"
+        v-for="(node, idx) in treeData"
+        :data-cy="`treeListNode:${idx}`"
         :ref="`node_${node.id}`"
         :key="node.id"
         :check-branch="branchIdentifier"

@@ -35,7 +35,10 @@
         :idx="idx">
         <slot
           v-if="$slots[`header-${hf.field}`]()[0].children.length > 0"
-          :name="`header-${hf.field}`" />
+          :name="`header-${hf.field}`"
+          v-bind="hf">
+          <span v-if="hf.label" v-text="hf.label" />
+        </slot>
         <span
           v-else-if="hf.label"
           v-text="hf.label" />

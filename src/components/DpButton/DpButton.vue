@@ -6,7 +6,7 @@
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
     :disabled="disabled"
-    :aria-hidden="busy ? true : null"
+    :aria-hidden="busy"
     v-tooltip="iconOnly ? text : null"
     @click="emit('click', $event)">
     <dp-icon

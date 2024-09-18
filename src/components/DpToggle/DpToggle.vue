@@ -4,7 +4,7 @@
     @click="toggle"
     role="checkbox"
     :aria-checked="value.toString()"
-    :aria-disabled="disabled ? disabled : null"
+    :aria-disabled="disabled"
     tabindex="0"
     @keydown.space.prevent="toggle">
     <div

@@ -55,7 +55,7 @@ export default {
       }
     }
 
-    return h(Transition, data, this.$slots.default)
+    return h(Transition, data, () => this.$slots.default)
   }
 }
 </script>

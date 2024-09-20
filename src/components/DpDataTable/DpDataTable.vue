@@ -72,8 +72,8 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template
-              v-slot:[field]="item"
-              v-for="field in fields">
+              v-for="field in fields"
+              v-slot:[field]="item">
               <slot
                 :name="field"
                 v-bind="item" />
@@ -112,7 +112,7 @@
         @end="(event, item) => $emit('changed-order', event, item)">
         <template
           v-for="(item, idx) in items"
-          :key="item.id">
+          :key="item[trackBy]">
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"

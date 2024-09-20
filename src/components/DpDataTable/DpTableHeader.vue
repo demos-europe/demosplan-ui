@@ -34,7 +34,7 @@
         :next-header="headerFields[idx + 1]"
         :idx="idx">
         <slot
-          v-if="$slots[`header-${hf.field}`]()[0].children.length > 0"
+          v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
           :name="`header-${hf.field}`"
           v-bind="hf">
           <span v-if="hf.label" v-text="hf.label" />
@@ -158,9 +158,9 @@ export default {
     }
   },
 
-  computed: {
-    DpResizableColumn () {
-      return DpResizableColumn
+  data () {
+    return {
+      DpResizableColumn
     }
   },
 

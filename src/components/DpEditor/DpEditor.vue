@@ -994,8 +994,10 @@ export default {
 
     transformObscureTag (value) {
       const regex = new RegExp(`<span class="${this.prefixClass('u-obscure')}">(.*?)<\\/span>`, 'g')
+      this.currentValue = value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+      const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
 
-      return value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+      this.$emit('transformObscureTag', isEmpty ? '' : this.currentValue)
     },
 
     emitValue () {
@@ -1062,6 +1064,7 @@ export default {
       disablePasteRules: true,
       onUpdate: () => {
         this.emitValue()
+        this.transformObscureTag(this.editor.getHTML())
       },
       editorProps: {
         attributes: {

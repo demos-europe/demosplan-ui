@@ -1067,6 +1067,10 @@ export default {
         this.transformObscureTag(this.editor.getHTML())
       },
       editorProps: {
+        attributes: {
+          role: 'textbox'
+        },
+
         handleDrop: (_view, _event, _slice, moved) => {
           if (!moved) {
             return true

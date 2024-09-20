@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1027](https://github.com/demos-europe/demosplan-ui/pull/1027)) DpEditor: transform obscure tag on update action ([@sakutademos](https://github.com/sakutademos)
 - ([#1021](https://github.com/demos-europe/demosplan-ui/pull/1021)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.3.31 - 2024-09-09

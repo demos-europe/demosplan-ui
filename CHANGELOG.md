@@ -3,6 +3,7 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+
 ### Added
 - ([#1019](https://github.com/demos-europe/demosplan-ui/pull/1019)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
@@ -25,6 +26,12 @@ to `~0.3.*` in your package.json.
 
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.32 - 2024-09-23
+
+### Fixed
+- ([#1027](https://github.com/demos-europe/demosplan-ui/pull/1027)) DpEditor: transform obscure tag on update action ([@sakutademos](https://github.com/sakutademos)
+- ([#1021](https://github.com/demos-europe/demosplan-ui/pull/1021)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.3.31 - 2024-09-09
 

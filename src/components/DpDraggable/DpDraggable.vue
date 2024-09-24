@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { useSortable } from '@vueuse/integrations/useSortable'
-import { ref } from 'vue'
 
 const wrapper = ref<HTMLElement | null>(null)
 const list = ref([])
@@ -112,10 +112,11 @@ const props = defineProps({
   }
 })
 
-list.value = props.contentData
+list.value = props.contentData ?? []
 
-useSortable(
+const { option: changeSortableOption } = useSortable(
   wrapper,
+
   list,
   {
     disabled: !props.isDraggable,
@@ -138,4 +139,8 @@ useSortable(
     ...props.opts
   }
 )
+
+watch(() => props.isDraggable, () => {
+  changeSortableOption('disabled', !props.isDraggable)
+})
 </script>

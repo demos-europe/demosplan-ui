@@ -1,5 +1,5 @@
 <template>
-  <span
+  <div
     class="o-flyout"
     :class="{
       'o-flyout--left': align === 'left',
@@ -29,7 +29,7 @@
       data-cy="flyout">
       <slot />
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -95,7 +95,11 @@ export default {
         this.$emit('open')
         const insertedEL = document.body.appendChild(this.$refs.flyout)
         this.updatePosition(insertedEL)
-        // this.cleanup = autoUpdate(this.$refs.reference, this.$refs.flyout, this.updatePosition)
+        this.cleanup = autoUpdate(
+          this.$refs.reference,
+          this.$refs.flyout,
+          () => this.updatePosition(this.$refs.flyout)
+        )
         document.addEventListener('click', this.handleOutsideClick)
       } else {
         this.$emit('close')
@@ -106,18 +110,17 @@ export default {
     },
 
     async updatePosition (el) {
+      if (!this.$refs.reference || !el) return
+
       this.cleanup = await computePosition(this.$refs.reference, el, {
         placement: this.align === 'left' ? 'bottom-start' : 'bottom-end',
+        strategy: 'relative',
         middleware: [
           offset(10),
           flip({
-            fallbackPlacements: ['top-start', 'top-end'],
-            rootBoundary: 'body'
+            fallbackPlacements: ['top-start', 'top-end']
           }),
-          shift({
-            padding: 8,
-            rootBoundary: 'body'
-          })
+          shift({ padding: 8 })
         ],
       }).then(({x, y}) => {
         console.log(x, y)
@@ -140,7 +143,10 @@ export default {
 
   mounted () {
     if (this.isExpanded) {
-      this.updatePosition(this.$refs.flyout)
+      this.$nextTick(() => {
+        console.log(this.$refs.flyout)
+        this.updatePosition(this.$refs.flyout)
+      })
     }
   },
 

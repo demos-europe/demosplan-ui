@@ -94,25 +94,33 @@ export default {
       if (this.isExpanded) {
         this.$emit('open')
         const insertedEL = document.body.appendChild(this.$refs.flyout)
-        this.updatePosition(insertedEL)
-        this.cleanup = autoUpdate(
-          this.$refs.reference,
-          this.$refs.flyout,
-          () => this.updatePosition(this.$refs.flyout)
-        )
+
+        this.$nextTick(() => {
+          this.updatePosition(insertedEL)
+          this.cleanup = autoUpdate(
+            this.$refs.reference,
+            this.$refs.flyout,
+            () => this.updatePosition(this.$refs.flyout)
+          )
+        })
+
         document.addEventListener('click', this.handleOutsideClick)
       } else {
         this.$emit('close')
         this.$refs.flyout.remove()
-        this.cleanup?.()
+        // Only call cleanup if it's a valid function
+        if (typeof this.cleanup === 'function') {
+          this.cleanup()
+        }
+        this.cleanup = null
         document.removeEventListener('click', this.handleOutsideClick)
       }
     },
 
-    async updatePosition (el) {
+    updatePosition (el) {
       if (!this.$refs.reference || !el) return
 
-      this.cleanup = await computePosition(this.$refs.reference, el, {
+      this.cleanup = computePosition(this.$refs.reference, el, {
         placement: this.align === 'left' ? 'bottom-start' : 'bottom-end',
         strategy: 'relative',
         middleware: [
@@ -135,7 +143,11 @@ export default {
 
     handleOutsideClick (event) {
       if (!this.$el.contains(event.target)) {
-        this.close()
+        // Only call cleanup if it's a valid function
+        if (typeof this.cleanup === 'function') {
+          this.cleanup()
+        }
+        this.cleanup = null
         this.$refs.flyout.remove()
       }
     }

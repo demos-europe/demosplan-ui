@@ -1,6 +1,6 @@
 <template>
   <div
-    class="o-flyout"
+    class="o-flyout inline-block"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
@@ -143,6 +143,8 @@ export default {
 
     handleOutsideClick (event) {
       if (!this.$el.contains(event.target)) {
+        this.isExpanded = false
+
         // Only call cleanup if it's a valid function
         if (typeof this.cleanup === 'function') {
           this.cleanup()
@@ -156,7 +158,6 @@ export default {
   mounted () {
     if (this.isExpanded) {
       this.$nextTick(() => {
-        console.log(this.$refs.flyout)
         this.updatePosition(this.$refs.flyout)
       })
     }

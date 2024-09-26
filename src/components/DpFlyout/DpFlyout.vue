@@ -131,7 +131,6 @@ export default {
           shift({ padding: 8 })
         ],
       }).then(({x, y}) => {
-        console.log(x, y)
         Object.assign(el.style, {
           left: `${x}px`,
           top: `${y}px`,

@@ -83,44 +83,83 @@ export default {
       if (this.isExpanded === true) {
         this.$emit('close')
         this.isExpanded = false
-        this.cleanup?.()
+        this.resetCleanup()
+
         document.removeEventListener('click', this.handleOutsideClick)
+        const flyoutParent = this.$refs.flyout.parentElement
+        if (flyoutParent) {
+          this.$refs.flyout.remove()
+          flyoutParent.remove()
+        }
       }
+    },
+
+    closeFlyout () {
+      this.$emit('close')
+      const flyoutParent = this.$refs.flyout.parentElement
+      if (flyoutParent) {
+        flyoutParent.remove()
+      }
+      this.resetCleanup()
+      document.removeEventListener('click', this.handleOutsideClick)
+    },
+
+    handleOutsideClick (event) {
+      if (!this.$el.contains(event.target) && !this.$refs.flyout.contains(event.target)) {
+        this.isExpanded = false
+        this.resetCleanup()
+
+        // Remove the flyout element and its parent container
+        const flyoutParent = this.$refs.flyout.parentElement
+        if (flyoutParent) {
+          this.$refs.flyout.remove()
+          flyoutParent.remove()
+        }
+      }
+    },
+
+    openFlyout () {
+      this.$emit('open')
+
+      // Create a parent div for the Flyout element, add Flyout and reference classes for styling.
+      const flyoutParent = document.createElement('div')
+      flyoutParent.classList.add('o-flyout', ...this.$refs.reference.classList)
+      document.body.appendChild(flyoutParent)
+      flyoutParent.appendChild(this.$refs.flyout)
+
+      this.$nextTick(() => {
+        this.updateFlyoutPlacement(this.$refs.flyout)
+
+        // Activate automatic position updates to ensure the floating element remains anchored to its reference element.
+        this.cleanup = autoUpdate(
+          this.$refs.reference,
+          this.$refs.flyout,
+          () => this.updateFlyoutPlacement(this.$refs.flyout)
+        )
+      })
+      document.addEventListener('click', this.handleOutsideClick)
     },
 
     toggle () {
       this.isExpanded = !this.isExpanded
 
       if (this.isExpanded) {
-        this.$emit('open')
-        const insertedEL = document.body.appendChild(this.$refs.flyout)
-
-        this.$nextTick(() => {
-          this.updatePosition(insertedEL)
-          this.cleanup = autoUpdate(
-            this.$refs.reference,
-            this.$refs.flyout,
-            () => this.updatePosition(this.$refs.flyout)
-          )
-        })
-
-        document.addEventListener('click', this.handleOutsideClick)
+        this.openFlyout()
       } else {
-        this.$emit('close')
-        this.$refs.flyout.remove()
-        // Only call cleanup if it's a valid function
-        if (typeof this.cleanup === 'function') {
-          this.cleanup()
-        }
-        this.cleanup = null
-        document.removeEventListener('click', this.handleOutsideClick)
+        this.closeFlyout()
       }
     },
 
-    updatePosition (el) {
-      if (!this.$refs.reference || !el) return
+    resetCleanup () {
+      // Only call cleanup if it's a valid function
+      if (typeof this.cleanup === 'function') {
+        this.cleanup()
+      }
+      this.cleanup = null
+    },
 
-      this.cleanup = computePosition(this.$refs.reference, el, {
+    updateFlyoutPlacement (flyoutEl) {
+     this.cleanup = computePosition(this.$refs.reference, flyoutEl, {
         placement: this.align === 'left' ? 'bottom-start' : 'bottom-end',
         strategy: 'relative',
         middleware: [
@@ -130,40 +169,27 @@ export default {
           }),
           shift({ padding: 8 })
         ],
-      }).then(({x, y}) => {
-        Object.assign(el.style, {
+      }).then(({ x, y }) => {
+        Object.assign(flyoutEl.style, {
           left: `${x}px`,
           top: `${y}px`,
-          zIndex: '999999',
+          position: 'relative',
           display: 'block'
         })
       })
-    },
-
-    handleOutsideClick (event) {
-      if (!this.$el.contains(event.target)) {
-        this.isExpanded = false
-
-        // Only call cleanup if it's a valid function
-        if (typeof this.cleanup === 'function') {
-          this.cleanup()
-        }
-        this.cleanup = null
-        this.$refs.flyout.remove()
-      }
     }
   },
 
   mounted () {
     if (this.isExpanded) {
       this.$nextTick(() => {
-        this.updatePosition(this.$refs.flyout)
+        this.updateFlyoutPlacement(this.$refs.flyout)
       })
     }
   },
 
   beforeDestroy () {
-    this.cleanup?.()
+    this.resetCleanup()
     document.removeEventListener('click', this.handleOutsideClick)
   }
 }

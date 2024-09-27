@@ -163,18 +163,18 @@ export default {
         placement: this.align === 'left' ? 'bottom-start' : 'bottom-end',
         strategy: 'relative',
         middleware: [
-          offset(10),
+          offset(4),
           flip({
             fallbackPlacements: ['top-start', 'top-end']
           }),
-          shift({ padding: 8 })
+          shift({ padding: 0 })
         ],
       }).then(({ x, y }) => {
         Object.assign(flyoutEl.style, {
           left: `${x}px`,
           top: `${y}px`,
-          position: 'relative',
-          display: 'block'
+          display: 'block',
+          position: 'relative'
         })
       })
     }

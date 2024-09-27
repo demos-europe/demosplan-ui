@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from '../../src/utils/formatString'
+import { capitalizeFirstLetter } from '~/utils/formatString'
 
 describe('capitalizeFirstLetter', () => {
   test('should capitalize the first letter of a single word', () => {

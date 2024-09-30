@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1030](https://github.com/demos-europe/demosplan-ui/pull/1030)) Add new utility: capitalizeFirstLetter ([@sakutademos](https://github.com/sakutademos)
 - ([#1019](https://github.com/demos-europe/demosplan-ui/pull/1019)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Fixed

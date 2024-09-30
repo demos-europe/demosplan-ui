@@ -167,7 +167,7 @@ export default {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
-      this.$emit('update:model-value', valueToEmit)
+      this.$emit('update:modelValue', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
     }

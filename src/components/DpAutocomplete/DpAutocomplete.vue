@@ -98,7 +98,7 @@ export default {
     },
 
     emitAndFetch (value) {
-      this.emit(value, 'update:model-value')
+      this.emit(value, 'update:modelValue')
       this.currentQuerry = value
       if (value.length >= 3) this.fetchOptions(value)
     },

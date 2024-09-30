@@ -22,7 +22,7 @@
           data-cy="treeListNodeToggle"
           :model-value="allElementsExpanded"
           toggle-all
-          @update:model-value="toggleAll" />
+          @update:modelValue="toggleAll" />
       </div>
     </div>
 

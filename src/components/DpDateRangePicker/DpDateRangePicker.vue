@@ -26,7 +26,7 @@
       :model-value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
-      @update:model-value="handleInputEndDate" />
+      @update:modelValue="handleInputEndDate" />
   </div>
 </template>
 

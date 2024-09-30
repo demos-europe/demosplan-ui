@@ -321,7 +321,7 @@ export default {
       if (type === 'minute') {
         this.setMinutes(val)
       }
-      this.$emit('update:model-value', this.currentTime)
+      this.$emit('update:modelValue', this.currentTime)
     },
 
     handleKeyDown (e) {

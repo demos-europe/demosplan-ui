@@ -20,7 +20,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     iconClassProp: {
@@ -63,7 +63,7 @@ export default {
 
   methods: {
     toggle () {
-      this.$emit('update:model-value', !this.modelValue)
+      this.$emit('update:modelValue', !this.modelValue)
     }
   }
 }

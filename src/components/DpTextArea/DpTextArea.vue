@@ -15,7 +15,7 @@
       :disabled="disabled"
       :maxlength="maxlength"
       v-model="currentValue"
-      @input="$emit('update:model-value', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
       :required="required" />
   </div>
 </template>

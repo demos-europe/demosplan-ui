@@ -34,7 +34,7 @@
       :model-value="modelValue"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
-      @update:model-value="newVal => $emit('update:model-value', newVal)"
+      @update:modelValue="newVal => $emit('update:modelValue', newVal)"
       @open="newVal => $emit('open', newVal)"
       @remove="newVal => $emit('remove', newVal)"
       @search-change="newVal => $emit('search-change', newVal)"
@@ -120,7 +120,7 @@ export default {
     'select-all',
     'tag',
     'unselect-all',
-    'update:model-value',
+    'update:modelValue',
   ],
 
   props: {

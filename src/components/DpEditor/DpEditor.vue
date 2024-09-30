@@ -386,7 +386,7 @@ export default {
 
   mixins: [prefixClassMixin],
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     /**
@@ -717,7 +717,7 @@ export default {
 
       this.editor.commands.setContent(newText)
       this.currentValue = newText
-      this.$emit('update:model-value', this.currentValue)
+      this.$emit('update:modelValue', this.currentValue)
     },
 
     collectExtensions () {
@@ -1009,7 +1009,7 @@ export default {
       this.currentValue = this.editor.getHTML()
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
 
-      this.$emit('update:model-value', isEmpty ? '' : this.currentValue)
+      this.$emit('update:modelValue', isEmpty ? '' : this.currentValue)
     },
 
     showLinkPrompt (_command, attrs) {

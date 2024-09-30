@@ -32,7 +32,7 @@
       v-model="currentValue"
       @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
-      @input="$emit('update:model-value', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -224,7 +224,7 @@ const currentValue = ref(modelValue.value)
 
 const content = computed({
   get: () => props.modelValue,
-  set: (value) => emit('update:model-value', value),
+  set: (value) => emit('update:modelValue', value),
 })
 
 const classes = computed(() => {

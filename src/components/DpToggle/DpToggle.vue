@@ -28,7 +28,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     disabled: {
@@ -59,7 +59,7 @@ export default {
   methods: {
     toggle () {
       if (this.disabled === false) {
-        this.$emit('update:model-value', !this.modelValue)
+        this.$emit('update:modelValue', !this.modelValue)
       }
     }
   }

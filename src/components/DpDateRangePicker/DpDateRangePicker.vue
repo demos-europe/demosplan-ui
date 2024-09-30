@@ -12,7 +12,7 @@
       :model-value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
-      @update:model-value="handleInputStartDate" />
+      @update:modelValue="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
       :id="endId"

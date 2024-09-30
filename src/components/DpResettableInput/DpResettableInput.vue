@@ -9,7 +9,7 @@
       @blur="$emit('blur', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
-      @update:model-value="$emit('update:model-value', currentValue)"
+      @update:modelValue="$emit('update:modelValue', currentValue)"
       :pattern="pattern"
       v-model="currentValue" />
     <button

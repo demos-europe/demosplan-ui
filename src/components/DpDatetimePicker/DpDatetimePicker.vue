@@ -17,7 +17,7 @@
         :min-date="minDate"
         :required="required"
         v-model="date"
-        @update:model-value="$emit('update:model-value', currentDatetime)" />
+        @update:modelValue="$emit('update:model-value', currentDatetime)" />
       <dp-time-picker
         class="o-form__group-item"
         :data-cy="`${dataCy}:time`"
@@ -25,7 +25,7 @@
         :id="`timePicker:${id}`"
         v-model="time"
         :min-value="minTime"
-        @update:model-value="$emit('update:model-value', currentDatetime)" />
+        @update:modelValue="$emit('update:model-value', currentDatetime)" />
       <input
         type="hidden"
         :disabled="disabled"
@@ -60,7 +60,7 @@ export default {
     COMPONENT_V_MODEL: false
   },
 
-  emits: ['update:model-value'],
+  emits: ['update:modelValue'],
 
   props: {
     dataCy: {

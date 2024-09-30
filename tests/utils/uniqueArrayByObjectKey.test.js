@@ -1,4 +1,4 @@
-import uniqueArrayByObjectKey from '../../src/utils/uniqueArrayByObjectKey'
+import uniqueArrayByObjectKey from '~/utils/uniqueArrayByObjectKey'
 
 describe('uniqueArrayByObjectKey', () => {
     const arrayDuplicateValues = [

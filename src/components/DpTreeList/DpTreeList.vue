@@ -33,7 +33,7 @@
       :drag-across-branches="opts.dragAcrossBranches ? opts.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
       data-cy="treeListNode"
-      :content-data="draggable ? treeData : null"
+      :content-data="draggable ? treeData : []"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"

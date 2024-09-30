@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType } from 'vue'
 import { IconName, IconSize } from '../../../types'
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
+import { PropType } from 'vue'
 import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
 

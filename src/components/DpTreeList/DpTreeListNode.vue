@@ -58,7 +58,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches ? optons.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
-      :content-data="draggable ? children : null"
+      :content-data="draggable ? children : []"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
@@ -93,8 +93,8 @@
           v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
-            :name="slot"
-            v-bind="scope" />
+            v-bind="scope"
+            :name="slot" />
         </template>
       </dp-tree-list-node>
     </component>

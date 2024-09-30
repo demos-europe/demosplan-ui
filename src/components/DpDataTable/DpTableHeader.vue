@@ -28,7 +28,7 @@
     </th>
     <template v-for="(hf, idx) in headerFields">
       <component
-        :is="isResizable ? DpResizableColumn : 'th'"
+        :is="isResizable ? 'DpResizableColumn' : 'th'"
         :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
         :next-header="headerFields[idx + 1]"
@@ -80,6 +80,7 @@ export default {
 
   components: {
     DpIcon,
+    DpResizableColumn,
     DpWrapTrigger
   },
 
@@ -155,12 +156,6 @@ export default {
   watch: {
     indeterminate () {
       this.setIndeterminate()
-    }
-  },
-
-  data () {
-    return {
-      DpResizableColumn
     }
   },
 

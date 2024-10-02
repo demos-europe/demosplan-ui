@@ -216,7 +216,7 @@ export default {
 
       this.uppy.use(Tus, {
         endpoint: this.tusEndpoint,
-        chunkSize: 819200, // 800 KiB
+        chunkSize: this.chunkSize,
         limit: 5,
         onAfterResponse: (_req, res) => {
           this.currentFileHash = res.getHeader('X-Demosplan-File-Hash')

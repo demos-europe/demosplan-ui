@@ -5,13 +5,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
+
+- ([#1033](https://github.com/demos-europe/demosplan-ui/pull/1029)) Dependencies: move 'vue' from peerDep to devDep; add @tiptap/extension-text-style ([@sakutademos](https://github.com/sakutademos)
 - ([#994](https://github.com/demos-europe/demosplan-ui/pull/994)) BREAKING: Bump Yarn to v4.2.2 (again) ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 - ([#1029](https://github.com/demos-europe/demosplan-ui/pull/1029)) add new utility: capitalizeFirstLetter ([@sakutademos](https://github.com/sakutademos)
 
 ### Fixed
-
 - ([#1032](https://github.com/demos-europe/demosplan-ui/pull/1032)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
 
 ## v0.3.32 - 2024-09-23

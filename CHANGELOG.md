@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.33 - 2024-10-02
+
 ### Changed
 
 - ([#1033](https://github.com/demos-europe/demosplan-ui/pull/1029)) Dependencies: move 'vue' from peerDep to devDep; add @tiptap/extension-text-style ([@sakutademos](https://github.com/sakutademos)

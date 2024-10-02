@@ -5,8 +5,7 @@
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
       <caption class="sr-only" v-text="tableDescription" />
-      <colgroup
-        v-if="headerFields.filter((field) => field.colClass).length > 0">
+      <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
         <col v-if="isDraggable" />
         <col v-if="isSelectable" />
         <col
@@ -48,43 +47,43 @@
       <tbody
         v-if="!isDraggable && !isLoading"
         :data-cy="`${dataCy}:tbody`">
-      <template v-for="(item, idx) in items">
-        <dp-table-row
-          ref="tableRows"
-          :data-cy="`${dataCy}:row:${idx}`"
-          :index="idx"
-          :checked="elementSelections[item[trackBy]] || false"
-          :fields="fields"
-          :has-flyout="hasFlyout"
-          :header-fields="headerFields"
-          :is-draggable="isDraggable"
-          :is-expandable="isExpandable"
-          :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-          :is-locked-message="mergedTranslations.lockedForSelection"
-          :is-resizable="isResizable"
-          :is-selectable="isSelectable"
-          :is-selectable-name="isSelectableName"
-          :is-truncatable="isTruncatable"
-          :item="item"
-          :search-term="searchTerm"
-          :track-by="trackBy"
-          :wrapped="wrappedElements[item[trackBy]] || false"
-          @toggle-expand="toggleExpand"
-          @toggle-select="toggleSelect"
-          @toggle-wrap="toggleWrap">
-          <template
-            v-slot:[field]="item"
-            v-for="field in fields">
-            <slot
-              :name="field"
-              v-bind="item" />
-          </template>
-          <template v-slot:flyout="item">
-            <slot
-              name="flyout"
-              v-bind="item" />
-          </template>
-        </dp-table-row>
+        <template v-for="(item, idx) in items">
+          <dp-table-row
+            :ref="`tableRows[${idx}]`"
+            :data-cy="`${dataCy}:row:${idx}`"
+            :index="idx"
+            :checked="elementSelections[item[trackBy]] || false"
+            :fields="fields"
+            :has-flyout="hasFlyout"
+            :header-fields="headerFields"
+            :is-draggable="isDraggable"
+            :is-expandable="isExpandable"
+            :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
+            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-resizable="isResizable"
+            :is-selectable="isSelectable"
+            :is-selectable-name="isSelectableName"
+            :is-truncatable="isTruncatable"
+            :item="item"
+            :search-term="searchTerm"
+            :track-by="trackBy"
+            :wrapped="wrappedElements[item[trackBy]] || false"
+            @toggle-expand="toggleExpand"
+            @toggle-select="toggleSelect"
+            @toggle-wrap="toggleWrap">
+            <template
+              v-slot:[field]="item"
+              v-for="field in fields">
+              <slot
+                :name="field"
+                v-bind="item" />
+            </template>
+            <template v-slot:flyout="item">
+              <slot
+                name="flyout"
+                v-bind="item" />
+            </template>
+          </dp-table-row>
 
         <!-- DpTableRowExpanded -->
         <tr
@@ -393,15 +392,16 @@ export default {
     return {
       allExpanded: false,
       allWrapped: false,
+      currentItems: [],
       defaultTranslations: {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
         headerExpandHint: de.expandAll,
         headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
-        searchNoResults: (searchTerm) => Translator.trans('search.no.results', { searchterm: searchTerm }),
+        searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
         tableLoadingData: de.loadingData,
-        tableNoElements: de.explanationNoentries
+        tableNoElements: de.noEntriesAvailable
       },
       elementSelections: {},
       expandedElements: {},

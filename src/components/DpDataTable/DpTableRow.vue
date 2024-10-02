@@ -36,33 +36,23 @@
       :class="{ 'c-data-table__resizable': isTruncatable }"
       :data-col-idx="`${idx}`">
       <div
-        v-if="isTruncatable"
-        class="break-words"
-        :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
-        :style="elementStyle(field)">
+        :class="[
+          isTruncatable ?? 'break-words',
+          isTruncatable
+            ? wrapped
+              ? 'c-data-table__resizable--wrapped'
+              : 'c-data-table__resizable--truncated'
+            : ''
+        ]"
+        :style="isTruncatable ?? elementStyle(field)">
         <slot
+          v-if="$slots[field](item)[0].children.length > 0"
           :name="field"
-          v-bind="item" >
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span
-             v-else
-             v-text="item[field]" />
-        </slot>
+          v-bind="item" />
+        <span
+          v-else
+          v-cleanhtml="highlighted(field)" />
       </div>
-      <template v-else>
-        <slot
-          :name="field"
-          v-bind="item">
-          <span
-            v-if="searchTerm && item[field]"
-            v-html="highlighted(field)" />
-          <span
-            v-text="item[field]"
-            v-else />
-        </slot>
-      </template>
     </td>
 
     <td
@@ -77,7 +67,7 @@
       v-if="isExpandable"
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': expanded }"
-      :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
+      :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleExpand(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isExpandableWrapTrigger:${$attrs.index}`"
@@ -88,7 +78,7 @@
       v-if="isTruncatable"
       class="c-data-table__cell--narrow"
       :class="{ 'is-open': wrapped }"
-      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
+      :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleWrap(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isTruncatableWrapTrigger:${$attrs.index}`"
@@ -98,6 +88,8 @@
 </template>
 
 <script>
+import { CleanHtml } from '~/directives'
+import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
@@ -108,6 +100,10 @@ export default {
   components: {
     DpIcon,
     DpWrapTrigger
+  },
+
+  directives: {
+    cleanhtml: CleanHtml
   },
 
   props: {
@@ -239,10 +235,24 @@ export default {
     }
   },
 
+  data () {
+    return {
+      translations: {
+        ariaCollapse: de.aria.collapse.element,
+        ariaExpand: de.aria.expand.element
+      }
+    }
+  },
+
   computed: {
     highlighted () {
       return (field) => {
         let itemValue = this.item[field]
+
+        if (this.searchTerm === '') {
+          return itemValue
+        }
+
         itemValue = DomPurify.sanitize(itemValue)
 
         return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
@@ -268,6 +278,7 @@ export default {
       }
     }
   },
+
   methods: {
     toggleSelect (id) {
       this.$emit('toggle-select', id)
@@ -280,6 +291,8 @@ export default {
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
     }
+  },
+  mounted () {
   }
 }
 </script>

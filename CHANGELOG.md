@@ -4,11 +4,62 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1030](https://github.com/demos-europe/demosplan-ui/pull/1030)) Add new utility: capitalizeFirstLetter ([@sakutademos](https://github.com/sakutademos)
+- ([#1019](https://github.com/demos-europe/demosplan-ui/pull/1019)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Fixed
+- ([#1031](https://github.com/demos-europe/demosplan-ui/pull/1031)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
+- ([#1022](https://github.com/demos-europe/demosplan-ui/pull/1022)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
+- ([#1012](https://github.com/demos-europe/demosplan-ui/pull/1012)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.4.0 - 2024-08-21
+
+**Upgrade to Vue 3**
+This library now emits a Vue 3 build. While it still has some Vue 2 dependencies, this is a huge step towards
+full Vue 3 compatibility. Please be cautioned that this release may therefore be a bit less stable than
+previous ones.
+
+If you still find yourself requiring the Vue 2 only version, you may want to upgrade the version requirement
+to `~0.3.*` in your package.json.
+
+### Fixed
+
+- ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.32 - 2024-09-23
+
+### Fixed
+- ([#1027](https://github.com/demos-europe/demosplan-ui/pull/1027)) DpEditor: transform obscure tag on update action ([@sakutademos](https://github.com/sakutademos)
+- ([#1021](https://github.com/demos-europe/demosplan-ui/pull/1021)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
+
+## v0.3.31 - 2024-09-09
+
+### Fixed
+- ([#1011](https://github.com/demos-europe/demosplan-ui/pull/1011)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.30 - 2024-09-04
+
+### Added
+- ([#1005](https://github.com/demos-europe/demosplan-ui/pull/1005)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.29 - 2024-08-21
+
+### Fixed
+- ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
+- ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.3.28 - 2024-08-08
+
+### Added
+- ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.27 - 2024-07-30
 
 ### Fixed
 
-- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Roleback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
+- ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.26
 
@@ -79,6 +130,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#918](https://github.com/demos-europe/demosplan-ui/pull/918)) Remove Translator usages ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#900](https://github.com/demos-europe/demosplan-ui/pull/900)) Refactor: Use tailwind class for hiding elements visually instead of custom class ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#902](https://github.com/demos-europe/demosplan-ui/pull/902)) Remove !important default setting in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
@@ -186,7 +238,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#783](https://github.com/demos-europe/demosplan-ui/pull/783)) Improve error validation for DpMultiselect and DpSelect components ([@sakutademos](https://github.com/sakutademos))
 
-### Changed 
+### Changed
 
 - ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Improve render performance of the DpTreeList component ([@sakutademos](https://github.com/sakutademos))
 - ([#784](https://github.com/demos-europe/demosplan-ui/pull/784)) dpApi.get: Always serialize request params ([@spiess-demos](https://github.com/spiess-demos))
@@ -219,8 +271,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#739](https://github.com/demos-europe/demosplan-ui/pull/739)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
-- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
-- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
+- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos))
 - ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5-1 - 2024-02-13
@@ -572,7 +624,7 @@ Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed unt
 
 ## v0.0.17 - 2023-03-23
 
-- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable 
+- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable
 
 ## v0.0.16 - 2023-03-15
 

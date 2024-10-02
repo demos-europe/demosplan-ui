@@ -45,7 +45,7 @@
         v-if="isBranch"
         class="self-start"
         :disabled="!hasToggle"
-        v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
+        v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         v-model="isExpanded" />
       <div
         v-else
@@ -87,7 +87,7 @@
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
-          v-for="slot in Object.keys($scopedSlots)"
+          v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
             :name="slot"
@@ -100,6 +100,7 @@
 
 <script>
 import { checkboxWidth, dragHandleWidth, levelIndentationWidth } from './utils/constants'
+import { de } from "~/components/shared/translations"
 import DpDraggable from '~/components/DpDraggable'
 import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
@@ -197,6 +198,9 @@ export default {
   data () {
     return {
       isExpanded: false,
+      translations: {
+        noElementsExisting: de.noElementsExisting
+      }
     }
   },
 

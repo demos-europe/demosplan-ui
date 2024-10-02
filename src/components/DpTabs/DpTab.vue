@@ -17,6 +17,11 @@ export default {
       required: true
     },
 
+    isActive: {
+      type: Boolean,
+      default: false
+    },
+
     /**
      * The label is passed to the DpTab child component, but then it is used
      * in the parent component DpTabs.
@@ -27,17 +32,13 @@ export default {
     },
 
     /**
-     * A html string may be passed here which is appended to the tab label.
+     * An html string may be passed here which is appended to the tab label.
      */
     suffix: {
       type: String,
       required: false,
       default: null
     }
-  },
-
-  data: () => ({
-    isActive: false
-  })
+  }
 }
 </script>

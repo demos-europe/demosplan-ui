@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.33 - 2024-10-02
+
 ### Changed
 - ([#994](https://github.com/demos-europe/demosplan-ui/pull/994)) BREAKING: Bump Yarn to v4.2.2 (again) ([@salisdemos](https://github.com/salisdemos))
 

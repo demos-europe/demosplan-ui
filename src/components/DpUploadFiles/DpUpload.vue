@@ -50,7 +50,10 @@ export default {
     },
 
     /**
-     * Define chunk size for huge files like PDFs
+     * Define chunk size for huge files like PDFs.
+     * Important: Only change the default value if you are very sure about the consequences.
+     * It is recommended to change the value via setting the chunkSize prop instead of adjusting
+     * the default here, which basically allows the upload chunks to be as big as possible.
      */
     chunkSize: {
       type: Number,
@@ -65,7 +68,7 @@ export default {
     },
 
     /**
-     * Maximum file size in bytes for each individual file
+     * Maximum file size in bytes for each individual file.
      */
     maxFileSize: {
       type: Number,

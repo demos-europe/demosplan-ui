@@ -9,7 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#1031](https://github.com/demos-europe/demosplan-ui/pull/1031)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
+- ([#1033](https://github.com/demos-europe/demosplan-ui/pull/1033)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
 
 ## v0.3.32 - 2024-09-23
 

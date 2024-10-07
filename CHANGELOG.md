@@ -9,6 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1019](https://github.com/demos-europe/demosplan-ui/pull/1019)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ### Fixed
+- ([#1031](https://github.com/demos-europe/demosplan-ui/pull/1031)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
 - ([#1022](https://github.com/demos-europe/demosplan-ui/pull/1022)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
 - ([#1012](https://github.com/demos-europe/demosplan-ui/pull/1012)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
@@ -18,7 +19,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## v0.4.0 - 2024-08-21
 
 **Upgrade to Vue 3**
-
 This library now emits a Vue 3 build. While it still has some Vue 2 dependencies, this is a huge step towards
 full Vue 3 compatibility. Please be cautioned that this release may therefore be a bit less stable than
 previous ones.
@@ -64,6 +64,10 @@ to `~0.3.*` in your package.json.
 
 - ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
 
+## v0.3.26
+
+- lost due to publishing hickups
+
 ## v0.3.25 - 2024-07-30
 
 - update prosemirror dependencies to resolve version conflics with tiptap
@@ -88,6 +92,10 @@ to `~0.3.*` in your package.json.
 ### Fixed
 
 - ([#955](https://github.com/demos-europe/demosplan-ui/pull/955)) BREAKING: Pass headerFields-Data to tableHeader slot so the content gets rendered ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.22
+
+- lost due to publishing hickups
 
 ## v0.3.21 - 2024-07-22
 

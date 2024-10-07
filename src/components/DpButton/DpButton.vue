@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, onMounted, PropType } from 'vue'
+import { computed, onMounted, PropType } from 'vue'
 import { IconName, IconSize } from '../../../types'
 import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'

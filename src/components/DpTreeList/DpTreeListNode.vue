@@ -1,5 +1,8 @@
 <template>
-  <li class="border--top relative">
+  <li
+    class="border--top relative"
+    :id="nodeId"
+    data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
         class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
@@ -53,18 +56,18 @@
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
-      :drag-across-branches="options.dragAcrossBranches"
+      :drag-across-branches="options.dragAcrossBranches ? optons.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
+      :content-data="draggable ? children : []"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
-      :is-draggable="hasDraggableChildren"
+      :is-draggable="hasDraggableChildren ? hasDraggableChildren : null"
       :node-id="nodeId"
       :on-move="onMove"
-      :opts="options.draggable"
-      v-model="tree">
+      :opts="options.draggable">
       <dp-tree-list-node
         v-for="(child, idx) in children"
         v-show="true === isExpanded"
@@ -90,8 +93,8 @@
           v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
           <slot
-            :name="slot"
-            v-bind="scope" />
+            v-bind="scope"
+            :name="slot" />
         </template>
       </dp-tree-list-node>
     </component>

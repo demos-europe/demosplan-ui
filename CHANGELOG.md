@@ -13,6 +13,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1022](https://github.com/demos-europe/demosplan-ui/pull/1022)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
 - ([#1012](https://github.com/demos-europe/demosplan-ui/pull/1012)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
+### Changed
+- ([#1023](https://github.com/demos-europe/demosplan-ui/pull/1023)) BREAKING: Replace vueDraggable with vueSortable: The API for dpDraggable changed ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.4.0 - 2024-08-21
 
 **Upgrade to Vue 3**

@@ -72,8 +72,8 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template
-              v-slot:[field]="item"
-              v-for="field in fields">
+              v-for="field in fields"
+              v-slot:[field]="item">
               <slot
                 :name="field"
                 v-bind="item" />
@@ -102,7 +102,6 @@
       </template>
       </tbody>
 
-      <!-- draggable -->
       <dp-draggable
         v-if="isDraggable && !isLoading"
         draggable-tag="tbody"
@@ -110,8 +109,10 @@
         handle="c-data-table__drag-handle"
         ghostClass="sortable-ghost"
         chosenClass="sortable-chosen"
-        @change="(e) => $emit('changed-order', e)">
-        <template v-for="(item, idx) in items">
+        @end="(event, item) => $emit('changed-order', event, item)">
+        <template
+          v-for="(item, idx) in items"
+          :key="item[trackBy]">
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"
@@ -135,7 +136,10 @@
             @toggle-expand="toggleExpand"
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
-            <template v-slot:[field]="item" v-for="field in fields">
+            <template
+              v-slot:[field]="item"
+              v-for="(field, idx) in fields"
+              :key="idx">
               <slot
                 :name="field"
                 v-bind="item" />

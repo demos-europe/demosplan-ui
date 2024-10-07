@@ -15,7 +15,7 @@
       :disabled="disabled"
       :maxlength="maxlength"
       v-model="currentValue"
-      @input="$emit('input', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
       :required="required" />
   </div>
 </template>
@@ -33,6 +33,12 @@ export default {
       return await import('../DpLabel/DpLabel')
     })
   },
+
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:modelValue'],
 
   props: {
     attributes: attributes('textarea'),
@@ -114,7 +120,7 @@ export default {
       default: false
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -123,7 +129,7 @@ export default {
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.modelValue
     }
   },
 
@@ -149,8 +155,8 @@ export default {
   },
 
   watch: {
-    value () {
-      this.currentValue = this.value
+    modelValue () {
+      this.currentValue = this.modelValue
     }
   }
 }

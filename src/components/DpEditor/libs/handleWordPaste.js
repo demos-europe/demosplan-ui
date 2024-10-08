@@ -274,9 +274,9 @@ function prepareDataBeforeParsingMso (slice) {
      * Remove Microsoft IF comments and replace it with empty spans holding the data, that it can be processed later on
      * to determine if that one listStyleType may be part of an ordered or unordered list.
      */
-    .replace(/<!\[if !(.*?)\]>(.*?)<span(.*?)style='mso-list:Ignore'>(.*?)<!\[endif\]>/gmi, (match, p1, p2, p3, p4) => {
+    .replace(/<!\[if !(\w+)]>(<span[^>]*>)?(.*?)<!\[endif]>/gmi, (match, p1, _p2, p3) => {
       // Try to remove spacing spans
-      const listStyleType = p4
+      const listStyleType = p3
         .replace(/<span[^>]*>/gmi, '')
         .replace(/<\/span>/gmi, '')
         .replace(/(&nbsp;|\s|\\r|\\n|\r|\n)/gmi, '')

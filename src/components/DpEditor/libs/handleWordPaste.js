@@ -66,8 +66,8 @@ function createItemFrom365List (li) {
  * @returns {Object<listId, indent, type, content, listStyleType>}
  */
 function createItemFromMsoList (li) {
-  // "listInfo" is expected to be something something like "mso-list: l1 level1 lfo1"
-  const listInfo = li.getAttribute('style').match(/mso-list:([^'|^"|^;]*)/i)[0] // Find ListInfo
+  // "listInfo" is expected to be something like "mso-list: l1 level1 lfo1"
+  const listInfo = li.getAttribute('style').match(/mso-list:([^'";]*)/i)[0] // Find ListInfo
   const indent = parseInt(listInfo.match(/level\d+/i)[0].slice(5)) // Strip "level" // current level of indentation
   const listId = listInfo.match(/lfo\d+/i)[0] || '' // List ID
   /*
@@ -291,12 +291,14 @@ function prepareDataBeforeParsingMso (slice) {
  *
  * @return {string}
  */
-function handleWordPaste (slice) {
+function handleWordPaste (slice, allowPasteFromWord) {
   const isMso = checkIfMso(slice)
   const isOffice365 = checkIfOffice365(slice)
 
-  if ((isMso || isOffice365) === false) {
-    return slice
+  if (!isMso && !isOffice365) {
+    return { slice, showMessage: false }
+  } else if (!allowPasteFromWord) {
+    return { slice, showMessage: true }
   }
 
   // Strip meta though its not closed and would break the parser

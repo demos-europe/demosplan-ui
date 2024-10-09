@@ -265,9 +265,9 @@ function buildListAsHtmlString (list) {
 function prepareDataBeforeParsingMso (slice) {
   return slice
     // Strip line breaks
-    .replace(/(&nbsp;|\r|\n)/gmi, ' ')
+    .replace(/(&nbsp;|\r|\n|\\r|\\n)/gmi, ' ')
     // Strip head
-    .replace(/<head>(.|\n|\r)*?<\/head>/mi, '')
+    .replace(/<head>(.|\n|\r|\\r|\\n)*?<\/head>/mi, '')
     // Strip html wrapper and remove conentless and non html like elements "<o:p>"
     .replace(/<(\/)?(html|o:p)[^>]*>/gmi, '')
     /*
@@ -277,9 +277,8 @@ function prepareDataBeforeParsingMso (slice) {
     .replace(/<!\[if !(\w+)]>(<span[^>]*>)?(.*?)<!\[endif]>/gmi, (match, p1, _p2, p3) => {
       // Try to remove spacing spans
       const listStyleType = p3
-        .replace(/<span[^>]*>/gmi, '')
-        .replace(/<\/span>/gmi, '')
-        .replace(/(&nbsp;|\s|\\r|\\n|\r|\n)/gmi, '')
+        .replace(/(<span[^>]*>|<\/span>|&nbsp;|\s|\\r|\\n|\r|\n|")/gmi, '')
+
       return `<span data-val-${p1}="${listStyleType}" />`
     })
 }
@@ -300,6 +299,7 @@ function handleWordPaste (slice, allowPasteFromWord) {
   } else if (!allowPasteFromWord) {
     return { slice, showMessage: true }
   }
+
 
   // Strip meta though its not closed and would break the parser
   slice = slice.replace(/<meta[^>]*>/mi, '')
@@ -342,12 +342,15 @@ function handleWordPaste (slice, allowPasteFromWord) {
   })
 
   // Clear List item collection for the next run.
-  return parsedDom.documentElement.outerHTML
-    .replace(/&gt;/gmi, '>')
-    .replace(/&lt;/gmi, '<')
-    // Remove empty list wrapper
-    .replace(/<div[^>]*?class="ListContainerWrapper[^>]*?><ul[^>]*?><\/ul><\/div>/gm, '')
-    .replace(/<ul[^>]*?><\/ul>/gm, '')
+  return {
+    slice: parsedDom.documentElement.outerHTML
+      .replace(/&gt;/gmi, '>')
+      .replace(/&lt;/gmi, '<')
+      // Remove empty list wrapper
+      .replace(/<div[^>]*?class="ListContainerWrapper[^>]*?><ul[^>]*?><\/ul><\/div>/gm, '')
+      .replace(/<ul[^>]*?><\/ul>/gm, ''),
+    showMessage: false
+  }
 }
 
 export { handleWordPaste }

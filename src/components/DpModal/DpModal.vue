@@ -11,15 +11,17 @@
         :aria-label="ariaLabel"
         :class="prefixClass('o-modal__content ' + contentClasses)"
         role="dialog">
-        <button
-          :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="title"
-          :title="title"
-          @click.prevent.stop="toggle()">
-          <dp-icon
-            icon="close"
-            size="large" />
-        </button>
+        <slot name="closeButton">
+          <button
+            :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
+            :aria-label="title"
+            :title="title"
+            @click.prevent.stop="toggle()">
+            <dp-icon
+              icon="close"
+              size="large" />
+          </button>
+        </slot>
         <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
           <h2
             :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"

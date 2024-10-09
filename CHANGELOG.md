@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1042](https://github.com/demos-europe/demosplan-ui/pull/1042)) DpModal: Add closeButton slot ([@hwiem](https://github.com/hwiem))
+
 ## v0.3.33 - 2024-10-02
 
 ### Changed

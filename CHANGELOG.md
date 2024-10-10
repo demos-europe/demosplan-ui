@@ -9,6 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 
 - ([#1042](https://github.com/demos-europe/demosplan-ui/pull/1042)) DpModal: Add closeButton slot ([@hwiem](https://github.com/hwiem))
+- ([#1043](https://github.com/demos-europe/demosplan-ui/pull/1043)) New Flag for DpEditor: "allowPasteFromWord" (default false) to prevent pasting "html" from msOffice ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.33 - 2024-10-02
 

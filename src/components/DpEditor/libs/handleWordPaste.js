@@ -66,8 +66,8 @@ function createItemFrom365List (li) {
  * @returns {Object<listId, indent, type, content, listStyleType>}
  */
 function createItemFromMsoList (li) {
-  // "listInfo" is expected to be something something like "mso-list: l1 level1 lfo1"
-  const listInfo = li.getAttribute('style').match(/mso-list:([^'|^"|^;]*)/i)[0] // Find ListInfo
+  // "listInfo" is expected to be something like "mso-list: l1 level1 lfo1"
+  const listInfo = li.getAttribute('style').match(/mso-list:([^'";]*)/i)[0] // Find ListInfo
   const indent = parseInt(listInfo.match(/level\d+/i)[0].slice(5)) // Strip "level" // current level of indentation
   const listId = listInfo.match(/lfo\d+/i)[0] || '' // List ID
   /*
@@ -265,21 +265,20 @@ function buildListAsHtmlString (list) {
 function prepareDataBeforeParsingMso (slice) {
   return slice
     // Strip line breaks
-    .replace(/(&nbsp;|\r|\n)/gmi, ' ')
+    .replace(/(&nbsp;|\r|\n|\\r|\\n)/gmi, ' ')
     // Strip head
-    .replace(/<head>(.|\n|\r)*?<\/head>/mi, '')
+    .replace(/<head>(.|\n|\r|\\r|\\n)*?<\/head>/mi, '')
     // Strip html wrapper and remove conentless and non html like elements "<o:p>"
     .replace(/<(\/)?(html|o:p)[^>]*>/gmi, '')
     /*
      * Remove Microsoft IF comments and replace it with empty spans holding the data, that it can be processed later on
      * to determine if that one listStyleType may be part of an ordered or unordered list.
      */
-    .replace(/<!\[if !(.*?)\]>(.*?)<span(.*?)style='mso-list:Ignore'>(.*?)<!\[endif\]>/gmi, (match, p1, p2, p3, p4) => {
+    .replace(/<!\[if !(\w+)]>(<span[^>]*>)?(.*?)<!\[endif]>/gmi, (match, p1, _p2, p3) => {
       // Try to remove spacing spans
-      const listStyleType = p4
-        .replace(/<span[^>]*>/gmi, '')
-        .replace(/<\/span>/gmi, '')
-        .replace(/(&nbsp;|\s|\\r|\\n|\r|\n)/gmi, '')
+      const listStyleType = p3
+        .replace(/(<span[^>]*>|<\/span>|&nbsp;|\s|\\r|\\n|\r|\n|")/gmi, '')
+
       return `<span data-val-${p1}="${listStyleType}" />`
     })
 }
@@ -291,13 +290,16 @@ function prepareDataBeforeParsingMso (slice) {
  *
  * @return {string}
  */
-function handleWordPaste (slice) {
+function handleWordPaste (slice, allowPasteFromWord) {
   const isMso = checkIfMso(slice)
   const isOffice365 = checkIfOffice365(slice)
 
-  if ((isMso || isOffice365) === false) {
-    return slice
+  if (!isMso && !isOffice365) {
+    return { slice, showMessage: false }
+  } else if (!allowPasteFromWord) {
+    return { slice, showMessage: true }
   }
+
 
   // Strip meta though its not closed and would break the parser
   slice = slice.replace(/<meta[^>]*>/mi, '')
@@ -340,12 +342,15 @@ function handleWordPaste (slice) {
   })
 
   // Clear List item collection for the next run.
-  return parsedDom.documentElement.outerHTML
-    .replace(/&gt;/gmi, '>')
-    .replace(/&lt;/gmi, '<')
-    // Remove empty list wrapper
-    .replace(/<div[^>]*?class="ListContainerWrapper[^>]*?><ul[^>]*?><\/ul><\/div>/gm, '')
-    .replace(/<ul[^>]*?><\/ul>/gm, '')
+  return {
+    slice: parsedDom.documentElement.outerHTML
+      .replace(/&gt;/gmi, '>')
+      .replace(/&lt;/gmi, '<')
+      // Remove empty list wrapper
+      .replace(/<div[^>]*?class="ListContainerWrapper[^>]*?><ul[^>]*?><\/ul><\/div>/gm, '')
+      .replace(/<ul[^>]*?><\/ul>/gm, ''),
+    showMessage: false
+  }
 }
 
 export { handleWordPaste }

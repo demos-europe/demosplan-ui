@@ -375,6 +375,12 @@ export default {
   mixins: [prefixClassMixin],
 
   props: {
+    allowPasteFromWord: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     /**
      * The Tus endpoint requires basicAuth to be added to the file header.
      */
@@ -971,8 +977,13 @@ export default {
 
     transformObscureTag (value) {
       const regex = new RegExp(`<span class="${this.prefixClass('u-obscure')}">(.*?)<\\/span>`, 'g')
+      this.currentValue = value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+      const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
+      const transformedText = isEmpty ? '' : this.currentValue
 
-      return value.replace(regex, '<dp-obscure>$1</dp-obscure>')
+      this.$emit('transformObscureTag', transformedText)
+
+      return transformedText
     },
 
     emitValue () {
@@ -1046,12 +1057,17 @@ export default {
           }
         },
 
-        transformPastedHTML: (slice) => {
+        transformPastedHTML: (pastedInput) => {
           /*
            * Due to the strange Html format from Word clipbord, lists would not be displayed properly,
            * so we have to handle paste from word manually.
            */
-          slice = handleWordPaste(slice)
+          const { slice, showMessage } = handleWordPaste(pastedInput, this.allowPasteFromWord)
+
+          if (showMessage && window.dpconfirm(de.editor.paste.wordPasteExplanation)) {
+            return ''
+          }
+
           // Handle obscure tags - to handle the paste of fully obscured strings we need to overwrite the default paste behaviour and before the content is pasted we replace the obscure-styles with 'u-obscure' class
           const obscureClass = this.prefixClass('u-obscure')
           const obscureColor = getColorFromCSS(obscureClass)
@@ -1063,7 +1079,7 @@ export default {
           }
 
           // Strip anchor tags if link functionality is not active
-          if (this.toolbar.linkButton === false) {
+          if (!this.toolbar.linkButton) {
             returnContent = returnContent.replace(/<a[^>]*>(.*?)<\/a>/g, '$1')
           }
 

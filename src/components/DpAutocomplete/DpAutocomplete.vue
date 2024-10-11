@@ -32,7 +32,13 @@ export default {
     VueOmnibox
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   mixins: [prefixClassMixin],
+
+  emits: ['update:modelValue'],
 
   props: {
     height: {
@@ -64,7 +70,7 @@ export default {
       required: true
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -73,15 +79,15 @@ export default {
 
   data () {
     return {
-      currentQuery: this.value,
+      currentQuery: this.modelValue,
       isLoading: false
     }
   },
 
   watch: {
-    value () {
-      if (this.currentQuery !== this.value) {
-        this.currentQuery = this.value
+    modelValue () {
+      if (this.currentQuery !== this.modelValue) {
+        this.currentQuery = this.modelValue
       }
     }
   },
@@ -92,7 +98,7 @@ export default {
     },
 
     emitAndFetch (value) {
-      this.emit(value, 'input')
+      this.emit(value, 'update:modelValue')
       this.currentQuerry = value
       if (value.length >= 3) this.fetchOptions(value)
     },

@@ -7,9 +7,9 @@
       has-icon
       :required="required"
       @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
+      @update:modelValue="$emit('update:modelValue', currentValue)"
       :pattern="pattern"
       v-model="currentValue" />
     <button
@@ -37,6 +37,12 @@ export default {
     DpIcon,
     DpInput
   },
+
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:modelValue'],
 
   props: {
     dataCy: {
@@ -84,7 +90,7 @@ export default {
       default: false
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -93,7 +99,7 @@ export default {
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.modelValue
     }
   },
 
@@ -108,8 +114,8 @@ export default {
   },
 
   watch: {
-    value: function () {
-      this.currentValue = this.value
+    modelValue () {
+      this.currentValue = this.modelValue
     }
   },
 

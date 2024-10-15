@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1050](https://github.com/demos-europe/demosplan-ui/pull/1050)) DpCheckbox: add additional type to 'selected' prop ([@sakutademos](https://github.com/sakutademos)
+
 ## v0.3.34 - 2024-10-09
 
 ### Added

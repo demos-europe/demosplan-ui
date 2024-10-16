@@ -31,7 +31,7 @@
     "@tiptap/pm": "^3.0.0",
     "@tiptap/suggestion": "^3.0.0",
     "@tiptap/vue-3": "^3.0.0",
-    "@uppy/core": "^3.0.1",
+    "@uppy/core": "^4.2.2",
     "@uppy/drag-drop": "^3.0.0",
     "@uppy/progress-bar": "^3.0.0",
     "@uppy/tus": "^3.0.1",

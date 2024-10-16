@@ -2,9 +2,9 @@ const path = require('path')
 
 module.exports = {
   stories: [
-    "../src/components/**/*.stories.@(js|jsx|mdx|ts|tsx)",
-    "../src/directives/**/*.stories.mdx",
-    "../tokens/**/*.stories.mdx"
+    //'../src/components/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/directives/**/*.mdx',
+    '../tokens/**/*.mdx'
   ],
   addons: [
     "@storybook/addon-links",
@@ -55,13 +55,22 @@ module.exports = {
      */
     config.resolve.alias['~'] = path.resolve(__dirname, '../src')
 
+    // Webpack needs to use '@babel/preset-react' for React templates in storybook components
+    config.module.rules.push({
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      }
+    })
+
     return config
   },
-  framework: {
-    name: "@storybook/vue-webpack5",
-    options: {}
-  },
+  framework: '@storybook/vue3-webpack5',
   docs: {
     autodocs: true
   }
-};
+}

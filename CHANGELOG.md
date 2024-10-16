@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
+- ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.4.1 - 2024-10-07
 
 ### Added

@@ -28,7 +28,7 @@
 
     <!-- Tree List -->
     <component
-      :is="draggable ? 'dp-draggable' : 'div'"
+      :is="draggable && opts.rootDraggable ? 'dp-draggable' : 'div'"
       ref="treeList"
       :drag-across-branches="opts.dragAcrossBranches ? opts.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"

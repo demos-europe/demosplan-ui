@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1054](https://github.com/demos-europe/demosplan-ui/pull/1054)) Fix validating dpMultiselect ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.4.1 - 2024-10-07
 
 ### Added

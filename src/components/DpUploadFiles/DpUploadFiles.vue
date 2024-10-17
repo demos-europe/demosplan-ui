@@ -1,5 +1,5 @@
 <template>
-  <fieldset :class="prefixClass('layout')">
+  <fieldset :class="prefixClass('layout--flush u-mt-0_25')">
     <legend
       class="sr-only"
       v-text="Translator.trans('upload.files')" />

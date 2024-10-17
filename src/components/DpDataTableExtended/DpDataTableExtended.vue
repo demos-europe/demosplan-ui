@@ -65,7 +65,7 @@
         </slot>
       </template>
       <template
-        v-for="el in [...filteredFields, { field: 'expandedContent' }, { fields: 'flyout' }]"
+        v-for="el in [...filteredFields, { field: 'expandedContent' }, { field: 'flyout' }]"
         v-slot:[el.field]="item">
         <!-- table cells (TDs) -->
         <slot

@@ -127,7 +127,7 @@ export default {
     },
 
     selected: {
-      type: [ String, Number ],
+      type: [String, Number],
       required: false,
       default: ''
     }

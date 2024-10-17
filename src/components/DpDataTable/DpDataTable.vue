@@ -484,15 +484,18 @@ export default {
   },
 
   watch: {
-    headerFields () {
-      if (this.isResizable) {
-        this.$nextTick(() => {
-          const firstRow = this.tableEl.getElementsByTagName('tr')[0]
-          const tableHeaderElements = firstRow ? firstRow.children : null
+    headerFields: {
+      handler () {
+        if (this.isResizable) {
+          this.$nextTick(() => {
+            const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+            const tableHeaderElements = firstRow ? firstRow.children : null
 
-          this.setColsWidth(tableHeaderElements)
-        })
-      }
+            this.setColsWidth(tableHeaderElements)
+          })
+        }
+      },
+      deep: false // HeaderFields are always replaces as a whole and therefor deep watch is not necessary
     },
 
     shouldBeSelectedItems () {

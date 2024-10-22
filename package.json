@@ -80,7 +80,7 @@
     "@types/qs": "^6.9.7",
     "@types/sortablejs": "^1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
+    "@typescript-eslint/parser": "^8.11.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "^5.0.8",
     "@vue/compat": "3.2.0",

@@ -65,24 +65,12 @@
         </slot>
       </template>
       <template
-        v-for="el in filteredFields"
-        v-slot:[el.field]="element">
+        v-for="el in [...filteredFields, { field: 'expandedContent' }, { field: 'flyout' }]"
+        v-slot:[el.field]="item">
         <!-- table cells (TDs) -->
         <slot
           :name="el.field"
-          v-bind="el" />
-      </template>
-      <template v-slot:expandedContent="el">
-        <!-- expanded content area -->
-        <slot
-          name="expandedContent"
-          v-bind="el" />
-      </template>
-      <template v-slot:flyout="el">
-        <!-- flyout content area -->
-        <slot
-          name="flyout"
-          v-bind="el" />
+          v-bind="item" />
       </template>
     </dp-data-table>
 

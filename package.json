@@ -33,7 +33,7 @@
     "@tiptap/vue-3": "^3.0.0",
     "@uppy/core": "^3.0.1",
     "@uppy/drag-drop": "^3.0.0",
-    "@uppy/progress-bar": "^3.0.0",
+    "@uppy/progress-bar": "^4.0.0",
     "@uppy/tus": "^3.0.1",
     "@vue/server-renderer": "^3.4.29",
     "@vue/vue3-jest": "^29.2.6",

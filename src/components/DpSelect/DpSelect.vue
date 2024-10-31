@@ -6,7 +6,8 @@
         ...label,
         for: nameOrId,
         required: required
-      }" /><!--
+      }"
+      class="mb-[3px]"/><!--
  --><select
       :id="nameOrId"
       :data-cy="dataCy"
@@ -151,6 +152,7 @@ export default {
 
   methods: {
     update (event) {
+      console.log('DpSelect update', event.target.value)
       this.$emit('select', event.target.value)
     }
   }

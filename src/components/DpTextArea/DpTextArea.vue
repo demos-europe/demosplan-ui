@@ -131,10 +131,12 @@ export default {
   computed: {
     allowedAttributes () {
       const attrs = {}
+
       this.attributes.forEach(attr => {
         const [key, value] = attr.split('=')
         attrs[key] = value
       })
+
       return attrs
     },
 

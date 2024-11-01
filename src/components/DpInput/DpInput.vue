@@ -45,36 +45,36 @@ import DpLabel from '~/components/DpLabel'
 
 // Define an interface for the props
 interface Props {
-  ariaLabelledby: string | null
-  autocomplete: string
-  dataCounter: string
-  dataCy: string
-  dataDpValidateError: string
-  dataDpValidateErrorFieldname: string
-  dataDpValidateIf: string
-  dataDpValidateShouldEqual: string
-  disabled: boolean | null
-  hasIcon: boolean
+  ariaLabelledby?: string | null
+  autocomplete?: string
+  dataCounter?: string
+  dataCy?: string
+  dataDpValidateError?: string
+  dataDpValidateErrorFieldname?: string
+  dataDpValidateIf?: string
+  dataDpValidateShouldEqual?: string
+  disabled?: boolean | null
+  hasIcon?: boolean
   id: string
-  label: {
+  label?: {
     bold: boolean
     hide: boolean
     hint: string
     text: string
     tooltip: string
   };
-  maxlength: boolean | string | null
-  minlength: boolean | string | null
-  name: string
-  pattern: string
-  placeholder: string
-  preventDefaultOnEnter: boolean
-  readonly: boolean | null
-  required: boolean | null
-  size: number | null
-  type: string
-  value: string
-  width: string
+  maxlength?: boolean | string | null
+  minlength?: boolean | string | null
+  name?: string
+  pattern?: string
+  placeholder?: string
+  preventDefaultOnEnter?: boolean
+  readonly?: boolean | null
+  required?: boolean | null
+  size?: number | null
+  type?: string
+  value?: string
+  width?: string
 }
 
 // Use the interface with defineProps

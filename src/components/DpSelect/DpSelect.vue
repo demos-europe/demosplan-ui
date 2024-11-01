@@ -152,7 +152,6 @@ export default {
 
   methods: {
     update (event) {
-      console.log('DpSelect update', event.target.value)
       this.$emit('select', event.target.value)
     }
   }

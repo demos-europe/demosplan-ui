@@ -71,8 +71,7 @@ const props = defineProps({
   }
 })
 
-const classes = computed(() => {
-  console.log('classes', this)
+const classes = computed(() : string[] => {
   let cssClasses: string[] = ['flex']
 
   if (props.hide) {
@@ -86,7 +85,7 @@ const classes = computed(() => {
   return cssClasses.map((selector) => prefixClass(selector))
 })
 
-const hints = computed(() => {
+const hints = computed(() : string[] => {
   if (props.hint) {
     return Array.isArray(props.hint) ? props.hint : [props.hint]
   }
@@ -94,6 +93,6 @@ const hints = computed(() => {
   return []
 })
 
-const labelFor = computed(() => props.for)
+const labelFor = computed(() : string => props.for)
 
 </script>

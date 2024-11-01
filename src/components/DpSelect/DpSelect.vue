@@ -7,7 +7,7 @@
         for: nameOrId,
         required: required
       }"
-      class="mb-[3px]"/><!--
+      class="mb-0.5"/><!--
  --><select
       :id="nameOrId"
       :data-cy="dataCy"

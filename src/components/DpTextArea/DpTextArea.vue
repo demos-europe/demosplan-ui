@@ -2,7 +2,8 @@
   <div :class="{ 'flex flex-col': growToParent }">
     <dp-label
       v-if="label !== ''"
-      v-bind="labelProps" /><!--
+      v-bind="labelProps"
+      class="mb-0.5" /><!--
  --><textarea
       v-bind="allowedAttributes"
       :name="name"
@@ -131,8 +132,8 @@ export default {
     allowedAttributes () {
       const attrs = {}
       this.attributes.forEach(attr => {
-        attr = attr.split('=')
-        attrs[attr[0]] = attr[1]
+        const [key, value] = attr.split('=')
+        attrs[key] = value
       })
       return attrs
     },

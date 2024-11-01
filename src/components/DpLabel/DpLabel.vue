@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CleanHtml as vCleanhtml } from '~/directives' //NOSONAR see https://sonarsource.atlassian.net/browse/JS-97
+import { CleanHtml as vCleanhtml } from '~/directives'
 import { prefixClass } from '~/utils'
 import DpContextualHelp from '~/components/DpContextualHelp'
 
@@ -72,6 +72,7 @@ const props = defineProps({
 })
 
 const classes = computed(() => {
+  console.log('classes', this)
   let cssClasses: string[] = ['flex']
 
   if (props.hide) {

@@ -263,9 +263,8 @@ const allColorClasses = {
       active:bg-interactive-subtle-active active:text-interactive-active `,
     // solid: classes that only apply to "solid" button color variant.
     solid: `
-      bg-interactive
-      text-on-dark hover:text-on-dark hover:no-underline
-      hover:bg-interactive-hover
+      bg-interactive text-on-dark
+      hover:text-on-dark hover:no-underline hover:bg-interactive-hover
       focus:bg-interactive-hover
       focus-visible:bg-interactive-hover
       active:bg-interactive-active `,
@@ -292,9 +291,8 @@ const allColorClasses = {
       focus-visible:bg-interactive-secondary-subtle-hover focus-visible:text-interactive-secondary-hover
       active:bg-interactive-secondary-subtle-active active:text-interactive-secondary-active `,
     solid: `
-      bg-interactive-secondary
-      text-on-dark hover:text-on-dark hover:no-underline
-      hover:bg-interactive-secondary-hover
+      bg-interactive-secondary text-on-dark
+      hover:text-on-dark hover:no-underline hover:bg-interactive-secondary-hover
       focus:bg-interactive-secondary-hover
       focus-visible:bg-interactive-secondary-hover
       active:bg-interactive-secondary-active `,
@@ -320,9 +318,8 @@ const allColorClasses = {
       focus-visible:bg-interactive-warning-subtle-hover focus-visible:text-interactive-warning-hover
       active:bg-interactive-warning-subtle-active active:text-interactive-warning-active `,
     solid: `
-      bg-interactive-warnin
-      text-on-dark hover:text-on-dark hover:no-underline
-      hover:bg-interactive-warning-hover
+      bg-interactive-warning text-on-dark
+      hover:text-on-dark hover:no-underline hover:bg-interactive-warning-hover
       focus:bg-interactive-warning-hover
       focus-visible:bg-interactive-warning-hover
       active:bg-interactive-warning-active `,

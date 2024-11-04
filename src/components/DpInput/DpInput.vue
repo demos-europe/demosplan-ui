@@ -83,7 +83,15 @@ const props = defineProps<Props>();
 const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
 
 const {
+  /**
+   * Reference another element on the page to define an accessible name if there is no label or
+   * you want to override the label.
+   */
   ariaLabelledby = null,
+  /**
+   * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
+   * to automatically complete the input. You can also provide a type of data which is expected.
+   */
   autocomplete = '',
   dataCounter = '',
   dataCy = '',
@@ -92,11 +100,17 @@ const {
   dataDpValidateIf = '',
   dataDpValidateShouldEqual = '',
   disabled = null,
+  /**
+   * Use: when input field used with Icon || Button, then input field has padding right.
+   */
   hasIcon = false,
   id,
   name = '',
   pattern = '',
   placeholder = '',
+  /**
+   * Set to false to prevent default behavior onEnter.
+   */
   preventDefaultOnEnter = true,
   readonly = null,
   required = null,
@@ -111,10 +125,26 @@ const {
     text: '',
     tooltip: ''
   },
+  /**
+   * Limit the maximum allowed number of characters to the given amount.
+   */
   maxlength = null,
+  /**
+   * Define the minimum number of characters that need to be given.
+   */
   minlength = null,
+  /**
+   * When setting a number for the `size` prop, this is directly rendered
+   * as html attribute on the input element. Also, it is assumed that visual sizing
+   * based on that value shall be applied, that is why both container classes
+   * and element classes do not define any width styles when a size is set here.
+   */
   size = null,
   value = '',
+  /**
+   * Full width by default; set to 'auto' to have no width defined.
+   * @deprecated Apply width to the parent element of DpInput.
+   */
   width = 'w-full'
 } = toRefs(props)
 const currentValue = ref(value.value)

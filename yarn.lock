@@ -2190,7 +2190,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^5.4.0"
     "@uppy/core": "npm:^3.0.1"
     "@uppy/drag-drop": "npm:^3.0.0"
-    "@uppy/progress-bar": "npm:^3.0.0"
+    "@uppy/progress-bar": "npm:^4.0.1"
     "@uppy/tus": "npm:^3.0.1"
     "@vue/cli-plugin-typescript": "npm:~5.0.0"
     "@vue/cli-service": "npm:^5.0.8"
@@ -6390,15 +6390,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/progress-bar@npm:^3.0.0":
-  version: 3.1.1
-  resolution: "@uppy/progress-bar@npm:3.1.1"
+"@uppy/progress-bar@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@uppy/progress-bar@npm:4.0.1"
   dependencies:
-    "@uppy/utils": "npm:^5.7.5"
+    "@uppy/utils": "npm:^6.0.4"
     preact: "npm:^10.5.13"
   peerDependencies:
-    "@uppy/core": ^3.10.0
-  checksum: 10c0/11b51e1c0efb37ccc00e27c2437b09f917b090d4f6bdadf223a07dc304a59ae5e0f240f75a99076fd779367d8fe21b76b5b9f6b527fdcd9834bcb41f77bb63d3
+    "@uppy/core": ^4.2.3
+  checksum: 10c0/02af685d9bdd83a02e2875e5f4725d5e09e4497f68159ae2f242b6af25ac646ff1b87016860c78dfa0a4469f4201daac98c1c343f2cdb9de9ebbfc4fa94a0666
   languageName: node
   linkType: hard
 
@@ -6429,6 +6429,16 @@ __metadata:
     lodash: "npm:^4.17.21"
     preact: "npm:^10.5.13"
   checksum: 10c0/857c8fa11814816f0a1d97ce78f86cac8c9f4e46267d2d64631f7cce8d3b8caf3796cccdd4cecdfe110862ebbed5a76896522a965f09b0940f0979b91f04c793
+  languageName: node
+  linkType: hard
+
+"@uppy/utils@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "@uppy/utils@npm:6.0.4"
+  dependencies:
+    lodash: "npm:^4.17.21"
+    preact: "npm:^10.5.13"
+  checksum: 10c0/a708d45d69fc8a379e5c5ed7e76980c194804ac86954a83b8bd55b61e58bdf5169ef509cc31ec20d33f918cb51a1c7bbd25948ff0ad0cd2269fff1cb20da5456
   languageName: node
   linkType: hard
 

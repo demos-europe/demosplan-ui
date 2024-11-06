@@ -16,17 +16,23 @@ import { de } from '~/components/shared/translations'
 export default {
   name: 'DpTreeListToggle',
 
-  props: {
-    value: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
 
+  emits: ['update:modelValue'],
+
+  props: {
     iconClassProp: {
       type: String,
       required: false,
       default: ''
+    },
+
+    modelValue: {
+      type: Boolean,
+      required: false,
+      default: false
     },
 
     toggleAll: {
@@ -44,20 +50,20 @@ export default {
     iconClass () {
       return this.iconClassProp !== ''
         ? this.iconClassProp
-        : ('font-size-large line-height--1 u-p-0_25 fa ' + (this.value ? 'fa-angle-up' : 'fa-angle-down'))
+        : ('font-size-large line-height--1 u-p-0_25 fa ' + (this.modelValue ? 'fa-angle-up' : 'fa-angle-down'))
     },
 
     label () {
       // Here, the relatively generic term "element" is chosen to keep the wording generic.
       return this.toggleAll
-        ? this.value ? de.aria.collapse.all : de.aria.expand.all
-        : this.value ? de.aria.collapse : de.aria.expand
+        ? this.modelValue ? de.aria.collapse.all : de.aria.expand.all
+        : this.modelValue ? de.aria.collapse : de.aria.expand
     }
   },
 
   methods: {
     toggle () {
-      this.$emit('input', !this.value)
+      this.$emit('update:modelValue', !this.modelValue)
     }
   }
 }

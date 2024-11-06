@@ -375,12 +375,18 @@ export default {
     DpUploadModal
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   directives: {
     cleanhtml: CleanHtml,
     tooltip: Tooltip
   },
 
   mixins: [prefixClassMixin],
+
+  emits: ['update:modelValue'],
 
   props: {
     /**
@@ -525,7 +531,7 @@ export default {
       default: () => ([])
     },
 
-    value: {
+    modelValue: {
       type: String,
       required: true
     }
@@ -671,7 +677,7 @@ export default {
   },
 
   watch: {
-    value (newValue) {
+    modelValue (newValue) {
       if (!this.editor.focused && this.editor.getHTML() !== newValue) {
         this.currentValue = newValue
         this.editor.commands.setContent(newValue, false)
@@ -711,7 +717,7 @@ export default {
 
       this.editor.commands.setContent(newText)
       this.currentValue = newText
-      this.$emit('input', this.currentValue)
+      this.$emit('update:modelValue', this.currentValue)
     },
 
     collectExtensions () {
@@ -1003,7 +1009,7 @@ export default {
       this.currentValue = this.editor.getHTML()
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
 
-      this.$emit('input', isEmpty ? '' : this.currentValue)
+      this.$emit('update:modelValue', isEmpty ? '' : this.currentValue)
     },
 
     showLinkPrompt (_command, attrs) {
@@ -1049,7 +1055,7 @@ export default {
   },
 
   created () {
-    this.currentValue = this.value
+    this.currentValue = this.modelValue
     this.prepareInitText()
   },
 

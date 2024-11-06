@@ -32,7 +32,7 @@
       v-model="currentValue"
       @blur="$emit('blur', currentValue)"
       @focus="$emit('focus')"
-      @input="$emit('input', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -201,7 +201,7 @@ const props = defineProps({
     default: 'text'
   },
 
-  value: {
+  modelValue: {
     type: String,
     required: false,
     default: ''
@@ -219,8 +219,13 @@ const props = defineProps({
 
 const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
 
-const { value, maxlength, minlength, width, size, label } = toRefs(props)
-const currentValue = ref(value.value)
+const { modelValue, maxlength, minlength, width, size, label } = toRefs(props)
+const currentValue = ref(modelValue.value)
+
+const content = computed({
+  get: () => props.modelValue,
+  set: (value) => emit('update:modelValue', value),
+})
 
 const classes = computed(() => {
   let _classes: string[] = [
@@ -277,7 +282,7 @@ const labelHint = computed(() => {
   return hint
 })
 
-watch(value, (newVal) => {
+watch(modelValue, (newVal) => {
   currentValue.value = newVal
 })
 

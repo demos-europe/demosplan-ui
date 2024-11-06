@@ -20,9 +20,9 @@
         <dp-tree-list-toggle
           class="color--grey"
           data-cy="treeListNodeToggle"
-          @input="toggleAll"
-          :value="allElementsExpanded"
-          toggle-all />
+          :model-value="allElementsExpanded"
+          toggle-all
+          @update:modelValue="toggleAll" />
       </div>
     </div>
 

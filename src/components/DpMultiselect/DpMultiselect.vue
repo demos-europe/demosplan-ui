@@ -26,15 +26,15 @@
         selectedLabel,
         tagPlaceholder,
         trackBy,
-        value
+        modelValue
       }"
       :class="{ 'is-required' : required }"
       :data-cy="dataCy"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
-      :model-value="value"
+      :model-value="modelValue"
       v-dp-validate-multiselect="required"
       @close="newVal => $emit('close', newVal)"
-      @update:model-value="newVal => $emit('input', newVal)"
+      @update:modelValue="newVal => $emit('update:modelValue', newVal)"
       @open="newVal => $emit('open', newVal)"
       @remove="newVal => $emit('remove', newVal)"
       @search-change="newVal => $emit('search-change', newVal)"
@@ -71,7 +71,7 @@
           <div class="border-bottom">
             <button
                 class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-                :disabled="value.length === options.length === 0"
+                :disabled="modelValue.length === options.length === 0"
                 type="button"
                 v-text="translations.selectAll"
                 @click="$emit('select-all')">
@@ -79,7 +79,7 @@
 
             <button
                 class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-                :disabled="value.length === 0"
+                :disabled="modelValue.length === 0"
                 type="button"
                 v-text="translations.deselectAll"
                 @click="$emit('unselect-all')">
@@ -103,20 +103,24 @@ export default {
     VueMultiselect
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
   directives: {
     dpValidateMultiselectDirective
   },
 
   emits: [
     'close',
-    'input',
     'open',
     'remove',
     'search-change',
     'select',
     'select-all',
     'tag',
-    'unselect-all'
+    'unselect-all',
+    'update:modelValue',
   ],
 
   props: {
@@ -298,7 +302,7 @@ export default {
       default: null
     },
 
-    value: {
+    modelValue: {
       type: [String, Number, Array, Object],
       required: false,
       default: ''

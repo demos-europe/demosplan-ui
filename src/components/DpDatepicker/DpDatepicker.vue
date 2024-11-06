@@ -12,6 +12,12 @@ import Datepicker from 'a11y-datepicker/dist/index.es.min'
 export default {
   name: 'DpDatepicker',
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  },
+
+  emits: ['update:modelValue'],
+
   props: {
     calendarsAfter: {
       type: Number,
@@ -90,7 +96,7 @@ export default {
     /**
      * Expects ISO date
      */
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: ''
@@ -111,10 +117,10 @@ export default {
   },
 
   watch: {
-    value: function () {
-      if (this.value !== null) {
-        const isNotSet = document.getElementById(this.id).getElementsByTagName('input')[0].value !== this.value
-        this.datepicker && isNotSet && this.datepicker.setDate(this.value, true)
+    modelValue () {
+      if (this.modelValue !== null) {
+        const isNotSet = document.getElementById(this.id).getElementsByTagName('input')[0].value !== this.modelValue
+        this.datepicker && isNotSet && this.datepicker.setDate(this.modelValue, true)
       }
     },
 
@@ -161,7 +167,7 @@ export default {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
-      this.$emit('input', valueToEmit)
+      this.$emit('update:modelValue', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
     }
@@ -179,7 +185,7 @@ export default {
       ...this.localConfig
     }
     this.datepicker = Datepicker(config)
-    this.value !== '' && this.datepicker.setDate(this.value)
+    this.modelValue !== '' && this.datepicker.setDate(this.modelValue)
     this.addErrorFieldnameAttribute()
   }
 }

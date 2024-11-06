@@ -9,10 +9,10 @@
       :calendars-before="calendarsBefore"
       :disabled="startDisabled"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
-      :value="startValue"
+      :model-value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
-      @input="handleInputStartDate" />
+      @update:modelValue="handleInputStartDate" />
     <span>-</span>
     <dp-datepicker
       :id="endId"
@@ -23,10 +23,10 @@
       :calendars-before="calendarsBefore"
       :disabled="endDisabled"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
-      :value="endValue"
+      :model-value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
-      @input="handleInputEndDate" />
+      @update:modelValue="handleInputEndDate" />
   </div>
 </template>
 

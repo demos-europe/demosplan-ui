@@ -7,6 +7,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
+- ([#1069](https://github.com/demos-europe/demosplan-ui/pull/1069)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
 
 ## v0.4.2 - 2024-10-28
 

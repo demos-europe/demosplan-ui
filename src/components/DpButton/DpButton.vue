@@ -133,7 +133,7 @@ export default {
       required: false,
       type: String,
       default: 'button',
-      validator: (prop: string): boolean  => ['button', 'submit'].includes(prop)
+      validator: (prop: string): boolean  => ['button', 'submit', 'reset'].includes(prop)
     },
 
     /**

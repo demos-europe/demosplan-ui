@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.36 - 2024-11-14
+
 ### Added
 - ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1074)) DpInput: Add additional type number for prop value ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 

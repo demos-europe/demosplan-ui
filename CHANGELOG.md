@@ -4,8 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-### Changed
+### Added
+- ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1080)) DpInput: Add additional type number for prop value ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
+### Changed
+- ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1080)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
 - ([#1069](https://github.com/demos-europe/demosplan-ui/pull/1069)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
 

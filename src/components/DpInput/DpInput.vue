@@ -73,7 +73,7 @@ interface Props {
   required?: boolean | null
   size?: number | null
   type?: string
-  value?: string
+  value?: string | number
   width?: string
 }
 

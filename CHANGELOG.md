@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1081](https://github.com/demos-europe/demosplan-ui/pull/1081)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
+
 ## v0.3.36 - 2024-11-14
 
 ### Added

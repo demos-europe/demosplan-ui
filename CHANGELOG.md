@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1085](https://github.com/demos-europe/demosplan-ui/pull/1085)) DpContextualHelp: Allow passing v-tooltip options ([@hwiem](https://github.com/hwiem))
+
 ### Changed
 
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))

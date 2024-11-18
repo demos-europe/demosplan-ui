@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1087](https://github.com/demos-europe/demosplan-ui/pull/1087)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))
+
 ### Changed
 
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))

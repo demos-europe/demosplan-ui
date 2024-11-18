@@ -4,7 +4,7 @@
     :icon="icon"
     :size="size"
     class="inline-block"
-    v-tooltip="text" />
+    v-tooltip="tooltip" />
 </template>
 
 <script>
@@ -42,10 +42,23 @@ export default {
 
     /**
      * A string representing the actual tooltip content. May include html.
+     * If you want to pass additional options, use the 'tooltipOptions' prop instead
+     * ('tooltipOptions.content' for text)
      */
     text: {
       type: String,
-      required: true
+      required: false,
+      default: ''
+    },
+
+    /**
+     * For available options check https://floating-vue.starpad.dev/legacy/v2/#other-options
+     * When using, pass text via the 'content' property instead of using the 'text' prop above
+     */
+    tooltipOptions: {
+      type: Object,
+      required: false,
+      default: () => ({})
     }
   },
 
@@ -56,6 +69,23 @@ export default {
   data () {
     return {
       ariaLabel: de.contextualHelp
+    }
+  },
+
+  computed: {
+    /**
+     * @return {string|object} Returns either text only or text and other options
+     */
+    tooltip () {
+      return Object.keys(this.tooltipOptions).length > 0
+        ? this.tooltipOptions
+        : this.text
+    }
+  },
+
+  mounted () {
+    if (!this.text && !this.tooltipOptions.content) {
+      console.error('DpContextualHelp: No tooltip content provided. Add the "tooltipOptions.content" prop.')
     }
   }
 }

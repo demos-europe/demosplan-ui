@@ -128,12 +128,14 @@ export default {
 
     /**
      * The type attribute can be set to a value of `submit` manually, if the button is used to post a form.
+     * When set to 'reset', the button will reset all the form fields in the form it is placed in. Use with caution,
+     * since users tend to find this annoying.
      */
     type: {
       required: false,
       type: String,
       default: 'button',
-      validator: (prop: string): boolean  => ['button', 'submit'].includes(prop)
+      validator: (prop: string): boolean  => ['button', 'reset', 'submit'].includes(prop)
     },
 
     /**

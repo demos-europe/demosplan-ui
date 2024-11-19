@@ -10,6 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#1082](https://github.com/demos-europe/demosplan-ui/pull/1082)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
 - ([#1069](https://github.com/demos-europe/demosplan-ui/pull/1069)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
 

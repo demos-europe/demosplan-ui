@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
+- ([#1090](https://github.com/demos-europe/demosplan-ui/pull/1090)) build: Add yarnrc.yml to allow running tests in build command ([@hwiem](https://github.com/hwiem))
 - ([#1088](https://github.com/demos-europe/demosplan-ui/pull/1088)) DpLabel: Fix hiding the label via `hide` prop ([@hwiem](https://github.com/hwiem))
 
 ### Added

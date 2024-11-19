@@ -4,14 +4,14 @@
     :icon="icon"
     :size="size"
     class="inline-block"
-    v-tooltip="text" />
+    v-tooltip="tooltip" />
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted, PropType } from 'vue'
 import { IconName, IconSize } from '../../../types'
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
-import { PropType } from 'vue'
 import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
 
@@ -39,12 +39,39 @@ const props = defineProps({
 
   /**
    * A string representing the actual tooltip content. May include html.
+   * If you want to pass additional options, use the 'tooltipOptions' prop instead
+   * ('tooltipOptions.content' for text)
    */
   text: {
     type: String,
-    required: true
+    required: false,
+    default: ''
+  },
+  /**
+   * For available options check https://floating-vue.starpad.dev/api/#directive-options
+   * When using, pass text via the 'content' property instead of using the 'text' prop above
+   */
+  tooltipOptions: {
+    type: Object,
+    required: false,
+    default: () => ({})
   }
 })
 
 const ariaLabel = de.contextualHelp
+
+/**
+ * @return {string|object} Returns either text only or text and other options
+ */
+const tooltip = computed(() => {
+  return Object.keys(props.tooltipOptions).length > 0
+    ? props.tooltipOptions
+    : props.text
+})
+
+onMounted(() => {
+  if (!props.text && !props.tooltipOptions.content) {
+    console.error('DpContextualHelp: No tooltip content provided. Add the "tooltipOptions.content" prop.')
+  }
+})
 </script>

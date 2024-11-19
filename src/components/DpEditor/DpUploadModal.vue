@@ -67,7 +67,7 @@
 import { de } from '../shared/translations'
 import DpInput from '~/components/DpInput'
 import DpModal from '~/components/DpModal'
-import DpUploadFiles from '~/components/DpUploadFiles'
+import { DpUploadFiles } from '~/components/DpUploadFiles'
 
 export default {
   name: 'DpUploadModal',

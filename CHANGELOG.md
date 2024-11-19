@@ -51,6 +51,61 @@ to `~0.3.*` in your package.json.
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
 
+## v0.3.38 - 2024-11-15
+
+### Fixed
+
+- ([#1091](https://github.com/demos-europe/demosplan-ui/pull/1091)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1081](https://github.com/demos-europe/demosplan-ui/pull/1081) ([@hwiem](https://github.com/hwiem))
+- ([#1090](https://github.com/demos-europe/demosplan-ui/pull/1090)) build: Add yarnrc.yml to allow running tests in build command ([@hwiem](https://github.com/hwiem))
+- ([#1088](https://github.com/demos-europe/demosplan-ui/pull/1088)) DpLabel: Fix hiding the label via `hide` prop ([@hwiem](https://github.com/hwiem))
+
+### Added
+- ([#1086](https://github.com/demos-europe/demosplan-ui/pull/1086)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))
+- ([#1084](https://github.com/demos-europe/demosplan-ui/pull/1084)) DpContextualHelp: Allow passing v-tooltip options ([@hwiem](https://github.com/hwiem))
+
+## v0.3.37 - 2024-11-15
+
+### Changed
+- ([#1081](https://github.com/demos-europe/demosplan-ui/pull/1081)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
+
+## v0.3.36 - 2024-11-14
+
+### Added
+- ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1074)) DpInput: Add additional type number for prop value ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+
+-([#1074](https://github.com/demos-europe/demosplan-ui/pull/1074)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+## v0.3.35 - 2024-11-04
+
+### Added
+- ([#1050](https://github.com/demos-europe/demosplan-ui/pull/1050)) DpCheckbox: add additional type to 'selected' prop ([@sakutademos](https://github.com/sakutademos)
+
+### Changed
+
+-([#1068](https://github.com/demos-europe/demosplan-ui/pull/1068)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
+
+## v0.3.34 - 2024-10-09
+
+### Added
+
+- ([#1042](https://github.com/demos-europe/demosplan-ui/pull/1042)) DpModal: Add closeButton slot ([@hwiem](https://github.com/hwiem))
+- ([#1043](https://github.com/demos-europe/demosplan-ui/pull/1043)) New Flag for DpEditor: "allowPasteFromWord" (default false) to prevent pasting "html" from msOffice ([@salisdemos](https://github.com/salisdemos))
+
+## v0.3.33 - 2024-10-02
+
+### Changed
+
+- ([#1033](https://github.com/demos-europe/demosplan-ui/pull/1029)) Dependencies: move 'vue' from peerDep to devDep; add @tiptap/extension-text-style ([@sakutademos](https://github.com/sakutademos)
+- ([#994](https://github.com/demos-europe/demosplan-ui/pull/994)) BREAKING: Bump Yarn to v4.2.2 (again) ([@salisdemos](https://github.com/salisdemos))
+
+### Added
+- ([#1029](https://github.com/demos-europe/demosplan-ui/pull/1029)) add new utility: capitalizeFirstLetter ([@sakutademos](https://github.com/sakutademos)
+
+### Fixed
+- ([#1032](https://github.com/demos-europe/demosplan-ui/pull/1032)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
+
 ## v0.3.32 - 2024-09-23
 
 ### Fixed

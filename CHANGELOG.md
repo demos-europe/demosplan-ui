@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.38 - 2024-11-15
+
 ### Fixed
 
 - ([#1091](https://github.com/demos-europe/demosplan-ui/pull/1091)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1081](https://github.com/demos-europe/demosplan-ui/pull/1081) ([@hwiem](https://github.com/hwiem))

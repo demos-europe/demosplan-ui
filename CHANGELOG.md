@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1092](https://github.com/demos-europe/demosplan-ui/pull/1092)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1082](https://github.com/demos-europe/demosplan-ui/pull/1082) ([@hwiem](https://github.com/hwiem))
+
 ### Added
 - ([#1087](https://github.com/demos-europe/demosplan-ui/pull/1087)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))
 - ([#1085](https://github.com/demos-europe/demosplan-ui/pull/1085)) DpContextualHelp: Allow passing v-tooltip options ([@hwiem](https://github.com/hwiem))

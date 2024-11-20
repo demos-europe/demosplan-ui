@@ -33,7 +33,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="{ 'c-data-table__resizable': isTruncatable } + ' overflow-hidden min-w-[50px]'"
+      :class="{ 'c-data-table__resizable': isTruncatable } + ' overflow-hidden'"
       :data-col-idx="`${idx}`">
       <div
         :class="[

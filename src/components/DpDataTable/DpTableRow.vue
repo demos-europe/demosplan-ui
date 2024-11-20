@@ -33,31 +33,41 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="{ 'c-data-table__resizable': isTruncatable }"
+      :class="{ 'c-data-table__resizable': isTruncatable } + ' overflow-hidden'"
       :data-col-idx="`${idx}`">
       <div
-        :class="[
-          isTruncatable ?? 'break-words',
-          isTruncatable
-            ? wrapped
-              ? 'c-data-table__resizable--wrapped'
-              : 'c-data-table__resizable--truncated'
-            : ''
-        ]"
-        :style="isTruncatable ?? elementStyle(field)">
+        v-if="isTruncatable"
+        class="break-words"
+        :class="wrapped ? 'c-data-table__resizable--wrapped' : 'c-data-table__resizable--truncated'"
+        :style="elementStyle(field)">
         <slot
-          v-if="$slots[field](item)[0].children.length > 0"
           :name="field"
-          v-bind="item" />
-        <span
-          v-else
-          v-cleanhtml="highlighted(field)" />
+          v-bind="item" >
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span
+            v-else
+            v-text="item[field]" />
+        </slot>
       </div>
+      <template v-else>
+        <slot
+          :name="field"
+          v-bind="item">
+          <span
+            v-if="searchTerm && item[field]"
+            v-html="highlighted(field)" />
+          <span
+            v-text="item[field]"
+            v-else />
+        </slot>
+      </template>
     </td>
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible">
+      class="overflow-hidden min-w-[50px]">
       <slot
         name="flyout"
         v-bind="item" />
@@ -65,9 +75,9 @@
 
     <td
       v-if="isExpandable"
-      class="c-data-table__cell--narrow"
+      class="overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
-      :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
+      :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
       @click="toggleExpand(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isExpandableWrapTrigger:${$attrs.index}`"
@@ -76,9 +86,9 @@
 
     <td
       v-if="isTruncatable"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
-      :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
+      :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
       @click="toggleWrap(item[trackBy])">
       <dp-wrap-trigger
         :data-cy="`isTruncatableWrapTrigger:${$attrs.index}`"
@@ -88,8 +98,6 @@
 </template>
 
 <script>
-import { CleanHtml } from '~/directives'
-import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
 import DomPurify from 'dompurify'
@@ -100,10 +108,6 @@ export default {
   components: {
     DpIcon,
     DpWrapTrigger
-  },
-
-  directives: {
-    cleanhtml: CleanHtml
   },
 
   props: {
@@ -118,9 +122,6 @@ export default {
       default: ''
     },
 
-    /**
-     * Is the expandable content currently expanded?
-     */
     expanded: {
       type: Boolean,
       required: false,
@@ -132,14 +133,6 @@ export default {
       required: true
     },
 
-    /**
-     * The header of every column of the table is defined here.
-     *
-     * Each column is represented by an object with a `field` key whose value should match
-     * a key of the objects inside `items`. The `label` key controls the header of the column.
-     * The header can also have a tooltip. To define the width the column is initially
-     * rendered with when `isResizable` is used, the key `initialWidth` takes a px value.
-     */
     headerFields: {
       type: Array,
       required: true
@@ -173,18 +166,12 @@ export default {
       default: false
     },
 
-    /**
-     * The item can be locked for selection. Instead of the checkbox, a lock icon is rendered with a tooltip.
-     */
     isLocked: {
       type: Boolean,
       required: false,
       default: false
     },
 
-    /**
-     * If an item is locked for selection, the message to be shown inside the tooltip can be set here.
-     */
     isLockedMessage: {
       type: String,
       required: false,
@@ -224,10 +211,6 @@ export default {
       required: true
     },
 
-    /**
-     * Is the truncatable content currently truncated?
-     * Rename to `notTruncated`?
-     */
     wrapped: {
       type: Boolean,
       required: false,
@@ -235,24 +218,10 @@ export default {
     }
   },
 
-  data () {
-    return {
-      translations: {
-        ariaCollapse: de.aria.collapse.element,
-        ariaExpand: de.aria.expand.element
-      }
-    }
-  },
-
   computed: {
     highlighted () {
       return (field) => {
         let itemValue = this.item[field]
-
-        if (this.searchTerm === '') {
-          return itemValue
-        }
-
         itemValue = DomPurify.sanitize(itemValue)
 
         return itemValue.replace(this.searchTerm, '<span style="background-color: yellow;">$&</span>')
@@ -278,7 +247,6 @@ export default {
       }
     }
   },
-
   methods: {
     toggleSelect (id) {
       this.$emit('toggle-select', id)
@@ -291,8 +259,6 @@ export default {
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
     }
-  },
-  mounted () {
   }
 }
 </script>

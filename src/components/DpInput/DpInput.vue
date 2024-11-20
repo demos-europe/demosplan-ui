@@ -7,7 +7,8 @@
         for: id,
         hint: labelHint,
         required: required
-      }" />
+      }"
+      class="mb-0.5" />
     <input
       :id="id"
       :name="name !== '' ? name : null"
@@ -41,185 +42,111 @@
 import { computed, ref, toRefs, watch } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
-import { length } from '~/shared'
 
-const props = defineProps({
+// Define an interface for the props
+interface Props {
+  ariaLabelledby?: string | null
+  autocomplete?: string
+  dataCounter?: string
+  dataCy?: string
+  dataDpValidateError?: string
+  dataDpValidateErrorFieldname?: string
+  dataDpValidateIf?: string
+  dataDpValidateShouldEqual?: string
+  disabled?: boolean | null
+  hasIcon?: boolean
+  id: string
+  label?: {
+    bold: boolean
+    hide: boolean
+    hint: string
+    text: string
+    tooltip: string
+  };
+  maxlength?: boolean | string | null
+  minlength?: boolean | string | null
+  name?: string
+  pattern?: string
+  placeholder?: string
+  preventDefaultOnEnter?: boolean
+  readonly?: boolean | null
+  required?: boolean | null
+  size?: number | null
+  type?: string
+  value?: string
+  width?: string
+}
+
+// Use the interface with defineProps
+const props = defineProps<Props>();
+
+const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
+
+const {
   /**
    * Reference another element on the page to define an accessible name if there is no label or
    * you want to override the label.
    */
-  ariaLabelledby: {
-    type: [String, null],
-    required: false,
-    default: null
-  },
-
+  ariaLabelledby = null,
   /**
    * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
    * to automatically complete the input. You can also provide a type of data which is expected.
    */
-  autocomplete: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataCounter: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataCy: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataDpValidateError: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataDpValidateErrorFieldname: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataDpValidateIf: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  dataDpValidateShouldEqual: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: null
-  },
-
+  autocomplete = '',
+  dataCounter = '',
+  dataCy = '',
+  dataDpValidateError = '',
+  dataDpValidateErrorFieldname = '',
+  dataDpValidateIf = '',
+  dataDpValidateShouldEqual = '',
+  disabled = null,
   /**
    * Use: when input field used with Icon || Button, then input field has padding right.
    */
-  hasIcon: {
-    type: Boolean,
-    required: false,
-    default: false
-  },
-
-  id: {
-    type: String,
-    required: true
-  },
-
-  label: {
-    type: Object,
-    default: () => ({
-      bold: true,
-      hide: false,
-      hint: '',
-      text: '',
-      tooltip: ''
-    }),
-    validator: (prop) => {
-      return Object.keys(prop).every(key => ['bold', 'hide', 'hint', 'text', 'tooltip'].includes(key))
-    }
-  },
-
-  /**
-   * Limit the maximum allowed number of characters to the given amount.
-   */
-  maxlength: length,
-
-  /**
-   * Define the minimum number of characters that need to be given.
-   */
-  minlength: length,
-
-  name: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  pattern: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
-  placeholder: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
+  hasIcon = false,
+  id,
+  name = '',
+  pattern = '',
+  placeholder = '',
   /**
    * Set to false to prevent default behavior onEnter.
    */
-  preventDefaultOnEnter: {
-    type: Boolean,
-    required: false,
-    default: true
-  },
+  preventDefaultOnEnter = true,
+  readonly = null,
+  required = null,
+  type = 'text',
+} = props
 
-  readonly: {
-    type: Boolean,
-    required: false,
-    default: null
+const {
+  label = {
+    bold: true,
+    hide: false,
+    hint: '',
+    text: '',
+    tooltip: ''
   },
-
-  required: {
-    type: Boolean,
-    required: false,
-    default: null
-  },
-
+  /**
+   * Limit the maximum allowed number of characters to the given amount.
+   */
+  maxlength = null,
+  /**
+   * Define the minimum number of characters that need to be given.
+   */
+  minlength = null,
   /**
    * When setting a number for the `size` prop, this is directly rendered
    * as html attribute on the input element. Also, it is assumed that visual sizing
    * based on that value shall be applied, that is why both container classes
    * and element classes do not define any width styles when a size is set here.
    */
-  size: {
-    type: [Number, null],
-    required: false,
-    default: null
-  },
-
-  type: {
-    type: String,
-    required: false,
-    default: 'text'
-  },
-
-  value: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
+  size = null,
+  value = '',
   /**
    * Full width by default; set to 'auto' to have no width defined.
    * @deprecated Apply width to the parent element of DpInput.
    */
-  width: {
-    type: String,
-    default: 'w-full'
-  }
-})
-
-const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
-
-const { value, maxlength, minlength, width, size, label } = toRefs(props)
+  width = 'w-full'
+} = toRefs(props)
 const currentValue = ref(value.value)
 
 const classes = computed(() => {
@@ -235,13 +162,13 @@ const classes = computed(() => {
     _classes.push('w-full')
   }
 
-  if (props.readonly || props.disabled) {
+  if (readonly || disabled) {
     _classes.push('bg-surface-light border-none cursor-default')
   } else {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (props.hasIcon) {
+  if (hasIcon) {
     _classes.push('pr-4')
   }
 
@@ -282,7 +209,7 @@ watch(value, (newVal) => {
 })
 
 const handleEnter = (event: Event) => {
-  if (props.preventDefaultOnEnter === true) {
+  if (preventDefaultOnEnter === true) {
     event.preventDefault()
   }
   emit('enter')

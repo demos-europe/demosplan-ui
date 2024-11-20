@@ -131,12 +131,14 @@ const props = defineProps({
 
   /**
    * The type attribute can be set to a value of `submit` manually, if the button is used to post a form.
+   * When set to 'reset', the button will reset all the form fields in the form it is placed in. Use with caution,
+   * since users tend to find this annoying.
    */
   type: {
     type: String as PropType<ButtonType>,
     required: false,
     default: 'button',
-    validator: (prop: ButtonType): boolean  => ['button', 'submit'].includes(prop)
+    validator: (prop: ButtonType): boolean  => ['button', 'reset', 'submit'].includes(prop)
   },
 
   /**
@@ -167,6 +169,7 @@ const classes = computed(() => [
 const colorClasses = computed(() => {
     const colors = allColorClasses[props.color]
     const renderedColors = [colors.solidOutlineSubtle]
+
     switch (props.variant) {
         case 'solid':
             renderedColors.push(colors.solidOutline, colors.solid)
@@ -180,6 +183,7 @@ const colorClasses = computed(() => {
         default:
             break
     }
+
     return renderedColors
 })
 
@@ -213,10 +217,8 @@ const spacingClasses = computed(() => {
   ]
 })
 
-const element = computed(() => isButtonElement ? 'button' : 'a')
-
+const element = computed(() => isButtonElement.value ? 'button' : 'a')
 const isButtonElement = computed(() => props.href === '#')
-
 const sanitizedHref = computed(() => sanitizeUrl(props.href))
 
 const vTooltip = Tooltip
@@ -264,7 +266,7 @@ const allColorClasses = {
     // solid: classes that only apply to "solid" button color variant.
     solid: `
       bg-interactive text-on-dark
-      hover:bg-interactive-hover
+      hover:text-on-dark hover:no-underline hover:bg-interactive-hover
       focus:bg-interactive-hover
       focus-visible:bg-interactive-hover
       active:bg-interactive-active `,
@@ -292,7 +294,7 @@ const allColorClasses = {
       active:bg-interactive-secondary-subtle-active active:text-interactive-secondary-active `,
     solid: `
       bg-interactive-secondary text-on-dark
-      hover:bg-interactive-secondary-hover
+      hover:text-on-dark hover:no-underline hover:bg-interactive-secondary-hover
       focus:bg-interactive-secondary-hover
       focus-visible:bg-interactive-secondary-hover
       active:bg-interactive-secondary-active `,
@@ -319,7 +321,7 @@ const allColorClasses = {
       active:bg-interactive-warning-subtle-active active:text-interactive-warning-active `,
     solid: `
       bg-interactive-warning text-on-dark
-      hover:bg-interactive-warning-hover
+      hover:text-on-dark hover:no-underline hover:bg-interactive-warning-hover
       focus:bg-interactive-warning-hover
       focus-visible:bg-interactive-warning-hover
       active:bg-interactive-warning-active `,

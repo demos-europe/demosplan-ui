@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
+
 ### Added
 - ([#1087](https://github.com/demos-europe/demosplan-ui/pull/1087)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))
 - ([#1085](https://github.com/demos-europe/demosplan-ui/pull/1085)) DpContextualHelp: Allow passing v-tooltip options ([@hwiem](https://github.com/hwiem))

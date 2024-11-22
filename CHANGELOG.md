@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
+- ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1096)) Fix jest tests ([@muellerdemos](https://github.com/muellerdemos))
 - ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
 
 ### Added

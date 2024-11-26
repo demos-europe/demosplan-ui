@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.39 - 2024-11-26
+
 ### Fixed
 
 - ([#1094](https://github.com/demos-europe/demosplan-ui/pull/1094)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))

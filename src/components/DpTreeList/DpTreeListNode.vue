@@ -16,13 +16,13 @@
         :string-value="nodeId"
         @check="setSelectionState(!node.nodeIsSelected)" />
       <div
-        class="flex grow items-start"
+        :class="['flex grow', alignToggle === 'top' ?  'items-start' : 'items-center']"
         :style="indentationStyle">
         <dp-tree-list-toggle
+          v-if="isBranch"
           class="c-treelist__folder text--left u-pv-0_25"
           :class="{'pointer-events-none': 0 === children.length}"
           :icon-class-prop="iconClassFolder"
-          v-if="isBranch"
           v-model="isExpanded" />
         <div class="grow u-pl-0 u-p-0_25">
           <slot
@@ -41,9 +41,9 @@
         </div>
       </div>
       <dp-tree-list-toggle
-        data-cy="treeListChildToggle"
         v-if="isBranch"
-        class="self-start"
+        :class="alignToggle === 'top' ? 'self-start' : 'self-center'"
+        data-cy="treeListChildToggle"
         :disabled="!hasToggle"
         v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
         v-model="isExpanded" />
@@ -121,6 +121,13 @@ export default {
   },
 
   props: {
+    alignToggle: {
+      type: String,
+      required: false,
+      default: 'top',
+      validator: (prop) => ['top', 'center'].includes(prop)
+    },
+
     checkBranch: {
       type: Function,
       required: true

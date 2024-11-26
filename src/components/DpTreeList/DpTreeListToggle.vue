@@ -42,16 +42,21 @@ export default {
      * This is somewhat messy but removes cruft from DpTreeListNode.
      */
     iconClass () {
+      const icon = this.value ? 'fa-angle-up' : 'fa-angle-down'
+
       return this.iconClassProp !== ''
         ? this.iconClassProp
-        : ('font-size-large line-height--1 u-p-0_25 fa ' + (this.value ? 'fa-angle-up' : 'fa-angle-down'))
+        : `font-size-large line-height--1 u-p-0_25 fa ${icon}`
     },
 
     label () {
       // Here, the relatively generic term "element" is chosen to keep the wording generic.
+      const labelAll = this.value ? de.aria.collapse.all : de.aria.expand.all
+      const labelSingle = this.value ? de.aria.collapse.element : de.aria.expand.element
+
       return this.toggleAll
-        ? this.value ? de.aria.collapse.all : de.aria.expand.all
-        : this.value ? de.aria.collapse : de.aria.expand
+        ? labelAll
+        : labelSingle
     }
   },
 

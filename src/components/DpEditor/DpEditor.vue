@@ -327,7 +327,6 @@ import {
   Heading,
   History,
   Italic,
-  Link,
   ListItem,
   OrderedList,
   Paragraph,

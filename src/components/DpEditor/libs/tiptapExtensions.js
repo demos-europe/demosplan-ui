@@ -16,6 +16,8 @@ import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import Text from '@tiptap/extension-text'
 import Underline from '@tiptap/extension-underline'
+import Mention from '@tiptap/extension-mention'
+
 
 export {
   Bold,
@@ -27,6 +29,7 @@ export {
   Italic,
   Link,
   ListItem,
+  Mention,
   OrderedList,
   Paragraph,
   Strike,

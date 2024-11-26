@@ -1,8 +1,9 @@
 <template>
   <button
-    type="button"
     class="o-link--default btn--blank"
-    :aria-label="label"
+    :disabled="disabled"
+    type="button"
+    v-tooltip="tooltip"
     @click="toggle">
     <i
       :class="iconClass"
@@ -11,13 +12,18 @@
 </template>
 
 <script>
+import { Tooltip } from '~/directives'
 import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpTreeListToggle',
 
+  directives: {
+    tooltip: Tooltip
+  },
+
   props: {
-    value: {
+    disabled: {
       type: Boolean,
       required: false,
       default: false
@@ -30,6 +36,18 @@ export default {
     },
 
     toggleAll: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    tooltipOptions: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
+
+    value: {
       type: Boolean,
       required: false,
       default: false
@@ -50,13 +68,25 @@ export default {
     },
 
     label () {
-      // Here, the relatively generic term "element" is chosen to keep the wording generic.
+      if (this.disabled) {
+        return de.elements.none
+      }
+
       const labelAll = this.value ? de.aria.collapse.all : de.aria.expand.all
       const labelSingle = this.value ? de.aria.collapse.element : de.aria.expand.element
 
       return this.toggleAll
         ? labelAll
         : labelSingle
+    },
+
+    tooltip () {
+      return Object.keys(this.tooltipOptions).length > 0
+        ?  {
+          ...this.tooltipOptions,
+          content: this.label
+        }
+        : this.label
     }
   },
 

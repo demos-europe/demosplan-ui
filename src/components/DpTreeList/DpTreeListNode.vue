@@ -21,7 +21,8 @@
         <dp-tree-list-toggle
           v-if="isBranch"
           class="c-treelist__folder text--left u-pv-0_25"
-          :class="{'pointer-events-none': 0 === children.length}"
+          :class="{'cursor-not-allowed': 0 === children.length}"
+          :disabled="!hasToggle"
           :icon-class-prop="iconClassFolder"
           v-model="isExpanded" />
         <div class="grow u-pl-0 u-p-0_25">
@@ -45,7 +46,6 @@
         :class="alignToggle === 'top' ? 'self-start' : 'self-center'"
         data-cy="treeListChildToggle"
         :disabled="!hasToggle"
-        v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
         v-model="isExpanded" />
       <div
         v-else

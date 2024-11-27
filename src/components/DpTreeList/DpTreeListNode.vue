@@ -104,7 +104,6 @@ import DpDraggable from '~/components/DpDraggable'
 import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
-import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpTreeListNode',
@@ -114,10 +113,6 @@ export default {
     DpIcon,
     DpTreeListCheckbox,
     DpTreeListToggle
-  },
-
-  directives: {
-    tooltip: Tooltip
   },
 
   props: {

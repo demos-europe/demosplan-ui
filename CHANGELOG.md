@@ -4,6 +4,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Fix translation keys displayed as tooltip ([@hwiem](https://github.com/hwiem))
+
+### Added
+
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Add prop to vertically center the toggle for branches;
+  display tooltips for the toggles ([@hwiem](https://github.com/hwiem))
+
 ## v0.3.39 - 2024-11-26
 
 ### Fixed

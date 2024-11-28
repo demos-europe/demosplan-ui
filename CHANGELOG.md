@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
+- ([#1100](https://github.com/demos-europe/demosplan-ui/pull/1100)) DpTableRow: Fix styles of flyout menu ([@muellerdemos](https://github.com/muellerdemos))
 - ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Fix translation keys displayed as tooltip ([@hwiem](https://github.com/hwiem))
 
 ### Added

@@ -75,7 +75,7 @@
 
     <td
       v-if="isExpandable"
-      class="overflow-hidden min-w-[50px]"
+      class="overflow-visible min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
       @click="toggleExpand(item[trackBy])">

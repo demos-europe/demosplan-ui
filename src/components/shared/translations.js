@@ -43,6 +43,9 @@ const de = {
     underline: 'Unterstrichen',
     undo: 'Rückgängig'
   },
+  elements: {
+    none: 'Keine Elemente vorhanden'
+  },
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
   error: {

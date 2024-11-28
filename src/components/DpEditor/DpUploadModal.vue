@@ -11,10 +11,12 @@
     </h3>
     <h3
       v-else
-      class="u-mb">
+      class="mb-2">
       {{ translations.insertImage }}
     </h3>
-    <div v-if="!editAltTextOnly">
+    <div
+      v-if="!editAltTextOnly"
+      class="mb-2">
       <dp-upload-files
         allowed-file-types="img"
         :basic-auth="basicAuth"
@@ -65,7 +67,7 @@
 import { de } from '../shared/translations'
 import DpInput from '~/components/DpInput'
 import DpModal from '~/components/DpModal'
-import DpUploadFiles from '~/components/DpUploadFiles'
+import { DpUploadFiles } from '~/components/DpUploadFiles'
 
 export default {
   name: 'DpUploadModal',

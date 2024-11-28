@@ -5,7 +5,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+
 - ([#1092](https://github.com/demos-europe/demosplan-ui/pull/1092)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1082](https://github.com/demos-europe/demosplan-ui/pull/1082) ([@hwiem](https://github.com/hwiem))
+- ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
 
 ### Added
 - ([#1087](https://github.com/demos-europe/demosplan-ui/pull/1087)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))

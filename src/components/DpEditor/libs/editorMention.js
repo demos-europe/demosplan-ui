@@ -1,5 +1,5 @@
 import { mergeAttributes } from '@tiptap/core'
-import { Mention } from '@tiptap/extension-mention'
+import { Mention } from '../../../../node_modules/@tiptap/extension-mention/dist/index.js'
 
 export default Mention.extend({
   renderHTML({ node, options }) {

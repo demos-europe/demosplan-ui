@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
 

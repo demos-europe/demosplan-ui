@@ -249,10 +249,6 @@ const labelHint = computed(() => {
   return hint
 })
 
-// watch(props.value, (newVal) => {
-//   props.value = newVal
-// })
-
 const handleEnter = (event: Event) => {
   if (props.preventDefaultOnEnter) {
     event.preventDefault()

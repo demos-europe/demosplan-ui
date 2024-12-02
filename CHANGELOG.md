@@ -7,6 +7,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
+- ([#1103](https://github.com/demos-europe/demosplan-ui/pull/1103)) Make TipTaps Mention extention work ([@salisdemos](https://github.com/salisdemos))
+- ([#1103](https://github.com/demos-europe/demosplan-ui/pull/1103)) Restore Reactivity for DpInput and refactor props ([@salisdemos](https://github.com/salisdemos))
 
 ### Added
 - ([#1087](https://github.com/demos-europe/demosplan-ui/pull/1087)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))

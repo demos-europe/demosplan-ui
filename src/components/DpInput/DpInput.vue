@@ -177,12 +177,14 @@ const props = defineProps({
 
   type: {
     type: String,
-    required: false
+    required: false,
+    default: 'text'
   },
 
   value: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
 
   width: {

@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#1105](https://github.com/demos-europe/demosplan-ui/pull/1105)) **breaking** Minimum required node version: 20.18.1 ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.3.41 - 2024-11-28
 
 ### Fixed

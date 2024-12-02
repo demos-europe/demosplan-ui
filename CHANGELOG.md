@@ -4,7 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-## v0.3.39 - 2024-11-28
+## v0.3.41 - 2024-11-28
+
+### Fixed
+
+- ([#1101](https://github.com/demos-europe/demosplan-ui/pull/1101)) DpTableRow: Fix flyout menu not visible ([@muellerdemos](https://github.com/muellerdemos))
+
+## v0.3.40 - 2024-11-28
 
 ### Fixed
 
@@ -109,7 +115,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
 
 ## v0.3.26
-- 
+-
 - lost in space
 
 ## v0.3.25 - 2024-07-30
@@ -280,7 +286,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#783](https://github.com/demos-europe/demosplan-ui/pull/783)) Improve error validation for DpMultiselect and DpSelect components ([@sakutademos](https://github.com/sakutademos))
 
-### Changed 
+### Changed
 
 - ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Improve render performance of the DpTreeList component ([@sakutademos](https://github.com/sakutademos))
 - ([#784](https://github.com/demos-europe/demosplan-ui/pull/784)) dpApi.get: Always serialize request params ([@spiess-demos](https://github.com/spiess-demos))
@@ -313,8 +319,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#739](https://github.com/demos-europe/demosplan-ui/pull/739)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
-- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
-- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
+- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos))
 - ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5-1 - 2024-02-13
@@ -666,7 +672,7 @@ Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed unt
 
 ## v0.0.17 - 2023-03-23
 
-- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable 
+- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable
 
 ## v0.0.16 - 2023-03-15
 

@@ -2189,7 +2189,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^5.4.0"
     "@typescript-eslint/parser": "npm:^5.4.0"
     "@uppy/core": "npm:^3.0.1"
-    "@uppy/drag-drop": "npm:^3.0.0"
+    "@uppy/drag-drop": "npm:^4.0.4"
     "@uppy/progress-bar": "npm:^3.0.0"
     "@uppy/tus": "npm:^3.0.1"
     "@vue/cli-plugin-typescript": "npm:~5.0.0"
@@ -6378,15 +6378,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/drag-drop@npm:^3.0.0":
-  version: 3.1.0
-  resolution: "@uppy/drag-drop@npm:3.1.0"
+"@uppy/drag-drop@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@uppy/drag-drop@npm:4.0.4"
   dependencies:
-    "@uppy/utils": "npm:^5.7.5"
+    "@uppy/utils": "npm:^6.0.4"
     preact: "npm:^10.5.13"
   peerDependencies:
-    "@uppy/core": ^3.10.0
-  checksum: 10c0/46a3d4bf7a79b86280c6db58ac383c46dbc56bc9b3672b597088c773852ef21f2b755f5b7f01ff43d40a9b57a033ad88ffa99ca8a41c509f85b9814c05c32b1f
+    "@uppy/core": ^4.2.3
+  checksum: 10c0/e029adc3acdaccde9ea01fe6648da725154ebba45954d39dd9263911728ce344eee9577ccddfd850194db41745546006fa9b541ca93895ba558030fd4a2a11aa
   languageName: node
   linkType: hard
 
@@ -6429,6 +6429,16 @@ __metadata:
     lodash: "npm:^4.17.21"
     preact: "npm:^10.5.13"
   checksum: 10c0/857c8fa11814816f0a1d97ce78f86cac8c9f4e46267d2d64631f7cce8d3b8caf3796cccdd4cecdfe110862ebbed5a76896522a965f09b0940f0979b91f04c793
+  languageName: node
+  linkType: hard
+
+"@uppy/utils@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "@uppy/utils@npm:6.0.4"
+  dependencies:
+    lodash: "npm:^4.17.21"
+    preact: "npm:^10.5.13"
+  checksum: 10c0/a708d45d69fc8a379e5c5ed7e76980c194804ac86954a83b8bd55b61e58bdf5169ef509cc31ec20d33f918cb51a1c7bbd25948ff0ad0cd2269fff1cb20da5456
   languageName: node
   linkType: hard
 

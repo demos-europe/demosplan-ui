@@ -32,6 +32,9 @@ describe('DpTreeListNode', () => {
     mocks = {
       Translator: {
         trans: jest.fn(key => key)
+      },
+      $root: {
+        $on: jest.fn()
       }
     }
 

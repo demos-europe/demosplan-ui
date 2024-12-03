@@ -3,7 +3,7 @@ import { shallowMount } from '@vue/test-utils'
 import DpTreeListNode from '~/components/DpTreeList/DpTreeListNode.vue'
 import DpTreeListToggle from '~/components/DpTreeList/DpTreeListToggle.vue'
 
-describe.skip('DpTreeListNode', () => {
+describe('DpTreeListNode', () => {
   let mocks
   let propsData
   let stubs

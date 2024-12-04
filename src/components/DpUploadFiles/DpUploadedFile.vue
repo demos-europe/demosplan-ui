@@ -8,8 +8,9 @@
     </span>
     <span v-if="isImage">
       <img
+        :alt="file.name"
         :src="getFileByHash(file.hash)"
-        :aria-label="Translator.trans('image.preview')"
+        :aria-label="translations.imagePreview"
         width="50px">
     </span>
     <span
@@ -55,6 +56,7 @@ export default {
   data () {
     return {
       translations: {
+        imagePreview: de.image.preview,
         removeFile: de.file.remove
       }
     }

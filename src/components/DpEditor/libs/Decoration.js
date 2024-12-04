@@ -1,5 +1,5 @@
-import { Decoration, DecorationSet } from 'prosemirror-view'
-import { Plugin, TextSelection } from 'prosemirror-state'
+import { Decoration, DecorationSet } from '@tiptap/pm/view'
+import { Plugin, TextSelection } from '@tiptap/pm/state'
 
 const addHandle = (tr, set, pos, id) => {
   const widget = document.createElement('span')

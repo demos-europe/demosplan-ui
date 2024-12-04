@@ -6,13 +6,14 @@
         ...label,
         for: nameOrId,
         required: required
-      }" /><!--
+      }"
+      class="mb-0.5"/><!--
  --><select
       :id="nameOrId"
       :data-cy="dataCy"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       :required="required"
-      :name="name !== '' ? name : false"
+      :name="name !== '' ? name : null"
       class="o-form__control-select"
       :class="[disabled ? ' bg-color--grey-light-2' : '', classes]"
       :disabled="disabled"

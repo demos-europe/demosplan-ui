@@ -2,6 +2,7 @@ import { DATE_FORMAT_LONG, formatDate, toDate } from './date'
 import { exactlengthHint, maxlengthHint, minlengthHint } from './lengthHint/lengthHint'
 import { hasPermission, hasAllPermissions, hasAnyPermissions } from './hasPermission'
 import { toggleFullscreen, bindFullScreenChange, unbindFullScreenChange, isActiveFullScreen } from './fullscreen'
+import { capitalizeFirstLetter } from './formatString'
 import debounce from './debounce'
 import deepMerge from './deepMerge'
 import formatBytes from './formatBytes'
@@ -16,6 +17,7 @@ import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
 
 export {
   bindFullScreenChange,
+  capitalizeFirstLetter,
   DATE_FORMAT_LONG,
   debounce,
   deepMerge,

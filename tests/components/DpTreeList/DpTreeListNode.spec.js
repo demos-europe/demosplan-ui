@@ -32,6 +32,9 @@ describe('DpTreeListNode', () => {
     mocks = {
       Translator: {
         trans: jest.fn(key => key)
+      },
+      $root: {
+        $on: jest.fn()
       }
     }
 
@@ -41,13 +44,17 @@ describe('DpTreeListNode', () => {
 
     wrapper = shallowMount(DpTreeListNode, {
       propsData,
-      mocks,
-      stubs
+      global: {
+        stubs,
+        mocks
+      }
     })
   })
 
   afterEach(() => {
-    wrapper.destroy()
+    if (wrapper) {
+      wrapper.unmount()
+    }
   })
 
   it('renders component correctly', () => {
@@ -93,7 +100,7 @@ describe('DpTreeListNode', () => {
 
   it('does not call the function setSelectionRecursively when the node has no children', () => {
     wrapper = shallowMount(DpTreeListNode, {
-      propsData: {
+      props: {
         children: [],
         draggable: true,
         handleChange: jest.fn(),

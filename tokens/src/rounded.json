@@ -43,6 +43,14 @@
     "full": {
       "$description": "Full - use to craft pill-like elements.",
       "value": "9999px"
+    },
+    "button": {
+      "$description": "Default radius for buttons.",
+      "value": "{rounded.md}"
+    },
+    "input": {
+      "$description": "Default radius for input fields.",
+      "value": "{rounded.md}"
     }
   }
 }

@@ -13,7 +13,7 @@ module.exports = {
   coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],
   displayName: 'demosplan-ui',
   globals: {
-    '@vue/vue2-jest': {
+    '@vue/vue3-jest': {
       babelConfig: {
         plugins: ['dynamic-import-node']
       }
@@ -42,12 +42,15 @@ module.exports = {
   testRegex: '.*(test|spec)\\.js]?$',
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
-    '^.+\\.(vue)$': '<rootDir>/node_modules/@vue/vue2-jest',
+    '^.+\\.(vue)$': '<rootDir>/node_modules/@vue/vue3-jest',
     '^.+\\.(ts)$': '<rootDir>/node_modules/ts-jest'
   },
   transformIgnorePatterns: [
     '<rootDir>/node_modules/(?!@tiptap)(.*)'
   ],
   testEnvironment: "jsdom",
+  testEnvironmentOptions: {
+    customExportConditions: ["node", "node-addons"],
+  },
   verbose: true
 }

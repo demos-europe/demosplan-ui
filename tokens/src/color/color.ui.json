@@ -22,7 +22,94 @@
             "value": "{color.palette.blue.dark-2}",
             "themeable": true,
             "$type": "color"
+          },
+          "subtle-hover": {
+            "$description": "Color for hover state of bigger areas or subtle buttons.",
+            "value": "{color.palette.blue.light-4}",
+            "$type": "color"
+          },
+          "subtle-active": {
+            "$description": "Color for active state of bigger areas or subtle buttons.",
+            "value": "{color.palette.blue.light-3}",
+            "$type": "color"
+          },
+          "secondary": {
+            "$description": "Colors for secondary button",
+            "DEFAULT": {
+              "$description": "Color for interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.base}",
+              "$type": "color"
+            },
+            "hover": {
+              "$description": "Color for hover state of interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.dark-1}",
+              "$type": "color"
+            },
+            "active": {
+              "$description": "Color for active state of interactive elements that should appear less prominent.",
+              "value": "{color.palette.neutral.dark-2}",
+              "$type": "color"
+            },
+            "subtle": {
+              "$description": "Colors for secondary button (outline and subtle bg/border).",
+              "DEFAULT": {
+                "$description": "Color for interactive elements that should appear less prominent.",
+                "value": "{color.palette.white}",
+                "$type": "color"
+              },
+              "hover": {
+                "$description": "Color for hover state of interactive elements that should appear less prominent.",
+                "value": "{color.palette.neutral.light-4}",
+                "$type": "color"
+              },
+              "active": {
+                "$description": "Color for active state of interactive elements that should appear less prominent.",
+                "value": "{color.palette.neutral.light-3}",
+                "$type": "color"
+              }
+            }
+          },
+          "warning": {
+            "$description": "Colors for warning button",
+            "DEFAULT": {
+              "$description": "Color for interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.base}",
+              "$type": "color"
+            },
+            "hover": {
+              "$description": "Color for hover state of interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.dark-1}",
+              "$type": "color"
+            },
+            "active": {
+              "$description": "Color for active state of interactive elements that should communicate irreversible actions.",
+              "value": "{color.palette.red.dark-2}",
+              "$type": "color"
+            },
+            "subtle": {
+              "$description": "Colors for warning button (outline and subtle bg/border).",
+              "DEFAULT": {
+                "$description": "Color for interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.white}",
+                "$type": "color"
+              },
+              "hover": {
+                "$description": "Color for hover state of interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.red.light-4}",
+                "$type": "color"
+              },
+              "active": {
+                "$description": "Color for active state of interactive elements that should communicate irreversible actions.",
+                "value": "{color.palette.red.light-3}",
+                "$type": "color"
+              }
+            }
           }
+        },
+        "on-dark": {
+          "$description": "Color for text or borders that has sufficient contrast on dark surface.",
+          "value": "{color.palette.white}",
+          "$type": "color"
         }
       },
       "textColor": {
@@ -31,14 +118,14 @@
           "value": "{color.palette.neutral.dark-2}",
           "$type": "color"
         },
-        "muted": {
-          "$description": "Color for text that should stand out a little less. Has sufficient contrast on white.",
+        "input": {
+          "$description": "Color for text within input fields.",
           "value": "{color.palette.neutral.base}",
           "$type": "color"
         },
-        "on-dark": {
-          "$description": "Color for text that has sufficient contrast on dark backgrounds.",
-          "value": "{color.palette.white}",
+        "muted": {
+          "$description": "Color for text that should stand out a little less. Has sufficient contrast on white.",
+          "value": "{color.palette.neutral.base}",
           "$type": "color"
         },
         "marked": {
@@ -229,16 +316,6 @@
       "backgroundColor": {
         "$description": "Tokens that are meant to be used with the backgroundColor corePlugin.",
         "interactive": {
-          "subtle-hover": {
-            "$description": "Background color for hover state of bigger areas or subtle buttons.",
-            "value": "{color.palette.neutral.light-4}",
-            "$type": "color"
-          },
-          "subtle-active": {
-            "$description": "Background color for active state of bigger areas or subtle buttons.",
-            "value": "{color.palette.neutral.light-3}",
-            "$type": "color"
-          },
           "muted": {
             "$description": "Background color for interactive elements that reveal their base state on:hover of a parent element, eg. in a table row. Note that this is not to be conflated with the disabled state, which is communicated via opacity.",
             "value": "{color.palette.neutral.light-1}",
@@ -325,6 +402,12 @@
             "value": "{color.palette.neutral.light-3}",
             "themeable": true,
             "$type": "color"
+          },
+          "dark": {
+            "$description": "Dark background color for tooltips etc.",
+            "value": "{color.palette.neutral.dark-2}",
+            "themeable": true,
+            "$type": "color"
           }
         },
         "text": {
@@ -382,6 +465,16 @@
             "value": "{color.palette.purple.light-1}",
             "$type": "color"
           }
+        },
+        "input": {
+          "$description": "Border color for input elements.",
+          "value": "{color.palette.neutral.light-1}",
+          "$type": "color"
+        },
+        "input-disabled": {
+          "$description": "Border color for disabled input elements.",
+          "value": "{color.palette.neutral.light-3}",
+          "$type": "color"
         },
         "neutral": {
           "$description": "Default color used for borders within the application.",

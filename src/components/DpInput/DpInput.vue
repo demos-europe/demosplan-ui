@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerWidth !== '' ? prefixClass(containerWidth) : false">
+  <div :class="containerClasses">
     <dp-label
       v-if="label.text !== ''"
       v-bind="{
@@ -7,8 +7,9 @@
         for: id,
         hint: labelHint,
         required: required
-      }" /><!--
- --><input
+      }"
+      class="mb-0.5" />
+    <input
       :id="id"
       :name="name !== '' ? name : null"
       :class="prefixClass(classes)"
@@ -17,7 +18,7 @@
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       :data-dp-validate-if="dataDpValidateIf !== '' ? dataDpValidateIf : null"
       :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
-      :data-cy="dataCy !== '' ? dataCy : false"
+      :data-cy="dataCy !== '' ? dataCy : null"
       :aria-labelledby="ariaLabelledby"
       :maxlength="maxlength !== '' ? maxlength : null"
       :minlength="minlength !== '' ? minlength : null"
@@ -37,248 +38,180 @@
   </div>
 </template>
 
-<script>
-import { exactlengthHint, maxlengthHint, minlengthHint } from '~/utils'
+<script setup lang="ts">
+import { computed, ref, toRefs, watch } from 'vue'
+import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
-import { length } from '~/shared'
-import { prefixClassMixin } from '~/mixins'
 
-export default {
-  name: 'DpInput',
+// Define an interface for the props
+interface Props {
+  ariaLabelledby?: string | null
+  autocomplete?: string
+  dataCounter?: string
+  dataCy?: string
+  dataDpValidateError?: string
+  dataDpValidateErrorFieldname?: string
+  dataDpValidateIf?: string
+  dataDpValidateShouldEqual?: string
+  disabled?: boolean | null
+  hasIcon?: boolean
+  id: string
+  label?: {
+    bold: boolean
+    hide: boolean
+    hint: string
+    text: string
+    tooltip: string
+  };
+  maxlength?: boolean | string | null
+  minlength?: boolean | string | null
+  name?: string
+  pattern?: string
+  placeholder?: string
+  preventDefaultOnEnter?: boolean
+  readonly?: boolean | null
+  required?: boolean | null
+  size?: number | null
+  type?: string
+  value?: string
+  width?: string
+}
 
-  components: {
-    DpLabel
+// Use the interface with defineProps
+const props = defineProps<Props>();
+
+const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
+
+const {
+  /**
+   * Reference another element on the page to define an accessible name if there is no label or
+   * you want to override the label.
+   */
+  ariaLabelledby = null,
+  /**
+   * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
+   * to automatically complete the input. You can also provide a type of data which is expected.
+   */
+  autocomplete = '',
+  dataCounter = '',
+  dataCy = '',
+  dataDpValidateError = '',
+  dataDpValidateErrorFieldname = '',
+  dataDpValidateIf = '',
+  dataDpValidateShouldEqual = '',
+  disabled = null,
+  /**
+   * Use: when input field used with Icon || Button, then input field has padding right.
+   */
+  hasIcon = false,
+  id,
+  name = '',
+  pattern = '',
+  placeholder = '',
+  /**
+   * Set to false to prevent default behavior onEnter.
+   */
+  preventDefaultOnEnter = true,
+  readonly = null,
+  required = null,
+  type = 'text',
+} = props
+
+const {
+  label = {
+    bold: true,
+    hide: false,
+    hint: '',
+    text: '',
+    tooltip: ''
   },
+  /**
+   * Limit the maximum allowed number of characters to the given amount.
+   */
+  maxlength = null,
+  /**
+   * Define the minimum number of characters that need to be given.
+   */
+  minlength = null,
+  /**
+   * When setting a number for the `size` prop, this is directly rendered
+   * as html attribute on the input element. Also, it is assumed that visual sizing
+   * based on that value shall be applied, that is why both container classes
+   * and element classes do not define any width styles when a size is set here.
+   */
+  size = null,
+  value = '',
+  /**
+   * Full width by default; set to 'auto' to have no width defined.
+   * @deprecated Apply width to the parent element of DpInput.
+   */
+  width = 'w-full'
+} = toRefs(props)
+const currentValue = ref(value.value)
 
-  mixins: [prefixClassMixin],
+const classes = computed(() => {
+  let _classes: string[] = [
+   `px-1 py-0.5 max-w-full rounded-input
+    text-base leading-4 bg-surface
+    outline outline-1 outline-offset-0 outline-transparent
+    focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
+    required:shadow-none`
+  ]
 
-  props: {
-    /**
-     * Reference another element on the page to define an accessible name if there is no label or
-     * you want to override the label.
-     */
-    ariaLabelledby: {
-      type: [String, Boolean],
-      required: false,
-      default: false
-    },
+  if (!(size.value && size.value > 0)) {
+    _classes.push('w-full')
+  }
 
-    /**
-     * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
-     * to automatically complete the input. You can also provide a type of data which is expected.
-     */
-    autocomplete: {
-      type: String,
-      required: false,
-      default: ''
-    },
+  if (readonly || disabled) {
+    _classes.push('bg-surface-light border-none cursor-default')
+  } else {
+    _classes.push('text-input bg-surface border border-input cursor-text')
+  }
 
-    dataCounter: {
-      type: String,
-      required: false,
-      default: ''
-    },
+  if (hasIcon) {
+    _classes.push('pr-4')
+  }
 
-    dataCy: {
-      type: String,
-      required: false,
-      default: ''
-    },
+  return _classes.join(' ')
+})
 
-    dataDpValidateError: {
-      type: String,
-      required: false,
-      default: ''
-    },
+const containerClasses = computed(() => {
+  let _classes: string[] = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
 
-    dataDpValidateErrorFieldname: {
-      type: String,
-      required: false,
-      default: ''
-    },
+  if (width.value !== 'auto' && size.value && size.value > 0) {
+    _classes.push(width.value)
+  }
 
-    dataDpValidateIf: {
-      type: String,
-      required: false,
-      default: ''
-    },
+  return _classes
+})
 
-    dataDpValidateShouldEqual: {
-      type: String,
-      required: false,
-      default: ''
-    },
+const labelHint = computed(() => {
+  const hint: string[] = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []
 
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * Use: when input field used with Icon || Button, then input field has padding right.
-     */
-    hasIcon: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    id: {
-      type: String,
-      required: true
-    },
-
-    label: {
-      type: Object,
-      default: () => ({
-        bold: true,
-        hide: false,
-        hint: '',
-        text: '',
-        tooltip: ''
-      }),
-      validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hide', 'hint', 'text', 'tooltip'].includes(key))
-      }
-    },
-
-    /**
-     * Limit the maximum allowed number of characters to the given amount.
-     */
-    maxlength: length,
-
-    /**
-     * Define the minimum number of characters that need to be given.
-     */
-    minlength: length,
-
-    name: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    pattern: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    placeholder: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
-     * Set to false to prevent default behavior onEnter.
-     */
-    preventDefaultOnEnter: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-
-    readonly: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    required: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * When setting a number for the `size` prop, this is directly rendered
-     * as html attribute on the input element. Also, it is assumed that visual sizing
-     * based on that value shall be applied, that is why both container classes
-     * and element classes do not define any width styles when a size is set here.
-     */
-    size: {
-      type: [Number, null],
-      required: false,
-      default: null
-    },
-
-    type: {
-      type: String,
-      required: false,
-      default: 'text'
-    },
-
-    value: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
-     * Full width by default; set to 'auto' to have no width defined.
-     * @deprecated Apply width to the parent element of DpInput.
-     */
-    width: {
-      type: String,
-      default: 'u-1-of-1'
-    }
-  },
-
-  data () {
-    return {
-      currentValue: this.value
-    }
-  },
-
-  computed: {
-    classes () {
-      let cssClasses = []
-      cssClasses = (this.size > 0) ? [] : [...cssClasses, 'u-1-of-1']
-      cssClasses = this.readonly || this.disabled ? [...cssClasses, 'bg-color--grey-light-2'] : cssClasses
-      cssClasses = this.type !== 'search' ? [...cssClasses, 'o-form__control-input'] : [...cssClasses, 'o-form__control-search']
-      cssClasses = this.hasIcon ? [...cssClasses, 'u-pr'] : cssClasses
-      return cssClasses.join(' ')
-    },
-
-    containerWidth () {
-      return (this.width === 'auto' || this.size > 0) ? '' : this.width
-    },
-
-    labelHint () {
-      const hint = typeof this.label.hint !== 'undefined' && this.label.hint !== '' ? [this.label.hint] : []
-
-      if (this.maxlength && !this.minlength) {
-        hint.push(maxlengthHint(this.currentValue.length, this.maxlength))
-      } else if (this.minlength && !this.maxlength) {
-        hint.push(minlengthHint(this.currentValue.length, this.minlength))
-      } else if (this.maxlength && this.minlength) {
-        if (this.maxlength === this.minlength) {
-          hint.push(exactlengthHint(this.currentValue.length, this.maxlength))
-        } else {
-          hint.push(maxlengthHint(this.currentValue.length, this.maxlength))
-          hint.push(minlengthHint(this.currentValue.length, this.minlength))
-        }
-      }
-
-      return hint
-    }
-  },
-
-  watch: {
-    value: function () {
-      this.currentValue = this.value
-    }
-  },
-
-  methods: {
-    handleEnter (event) {
-      if (this.preventDefaultOnEnter === true) {
-        event.preventDefault()
-      }
-      this.$emit('enter')
+  if (maxlength.value && !minlength.value) {
+    hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
+  } else if (minlength.value && !maxlength.value) {
+    hint.push(minlengthHint(currentValue.value.length, minlength.value))
+  } else if (maxlength.value && minlength.value) {
+    if (maxlength.value === minlength.value) {
+      hint.push(exactlengthHint(currentValue.value.length, maxlength.value))
+    } else {
+      hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
+      hint.push(minlengthHint(currentValue.value.length, minlength.value))
     }
   }
+
+  return hint
+})
+
+watch(value, (newVal) => {
+  currentValue.value = newVal
+})
+
+const handleEnter = (event: Event) => {
+  if (preventDefaultOnEnter === true) {
+    event.preventDefault()
+  }
+  emit('enter')
 }
 </script>

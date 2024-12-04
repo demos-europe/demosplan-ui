@@ -1,6 +1,5 @@
 <template>
   <div
-    v-click-outside="close"
     class="c-splitbutton">
     <slot>
       <button
@@ -20,7 +19,7 @@
       @click="toggleDropdown"
       @keyup.esc.prevent="isOpen ? isOpen = !isOpen : ''">
       <i class="fa fa-caret-down c-splitbutton__trigger-icon" />
-      <span class="sr-only">{{ Translator.trans(isOpen ? 'dropdown.close' : 'dropdown.open') }}</span>
+      <span class="sr-only">{{ isOpen ? translations.close : translations.open }}</span>
     </button>
     <div
       v-if="hasDropdownContent"
@@ -35,19 +34,24 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
+// import ClickOutside from 'vue-click-outside'
+import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpSplitButton',
 
   directives: {
-    ClickOutside
+    // ClickOutside
   },
 
   data () {
     return {
       isOpen: false,
-      hasDropdownContent: false
+      hasDropdownContent: false,
+      translations: {
+        open: de.dropdown.open,
+        close: de.dropdown.close
+      }
     }
   },
 

@@ -58,12 +58,12 @@ const initTooltip = (el, value, options) => {
 const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
   if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
     const value = tooltips[id]
-    // this has to be in sync with the Template in DpTooltip
-    const tooltipHtml =
-      `<div class="tooltip absolute ${classes} z-below-zero" role="tooltip" id="${id}">` +
-      `<div class="tooltip__arrow" data-tooltip-arrow></div>` +
-      `<div class="tooltip__inner">${value}</div>` +
-      `</div>`
+    // This has to be in sync with the Template in DpTooltip
+    const tooltipHtml = `
+      <div class="z-tooltip cursor-help max-w-13 absolute ${classes}" role="tooltip" id="${id}">
+        <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1" data-tooltip-arrow></div>
+        <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded">${value}</div>
+      </div>`
     const range = document.createRange()
     const content = range.createContextualFragment(tooltipHtml)
 
@@ -112,9 +112,6 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     right: '',
     [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px' // Always sets the arrow to the correct side.
   })
-
-  tooltipEl.classList.remove('z-below-zero')
-  tooltipEl.classList.remove('opacity-0')
 }
 
 const updateTooltip = (wrapper, value, options) => {

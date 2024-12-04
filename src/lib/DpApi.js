@@ -151,7 +151,7 @@ const handleResponseMessages = function (responseMeta) {
   if (hasOwnProp(responseMeta, 'messages')) {
     for (const type in responseMeta.messages) {
       for (const message in responseMeta.messages[type]) {
-        dplan.notify.notify(type, Translator.trans(responseMeta.messages[type][message]))
+        dplan.notify.notify(type, responseMeta.messages[type][message])
       }
     }
   }
@@ -192,7 +192,7 @@ const checkResponse = function (response, messages) {
        * The generic api (/api/2.0/{resourceType}) does not specify success messages.
        * Instead, custom messages passed by the calling component are displayed here.
        */
-      dplan.notify.notify(messages[response.status].type, Translator.trans(messages[response.status].text))
+      dplan.notify.notify(messages[response.status].type, messages[response.status].text)
     }
 
     if (response.status >= 400) {

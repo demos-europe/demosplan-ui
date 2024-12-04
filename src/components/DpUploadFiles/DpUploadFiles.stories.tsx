@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue'
-import DpUploadFiles from './'
+import { DpUploadFiles } from './index'
 
 const meta: Meta<typeof DpUploadFiles> = {
     component: DpUploadFiles,

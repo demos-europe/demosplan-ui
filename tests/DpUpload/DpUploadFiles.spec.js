@@ -1,4 +1,4 @@
-import DpUploadFiles from '~/components/DpUploadFiles'
+import { DpUploadFiles } from '~/components/DpUploadFiles'
 import { shallowMount } from '@vue/test-utils'
 
 
@@ -17,7 +17,7 @@ describe.skip('DpUploadFiles', () => {
     }
 
     const instance = shallowMountWith(DpUploadFiles, {
-      propsData: {
+      props: {
         allowedFileTypes: 'pdf'
       }
     })
@@ -35,7 +35,7 @@ describe.skip('DpUploadFiles', () => {
     }
 
     const instance = shallowMount(DpUploadFiles, {
-      propsData: {
+      props: {
         allowedFileTypes: 'pdf',
         needsHiddenInput: true
       }
@@ -59,7 +59,7 @@ describe.skip('DpUploadFiles', () => {
     }
 
     const instance = shallowMount(DpUploadFiles, {
-      propsData: {
+      props: {
         allowedFileTypes: 'pdf',
         needsHiddenInput: true
       }

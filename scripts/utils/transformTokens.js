@@ -33,11 +33,17 @@ const lowerCamelToDash = (str) => {
 
 // Build Css variables chain to resolve aliases
 const transformTailwindTokenValue = (token, formatterArguments) => {
+  let current = token
+
+  // Css variables are not supported within media queries. See https://stackoverflow.com/a/40723269
+  if (token.path[0] === 'breakpoints') {
+    return current.original.value
+  }
+
   const { dictionary, platform } = formatterArguments
   const varName = `--${platform.prefix}${transformTailwindTokenName(token, true).replace(/\./g, '-')}`
   let fallback = resolveValue(token, dictionary)
 
-  let current = token
   let cssVar = `var(${varName}`
   while (current.original && current.original.value.startsWith('{')) {
     const ref = dictionary.getReferences(current.original.value)[0]
@@ -51,6 +57,9 @@ const transformTailwindTokenValue = (token, formatterArguments) => {
   // Add final fallback, close with brackets corresponding to the amount of "var" usages found
   cssVar += `, ${fallback}` + ')'.repeat(cssVar.match(/var\(/g).length)
 
+  if (token.path[0] === 'fontSize' && token.original.$lineHeight) {
+    cssVar = [cssVar, token.original.$lineHeight]
+  }
   return cssVar
 }
 

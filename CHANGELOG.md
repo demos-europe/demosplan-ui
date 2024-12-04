@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
+- ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1096)) Fix jest tests ([@muellerdemos](https://github.com/muellerdemos))
 - ([#1092](https://github.com/demos-europe/demosplan-ui/pull/1092)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1082](https://github.com/demos-europe/demosplan-ui/pull/1082) ([@hwiem](https://github.com/hwiem))
 - ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
 - ([#1103](https://github.com/demos-europe/demosplan-ui/pull/1103)) Make TipTaps Mention extention work ([@salisdemos](https://github.com/salisdemos))
@@ -17,6 +18,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#1105](https://github.com/demos-europe/demosplan-ui/pull/1105)) BREAKING: Minimum required Node version: 20.18.1 ([@salisdemos](https://github.com/salisdemos))
 - ([#1082](https://github.com/demos-europe/demosplan-ui/pull/1082)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
 - ([#1069](https://github.com/demos-europe/demosplan-ui/pull/1069)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))

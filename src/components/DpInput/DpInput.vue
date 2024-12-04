@@ -30,9 +30,9 @@
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
       v-model="props.value"
-      @blur="$emit('blur', props.value)"
-      @focus="$emit('focus')"
-      @input="$emit('input', props.value)"
+      @blur="emit('blur', $event.target.value)"
+      @focus="emit('focus')"
+      @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -194,7 +194,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
+const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
 
 const classes = computed(() => {
   let _classes: string[] = [

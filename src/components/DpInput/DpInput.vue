@@ -42,7 +42,6 @@ import { computed } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
 
-// Use the interface with defineProps
 const props = defineProps({
   ariaLabelledby: {
     type: String,

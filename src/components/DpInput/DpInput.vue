@@ -43,12 +43,20 @@ import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/ut
 import DpLabel from '~/components/DpLabel'
 
 const props = defineProps({
+  /**
+   * Reference another element on the page to define an accessible name if there is no label or
+   * you want to override the label.
+   */
   ariaLabelledby: {
     type: String,
     required: false,
     default: null
   },
 
+  /**
+   * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
+   * to automatically complete the input. You can also provide a type of data which is expected.
+   */
   autocomplete: {
     type: String,
     required: false,
@@ -97,6 +105,9 @@ const props = defineProps({
     default: null
   },
 
+  /**
+   * Use: when input field used with Icon || Button, then input field has padding right.
+   */
   hasIcon: {
     type: Boolean,
     required: false,
@@ -120,12 +131,18 @@ const props = defineProps({
     })
   },
 
+  /**
+   * Limit the maximum allowed number of characters to the given amount.
+   */
   maxlength: {
     type: [Number, String],
     required: false,
     default: null
   },
 
+  /**
+   * Define the minimum number of characters that need to be given.
+   */
   minlength: {
     type: [Number, String],
     required: false,
@@ -150,6 +167,9 @@ const props = defineProps({
     default: ''
   },
 
+  /**
+   * Set to false to prevent default behavior onEnter.
+   */
   preventDefaultOnEnter: {
     type: Boolean,
     required: false,
@@ -168,6 +188,12 @@ const props = defineProps({
     default: null
   },
 
+  /**
+   * When setting a number for the `size` prop, this is directly rendered
+   * as html attribute on the input element. Also, it is assumed that visual sizing
+   * based on that value shall be applied, that is why both container classes
+   * and element classes do not define any width styles when a size is set here.
+   */
   size: {
     type: Number,
     required: false,
@@ -186,6 +212,10 @@ const props = defineProps({
     default: ''
   },
 
+  /**
+   * Full width by default; set to 'auto' to have no width defined.
+   * @deprecated Apply width to the parent element of DpInput.
+   */
   width: {
     type: String,
     required: false,

@@ -4,7 +4,7 @@ import { mergeAttributes } from '@tiptap/core'
 import { Mention } from '../../../../node_modules/@tiptap/extension-mention/dist/index.js'
 
 export default Mention.extend({
-  renderHTML({ node, options }) {
+  renderHTML({ node, HTMLAttributes }) {
     return [
       'span',
       mergeAttributes({ 'data-type': this.name, 'data-suggestion-id': node.attrs.id }, options.HTMLAttributes),

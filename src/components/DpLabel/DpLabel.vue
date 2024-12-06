@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, PropType } from 'vue'
 import { CleanHtml as vCleanhtml } from '~/directives'
 import { prefixClass } from '~/utils'
 import DpContextualHelp from '~/components/DpContextualHelp'
@@ -48,7 +48,7 @@ const props = defineProps({
 
   // Can be string or array (the second element being the "maxlength" hint).
   hint: {
-    type: [String, Array],
+    type: [String, Array] as PropType<string | string[]>,
     required: false,
     default: () => []
   },

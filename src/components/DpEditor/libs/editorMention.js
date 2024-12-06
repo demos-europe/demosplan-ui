@@ -7,7 +7,7 @@ export default Mention.extend({
   renderHTML({ node, HTMLAttributes }) {
     return [
       'span',
-      mergeAttributes({ 'data-type': this.name, 'data-suggestion-id': node.attrs.id }, options.HTMLAttributes),
+      mergeAttributes({ 'data-type': this.name, 'data-suggestion-id': node.attrs.id }, HTMLAttributes),
       this.options.renderLabel({
         options: this.options,
         node,

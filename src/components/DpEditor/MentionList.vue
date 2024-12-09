@@ -91,9 +91,6 @@ export default {
         this.command(item)
       }
     }
-  },
-  mounted () {
-    console.log('MentionList mounted')
   }
 }
 </script>

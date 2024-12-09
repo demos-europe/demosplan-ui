@@ -53,16 +53,19 @@ export default {
     onKeyDown({ event }) {
       if (event.key === 'ArrowUp') {
         this.upHandler()
+
         return true
       }
 
       if (event.key === 'ArrowDown') {
         this.downHandler()
+
         return true
       }
 
       if (event.key === 'Enter') {
         this.enterHandler()
+
         return true
       }
 
@@ -88,6 +91,9 @@ export default {
         this.command(item)
       }
     }
+  },
+  mounted () {
+    console.log('MentionList mounted')
   }
 }
 </script>

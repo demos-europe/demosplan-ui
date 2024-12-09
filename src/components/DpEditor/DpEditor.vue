@@ -362,6 +362,7 @@ import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
 import { prefixClassMixin } from '~/mixins'
 import { v4 as uuid } from 'uuid'
+import { mergeAttributes } from '@tiptap/core'
 
 export default {
   name: 'DpEditor',
@@ -720,19 +721,32 @@ export default {
         Text,
         History,
         HardBreak,
-        Heading.configure({ levels: this.toolbar.headings })
+        Heading.configure({ levels: this.toolbar.headings }),
+        InsertAtCursorPos
       ]
-
-      extensions.push(InsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
         this.suggestions.forEach(suggestion => {
           extensions.push(Mention.configure({
-            HTMLAttributes: {
-              class: 'suggestion__node'
-            },
-            renderLabel({ node }) {
-              return suggestion.matcher.char + node.attrs.label
+            renderHTML ({ node, HTMLAttributes }) {
+              const self = Mention
+
+              return [
+                'span',
+                mergeAttributes({
+                  class: 'suggestion__node',
+                  'data-id': node.attrs.id,
+                  'data-label': node.attrs.label,
+                  'data-suggestion-id': node.attrs.id,
+                  'data-type': self.name
+                }, HTMLAttributes),
+                self.options.renderText({
+                  options: {
+                    suggestion: { char: suggestion.matcher.char }
+                  },
+                  node,
+                }),
+              ]
             },
             suggestion: buildSuggestion(suggestion)
           }))

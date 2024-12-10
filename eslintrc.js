@@ -128,7 +128,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './webpack.config.mjs'
+        config: './webpack.config.js'
       }
     }
   }

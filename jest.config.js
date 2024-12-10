@@ -1,5 +1,5 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-const path = require('path')
+import path from 'path'
 
 module.exports = {
   collectCoverage: false,
@@ -36,7 +36,7 @@ module.exports = {
   modulePathIgnorePatterns: [
     './dist'
   ],
-  rootDir: path.resolve(__dirname, './'),
+  rootDir: path.resolve('./'),
   roots: ['./tests'],
   setupFiles: ['./jest/setup.js'],
   testRegex: '.*(test|spec)\\.js]?$',

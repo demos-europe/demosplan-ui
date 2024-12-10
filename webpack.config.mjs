@@ -36,6 +36,9 @@ const webpackConfig = {
         clean: true
     },
     resolve: {
+        alias: {
+            '~': path.resolve('src')
+        },
         extensions: ['.js', '.vue'],
         symlinks: false
     },

@@ -8,6 +8,7 @@
         hint: labelHint,
         required: required
       }"
+      :text="label.text"
       class="mb-0.5" />
     <input
       :id="id"
@@ -29,7 +30,7 @@
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
-      v-model="props.value"
+      :value="props.value"
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
       @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"

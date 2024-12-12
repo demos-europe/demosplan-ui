@@ -36,9 +36,15 @@ const de = {
       insert: 'Link einfügen',
       hint: 'URLs sollten mit \'https://\' beginnen.'
     },
+    paste: {
+      wordPasteExplanation: 'Um Text aus Word einzufügen, benutzen Sie bitte die Tastenkombination "Strg + Umschalt + v".'
+    },
     redo: 'Wiederholen',
     underline: 'Unterstrichen',
     undo: 'Rückgängig'
+  },
+  elements: {
+    none: 'Keine Elemente vorhanden'
   },
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",

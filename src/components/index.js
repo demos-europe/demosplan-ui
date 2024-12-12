@@ -55,7 +55,10 @@ import DpTooltip from './DpTooltip'
 import DpTooltipIcon from './DpTooltipIcon'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
-import DpUploadFiles from './DpUploadFiles'
+import {
+  DpUpload,
+  DpUploadFiles
+} from './DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
 
 export {
@@ -115,6 +118,7 @@ export {
   DpTooltipIcon,
   DpTransitionExpand,
   DpTreeList,
+  DpUpload,
   DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash

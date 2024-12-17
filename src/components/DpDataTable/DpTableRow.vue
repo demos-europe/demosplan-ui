@@ -34,6 +34,7 @@
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
       :class="{ 'c-data-table__resizable': isTruncatable }"
+      class="break-words"
       :data-col-idx="`${idx}`">
       <div
         v-if="isTruncatable"

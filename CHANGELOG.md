@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1120](https://github.com/demos-europe/demosplan-ui/pull/1120)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.42 - 2024-12-16
 
 ### Changed
@@ -13,7 +17,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#1116](https://github.com/demos-europe/demosplan-ui/pull/1116)) DpDataTable: Remove overflow hidden from normal table rows and add a node type check for first children ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-- ([#1120](https://github.com/demos-europe/demosplan-ui/pull/1120)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 
 ## v0.3.41 - 2024-11-28

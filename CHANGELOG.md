@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 
-- ([#1120](https://github.com/demos-europe/demosplan-ui/pull/1120)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#1120](https://github.com/demos-europe/demosplan-ui/pull/1120)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns and make header truncatable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## v0.3.42 - 2024-12-16
 

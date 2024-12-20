@@ -2188,7 +2188,7 @@ __metadata:
     "@types/sortablejs": "npm:^1"
     "@typescript-eslint/eslint-plugin": "npm:^5.4.0"
     "@typescript-eslint/parser": "npm:^5.4.0"
-    "@uppy/core": "npm:^3.0.1"
+    "@uppy/core": "npm:^4.3.1"
     "@uppy/drag-drop": "npm:^3.0.0"
     "@uppy/progress-bar": "npm:^3.0.0"
     "@uppy/tus": "npm:^3.0.1"
@@ -6362,19 +6362,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/core@npm:^3.0.1":
-  version: 3.13.1
-  resolution: "@uppy/core@npm:3.13.1"
+"@uppy/core@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "@uppy/core@npm:4.3.1"
   dependencies:
     "@transloadit/prettier-bytes": "npm:^0.3.4"
-    "@uppy/store-default": "npm:^3.2.2"
-    "@uppy/utils": "npm:^5.9.0"
+    "@uppy/store-default": "npm:^4.1.2"
+    "@uppy/utils": "npm:^6.0.6"
     lodash: "npm:^4.17.21"
     mime-match: "npm:^1.0.2"
     namespace-emitter: "npm:^2.0.1"
-    nanoid: "npm:^4.0.0"
+    nanoid: "npm:^5.0.0"
     preact: "npm:^10.5.13"
-  checksum: 10c0/5af8ada79595b3362cb69560cff8f51806e3c878bd7243a3e1bc66ef6dbfa6a98bf3d8b297d64fb7fb48937bb827b2a8a33001ea81fbb9b8b8efb01ba7715dee
+  checksum: 10c0/42a28098fc6da0b42a4c40babfe2ac207efeeb153f76226d579c30cd20f3595a7c15486a3cfcff8952ca30642748dff6972f1e5cb98e852ce255e9f444dcce31
   languageName: node
   linkType: hard
 
@@ -6402,10 +6402,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uppy/store-default@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "@uppy/store-default@npm:3.2.2"
-  checksum: 10c0/8cb00d6b7af5fa04235f03641b69866c428a22aa64d23129ee2b6f854c559b180bd919f553ade426ce96ffd73327171628276b899ff047487458ca2a066e4d29
+"@uppy/store-default@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "@uppy/store-default@npm:4.1.2"
+  checksum: 10c0/3705648e55d218743a11f510de8ba9afe7dd283eaa45bb8a3228de801a2cba7f3826ae48243e66e0e6f0eff5b74bf149a5e8d307a40a377d8e0a32fa14b24ef9
   languageName: node
   linkType: hard
 
@@ -6429,6 +6429,16 @@ __metadata:
     lodash: "npm:^4.17.21"
     preact: "npm:^10.5.13"
   checksum: 10c0/857c8fa11814816f0a1d97ce78f86cac8c9f4e46267d2d64631f7cce8d3b8caf3796cccdd4cecdfe110862ebbed5a76896522a965f09b0940f0979b91f04c793
+  languageName: node
+  linkType: hard
+
+"@uppy/utils@npm:^6.0.6":
+  version: 6.0.6
+  resolution: "@uppy/utils@npm:6.0.6"
+  dependencies:
+    lodash: "npm:^4.17.21"
+    preact: "npm:^10.5.13"
+  checksum: 10c0/937d31918825c2569fdc3de95eb445b5d6d9d00676ce188c4f11c519f66a523ee790051b6a576f6bb34664de81d4e540a76ab4bb421929c145e97e36a09eaca7
   languageName: node
   linkType: hard
 
@@ -15243,12 +15253,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^4.0.0":
-  version: 4.0.2
-  resolution: "nanoid@npm:4.0.2"
+"nanoid@npm:^5.0.0":
+  version: 5.0.9
+  resolution: "nanoid@npm:5.0.9"
   bin:
     nanoid: bin/nanoid.js
-  checksum: 10c0/3fec62f422bc4727918eda0e7aa43e9cbb2e759be72813a0587b9dac99727d3c7ad972efce7f4f1d4cb5c7c554136a1ec3b1043d1d91d28d818d6acbe98200e5
+  checksum: 10c0/a2d9710525d4998a8a1610bbe6eb9a92c254ebab7c567c1ab429046fe7eed9c4df3508b59fb44c58ffdc98edb28dd6f953715c14b64ea0a3a2ce37420cdfeefd
   languageName: node
   linkType: hard
 

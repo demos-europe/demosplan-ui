@@ -10,13 +10,13 @@
       v-model="searchTerm" /><!--
 
  --><dp-button
-    class="align-top search rounded-r-md border-l-0 rounded-l-none"
-    data-cy="handleSearch"
-    hide-text
-    icon="search"
-    :text="Translator.trans('searching')"
-    variant="outline"
-    @click="handleSearch" />
+      class="align-top search rounded-r-md rounded-l-none"
+      data-cy="handleSearch"
+      hide-text
+      icon="search"
+      :text="Translator.trans('searching')"
+      variant="outline"
+      @click="handleSearch" />
   </span>
 </template>
 

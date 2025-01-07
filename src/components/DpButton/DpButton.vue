@@ -57,7 +57,7 @@ export default {
       required: false,
       type: String,
       default: 'primary',
-      validator: (prop) => ['primary', 'secondary', 'warning'].includes(prop)
+      validator: (prop: string) => ['primary', 'secondary', 'warning'].includes(prop)
     },
 
     /**
@@ -96,7 +96,7 @@ export default {
       required: false,
       type: String,
       default: 'small',
-      validator: prop => Object.keys(ICON_SIZES).includes(prop)
+      validator: (prop: string) => Object.keys(ICON_SIZES).includes(prop)
     },
 
     /**
@@ -146,7 +146,7 @@ export default {
       required: false,
       type: String,
       default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
+      validator: (prop: string) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   },
 

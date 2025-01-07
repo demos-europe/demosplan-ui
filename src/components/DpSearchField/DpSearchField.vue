@@ -4,16 +4,19 @@
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search' }"
+      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search', inputClasses: 'rounded-r-none' }"
       @reset="handleReset"
       @enter="handleSearch"
       v-model="searchTerm" /><!--
 
  --><dp-button
-      class="align-top"
-      data-cy="handleSearch"
-      @click="handleSearch"
-      :text="Translator.trans('searching')" />
+    class="align-top search rounded-r-md border-l-0 rounded-l-none"
+    data-cy="handleSearch"
+    hide-text
+    icon="search"
+    :text="Translator.trans('searching')"
+    variant="outline"
+    @click="handleSearch" />
   </span>
 </template>
 
@@ -61,7 +64,9 @@ export default {
 
   computed: {
     cssClasses () {
-      return this.inputWidth !== '' ? `inline-block u-mr-0_5 ${this.inputWidth}` : 'inline-block u-mr-0_5'
+      const classes = 'inline-block rounded-r-none'
+
+      return this.inputWidth !== '' ? `${classes} ${this.inputWidth}` : classes
     }
   },
 

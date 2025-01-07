@@ -39,12 +39,6 @@ export default {
   },
 
   props: {
-    dataCy: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     /**
      * By default, the normal variant is used. If set to 'small', a smaller variant is displayed
      */
@@ -53,6 +47,12 @@ export default {
       required: false,
       default: 'medium',
       validator: (prop) => ['small', 'medium'].includes(prop)
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     defaultValue: {

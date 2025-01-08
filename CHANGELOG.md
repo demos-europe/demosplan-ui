@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.3 - 2024-12-11
+
 ### Fixed
 
 - ([#1121](https://github.com/demos-europe/demosplan-ui/pull/1121)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns and make header truncatable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
@@ -64,6 +66,31 @@ to `~0.3.*` in your package.json.
 
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
+
+
+## v0.3.41 - 2024-11-28
+
+### Fixed
+
+- ([#1101](https://github.com/demos-europe/demosplan-ui/pull/1101)) DpTableRow: Fix flyout menu not visible ([@muellerdemos](https://github.com/muellerdemos))
+
+## v0.3.40 - 2024-11-28
+
+### Fixed
+
+- ([#1100](https://github.com/demos-europe/demosplan-ui/pull/1100)) DpTableRow: Fix styles of flyout menu ([@muellerdemos](https://github.com/muellerdemos))
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Fix translation keys displayed as tooltip ([@hwiem](https://github.com/hwiem))
+
+### Added
+
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Add prop to vertically center the toggle for branches;
+  display tooltips for the toggles ([@hwiem](https://github.com/hwiem))
+
+## v0.3.39 - 2024-11-26
+
+### Fixed
+
+- ([#1094](https://github.com/demos-europe/demosplan-ui/pull/1094)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
 
 ## v0.3.38 - 2024-11-15
 

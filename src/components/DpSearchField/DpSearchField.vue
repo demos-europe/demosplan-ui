@@ -7,16 +7,19 @@
       :input-attributes="{ placeholder: Translator.trans('search'), type: 'search', inputClasses: 'rounded-r-none' }"
       @reset="handleReset"
       @enter="handleSearch"
-      v-model="searchTerm" /><!--
+      v-model="searchTerm">
+      <!-- Slot for additional buttons -->
+      <slot />
+    </dp-resettable-input><!--
 
  --><dp-button
-      class="align-top search rounded-r-md rounded-l-none"
-      data-cy="handleSearch"
-      hide-text
-      icon="search"
-      :text="Translator.trans('searching')"
-      variant="outline"
-      @click="handleSearch" />
+          class="align-top search rounded-r-md rounded-l-none"
+          data-cy="handleSearch"
+          hide-text
+          icon="search"
+          :text="Translator.trans('searching')"
+          variant="outline"
+          @click="handleSearch" />
   </span>
 </template>
 

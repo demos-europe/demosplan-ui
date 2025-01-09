@@ -94,11 +94,6 @@ export default {
 
       this.searchTermApplied = this.searchTerm
       this.$emit('search', this.searchTerm)
-    },
-
-    reset () {
-      this.searchTermApplied = ''
-      this.searchTerm = ''
     }
   },
 

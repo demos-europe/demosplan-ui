@@ -79,7 +79,6 @@ export default {
 
       /*
        * Only emit reset if the searchTerm has been changed
-       * The empty string is emitted to stick to only one type.
        */
       if (this.searchTermApplied !== this.searchTerm) {
         this.$emit('reset')

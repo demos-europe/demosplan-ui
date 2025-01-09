@@ -82,7 +82,7 @@ export default {
        * The empty string is emitted to stick to only one type.
        */
       if (this.searchTermApplied !== this.searchTerm) {
-        this.$emit('reset', '')
+        this.$emit('reset')
         this.searchTermApplied = ''
       }
     },

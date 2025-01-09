@@ -76,7 +76,6 @@ export default {
   methods: {
     handleReset () {
       this.searchTerm = ''
-
       /*
        * Only emit reset if the searchTerm has been changed
        */

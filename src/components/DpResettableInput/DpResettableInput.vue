@@ -23,6 +23,8 @@
         icon="xmark"
         :size="iconSize" />
     </button>
+    <!-- Slot for additional buttons -->
+    <slot />
   </div>
 </template>
 
@@ -99,7 +101,10 @@ export default {
 
   computed: {
     buttonClass () {
-      return this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      classes = this.$slots.default ? `${classes} grouped` : classes
+
+      return classes
     },
 
     iconSize () {

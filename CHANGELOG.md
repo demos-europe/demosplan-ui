@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
 - ([#1133](https://github.com/demos-europe/demosplan-ui/pull/1133)) DpSearchField: Introduce condensed search field with attached search button ([@hwiem](https://github.com/hwiem))
 
 ### Fixed

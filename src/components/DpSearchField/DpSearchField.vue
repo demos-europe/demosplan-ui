@@ -4,7 +4,7 @@
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search', inputClasses: 'rounded-r-none' }"
+      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search' }"
       @reset="handleReset"
       @enter="handleSearch"
       v-model="searchTerm">

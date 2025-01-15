@@ -129,12 +129,6 @@ export default {
       required: true
     },
 
-    inputClasses: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     label: {
       type: Object,
       default: () => ({
@@ -245,7 +239,6 @@ export default {
       cssClasses = this.readonly || this.disabled ? [...cssClasses, 'bg-color--grey-light-2'] : cssClasses
       cssClasses = this.type !== 'search' ? [...cssClasses, 'o-form__control-input'] : [...cssClasses, 'o-form__control-search']
       cssClasses = this.hasIcon ? [...cssClasses, 'u-pr'] : cssClasses
-      cssClasses = this.inputClasses !== '' ? [...cssClasses, this.inputClasses] : cssClasses
       return cssClasses.join(' ')
     },
 

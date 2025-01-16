@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul
-      v-if="entries.length > 0 || Object.keys(entries).length > 0"
+      v-if="Object.keys(entries).length > 0"
       class="u-mb-0_75">
       <li
         v-for="(entry, index) in entries"

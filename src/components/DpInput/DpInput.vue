@@ -8,6 +8,7 @@
         hint: labelHint,
         required: required
       }"
+      :text="label.text"
       class="mb-0.5" />
     <input
       :id="id"
@@ -21,7 +22,6 @@
       :data-cy="dataCy !== '' ? dataCy : null"
       :aria-labelledby="ariaLabelledby"
       :maxlength="maxlength !== '' ? maxlength : null"
-      :minlength="minlength !== '' ? minlength : null"
       :type="type"
       :pattern="pattern !== '' ? pattern : null"
       :placeholder="placeholder !== '' ? placeholder : null"
@@ -30,124 +30,201 @@
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
-      v-model="currentValue"
-      @blur="$emit('blur', currentValue)"
-      @focus="$emit('focus')"
-      @input="$emit('input', currentValue)"
+      :value="props.value"
+      @blur="emit('blur', $event.target.value)"
+      @focus="emit('focus')"
+      @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"
       @keydown.enter="handleEnter">
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
 
-// Define an interface for the props
-interface Props {
-  ariaLabelledby?: string | null
-  autocomplete?: string
-  dataCounter?: string
-  dataCy?: string
-  dataDpValidateError?: string
-  dataDpValidateErrorFieldname?: string
-  dataDpValidateIf?: string
-  dataDpValidateShouldEqual?: string
-  disabled?: boolean | null
-  hasIcon?: boolean
-  id: string
-  label?: {
-    bold: boolean
-    hide: boolean
-    hint: string
-    text: string
-    tooltip: string
-  };
-  maxlength?: boolean | string | null
-  minlength?: boolean | string | null
-  name?: string
-  pattern?: string
-  placeholder?: string
-  preventDefaultOnEnter?: boolean
-  readonly?: boolean | null
-  required?: boolean | null
-  size?: number | null
-  type?: string
-  value?: string | number
-  width?: string
-}
-
-// Use the interface with defineProps
-const props = defineProps<Props>();
-
-const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
-
-const {
+const props = defineProps({
   /**
    * Reference another element on the page to define an accessible name if there is no label or
    * you want to override the label.
    */
-  ariaLabelledby = null,
+  ariaLabelledby: {
+    type: String,
+    required: false,
+    default: null
+  },
+
   /**
    * Tell the browser if autocomplete is allowed or not. If enabled the browser is allowed
    * to automatically complete the input. You can also provide a type of data which is expected.
    */
-  autocomplete = '',
-  dataCounter = '',
-  dataCy = '',
-  dataDpValidateError = '',
-  dataDpValidateErrorFieldname = '',
-  dataDpValidateIf = '',
-  dataDpValidateShouldEqual = '',
-  disabled = null,
+  autocomplete: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataCounter: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataCy: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataDpValidateError: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataDpValidateErrorFieldname: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataDpValidateIf: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  dataDpValidateShouldEqual: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: null
+  },
+
   /**
    * Use: when input field used with Icon || Button, then input field has padding right.
    */
-  hasIcon = false,
-  id,
-  name = '',
-  pattern = '',
-  placeholder = '',
-  /**
-   * Set to false to prevent default behavior onEnter.
-   */
-  preventDefaultOnEnter = true,
-  readonly = null,
-  required = null,
-  type = 'text',
-} = props
-
-const {
-  label = {
-    bold: true,
-    hide: false,
-    hint: '',
-    text: '',
-    tooltip: ''
+  hasIcon: {
+    type: Boolean,
+    required: false,
+    default: false
   },
+
+  id: {
+    type: String,
+    required: true
+  },
+
+  label: {
+    type: Object,
+    required: false,
+    default: () => ({
+      bold: true,
+      hide: false,
+      hint: '',
+      text: '',
+      tooltip: ''
+    })
+  },
+
   /**
    * Limit the maximum allowed number of characters to the given amount.
    */
-  maxlength = null,
+  maxlength: {
+    type: [Number, String],
+    required: false,
+    default: null
+  },
+
   /**
    * Define the minimum number of characters that need to be given.
    */
-  minlength = null,
+  minlength: {
+    type: [Number, String],
+    required: false,
+    default: null
+  },
+
+  name: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  pattern: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  placeholder: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  /**
+   * Set to false to prevent default behavior onEnter.
+   */
+  preventDefaultOnEnter: {
+    type: Boolean,
+    required: false,
+    default: true
+  },
+
+  readonly: {
+    type: Boolean,
+    required: false,
+    default: null
+  },
+
+  required: {
+    type: Boolean,
+    required: false,
+    default: null
+  },
+
   /**
    * When setting a number for the `size` prop, this is directly rendered
    * as html attribute on the input element. Also, it is assumed that visual sizing
    * based on that value shall be applied, that is why both container classes
    * and element classes do not define any width styles when a size is set here.
    */
-  size = null,
-  value = '',
+  size: {
+    type: Number,
+    required: false,
+    default: null
+  },
+
+  type: {
+    type: String,
+    required: false,
+    default: 'text'
+  },
+
+  value: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
   /**
    * Full width by default; set to 'auto' to have no width defined.
    * @deprecated Apply width to the parent element of DpInput.
    */
-  width = 'w-full'
-} = toRefs(props)
-const currentValue = ref(value.value)
+  width: {
+    type: String,
+    required: false,
+    default: 'w-full'
+  }
+})
+
+const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
 
 const classes = computed(() => {
   let _classes: string[] = [
@@ -158,17 +235,17 @@ const classes = computed(() => {
     required:shadow-none`
   ]
 
-  if (!(size.value && size.value > 0)) {
+  if (!(props.size && props.size > 0)) {
     _classes.push('w-full')
   }
 
-  if (readonly || disabled) {
+  if (props.readonly || props.disabled) {
     _classes.push('bg-surface-light border-none cursor-default')
   } else {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (hasIcon) {
+  if (props.hasIcon) {
     _classes.push('pr-4')
   }
 
@@ -178,40 +255,37 @@ const classes = computed(() => {
 const containerClasses = computed(() => {
   let _classes: string[] = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
 
-  if (width.value !== 'auto' && size.value && size.value > 0) {
-    _classes.push(width.value)
+  if (props.width !== 'auto' && props.size && props.size > 0) {
+    _classes.push(props.width)
   }
 
   return _classes
 })
 
 const labelHint = computed(() => {
-  const hint: string[] = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []
+  const hint: string[] = props.label.hint ? [props.label.hint] : []
 
-  if (maxlength.value && !minlength.value) {
-    hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
-  } else if (minlength.value && !maxlength.value) {
-    hint.push(minlengthHint(currentValue.value.length, minlength.value))
-  } else if (maxlength.value && minlength.value) {
-    if (maxlength.value === minlength.value) {
-      hint.push(exactlengthHint(currentValue.value.length, maxlength.value))
+  if (props.maxlength && !props.minlength) {
+    hint.push(maxlengthHint(props.value.length, props.maxlength))
+  } else if (props.minlength && !props.maxlength) {
+    hint.push(minlengthHint(props.value.length, props.minlength))
+  } else if (props.maxlength && props.minlength) {
+    if (props.maxlength === props.minlength) {
+      hint.push(exactlengthHint(props.value.length, props.maxlength))
     } else {
-      hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
-      hint.push(minlengthHint(currentValue.value.length, minlength.value))
+      hint.push(maxlengthHint(props.value.length, props.maxlength))
+      hint.push(minlengthHint(props.value.length, props.minlength))
     }
   }
 
   return hint
 })
 
-watch(value, (newVal) => {
-  currentValue.value = newVal
-})
-
 const handleEnter = (event: Event) => {
-  if (preventDefaultOnEnter === true) {
+  if (props.preventDefaultOnEnter) {
     event.preventDefault()
   }
+
   emit('enter')
 }
 </script>

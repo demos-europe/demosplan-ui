@@ -131,12 +131,14 @@ const props = defineProps({
 
   /**
    * The type attribute can be set to a value of `submit` manually, if the button is used to post a form.
+   * When set to 'reset', the button will reset all the form fields in the form it is placed in. Use with caution,
+   * since users tend to find this annoying.
    */
   type: {
     type: String as PropType<ButtonType>,
     required: false,
     default: 'button',
-    validator: (prop: ButtonType): boolean  => ['button', 'submit'].includes(prop)
+    validator: (prop: ButtonType): boolean  => ['button', 'reset', 'submit'].includes(prop)
   },
 
   /**

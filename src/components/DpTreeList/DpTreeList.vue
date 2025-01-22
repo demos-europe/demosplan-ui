@@ -250,7 +250,7 @@ export default {
         const payload = {
           elementId: element.id,
           newIndex: newIndex,
-          parentId: nodeId
+          parentId: nodeId,
         }
         this.$emit('draggable:change', payload)
       }

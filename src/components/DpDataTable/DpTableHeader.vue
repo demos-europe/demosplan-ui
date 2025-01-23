@@ -37,7 +37,9 @@
           v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
           :name="`header-${hf.field}`"
           v-bind="hf">
-          <span v-if="hf.label" v-text="hf.label" />
+          <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
+            <span v-if="hf.label" v-text="hf.label" />
+          </div>
         </slot>
         <span
           v-else-if="hf.label"

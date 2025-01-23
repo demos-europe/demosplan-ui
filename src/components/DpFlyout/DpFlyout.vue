@@ -7,7 +7,7 @@
       'o-flyout--padded': padded,
       'is-expanded': isExpanded,
       'o-flyout--menu': hasMenu,
-      'bg-surface-medium py-0.5 mx-0.5 rounded-md': mode === 'dark'
+      'bg-surface-medium rounded-md': mode === 'dark'
     }"
     v-click-outside="close"
     data-cy="flyoutTrigger">
@@ -15,7 +15,7 @@
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
-      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap pb-0.5"
+      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
       :data-cy="dataCy"
       @click="toggle">
       <slot

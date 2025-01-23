@@ -79,7 +79,7 @@
     "@types/jest": "^29.5.1",
     "@types/qs": "^6.9.7",
     "@types/sortablejs": "^1",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "^5.0.8",

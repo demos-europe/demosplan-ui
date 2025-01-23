@@ -33,7 +33,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="{ 'c-data-table__resizable': isTruncatable }"
+      :class="[{ 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }]"
       :data-col-idx="`${idx}`">
       <div
         :class="[
@@ -57,7 +57,7 @@
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible">
+      class="overflow-hidden min-w-[50px]">
       <slot
         name="flyout"
         v-bind="item" />
@@ -65,7 +65,7 @@
 
     <td
       v-if="isExpandable"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleExpand(item[trackBy])">
@@ -76,7 +76,7 @@
 
     <td
       v-if="isTruncatable"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
       :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleWrap(item[trackBy])">

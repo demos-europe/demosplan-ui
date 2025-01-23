@@ -1,4 +1,4 @@
-import { DOMParser } from 'prosemirror-model'
+import { DOMParser } from '@tiptap/pm/model'
 import { Node } from '@tiptap/core'
 
 export default Node.create({

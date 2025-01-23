@@ -14,6 +14,7 @@
       v-if="secondary"
       color="secondary"
       :data-cy="`${dataCy}:abortButton`"
+      :disabled="disabled"
       :href="href"
       :text="secondaryText"
       :variant="variant"

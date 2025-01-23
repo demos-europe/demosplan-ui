@@ -1,4 +1,4 @@
-import deepMerge from '../../src/utils/deepMerge'
+import deepMerge from '~/utils/deepMerge'
 
 let mergedTarget
 let source = {

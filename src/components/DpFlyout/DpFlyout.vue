@@ -1,6 +1,6 @@
 <template>
   <span
-    class="o-flyout"
+    class="o-flyout bg-surface-medium py-0.5 mx-0.5 rounded-md"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
@@ -14,7 +14,7 @@
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
-      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap"
+      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap pb-0.5"
       :data-cy="dataCy"
       @click="toggle">
       <slot

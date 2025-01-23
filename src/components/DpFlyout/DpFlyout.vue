@@ -1,12 +1,13 @@
 <template>
   <span
-    class="o-flyout bg-surface-medium py-0.5 mx-0.5 rounded-md"
+    class="o-flyout"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
       'o-flyout--padded': padded,
       'is-expanded': isExpanded,
-      'o-flyout--menu': hasMenu
+      'o-flyout--menu': hasMenu,
+      'bg-surface-medium py-0.5 mx-0.5 rounded-md': mode === 'dark'
     }"
     v-click-outside="close"
     data-cy="flyoutTrigger">
@@ -65,6 +66,13 @@ export default {
       required: false,
       type: Boolean,
       default: true
+    },
+
+    mode: {
+      required: false,
+      type: String,
+      default: 'light',
+      validator: (prop) => ['light', 'dark'].includes(prop)
     },
 
     padded: {

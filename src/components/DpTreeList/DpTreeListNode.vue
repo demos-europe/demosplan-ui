@@ -55,6 +55,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
+      :class="[(children.length <= 0 && draggable) ? 'o-sortablelist__empty' : '']"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
@@ -67,7 +68,7 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="(child, idx) in children"
-        v-show="true === isExpanded"
+        v-show="isExpanded"
         :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"
@@ -94,6 +95,12 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
+      <li
+        v-if="isBranch && children.length <= 0 && hasDraggableChildren"
+        v-show="isExpanded"
+        class="ml-2 mr-4 mt-2">
+        <div class="o-sortablelist__spacer relative" />
+      </li>
     </component>
   </li>
 </template>
@@ -220,7 +227,7 @@ export default {
     },
 
     hasToggle () {
-      return this.isBranch && this.children.length > 0
+      return this.isBranch && (this.children.length > 0 || this.hasDraggableChildren)
     },
 
     iconClassFolder () {

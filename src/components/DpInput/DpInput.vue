@@ -7,7 +7,9 @@
         for: id,
         hint: labelHint,
         required: required
-      }" />
+      }"
+      :text="label.text"
+      class="mb-0.5" />
     <input
       :id="id"
       :name="name !== '' ? name : null"
@@ -20,7 +22,6 @@
       :data-cy="dataCy !== '' ? dataCy : null"
       :aria-labelledby="ariaLabelledby"
       :maxlength="maxlength !== '' ? maxlength : null"
-      :minlength="minlength !== '' ? minlength : null"
       :type="type"
       :pattern="pattern !== '' ? pattern : null"
       :placeholder="placeholder !== '' ? placeholder : null"
@@ -29,19 +30,18 @@
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
-      v-model="currentValue"
-      @blur="$emit('blur', currentValue)"
-      @focus="$emit('focus')"
-      @input="$emit('input', currentValue)"
+      :value="props.value"
+      @blur="emit('blur', $event.target.value)"
+      @focus="emit('focus')"
+      @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"
       @keydown.enter="handleEnter">
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed } from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
 import DpLabel from '~/components/DpLabel'
-import { length } from '~/shared'
 
 const props = defineProps({
   /**
@@ -49,7 +49,7 @@ const props = defineProps({
    * you want to override the label.
    */
   ariaLabelledby: {
-    type: [String, null],
+    type: String,
     required: false,
     default: null
   },
@@ -122,27 +122,33 @@ const props = defineProps({
 
   label: {
     type: Object,
+    required: false,
     default: () => ({
       bold: true,
       hide: false,
       hint: '',
       text: '',
       tooltip: ''
-    }),
-    validator: (prop) => {
-      return Object.keys(prop).every(key => ['bold', 'hide', 'hint', 'text', 'tooltip'].includes(key))
-    }
+    })
   },
 
   /**
    * Limit the maximum allowed number of characters to the given amount.
    */
-  maxlength: length,
+  maxlength: {
+    type: [Number, String],
+    required: false,
+    default: null
+  },
 
   /**
    * Define the minimum number of characters that need to be given.
    */
-  minlength: length,
+  minlength: {
+    type: [Number, String],
+    required: false,
+    default: null
+  },
 
   name: {
     type: String,
@@ -190,7 +196,7 @@ const props = defineProps({
    * and element classes do not define any width styles when a size is set here.
    */
   size: {
-    type: [Number, null],
+    type: Number,
     required: false,
     default: null
   },
@@ -213,14 +219,12 @@ const props = defineProps({
    */
   width: {
     type: String,
+    required: false,
     default: 'w-full'
   }
 })
 
-const emit = defineEmits(['blur', 'enter', 'focus', 'input'])
-
-const { value, maxlength, minlength, width, size, label } = toRefs(props)
-const currentValue = ref(value.value)
+const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
 
 const classes = computed(() => {
   let _classes: string[] = [
@@ -231,7 +235,7 @@ const classes = computed(() => {
     required:shadow-none`
   ]
 
-  if (!(size.value && size.value > 0)) {
+  if (!(props.size && props.size > 0)) {
     _classes.push('w-full')
   }
 
@@ -251,40 +255,37 @@ const classes = computed(() => {
 const containerClasses = computed(() => {
   let _classes: string[] = [labelHint.value.length ? 'space-y-1' : 'space-y-0.5']
 
-  if (width.value !== 'auto' && size.value && size.value > 0) {
-    _classes.push(width.value)
+  if (props.width !== 'auto' && props.size && props.size > 0) {
+    _classes.push(props.width)
   }
 
   return _classes
 })
 
 const labelHint = computed(() => {
-  const hint: string[] = typeof label.value.hint !== 'undefined' && label.value.hint !== '' ? [label.value.hint] : []
+  const hint: string[] = props.label.hint ? [props.label.hint] : []
 
-  if (maxlength.value && !minlength.value) {
-    hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
-  } else if (minlength.value && !maxlength.value) {
-    hint.push(minlengthHint(currentValue.value.length, minlength.value))
-  } else if (maxlength.value && minlength.value) {
-    if (maxlength.value === minlength.value) {
-      hint.push(exactlengthHint(currentValue.value.length, maxlength.value))
+  if (props.maxlength && !props.minlength) {
+    hint.push(maxlengthHint(props.value.length, props.maxlength))
+  } else if (props.minlength && !props.maxlength) {
+    hint.push(minlengthHint(props.value.length, props.minlength))
+  } else if (props.maxlength && props.minlength) {
+    if (props.maxlength === props.minlength) {
+      hint.push(exactlengthHint(props.value.length, props.maxlength))
     } else {
-      hint.push(maxlengthHint(currentValue.value.length, maxlength.value))
-      hint.push(minlengthHint(currentValue.value.length, minlength.value))
+      hint.push(maxlengthHint(props.value.length, props.maxlength))
+      hint.push(minlengthHint(props.value.length, props.minlength))
     }
   }
 
   return hint
 })
 
-watch(value, (newVal) => {
-  currentValue.value = newVal
-})
-
 const handleEnter = (event: Event) => {
-  if (props.preventDefaultOnEnter === true) {
+  if (props.preventDefaultOnEnter) {
     event.preventDefault()
   }
+
   emit('enter')
 }
 </script>

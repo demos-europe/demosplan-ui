@@ -20,7 +20,6 @@
         name,
         options,
         placeholder,
-        required,
         searchable,
         selectGroupLabel,
         selectLabel,
@@ -29,6 +28,7 @@
         trackBy,
         value
       }"
+      :class="{ 'is-required' : required }"
       :data-cy="dataCy"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
       :model-value="value"

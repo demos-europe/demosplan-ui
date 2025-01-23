@@ -55,7 +55,7 @@ export default function validateInput (input) {
   }
 
   // ##### IF INPUT IS VALID #####
-  if (isValid === true) {
+  if (isValid) {
     // Try to set customValidity (it will only work if input is visible, that is why try/catch is used)
     try {
       input.setCustomValidity('')

@@ -7,7 +7,7 @@
       'o-flyout--padded': padded,
       'is-expanded': isExpanded,
       'o-flyout--menu': hasMenu,
-      'bg-surface-medium rounded-md': mode === 'dark'
+      'bg-surface-medium rounded-md': variant === 'dark'
     }"
     v-click-outside="close"
     data-cy="flyoutTrigger">
@@ -68,18 +68,18 @@ export default {
       default: true
     },
 
-    mode: {
+    padded: {
+      required: false,
+      type: Boolean,
+      default: true
+    },
+
+    variant: {
       required: false,
       type: String,
       default: 'light',
       validator: (prop) => ['light', 'dark'].includes(prop)
     },
-
-    padded: {
-      required: false,
-      type: Boolean,
-      default: true
-    }
   },
 
   data () {

@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#1145](https://github.com/demos-europe/demosplan-ui/pull/1145)) DpFlyout: Add prop variant to change trigger background ([@gruenbergerdemos](https://github.com/gruenbergerdemos), [@hwiem](https://github.com/hwiem))
+- ([#1145](https://github.com/demos-europe/demosplan-ui/pull/1145)) DpFlyout: Add prop `variant` to change trigger background ([@gruenbergerdemos](https://github.com/gruenbergerdemos), [@hwiem](https://github.com/hwiem))
 
 ### Changed
 

@@ -1,7 +1,7 @@
 <template>
   <span
     class="inline-flex"
-    :class="{ 'w-full': inputWidth !== ''}">
+    :class="{ 'w-full': inputWidth === ''}">
     <dp-resettable-input
       id="searchField"
       data-cy="searchField"

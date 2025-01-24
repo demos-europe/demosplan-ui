@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- 
+- ([#1144](https://github.com/demos-europe/demosplan-ui/pull/1144)) DpTreeList: Add spacer for empty draggable categories ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.3.43 - 2025-01-17
 

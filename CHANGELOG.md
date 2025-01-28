@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1080)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.4.3 - 2024-12-11
 
 ### Fixed

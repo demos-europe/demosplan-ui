@@ -291,8 +291,6 @@ export default {
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
     }
-  },
-  mounted () {
   }
 }
 </script>

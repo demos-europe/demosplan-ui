@@ -4,8 +4,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-## v0.3.45 - 2025-01-28
-
 ### Changed 
 
 - ([#1151](https://github.com/demos-europe/demosplan-ui/pull/1151)) DpPager: Add labelTexts props ([@riechedemos](https://github.com/riechedemos))

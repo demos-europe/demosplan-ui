@@ -8,9 +8,20 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1139](https://github.com/demos-europe/demosplan-ui/pull/1139)) DpFlyout: Add unit test ([@hwiem](https://github.com/hwiem))
 
+
+## v0.3.44 - 2025-01-27
+
+### Added
+
+- ([#1145](https://github.com/demos-europe/demosplan-ui/pull/1145)) DpFlyout: Add prop `variant` to change trigger background ([@gruenbergerdemos](https://github.com/gruenbergerdemos), [@hwiem](https://github.com/hwiem))
+
 ### Changed
 
 - ([#1144](https://github.com/demos-europe/demosplan-ui/pull/1144)) DpTreeList: Add spacer for empty draggable categories ([@salisdemos](https://github.com/salisdemos))
+
+### Fixed
+
+- ([#1147](https://github.com/demos-europe/demosplan-ui/pull/1147)) DpSearchField: Allow setting an input width for the search field ([@hwiem](https://github.com/hwiem))
 
 
 ## v0.3.43 - 2025-01-17

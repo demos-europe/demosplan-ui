@@ -6,7 +6,8 @@
       'o-flyout--right': align === 'right',
       'o-flyout--padded': padded,
       'is-expanded': isExpanded,
-      'o-flyout--menu': hasMenu
+      'o-flyout--menu': hasMenu,
+      'bg-surface-medium rounded-md': variant === 'dark'
     }"
     v-click-outside="close"
     data-cy="flyoutTrigger">
@@ -14,7 +15,7 @@
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
-      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap"
+      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
       :data-cy="dataCy"
       @click="toggle">
       <slot
@@ -71,7 +72,14 @@ export default {
       required: false,
       type: Boolean,
       default: true
-    }
+    },
+
+    variant: {
+      required: false,
+      type: String,
+      default: 'light',
+      validator: (prop) => ['light', 'dark'].includes(prop)
+    },
   },
 
   data () {

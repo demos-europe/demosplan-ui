@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1139](https://github.com/demos-europe/demosplan-ui/pull/1139)) DpFlyout: Add unit test ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.3.44 - 2025-01-27
 

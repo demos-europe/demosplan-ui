@@ -7,15 +7,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 - ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1080)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
+### Fixed
+
+- ([#1157](https://github.com/demos-europe/demosplan-ui/pull/1157)) build: add missing dependency ([@hwiem](https://github.com/hwiem))
+
 ## v0.4.3 - 2024-12-11
 
 ### Fixed
 
 - ([#1121](https://github.com/demos-europe/demosplan-ui/pull/1121)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns and make header truncatable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#1122](https://github.com/demos-europe/demosplan-ui/pull/1122)) DpDataTable: Remove overflow hidden from normal table rows and add a node type check for first children ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-
-### Fixed
-
 - ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1096)) Fix jest tests ([@muellerdemos](https://github.com/muellerdemos))
 - ([#1092](https://github.com/demos-europe/demosplan-ui/pull/1092)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1082](https://github.com/demos-europe/demosplan-ui/pull/1082) ([@hwiem](https://github.com/hwiem))
 - ([#1093](https://github.com/demos-europe/demosplan-ui/pull/1093)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))

@@ -1,9 +1,9 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-        class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
-        :aria-label="labelTexts.multipleLabel">
-      <dp-sliding-pagination
+      :aria-label="labelTexts.multipleLabel"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block">
+        <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
           class="inline-block"
           :current="currentPage"
@@ -15,7 +15,7 @@
       <div
           class="inline-block"
           v-if="totalItems > Math.min(...limits)">
-        <dp-multiselect
+          <dp-multiselect
             v-model="itemsPerPage"
             class="inline-block"
             :options="filteredLimits"

@@ -55,7 +55,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
-      :class="[(children.length <= 0 && draggable) ? 'o-sortablelist__empty' : '']"
+      :class="{'o-sortablelist__empty': isBranch && draggable}"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
@@ -69,6 +69,7 @@
       <dp-tree-list-node
         v-for="(child, idx) in children"
         v-show="isExpanded"
+        :align-toggle="alignToggle"
         :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"

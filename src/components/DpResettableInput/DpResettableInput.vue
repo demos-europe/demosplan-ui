@@ -23,6 +23,8 @@
         icon="xmark"
         :size="iconSize" />
     </button>
+    <!-- Slot for additional buttons -->
+    <slot />
   </div>
 </template>
 
@@ -39,12 +41,6 @@ export default {
   },
 
   props: {
-    dataCy: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     /**
      * By default, the normal variant is used. If set to 'small', a smaller variant is displayed
      */
@@ -53,6 +49,12 @@ export default {
       required: false,
       default: 'medium',
       validator: (prop) => ['small', 'medium'].includes(prop)
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     defaultValue: {
@@ -99,7 +101,10 @@ export default {
 
   computed: {
     buttonClass () {
-      return this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      classes = this.$slots.default ? `${classes} grouped` : classes
+
+      return classes
     },
 
     iconSize () {

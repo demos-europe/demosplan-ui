@@ -1,15 +1,27 @@
 <template>
-  <span :class="{ 'inline-block w-full': inputWidth !== ''}">
+  <span
+    class="inline-flex"
+    :class="{ 'w-full': inputWidth !== ''}">
     <dp-resettable-input
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: translations.search, type: 'search' }"
+      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search'}"
       @reset="handleReset"
       @enter="handleSearch"
-      v-model="searchTerm" /><!--
+      v-model="searchTerm">
+      <!-- Slot for additional buttons -->
+      <slot />
+    </dp-resettable-input>
 
- --><dp-button
+    <dp-button
+      class="search rounded-r-md rounded-l-none"
+      data-cy="handleSearch"
+      hide-text
+      icon="search"
+      :text="Translator.trans('searching')"
+      variant="outline"
+      @click="handleSearch" /><dp-button
       class="align-top"
       data-cy="handleSearch"
       @click="handleSearch"
@@ -66,7 +78,9 @@ export default {
 
   computed: {
     cssClasses () {
-      return this.inputWidth !== '' ? `inline-block u-mr-0_5 ${this.inputWidth}` : 'inline-block u-mr-0_5'
+      const classes = 'inline-block rounded-r-none'
+
+      return this.inputWidth !== '' ? `${classes} ${this.inputWidth}` : classes
     }
   },
 
@@ -79,7 +93,7 @@ export default {
        * The empty string is emitted to stick to only one type.
        */
       if (this.searchTermApplied !== this.searchTerm) {
-        this.$emit('reset', '')
+        this.$emit('reset')
         this.searchTermApplied = ''
       }
     },
@@ -92,11 +106,6 @@ export default {
 
       this.searchTermApplied = this.searchTerm
       this.$emit('search', this.searchTerm)
-    },
-
-    reset () {
-      this.searchTermApplied = ''
-      this.searchTerm = ''
     }
   },
 

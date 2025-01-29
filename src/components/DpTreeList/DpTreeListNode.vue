@@ -55,7 +55,7 @@
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
       class="list-style-none u-mb-0 u-1-of-1"
-      :class="{'o-sortablelist__empty': isBranch && draggable}"
+      :class="{'o-sortablelist__empty': children.length <= 0 && draggable && isBranch}"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"

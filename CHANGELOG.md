@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.45 - 2025-01-30
+
 ### Added
 
 - ([#1158](https://github.com/demos-europe/demosplan-ui/pull/1158)) DpTreeList: remove padding for draggable leaves and keep it only for categories ([@sakutademos](https://github.com/sakutademos)

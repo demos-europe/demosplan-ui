@@ -46,6 +46,7 @@ const de = {
   elements: {
     none: 'Keine Elemente vorhanden'
   },
+  entries: "Einträgen",
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
   error: {
@@ -102,6 +103,12 @@ const de = {
       placeholder: 'Bitte wählen Sie einen Eintrag aus.'
     },
     update: 'Aktualisierung'
+  },
+  pager: {
+    multipleOf: "von",
+    multipleItems: 'Einträgen',
+    chooseEntries: 'Wählen Sie, wieviele von insgesamt',
+    ofEntries: 'Einträgen pro Seite ausgegeben werden sollen.'
   },
   placeholderAutoSuggest: "Suchbegriff...",
   tab: {

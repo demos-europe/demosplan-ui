@@ -1,9 +1,9 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      :aria-label="labelTexts.multipleLabel"
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block">
-        <dp-sliding-pagination
+        :aria-label="computedMultipleLabel"
+        class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block">
+      <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
           class="inline-block"
           :current="currentPage"
@@ -15,7 +15,7 @@
       <div
           class="inline-block"
           v-if="totalItems > Math.min(...limits)">
-          <dp-multiselect
+        <dp-multiselect
             v-model="itemsPerPage"
             class="inline-block"
             :options="filteredLimits"
@@ -25,10 +25,10 @@
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-        {{ labelTexts.multipleOf }}
-        <span data-cy="totalItems">{{ totalItems }}</span>
-        {{ labelTexts.multipleItems }}
-      </span>
+          {{ computedMultipleOf }}
+          <span data-cy="totalItems">{{ totalItems }}</span>
+          {{ computedMultipleItems }}
+        </span>
     </label>
   </div>
 </template>
@@ -36,6 +36,7 @@
 <script>
 import DpMultiselect from '~/components/DpMultiselect'
 import DpSlidingPagination from '~/components/DpSlidingPagination'
+import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpPager',
@@ -55,11 +56,7 @@ export default {
     labelTexts: {
       required: false,
       type: Object,
-      default: () => ({
-        multipleLabel: '',
-        multipleOf: '',
-        multipleItems: ''
-      })
+      default: () => ({})
     },
 
     limits: {
@@ -94,6 +91,20 @@ export default {
   },
 
   computed: {
+    computedMultipleLabel () {
+      return this.labelTexts.multipleLabel
+          ||
+          `${de.pager.chooseEntries} ${this.totalItems} ${de.pager.ofEntries}`
+    },
+
+    computedMultipleOf () {
+      return this.labelTexts.multipleOf || de.pager.multipleOf
+    },
+
+    computedMultipleItems () {
+      return this.labelTexts.multipleItems || de.pager.multipleItems
+    },
+
     filteredLimits () {
       const filtered = this.limits.filter(limit => limit <= this.totalItems)
 
@@ -118,6 +129,6 @@ export default {
     handleSizeChange (selectedOption) {
       this.$emit('size-change', parseInt(selectedOption))
     }
-  }
+  },
 }
 </script>

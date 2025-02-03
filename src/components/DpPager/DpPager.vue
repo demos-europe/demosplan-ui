@@ -1,7 +1,7 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-        :aria-label="computedMultipleLabel"
+        :aria-label="labelTexts.multipleLabel"
         class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block">
       <dp-sliding-pagination
           v-if="totalItems > Math.min(...limits)"
@@ -25,9 +25,9 @@
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-          {{ computedMultipleOf }}
+          {{ labelTexts.multipleOf }}
           <span data-cy="totalItems">{{ totalItems }}</span>
-          {{ computedMultipleItems }}
+          {{ labelTexts.multipleItems }}
         </span>
     </label>
   </div>
@@ -53,12 +53,6 @@ export default {
       default: 1
     },
 
-    labelTexts: {
-      required: false,
-      type: Object,
-      default: () => ({})
-    },
-
     limits: {
       required: false,
       type: Array,
@@ -69,6 +63,22 @@ export default {
       required: false,
       type: Number,
       default: 1
+    },
+
+// Note: Props are primarily listed in alphabetical order.
+// However, `totalItems` must precede `labelText` because `labelText` relies on the value of `totalItems`.
+// Arranging them in this order ensures `totalItems` is initialized before `labelText` references it.
+
+    labelTexts: {
+      required: false,
+      type: Object,
+      default () {
+        return ({
+          multipleItems: de.pager.multipleItems,
+          multipleLabel: `${de.pager.chooseEntries} ${this.totalItems} ${de.pager.ofEntries}`,
+          multipleOf: de.pager.multipleOf
+        })
+      }
     },
 
     totalPages: {
@@ -91,19 +101,19 @@ export default {
   },
 
   computed: {
-    computedMultipleLabel () {
-      return this.labelTexts.multipleLabel
-          ||
-          `${de.pager.chooseEntries} ${this.totalItems} ${de.pager.ofEntries}`
-    },
-
-    computedMultipleOf () {
-      return this.labelTexts.multipleOf || de.pager.multipleOf
-    },
-
-    computedMultipleItems () {
-      return this.labelTexts.multipleItems || de.pager.multipleItems
-    },
+    // computedMultipleLabel () {
+    //   return this.labelTexts.multipleLabel
+    //       ||
+    //       `${de.pager.chooseEntries} ${this.totalItems} ${de.pager.ofEntries}`
+    // },
+    //
+    // computedMultipleOf () {
+    //   return this.labelTexts.multipleOf || de.pager.multipleOf
+    // },
+    //
+    // computedMultipleItems () {
+    //   return this.labelTexts.multipleItems || de.pager.multipleItems
+    // },
 
     filteredLimits () {
       const filtered = this.limits.filter(limit => limit <= this.totalItems)

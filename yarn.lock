@@ -818,6 +818,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/plugin-syntax-dynamic-import@npm:^7.8.3":
+  version: 7.8.3
+  resolution: "@babel/plugin-syntax-dynamic-import@npm:7.8.3"
+  dependencies:
+    "@babel/helper-plugin-utils": "npm:^7.8.0"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 10c0/9c50927bf71adf63f60c75370e2335879402648f468d0172bc912e303c6a3876927d8eb35807331b57f415392732ed05ab9b42c68ac30a936813ab549e0246c5
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-syntax-flow@npm:^7.23.3":
   version: 7.23.3
   resolution: "@babel/plugin-syntax-flow@npm:7.23.3"
@@ -2032,6 +2043,7 @@ __metadata:
   resolution: "@demos-europe/demosplan-ui@workspace:."
   dependencies:
     "@babel/core": "npm:^7.21.4"
+    "@babel/plugin-syntax-dynamic-import": "npm:^7.8.3"
     "@babel/preset-env": "npm:^7.21.4"
     "@babel/preset-react": "npm:^7.23.3"
     "@babel/preset-typescript": "npm:^7.21.4"
@@ -6275,14 +6287,14 @@ __metadata:
   linkType: hard
 
 "@uppy/progress-bar@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@uppy/progress-bar@npm:4.1.0"
+  version: 4.2.1
+  resolution: "@uppy/progress-bar@npm:4.2.1"
   dependencies:
-    "@uppy/utils": "npm:^6.0.6"
+    "@uppy/utils": "npm:^6.1.1"
     preact: "npm:^10.5.13"
   peerDependencies:
-    "@uppy/core": ^4.3.1
-  checksum: 10c0/e6b624ca8fb3f36fbedc9dbc4b44a776976e5769c5477fb6794691eb05d1de93314589cb0cfbb0adfc1445da097aef22f60d84f5c54cec22f5fec7c73cf68454
+    "@uppy/core": ^4.4.1
+  checksum: 10c0/b40198e117da136a93c41382fcbdbfc3dc6d38e083dbd04a72d09f862765dcc7a84beca3c4d3a10cb5e1806acad1a817a079a26980e7672a060e6fbff2d773c6
   languageName: node
   linkType: hard
 

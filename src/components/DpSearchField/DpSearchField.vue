@@ -6,7 +6,7 @@
       id="searchField"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: Translator.trans('search'), type: 'search'}"
+      :input-attributes="{ placeholder: translations.search, type: 'search'}"
       @reset="handleReset"
       @enter="handleSearch"
       v-model="searchTerm">
@@ -19,7 +19,7 @@
       data-cy="handleSearch"
       hide-text
       icon="search"
-      :text="Translator.trans('searching')"
+      :text="translations.searching"
       variant="outline"
       @click="handleSearch" /><dp-button
       class="align-top"

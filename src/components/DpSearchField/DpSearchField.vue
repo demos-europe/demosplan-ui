@@ -21,11 +21,7 @@
       icon="search"
       :text="translations.searching"
       variant="outline"
-      @click="handleSearch" /><dp-button
-      class="align-top"
-      data-cy="handleSearch"
-      @click="handleSearch"
-      :text="translations.searching" />
+      @click="handleSearch" />
   </span>
 </template>
 

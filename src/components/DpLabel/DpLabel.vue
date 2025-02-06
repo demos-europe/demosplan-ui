@@ -1,7 +1,8 @@
 <template>
   <label
     :class="prefixClass(['o-form__label flex', bold ? 'weight--bold' : 'weight--normal', hints.length > 0 ? 'has-hint' : '', hide ? 'sr-only' : ''])"
-    :for="labelFor">
+    :for="labelFor"
+    :style="labelStyle">
     <span>
       <span v-cleanhtml="text" /><span v-if="required">*</span>
       <span
@@ -63,6 +64,12 @@ export default {
       default: () => []
     },
 
+    isDisabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     text: {
       type: String,
       required: true
@@ -96,6 +103,12 @@ export default {
 
     labelFor () {
       return this.for
+    },
+
+    labelStyle() {
+      return {
+        cursor: this.isDisabled ? 'auto' : 'pointer'
+      }
     }
   },
 

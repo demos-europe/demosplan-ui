@@ -8,6 +8,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#1167](https://github.com/demos-europe/demosplan-ui/pull/1167)) DpLabel: add isDisabled props to change cursor style ([@riechedemos](https://github.com/riechedemos))
 - ([#1158](https://github.com/demos-europe/demosplan-ui/pull/1158)) DpTreeList: remove padding for draggable leaves and keep it only for categories ([@sakutademos](https://github.com/sakutademos)
 - ([#1139](https://github.com/demos-europe/demosplan-ui/pull/1139)) DpFlyout: Add unit test ([@hwiem](https://github.com/hwiem))
 

@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1167](https://github.com/demos-europe/demosplan-ui/pull/1167)) DpLabel: add isDisabled props to change cursor style ([@riechedemos](https://github.com/riechedemos))
+
+
 ## v0.3.45 - 2025-01-30
 
 ### Added

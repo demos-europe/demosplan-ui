@@ -103,7 +103,7 @@ export default {
 
     labelFor () {
       return this.for
-    },
+    }
   },
 
   methods: {

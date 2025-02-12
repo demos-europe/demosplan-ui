@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1172](https://github.com/demos-europe/demosplan-ui/pull/1172)) preventEditing.js: Allow keys to navigate with keyboard([@riechedemos](https://github.com/riechedemos))
+
 ## v0.3.45 - 2025-01-30
 
 ### Added

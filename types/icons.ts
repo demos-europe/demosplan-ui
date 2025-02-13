@@ -58,6 +58,7 @@ export type PhosphorIconName =
   | 'check-circle'
   | 'clock'
   | 'copy'
+  | 'dots-three'
   | 'file'
   | 'highlighter'
   | 'hourglass'

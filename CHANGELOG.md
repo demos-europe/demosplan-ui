@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#1175](https://github.com/demos-europe/demosplan-ui/pull/1175)) DpIcon: Add new icon 'dots-three' ([@hwiem](https://github.com/hwiem))
 - ([#1167](https://github.com/demos-europe/demosplan-ui/pull/1167)) DpLabel: add isDisabled props to change cursor style ([@riechedemos](https://github.com/riechedemos))
 
 ### Fixed

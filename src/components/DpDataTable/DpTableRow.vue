@@ -33,7 +33,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="{ 'c-data-table__resizable': isTruncatable }"
+      :class="[{ 'c-data-table__resizable': isTruncatable },  { 'break-words': isResizable }]"
       :data-col-idx="`${idx}`">
       <div
         v-if="isTruncatable"
@@ -47,8 +47,8 @@
             v-if="searchTerm && item[field]"
             v-html="highlighted(field)" />
           <span
-             v-else
-             v-text="item[field]" />
+            v-else
+            v-text="item[field]" />
         </slot>
       </div>
       <template v-else>
@@ -67,7 +67,7 @@
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible">
+      class="overflow-visible min-w-[50px]">
       <slot
         name="flyout"
         v-bind="item" />
@@ -75,7 +75,7 @@
 
     <td
       v-if="isExpandable"
-      class="c-data-table__cell--narrow"
+      class="overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="Translator.trans(expanded ? 'aria.collapse' : 'aria.expand')"
       @click="toggleExpand(item[trackBy])">
@@ -86,7 +86,7 @@
 
     <td
       v-if="isTruncatable"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
       :title="Translator.trans(wrapped ? 'aria.collapse' : 'aria.expand')"
       @click="toggleWrap(item[trackBy])">

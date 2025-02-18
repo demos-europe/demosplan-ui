@@ -36,7 +36,9 @@
         <slot
           :name="`header-${hf.field}`"
           v-bind="hf">
-          <span v-if="hf.label" v-text="hf.label" />
+          <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
+            <span v-if="hf.label" v-text="hf.label" />
+          </div>
         </slot>
       </dp-resizable-column>
       <th

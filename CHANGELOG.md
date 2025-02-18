@@ -6,7 +6,125 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
+- ([#1175](https://github.com/demos-europe/demosplan-ui/pull/1175)) DpIcon: Add new icon 'dots-three' ([@hwiem](https://github.com/hwiem))
+- ([#1167](https://github.com/demos-europe/demosplan-ui/pull/1167)) DpLabel: add isDisabled props to change cursor style ([@riechedemos](https://github.com/riechedemos))
 - ([#]() DpIcon: Add new icons (mapPin and mapPinSolid) ([@spiess-demos](https://github.com/spiess-demos))
+
+### Fixed
+
+- ([#1172](https://github.com/demos-europe/demosplan-ui/pull/1172)) preventEditing.js: Allow keys to navigate with keyboard([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.3.45 - 2025-01-30
+
+### Added
+
+- ([#1158](https://github.com/demos-europe/demosplan-ui/pull/1158)) DpTreeList: remove padding for draggable leaves and keep it only for categories ([@sakutademos](https://github.com/sakutademos)
+- ([#1139](https://github.com/demos-europe/demosplan-ui/pull/1139)) DpFlyout: Add unit test ([@hwiem](https://github.com/hwiem))
+
+
+## v0.3.44 - 2025-01-27
+
+### Added
+
+- ([#1145](https://github.com/demos-europe/demosplan-ui/pull/1145)) DpFlyout: Add prop `variant` to change trigger background ([@gruenbergerdemos](https://github.com/gruenbergerdemos), [@hwiem](https://github.com/hwiem))
+
+### Changed
+
+- ([#1144](https://github.com/demos-europe/demosplan-ui/pull/1144)) DpTreeList: Add spacer for empty draggable categories ([@salisdemos](https://github.com/salisdemos))
+
+### Fixed
+
+- ([#1147](https://github.com/demos-europe/demosplan-ui/pull/1147)) DpSearchField: Allow setting an input width for the search field ([@hwiem](https://github.com/hwiem))
+
+
+## v0.3.43 - 2025-01-17
+
+### Changed
+
+- ([#1133](https://github.com/demos-europe/demosplan-ui/pull/1133)) DpSearchField: Introduce condensed search field with attached search button ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+
+- ([#1120](https://github.com/demos-europe/demosplan-ui/pull/1120)) DpDataTable: Add break words to columns to avoid overlapping content with resizable columns and make header truncatable ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+
+## v0.3.42 - 2024-12-16
+
+### Changed
+
+- ([#1105](https://github.com/demos-europe/demosplan-ui/pull/1105)) BREAKING: Minimum required node version: 20.18.1 ([@salisdemos](https://github.com/salisdemos))
+
+### Fixed
+
+- ([#1116](https://github.com/demos-europe/demosplan-ui/pull/1116)) DpDataTable: Remove overflow hidden from normal table rows and add a node type check for first children ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+
+## v0.3.41 - 2024-11-28
+
+### Fixed
+
+- ([#1101](https://github.com/demos-europe/demosplan-ui/pull/1101)) DpTableRow: Fix flyout menu not visible ([@muellerdemos](https://github.com/muellerdemos))
+
+
+## v0.3.40 - 2024-11-28
+
+### Fixed
+
+- ([#1100](https://github.com/demos-europe/demosplan-ui/pull/1100)) DpTableRow: Fix styles of flyout menu ([@muellerdemos](https://github.com/muellerdemos))
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Fix translation keys displayed as tooltip ([@hwiem](https://github.com/hwiem))
+
+### Added
+
+- ([#1099](https://github.com/demos-europe/demosplan-ui/pull/1099)) DpTreeList: Add prop to vertically center the toggle for branches;
+  display tooltips for the toggles ([@hwiem](https://github.com/hwiem))
+
+
+## v0.3.39 - 2024-11-26
+
+### Fixed
+
+- ([#1094](https://github.com/demos-europe/demosplan-ui/pull/1094)) DpTableRow: Fix overlapping of columns ([@muellerdemos](https://github.com/muellerdemos))
+
+
+## v0.3.38 - 2024-11-15
+
+### Fixed
+
+- ([#1091](https://github.com/demos-europe/demosplan-ui/pull/1091)) DpUploadModal: Fix import of DpUploadFiles adjusted in [#1081](https://github.com/demos-europe/demosplan-ui/pull/1081) ([@hwiem](https://github.com/hwiem))
+- ([#1090](https://github.com/demos-europe/demosplan-ui/pull/1090)) build: Add yarnrc.yml to allow running tests in build command ([@hwiem](https://github.com/hwiem))
+- ([#1088](https://github.com/demos-europe/demosplan-ui/pull/1088)) DpLabel: Fix hiding the label via `hide` prop ([@hwiem](https://github.com/hwiem))
+
+### Added
+- ([#1086](https://github.com/demos-europe/demosplan-ui/pull/1086)) DpButton: Add 'reset' to possible values for type prop ([@hwiem](https://github.com/hwiem))
+- ([#1084](https://github.com/demos-europe/demosplan-ui/pull/1084)) DpContextualHelp: Allow passing v-tooltip options ([@hwiem](https://github.com/hwiem))
+
+
+## v0.3.37 - 2024-11-15
+
+### Changed
+- ([#1081](https://github.com/demos-europe/demosplan-ui/pull/1081)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
+
+
+## v0.3.36 - 2024-11-14
+
+### Added
+- ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1074)) DpInput: Add additional type number for prop value ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+### Changed
+
+-([#1074](https://github.com/demos-europe/demosplan-ui/pull/1074)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+
+## v0.3.35 - 2024-11-04
+
+### Added
+- ([#1050](https://github.com/demos-europe/demosplan-ui/pull/1050)) DpCheckbox: add additional type to 'selected' prop ([@sakutademos](https://github.com/sakutademos)
+
+### Changed
+
+-([#1068](https://github.com/demos-europe/demosplan-ui/pull/1068)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.3.34 - 2024-10-09
 
@@ -14,6 +132,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1042](https://github.com/demos-europe/demosplan-ui/pull/1042)) DpModal: Add closeButton slot ([@hwiem](https://github.com/hwiem))
 - ([#1043](https://github.com/demos-europe/demosplan-ui/pull/1043)) New Flag for DpEditor: "allowPasteFromWord" (default false) to prevent pasting "html" from msOffice ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.3.33 - 2024-10-02
 
@@ -28,20 +147,24 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1032](https://github.com/demos-europe/demosplan-ui/pull/1032)) remove max chunkSize on tus uploads ([@muellerdemos](https://github.com/muellerdemos)
 
+
 ## v0.3.32 - 2024-09-23
 
 - ([#1027](https://github.com/demos-europe/demosplan-ui/pull/1027)) DpEditor: transform obscure tag on update action ([@sakutademos](https://github.com/sakutademos)
 - ([#1021](https://github.com/demos-europe/demosplan-ui/pull/1021)) DpEditor: Make EditorContent accessible to the screen readers by adding the 'role' attribute ([@sakutademos](https://github.com/sakutademos)
+
 
 ## v0.3.31 - 2024-09-09
 
 ### Fixed
 - ([#1011](https://github.com/demos-europe/demosplan-ui/pull/1011)) Fix breakpoint values in Tailwind config ([@spiess-demos](https://github.com/spiess-demos))
 
+
 ## v0.3.30 - 2024-09-04
 
 ### Added
 - ([#1005](https://github.com/demos-europe/demosplan-ui/pull/1005)) DpVideoPlayer: Extend player to support embedded videos ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 
 ## v0.3.29 - 2024-08-21
 
@@ -49,23 +172,28 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#995](https://github.com/demos-europe/demosplan-ui/pull/995)) Prevent cursor in editor to jump to the End of the file, when obscured text is present  ([@salisdemos](https://github.com/salisdemos))
 - ([#983](https://github.com/demos-europe/demosplan-ui/pull/983)) Fix issue where the project is not correctly installable. ([@spiess-demos](https://github.com/spiess-demos))
 
+
 ## v0.3.28 - 2024-08-08
 
 ### Added
 - ([#976](https://github.com/demos-europe/demosplan-ui/pull/976)) DpIcon: Add new icons check-square and square ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 
 ## v0.3.27 - 2024-07-30
 
 ### Fixed
 - ([#967](https://github.com/demos-europe/demosplan-ui/pull/967)) Rollback Yarn 4. It leads to conflicts with prosemirror ([@salisdemos](https://github.com/salisdemos))
 
+
 ## v0.3.26
-- 
+-
 - lost in space
+
 
 ## v0.3.25 - 2024-07-30
 
 - update prosemirror dependencies to resolve version conflics with tiptap
+
 
 ## v0.3.24 - 2024-07-29
 
@@ -78,6 +206,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 - ([#954](https://github.com/demos-europe/demosplan-ui/pull/953)) BREAKING: Bump Yarn to v4.2.2 ([@salisdemos](https://github.com/salisdemos))
 
+
 ## v0.3.23 - 2024-07-26
 
 ### Changed
@@ -87,6 +216,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#955](https://github.com/demos-europe/demosplan-ui/pull/955)) BREAKING: Pass headerFields-Data to tableHeader slot so the content gets rendered ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.3.21 - 2024-07-22
 
@@ -99,6 +229,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#911](https://github.com/demos-europe/demosplan-ui/pull/911)) DpButtonRow: update class ([@sakutademos](https://github.com/sakutademos))
+
 
 ## v0.3.20 - 2024-07-17
 
@@ -231,7 +362,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#783](https://github.com/demos-europe/demosplan-ui/pull/783)) Improve error validation for DpMultiselect and DpSelect components ([@sakutademos](https://github.com/sakutademos))
 
-### Changed 
+### Changed
 
 - ([#774](https://github.com/demos-europe/demosplan-ui/pull/774)) Improve render performance of the DpTreeList component ([@sakutademos](https://github.com/sakutademos))
 - ([#784](https://github.com/demos-europe/demosplan-ui/pull/784)) dpApi.get: Always serialize request params ([@spiess-demos](https://github.com/spiess-demos))
@@ -264,8 +395,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#739](https://github.com/demos-europe/demosplan-ui/pull/739)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
 - ([#721](https://github.com/demos-europe/demosplan-ui/pull/721)) Pass the allowEmpty prop to vue-multiselect, which prevents the deselection of values ([@sakutademos](https://github.com/sakutademos))
-- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos)) 
-- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos)) 
+- ([#718](https://github.com/demos-europe/demosplan-ui/pull/718)) Add missing data attr for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))
+- ([#714](https://github.com/demos-europe/demosplan-ui/pull/714)) add csrf token to dpRpc to prevent missing csrf errors ([@muellerdemos](https://github.com/muellerdemos))
 - ([#734](https://github.com/demos-europe/demosplan-ui/pull/734)) Allow mailto links in DpEditor link modal ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.3.5-1 - 2024-02-13
@@ -617,7 +748,7 @@ Unfortunately, we had a minor log-entry merge mishap and that wasn't noticed unt
 
 ## v0.0.17 - 2023-03-23
 
-- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable 
+- ([#133](https://github.com/demos-europe/demosplan-ui/pull/133)) Import `a11y-datepicker` not as es Module anymore, to make it resolvable
 
 ## v0.0.16 - 2023-03-15
 

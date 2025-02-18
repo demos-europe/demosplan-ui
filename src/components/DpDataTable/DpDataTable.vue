@@ -687,7 +687,7 @@ export default {
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
         Array.from(tableHeaderElements).forEach(th => {
-          if (th.firstChild) {
+          if (th.firstChild && th.firstChild.nodeType === 1) {
             th.firstChild.style.width = null
             th.firstChild.style.maxWidth = null
             th.firstChild.style.minWidth = null

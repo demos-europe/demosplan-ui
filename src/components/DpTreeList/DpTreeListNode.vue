@@ -2,7 +2,7 @@
   <li class="border--top relative">
     <div class="c-treelist__node flex">
       <div
-        class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
+        class="inline-block p-1 pr-0 mt-0.5"
         :class="dragHandle"
         v-if="isDraggable">
         <dp-icon
@@ -16,15 +16,16 @@
         :string-value="nodeId"
         @check="setSelectionState(!node.nodeIsSelected)" />
       <div
-        class="flex grow items-start"
+        :class="['flex grow', alignToggle === 'top' ?  'items-start' : 'items-center']"
         :style="indentationStyle">
         <dp-tree-list-toggle
-          class="c-treelist__folder text--left u-pv-0_25"
-          :class="{'pointer-events-none': 0 === children.length}"
-          :icon-class-prop="iconClassFolder"
           v-if="isBranch"
+          class="c-treelist__folder text-left py-1"
+          :class="{'cursor-not-allowed': 0 === children.length}"
+          :disabled="!hasToggle"
+          :icon-class-prop="iconClassFolder"
           v-model="isExpanded" />
-        <div class="grow u-pl-0 u-p-0_25">
+        <div class="grow u-pl-0 p-1">
           <slot
             v-if="isBranch"
             name="branch"
@@ -41,11 +42,10 @@
         </div>
       </div>
       <dp-tree-list-toggle
-        data-cy="treeListChildToggle"
         v-if="isBranch"
-        class="self-start"
+        :class="alignToggle === 'top' ? 'self-start' : 'self-center'"
+        data-cy="treeListChildToggle"
         :disabled="!hasToggle"
-        v-tooltip="Translator.trans(!hasToggle ? 'no.elements.existing' : '')"
         v-model="isExpanded" />
       <div
         v-else
@@ -54,7 +54,8 @@
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
-      class="list-style-none u-mb-0 u-1-of-1"
+      class="list-style-none mb-0 w-full"
+      :class="{'pb-3': draggable && isBranch}"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
@@ -67,7 +68,8 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="(child, idx) in children"
-        v-show="true === isExpanded"
+        v-show="isExpanded"
+        :align-toggle="alignToggle"
         :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"
@@ -94,6 +96,12 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
+      <li
+        v-if="isBranch && children.length <= 0 && hasDraggableChildren"
+        v-show="isExpanded"
+        class="ml-2 mr-4 mt-2">
+        <div class="o-sortablelist__spacer relative" />
+      </li>
     </component>
   </li>
 </template>
@@ -104,7 +112,6 @@ import DpDraggable from '~/components/DpDraggable'
 import DpIcon from '~/components/DpIcon'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListToggle from './DpTreeListToggle'
-import { Tooltip } from '~/directives'
 
 export default {
   name: 'DpTreeListNode',
@@ -116,11 +123,14 @@ export default {
     DpTreeListToggle
   },
 
-  directives: {
-    tooltip: Tooltip
-  },
-
   props: {
+    alignToggle: {
+      type: String,
+      required: false,
+      default: 'top',
+      validator: (prop) => ['top', 'center'].includes(prop)
+    },
+
     checkBranch: {
       type: Function,
       required: true
@@ -218,7 +228,7 @@ export default {
     },
 
     hasToggle () {
-      return this.isBranch && this.children.length > 0
+      return this.isBranch && (this.children.length > 0 || this.hasDraggableChildren)
     },
 
     iconClassFolder () {

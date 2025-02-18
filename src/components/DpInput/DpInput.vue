@@ -6,6 +6,7 @@
         ...label,
         for: id,
         hint: labelHint,
+        isDisabled: disabled,
         required: required
       }" /><!--
  --><input
@@ -211,7 +212,7 @@ export default {
     },
 
     value: {
-      type: String,
+      type: [String, Number],
       required: false,
       default: ''
     },

@@ -42,6 +42,7 @@
       v-model="tree">
       <dp-tree-list-node
         v-for="(node, idx) in treeData"
+        :align-toggle="alignToggle"
         :data-cy="`treeListNode:${idx}`"
         :ref="`node_${node.id}`"
         :key="node.id"
@@ -103,6 +104,16 @@ export default {
   },
 
   props: {
+    /**
+     * Align toggle buttons in DpTreeListNode to the top or center
+     */
+    alignToggle: {
+      type: String,
+      required: false,
+      default: 'top',
+      validator: (prop) => ['top', 'center'].includes(prop)
+    },
+
     branchIdentifier: {
       type: Function,
       required: true

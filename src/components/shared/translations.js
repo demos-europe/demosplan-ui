@@ -46,7 +46,6 @@ const de = {
   elements: {
     none: 'Keine Elemente vorhanden'
   },
-  entries: "Einträgen",
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
   error: {

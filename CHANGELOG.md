@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#]() DpIcon: Add new icons (mapPin and mapPinSolid) ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.3.34 - 2024-10-09
 
 ### Added

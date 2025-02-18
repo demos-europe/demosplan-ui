@@ -63,6 +63,7 @@ export type PhosphorIconName =
   | 'highlighter'
   | 'hourglass'
   | 'info'
+  | 'map-pin'
   | 'plus'
   | 'phone'
   | 'question'

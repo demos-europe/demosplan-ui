@@ -1,37 +1,32 @@
 <template>
-  <div>
-    <div class="border">
-      <bubble-menu
-          v-if="editor"
-          :editor="editor"
-          :tippy-options="{ duration: 100 }">
-        <div class="editor-menububble__wrapper is-active bottom-0">
-          <button
-              v-if="editor.isActive('anonymize')"
-              class="editor-menububble__button whitespace-nowrap"
-              @click="editor.chain().focus().toggleUnanonymize().run()">
-            {{ translations.unanonymize }}
-          </button>
-          <button
-              v-else
-              class="editor-menububble__button whitespace-nowrap"
-              @click="editor.chain().focus().toggleAnonymize().run()">
-            {{ translations.anonymize }}
-          </button>
-        </div>
-      </bubble-menu>
-      <editor-content
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-          ref="editorContent"
-          class="editor-content"
-          :editor="editor" />
-    </div>
-    <div>
-      <dp-button @click="resetAnonymizations" :text="'Reset All Anonymizations'" />
-    </div>
+  <div class="border">
+    <bubble-menu
+      v-if="editor"
+      :editor="editor"
+      :tippy-options="{ duration: 100 }">
+      <div class="editor-menububble__wrapper is-active bottom-0">
+        <button
+          v-if="editor.isActive('anonymize')"
+          class="editor-menububble__button whitespace-nowrap"
+          @click="editor.chain().focus().toggleUnanonymize().run()">
+          {{ translations.unanonymize }}
+        </button>
+        <button
+          v-else
+          class="editor-menububble__button whitespace-nowrap"
+          @click="editor.chain().focus().toggleAnonymize().run()">
+          {{ translations.anonymize }}
+        </button>
+      </div>
+    </bubble-menu>
+    <editor-content
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      ref="editorContent"
+      class="editor-content"
+      :editor="editor" />
   </div>
 </template>
 
@@ -63,13 +58,11 @@ import {
   Obscure,
   UnAnonymize
 } from '../DpEditor/libs/customExtensions'
-import DpButton from '../DpButton/DpButton.vue'
 export default {
   name: 'DpAnonymizeText',
 
   components: {
     BubbleMenu,
-    DpButton,
     EditorContent
   },
 
@@ -94,7 +87,7 @@ export default {
     setValue () {
       let currentValue = this.editor.getHTML()
 
-      // 1. look if there are anonymized segments, which are tagged to un-anonymize
+      // 1. look if there are anonymized segements, which are tagged to un-anonymize
       const unanonymize = /<span[^>]*?title="(.*?)"([^>]*?)class="anonymize-me"([^>]*?)>([^<]*?)<span class="unanonymized">([^<]*?)<\/span>([^<]*?)<\/span>/gm
       currentValue = currentValue.replace(unanonymize, (match, p1) => p1.replaceAll('&quot;', '"'))
 
@@ -109,31 +102,6 @@ export default {
       // Update text
       this.editor.commands.setContent(currentValue)
       this.$emit('change', currentValue)
-    },
-
-    removeAllMarksOfType(markType) {
-      const { state, view } = this.editor;
-      const { tr, schema } = state;
-
-      // Find the mark type in the schema
-      const mark = schema.marks[markType];
-      if (!mark) return;
-
-      // Iterate over all nodes in the document
-      state.doc.descendants((node, pos) => {
-        if (node.isText && mark.isInSet(node.marks)) {
-          // Remove the mark from current position to position + node.size
-          tr.removeMark(pos, pos + node.nodeSize, mark);
-        }
-        return true; // Continue traversing
-      });
-
-      // Dispatch the transaction to update the state
-      view.dispatch(tr);
-    },
-
-    resetAnonymizations() {
-      this.removeAllMarksOfType('anonymize');
     }
   },
 

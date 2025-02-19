@@ -6,7 +6,7 @@
       v-if="primary"
       :busy="busy"
       :data-cy="`${dataCy}:saveButton`"
-      :disabled="disabledPrimary"
+      :disabled="isDisabledPrimary"
       :text="primaryText"
       :variant="variant"
       @click.prevent="$emit('primary-action')" />
@@ -14,7 +14,7 @@
       v-if="secondary"
       color="secondary"
       :data-cy="`${dataCy}:abortButton`"
-      :disabled="disabledSecondary"
+      :disabled="isDisabledSecondary"
       :href="href"
       :text="secondaryText"
       :variant="variant"
@@ -60,19 +60,15 @@ export default {
     },
 
     /**
-     * The primary button may have a "disabled" state to prevent unwanted user interaction e.g if no data is changed yet.
+     * The primary, secondary or both buttons may have a "disabled" state to prevent unwanted user interaction e.g if no data is changed yet.
+     *
+     * @type {Boolean|Object} - Can be a boolean to disable both buttons or an object to specify which button to disable.
+     * @property {Boolean} [primary] - If true, disables the primary button.
+     * @property {Boolean} [secondary] - If true, disables the secondary button.
+     * @default false - By default, no buttons are disabled.
      */
-    disabledPrimary: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
-    /**
-     * The secondary button may have a "disabled" state to prevent unwanted user interaction.
-     */
-    disabledSecondary: {
-      type: Boolean,
+    disabled: {
+      type: [Boolean, Object],
       required: false,
       default: false
     },
@@ -138,6 +134,14 @@ export default {
   computed: {
     align () {
       return this.alignment === 'left' ? 'text-left' : 'text-right'
+    },
+
+    isDisabledPrimary () {
+      return this.disabled === true || (this.disabled.primary || false)
+    },
+
+    isDisabledSecondary () {
+      return this.disabled === true || (this.disabled.secondary || false)
     }
   }
 }

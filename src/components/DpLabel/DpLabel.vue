@@ -1,7 +1,6 @@
 <template>
   <label
-    :class="prefixClass(['o-form__label flex flex-col', bold ? 'weight--bold' : 'weight--normal',
-    hints.length > 0 ? 'has-hint' : '', hide ? 'sr-only' : '', isDisabled ? 'cursor-default' : 'cursor-pointer'])"
+    :class="prefixClass(labelClasses)"
     :for="labelFor">
     <span>
       <span v-cleanhtml="text" /><span v-if="required" aria-hidden="true">*</span>
@@ -98,6 +97,16 @@ export default {
         return this.wrapItemIntoArray(this.hint)
       }
       return []
+    },
+
+    labelClasses () {
+      return [
+        'o-form__label flex flex-col',
+        this.bold ? 'weight--bold' : 'weight--normal',
+        this.hints.length > 0 ? 'has-hint' : '',
+        this.hide ? 'sr-only' : '',
+        this.isDisabled ? 'cursor-default' : 'cursor-pointer'
+      ]
     },
 
     labelFor () {

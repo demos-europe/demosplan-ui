@@ -6,6 +6,7 @@
         ...label,
         for: id,
         hint: labelHint,
+        isDisabled: disabled,
         required: required
       }" /><!--
  --><input

@@ -4,9 +4,35 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
 ### Changed 
 
 - ([#1151](https://github.com/demos-europe/demosplan-ui/pull/1151)) DpPager: Remove Translator and allow passing labels as props ([@riechedemos](https://github.com/riechedemos))
+
+## v0.3.47 - 2025-02-18
+
+### Added
+
+- ([#1175](https://github.com/demos-europe/demosplan-ui/pull/1175)) DpIcon: Add new icon 'dots-three' ([@hwiem](https://github.com/hwiem))
+- ([#1167](https://github.com/demos-europe/demosplan-ui/pull/1167)) DpLabel: add isDisabled props to change cursor style ([@riechedemos](https://github.com/riechedemos))
+- ([#1181](https://github.com/demos-europe/demosplan-ui/pull/1181) DpIcon: Add new icons (mapPin and mapPinSolid) ([@spiess-demos](https://github.com/spiess-demos))
+
+### Fixed
+
+- ([#1172](https://github.com/demos-europe/demosplan-ui/pull/1172)) preventEditing.js: Allow keys to navigate with keyboard([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.3.46 - 2025-02-18
+
+Skipped due to issues during the release process.
+
+## v0.3.45 - 2025-01-30
+
+### Added
+
+- ([#1158](https://github.com/demos-europe/demosplan-ui/pull/1158)) DpTreeList: remove padding for draggable leaves and keep it only for categories ([@sakutademos](https://github.com/sakutademos)
+- ([#1139](https://github.com/demos-europe/demosplan-ui/pull/1139)) DpFlyout: Add unit test ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.3.44 - 2025-01-27
 

@@ -15,6 +15,7 @@
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
+      :aria-label="ariaLabel !== '' ? ariaLabel : null"
       class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
       :data-cy="dataCy"
       @click="toggle">
@@ -48,6 +49,12 @@ export default {
       type: String,
       default: 'right',
       validator: (prop) => ['left', 'right'].includes(prop)
+    },
+
+    ariaLabel: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     dataCy: {

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1188](https://github.com/demos-europe/demosplan-ui/pull/1188) DpIcon: Add new icon 'faders' ([@hwiem](https://github.com/hwiem)
+
 ### Fixed
 
 - ([#1185](https://github.com/demos-europe/demosplan-ui/pull/1172)) DpEditor: Add inline-block for correct alignment ([@riechedemos](https://github.com/riechedemos))

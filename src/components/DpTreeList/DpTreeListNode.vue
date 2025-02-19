@@ -2,7 +2,7 @@
   <li class="border--top relative">
     <div class="c-treelist__node flex">
       <div
-        class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
+        class="inline-block p-1 pr-0 mt-0.5"
         :class="dragHandle"
         v-if="isDraggable">
         <dp-icon
@@ -20,12 +20,12 @@
         :style="indentationStyle">
         <dp-tree-list-toggle
           v-if="isBranch"
-          class="c-treelist__folder text--left u-pv-0_25"
+          class="c-treelist__folder text-left py-1"
           :class="{'cursor-not-allowed': 0 === children.length}"
           :disabled="!hasToggle"
           :icon-class-prop="iconClassFolder"
           v-model="isExpanded" />
-        <div class="grow u-pl-0 u-p-0_25">
+        <div class="grow u-pl-0 p-1">
           <slot
             v-if="isBranch"
             name="branch"
@@ -54,8 +54,8 @@
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
       :drag-across-branches="options.dragAcrossBranches"
-      class="list-style-none u-mb-0 u-1-of-1"
-      :class="[(children.length <= 0 && draggable) ? 'o-sortablelist__empty' : '']"
+      class="list-style-none mb-0 w-full"
+      :class="{'pb-3': draggable && isBranch}"
       data-cy="treeListChild"
       draggable-tag="ul"
       :group-id="nodeId"
@@ -69,6 +69,7 @@
       <dp-tree-list-node
         v-for="(child, idx) in children"
         v-show="isExpanded"
+        :align-toggle="alignToggle"
         :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1187](https://github.com/demos-europe/demosplan-ui/pull/1187) DpFlyout: Add ariaLabel prop for the trigger button ([@hwiem](https://github.com/hwiem)
+
 ### Fixed
 
 - ([#1185](https://github.com/demos-europe/demosplan-ui/pull/1172)) DpEditor: Add inline-block for correct alignment ([@riechedemos](https://github.com/riechedemos))

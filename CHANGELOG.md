@@ -4,10 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-
 ### Changed 
 
 - ([#1151](https://github.com/demos-europe/demosplan-ui/pull/1151)) DpPager: Remove Translator and allow passing labels as props ([@riechedemos](https://github.com/riechedemos))
+- ([#1183](https://github.com/demos-europe/demosplan-ui/pull/1183)) DpButtonRow: Add option for prop disabled to disable only primary or secondary button or both ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 ## v0.3.47 - 2025-02-18
 

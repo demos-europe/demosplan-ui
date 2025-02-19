@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1186](https://github.com/demos-europe/demosplan-ui/pull/1186)) DpLabel: adjust position of the tooltip and hint ([@sakutademos](https://github.com/sakutademos)
+
 ### Added
 - ([#1183](https://github.com/demos-europe/demosplan-ui/pull/1183)) DpButtonRow: Add option for prop disabled to disable only primary or secondary button or both ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 

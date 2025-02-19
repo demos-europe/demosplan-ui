@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1185](https://github.com/demos-europe/demosplan-ui/pull/1172)) DpEditor: Add inline-block for correct alignment ([@riechedemos](https://github.com/riechedemos))
+
 ### Changed 
 
 - ([#1151](https://github.com/demos-europe/demosplan-ui/pull/1151)) DpPager: Remove Translator and allow passing labels as props ([@riechedemos](https://github.com/riechedemos))

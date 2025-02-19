@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1183](https://github.com/demos-europe/demosplan-ui/pull/1183)) DpButtonRow: Add separate props for disabling primary and secondary button ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
 ## v0.3.47 - 2025-02-18
 
 ### Added

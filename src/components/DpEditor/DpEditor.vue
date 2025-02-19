@@ -171,7 +171,7 @@
                 @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                 @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
                 <dp-icon
-                  class="align-text-top"
+                  class="align-text-top inline-block"
                   icon="highlighter" />
               </button>
             </div>

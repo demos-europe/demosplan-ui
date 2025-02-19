@@ -6,7 +6,7 @@
       v-if="primary"
       :busy="busy"
       :data-cy="`${dataCy}:saveButton`"
-      :disabled="disabled"
+      :disabled="disabledPrimary"
       :text="primaryText"
       :variant="variant"
       @click.prevent="$emit('primary-action')" />
@@ -14,7 +14,7 @@
       v-if="secondary"
       color="secondary"
       :data-cy="`${dataCy}:abortButton`"
-      :disabled="disabled"
+      :disabled="disabledSecondary"
       :href="href"
       :text="secondaryText"
       :variant="variant"
@@ -62,7 +62,16 @@ export default {
     /**
      * The primary button may have a "disabled" state to prevent unwanted user interaction e.g if no data is changed yet.
      */
-    disabled: {
+    disabledPrimary: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    /**
+     * The secondary button may have a "disabled" state to prevent unwanted user interaction.
+     */
+    disabledSecondary: {
       type: Boolean,
       required: false,
       default: false

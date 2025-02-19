@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1185](https://github.com/demos-europe/demosplan-ui/pull/1172)) DpEditor: Added inline-block for correct alignment([@riechedemos](https://github.com/riechedemos))
+
 ### Added
 - ([#1183](https://github.com/demos-europe/demosplan-ui/pull/1183)) DpButtonRow: Add option for prop disabled to disable only primary or secondary button or both ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 

@@ -7,7 +7,7 @@
       :busy="busy"
       class="mt-0.5 mb-0.5"
       :data-cy="`${dataCy}:saveButton`"
-      :disabled="disabled"
+      :disabled="isDisabledPrimary"
       :text="primaryText"
       :variant="variant"
       @click.prevent="$emit('primary-action')" />
@@ -16,7 +16,7 @@
       color="secondary"
       class="mt-0.5 mb-0.5"
       :data-cy="`${dataCy}:abortButton`"
-      :disabled="disabled"
+      :disabled="isDisabledSecondary"
       :href="href"
       :text="secondaryText"
       :variant="variant"
@@ -62,10 +62,15 @@ export default {
     },
 
     /**
-     * The primary button may have a "disabled" state to prevent unwanted user interaction e.g if no data is changed yet.
+     * The primary, secondary or both buttons may have a "disabled" state to prevent unwanted user interaction e.g if no data is changed yet.
+     *
+     * @type {Boolean|Object} - Can be a boolean to disable both buttons or an object to specify which button to disable.
+     * @property {Boolean} [primary] - If true, disables the primary button.
+     * @property {Boolean} [secondary] - If true, disables the secondary button.
+     * @default false - By default, no buttons are disabled.
      */
     disabled: {
-      type: Boolean,
+      type: [Boolean, Object],
       required: false,
       default: false
     },
@@ -131,6 +136,14 @@ export default {
   computed: {
     align () {
       return this.alignment === 'left' ? 'text-left' : 'text-right'
+    },
+
+    isDisabledPrimary () {
+      return this.disabled === true || (this.disabled.primary || false)
+    },
+
+    isDisabledSecondary () {
+      return this.disabled === true || (this.disabled.secondary || false)
     }
   }
 }

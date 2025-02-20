@@ -103,6 +103,12 @@ const de = {
     },
     update: 'Aktualisierung'
   },
+  pager: {
+    multipleOf: "von",
+    multipleItems: 'Einträgen',
+    chooseEntries: 'Wählen Sie, wieviele von insgesamt',
+    ofEntries: 'Einträgen pro Seite ausgegeben werden sollen.'
+  },
   placeholderAutoSuggest: "Suchbegriff...",
   tab: {
     openNew: 'in neuem Tab öffnen'

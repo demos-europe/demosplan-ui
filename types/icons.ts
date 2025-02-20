@@ -59,6 +59,7 @@ export type PhosphorIconName =
   | 'clock'
   | 'copy'
   | 'dots-three'
+  | 'faders'
   | 'file'
   | 'highlighter'
   | 'hourglass'

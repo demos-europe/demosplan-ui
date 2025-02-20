@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-- ([#1176](https://github.com/demos-europe/demosplan-ui/pull/1176), [#1182](https://github.com/demos-europe/demosplan-ui/pull/1182)) DpIcon: Add new icons 'dots-three' and 'map-pin' ([@hwiem](https://github.com/hwiem), [@spiess-demos](https://github.com/spiess-demos))
+- ([#1176](https://github.com/demos-europe/demosplan-ui/pull/1176), [#1182](https://github.com/demos-europe/demosplan-ui/pull/1182), [#1189](https://github.com/demos-europe/demosplan-ui/pull/1189)) DpIcon: Add new icons 'dots-three', 'map-pin', and 'faders' ([@hwiem](https://github.com/hwiem), [@spiess-demos](https://github.com/spiess-demos))
 
 ### Changed
 - ([#1156](https://github.com/demos-europe/demosplan-ui/pull/1156)) DpSearchField: Introduce condensed search field with attached search button ([@hwiem](https://github.com/hwiem))

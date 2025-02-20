@@ -1,17 +1,17 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
-      :aria-label="Translator.trans('pager.amount.multiple.label', { results: totalItems, items: Translator.trans('pager.amount.multiple.items') })">
-        <dp-sliding-pagination
-          v-if="totalItems > Math.min(...limits)"
-          class="inline-block"
-          :current="currentPage"
-          :nonSlidingSize="3"
-          :slidingEndingSize="1"
-          :slidingWindowSize="1"
-          :total="totalPages || 1"
-          @page-change="handlePageChange" />
+      :aria-label="labelTexts.multipleLabel"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block">
+      <dp-sliding-pagination
+        v-if="totalItems > Math.min(...limits)"
+        class="inline-block"
+        :current="currentPage"
+        :non-sliding-size="3"
+        :sliding-ending-size="1"
+        :sliding-window-size="1"
+        :total="totalPages || 1"
+        @page-change="handlePageChange" />
       <div
         class="inline-block"
         v-if="totalItems > Math.min(...limits)">
@@ -21,13 +21,13 @@
           :options="filteredLimits"
           :searchable="false"
           selected-label=""
-          @select="handleSizeChange"/>
+          @select="handleSizeChange" />
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
-        {{ Translator.trans('pager.amount.multiple.of') }}
+        {{ labelTexts.multipleOf }}
         <span data-cy="totalItems">{{ totalItems }}</span>
-        {{ Translator.trans('pager.amount.multiple.items') }}
+        {{ labelTexts.multipleItems }}
       </span>
     </label>
   </div>
@@ -36,6 +36,7 @@
 <script>
 import DpMultiselect from '~/components/DpMultiselect'
 import DpSlidingPagination from '~/components/DpSlidingPagination'
+import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpPager',
@@ -52,10 +53,33 @@ export default {
       default: 1
     },
 
+    limits: {
+      required: false,
+      type: Array,
+      default: () => []
+    },
+
     totalItems: {
       required: false,
       type: Number,
       default: 1
+    },
+
+    /**
+     * Note: Props are primarily listed in alphabetical order.
+     * However, `totalItems` must precede `labelText` because `labelText` relies on the value of `totalItems`.
+     * Arranging them in this order ensures `totalItems` is initialized before `labelText` references it.
+     */
+    labelTexts: {
+      required: false,
+      type: Object,
+      default () {
+        return ({
+          multipleItems: de.pager.multipleItems,
+          multipleLabel: `${de.pager.chooseEntries} ${this.totalItems} ${de.pager.ofEntries}`,
+          multipleOf: de.pager.multipleOf
+        })
+      }
     },
 
     totalPages: {
@@ -68,12 +92,6 @@ export default {
       required: false,
       type: Number,
       default: 1
-    },
-
-    limits: {
-      required: false,
-      type: Array,
-      default: () => []
     }
   },
 

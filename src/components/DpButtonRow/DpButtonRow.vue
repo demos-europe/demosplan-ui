@@ -5,6 +5,7 @@
     <dp-button
       v-if="primary"
       :busy="busy"
+      class="mt-0.5 mb-0.5"
       :data-cy="`${dataCy}:saveButton`"
       :disabled="isDisabledPrimary"
       :text="primaryText"
@@ -13,6 +14,7 @@
     <dp-button
       v-if="secondary"
       color="secondary"
+      class="mt-0.5 mb-0.5"
       :data-cy="`${dataCy}:abortButton`"
       :disabled="isDisabledSecondary"
       :href="href"

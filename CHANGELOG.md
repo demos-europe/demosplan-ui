@@ -10,9 +10,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 - ([#1156](https://github.com/demos-europe/demosplan-ui/pull/1156)) DpSearchField: Introduce condensed search field with attached search button ([@hwiem](https://github.com/hwiem))
 - ([#1074](https://github.com/demos-europe/demosplan-ui/pull/1080)) DpEditableList: Use DpButton instead of buttons and use new icons ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+- ([#1191](https://github.com/demos-europe/demosplan-ui/pull/1191)) DpLabel: adjust position of the tooltip and hint ([@sakutademos](https://github.com/sakutademos)
 
 ### Fixed
-
 - ([#1157](https://github.com/demos-europe/demosplan-ui/pull/1157)) build: add missing dependency ([@hwiem](https://github.com/hwiem))
 
 ## v0.4.3 - 2024-12-11

@@ -1,30 +1,28 @@
 <template>
   <label
-    :class="prefixClass(['o-form__label flex', bold ? 'weight--bold' : 'weight--normal',
-    hints.length > 0 ? 'has-hint' : '', hide ? 'sr-only' : '', isDisabled ? 'cursor-default' : 'cursor-pointer'])"
+    :class="prefixClass(labelClasses)"
     :for="labelFor">
     <span>
-      <span v-cleanhtml="text" /><span v-if="required">*</span>
-      <span
-        v-if="hints.length > 0"
-        :class="prefixClass('block font-size-small weight--normal')">
-        <span
-          :class="prefixClass(['inline-block'])"
-          :key="i"
-          v-for="(h, i) in hints"
-          v-cleanhtml="h" />
-      </span>
+      <span v-cleanhtml="text" /><span v-if="required" aria-hidden="true">*</span>
+      <dp-contextual-help
+        v-if="tooltip"
+        :class="prefixClass('ml-0.5')"
+        :text="tooltip" />
     </span>
-    <dp-contextual-help
-      v-if="tooltip !== ''"
-      :class="prefixClass('mt-px ml-0.5')"
-      :text="tooltip" />
+    <span
+      v-if="hints.length"
+      :class="prefixClass('block font-size-small weight--normal')">
+      <span
+        v-for="(hint, i) in hints"
+        :key="i"
+        :class="prefixClass(['inline-block'])"
+        v-cleanhtml="hint" />
+    </span>
   </label>
 </template>
 
 <script>
 import { CleanHtml } from '~/directives'
-import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
 import DpContextualHelp from '~/components/DpContextualHelp'
 
@@ -99,6 +97,16 @@ export default {
         return this.wrapItemIntoArray(this.hint)
       }
       return []
+    },
+
+    labelClasses () {
+      return [
+        'o-form__label flex flex-col',
+        this.bold ? 'weight--bold' : 'weight--normal',
+        this.hints.length > 0 ? 'has-hint' : '',
+        this.hide ? 'sr-only' : '',
+        this.isDisabled ? 'cursor-default' : 'cursor-pointer'
+      ]
     },
 
     labelFor () {

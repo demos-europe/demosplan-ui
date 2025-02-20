@@ -4,14 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.3.48 - 2025-02-20
+
 ### Fixed
-- ([#1186](https://github.com/demos-europe/demosplan-ui/pull/1186)) DpLabel: adjust position of the tooltip and hint ([@sakutademos](https://github.com/sakutademos)
+- ([#1186](https://github.com/demos-europe/demosplan-ui/pull/1186)) DpLabel: Adjust position of the tooltip and hint ([@sakutademos](https://github.com/sakutademos)
 
 ### Added
 
 - ([#1187](https://github.com/demos-europe/demosplan-ui/pull/1187)) DpFlyout: Add ariaLabel prop for the trigger button ([@hwiem](https://github.com/hwiem))
 - ([#1188](https://github.com/demos-europe/demosplan-ui/pull/1188)) DpIcon: Add new icon 'faders' ([@hwiem](https://github.com/hwiem))
-- ([#1184](https://github.com/demos-europe/demosplan-ui/pull/1184)) DpButtonRow: Added margin for space between btns when wrap([@riechedemos](https://github.com/riechedemos))
+- ([#1184](https://github.com/demos-europe/demosplan-ui/pull/1184)) DpButtonRow: Add margin for space between btns when wrap ([@riechedemos](https://github.com/riechedemos))
 
 ### Fixed
 

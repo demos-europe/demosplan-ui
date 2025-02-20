@@ -6,7 +6,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#1188](https://github.com/demos-europe/demosplan-ui/pull/1188) DpIcon: Add new icon 'faders' ([@hwiem](https://github.com/hwiem)
+- ([#1187](https://github.com/demos-europe/demosplan-ui/pull/1187)) DpFlyout: Add ariaLabel prop for the trigger button ([@hwiem](https://github.com/hwiem))
+- ([#1188](https://github.com/demos-europe/demosplan-ui/pull/1188)) DpIcon: Add new icon 'faders' ([@hwiem](https://github.com/hwiem))
 
 ### Fixed
 

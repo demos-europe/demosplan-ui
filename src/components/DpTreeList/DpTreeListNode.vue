@@ -97,7 +97,7 @@
         </template>
       </dp-tree-list-node>
       <li
-        v-if="isBranch && hasChildren && hasDraggableChildren"
+        v-if="isBranch && !hasChildren && hasDraggableChildren"
         v-show="isExpanded"
         class="ml-2 mr-4 mt-2">
         <div class="o-sortablelist__spacer relative" />

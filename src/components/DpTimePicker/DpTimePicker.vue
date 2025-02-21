@@ -10,30 +10,30 @@
       :text="label" />
     <dp-resettable-input
       v-if="!isMobileDevice"
-      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
       class="w-8"
       button-variant="small"
+      :data-cy="dataCy"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
+      :pattern="timePattern"
+      :value="currentTime"
       @reset="handleReset"
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @input="val => handleInput(val)"
-      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-      :value="currentTime" />
+      @input="val => handleInput(val)" />
     <dp-input
       v-else
-      :data-cy="dataCy"
       :id="`timeInput:${id}`"
+      autocomplete="off"
       class="w-8"
+      :data-cy="dataCy"
+      :pattern="timePattern"
       type="time"
-      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"
-      @input="val => handleInput(val)"
-      autocomplete="off" />
+      @input="val => handleInput(val)" />
 
     <div
       ref="flyout"
@@ -213,7 +213,14 @@ export default {
         return h.toString().padStart(2, '0')
       })
       return minutes
-    }
+    },
+
+    timePattern () {
+      const hoursPattern = this.availableHours.join('|')
+      const minutesPattern = this.availableMinutes.join('|')
+
+      return `^(${hoursPattern}):(${minutesPattern})$`
+    },
   },
 
   watch: {
@@ -308,7 +315,13 @@ export default {
 
     handleInput (val, type = '') {
       if (type === '') {
-        this.updateTime(val)
+        const [hour, minute] = val.split(':')
+        if (this.availableHours.includes(hour) && this.availableMinutes.includes(minute)) {
+          this.updateTime(val)
+        } else {
+
+          return
+        }
       }
       if (type === 'hour') {
         this.setHour(val)

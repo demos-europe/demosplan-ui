@@ -21,7 +21,7 @@
         <dp-tree-list-toggle
           v-if="isBranch"
           class="c-treelist__folder text-left py-1"
-          :class="{'cursor-not-allowed': 0 === children.length}"
+          :class="{'cursor-not-allowed': !hasChildren}"
           :disabled="!hasToggle"
           :icon-class-prop="iconClassFolder"
           v-model="isExpanded" />
@@ -96,12 +96,6 @@
             v-bind="scope" />
         </template>
       </dp-tree-list-node>
-      <li
-        v-if="isBranch && children.length <= 0 && hasDraggableChildren"
-        v-show="isExpanded"
-        class="ml-2 mr-4 mt-2">
-        <div class="o-sortablelist__spacer relative" />
-      </li>
     </component>
   </li>
 </template>
@@ -223,16 +217,20 @@ export default {
       return str.substring(1, str.length)
     },
 
+    hasChildren () {
+      return this.children.length > 0
+    },
+
     hasDraggableChildren () {
       return this.isBranch && (this.options.dragLeaves || this.options.dragBranches) && this.draggable
     },
 
     hasToggle () {
-      return this.isBranch && (this.children.length > 0 || this.hasDraggableChildren)
+      return this.isBranch && this.hasChildren
     },
 
     iconClassFolder () {
-      const hasContent = this.children.length > 0
+      const hasContent = this.hasChildren
       let folderClass
       if (hasContent) {
         folderClass = this.isExpanded ? 'fa-folder-open' : 'fa-folder'
@@ -297,6 +295,12 @@ export default {
   },
 
   watch: {
+    children () {
+      if (!this.hasChildren) {
+        this.isExpanded = false
+      }
+    },
+
     parentSelected (val) {
       if (this.options.selectOn.parentSelect || this.options.deselectOn.parentDeselect) {
         this.setSelectionState(val)
@@ -355,7 +359,11 @@ export default {
   },
 
   mounted () {
-    this.$root.$on('treelist:toggle-all', (expanded) => (this.isExpanded = expanded))
+    this.$root.$on('treelist:toggle-all', (expanded) => {
+      if (this.hasChildren) {
+        this.isExpanded = expanded
+      }
+    })
   }
 }
 </script>

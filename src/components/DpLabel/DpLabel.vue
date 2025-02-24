@@ -3,21 +3,21 @@
     :class="classes"
     :for="labelFor">
     <span>
-      <span v-cleanhtml="text" /><span v-if="required">*</span>
-      <span
-        v-if="hints.length > 0"
-        :class="prefixClass('block text-sm font-normal')">
-        <span
-          :class="prefixClass('inline-block')"
-          :key="i"
-          v-for="(h, i) in hints"
-          v-cleanhtml="h" />
-      </span>
+      <span v-cleanhtml="text" /><span v-if="required" aria-hidden="true">*</span>
+      <dp-contextual-help
+        v-if="tooltip"
+        :class="prefixClass('ml-0.5')"
+        :text="tooltip" />
     </span>
-    <dp-contextual-help
-      v-if="tooltip !== ''"
-      :class="prefixClass('shrink-0 mt-px ml-0.5')"
-      :text="tooltip" />
+    <span
+      v-if="hints.length"
+      :class="prefixClass('block text-sm font-normal')">
+      <span
+        v-for="(hint, i) in hints"
+        :key="i"
+        :class="prefixClass('inline-block')"
+        v-cleanhtml="hint" />
+    </span>
   </label>
 </template>
 
@@ -72,7 +72,7 @@ const props = defineProps({
 })
 
 const classes = computed(() : string[] => {
-  let cssClasses: string[] = ['flex']
+  let cssClasses: string[] = ['flex flex-col']
 
   if (props.hide) {
     cssClasses.push('sr-only')

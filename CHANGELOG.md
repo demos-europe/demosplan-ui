@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.4 - 2025-02-26
+
 ### Added
 - ([#1176](https://github.com/demos-europe/demosplan-ui/pull/1176), [#1182](https://github.com/demos-europe/demosplan-ui/pull/1182), [#1189](https://github.com/demos-europe/demosplan-ui/pull/1189)) DpIcon: Add new icons 'dots-three', 'map-pin', and 'faders' ([@hwiem](https://github.com/hwiem), [@spiess-demos](https://github.com/spiess-demos))
 - ([#1193](https://github.com/demos-europe/demosplan-ui/pull/1193)) DpButtonRow: Add option for prop disabled to disable only primary or secondary button or both ([@gruenbergerdemos](https://github.com/gruenbergerdemos))

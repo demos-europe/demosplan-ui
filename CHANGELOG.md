@@ -14,6 +14,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1191](https://github.com/demos-europe/demosplan-ui/pull/1191)) DpLabel: adjust position of the tooltip and hint ([@sakutademos](https://github.com/sakutademos)
 
 ### Fixed
+- ([#1198](https://github.com/demos-europe/demosplan-ui/pull/1198)) Display Flyout in DpTableRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1157](https://github.com/demos-europe/demosplan-ui/pull/1157)) build: add missing dependency ([@hwiem](https://github.com/hwiem))
 
 ## v0.4.3 - 2024-12-11

@@ -57,7 +57,7 @@
 
     <td
       v-if="hasFlyout"
-      class="overflow-hidden min-w-[50px]">
+      class="overflow-visible min-w-[50px]">
       <slot
         name="flyout"
         v-bind="item" />

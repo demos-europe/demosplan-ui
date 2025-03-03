@@ -34,6 +34,11 @@ export default {
      */
     determineRowWidth () {
       if (this.elementsWidths.length > 0) {
+        if (this.elementsWidths[0] === 'w-full') {
+          this.isFullRow = true
+
+          return
+        }
         // U-firstWidthValue-of-y
         const firstWidthValues = this.elementsWidths.map(width => parseInt(width.match(/\d+/)))
         // Add firstWidthValues together

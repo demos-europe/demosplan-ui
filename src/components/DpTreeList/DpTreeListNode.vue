@@ -56,7 +56,7 @@
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
-      :drag-across-branches="options.dragAcrossBranches ? optons.dragAcrossBranches : null"
+      :drag-across-branches="options.dragAcrossBranches ? options.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
       :content-data="draggable ? children : []"
       data-cy="treeListChild"

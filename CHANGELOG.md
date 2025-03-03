@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1202](https://github.com/demos-europe/demosplan-ui/pull/1202)) Catch full-width class in dpFormRow ([@salisdemos](https://github.com/salisdemos))
+
+
 ## v0.4.4 - 2025-02-26
 
 ### Added

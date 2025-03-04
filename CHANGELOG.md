@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.5 - 2025-03-04
+
 ### Fixed
 - ([#1202](https://github.com/demos-europe/demosplan-ui/pull/1202)) Catch full-width class in dpFormRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1203](https://github.com/demos-europe/demosplan-ui/pull/1203)) Fix typo in DpTreeListNode ([@salisdemos](https://github.com/salisdemos))

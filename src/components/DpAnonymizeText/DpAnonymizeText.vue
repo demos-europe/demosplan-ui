@@ -32,11 +32,11 @@
 
 <script>
 import {
-  BubbleMenu,
-  Editor, // Wrapper for prosemirror state
-  EditorContent, // Renderless content element
-} from '@tiptap/vue-2'
-import { de } from '../shared/translations'
+  Anonymize,
+  PreventEditing,
+  Obscure,
+  UnAnonymize
+} from '../DpEditor/libs/customExtensions'
 import {
   Bold,
   BulletList,
@@ -53,11 +53,12 @@ import {
   ListItem
 } from '../DpEditor/libs/tiptapExtensions'
 import {
-  Anonymize,
-  PreventEditing,
-  Obscure,
-  UnAnonymize
-} from '../DpEditor/libs/customExtensions'
+  BubbleMenu,
+  Editor, // Wrapper for prosemirror state
+  EditorContent, // Renderless content element
+} from '@tiptap/vue-3'
+import { de } from '../shared/translations'
+
 export default {
   name: 'DpAnonymizeText',
 

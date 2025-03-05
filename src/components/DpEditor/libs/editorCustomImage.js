@@ -1,6 +1,6 @@
 import DpResizableImage from './../DpResizableImage'
 import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core'
-import { VueNodeViewRenderer } from '@tiptap/vue-2'
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
 
 /**

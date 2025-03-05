@@ -1,2 +1,2 @@
-export { default } from './DpUploadFiles.vue'
-export * from './DpUploadFiles.vue'
+export { default as DpUploadFiles } from './DpUploadFiles.vue'
+export { default as DpUpload } from './DpUpload.vue'

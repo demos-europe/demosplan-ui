@@ -1,4 +1,4 @@
-import { formatDate, toDate } from '../../src/utils/date'
+import { formatDate, toDate } from '~/utils/date'
 import dayjs from 'dayjs'
 
 describe('date', () => {

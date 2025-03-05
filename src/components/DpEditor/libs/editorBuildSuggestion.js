@@ -1,5 +1,5 @@
 import tippy, { sticky } from 'tippy.js'
-import { VueRenderer } from '@tiptap/vue-2'
+import { VueRenderer } from '@tiptap/vue-3'
 import MentionList from '../MentionList.vue'
 
 export default ({ suggestions, matcher }) => ({
@@ -16,11 +16,7 @@ export default ({ suggestions, matcher }) => ({
     return {
       onStart: props => {
         component = new VueRenderer(MentionList, {
-          // using vue 2:
-          parent: this,
-          propsData: props,
-          // using vue 3:
-          // props,
+          props,
           editor: props.editor,
         })
 

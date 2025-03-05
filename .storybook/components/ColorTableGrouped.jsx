@@ -37,7 +37,7 @@ plugins.forEach(plugin => {
     groupedTokens[plugin] = {}
 })
 
-const tailwindModules = extractPaletteColors(require('../../tokens/dist/js/color.ui-tailwind').color['ui-tailwind'])
+const tailwindModules = extractPaletteColors(require('../../tokens/dist/js/color.ui').color['ui-tailwind'])
 
 tailwindModules.forEach(token => {
     plugins.forEach(plugin => {

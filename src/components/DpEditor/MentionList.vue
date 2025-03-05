@@ -41,8 +41,11 @@ export default {
   },
 
   watch: {
-    items() {
-      this.selectedIndex = 0
+    items: {
+      handler () {
+        this.selectedIndex = 0
+      },
+      deep: true
     },
   },
 
@@ -50,16 +53,19 @@ export default {
     onKeyDown({ event }) {
       if (event.key === 'ArrowUp') {
         this.upHandler()
+
         return true
       }
 
       if (event.key === 'ArrowDown') {
         this.downHandler()
+
         return true
       }
 
       if (event.key === 'Enter') {
         this.enterHandler()
+
         return true
       }
 

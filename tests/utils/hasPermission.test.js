@@ -1,4 +1,4 @@
-import { hasPermission, hasAnyPermissions, hasAllPermissions } from '../../src/utils/hasPermission'
+import { hasPermission, hasAnyPermissions, hasAllPermissions } from '~/utils/hasPermission'
 
 window.dplan = {
   permissions: {

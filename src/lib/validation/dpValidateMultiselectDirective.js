@@ -1,38 +1,39 @@
 import validateMultiselect from './utils/validateMultiselect'
 
 const dpValidateMultiselectDirective = {
-  inserted (el, binding, vnode) {
+  mounted (el, binding) {
     if(!binding.value) {
       return
     }
 
     // Set initially correct validity value (no dropdown options => isValid)
-    const component = vnode.componentInstance
+    const component = binding.instance
     const hasOptions = component.groupValues ? component.options.some(group => group[component.groupValues].length > 0) : component.options.length > 0
-    el.setAttribute('data-dp-validate-is-valid', !hasOptions)
+
+    component.$el.setAttribute('data-dp-validate-is-valid', !hasOptions)
     const validateMultiselectField = (e) => {
       e.stopPropagation()
-      const validate = (e) => {
+      const validate = () => {
         document.removeEventListener('mouseup', validate)
         validateMultiselect(el)
       }
       document.addEventListener('mouseup', validate)
     }
+
     el.addEventListener('mouseup', validateMultiselectField)
   },
 
-  componentUpdated (el, binding, vnode) {
+  updated (el, binding) {
     if(!binding.value) {
       return
     }
 
-    const component = vnode.componentInstance
+    const component = binding.instance
     const hasOptions = component.groupValues ? component.options.some(group => group[component.groupValues].length > 0) : component.options.length > 0
-    let isValid = checkValue(component.value)
-    if (hasOptions === false) {
-      isValid = true
-    }
-    el.setAttribute('data-dp-validate-is-valid', isValid)
+    const isValid = !hasOptions ? true : checkValue(component.value)
+
+    component.$el.setAttribute('data-dp-validate-is-valid', isValid)
+    validateMultiselect(component.$el)
   }
 }
 
@@ -40,7 +41,9 @@ function checkValue (val) {
   if (!val) {
     return false
   }
+
   let isValid
+
   if (Array.isArray(val)) { // If it is a multiple select, value is Array
     if (val.length === 0) {
       isValid = false
@@ -54,6 +57,7 @@ function checkValue (val) {
   } else if (typeof val === 'string') { // In single selects value is object or string
     isValid = val !== ''
   }
+
   return isValid
 }
 

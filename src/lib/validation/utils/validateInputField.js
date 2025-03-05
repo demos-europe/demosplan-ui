@@ -55,7 +55,7 @@ export default function validateInput (input) {
   }
 
   // ##### IF INPUT IS VALID #####
-  if (isValid === true) {
+  if (isValid) {
     // Try to set customValidity (it will only work if input is visible, that is why try/catch is used)
     try {
       input.setCustomValidity('')
@@ -78,7 +78,7 @@ export default function validateInput (input) {
     try {
       if (errorLabel) {
         // Custom error label from data-dp-validate-error
-        input.setCustomValidity(Translator.trans(errorLabel))
+        input.setCustomValidity(errorLabel)
       } else if (inputPattern) {
         // Error label based on pattern
         switch (inputPattern) {
@@ -95,7 +95,7 @@ export default function validateInput (input) {
             input.setCustomValidity(de.validation.error.format)
         }
       } else {
-        input.setCustomValidity(Translator.trans('validation.error.default')) // Theoretically this must not happen hence its not that helpful
+        input.setCustomValidity(de.validation.error.default) // Theoretically this must not happen hence its not that helpful
       }
     } catch (err) {
       // Fail silently if setCustomValidity threw an error

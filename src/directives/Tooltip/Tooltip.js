@@ -19,7 +19,11 @@ const tooltipConfig = {
     hide: 100
   },
   defaultOffset: 12,
-  defaultTemplate: '<div class="tooltip" role="tooltip"><div class="tooltip__arrow"></div><div class="tooltip__inner"></div></div>',
+  defaultTemplate: `
+    <div class="z-tooltip cursor-help max-w-13 absolute" role="tooltip">
+      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1"></div>
+      <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded"></div>
+    </div>`,
   popover: {
     defaultPlacement: 'top',
     defaultBaseClass: 'tooltip',
@@ -42,7 +46,7 @@ VPopover.options = { ...VPopover.options, ...tooltipConfig }
  * @param text{String|HTML}
  */
 const Tooltip = {
-  inserted: function (element, binding) {
+  mounted: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 
@@ -61,7 +65,7 @@ const Tooltip = {
     initTooltip(element, content, options)
   },
 
-  update: function (element, binding) {
+  updated: function (element, binding) {
     let content = binding.value
     let options = { place: 'top' }
 
@@ -80,7 +84,7 @@ const Tooltip = {
     updateTooltip(element, content, options)
   },
 
-  unbind: function (element) {
+  unmounted: function (element) {
     destroyTooltip(element)
   }
 }

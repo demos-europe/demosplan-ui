@@ -32,7 +32,7 @@ export default {
      */
     allowedFileTypesWarning: {
       type: String,
-      default: 'warning.filetype'
+      default: de().strings.warningFileType
     },
 
     /**
@@ -50,7 +50,10 @@ export default {
     },
 
     /**
-     * Define chunk size for huge files like PDFs
+     * Define chunk size for huge files like PDFs.
+     * Important: Only change the default value if you are very sure about the consequences.
+     * It is recommended to change the value via setting the chunkSize prop instead of adjusting
+     * the default here, which basically allows the upload chunks to be as big as possible.
      */
     chunkSize: {
       type: Number,
@@ -65,7 +68,7 @@ export default {
     },
 
     /**
-     * Maximum file size in bytes for each individual file
+     * Maximum file size in bytes for each individual file.
      */
     maxFileSize: {
       type: Number,
@@ -101,7 +104,12 @@ export default {
     return {
       currentFileHash: '',
       currentFileId: '',
-      uppy: null
+      uppy: null,
+      uppyTranslations: {
+        strings: {
+          ...de().strings, ...this.translations
+        }
+      },
     }
   },
 
@@ -167,7 +175,6 @@ export default {
     },
 
     initialize () {
-      const locale = { strings: { ...de().strings, ...this.translations } }
       this.uppy = new Uppy({
         disabled: true,
         autoProceed: true,
@@ -178,14 +185,14 @@ export default {
           maxNumberOfFiles: this.maxNumberOfFiles
         },
         onBeforeFileAdded: this.handleOnBeforeFileAdded,
-        locale: locale
+        locale: this.uppyTranslations
       })
 
       this.uppy.use(DragDrop, {
         target: this.$refs.fileInput,
         width: '100%',
         note: null,
-        locale: locale
+        locale: this.uppyTranslations
       })
 
       this.uppy.use(ProgressBar, {
@@ -212,7 +219,7 @@ export default {
 
       this.uppy.use(Tus, {
         endpoint: this.tusEndpoint,
-        chunkSize: 819200, // 800 KiB
+        chunkSize: this.chunkSize,
         limit: 5,
         onAfterResponse: (_req, res) => {
           this.currentFileHash = res.getHeader('X-Demosplan-File-Hash')
@@ -250,7 +257,7 @@ export default {
 
     this.uppy.on('upload-error', (file, error, response) => {
       console.error(error)
-      dplan.notify.error(Translator.trans('error.fileupload'))
+      dplan.notify.error(this.uppyTranslations.strings.errorFileUpload)
       this.$emit('file-error', { file, error, response })
     })
 
@@ -263,7 +270,7 @@ export default {
     })
 
     this.uppy.on('restriction-failed', () => {
-      dplan.notify.warning(Translator.trans(this.allowedFileTypesWarning))
+      dplan.notify.warning(this.allowedFileTypesWarning)
     })
 
     /*
@@ -286,7 +293,7 @@ export default {
     })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.uppy) {
       this.uppy.close()
     }

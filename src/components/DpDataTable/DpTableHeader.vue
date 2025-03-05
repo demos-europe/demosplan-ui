@@ -27,23 +27,24 @@
         :checked="checked" />
     </th>
     <template v-for="(hf, idx) in headerFields">
-      <dp-resizable-column
-        v-if="isResizable"
-        :is-last="headerFields.length === idx"
+      <component
+        :is="isResizable ? 'DpResizableColumn' : 'th'"
+        :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
         :next-header="headerFields[idx + 1]"
         :idx="idx">
-        <slot :name="`header-${hf.field}`">
-          <span v-if="hf.label" v-text="hf.label" />
+        <slot
+          v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
+          :name="`header-${hf.field}`"
+          v-bind="hf">
+          <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
+            <span v-if="hf.label" v-text="hf.label" />
+          </div>
         </slot>
-      </dp-resizable-column>
-      <th
-        v-else
-        scope="col">
-        <slot :name="`header-${hf.field}`">
-          <span v-if="hf.label" v-text="hf.label" />
-        </slot>
-      </th>
+        <span
+          v-else-if="hf.label"
+          v-text="hf.label" />
+      </component>
     </template>
     <th
       v-if="hasFlyout"

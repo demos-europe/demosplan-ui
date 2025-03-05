@@ -12,7 +12,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1202](https://github.com/demos-europe/demosplan-ui/pull/1202)) Catch full-width class in dpFormRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1203](https://github.com/demos-europe/demosplan-ui/pull/1203)) Fix typo in DpTreeListNode ([@salisdemos](https://github.com/salisdemos))
-- ([#1204](https://github.com/demos-europe/demosplan-ui/pull/1204)) DpEditor: Fix imports for mention extension ([@hwiem](https://github.com/hwiem))
 
 ## v0.4.4 - 2025-02-26
 

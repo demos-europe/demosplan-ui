@@ -328,7 +328,6 @@ import {
   History,
   Italic,
   ListItem,
-  Mention,
   OrderedList,
   Paragraph,
   Strike,
@@ -352,7 +351,8 @@ import {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
-  Obscure
+  Obscure,
+  Mention
 } from './libs/customExtensions'
 import DpIcon from '../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'

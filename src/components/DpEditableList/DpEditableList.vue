@@ -24,7 +24,7 @@
             variant="subtle"
             @click.prevent="showUpdateForm(index)" />
           <dp-button
-            class="-ml-1.5"
+            class="ml-0.5"
             :data-cy="`${dataCy}:deleteEntry`"
             hide-text
             icon="delete"

@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1207](https://github.com/demos-europe/demosplan-ui/pull/1207)) Fix importing Mention Extiention in DpEditor ([@salisdemos](https://github.com/salisdemos))
+
 ## v0.4.5 - 2025-03-04
 
 ### Fixed

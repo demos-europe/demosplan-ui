@@ -6,6 +6,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1214](https://github.com/demos-europe/demosplan-ui/pull/1214)) Propperly emit checkboxGroup events ([@salisdemos](https://github.com/salisdemos))
+- ([#1213](https://github.com/demos-europe/demosplan-ui/pull/1213)) Changed Icon to caret in DpWrapTrigger ([@riechedemos](https://github.com/riechedemos))
+
 
 ## v0.4.5 - 2025-03-04
 

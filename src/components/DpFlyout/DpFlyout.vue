@@ -1,6 +1,8 @@
 <template>
   <span
     class="o-flyout"
+    v-on-click-outside="close"
+    ref="target"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
@@ -33,14 +35,16 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
+import { vOnClickOutside } from '@vueuse/components'
 
 export default {
   name: 'DpFlyout',
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
+
+  emits: ['close', 'open'],
 
   props: {
     align: {
@@ -111,10 +115,6 @@ export default {
         this.$emit('close')
       }
     }
-  },
-
-  mounted () {
-    this.popupItem = this.$el
   }
 }
 </script>

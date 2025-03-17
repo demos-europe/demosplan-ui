@@ -5,8 +5,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1209](https://github.com/demos-europe/demosplan-ui/pull/1209)) Escape Multiline String Endings to avoid \n in classlist in DpButton ([@salisdemos](https://github.com/salisdemos))
 - ([#1213](https://github.com/demos-europe/demosplan-ui/pull/1213)) Changed Icon to caret in DpWrapTrigger ([@riechedemos](https://github.com/riechedemos))
--
+
+
 ## v0.4.5 - 2025-03-04
 
 ### Fixed

@@ -6,6 +6,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1208](https://github.com/demos-europe/demosplan-ui/pull/1208)) Remove useless wrapping div to make Multiselect Validation work again ([@salisdemos](https://github.com/salisdemos))
+- ([#1209](https://github.com/demos-europe/demosplan-ui/pull/1209)) Escape Multiline String Endings to avoid \n in classlist in DpButton ([@salisdemos](https://github.com/salisdemos))
+- ([#1213](https://github.com/demos-europe/demosplan-ui/pull/1213)) Changed Icon to caret in DpWrapTrigger ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+- ([#1215](https://github.com/demos-europe/demosplan-ui/pull/1215)) Reintroduce ClickOutside for some Components ([@salisdemos](https://github.com/salisdemos))
+- ([#1216](https://github.com/demos-europe/demosplan-ui/pull/1216)) DpInput: Add prop for rounded input to allow full or only left or right rounded input ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+
 
 ## v0.4.5 - 2025-03-04
 
@@ -239,6 +247,7 @@ to `~0.3.*` in your package.json.
 
 ### Added
 
+- ([#947](https://github.com/demos-europe/demosplan-ui/pull/947)) DpButtonRow: add validator ([@sakutademos](https://github.com/sakutademos))
 - ([#945](https://github.com/demos-europe/demosplan-ui/pull/945)) Add color tokens: text-status-[changed|progress|complete]-fill. ([@spiess-demos](https://github.com/spiess-demos))
 - ([#919](https://github.com/demos-europe/demosplan-ui/pull/919)) Add enlarging images on click for DpEditor ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 - ([#929](https://github.com/demos-europe/demosplan-ui/pull/929)) Add data attributes for E-2-E Test ([@ahmad-demos](https://github.com/ahmad-demos))

@@ -1,6 +1,7 @@
 <template>
   <div
     class="c-timepicker inline-block"
+    v-on-click-outside="closeFlyout"
     @keydown.esc="closeFlyout"
     @keydown.enter="e => handleEnter(e)">
     <dp-label
@@ -78,11 +79,11 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
 import DpInput from '~/components/DpInput'
 import DpLabel from '~/components/DpLabel'
 import DpResettableInput from '~/components/DpResettableInput'
 import isMobile from 'ismobilejs'
+import { vOnClickOutside } from '@vueuse/components'
 
 const DEFAULT_TIME = '00:00'
 
@@ -96,7 +97,7 @@ export default {
   },
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
 
   props: {

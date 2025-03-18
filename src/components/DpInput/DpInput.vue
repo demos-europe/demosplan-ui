@@ -30,7 +30,7 @@
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
-      :value="props.value"
+      :value="value"
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
       @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"
@@ -190,6 +190,21 @@ const props = defineProps({
   },
 
   /**
+   * Prop to define the rounded corners of the input.
+   *
+   * @property {String} rounded - The rounded corners style.
+   *                              Can be 'full', 'left', or 'right'.
+   * @default 'full'
+   * @validator Ensures the value is one of 'full', 'left', or 'right'.
+   */
+  rounded: {
+    type: String,
+    required: false,
+    default: 'full',
+    validator: (prop: string) => ['full', 'left', 'right'].includes(prop)
+  },
+
+  /**
    * When setting a number for the `size` prop, this is directly rendered
    * as html attribute on the input element. Also, it is assumed that visual sizing
    * based on that value shall be applied, that is why both container classes
@@ -228,12 +243,20 @@ const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'
 
 const classes = computed(() => {
   let _classes: string[] = [
-   `px-1 py-0.5 max-w-full rounded-input
+    `px-1 py-0.5 max-w-full
     text-base leading-4 bg-surface
     outline outline-1 outline-offset-0 outline-transparent
     focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
     required:shadow-none`
   ]
+
+  if (props.rounded === 'full') {
+    _classes.push('rounded-input')
+  } else if (props.rounded === 'left') {
+    _classes.push('rounded-l')
+  } else if (props.rounded === 'right') {
+    _classes.push('rounded-r')
+  }
 
   if (!(props.size && props.size > 0)) {
     _classes.push('w-full')

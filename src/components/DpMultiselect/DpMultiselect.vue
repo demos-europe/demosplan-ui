@@ -1,94 +1,92 @@
 <template>
-  <div>
-    <vue-multiselect
-      v-bind="{
-        allowEmpty,
-        clearOnSelect,
-        closeOnSelect,
-        customLabel,
-        deselectGroupLabel,
-        deselectLabel,
-        disabled,
-        groupLabel,
-        groupSelect,
-        groupValues,
-        id,
-        label,
-        loading,
-        maxHeight,
-        multiple,
-        name,
-        options,
-        placeholder,
-        searchable,
-        selectGroupLabel,
-        selectLabel,
-        selectedLabel,
-        tagPlaceholder,
-        trackBy,
-        value
-      }"
-      :class="{ 'is-required' : required }"
-      :data-cy="dataCy"
-      :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
-      :model-value="value"
-      v-dp-validate-multiselect="required"
-      @close="newVal => $emit('close', newVal)"
-      @update:model-value="newVal => $emit('input', newVal)"
-      @open="newVal => $emit('open', newVal)"
-      @remove="newVal => $emit('remove', newVal)"
-      @search-change="newVal => $emit('search-change', newVal)"
-      @select="newVal => $emit('select', newVal)"
-      @tag="newVal => $emit('tag', newVal)">
-      <template v-slot:noOptions>
-        <slot name="noOptions">
-          {{ translations.noEntriesAvailable }}
-        </slot>
-      </template>
+  <vue-multiselect
+    v-bind="{
+      allowEmpty,
+      clearOnSelect,
+      closeOnSelect,
+      customLabel,
+      deselectGroupLabel,
+      deselectLabel,
+      disabled,
+      groupLabel,
+      groupSelect,
+      groupValues,
+      id,
+      label,
+      loading,
+      maxHeight,
+      multiple,
+      name,
+      options,
+      placeholder,
+      searchable,
+      selectGroupLabel,
+      selectLabel,
+      selectedLabel,
+      tagPlaceholder,
+      trackBy,
+      value
+    }"
+    :class="{ 'is-required' : required }"
+    :data-cy="dataCy"
+    :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
+    :model-value="value"
+    v-dp-validate-multiselect="required"
+    @close="newVal => $emit('close', newVal)"
+    @update:model-value="newVal => $emit('input', newVal)"
+    @open="newVal => $emit('open', newVal)"
+    @remove="newVal => $emit('remove', newVal)"
+    @search-change="newVal => $emit('search-change', newVal)"
+    @select="newVal => $emit('select', newVal)"
+    @tag="newVal => $emit('tag', newVal)">
+    <template v-slot:noOptions>
+      <slot name="noOptions">
+        {{ translations.noEntriesAvailable }}
+      </slot>
+    </template>
 
-      <template v-slot:noResult>
-        <slot name="noResult">
-          {{ translations.autocompleteNoResults }}
-        </slot>
-      </template>
+    <template v-slot:noResult>
+      <slot name="noResult">
+        {{ translations.autocompleteNoResults }}
+      </slot>
+    </template>
 
-      <template
-        v-for="slot in subSlots"
-        v-slot:[slot]="props">
-        <slot
-          :props="props"
-          :name="slot" />
-      </template>
+    <template
+      v-for="slot in subSlots"
+      v-slot:[slot]="props">
+      <slot
+        :props="props"
+        :name="slot" />
+    </template>
 
-      <!-- put more slots here -->
+    <!-- put more slots here -->
 
-      <template
-        v-if="selectionControls"
-        v-slot:beforeList="props">
-        <slot
-          name="beforeList"
-          :props="props">
-          <div class="border-bottom">
-            <button
-                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-                :disabled="value.length === options.length === 0"
-                type="button"
-                v-text="translations.selectAll"
-                @click="$emit('select-all')">
-            </button>
+    <template
+      v-if="selectionControls"
+      v-slot:beforeList="props">
+      <slot
+        name="beforeList"
+        :props="props">
+        <div class="border-bottom">
+          <button
+              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+              :disabled="value.length === options.length === 0"
+              type="button"
+              v-text="translations.selectAll"
+              @click="$emit('select-all')">
+          </button>
 
-            <button
-                class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-                :disabled="value.length === 0"
-                type="button"
-                v-text="translations.deselectAll"
-                @click="$emit('unselect-all')">
-            </button>
-          </div>
-        </slot>
-      </template>
-    </vue-multiselect>
-  </div>
+          <button
+              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+              :disabled="value.length === 0"
+              type="button"
+              v-text="translations.deselectAll"
+              @click="$emit('unselect-all')">
+          </button>
+        </div>
+      </slot>
+    </template>
+  </vue-multiselect>
 </template>
 
 <script>

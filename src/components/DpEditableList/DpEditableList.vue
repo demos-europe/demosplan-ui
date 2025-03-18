@@ -14,7 +14,7 @@
           :entry="entry"
           :index="index" />
         <span
-          v-if="true === hasPermissionToEdit">
+          v-if="hasPermissionToEdit">
           <dp-button
             class="ml-1"
             :data-cy="`${dataCy}:updateEntry`"
@@ -40,7 +40,7 @@
       {{ translationKeys.noEntries }}
     </div>
 
-    <div v-if="true === isFormVisible && true === hasPermissionToEdit">
+    <div v-if="isFormVisible && hasPermissionToEdit">
       <div class="u-mb-0_5">
         <slot name="form" />
       </div>
@@ -59,7 +59,7 @@
     </div>
 
     <dp-button
-      v-if="false === isFormVisible && true === hasPermissionToEdit"
+      v-if="!isFormVisible && hasPermissionToEdit"
       class="btn btn--primary"
       :data-cy="`${dataCy}:showInput`"
       :text="translationKeys.new"
@@ -145,13 +145,13 @@ export default {
     showUpdateForm (index) {
       this.toggleFormVisibility(true)
       this.currentlyUpdating = index
-      this.$parent.$emit('showUpdateForm', index)
+      this.$emit('showUpdateForm', index)
     },
 
     deleteEntry (index) {
       this.toggleFormVisibility(false)
       this.currentlyUpdating = ''
-      this.$parent.$emit('delete', index)
+      this.$emit('delete', index)
     }
   }
 }

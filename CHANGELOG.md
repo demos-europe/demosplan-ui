@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.6 - 2025-03-18
+
 ### Fixed
 - ([#1208](https://github.com/demos-europe/demosplan-ui/pull/1208)) Remove useless wrapping div to make Multiselect Validation work again ([@salisdemos](https://github.com/salisdemos))
 - ([#1214](https://github.com/demos-europe/demosplan-ui/pull/1214)) Properly emit checkboxGroup events ([@salisdemos](https://github.com/salisdemos))

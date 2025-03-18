@@ -2116,7 +2116,6 @@ __metadata:
     babel-loader: "npm:^9.1.2"
     babel-plugin-syntax-jsx: "npm:^6.18.0"
     babel-plugin-transform-vue-jsx: "npm:^3.7.0"
-    click-outside-vue3: "npm:^4.0.1"
     css-loader: "npm:^7.0.0"
     dayjs: "npm:^1.11.5"
     dompurify: "npm:^3.0.0"
@@ -8948,13 +8947,6 @@ __metadata:
   version: 3.0.0
   resolution: "cli-width@npm:3.0.0"
   checksum: 10c0/125a62810e59a2564268c80fdff56c23159a7690c003e34aeb2e68497dccff26911998ff49c33916fcfdf71e824322cc3953e3f7b48b27267c7a062c81348a9a
-  languageName: node
-  linkType: hard
-
-"click-outside-vue3@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "click-outside-vue3@npm:4.0.1"
-  checksum: 10c0/a45d290e2798da0d0d12c8aaf4b651c9f5cf0132f5b59e20daac99c26b62572cb898c5055968e0bdf7a6e11220ab74581793ea8c28cae67f9933a2d4de8d0202
   languageName: node
   linkType: hard
 

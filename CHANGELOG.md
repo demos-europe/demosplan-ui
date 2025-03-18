@@ -5,10 +5,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1209](https://github.com/demos-europe/demosplan-ui/pull/1209)) Escape Multiline String Endings to avoid \n in classlist in DpButton ([@salisdemos](https://github.com/salisdemos))
 - ([#1213](https://github.com/demos-europe/demosplan-ui/pull/1213)) Changed Icon to caret in DpWrapTrigger ([@riechedemos](https://github.com/riechedemos))
 
 ### Added
 - ([#1215](https://github.com/demos-europe/demosplan-ui/pull/1215)) Reintroduce ClickOutside for some Components ([@salisdemos](https://github.com/salisdemos))
+- ([#1216](https://github.com/demos-europe/demosplan-ui/pull/1216)) DpInput: Add prop for rounded input to allow full or only left or right rounded input ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
+
+
 
 ## v0.4.5 - 2025-03-04
 

@@ -6,6 +6,7 @@
       :data-cy="dataCy"
       has-icon
       :required="required"
+      :rounded="rounded"
       @blur="$emit('blur', currentValue)"
       @input="$emit('input', currentValue)"
       @enter="$emit('enter', currentValue)"
@@ -84,6 +85,21 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+
+    /**
+     * Prop to define the rounded corners of the input.
+     *
+     * @property {String} rounded - The rounded corners style.
+     *                              Can be 'full', 'left', or 'right'.
+     * @default 'full'
+     * @validator Ensures the value is one of 'full', 'left', or 'right'.
+     */
+    rounded: {
+      type: String,
+      required: false,
+      default: 'full',
+      validator: (prop) => ['full', 'left', 'right'].includes(prop)
     },
 
     value: {

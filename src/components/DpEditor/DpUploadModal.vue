@@ -72,6 +72,12 @@ import { DpUploadFiles } from '~/components/DpUploadFiles'
 export default {
   name: 'DpUploadModal',
 
+  emits: [
+    'add-alt',
+    'close',
+    'insert-image'
+  ],
+
   components: {
     DpInput,
     DpModal,

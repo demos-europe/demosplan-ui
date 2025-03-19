@@ -16,6 +16,14 @@ import Uppy from '@uppy/core'
 export default {
   name: 'DpUpload',
 
+  emits: [
+    'file-added',
+    'file-error',
+    'upload',
+    'uploads-completed',
+    'upload-success'
+  ],
+
   props: {
     /**
      * Array of mimeTypes or a defined preset as String

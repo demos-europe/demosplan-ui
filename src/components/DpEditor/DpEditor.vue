@@ -16,11 +16,12 @@
       :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
-      @close="resetEditingImage" />
+      @close="resetImageId" />
     <slot
       name="modal"
       :appendText="appendText"
       :handleInsertText="handleInsertText" />
+
     <div
       v-if="editor"
       :class="prefixClass('row tiptap')">
@@ -538,7 +539,7 @@ export default {
         isOpen: false,
         buttons: []
       },
-      editingImage: null,
+      imageId: null,
       editor: null,
       editorHeight: '',
       isDiffMenuOpen: false,
@@ -689,8 +690,8 @@ export default {
 
   methods: {
     addAltTextToImage (text) {
-      this.$root.$emit('update-image:' + this.editingImage, { alt: text })
-      this.resetEditingImage()
+      this.$root.$emit('update-image:' + this.imageId, { alt: text })
+      this.resetImageId()
       this.emitValue()
     },
 
@@ -961,8 +962,8 @@ export default {
       }
     },
 
-    resetEditingImage () {
-      this.editingImage = null
+    resetImageId () {
+      this.imageId = null
     },
 
     resizeVertically (e) {
@@ -1130,7 +1131,7 @@ export default {
         return
       }
 
-      this.editingImage = imgId
+      this.imageId = imgId
       this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })
     /*

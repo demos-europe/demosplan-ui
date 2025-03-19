@@ -49,7 +49,7 @@
         class="btn btn--primary"
         data-cy="uploadModal:save"
         type="button"
-        @click="emitAndClose()"
+        @click="emitAndClose"
         v-text="editAltTextOnly ? translations.save : translations.insert">
       </button>
       <button
@@ -71,6 +71,12 @@ import { DpUploadFiles } from '~/components/DpUploadFiles'
 
 export default {
   name: 'DpUploadModal',
+
+  emits: [
+    'add-alt',
+    'close',
+    'insert-image'
+  ],
 
   components: {
     DpInput,

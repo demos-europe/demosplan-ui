@@ -42,6 +42,8 @@ import { prefixClassMixin } from '~/mixins'
 export default {
   name: 'DpUploadedFile',
 
+  emits: ['file-remove'],
+
   inject: ['getFileByHash'],
 
   mixins: [prefixClassMixin],

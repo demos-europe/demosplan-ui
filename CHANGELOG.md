@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1217](https://github.com/demos-europe/demosplan-ui/pull/1217)) DpEditor: Fix image upload ([@hwiem](https://github.com/hwiem))
+
 ## v0.4.6 - 2025-03-18
 
 ### Fixed

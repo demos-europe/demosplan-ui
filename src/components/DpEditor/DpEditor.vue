@@ -311,7 +311,7 @@
             aria-hidden="true"
             :class="prefixClass('fa fa-angle-down resizeVertical')"
             @mousedown="resizeVertically"
-            draggable="true" />
+            :draggable="true" />
         </div>
       </div>
     </div>

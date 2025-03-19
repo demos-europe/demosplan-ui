@@ -49,7 +49,7 @@
         class="btn btn--primary"
         data-cy="uploadModal:save"
         type="button"
-        @click="emitAndClose()"
+        @click="emitAndClose"
         v-text="editAltTextOnly ? translations.save : translations.insert">
       </button>
       <button

@@ -92,7 +92,7 @@ export default {
 
     this.$refs.imagewrapper.$el.style.width = this.node.attrs.width + 'px'
 
-    const updateSize = (this.node.attrs.height > 0) === false || this.node.attrs.height === Infinity
+    const updateSize = this.node.attrs.height <= 0 || this.node.attrs.height === Infinity
     this.setRatio(updateSize)
   },
 

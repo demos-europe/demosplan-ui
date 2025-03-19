@@ -40,8 +40,9 @@ export default {
   methods: {
     updateImageDimensions () {
       // The max width should not be wider than the editor.
-      const innerEditorWidth = this.$parent.$el.clientWidth - 40
-      const imgWidth = this.$refs.imagewrapper.$el.clientWidth
+      const imgEl = this.$refs.imagewrapper.$el
+      const innerEditorWidth = imgEl.parentElement.clientWidth - 40
+      const imgWidth = imgEl.clientWidth
       const width = (imgWidth < innerEditorWidth) ? imgWidth : innerEditorWidth
 
       if (width > 0) {

@@ -295,7 +295,7 @@ export default {
 
   beforeUnmount () {
     if (this.uppy) {
-      this.uppy.close()
+      this.uppy.destroy()
     }
   }
 }

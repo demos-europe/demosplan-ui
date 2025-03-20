@@ -4,8 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.7 - 2025-03-20
+
 ### Fixed
 - ([#1217](https://github.com/demos-europe/demosplan-ui/pull/1217)) DpEditor: Fix image upload ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.4.6 - 2025-03-18
 
@@ -18,7 +21,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#1215](https://github.com/demos-europe/demosplan-ui/pull/1215)) Reintroduce ClickOutside for some Components ([@salisdemos](https://github.com/salisdemos))
 - ([#1216](https://github.com/demos-europe/demosplan-ui/pull/1216)) DpInput: Add prop for rounded input to allow full or only left or right rounded input ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
-
 
 
 ## v0.4.5 - 2025-03-04

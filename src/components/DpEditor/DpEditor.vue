@@ -1017,6 +1017,8 @@ export default {
       this.currentValue = this.editor.getHTML()
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
 
+      this.currentValue = this.transformObscureTag(this.currentValue)
+
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 

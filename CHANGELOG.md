@@ -4,7 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
+## v0.4.8 - 2025-03-24
+
 - ([#1220](https://github.com/demos-europe/demosplan-ui/pull/1220)) DpEditor: Fix emitValue to pass obscure tag ([@riechedemos](https://github.com/riechedemos))
+
 
 ## v0.4.7 - 2025-03-20
 

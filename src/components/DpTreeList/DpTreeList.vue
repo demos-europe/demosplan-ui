@@ -18,6 +18,7 @@
           <slot name="header" />
         </div>
         <dp-tree-list-toggle
+          v-if="treeData.length > 0"
           class="color--grey"
           data-cy="treeListNodeToggle"
           @input="toggleAll"

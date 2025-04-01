@@ -28,6 +28,9 @@ const de = {
   choose: "Auswählen",
   computer: 'Computer',
   contextualHelp: 'Kontexthilfe',
+  dialog: {
+    default: 'Sind Sie sicher, dass Sie fortfahren möchten?'
+  },
   dropdown: {
     close: "Einklappen",
     open: "Ausklappen"
@@ -128,6 +131,7 @@ const de = {
     deselect: {
       all: 'Auswahl aufheben'
     },
+    confirm: 'Bestätigen',
     insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',

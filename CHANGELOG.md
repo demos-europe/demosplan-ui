@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1228](https://github.com/demos-europe/demosplan-ui/pull/1228)) Create DpConfirmDialog component ([@sakutademos](https://github.com/sakutademos)
+
 ## v0.4.9 - 2025-04-02
 
 ### Fixed

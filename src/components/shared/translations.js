@@ -27,10 +27,10 @@ const de = {
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
   computer: 'Computer',
-  contextualHelp: 'Kontexthilfe',
-  dialog: {
-    default: 'Sind Sie sicher, dass Sie fortfahren möchten?'
+  confirmDialog: {
+    confirm: 'Sind Sie sicher, dass Sie fortfahren möchten?'
   },
+  contextualHelp: 'Kontexthilfe',
   dropdown: {
     close: "Einklappen",
     open: "Ausklappen"

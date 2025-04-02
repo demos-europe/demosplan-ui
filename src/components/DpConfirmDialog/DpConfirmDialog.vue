@@ -7,15 +7,15 @@
     @modal:toggled="onModalToggled">
     <p
       id="dialogDescription"
-      class="break-words mb-3">
+      class="font-normal break-words mb-3">
       {{ message }}
     </p>
     <dp-button-row
       primary
       :primary-text="confirmButtonText"
       secondary
-      @primary-action="handleDialogResponse(true)"
-      @secondary-action="handleDialogResponse(false)" />
+      @primary-action="handleConfirm(true)"
+      @secondary-action="handleConfirm(false)" />
   </dp-modal>
 </template>
 
@@ -25,7 +25,7 @@ import DpButtonRow from '~/components/DpButtonRow'
 import DpModal from '~/components/DpModal'
 
 export default {
-  name: 'DpDialog',
+  name: 'DpConfirmDialog',
 
   components: {
     DpButtonRow,
@@ -42,7 +42,7 @@ export default {
     message: {
       type: String,
       required: false,
-      default: de.dialog.default
+      default: de.confirmDialog.confirm
     }
   },
 
@@ -53,7 +53,7 @@ export default {
     }
   },
   methods: {
-    handleDialogResponse (isConfirmed: boolean): void {
+    handleConfirm (isConfirmed: boolean): void {
       if (this.resolvePromise) {
         this.resolvePromise(isConfirmed)
         /* Clear the reference to the resolver to avoid reusing it later */

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue'
 import DpConfirmDialog from './'
 
 const meta: Meta<typeof DpConfirmDialog> = {

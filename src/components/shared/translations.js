@@ -27,6 +27,9 @@ const de = {
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
   computer: 'Computer',
+  confirmDialog: {
+    confirm: 'Sind Sie sicher, dass Sie fortfahren möchten?'
+  },
   contextualHelp: 'Kontexthilfe',
   dropdown: {
     close: "Einklappen",
@@ -128,6 +131,7 @@ const de = {
     deselect: {
       all: 'Auswahl aufheben'
     },
+    confirm: 'Bestätigen',
     insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',

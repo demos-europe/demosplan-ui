@@ -8,9 +8,9 @@
     <ul :class="prefixClass('o-list space-stack-xs')">
       <dp-uploaded-file
         v-for="(file, idx) in files"
+        :key="idx"
         :file="file"
-        @file-remove="file => $emit('file-remove', file)"
-        :key="idx" />
+        @file-remove="file => $emit('file-remove', file)" />
     </ul>
   </div>
 </template>
@@ -22,8 +22,6 @@ import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpUploadedFileList',
-
-  emits: ['file-remove'],
 
   components: {
     DpUploadedFile
@@ -38,6 +36,8 @@ export default {
       default: () => ([])
     }
   },
+
+  emits: ['file-remove'],
 
   data () {
     return {

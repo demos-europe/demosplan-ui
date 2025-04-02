@@ -2,7 +2,7 @@ const globals = require('globals')
 const eslintJs = require('@eslint/js')
 const pluginVue = require('eslint-plugin-vue')
 const pluginVueA11y = require('eslint-plugin-vuejs-accessibility')
-// const stylistic = import('@stylistic/eslint-plugin')
+// Const stylistic = import('@stylistic/eslint-plugin')
 const tsEslint = require('typescript-eslint')
 const vueEslintParser = require('vue-eslint-parser')
 
@@ -39,6 +39,10 @@ async function getConfig () {
         'vuejs-accessibility': pluginVueA11y
       },
       rules: {
+        'capitalized-comments': ['error', 'always', {
+          'ignoreConsecutiveComments': true,
+          'ignoreInlineComments': true
+        }],
         'generator-star-spacing': 'off',
         'multiline-comment-style': 'error',
         'sort-imports': ['error', { 'ignoreCase': true }],

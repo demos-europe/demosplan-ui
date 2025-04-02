@@ -18,13 +18,13 @@
       scope="col"
       class="c-data-table__cell--narrow">
       <input
+        ref="selectAll"
         :aria-label="translations.headerSelectHint"
         :title="translations.headerSelectHint"
         type="checkbox"
         data-cy="selectAll"
-        ref="selectAll"
-        @click="toggleSelectAll()"
-        :checked="checked" />
+        :checked="checked"
+        @click="toggleSelectAll()">
     </th>
     <template v-for="(hf, idx) in headerFields">
       <component
@@ -38,7 +38,9 @@
           :name="`header-${hf.field}`"
           v-bind="hf">
           <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
-            <span v-if="hf.label" v-text="hf.label" />
+            <span
+              v-if="hf.label"
+              v-text="hf.label" />
           </div>
         </slot>
         <span

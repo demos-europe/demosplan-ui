@@ -4,10 +4,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-- ([#1224](https://github.com/demos-europe/demosplan-ui/pull/1224)) Changed DpTreeList to render toogle depending on content ([@riechedemos](https://github.com/riechedemos))
+## v0.4.9 - 2025-04-02
+
+### Fixed
+- ([#1224](https://github.com/demos-europe/demosplan-ui/pull/1224)) Changed DpTreeList to render toggle depending on content ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.4.8 - 2025-03-24
 
+### Fixed
 - ([#1220](https://github.com/demos-europe/demosplan-ui/pull/1220)) DpEditor: Fix emitValue to pass obscure tag ([@riechedemos](https://github.com/riechedemos))
 
 

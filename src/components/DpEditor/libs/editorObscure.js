@@ -47,8 +47,8 @@ export default Mark.create({
   addInputRules () {
     return [
       markInputRule({
-       find: markInputRegex,
-       type: this.type
+        find: markInputRegex,
+        type: this.type
       })
     ]
   },

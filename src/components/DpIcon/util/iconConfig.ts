@@ -4,23 +4,23 @@ import {
   PhArrowRight,
   PhArrowsClockwise,
   PhArrowUp,
+  PhCaretDoubleDown,
+  PhCaretDoubleUp,
   PhCaretDown,
   PhCaretLeft,
   PhCaretRight,
   PhCaretUp,
-  PhCaretDoubleDown,
-  PhCaretDoubleUp,
   PhCheck,
   PhCheckCircle,
   PhCircleNotch,
   PhClock,
+  PhClockCounterClockwise,
   PhCopy,
   PhCornersIn,
   PhCornersOut,
-  PhClockCounterClockwise,
-  PhDownloadSimple,
   PhDotsSixVertical,
   PhDotsThree,
+  PhDownloadSimple,
   PhEnvelopeSimple,
   PhFaders,
   PhFile,
@@ -35,8 +35,8 @@ import {
   PhPencilSimple,
   PhPhone,
   PhPlus,
-  PhRobot,
   PhQuestion,
+  PhRobot,
   PhSignOut,
   PhTag,
   PhTrash,
@@ -53,7 +53,7 @@ import {
   IconName,
   IconProportion,
   IconSize,
-  PhosphorIconName} from '../../../../types'
+  PhosphorIconName } from '../../../../types'
 import type { Component } from 'vue'
 
 // ICONS
@@ -91,24 +91,24 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'warning': PhWarning,
   'x': PhX,
   'x-circle': PhXCircle,
-  'arrows-clockwise': PhArrowsClockwise, // alias: refresh
-  'circle-notch': PhCircleNotch, // alias: spinner
-  'clock-counter-clockwise': PhClockCounterClockwise, // alias: history
-  'corners-in': PhCornersIn, // alias: compress
-  'corners-out': PhCornersOut, // alias: expand
-  'dots-six-vertical': PhDotsSixVertical, // alias: drag-handle
-  'download-simple': PhDownloadSimple, // alias: download
-  'envelope-simple': PhEnvelopeSimple, // alias: mail
-  'gear-six': PhGearSix, // alias: settings
-  'lock-simple': PhLockSimple, // alias: lock
-  'lock-simple-open': PhLockSimpleOpen, // alias: unlock
-  'magnifying-glass': PhMagnifyingGlass, // alias: search
-  'pencil-simple': PhPencilSimple, // alias: edit
-  'robot': PhRobot, // alias: ai
-  'warning-diamond': PhWarningDiamond, // alias: severe
+  'arrows-clockwise': PhArrowsClockwise, // Alias: refresh
+  'circle-notch': PhCircleNotch, // Alias: spinner
+  'clock-counter-clockwise': PhClockCounterClockwise, // Alias: history
+  'corners-in': PhCornersIn, // Alias: compress
+  'corners-out': PhCornersOut, // Alias: expand
+  'dots-six-vertical': PhDotsSixVertical, // Alias: drag-handle
+  'download-simple': PhDownloadSimple, // Alias: download
+  'envelope-simple': PhEnvelopeSimple, // Alias: mail
+  'gear-six': PhGearSix, // Alias: settings
+  'lock-simple': PhLockSimple, // Alias: lock
+  'lock-simple-open': PhLockSimpleOpen, // Alias: unlock
+  'magnifying-glass': PhMagnifyingGlass, // Alias: search
+  'pencil-simple': PhPencilSimple, // Alias: edit
+  'robot': PhRobot, // Alias: ai
+  'warning-diamond': PhWarningDiamond, // Alias: severe
 }
 
-// icon names that are used as aliases - the phosphor icon has a different name
+// Icon names that are used as aliases - the phosphor icon has a different name
 const mappedIconAliases: Record<IconAlias, Component> = {
   'ai': PhRobot,
   'cancel': PhX,
@@ -157,12 +157,12 @@ const iconsProportions: Record<string, IconProportion> = {
 }
 
 const aliasedIconsProportions: Record<string, IconProportion> = {
-  'chevron-down': 'landscape', // alias for caret-down
-  'chevron-left': 'portrait', // alias for caret-left
-  'chevron-right': 'portrait', // alias for caret-right
-  'chevron-up': 'landscape', // alias for caret-up
-  'drag-handle': 'portrait', // alias for dots-six-vertical
-  'mail': 'landscape', // alias for envelope-simple
+  'chevron-down': 'landscape', // Alias for caret-down
+  'chevron-left': 'portrait', // Alias for caret-left
+  'chevron-right': 'portrait', // Alias for caret-right
+  'chevron-up': 'landscape', // Alias for caret-up
+  'drag-handle': 'portrait', // Alias for dots-six-vertical
+  'mail': 'landscape', // Alias for envelope-simple
 }
 
 // EXPORTS

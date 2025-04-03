@@ -6,8 +6,9 @@
       class="mb-0.5" /><!--
  --><textarea
       v-bind="allowedAttributes"
-      :name="name"
       :id="id"
+      v-model="currentValue"
+      :name="name"
       class="o-form__control-textarea"
       :class="{ 'grow': growToParent, 'h-7': reducedHeight }"
       :data-dp-validate-if="dataDpValidateIf ? true : null"
@@ -15,9 +16,8 @@
       :data-cy="dataCy"
       :disabled="disabled"
       :maxlength="maxlength"
-      v-model="currentValue"
-      @input="$emit('input', currentValue)"
-      :required="required" />
+      :required="required"
+      @input="$emit('input', currentValue)" />
   </div>
 </template>
 

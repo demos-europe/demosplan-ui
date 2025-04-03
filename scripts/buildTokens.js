@@ -15,7 +15,7 @@ const files = glob
     .replace('tokens/src/', '')
     .replace('color/', '')
     .replace('.json', ''))
-    .filter(filePath => !filePath.startsWith('_')) // Do not render tokens only used internally
+  .filter(filePath => !filePath.startsWith('_')) // Do not render tokens only used internally
 
 // Define custom output groups for Tailwind, rather than just grouping them by file path
 const corePlugins = ['fontSize', 'boxShadow', 'breakpoints', 'rounded', 'space', 'zIndex']

@@ -10,8 +10,8 @@
       <div class="flex bg-color--white">
         <dp-tree-list-checkbox
           v-if="checkAll"
-          name="checkAll"
           v-model="allElementsSelected"
+          name="checkAll"
           check-all
           :style="checkboxIndentationStyle" />
         <div class="grow color--grey">
@@ -21,9 +21,9 @@
           v-if="treeData.length > 0"
           class="color--grey"
           data-cy="treeListNodeToggle"
-          @input="toggleAll"
           :value="allElementsExpanded"
-          toggle-all />
+          toggle-all
+          @input="toggleAll" />
       </div>
     </div>
 
@@ -43,9 +43,9 @@
       :opts="opts.draggable">
       <dp-tree-list-node
         v-for="(node, idx) in treeData"
-        :data-cy="`treeListNode:${idx}`"
         :ref="`node_${node.id}`"
         :key="node.id"
+        :data-cy="`treeListNode:${idx}`"
         :check-branch="branchIdentifier"
         :children="node.children || []"
         :draggable="draggable"

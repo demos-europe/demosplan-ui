@@ -11,20 +11,10 @@
 import { ref, watch } from 'vue'
 import { useSortable } from '@vueuse/integrations/useSortable'
 
-const wrapper = ref<HTMLElement | null>(null)
-const list = ref([])
-
-const emit = defineEmits(
-  [
-    'add',
-    'end'
-  ]
-)
-
 const props = defineProps({
   /*
-     * Content you want to display in the draggable.
-     */
+   * Content you want to display in the draggable.
+   */
   contentData: {
     type: Array,
     required: true
@@ -111,6 +101,14 @@ const props = defineProps({
     default: () => ({})
   }
 })
+const emit = defineEmits(
+  [
+    'add',
+    'end'
+  ]
+)
+const wrapper = ref<HTMLElement | null>(null)
+const list = ref([])
 
 list.value = props.contentData ?? []
 

@@ -22,7 +22,7 @@ const meta: Meta<typeof DpBulkEditHeader> = {
         },
         setup () {
             const toggleAll = (event) => {
-                for (let element of (args as any).options) {
+                for (const element of (args as any).options) {
                     element.checked = event.target.checked
                 }
             }

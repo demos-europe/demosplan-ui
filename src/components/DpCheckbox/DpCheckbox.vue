@@ -13,9 +13,9 @@
       :value="valueToSend"
       :data-cy="dataCy !== '' ? dataCy : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
-      @change="$emit('change', $event.target.checked)"
       true-value="1"
-      false-value="0">
+      false-value="0"
+      @change="$emit('change', $event.target.checked)">
     <dp-label
       v-if="label.text !== ''"
       :class="prefixClass('o-form__label')"

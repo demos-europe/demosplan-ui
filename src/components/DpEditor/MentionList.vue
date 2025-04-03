@@ -2,17 +2,19 @@
   <ul class="o-list suggestion__popup">
     <template v-if="items.length">
       <li
-        class="o-list__item suggestion__list-item u-ph-0_5 u-pv-0_25"
-        :class="{ 'suggestion__list-item--is-active': index === selectedIndex }"
         v-for="(item, index) in items"
         :key="item.id"
+        class="o-list__item suggestion__list-item u-ph-0_5 u-pv-0_25"
+        :class="{ 'suggestion__list-item--is-active': index === selectedIndex }"
         @click="selectItem(index)">
         <button class="btn--blank">
           {{ item.label }}
         </button>
       </li>
     </template>
-    <li class="o-list__item suggestion__list-item" v-else>
+    <li
+      v-else
+      class="o-list__item suggestion__list-item">
       No result
     </li>
   </ul>

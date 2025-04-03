@@ -1,10 +1,10 @@
 <template>
   <dp-icon
+    v-tooltip="tooltip"
     :aria-label="ariaLabel"
     :icon="icon"
     :size="size"
-    class="inline-block"
-    v-tooltip="tooltip" />
+    class="inline-block" />
 </template>
 
 <script setup lang="ts">
@@ -14,8 +14,6 @@ import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
-
-const vTooltip = Tooltip
 
 const props = defineProps({
   /**
@@ -57,6 +55,8 @@ const props = defineProps({
     default: () => ({})
   }
 })
+
+const vTooltip = Tooltip
 
 const ariaLabel = de.contextualHelp
 

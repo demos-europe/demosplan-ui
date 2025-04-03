@@ -10,8 +10,8 @@
         <button
           type="button"
           class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
-          @click="$emit('close')"
-          data-slidebar-hide="">
+          data-slidebar-hide=""
+          @click="$emit('close')">
           <dp-icon
             icon="close"
             size="large" />

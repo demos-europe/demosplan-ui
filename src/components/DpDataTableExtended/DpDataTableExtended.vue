@@ -10,12 +10,12 @@
             {{ defaultTranslations.search }}
           </label>
           <input
-            type="text"
             id="search"
+            v-model="searchString"
+            type="text"
             name="search"
             class="o-form__control-input"
             data-cy="dataTableExtended:search"
-            v-model="searchString"
             @input="updateFields(null)">
 
           <!-- pager -->
@@ -27,19 +27,19 @@
             @page-change="handlePageChange" />
           <dp-select-page-item-count
             class="inline-block u-mt-0_125 u-ml-0_5"
-            @changed-count="setPageItemCount"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
-            :label-text="defaultTranslations.showEntries" />
+            :label-text="defaultTranslations.showEntries"
+            @changed-count="setPageItemCount" />
         </div>
       </div>
     </dp-sticky-element>
 
     <dp-data-table
       v-bind="$props"
-      @items-selected="emitSelectedItems"
       :items="onPageItems"
-      :should-be-selected-items="currentlySelectedItems">
+      :should-be-selected-items="currentlySelectedItems"
+      @items-selected="emitSelectedItems">
       <template
         v-for="(el, i) in sortableFilteredFields"
         v-slot:[`header-${el.field}`]="el">
@@ -53,8 +53,8 @@
               :aria-label="defaultTranslations.colsSort + ': ' + el.label"
               :title="defaultTranslations.colsSort + ': ' + el.label"
               class="btn--blank u-top-0 u-right-0 absolute"
-              @click="setOrder(el.field)"
-              type="button">
+              type="button"
+              @click="setOrder(el.field)">
               <i
                 aria-hidden="true"
                 class="fa"

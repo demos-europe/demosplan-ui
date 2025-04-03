@@ -34,8 +34,8 @@ export default {
     },
 
     labelText: {
-     type: String,
-     required: true
+      type: String,
+      required: true
     },
 
     pageCountOptions: {

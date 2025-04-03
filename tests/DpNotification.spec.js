@@ -93,45 +93,49 @@ describe('DpNotification', () => {
   /*
    * For some reason this Test takes over 6 seconds to pass
    */
-  // it('emits dp-notify-remove with its message as payload once clicked', (done) => {
-  //   const message = {
-  //     type: 'confirm',
-  //     text: 'MessageText'
-  //   }
-  //
-  //   const wrapper = mount(DpNotification, {
-  //     props: {
-  //       message: message,
-  //       hideTimer: 2
-  //     }
-  //   })
-  //
-  //   wrapper.find('.c-notify__closer').trigger('click')
-  //
-  //   expect(wrapper.emitted()).toHaveProperty('dp-notify-remove')
-  //   expect(wrapper.emitted()['dp-notify-remove'][0]).toEqual([message])
-  // })
+  /*
+   * it('emits dp-notify-remove with its message as payload once clicked', (done) => {
+   *   const message = {
+   *     type: 'confirm',
+   *     text: 'MessageText'
+   *   }
+   * 
+   *   const wrapper = mount(DpNotification, {
+   *     props: {
+   *       message: message,
+   *       hideTimer: 2
+   *     }
+   *   })
+   * 
+   *   wrapper.find('.c-notify__closer').trigger('click')
+   * 
+   *   expect(wrapper.emitted()).toHaveProperty('dp-notify-remove')
+   *   expect(wrapper.emitted()['dp-notify-remove'][0]).toEqual([message])
+   * })
+   */
 
   /*
    * For some reason this Test takes over 6 seconds to pass
    */
-  // it('emits dp-notify-remove after hide timeout idle', (done) => {
-  //   const message = { type: 'confirm', text: 'MessageText' }
-  //
-  //   const wrapper = mount(DpNotification, {
-  //     props: {
-  //       message: message,
-  //       hideTimer: 25 // Make this timeout reasonably short to keep the test time low
-  //     }
-  //   })
-  //
-  //   console.log('test notification')
-  //
-  //   jest.setTimeout(() => {
-  //     console.log('test notification timeout ', wrapper.emitted()['dp-notify-remove'][0])
-  //     expect(wrapper.emitted()).toHaveProperty('dp-notify-remove')
-  //     expect(wrapper.emitted()['dp-notify-remove'][0]).toEqual([message])
-  //
-  //   }, 27)
-  // }, 30000)
+  /*
+   * it('emits dp-notify-remove after hide timeout idle', (done) => {
+   *   const message = { type: 'confirm', text: 'MessageText' }
+   * 
+   *   const wrapper = mount(DpNotification, {
+   *     props: {
+   *       message: message,
+   *       hideTimer: 25 // Make this timeout reasonably short to keep the test time low
+   *     }
+   *   })
+   * 
+   *   console.log('test notification')
+   * 
+   *   jest.setTimeout(() => {
+   *     console.log('test notification timeout ', wrapper.emitted()['dp-notify-remove'][0])
+   *     expect(wrapper.emitted()).toHaveProperty('dp-notify-remove')
+   *     expect(wrapper.emitted()['dp-notify-remove'][0]).toEqual([message])
+   * 
+   *   }, 27)
+   * }, 30000)
+   */
 })

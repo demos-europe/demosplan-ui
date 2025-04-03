@@ -1,8 +1,8 @@
 <template>
   <i
+    v-tooltip="text"
     class="fa"
-    :class="[icon, large ? 'fa-lg' : '']"
-    v-tooltip="text" />
+    :class="[icon, large ? 'fa-lg' : '']" />
 </template>
 
 <script>

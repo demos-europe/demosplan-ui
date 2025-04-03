@@ -1,13 +1,13 @@
 <template>
   <span
     class="inline-flex"
-    :class="{ 'w-full': inputWidth !== ''}">
+    :class="{ 'w-full': inputWidth !== '' }">
     <dp-resettable-input
       id="searchField"
       v-model="searchTerm"
       data-cy="searchField"
       :class="cssClasses"
-      :input-attributes="{ placeholder: translations.search, type: 'search'}"
+      :input-attributes="{ placeholder: translations.search, type: 'search' }"
       rounded="left"
       @reset="handleReset"
       @enter="handleSearch">

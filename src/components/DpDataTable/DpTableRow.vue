@@ -16,8 +16,8 @@
       class="c-data-table__cell--narrow">
       <dp-icon
         v-if="isLocked"
-        class="align-middle color--grey-light"
         v-tooltip="isLockedMessage"
+        class="align-middle color--grey-light"
         icon="lock" />
       <input
         v-else

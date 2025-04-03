@@ -8,30 +8,30 @@
       :text="label" />
     <div class="o-form__control-wrapper o-form__group">
       <dp-datepicker
+        :id="`datePicker:${id}`"
+        v-model="date"
         class="o-form__group-item shrink"
         :data-cy="`${dataCy}:date`"
         :calendars-after="2"
         :disabled="disabled"
-        :id="`datePicker:${id}`"
         :max-date="maxDate"
         :min-date="minDate"
         :required="required"
-        v-model="date"
         @input="$emit('input', currentDatetime)" />
       <dp-time-picker
+        :id="`timePicker:${id}`"
+        v-model="time"
         class="o-form__group-item"
         :data-cy="`${dataCy}:time`"
         :disabled="disabled"
-        :id="`timePicker:${id}`"
-        v-model="time"
         :min-value="minTime"
         @input="$emit('input', currentDatetime)" />
       <input
+        v-if="hiddenInput && name"
         type="hidden"
         :disabled="disabled"
         :name="name"
-        :value="currentDatetime"
-        v-if="hiddenInput && name">
+        :value="currentDatetime">
     </div>
   </div>
 </template>

@@ -1,11 +1,11 @@
 <template>
   <span
     class="toggle-wrapper"
-    @click="toggle"
     role="checkbox"
     :aria-checked="value.toString()"
     :aria-disabled="disabled ? true : null"
     tabindex="0"
+    @click="toggle"
     @keydown.space.prevent="toggle">
     <div
       v-show="disabled"

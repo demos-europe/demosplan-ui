@@ -4,10 +4,10 @@ const path = require('path')
 module.exports = {
   collectCoverage: false,
   collectCoverageFrom: [
-      './src/utils/*.{js}',
-      './src/mixins/*.{js}',
-      './src/lib/*.{js}',
-      './src/components/*.{vue}'
+    './src/utils/*.{js}',
+    './src/mixins/*.{js}',
+    './src/lib/*.{js}',
+    './src/components/*.{vue}'
   ],
   coverageDirectory: './coverage',
   coverageReporters: ['clover', 'json', 'lcov', ['text', { skipFull: true }]],

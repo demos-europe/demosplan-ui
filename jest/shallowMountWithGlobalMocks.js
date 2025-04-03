@@ -5,8 +5,10 @@
 // Use Local Vue for testing
 import { shallowMount } from '@vue/test-utils'
 
-// then you can use `app.component` here
-// Mocking global stuff
+/*
+ * Then you can use `app.component` here
+ * Mocking global stuff
+ */
 const globalMocks = {
   hasPermission: jest.fn(() => true),
   Translator: {
@@ -25,11 +27,11 @@ const globalMocks = {
  */
 const shallowMountWithGlobalMocks = (component, options) => {
   return shallowMount(component, {
-      ...options,
-      global: {
-        mocks: globalMocks,
-      }
+    ...options,
+    global: {
+      mocks: globalMocks,
     }
+  }
   )
 }
 

@@ -3,7 +3,9 @@
     :class="classes"
     :for="labelFor">
     <span>
-      <span v-cleanhtml="text" /><span v-if="required" aria-hidden="true">*</span>
+      <span v-cleanhtml="text" /><span
+        v-if="required"
+        aria-hidden="true">*</span>
       <dp-contextual-help
         v-if="tooltip"
         :class="prefixClass('ml-0.5')"
@@ -15,8 +17,8 @@
       <span
         v-for="(hint, i) in hints"
         :key="i"
-        :class="prefixClass('inline-block')"
-        v-cleanhtml="hint" />
+        v-cleanhtml="hint"
+        :class="prefixClass('inline-block')" />
     </span>
   </label>
 </template>

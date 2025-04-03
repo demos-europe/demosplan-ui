@@ -1,10 +1,10 @@
 <template>
   <label class="u-mb-0">
     <input
+      :id="name"
       class="u-m-0_5 u-ml-0_25"
       type="checkbox"
       :name="name"
-      :id="name"
       :checked="checked"
       :value="stringValue"
       @click="check">

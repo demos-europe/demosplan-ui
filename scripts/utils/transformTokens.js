@@ -213,7 +213,7 @@ const transformDeclarationScss = (declaration, tokenPath) => {
   return declaration
 }
 
-const transformScssTokens = ({dictionary, options, file}) => {
+const transformScssTokens = ({ dictionary, options, file }) => {
   const { outputReferences, formatting } = options
 
   let { allTokens } = dictionary
@@ -243,7 +243,7 @@ const transformScssTokens = ({dictionary, options, file}) => {
     .filter(function(strVal) { return !!strVal })
     .join('\n')
 
-  return fileHeader({file, commentStyle: 'short'}) + '\n' + tokens + '\n'
+  return fileHeader({ file, commentStyle: 'short' }) + '\n' + tokens + '\n'
 }
 
 const transformTailwindTokens =  (formatterArguments, corePluginsColor) => {

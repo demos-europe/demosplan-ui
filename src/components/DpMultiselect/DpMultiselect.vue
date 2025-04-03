@@ -1,5 +1,6 @@
 <template>
   <vue-multiselect
+    v-dp-validate-multiselect="required"
     v-bind="{
       allowEmpty,
       clearOnSelect,
@@ -31,7 +32,6 @@
     :data-cy="dataCy"
     :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
     :model-value="value"
-    v-dp-validate-multiselect="required"
     @close="newVal => $emit('close', newVal)"
     @update:model-value="newVal => $emit('input', newVal)"
     @open="newVal => $emit('open', newVal)"
@@ -69,20 +69,18 @@
         :props="props">
         <div class="border-bottom">
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              :disabled="value.length === options.length === 0"
-              type="button"
-              v-text="translations.selectAll"
-              @click="$emit('select-all')">
-          </button>
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === options.length === 0"
+            type="button"
+            @click="$emit('select-all')"
+            v-text="translations.selectAll" />
 
           <button
-              class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-              :disabled="value.length === 0"
-              type="button"
-              v-text="translations.deselectAll"
-              @click="$emit('unselect-all')">
-          </button>
+            class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
+            :disabled="value.length === 0"
+            type="button"
+            @click="$emit('unselect-all')"
+            v-text="translations.deselectAll" />
         </div>
       </slot>
     </template>
@@ -104,18 +102,6 @@ export default {
   directives: {
     dpValidateMultiselectDirective
   },
-
-  emits: [
-    'close',
-    'input',
-    'open',
-    'remove',
-    'search-change',
-    'select',
-    'select-all',
-    'tag',
-    'unselect-all'
-  ],
 
   props: {
     allowEmpty: {
@@ -302,6 +288,18 @@ export default {
       default: ''
     }
   },
+
+  emits: [
+    'close',
+    'input',
+    'open',
+    'remove',
+    'search-change',
+    'select',
+    'select-all',
+    'tag',
+    'unselect-all'
+  ],
 
   data () {
     return {

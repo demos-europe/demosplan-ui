@@ -13,21 +13,21 @@ export default function validateForm (form) {
     const type = getInputType(input)
     let isInputValid = true
     switch (type) {
-      case 'multiselect':
-        isInputValid = validateMultiselect(input)
-        break
-      case 'tiptap':
-        isInputValid = validateTiptap(input)
-        break
-      case 'fieldset':
-        isInputValid = validateFieldset(input)
-        break
-      case 'datepicker':
-        isInputValid = validateDatepicker(input)
-        break
-      case 'input':
-      default:
-        isInputValid = validateInput(input)
+    case 'multiselect':
+      isInputValid = validateMultiselect(input)
+      break
+    case 'tiptap':
+      isInputValid = validateTiptap(input)
+      break
+    case 'fieldset':
+      isInputValid = validateFieldset(input)
+      break
+    case 'datepicker':
+      isInputValid = validateDatepicker(input)
+      break
+    case 'input':
+    default:
+      isInputValid = validateInput(input)
     }
 
     if (isInputValid === false) {

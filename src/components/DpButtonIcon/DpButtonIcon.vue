@@ -1,10 +1,10 @@
 <template>
   <button
-    class="btn--icon"
     v-tooltip="{
       content: text,
       delay: { show: 1000, hide: 200 }
     }"
+    class="btn--icon"
     @click="$emit('click')">
     <i
       :class="`fa ${icon}`"
@@ -23,6 +23,10 @@ import { Tooltip } from '~/directives'
 export default {
   name: 'DpButtonIcon',
 
+  directives: {
+    tooltip: Tooltip
+  },
+
   props: {
     icon: {
       type: String,
@@ -33,10 +37,6 @@ export default {
       type: String,
       required: true
     }
-  },
-
-  directives: {
-    tooltip: Tooltip
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <span
-    :style="{height: height, width: width}"
+    :style="{ height: height, width: width }"
     class="c-skeleton-box" />
 </template>
 

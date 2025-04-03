@@ -87,7 +87,7 @@
     "@vue/cli-service": "^5.0.8",
     "@vue/compat": "3.5.13",
     "@vue/compiler-sfc": "3.5.13",
-    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/eslint-config-typescript": "^14.5.0",
     "@vue/test-utils": "^2.4.6",
     "@webpack-cli/generators": "^3.0.0",
     "autoprefixer": "^10.4.14",

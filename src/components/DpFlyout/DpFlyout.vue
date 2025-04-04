@@ -17,7 +17,7 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
+      class="o-flyout__trigger btn--blank o-link--default px-1 pt-0.5 line-height--2 whitespace-nowrap"
       :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle">
       <slot

@@ -15,7 +15,7 @@
       v-model="currentValue" />
     <button
       v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default"
+      class="btn--blank o-link--default pr-0.5"
       data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1234](https://github.com/demos-europe/demosplan-ui/pull/1234)) Add padding to align DpFlyout button ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.4.9 - 2025-04-02
 
 ### Fixed

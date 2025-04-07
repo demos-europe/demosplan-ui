@@ -7,6 +7,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 
 - ([#1234](https://github.com/demos-europe/demosplan-ui/pull/1234)) Add padding to align DpFlyout button ([@riechedemos](https://github.com/riechedemos))
+- ([#1235](https://github.com/demos-europe/demosplan-ui/pull/1235)) DpSlidingPagination: Make component vue3-compatible by updating vue-sliding-pagination  ([@hwiem](https://github.com/hwiem))
 
 ### Added
 - ([#1228](https://github.com/demos-europe/demosplan-ui/pull/1228)) Create DpConfirmDialog component ([@sakutademos](https://github.com/sakutademos)

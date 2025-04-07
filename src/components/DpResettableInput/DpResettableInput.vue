@@ -128,6 +128,12 @@ export default {
     }
   },
 
+  watch: {
+    value: function () {
+      this.currentValue = this.value
+    }
+  },
+
   methods: {
     onInput (val) {
       this.currentValue = val

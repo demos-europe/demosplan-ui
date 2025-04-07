@@ -54,7 +54,7 @@
     "vue-click-outside": "^1.1.0",
     "vue-multiselect": "^3.1.0",
     "vue-omnibox": "^0.3.7",
-    "vue-sliding-pagination": "^1.3.2"
+    "vue-sliding-pagination": "^v2.0.0-alpha-1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

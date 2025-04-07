@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1236](https://github.com/demos-europe/demosplan-ui/pull/1236)) DpResettableInput: update currentValue on input ([@sakutademos](https://github.com/sakutademos)
+
 ## v0.4.11 - 2025-04-07
 
 ### Fixed

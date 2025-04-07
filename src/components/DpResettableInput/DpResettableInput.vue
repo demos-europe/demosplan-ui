@@ -8,7 +8,7 @@
       :required="required"
       :rounded="rounded"
       @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
+      @input="onInput"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
       :pattern="pattern"
@@ -128,13 +128,12 @@ export default {
     }
   },
 
-  watch: {
-    value: function () {
-      this.currentValue = this.value
-    }
-  },
-
   methods: {
+    onInput (val) {
+      this.currentValue = val
+      this.$emit('input', val)
+    },
+
     resetValue () {
       this.$emit('reset')
     }

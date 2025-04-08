@@ -29,7 +29,7 @@ export default {
          * Force repaint to make sure the
          * animation is triggered correctly.
          */
-        /* eslint-disable no-unused-expressions */
+         
         getComputedStyle(element).height
 
         /*

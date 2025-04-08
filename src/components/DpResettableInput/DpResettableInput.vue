@@ -3,16 +3,16 @@
     <dp-input
       v-bind="inputAttributes"
       :id="id"
+      v-model="currentValue"
       :data-cy="dataCy"
       has-icon
       :required="required"
       :rounded="rounded"
+      :pattern="pattern"
       @blur="$emit('blur', currentValue)"
       @input="onInput"
       @enter="$emit('enter', currentValue)"
-      @focus="$emit('focus')"
-      :pattern="pattern"
-      v-model="currentValue" />
+      @focus="$emit('focus')" />
     <button
       v-if="!inputAttributes.disabled"
       class="btn--blank o-link--default pr-0.5"

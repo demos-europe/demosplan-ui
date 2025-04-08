@@ -2,12 +2,12 @@
 <template>
   <component
     :is="element"
+    v-tooltip="iconOnly ? text : null"
     :type="isButtonElement ? type : null"
     :href="!isButtonElement ? sanitizedHref : null"
     :class="classes"
     :disabled="disabled"
     :aria-hidden="busy"
-    v-tooltip="iconOnly ? text : null"
     @click="emit('click', $event)">
     <dp-icon
       v-if="icon"
@@ -15,7 +15,7 @@
       :icon="icon"
       :size="iconSize" />
     <span
-      :class="{'sr-only': hideText}"
+      :class="{ 'sr-only': hideText }"
       v-text="text" />
     <dp-icon
       v-if="iconAfter"
@@ -158,33 +158,33 @@ const emit = defineEmits(['click'])
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-    'inline-flex items-center leading-3 text-button select-none',
-    ...colorClasses.value,
-    ...spacingClasses.value,
-    props.busy && 'bg-busy animate-busy pointer-events-none',
-    props.disabled && 'opacity-40 pointer-events-none',
-    props.rounded ? 'rounded-full' : 'rounded-button'
+  'inline-flex items-center leading-3 text-button select-none',
+  ...colorClasses.value,
+  ...spacingClasses.value,
+  props.busy && 'bg-busy animate-busy pointer-events-none',
+  props.disabled && 'opacity-40 pointer-events-none',
+  props.rounded ? 'rounded-full' : 'rounded-button'
 ])
 
 const colorClasses = computed(() => {
-    const colors = allColorClasses[props.color]
-    const renderedColors = [colors.solidOutlineSubtle]
+  const colors = allColorClasses[props.color]
+  const renderedColors = [colors.solidOutlineSubtle]
 
-    switch (props.variant) {
-        case 'solid':
-            renderedColors.push(colors.solidOutline, colors.solid)
-            break
-        case 'outline':
-            renderedColors.push(colors.solidOutline, colors.outlineSubtle)
-            break
-        case 'subtle':
-            renderedColors.push(colors.outlineSubtle, colors.subtle)
-            break
-        default:
-            break
-    }
+  switch (props.variant) {
+  case 'solid':
+    renderedColors.push(colors.solidOutline, colors.solid)
+    break
+  case 'outline':
+    renderedColors.push(colors.solidOutline, colors.outlineSubtle)
+    break
+  case 'subtle':
+    renderedColors.push(colors.outlineSubtle, colors.subtle)
+    break
+  default:
+    break
+  }
 
-    return renderedColors
+  return renderedColors
 })
 
 // Visually compensate button padding for icons with portrait proportions
@@ -198,17 +198,17 @@ const spacingClasses = computed(() => {
   // The small and large iconOnly buttons create a scale alongside the medium iconOnly button which shares its 30px height with input fields.
   if (iconOnly.value) {
     switch (props.iconSize) {
-      case 'large':
-        padding = 'p-1.5'
-        break
-      case 'small':
-        padding = 'p-0.5'
-        break
-      case 'medium':
-        padding = 'p-[5px]'
-        break
-      default:
-        break
+    case 'large':
+      padding = 'p-1.5'
+      break
+    case 'small':
+      padding = 'p-0.5'
+      break
+    case 'medium':
+      padding = 'p-[5px]'
+      break
+    default:
+      break
     }
   }
   return [
@@ -232,7 +232,7 @@ onMounted(() => {
 const allColorClasses = {
   primary: {
     /**
-     * solidOutlineSubtle: classes that apply to all button color variants.
+     * SolidOutlineSubtle: classes that apply to all button color variants.
      *
      * Instead of hardcoding #005eb1 here, focus-visible:outline-interactive-hover/50 could be used.
      * However, for this to work, token css variables would have to be rendered within @layer base with modern rbg
@@ -245,7 +245,7 @@ const allColorClasses = {
       outline outline-4 outline-offset-0 outline-transparent
       focus-visible:outline-[#005eb1]/50 focus-visible:z-above-zero`,
     /**
-     * solidOutline: classes that apply to "solid" and "outline" button color variants.
+     * SolidOutline: classes that apply to "solid" and "outline" button color variants.
      *
      * Solid buttons have a 1px border with the same color as the bg color, to be the same overall size as outline buttons.
      * The same border is applied to outline buttons.
@@ -256,21 +256,21 @@ const allColorClasses = {
       focus:border-interactive-hover\
       focus-visible:border-interactive-hover\
       active:border-interactive-active `,
-    // outlineSubtle: classes that apply to "outline" and "subtle" button color variants.
+    // OutlineSubtle: classes that apply to "outline" and "subtle" button color variants.
     outlineSubtle: `
       bg-surface text-interactive\
       hover:bg-interactive-subtle-hover hover:text-interactive-hover\
       focus:bg-interactive-subtle-hover focus:text-interactive-hover\
       focus-visible:bg-interactive-subtle-hover focus-visible:text-interactive-hover\
       active:bg-interactive-subtle-active active:text-interactive-active `,
-    // solid: classes that only apply to "solid" button color variant.
+    // Solid: classes that only apply to "solid" button color variant.
     solid: `
       bg-interactive text-on-dark\
       hover:text-on-dark hover:no-underline hover:bg-interactive-hover\
       focus:bg-interactive-hover\
       focus-visible:bg-interactive-hover\
       active:bg-interactive-active `,
-    // subtle: classes that only apply to "subtle" button color variant.
+    // Subtle: classes that only apply to "subtle" button color variant.
     subtle: `
       border border-on-dark\
       hover:border-interactive-subtle-hover\

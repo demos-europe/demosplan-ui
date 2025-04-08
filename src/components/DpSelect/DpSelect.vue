@@ -7,7 +7,7 @@
         for: nameOrId,
         required: required
       }"
-      class="mb-0.5"/><!--
+      class="mb-0.5" /><!--
  --><select
       :id="nameOrId"
       :data-cy="dataCy"
@@ -28,9 +28,9 @@
       </option>
       <option
         v-for="(option, idx) in options"
+        :key="idx"
         :selected="option.value === selected"
-        :value="option.value"
-        :key="idx">
+        :value="option.value">
         {{ option.label }}
       </option>
     </select>

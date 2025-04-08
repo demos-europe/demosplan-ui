@@ -10,12 +10,12 @@
       :rounded="rounded"
       :pattern="pattern"
       @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
+      @input="onInput"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')" />
     <button
       v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default"
+      class="btn--blank o-link--default pr-0.5"
       data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"
@@ -135,6 +135,11 @@ export default {
   },
 
   methods: {
+    onInput (val) {
+      this.currentValue = val
+      this.$emit('input', val)
+    },
+
     resetValue () {
       this.$emit('reset')
     }

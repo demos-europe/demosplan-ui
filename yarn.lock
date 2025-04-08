@@ -647,17 +647,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.23.5":
-  version: 7.25.6
-  resolution: "@babel/parser@npm:7.25.6"
-  dependencies:
-    "@babel/types": "npm:^7.25.6"
-  bin:
-    parser: ./bin/babel-parser.js
-  checksum: 10c0/f88a0e895dbb096fd37c4527ea97d12b5fc013720602580a941ac3a339698872f0c911e318c292b184c36b5fbe23b612f05aff9d24071bc847c7b1c21552c41d
-  languageName: node
-  linkType: hard
-
 "@babel/parser@npm:^7.25.3":
   version: 7.26.1
   resolution: "@babel/parser@npm:7.26.1"
@@ -1975,17 +1964,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.25.6":
-  version: 7.25.6
-  resolution: "@babel/types@npm:7.25.6"
-  dependencies:
-    "@babel/helper-string-parser": "npm:^7.24.8"
-    "@babel/helper-validator-identifier": "npm:^7.24.7"
-    to-fast-properties: "npm:^2.0.0"
-  checksum: 10c0/89d45fbee24e27a05dca2d08300a26b905bd384a480448823f6723c72d3a30327c517476389b7280ce8cb9a2c48ef8f47da7f9f6d326faf6f53fd6b68237bdc4
-  languageName: node
-  linkType: hard
-
 "@babel/types@npm:^7.25.9, @babel/types@npm:^7.26.5":
   version: 7.26.5
   resolution: "@babel/types@npm:7.26.5"
@@ -2162,7 +2140,7 @@ __metadata:
     vue-loader: "npm:^17.4.2"
     vue-multiselect: "npm:^3.1.0"
     vue-omnibox: "npm:^0.3.7"
-    vue-sliding-pagination: "npm:^1.3.2"
+    vue-sliding-pagination: "npm:^v2.0.0-alpha-1"
     vue-style-loader: "npm:~4.1.3"
     webpack: "npm:^5.75.0"
     webpack-bundle-analyzer: "npm:^4.7.0"
@@ -6532,7 +6510,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compat@npm:3.5.13":
+"@vue/compat@npm:3.5.13, @vue/compat@npm:^3.4.38":
   version: 3.5.13
   resolution: "@vue/compat@npm:3.5.13"
   dependencies:
@@ -6611,21 +6589,6 @@ __metadata:
     "@vue/compiler-core": "npm:3.5.13"
     "@vue/shared": "npm:3.5.13"
   checksum: 10c0/8f424a71883c9ef4abdd125d2be8d12dd8cf94ba56089245c88734b1f87c65e10597816070ba2ea0a297a2f66dc579f39275a9a53ef5664c143a12409612cd72
-  languageName: node
-  linkType: hard
-
-"@vue/compiler-sfc@npm:2.7.16":
-  version: 2.7.16
-  resolution: "@vue/compiler-sfc@npm:2.7.16"
-  dependencies:
-    "@babel/parser": "npm:^7.23.5"
-    postcss: "npm:^8.4.14"
-    prettier: "npm:^1.18.2 || ^2.0.0"
-    source-map: "npm:^0.6.1"
-  dependenciesMeta:
-    prettier:
-      optional: true
-  checksum: 10c0/eaeeef054c939e6cd7591199e2b998ae33d0afd65dc1b5675b54361f0c657c08ae82945791a1a8ca76762e1c1f8e69a00595daf280b854cbc3370ed5c5a34bcd
   languageName: node
   linkType: hard
 
@@ -9834,7 +9797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2, csstype@npm:^3.1.0, csstype@npm:^3.1.3":
+"csstype@npm:^3.0.2, csstype@npm:^3.1.3":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
@@ -17310,7 +17273,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.6, postcss@npm:^8.3.5, postcss@npm:^8.4.14, postcss@npm:^8.4.23, postcss@npm:^8.4.26, postcss@npm:^8.4.32, postcss@npm:^8.4.33":
+"postcss@npm:^8.2.6, postcss@npm:^8.3.5, postcss@npm:^8.4.23, postcss@npm:^8.4.26, postcss@npm:^8.4.32, postcss@npm:^8.4.33":
   version: 8.4.49
   resolution: "postcss@npm:8.4.49"
   dependencies:
@@ -21273,12 +21236,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-sliding-pagination@npm:^1.3.2":
-  version: 1.3.2
-  resolution: "vue-sliding-pagination@npm:1.3.2"
+"vue-sliding-pagination@npm:^v2.0.0-alpha-1":
+  version: 2.0.0-alpha-1
+  resolution: "vue-sliding-pagination@npm:2.0.0-alpha-1"
   dependencies:
-    vue: "npm:^2.6"
-  checksum: 10c0/6627e35698b7c22171de7000b3a290b8c1656217bfb4ae152ff095dbe707678f00bdc13e207a7d5f821dca2a6c2c01a059a7f342648a39767dbb3ad64530a77c
+    "@vue/compat": "npm:^3.4.38"
+    vue: "npm:^3.4.38"
+  checksum: 10c0/07ba8090a8ced7b5526058d2f9a9441fb2fe379954236a1261d272020d135a5b5c06fefc564d2498dd1d4efefa0df4e79833d3d9a39941157eb6500786240d88
   languageName: node
   linkType: hard
 
@@ -21299,17 +21263,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^2.6":
-  version: 2.7.16
-  resolution: "vue@npm:2.7.16"
-  dependencies:
-    "@vue/compiler-sfc": "npm:2.7.16"
-    csstype: "npm:^3.1.0"
-  checksum: 10c0/15bf536c131a863d03c42386a4bbc82316262129421ef70e88d1758bcf951446ef51edeff42e3b27d026015330fe73d90155fca270eb5eadd30b0290735f2c3e
-  languageName: node
-  linkType: hard
-
-"vue@npm:^3.5.13":
+"vue@npm:^3.4.38, vue@npm:^3.5.13":
   version: 3.5.13
   resolution: "vue@npm:3.5.13"
   dependencies:

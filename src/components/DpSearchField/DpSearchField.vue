@@ -1,7 +1,7 @@
 <template>
   <span
     class="inline-flex"
-    :class="{ 'w-full': inputWidth !== '' }">
+    :class="{ 'w-full': inputWidth === '' }">
     <dp-resettable-input
       id="searchField"
       v-model="searchTerm"
@@ -61,6 +61,11 @@ export default {
       default: 'search'
     }
   },
+
+  emits: [
+    'search',
+    'reset'
+  ],
 
   data () {
     return {

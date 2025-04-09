@@ -62,6 +62,11 @@ export default {
     }
   },
 
+  emits: [
+    'search',
+    'reset'
+  ],
+
   data () {
     return {
       translations: {

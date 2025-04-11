@@ -6,7 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 
-- ([#1243](https://github.com/demos-europe/demosplan-ui/pull/1243)) DpButton: emit blur and focus events ([@hwiem](https://github.com/hwiem))
+- ([#1243](https://github.com/demos-europe/demosplan-ui/pull/1243)) DpButton: emit blur, focus and mousedown events ([@hwiem](https://github.com/hwiem))
 
 ### Fixed
 

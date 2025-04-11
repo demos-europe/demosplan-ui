@@ -8,7 +8,9 @@
     :class="classes"
     :disabled="disabled"
     :aria-hidden="busy"
-    @click="emit('click', $event)">
+    @blur="emit('blur', $event)"
+    @click="emit('click', $event)"
+    @focus="emit('focus', $event)">
     <dp-icon
       v-if="icon"
       aria-hidden="true"
@@ -153,7 +155,11 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['click'])
+const emit = defineEmits([
+  'blur',
+  'click',
+  'focus'
+])
 
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 

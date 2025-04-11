@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+
+- ([#1243](https://github.com/demos-europe/demosplan-ui/pull/1243)) DpButton: emit blur and focus events ([@hwiem](https://github.com/hwiem))
+
 ### Fixed
 
 - ([#1239](https://github.com/demos-europe/demosplan-ui/pull/1239)) DpSearchField: Allow setting an input width for the search field ([@hwiem](https://github.com/hwiem))

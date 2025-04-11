@@ -715,6 +715,8 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
+
+    this.headerCellCount = this.headerFields.length
   }
 }
 </script>

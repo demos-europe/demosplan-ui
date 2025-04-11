@@ -1,7 +1,7 @@
 <template>
   <th
-    v-tooltip="headerField.tooltip || headerField.label"
     ref="resizableColumn"
+    v-tooltip="headerField.tooltip || headerField.label"
     class="c-data-table__resizable break-words"
     :class="{ 'u-pr-0' : isLast }"
     :data-col-field="headerField.field"

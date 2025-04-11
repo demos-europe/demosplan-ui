@@ -34,11 +34,6 @@ export default {
     DpButton
   },
 
-  emits: [
-    'primary-action',
-    'secondary-action'
-  ],
-
   props: {
     /**
      * Specifies if the buttons should align left or right inside their container.
@@ -136,6 +131,11 @@ export default {
       validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   },
+
+  emits: [
+    'primary-action',
+    'secondary-action'
+  ],
 
   computed: {
     align () {

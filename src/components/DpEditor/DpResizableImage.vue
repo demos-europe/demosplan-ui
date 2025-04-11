@@ -1,16 +1,16 @@
 <template>
   <node-view-wrapper
+    ref="imagewrapper"
     as="span"
     class="resizable-image"
-    ref="imagewrapper"
     tabindex="1">
     <img
-      :alt="node.attrs.alt"
       ref="image"
+      :alt="node.attrs.alt"
       data-cy="editor:resizableImage"
       :src="node.attrs.src"
       :title="imageTitle"
-      @click.ctrl="$root.$emit('open-image-alt-modal',  { event: $event, imgId: id, editorId: editor.options.id })">
+      @click.ctrl="$root.$emit('open-image-alt-modal', { event: $event, imgId: id, editorId: editor.options.id })">
   </node-view-wrapper>
 </template>
 
@@ -22,11 +22,11 @@ import { v4 as uuid } from 'uuid'
 export default {
   name: 'DpResizableImage',
 
-  props: nodeViewProps,
-
   components: {
     NodeViewWrapper
   },
+
+  props: nodeViewProps,
 
   data () {
     return {
@@ -97,7 +97,7 @@ export default {
     this.setRatio(updateSize)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.observer) {
       this.observer.disconnect()
     }

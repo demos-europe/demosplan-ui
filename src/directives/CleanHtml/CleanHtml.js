@@ -42,7 +42,7 @@ const getOptions = (value) => {
  */
 const setSanitizedInnerHTML = (el, binding) => {
   const { content, options = {} } = getOptions(binding.value)
-  const _options = {...options, ...{ ADD_ATTR: ['target'] } }
+  const _options = { ...options, ...{ ADD_ATTR: ['target'] } }
   el.innerHTML = DOMPurify.sanitize(content, _options)
 }
 

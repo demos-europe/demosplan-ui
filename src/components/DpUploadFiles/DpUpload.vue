@@ -1,7 +1,7 @@
 <template>
   <div
-    :data-cy="dataCy"
-    ref="fileInput" />
+    ref="fileInput"
+    :data-cy="dataCy" />
 </template>
 
 <script>

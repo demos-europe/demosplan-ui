@@ -24,7 +24,7 @@ describe('Obscure', () => {
       }
     })
     /*
-     * the class is sometimes in the first and sometimes the last attr. That sucks..
+     * The class is sometimes in the first and sometimes the last attr. That sucks..
      */
     // expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
 
@@ -35,7 +35,7 @@ describe('Obscure', () => {
       }
     })
     /*
-     * the class is sometimes in the first and sometimes the last attr. That sucks..
+     * The class is sometimes in the first and sometimes the last attr. That sucks..
      */
     // expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
   })

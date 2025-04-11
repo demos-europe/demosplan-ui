@@ -82,17 +82,17 @@ export default function validateInput (input) {
       } else if (inputPattern) {
         // Error label based on pattern
         switch (inputPattern) {
-          case '^[0-9]{5}$':
-            input.setCustomValidity(de.validation.error.zipCode)
-            break
-          case '[A-Za-zÄäÜüÖöß ]+':
-            input.setCustomValidity(de.validation.error.city)
-            break
-          case 'email':
-            input.setCustomValidity(de.validation.error.email)
-            break
-          default:
-            input.setCustomValidity(de.validation.error.format)
+        case '^[0-9]{5}$':
+          input.setCustomValidity(de.validation.error.zipCode)
+          break
+        case '[A-Za-zÄäÜüÖöß ]+':
+          input.setCustomValidity(de.validation.error.city)
+          break
+        case 'email':
+          input.setCustomValidity(de.validation.error.email)
+          break
+        default:
+          input.setCustomValidity(de.validation.error.format)
         }
       } else {
         input.setCustomValidity(de.validation.error.default) // Theoretically this must not happen hence its not that helpful

@@ -37,6 +37,7 @@ import DpObscure from './DpObscure'
 import DpPager from './DpPager'
 import DpProgressBar from './DpProgressBar'
 import DpRadio from './DpRadio'
+import DpRadioButtonGroup from '@/components/DpRadioButtonGroup/DpRadioButtonGroup.vue'
 import DpResettableInput from './DpResettableInput'
 import DpSearchField from './DpSearchField'
 import DpSelect from './DpSelect'
@@ -100,6 +101,7 @@ export {
   DpPager,
   DpProgressBar,
   DpRadio,
+  DpRadioButtonGroup,
   DpResettableInput,
   DpSearchField,
   DpSelect,

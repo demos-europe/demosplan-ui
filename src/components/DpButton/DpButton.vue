@@ -29,10 +29,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, PropType } from 'vue'
+import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { IconName, IconSize } from '../../../types'
 import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
 
 type ButtonColor = 'primary' | 'secondary' | 'warning'

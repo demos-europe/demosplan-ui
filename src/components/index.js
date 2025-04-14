@@ -18,6 +18,7 @@ import DpDatepicker from './DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker'
 import DpDetails from './DpDetails'
+import DpConfirmDialog from './DpConfirmDialog'
 import DpDraggable from './DpDraggable'
 import DpEditor from './DpEditor'
 import DpEditableList from './DpEditableList'
@@ -67,6 +68,7 @@ export {
   DpBadge,
   DpButton,
   DpButtonRow,
+  DpConfirmDialog,
   DpDetails,
   DpIcon,
   DpInput,

@@ -1,16 +1,16 @@
 <template>
   <div class="o-accordion">
     <button
-      type="button"
       v-if="title !== ''"
-      @click="() => toggle()"
+      type="button"
       :aria-expanded="isVisible.toString()"
       :data-cy="dataCy"
       :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
-      class="btn--blank o-link--default text-left">
+      class="btn--blank o-link--default text-left"
+      @click="() => toggle()">
       <i
         class="w-2 fa"
-        :class="{'fa-caret-right': !isVisible, 'fa-caret-down': isVisible}"
+        :class="{ 'fa-caret-right': !isVisible, 'fa-caret-down': isVisible }"
         aria-hidden="true" />
       <span :class="compressed ? 'font-size-medium' : 'o-accordion--title'">{{ title }}</span>
     </button>

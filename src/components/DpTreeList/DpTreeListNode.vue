@@ -1,13 +1,13 @@
 <template>
   <li
-    class="border--top relative"
     :id="nodeId"
+    class="border--top relative"
     data-cy="treeListNode">
     <div class="c-treelist__node flex">
       <div
+        v-if="isDraggable"
         class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
-        :class="dragHandle"
-        v-if="isDraggable">
+        :class="dragHandle">
         <dp-icon
           class="c-treelist__drag-handle-icon"
           icon="drag-handle" />
@@ -22,11 +22,11 @@
         class="flex grow items-start"
         :style="indentationStyle">
         <dp-tree-list-toggle
-          class="c-treelist__folder text--left u-pv-0_25"
-          :class="{'pointer-events-none': 0 === children.length}"
-          :icon-class-prop="iconClassFolder"
           v-if="isBranch"
-          v-model="isExpanded" />
+          v-model="isExpanded"
+          class="c-treelist__folder text--left u-pv-0_25"
+          :class="{ 'pointer-events-none': 0 === children.length }"
+          :icon-class-prop="iconClassFolder" />
         <div class="grow u-pl-0 u-p-0_25">
           <slot
             v-if="isBranch"
@@ -44,12 +44,12 @@
         </div>
       </div>
       <dp-tree-list-toggle
-        data-cy="treeListChildToggle"
         v-if="isBranch"
-        class="self-start"
-        :disabled="!hasToggle"
+        v-model="isExpanded"
         v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
-        v-model="isExpanded" />
+        data-cy="treeListChildToggle"
+        class="self-start"
+        :disabled="!hasToggle" />
       <div
         v-else
         class="min-w-4" />
@@ -71,9 +71,9 @@
       <dp-tree-list-node
         v-for="(child, idx) in children"
         v-show="true === isExpanded"
-        :data-cy="`treeListChild:${idx}`"
         :ref="`node_${child.id}`"
         :key="child.id"
+        :data-cy="`treeListChild:${idx}`"
         :check-branch="checkBranch"
         :children="child.children || []"
         :handle-change="handleChange"

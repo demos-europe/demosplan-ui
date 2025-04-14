@@ -62,15 +62,15 @@ export default function assignHandlerForTrigger (triggerButton, form) {
       document.dispatchEvent(new CustomEvent('customValidationFailed', { detail: { form: form } }))
     } else {
       switch (callback) {
-        case 'dpconfirm':
-          if (window.dpconfirm(transKey, true) === false) {
-            e.preventDefault()
-          } else {
-            submitAction(form, triggerName)
-          }
-          break
-        default:
+      case 'dpconfirm':
+        if (window.dpconfirm(transKey, true) === false) {
+          e.preventDefault()
+        } else {
           submitAction(form, triggerName)
+        }
+        break
+      default:
+        submitAction(form, triggerName)
       }
     }
   })

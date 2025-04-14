@@ -75,29 +75,29 @@ class ActionMenu {
 
   handleTriggerKeydown (event) {
     switch (event.keyCode) {
-      // Down
-      case 40:
-        // Prevent page scrolling
-        event.preventDefault()
-        this.openMenu()
-        this.menu.classList.remove(prefixClass('has-focused-trigger'))
-        this.menuItems[this.currentlySelectedIndex].focus()
-        break
+    // Down
+    case 40:
+      // Prevent page scrolling
+      event.preventDefault()
+      this.openMenu()
+      this.menu.classList.remove(prefixClass('has-focused-trigger'))
+      this.menuItems[this.currentlySelectedIndex].focus()
+      break
 
       // Up, tab
-      case 38:
-      case 9:
-        this.closeMenu()
-        break
+    case 38:
+    case 9:
+      this.closeMenu()
+      break
 
       // Esc
-      case 27:
-        this.closeMenu()
-        this.trigger.focus()
-        break
+    case 27:
+      this.closeMenu()
+      this.trigger.focus()
+      break
 
-      default:
-        break
+    default:
+      break
     }
   }
 
@@ -107,40 +107,40 @@ class ActionMenu {
 
   handleMenuItemKeydown (event) {
     switch (event.keyCode) {
-      // Down
-      case 40:
-        // Prevent page scrolling
-        event.preventDefault()
-        if (this.currentlySelectedIndex < this.menuItems.length - 1) {
-          this.currentlySelectedIndex++
-        } else {
-          this.currentlySelectedIndex = 0
-        }
+    // Down
+    case 40:
+      // Prevent page scrolling
+      event.preventDefault()
+      if (this.currentlySelectedIndex < this.menuItems.length - 1) {
+        this.currentlySelectedIndex++
+      } else {
+        this.currentlySelectedIndex = 0
+      }
 
-        this.menuItems[this.currentlySelectedIndex].focus()
-        break
+      this.menuItems[this.currentlySelectedIndex].focus()
+      break
 
       // Up
-      case 38:
-        // Prevent page scrolling
-        event.preventDefault()
-        if (this.currentlySelectedIndex === 0) {
-          this.currentlySelectedIndex = this.menuItems.length - 1
-        } else {
-          this.currentlySelectedIndex--
-        }
-        this.menuItems[this.currentlySelectedIndex].focus()
-        break
+    case 38:
+      // Prevent page scrolling
+      event.preventDefault()
+      if (this.currentlySelectedIndex === 0) {
+        this.currentlySelectedIndex = this.menuItems.length - 1
+      } else {
+        this.currentlySelectedIndex--
+      }
+      this.menuItems[this.currentlySelectedIndex].focus()
+      break
 
       // Tab, esc
-      case 9:
-      case 27:
-        this.trigger.focus()
-        this.closeMenu()
-        break
+    case 9:
+    case 27:
+      this.trigger.focus()
+      this.closeMenu()
+      break
 
-      default:
-        break
+    default:
+      break
     }
   }
 

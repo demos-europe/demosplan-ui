@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="u-pb-0">
+  <fieldset class="pb-0">
     <legend
       v-if="label !== ''"
       v-cleanhtml="label"
@@ -9,28 +9,26 @@
       v-for="(option, idx) in options"
       :id="option.id"
       :key="`option_${idx}`"
-      v-model="selected"
+      v-model="selected[option.id]"
       :class="inline ? 'inline-block u-ml' : ''"
+      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
       :label="{
-        text: option.label
+      text: option.label
       }"
       :name="name"
-      :value="option.id"
-      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      @change="(val) => $emit('update', val)" />
+      @change="(val) => handleSelectionChange(option.id, val)"
+    />
   </fieldset>
 </template>
 
 <script>
 import { CleanHtml } from '~/directives'
 import DpRadio from '~/components/DpRadio'
-import DpCheckbox from '~/components/DpCheckbox'
 
-export default defineComponent({
+export default {
   name: "DpRadioButtonGroup",
 
   components: {
-    DpCheckbox,
     DpRadio
   },
 
@@ -79,16 +77,36 @@ export default defineComponent({
 
   data () {
     return {
-      selected: this.selectedOption
+      selected: {}
     }
   },
 
   watch: {
-    selectedOption (newVal) {
-      this.selected = newVal
+    selectedOption () {
+      this.selected = this.selectedOption
     }
+  },
+
+  methods: {
+    setSelected () {
+      this.options.forEach(option => {
+        this.selected[option.id] = false
+      })
+    },
+
+    handleSelectionChange (id, value) {
+      Object.keys(this.selected).forEach(key => {
+        this.selected[key] = false
+      })
+      this.selected[id] = value
+      this.$emit('update', { ...this.selected })
+    }
+  },
+
+  mounted () {
+    this.setSelected()
   }
-})
+}
 
 </script>
 

@@ -8,7 +8,10 @@
     :class="classes"
     :disabled="disabled"
     :aria-hidden="busy"
-    @click="emit('click', $event)">
+    @blur="emit('blur', $event)"
+    @click="emit('click', $event)"
+    @focus="emit('focus', $event)"
+    @mousedown="emit('mousedown', $event)">
     <dp-icon
       v-if="icon"
       aria-hidden="true"
@@ -27,10 +30,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, PropType } from 'vue'
+import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { IconName, IconSize } from '../../../types'
 import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 import { Tooltip } from '~/directives'
 
 type ButtonColor = 'primary' | 'secondary' | 'warning'
@@ -153,7 +156,12 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['click'])
+const emit = defineEmits([
+  'blur',
+  'click',
+  'focus',
+  'mousedown'
+])
 
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 

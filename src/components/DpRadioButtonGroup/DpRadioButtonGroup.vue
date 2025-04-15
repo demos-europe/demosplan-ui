@@ -1,96 +1,67 @@
 <template>
   <fieldset class="u-pb-0">
     <legend
-      v-if="label !== ''"
-      v-cleanhtml="label"
+      v-if="props.label !== ''"
+      v-text="props.label"
       class="font-size-medium is-label"
       :class="inline ? 'float-left' : 'u-mb-0_25'" />
     <dp-radio
-      v-for="(option, idx) in options"
+      v-for="(option, idx) in props.options"
       :id="option.id"
       :key="`option_${idx}`"
       :checked="selected === option.id"
       :class="inline ? 'inline-block u-ml' : ''"
       :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      :label="{
-          text: option.label
-        }"
+      :label="{ text: option.label }"
       :name="name"
       :value="option.id"
       @change="() => updateSelection(option)" />
   </fieldset>
 </template>
 
-<script>
-import { CleanHtml } from '~/directives'
+<script setup>
+import { ref, watch } from 'vue'
 import DpRadio from '~/components/DpRadio'
 
-export default {
-  name: 'DpRadioButtonGroup',
-
-  components: {
-    DpRadio
+const props = defineProps({
+  dataCy: {
+    type: String,
+    required: false,
+    default: ''
   },
-
-  directives: {
-    cleanhtml: CleanHtml
+  inline: {
+    type: Boolean,
+    default: false
   },
-
-  props: {
-    dataCy: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    options: {
-      type: Array,
-      required: true
-    },
-
-    label: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    inline: {
-      type: Boolean,
-      default: false
-    },
-
-    selectedOption: {
-      type: String,
-      default: null
-    },
-
-    name: {
-      type: String,
-      required: true
-    }
+  label: {
+    type: String,
+    required: false,
+    default: ''
   },
-
-  emits: [
-    'update'
-  ],
-
-  data () {
-    return {
-      selected: this.selectedOption
-    }
+  name: {
+    type: String,
+    required: true
   },
-
-  watch: {
-    selectedOption (newVal) {
-      this.selected = newVal
-    }
+  options: {
+    type: Array,
+    required: true
   },
-
-  methods: {
-    updateSelection (option) {
-      this.selected = option.id
-      this.$emit('update', option)
-    }
+  selectedOption: {
+    type: String,
+    default: null
   }
+})
+
+const emit = defineEmits(['update'])
+
+const selected = ref(props.selectedOption)
+
+const updateSelection = (option) => {
+  selected.value = option.id
+  emit('update', option)
 }
+
+watch(() => props.selectedOption, (newVal) => {
+  selected.value = newVal
+})
 </script>

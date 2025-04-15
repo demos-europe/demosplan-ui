@@ -5,22 +5,19 @@
       v-cleanhtml="label"
       class="font-size-medium is-label"
       :class="inline ? 'float-left' : 'u-mb-0_25'" />
-    <div v-for="(group, groupIdx) in groups" :key="`group_${groupIdx}`" class="u-mb-1">
-      <p class="font-size-medium u-mb-0_5">{{ group.label }}</p>
-      <dp-radio
-        v-for="(option, idx) in group.options"
-        :id="option.id"
-        :key="`option_${groupIdx}_${idx}`"
-        v-model="selected[group.name]"
-        :class="inline ? 'inline-block u-ml' : ''"
-        :label="{
+    <dp-radio
+      v-for="(option, idx) in options"
+      :id="option.id"
+      :key="`option_${idx}`"
+      :checked="selected === option.id"
+      :class="inline ? 'inline-block u-ml' : ''"
+      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
+      :label="{
           text: option.label
         }"
-        :name="group.name"
-        :value="option.id"
-        :data-cy="dataCy !== '' ? `${dataCy}:${group.name}:${option.id}` : null"
-        @change="emitUpdate(group.name, option.id)" />
-    </div>
+      :name="name"
+      :value="option.id"
+      @change="() => updateSelection(option)" />
   </fieldset>
 </template>
 
@@ -29,7 +26,7 @@ import { CleanHtml } from '~/directives'
 import DpRadio from '~/components/DpRadio'
 
 export default {
-  name: 'DpRadioGroup',
+  name: 'DpRadioButtonGroup',
 
   components: {
     DpRadio
@@ -46,14 +43,9 @@ export default {
       default: ''
     },
 
-    groups: {
+    options: {
       type: Array,
-      required: true,
-      validator: (groups) => {
-        return groups.every(group =>
-          group.name && group.label && Array.isArray(group.options)
-        )
-      }
+      required: true
     },
 
     label: {
@@ -67,9 +59,14 @@ export default {
       default: false
     },
 
-    selectedOptions: {
-      type: Object,
-      default: () => ({})
+    selectedOption: {
+      type: String,
+      default: null
+    },
+
+    name: {
+      type: String,
+      required: true
     }
   },
 
@@ -79,19 +76,20 @@ export default {
 
   data () {
     return {
-      selected: { ...this.selectedOptions }
-    }
-  },
-
-  methods: {
-    emitUpdate (group, value) {
-      this.$emit("update", { group, value });
+      selected: this.selectedOption
     }
   },
 
   watch: {
-    selectedOptions (newVal) {
-      this.selected = { ...newVal }
+    selectedOption (newVal) {
+      this.selected = newVal
+    }
+  },
+
+  methods: {
+    updateSelection (option) {
+      this.selected = option.id
+      this.$emit('update', option)
     }
   }
 }

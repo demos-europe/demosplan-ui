@@ -39,7 +39,7 @@ const de = {
     bold: 'Fett',
     cut: 'Ausschneiden (Strg + X)',
     fullscreen: 'Vollbild',
-    headingLevel (level) {
+    headingLevel ({ level }) {
       return `Überschrift ${level}`
     },
     italic: 'Kursiv',

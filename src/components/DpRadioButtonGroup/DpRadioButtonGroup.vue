@@ -1,23 +1,26 @@
 <template>
-  <fieldset class="pb-0">
+  <fieldset class="u-pb-0">
     <legend
       v-if="label !== ''"
       v-cleanhtml="label"
       class="font-size-medium is-label"
       :class="inline ? 'float-left' : 'u-mb-0_25'" />
-    <dp-radio
-      v-for="(option, idx) in options"
-      :id="option.id"
-      :key="`option_${idx}`"
-      v-model="selected[option.id]"
-      :class="inline ? 'inline-block u-ml' : ''"
-      :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      :label="{
-      text: option.label
-      }"
-      :name="name"
-      @change="(val) => handleSelectionChange(option.id, val)"
-    />
+    <div v-for="(group, groupIdx) in groups" :key="`group_${groupIdx}`" class="u-mb-1">
+      <p class="font-size-medium u-mb-0_5">{{ group.label }}</p>
+      <dp-radio
+        v-for="(option, idx) in group.options"
+        :id="option.id"
+        :key="`option_${groupIdx}_${idx}`"
+        v-model="selected[group.name]"
+        :class="inline ? 'inline-block u-ml' : ''"
+        :label="{
+          text: option.label
+        }"
+        :name="group.name"
+        :value="option.id"
+        :data-cy="dataCy !== '' ? `${dataCy}:${group.name}:${option.id}` : null"
+        @change="emitUpdate(group.name, option.id)" />
+    </div>
   </fieldset>
 </template>
 
@@ -26,7 +29,7 @@ import { CleanHtml } from '~/directives'
 import DpRadio from '~/components/DpRadio'
 
 export default {
-  name: "DpRadioButtonGroup",
+  name: 'DpRadioGroup',
 
   components: {
     DpRadio
@@ -36,10 +39,6 @@ export default {
     cleanhtml: CleanHtml
   },
 
-  emits: [
-    'update'
-  ],
-
   props: {
     dataCy: {
       type: String,
@@ -47,9 +46,14 @@ export default {
       default: ''
     },
 
-    options: {
+    groups: {
       type: Array,
-      required: true
+      required: true,
+      validator: (groups) => {
+        return groups.every(group =>
+          group.name && group.label && Array.isArray(group.options)
+        )
+      }
     },
 
     label: {
@@ -60,53 +64,35 @@ export default {
 
     inline: {
       type: Boolean,
-      required: false,
       default: false
     },
 
-    name: {
-      type: String,
-      required: true
-    },
-
-    selectedOption: {
-      type: String,
-      default: ''
+    selectedOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
+
+  emits: [
+    'update'
+  ],
 
   data () {
     return {
-      selected: {}
-    }
-  },
-
-  watch: {
-    selectedOption () {
-      this.selected = this.selectedOption
+      selected: { ...this.selectedOptions }
     }
   },
 
   methods: {
-    setSelected () {
-      this.options.forEach(option => {
-        this.selected[option.id] = false
-      })
-    },
-
-    handleSelectionChange (id, value) {
-      Object.keys(this.selected).forEach(key => {
-        this.selected[key] = false
-      })
-      this.selected[id] = value
-      this.$emit('update', { ...this.selected })
+    emitUpdate (group, value) {
+      this.$emit("update", { group, value });
     }
   },
 
-  mounted () {
-    this.setSelected()
+  watch: {
+    selectedOptions (newVal) {
+      this.selected = { ...newVal }
+    }
   }
 }
-
 </script>
-

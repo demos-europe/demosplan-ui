@@ -8,6 +8,11 @@ global.prefixClass = prefixClass
 global.Translator = Translator
 global.hasPermission = hasPermission
 
+jest.mock('@vueuse/components', () => {
+  return {
+    vOnClickOutside: jest.fn()
+  }
+})
 jest.mock('@uppy/core', () => () => 'mock result')
 jest.mock('@uppy/drag-drop', () => () => 'mock result')
 jest.mock('@uppy/progress-bar', () => () => 'mock result')

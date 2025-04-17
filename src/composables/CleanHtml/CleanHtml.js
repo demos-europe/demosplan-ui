@@ -7,7 +7,7 @@ import DOMPurify from 'dompurify'
  * @param {Object} options - Optional DOMPurify configuration.
  * @returns {ComputedRef<String>} - Sanitized HTML content.
  */
-export function useSanitizedHtml(rawHtml, options = {}) {
+export function cleanHtml(rawHtml, options = {}) {
   return computed(() => {
     const content = isRef(rawHtml) ? rawHtml.value : rawHtml
     const _options = { ...options, ADD_ATTR: ['target'] }

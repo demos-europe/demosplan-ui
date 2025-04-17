@@ -8,12 +8,22 @@ global.prefixClass = prefixClass
 global.Translator = Translator
 global.hasPermission = hasPermission
 
+jest.mock('@vueuse/components', () => {
+  return {
+    vOnClickOutside: jest.fn()
+  }
+})
 jest.mock('@uppy/core', () => () => 'mock result')
 jest.mock('@uppy/drag-drop', () => () => 'mock result')
 jest.mock('@uppy/progress-bar', () => () => 'mock result')
 jest.mock('@uppy/tus', () => () => 'mock result')
 jest.mock('vue-omnibox', () => () => 'mock result')
 jest.mock('a11y-datepicker', () => () => 'mock result')
-jest.mock('~/lib/Stickier', () => () => 'mock result')
+jest.mock('~/lib/Stickier', () => jest.fn().mockImplementation(function() {
+  return {
+    update: jest.fn(),
+    destroy: jest.fn()
+  }
+}))
 
 

@@ -207,10 +207,10 @@
               <button
                 v-for="heading in toolbar.headings"
                 :key="'heading_' + heading"
-                v-tooltip="translations.headingLevel"
-                type="button"
+                v-tooltip="translations.headingLevel(heading)"
                 :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 :disabled="readonly"
+                type="button"
                 @click="editor.chain().focus().toggleHeading({ level: heading }).run()">
                 {{ `H${heading}` }}
               </button>
@@ -649,7 +649,7 @@ export default {
       }, this.toolbarItems),
       translations: {
         ...de.editor,
-        headingLevel: de.editor.headingLevel({ level: this.heading }),
+        headingLevel: (level) => de.editor.headingLevel({ level }),
         insertImage: de.image.insert,
         obscureTitle: de.obscure.title
       }

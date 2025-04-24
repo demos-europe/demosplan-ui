@@ -18,6 +18,7 @@
       maxHeight,
       multiple,
       name,
+      openDirection,
       options,
       placeholder,
       searchable,
@@ -207,6 +208,12 @@ export default {
     },
 
     name: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    openDirection: {
       type: String,
       required: false,
       default: ''

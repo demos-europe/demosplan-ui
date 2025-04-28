@@ -61,6 +61,8 @@ export default {
     DpUploadedFileList
   },
 
+  emits: ['upload-success'],
+
   mixins: [prefixClassMixin, sessionStorageMixin],
 
   provide () {

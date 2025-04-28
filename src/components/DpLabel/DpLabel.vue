@@ -3,27 +3,27 @@
     :class="classes"
     :for="labelFor">
     <span>
-      <span v-cleanhtml="text" /><span v-if="required">*</span>
-      <span
-        v-if="hints.length > 0"
-        :class="prefixClass('block text-sm font-normal')">
-        <span
-          :class="prefixClass('inline-block')"
-          :key="i"
-          v-for="(h, i) in hints"
-          v-cleanhtml="h" />
-      </span>
+      <span v-cleanhtml="text" /><span v-if="required" aria-hidden="true">*</span>
+      <dp-contextual-help
+        v-if="tooltip"
+        :class="prefixClass('ml-0.5')"
+        :text="tooltip" />
     </span>
-    <dp-contextual-help
-      v-if="tooltip !== ''"
-      :class="prefixClass('shrink-0 mt-px ml-0.5')"
-      :text="tooltip" />
+    <span
+      v-if="hints.length"
+      :class="prefixClass('block text-sm font-normal')">
+      <span
+        v-for="(hint, i) in hints"
+        :key="i"
+        :class="prefixClass('inline-block')"
+        v-cleanhtml="hint" />
+    </span>
   </label>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { CleanHtml as vCleanhtml } from '~/directives' //NOSONAR see https://sonarsource.atlassian.net/browse/JS-97
+import { computed, PropType } from 'vue'
+import { CleanHtml as vCleanhtml } from '~/directives'
 import { prefixClass } from '~/utils'
 import DpContextualHelp from '~/components/DpContextualHelp'
 
@@ -48,7 +48,7 @@ const props = defineProps({
 
   // Can be string or array (the second element being the "maxlength" hint).
   hint: {
-    type: [String, Array],
+    type: [String, Array] as PropType<string | string[]>,
     required: false,
     default: () => []
   },
@@ -71,8 +71,8 @@ const props = defineProps({
   }
 })
 
-const classes = computed(() => {
-  let cssClasses: string[] = ['flex']
+const classes = computed(() : string[] => {
+  let cssClasses: string[] = ['flex flex-col']
 
   if (props.hide) {
     cssClasses.push('sr-only')
@@ -85,7 +85,7 @@ const classes = computed(() => {
   return cssClasses.map((selector) => prefixClass(selector))
 })
 
-const hints = computed(() => {
+const hints = computed(() : string[] => {
   if (props.hint) {
     return Array.isArray(props.hint) ? props.hint : [props.hint]
   }
@@ -93,6 +93,6 @@ const hints = computed(() => {
   return []
 })
 
-const labelFor = computed(() => props.for)
+const labelFor = computed(() : string => props.for)
 
 </script>

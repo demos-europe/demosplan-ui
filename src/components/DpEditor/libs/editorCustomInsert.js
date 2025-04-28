@@ -1,7 +1,5 @@
 import {
   Mark,
-  markInputRule,
-  markPasteRule,
 } from '@tiptap/core'
 import { de } from '../../shared/translations'
 

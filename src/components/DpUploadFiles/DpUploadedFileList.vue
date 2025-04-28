@@ -23,6 +23,8 @@ import { de } from "~/components/shared/translations"
 export default {
   name: 'DpUploadedFileList',
 
+  emits: ['file-remove'],
+
   components: {
     DpUploadedFile
   },

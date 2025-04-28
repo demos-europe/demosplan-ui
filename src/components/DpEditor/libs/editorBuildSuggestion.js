@@ -16,11 +16,7 @@ export default ({ suggestions, matcher }) => ({
     return {
       onStart: props => {
         component = new VueRenderer(MentionList, {
-          // using vue 2:
-          parent: this,
-          props: props,
-          // using vue 3:
-          // props,
+          props,
           editor: props.editor,
         })
 

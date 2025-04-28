@@ -16,11 +16,12 @@
       :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
-      @close="resetEditingImage" />
+      @close="resetImageId" />
     <slot
       name="modal"
       :appendText="appendText"
       :handleInsertText="handleInsertText" />
+
     <div
       v-if="editor"
       :class="prefixClass('row tiptap')">
@@ -327,8 +328,8 @@ import {
   Heading,
   History,
   Italic,
-  Link,
   ListItem,
+  Mention,
   OrderedList,
   Paragraph,
   Strike,
@@ -352,8 +353,7 @@ import {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
-  Obscure,
-  Mention
+  Obscure
 } from './libs/customExtensions'
 import DpIcon from '../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'
@@ -363,6 +363,7 @@ import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
 import { prefixClassMixin } from '~/mixins'
 import { v4 as uuid } from 'uuid'
+import { mergeAttributes } from '@tiptap/core'
 
 export default {
   name: 'DpEditor',
@@ -538,7 +539,7 @@ export default {
         isOpen: false,
         buttons: []
       },
-      editingImage: null,
+      imageId: null,
       editor: null,
       editorHeight: '',
       isDiffMenuOpen: false,
@@ -689,8 +690,8 @@ export default {
 
   methods: {
     addAltTextToImage (text) {
-      this.$root.$emit('update-image:' + this.editingImage, { alt: text })
-      this.resetEditingImage()
+      this.$root.$emit('update-image:' + this.imageId, { alt: text })
+      this.resetImageId()
       this.emitValue()
     },
 
@@ -721,19 +722,32 @@ export default {
         Text,
         History,
         HardBreak,
-        Heading.configure({ levels: this.toolbar.headings })
+        Heading.configure({ levels: this.toolbar.headings }),
+        InsertAtCursorPos
       ]
-
-      extensions.push(InsertAtCursorPos)
 
       if (this.suggestions.length > 0) {
         this.suggestions.forEach(suggestion => {
           extensions.push(Mention.configure({
-            HTMLAttributes: {
-              class: 'suggestion__node'
-            },
-            renderLabel({ node }) {
-              return suggestion.matcher.char + node.attrs.label
+            renderHTML ({ node, HTMLAttributes }) {
+              const self = Mention
+
+              return [
+                'span',
+                mergeAttributes({
+                  class: 'suggestion__node',
+                  'data-id': node.attrs.id,
+                  'data-label': node.attrs.label,
+                  'data-suggestion-id': node.attrs.id,
+                  'data-type': self.name
+                }, HTMLAttributes),
+                self.options.renderText({
+                  options: {
+                    suggestion: { char: suggestion.matcher.char }
+                  },
+                  node,
+                }),
+              ]
             },
             suggestion: buildSuggestion(suggestion)
           }))
@@ -948,8 +962,8 @@ export default {
       }
     },
 
-    resetEditingImage () {
-      this.editingImage = null
+    resetImageId () {
+      this.imageId = null
     },
 
     resizeVertically (e) {
@@ -1002,6 +1016,8 @@ export default {
     emitValue () {
       this.currentValue = this.editor.getHTML()
       const isEmpty = (this.currentValue.split('<p>').join('').split('</p>').join('').trim()) === ''
+
+      this.currentValue = this.transformObscureTag(this.currentValue)
 
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
@@ -1117,7 +1133,7 @@ export default {
         return
       }
 
-      this.editingImage = imgId
+      this.imageId = imgId
       this.openUploadModal({ editAltOnly: true, currentAlt: event.target.getAttribute('alt'), imgSrc: event.target.getAttribute('src') })
     })
     /*

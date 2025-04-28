@@ -16,6 +16,14 @@ import Uppy from '@uppy/core'
 export default {
   name: 'DpUpload',
 
+  emits: [
+    'file-added',
+    'file-error',
+    'upload',
+    'uploads-completed',
+    'upload-success'
+  ],
+
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
@@ -280,10 +288,10 @@ export default {
     this.uppy.on('upload-success', (file) => {
       const { name, size, type } = file.data
       const newFile = {
-        name: name,
+        name,
         hash: this.currentFileHash,
-        size: size,
-        type: type,
+        size,
+        type,
         id: file.id, // The uppy internal file id
         fileId: this.currentFileId // The id of the file within demosplan
       }
@@ -295,7 +303,7 @@ export default {
 
   beforeUnmount () {
     if (this.uppy) {
-      this.uppy.close()
+      this.uppy.clear()
     }
   }
 }

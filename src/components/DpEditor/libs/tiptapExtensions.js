@@ -7,6 +7,7 @@ import History from '@tiptap/extension-history'
 import Italic from '@tiptap/extension-italic'
 import Link from '@tiptap/extension-link'
 import ListItem from '@tiptap/extension-list-item'
+import { Mention } from '@tiptap/extension-mention'
 import OrderedList from '@tiptap/extension-ordered-list'
 import Paragraph from '@tiptap/extension-paragraph'
 import Strike from '@tiptap/extension-strike'
@@ -27,6 +28,7 @@ export {
   Italic,
   Link,
   ListItem,
+  Mention,
   OrderedList,
   Paragraph,
   Strike,

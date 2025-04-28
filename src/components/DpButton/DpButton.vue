@@ -131,12 +131,14 @@ const props = defineProps({
 
   /**
    * The type attribute can be set to a value of `submit` manually, if the button is used to post a form.
+   * When set to 'reset', the button will reset all the form fields in the form it is placed in. Use with caution,
+   * since users tend to find this annoying.
    */
   type: {
     type: String as PropType<ButtonType>,
     required: false,
     default: 'button',
-    validator: (prop: ButtonType): boolean  => ['button', 'submit'].includes(prop)
+    validator: (prop: ButtonType): boolean  => ['button', 'reset', 'submit'].includes(prop)
   },
 
   /**
@@ -167,6 +169,7 @@ const classes = computed(() => [
 const colorClasses = computed(() => {
     const colors = allColorClasses[props.color]
     const renderedColors = [colors.solidOutlineSubtle]
+
     switch (props.variant) {
         case 'solid':
             renderedColors.push(colors.solidOutline, colors.solid)
@@ -180,6 +183,7 @@ const colorClasses = computed(() => {
         default:
             break
     }
+
     return renderedColors
 })
 
@@ -213,10 +217,8 @@ const spacingClasses = computed(() => {
   ]
 })
 
-const element = computed(() => isButtonElement ? 'button' : 'a')
-
+const element = computed(() => isButtonElement.value ? 'button' : 'a')
 const isButtonElement = computed(() => props.href === '#')
-
 const sanitizedHref = computed(() => sanitizeUrl(props.href))
 
 const vTooltip = Tooltip
@@ -249,85 +251,85 @@ const allColorClasses = {
      * The same border is applied to outline buttons.
      */
     solidOutline: `
-      border border-interactive
-      hover:border-interactive-hover
-      focus:border-interactive-hover
-      focus-visible:border-interactive-hover
+      border border-interactive\
+      hover:border-interactive-hover\
+      focus:border-interactive-hover\
+      focus-visible:border-interactive-hover\
       active:border-interactive-active `,
     // outlineSubtle: classes that apply to "outline" and "subtle" button color variants.
     outlineSubtle: `
-      bg-surface text-interactive
-      hover:bg-interactive-subtle-hover hover:text-interactive-hover
-      focus:bg-interactive-subtle-hover focus:text-interactive-hover
-      focus-visible:bg-interactive-subtle-hover focus-visible:text-interactive-hover
+      bg-surface text-interactive\
+      hover:bg-interactive-subtle-hover hover:text-interactive-hover\
+      focus:bg-interactive-subtle-hover focus:text-interactive-hover\
+      focus-visible:bg-interactive-subtle-hover focus-visible:text-interactive-hover\
       active:bg-interactive-subtle-active active:text-interactive-active `,
     // solid: classes that only apply to "solid" button color variant.
     solid: `
-      bg-interactive text-on-dark
-      hover:bg-interactive-hover
-      focus:bg-interactive-hover
-      focus-visible:bg-interactive-hover
+      bg-interactive text-on-dark\
+      hover:text-on-dark hover:no-underline hover:bg-interactive-hover\
+      focus:bg-interactive-hover\
+      focus-visible:bg-interactive-hover\
       active:bg-interactive-active `,
     // subtle: classes that only apply to "subtle" button color variant.
     subtle: `
-      border border-on-dark
-      hover:border-interactive-subtle-hover
-      focus:border-interactive-subtle-hover
-      focus-visible:border-interactive-subtle-hover
+      border border-on-dark\
+      hover:border-interactive-subtle-hover\
+      focus:border-interactive-subtle-hover\
+      focus-visible:border-interactive-subtle-hover\
       active:border-interactive-subtle-active `
   },
   secondary: {
     solidOutlineSubtle: ' outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#595959]/50 ',
     solidOutline: `
-      border border-interactive-secondary
-      hover:border-interactive-secondary-hover
-      focus:border-interactive-secondary-hover
-      focus-visible:border-interactive-secondary-hover
+      border border-interactive-secondary\
+      hover:border-interactive-secondary-hover\
+      focus:border-interactive-secondary-hover\
+      focus-visible:border-interactive-secondary-hover\
       active:border-interactive-secondary-active `,
     outlineSubtle: `
-      bg-surface text-interactive-secondary
-      hover:bg-interactive-secondary-subtle-hover hover:text-interactive-secondary-hover
-      focus:bg-interactive-secondary-subtle-hover focus:text-interactive-secondary-hover
-      focus-visible:bg-interactive-secondary-subtle-hover focus-visible:text-interactive-secondary-hover
+      bg-surface text-interactive-secondary\
+      hover:bg-interactive-secondary-subtle-hover hover:text-interactive-secondary-hover\
+      focus:bg-interactive-secondary-subtle-hover focus:text-interactive-secondary-hover\
+      focus-visible:bg-interactive-secondary-subtle-hover focus-visible:text-interactive-secondary-hover\
       active:bg-interactive-secondary-subtle-active active:text-interactive-secondary-active `,
     solid: `
-      bg-interactive-secondary text-on-dark
-      hover:bg-interactive-secondary-hover
-      focus:bg-interactive-secondary-hover
-      focus-visible:bg-interactive-secondary-hover
+      bg-interactive-secondary text-on-dark\
+      hover:text-on-dark hover:no-underline hover:bg-interactive-secondary-hover\
+      focus:bg-interactive-secondary-hover\
+      focus-visible:bg-interactive-secondary-hover\
       active:bg-interactive-secondary-active `,
     subtle: `
-      border border-on-dark
-      hover:border-interactive-secondary-subtle-hover
-      focus:border-interactive-secondary-subtle-hover
-      focus-visible:border-interactive-secondary-subtle-hover
+      border border-on-dark\
+      hover:border-interactive-secondary-subtle-hover\
+      focus:border-interactive-secondary-subtle-hover\
+      focus-visible:border-interactive-secondary-subtle-hover\
       active:border-interactive-secondary-subtle-active `
   },
   warning: {
     solidOutlineSubtle: ' outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#B20000]/50 ',
     solidOutline: `
-      border border-interactive-warning
-      hover:border-interactive-warning-hover
-      focus:border-interactive-warning-hover
-      focus-visible:border-interactive-warning-hover
+      border border-interactive-warning\
+      hover:border-interactive-warning-hover\
+      focus:border-interactive-warning-hover\
+      focus-visible:border-interactive-warning-hover\
       active:border-interactive-warning-active `,
     outlineSubtle: `
-      bg-surface text-interactive-warning
-      hover:bg-interactive-warning-subtle-hover hover:text-interactive-warning-hover
-      focus:bg-interactive-warning-subtle-hover focus:text-interactive-warning-hover
-      focus-visible:bg-interactive-warning-subtle-hover focus-visible:text-interactive-warning-hover
+      bg-surface text-interactive-warning\
+      hover:bg-interactive-warning-subtle-hover hover:text-interactive-warning-hover\
+      focus:bg-interactive-warning-subtle-hover focus:text-interactive-warning-hover\
+      focus-visible:bg-interactive-warning-subtle-hover focus-visible:text-interactive-warning-hover\
       active:bg-interactive-warning-subtle-active active:text-interactive-warning-active `,
     solid: `
-      bg-interactive-warning text-on-dark
-      hover:bg-interactive-warning-hover
-      focus:bg-interactive-warning-hover
-      focus-visible:bg-interactive-warning-hover
+      bg-interactive-warning text-on-dark\
+      hover:text-on-dark hover:no-underline hover:bg-interactive-warning-hover\
+      focus:bg-interactive-warning-hover\
+      focus-visible:bg-interactive-warning-hover\
       active:bg-interactive-warning-active `,
     subtle: `
-      border border-on-dark
-      hover:border-interactive-warning-subtle-hover
-      focus:border-interactive-warning-subtle-hover
-      focus-visible:border-interactive-warning-subtle-hover
+      border border-on-dark\
+      hover:border-interactive-warning-subtle-hover\
+      focus:border-interactive-warning-subtle-hover\
+      focus-visible:border-interactive-warning-subtle-hover\
       active:border-interactive-warning-subtle-active `
   }
 }

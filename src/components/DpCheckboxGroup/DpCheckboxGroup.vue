@@ -16,7 +16,7 @@
       }"
       :name="option.name || ''"
       :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      @change="$emit('update', selected)" />
+      @change="(val) => $emit('update', { ...selected, [option.id]: val })" />
   </fieldset>
 </template>
 
@@ -34,6 +34,10 @@ export default {
   directives: {
     cleanhtml: CleanHtml
   },
+
+  emits: [
+    'update'
+  ],
 
   props: {
     dataCy: {

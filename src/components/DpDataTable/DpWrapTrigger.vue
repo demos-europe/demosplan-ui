@@ -41,7 +41,7 @@ export default {
     },
 
     icon () {
-      return this.expanded ? 'chevron-up' : 'chevron-down'
+      return this.expanded ? 'caret-up' : 'caret-down'
     }
   }
 }

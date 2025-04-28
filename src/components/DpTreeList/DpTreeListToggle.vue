@@ -58,6 +58,7 @@ export default {
   methods: {
     toggle () {
       this.$emit('input', !this.value)
+      this.$emit('update:modelValue', !this.value)
     }
   }
 }

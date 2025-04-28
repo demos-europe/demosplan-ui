@@ -6,7 +6,6 @@ import CustomInsert from './editorCustomInsert'
 import CustomLink from './editorCustomLink'
 import CustomMark from './editorCustomMark'
 import InsertAtCursorPos from './editorInsertAtCursorPos'
-import Mention from './editorMention'
 import Obscure from './editorObscure'
 import UnAnonymize from './editorUnAnonymize'
 import PreventEditing from './preventEditing'
@@ -20,7 +19,6 @@ export {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
-  Mention,
   Obscure,
   UnAnonymize,
   PreventEditing

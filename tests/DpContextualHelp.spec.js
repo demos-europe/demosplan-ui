@@ -6,6 +6,6 @@ describe('DpContextualHelp', () => {
   })
 
   it('should be named DpContextualHelp', () => {
-    expect(DpContextualHelp.name).toBe('DpContextualHelp')
+    expect(DpContextualHelp.__name).toBe('DpContextualHelp')
   })
 })

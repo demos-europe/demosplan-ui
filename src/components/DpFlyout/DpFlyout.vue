@@ -1,20 +1,24 @@
 <template>
   <span
     class="o-flyout"
+    v-on-click-outside="close"
+    ref="target"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
       'o-flyout--padded': padded,
       'is-expanded': isExpanded,
-      'o-flyout--menu': hasMenu
+      'o-flyout--menu': hasMenu,
+      'bg-surface-medium rounded-md': variant === 'dark'
     }"
     data-cy="flyoutTrigger">
     <button
       :disabled="disabled"
       type="button"
       aria-haspopup="true"
-      class="o-flyout__trigger btn--blank o-link--default u-ph-0_25 line-height--2 whitespace-nowrap"
-      :data-cy="dataCy"
+      :aria-label="ariaLabel !== '' ? ariaLabel : null"
+      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
+      :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle">
       <slot
         name="trigger"
@@ -31,14 +35,16 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
+import { vOnClickOutside } from '@vueuse/components'
 
 export default {
   name: 'DpFlyout',
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
+
+  emits: ['close', 'open'],
 
   props: {
     align: {
@@ -46,6 +52,12 @@ export default {
       type: String,
       default: 'right',
       validator: (prop) => ['left', 'right'].includes(prop)
+    },
+
+    ariaLabel: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     dataCy: {
@@ -70,7 +82,14 @@ export default {
       required: false,
       type: Boolean,
       default: true
-    }
+    },
+
+    variant: {
+      required: false,
+      type: String,
+      default: 'light',
+      validator: (prop) => ['light', 'dark'].includes(prop)
+    },
   },
 
   data () {
@@ -96,10 +115,6 @@ export default {
         this.$emit('close')
       }
     }
-  },
-
-  mounted () {
-    this.popupItem = this.$el
   }
 }
 </script>

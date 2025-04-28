@@ -6,6 +6,7 @@
       :data-cy="dataCy"
       has-icon
       :required="required"
+      :rounded="rounded"
       @blur="$emit('blur', currentValue)"
       @input="$emit('input', currentValue)"
       @enter="$emit('enter', currentValue)"
@@ -23,6 +24,8 @@
         icon="xmark"
         :size="iconSize" />
     </button>
+    <!-- Slot for additional buttons -->
+    <slot />
   </div>
 </template>
 
@@ -39,12 +42,6 @@ export default {
   },
 
   props: {
-    dataCy: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
     /**
      * By default, the normal variant is used. If set to 'small', a smaller variant is displayed
      */
@@ -53,6 +50,12 @@ export default {
       required: false,
       default: 'medium',
       validator: (prop) => ['small', 'medium'].includes(prop)
+    },
+
+    dataCy: {
+      type: String,
+      required: false,
+      default: ''
     },
 
     defaultValue: {
@@ -84,6 +87,21 @@ export default {
       default: false
     },
 
+    /**
+     * Prop to define the rounded corners of the input.
+     *
+     * @property {String} rounded - The rounded corners style.
+     *                              Can be 'full', 'left', or 'right'.
+     * @default 'full'
+     * @validator Ensures the value is one of 'full', 'left', or 'right'.
+     */
+    rounded: {
+      type: String,
+      required: false,
+      default: 'full',
+      validator: (prop) => ['full', 'left', 'right'].includes(prop)
+    },
+
     value: {
       type: String,
       required: false,
@@ -99,7 +117,10 @@ export default {
 
   computed: {
     buttonClass () {
-      return this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+      classes = this.$slots.default ? `${classes} grouped` : classes
+
+      return classes
     },
 
     iconSize () {

@@ -484,15 +484,18 @@ export default {
   },
 
   watch: {
-    headerFields () {
-      if (this.isResizable) {
-        this.$nextTick(() => {
-          const firstRow = this.tableEl.getElementsByTagName('tr')[0]
-          const tableHeaderElements = firstRow ? firstRow.children : null
+    headerFields: {
+      handler () {
+        if (this.isResizable) {
+          this.$nextTick(() => {
+            const firstRow = this.tableEl.getElementsByTagName('tr')[0]
+            const tableHeaderElements = firstRow ? firstRow.children : null
 
-          this.setColsWidth(tableHeaderElements)
-        })
-      }
+            this.setColsWidth(tableHeaderElements)
+          })
+        }
+      },
+      deep: false // HeaderFields are always replaces as a whole and therefor deep watch is not necessary
     },
 
     shouldBeSelectedItems () {
@@ -691,7 +694,7 @@ export default {
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
         Array.from(tableHeaderElements).forEach(th => {
-          if (th.firstChild) {
+          if (th.firstChild && th.firstChild.nodeType === 1) {
             th.firstChild.style.width = null
             th.firstChild.style.maxWidth = null
             th.firstChild.style.minWidth = null

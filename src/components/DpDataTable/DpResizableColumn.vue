@@ -2,7 +2,7 @@
   <th
     v-tooltip="headerField.tooltip || headerField.label"
     ref="resizableColumn"
-    class="c-data-table__resizable"
+    class="c-data-table__resizable break-words"
     :class="{ 'u-pr-0' : isLast }"
     :data-col-field="headerField.field"
     :data-col-idx="idx">

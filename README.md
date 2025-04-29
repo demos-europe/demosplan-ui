@@ -17,7 +17,7 @@ docker compose build
 docker compose up -d
 
 # Shell into the container
-docker compose exec demosplan-ui sh
+docker compose exec demosplan-ui bash
 
 # Stop container
 docker compose down

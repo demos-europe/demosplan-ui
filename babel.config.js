@@ -4,9 +4,8 @@ module.exports = {
       targets: {
         node: 'current',
         browsers: '> 0.25%, not dead'
-      }
-    }],
+      } }],
     '@babel/preset-typescript',
-    ['@babel/preset-react', { runtime: 'automatic'}],
+    ['@babel/preset-react', { runtime: 'automatic' }],
   ]
 }

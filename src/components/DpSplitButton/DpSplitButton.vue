@@ -13,7 +13,7 @@
       v-if="hasDropdownContent"
       data-cy="splitButtonTrigger"
       class="c-splitbutton__trigger"
-      :class="{'is-open': isOpen}"
+      :class="{ 'is-open': isOpen }"
       type="button"
       aria-haspopup="true"
       :aria-expanded="isOpen"
@@ -26,7 +26,7 @@
       v-if="hasDropdownContent"
       class="c-splitbutton__dropdown"
       role="menu"
-      :class="{'is-open': isOpen}">
+      :class="{ 'is-open': isOpen }">
       <slot name="dropdown">
         Dropdown Actions
       </slot>

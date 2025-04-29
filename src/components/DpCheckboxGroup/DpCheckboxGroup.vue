@@ -35,10 +35,6 @@ export default {
     cleanhtml: CleanHtml
   },
 
-  emits: [
-    'update'
-  ],
-
   props: {
     dataCy: {
       type: String,
@@ -67,6 +63,10 @@ export default {
       default: () => ({})
     }
   },
+
+  emits: [
+    'update'
+  ],
 
   data () {
     return {

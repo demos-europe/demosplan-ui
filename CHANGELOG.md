@@ -4,10 +4,58 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-- ([#1224](https://github.com/demos-europe/demosplan-ui/pull/1224)) Changed DpTreeList to render toogle depending on content ([@riechedemos](https://github.com/riechedemos))
+## v0.4.14 - 2025-04-24
+
+### Fixed
+
+- ([#1246](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditor: Adjust headingLevel function to expect an object with a level property ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+
+- ([#1249](https://github.com/demos-europe/demosplan-ui/pull/1249)) DpMultiselect: add 'openDirection' prop ([@sakutademos](https://github.com/sakutademos)
+
+## v0.4.13 - 2025-04-14
+
+### Added
+
+- ([#1243](https://github.com/demos-europe/demosplan-ui/pull/1243)) DpButton: emit blur, focus and mousedown events ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+
+- ([#1239](https://github.com/demos-europe/demosplan-ui/pull/1239)) DpSearchField: Allow setting an input width for the search field ([@hwiem](https://github.com/hwiem))
+- ([#1242](https://github.com/demos-europe/demosplan-ui/pull/1242)) DpDataTable: Set correct colCount for empty data table ([@hwiem](https://github.com/hwiem))
+
+## v0.4.12 - 2025-04-08
+
+### Fixed
+
+- ([#1236](https://github.com/demos-europe/demosplan-ui/pull/1236)) DpResettableInput: update currentValue on input ([@sakutademos](https://github.com/sakutademos)
+
+
+## v0.4.11 - 2025-04-07
+
+### Fixed
+
+- ([#1234](https://github.com/demos-europe/demosplan-ui/pull/1234)) Add padding to align DpFlyout button ([@riechedemos](https://github.com/riechedemos))
+- ([#1235](https://github.com/demos-europe/demosplan-ui/pull/1235)) DpSlidingPagination: Make component vue3-compatible by updating vue-sliding-pagination  ([@hwiem](https://github.com/hwiem))
+
+### Added
+- ([#1228](https://github.com/demos-europe/demosplan-ui/pull/1228)) Create DpConfirmDialog component ([@sakutademos](https://github.com/sakutademos)
+
+
+## v0.4.10 - 2025-04-07
+
+Skipped due to publishing issues
+
+
+## v0.4.9 - 2025-04-02
+
+### Fixed
+- ([#1224](https://github.com/demos-europe/demosplan-ui/pull/1224)) Changed DpTreeList to render toggle depending on content ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.4.8 - 2025-03-24
 
+### Fixed
 - ([#1220](https://github.com/demos-europe/demosplan-ui/pull/1220)) DpEditor: Fix emitValue to pass obscure tag ([@riechedemos](https://github.com/riechedemos))
 
 

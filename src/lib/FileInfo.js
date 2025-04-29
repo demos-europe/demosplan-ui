@@ -68,26 +68,26 @@ const mimeTypes = {
 const convertSize = function (scale, value) {
   let returnValue
   switch (scale) {
-    case 'KB':
-      returnValue = value / 1024
-      break
-    case 'MB':
-      returnValue = value / 1048576
-      break
-    case 'GB':
-      returnValue = value / 1073741824
-      break
-    case 'TB':
-      returnValue = value / 1099511627776
-      break
-      /* This is the Default */
+  case 'KB':
+    returnValue = value / 1024
+    break
+  case 'MB':
+    returnValue = value / 1048576
+    break
+  case 'GB':
+    returnValue = value / 1073741824
+    break
+  case 'TB':
+    returnValue = value / 1099511627776
+    break
+    /* This is the Default */
     /*
      * case 'B':
      *     returnValue = value;
      *     break;
      */
-    default:
-      returnValue = value
+  default:
+    returnValue = value
   }
 
   return Math.round(returnValue) + ' ' + scale

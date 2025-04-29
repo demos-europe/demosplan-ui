@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   stories: [
     //'../src/components/**/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpCard/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

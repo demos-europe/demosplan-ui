@@ -1,30 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpCard from './'
 
 const meta: Meta<typeof DpCard> = {
     component: DpCard,
-    title: "Components/Card",
+    title: 'Components/Card',
     argTypes: {},
     render: (args) => ({
         components: {
             DpCard
         },
+
         setup() {
             return { args }
         },
+
         template: `<dp-card v-bind="args">
           Content goes here (into the default slot).
         </dp-card>`,
     })
 }
 
-interface IDpCard {
-    heading: string
-    headingTooltip: string
-}
-
 export default meta
-type Story = StoryObj<IDpCard>
+
+type Story = StoryObj<{
+  heading: string
+  headingTooltip: string
+}>
 
 export const Default: Story = {
     args: {

@@ -1,9 +1,7 @@
-import { Meta } from '@storybook/addon-docs'
-import DpBadge from './'
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpBadgeStories from './DpBadge.stories.tsx'
 
-<Meta
-  title="Components/Badge"
-  component={DpBadge} />
+<Meta of={DpBadgeStories} />
 
 # Badge
 
@@ -13,6 +11,4 @@ to indicate state or progress of items in table rows.
 
 ## Default usage
 
-```html
-<dp-badge text="info text" />
-```
+<Canvas of={DpBadgeStories.Default} />

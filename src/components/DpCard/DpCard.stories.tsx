@@ -9,11 +9,9 @@ const meta: Meta<typeof DpCard> = {
         components: {
             DpCard
         },
-
         setup() {
             return { args }
         },
-
         template: `<dp-card v-bind="args">
           Content goes here (into the default slot).
         </dp-card>`,

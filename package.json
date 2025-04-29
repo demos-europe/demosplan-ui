@@ -64,8 +64,6 @@
     "@babel/preset-typescript": "^7.27.0",
     "@jest/globals": "^29.5.0",
     "@jest/transform": "^29.5.0",
-    "@mdx-js/loader": "^3.1.0",
-    "@mdx-js/react": "^3.1.0",
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",

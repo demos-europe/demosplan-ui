@@ -34,8 +34,13 @@ import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 
 # Button
 
-The `DpButton` component renders a primary button element that has a visual `busy` state which prevents the user
-from clicking twice and informs her something is happening behind the scenes.
+The `DpButton` component renders either a `<button>` or an `<a>` element, that has a visual `busy` state
+which prevents the user from clicking twice and informs her something is happening behind the scenes.
+
+## Continue reading
+
+* [Buttons in Design Systems](https://medium.com/eightshapes-llc/buttons-in-design-systems-eac3acf7e23)
+* [Designing Button States](https://cloudfour.com/thinks/designing-button-states/)
 
 export const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),

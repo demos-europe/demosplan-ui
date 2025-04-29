@@ -20,11 +20,11 @@
       </div>
     </bubble-menu>
     <editor-content
+      ref="editorContent"
       autocomplete="off"
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      ref="editorContent"
       class="editor-content"
       :editor="editor" />
   </div>
@@ -33,8 +33,8 @@
 <script>
 import {
   Anonymize,
-  PreventEditing,
   Obscure,
+  PreventEditing,
   UnAnonymize
 } from '../DpEditor/libs/customExtensions'
 import {
@@ -46,11 +46,11 @@ import {
   History,
   Italic,
   Link,
+  ListItem,
   OrderedList,
   Paragraph,
   Text,
-  Underline,
-  ListItem
+  Underline
 } from '../DpEditor/libs/tiptapExtensions'
 import {
   BubbleMenu,

@@ -50,8 +50,10 @@ export default {
   mounted () {
     this.tooltipHook = this.$el
 
-    // Check if there is exact one Child DOM-Element in the slot
-    // If so, put the tooltip on that element, otherwise on the wrapper
+    /*
+     * Check if there is exact one Child DOM-Element in the slot
+     * If so, put the tooltip on that element, otherwise on the wrapper
+     */
     if (this.$el.hasChildNodes() && this.$el.childNodes.length === 1 && Object.keys(this.$el.childNodes[0]).length > 0) {
       this.tooltipHook = this.$el.childNodes[0]
     }

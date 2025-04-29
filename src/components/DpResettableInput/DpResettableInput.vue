@@ -3,19 +3,19 @@
     <dp-input
       v-bind="inputAttributes"
       :id="id"
+      v-model="currentValue"
       :data-cy="dataCy"
       has-icon
       :required="required"
       :rounded="rounded"
-      @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
-      @enter="$emit('enter', currentValue)"
-      @focus="$emit('focus')"
       :pattern="pattern"
-      v-model="currentValue" />
+      @blur="$emit('blur', currentValue)"
+      @input="onInput"
+      @enter="$emit('enter', currentValue)"
+      @focus="$emit('focus')" />
     <button
       v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default"
+      class="btn--blank o-link--default pr-0.5"
       data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"
@@ -135,6 +135,11 @@ export default {
   },
 
   methods: {
+    onInput (val) {
+      this.currentValue = val
+      this.$emit('input', val)
+    },
+
     resetValue () {
       this.$emit('reset')
     }

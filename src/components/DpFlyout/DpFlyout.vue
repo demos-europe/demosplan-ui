@@ -1,8 +1,8 @@
 <template>
   <span
-    class="o-flyout"
-    v-on-click-outside="close"
     ref="target"
+    v-on-click-outside="close"
+    class="o-flyout"
     :class="{
       'o-flyout--left': align === 'left',
       'o-flyout--right': align === 'right',
@@ -17,12 +17,12 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
+      class="o-flyout__trigger btn--blank o-link--default px-1 pt-0.5 line-height--2 whitespace-nowrap"
       :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle">
       <slot
         name="trigger"
-        v-bind:isExpanded="isExpanded">
+        :is-expanded="isExpanded">
         <i class="fa fa-ellipsis-h" />
       </slot>
     </button>
@@ -43,8 +43,6 @@ export default {
   directives: {
     onClickOutside: vOnClickOutside
   },
-
-  emits: ['close', 'open'],
 
   props: {
     align: {
@@ -91,6 +89,8 @@ export default {
       validator: (prop) => ['light', 'dark'].includes(prop)
     },
   },
+
+  emits: ['close', 'open'],
 
   data () {
     return {

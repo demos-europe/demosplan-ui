@@ -4,43 +4,45 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="tableClass">
-      <caption class="sr-only" v-text="tableDescription" />
+      <caption
+        class="sr-only"
+        v-text="tableDescription" />
       <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
-        <col v-if="isDraggable" />
-        <col v-if="isSelectable" />
+        <col v-if="isDraggable">
+        <col v-if="isSelectable">
         <col
           v-for="field in headerFields"
-          :class="field.colClass" />
-        <col v-if="hasFlyout" />
-        <col v-if="isExpandable" />
-        <col v-if="isTruncatable" />
+          :class="field.colClass">
+        <col v-if="hasFlyout">
+        <col v-if="isExpandable">
+        <col v-if="isTruncatable">
       </colgroup>
 
       <thead>
-      <dp-table-header
-        :data-cy="`${dataCy}:header`"
-        :checked="allSelected"
-        :has-flyout="hasFlyout"
-        :header-fields="headerFields"
-        :indeterminate="indeterminate"
-        :is-draggable="isDraggable"
-        :is-expandable="isExpandable"
-        :is-resizable="isResizable"
-        :is-selectable="isSelectable"
-        :is-sticky="hasStickyHeader"
-        :is-truncatable="isTruncatable"
-        :translations="headerTranslations"
-        @toggle-expand-all="toggleExpandAll"
-        @toggle-select-all="toggleSelectAll"
-        @toggle-wrap-all="toggleWrapAll">
-        <template
-          v-for="field in headerFields"
-          v-slot:[`header-${field.field}`]="field">
-          <slot
-            :name="`header-${field.field}`"
-            v-bind="field" />
-        </template>
-      </dp-table-header>
+        <dp-table-header
+          :data-cy="`${dataCy}:header`"
+          :checked="allSelected"
+          :has-flyout="hasFlyout"
+          :header-fields="headerFields"
+          :indeterminate="indeterminate"
+          :is-draggable="isDraggable"
+          :is-expandable="isExpandable"
+          :is-resizable="isResizable"
+          :is-selectable="isSelectable"
+          :is-sticky="hasStickyHeader"
+          :is-truncatable="isTruncatable"
+          :translations="headerTranslations"
+          @toggle-expand-all="toggleExpandAll"
+          @toggle-select-all="toggleSelectAll"
+          @toggle-wrap-all="toggleWrapAll">
+          <template
+            v-for="field in headerFields"
+            v-slot:[`header-${field.field}`]="field">
+            <slot
+              :name="`header-${field.field}`"
+              v-bind="field" />
+          </template>
+        </dp-table-header>
       </thead>
 
       <!-- not draggable -->
@@ -85,21 +87,21 @@
             </template>
           </dp-table-row>
 
-        <!-- DpTableRowExpanded -->
-        <tr
-          v-if="expandedElements[item[trackBy]] || false"
-          :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
-          <td
-            :class="{ 'opacity-70': isLoading }"
-            :colspan="colCount"
-            @mouseenter="addHoveredClass(idx)"
-            @mouseleave="removeHoveredClass(idx)">
-            <slot
-              name="expandedContent"
-              v-bind="item" />
-          </td>
-        </tr>
-      </template>
+          <!-- DpTableRowExpanded -->
+          <tr
+            v-if="expandedElements[item[trackBy]] || false"
+            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+            <td
+              :class="{ 'opacity-70': isLoading }"
+              :colspan="colCount"
+              @mouseenter="addHoveredClass(idx)"
+              @mouseleave="removeHoveredClass(idx)">
+              <slot
+                name="expandedContent"
+                v-bind="item" />
+            </td>
+          </tr>
+        </template>
       </tbody>
 
       <dp-draggable
@@ -107,8 +109,8 @@
         draggable-tag="tbody"
         :content-data="items"
         handle="c-data-table__drag-handle"
-        ghostClass="sortable-ghost"
-        chosenClass="sortable-chosen"
+        ghost-class="sortable-ghost"
+        chosen-class="sortable-chosen"
         @end="(event, item) => $emit('changed-order', event, item)">
         <template
           v-for="(item, idx) in items"
@@ -137,8 +139,8 @@
             @toggle-select="toggleSelect"
             @toggle-wrap="toggleWrap">
             <template
-              v-slot:[field]="item"
               v-for="(field, idx) in fields"
+              v-slot:[field]="item"
               :key="idx">
               <slot
                 :name="field"
@@ -713,6 +715,8 @@ export default {
     }
 
     this.forceElementSelections(this.shouldBeSelectedItems)
+
+    this.headerCellCount = this.headerFields.length
   }
 }
 </script>

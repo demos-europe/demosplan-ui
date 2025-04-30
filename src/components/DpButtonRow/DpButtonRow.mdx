@@ -1,0 +1,25 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpButtonRowStories from './DpButtonRow.stories.tsx'
+
+<Meta of={DpButtonRowStories} />
+
+# Button Row
+
+The **Button Row** renders a row with two buttons, typically with 'save' and 'cancel' actions.
+
+## When to use
+
+Use this component once per form (or editable section) to save the user input,
+return to the previous screen or reset the form.
+
+## Default usage
+
+<Canvas of={DpButtonRowStories.Default} />
+
+## Third button in Slot
+
+<Canvas of={DpButtonRowStories.ThirdButtonInSlot} />
+
+## All buttons disabled
+
+<Canvas of={DpButtonRowStories.AllButtonsDisabled} />

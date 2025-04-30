@@ -37,11 +37,11 @@
 </template>
 
 <script>
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import dayjs from 'dayjs'
 import { defineAsyncComponent } from 'vue'
 import DpDatepicker from '~/components/DpDatepicker'
 import DpTimePicker from '~/components/DpTimePicker'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import dayjs from 'dayjs'
 
 dayjs.extend(customParseFormat)
 
@@ -143,6 +143,8 @@ export default {
       required: true
     }
   },
+
+  emits: ['input'],
 
   data () {
     return {

@@ -30,11 +30,22 @@ export default meta
 export const Default: Story = {
     args: {
         fontWeight: 'bold',
-        compressed: true,
         isOpen: false,
-        title: 'Accordion',
+        title: 'Default Accordion Title',
     },
     argTypes: {
         'item:toggle': { action: 'item:toggle' }
     }
+}
+
+export const Compressed: Story = {
+  args: {
+    fontWeight: 'bold',
+    compressed: true,
+    isOpen: false,
+    title: 'Compressed Accordion Title',
+  },
+  argTypes: {
+    'item:toggle': { action: 'item:toggle' }
+  }
 }

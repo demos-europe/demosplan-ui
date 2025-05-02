@@ -3,6 +3,7 @@ import DpButton from './'
 import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 
 const meta: Meta<typeof DpButton> = {
+  tags: ['autodocs', '!dev'],
   component: DpButton,
   title: 'Components/Button',
   argTypes: {
@@ -37,6 +38,7 @@ export default meta
 type Story = StoryObj<typeof DpButton>
 
 export const Default: Story = {
+  tags: ['dev'],
   args: {
     text: 'Save',
   }

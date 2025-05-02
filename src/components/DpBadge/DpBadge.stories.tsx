@@ -3,7 +3,8 @@ import DpBadge from './'
 
 const meta: Meta<typeof DpBadge> = {
   component: DpBadge,
-  title: 'Components/Badge'
+  title: 'Components/Badge',
+  tags: ['autodocs', '!dev'],
 }
 
 export default meta
@@ -30,7 +31,8 @@ export const Default: Story = {
       control: 'select',
       options: ['smaller', 'small', 'medium', 'large']
     }
-  }
+  },
+  tags: ['dev'],
 }
 
 export const ColorConfirm: Story = {

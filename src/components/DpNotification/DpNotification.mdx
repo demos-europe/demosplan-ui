@@ -1,0 +1,23 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpNotificationStories from './DpNotification.stories.tsx'
+
+<Meta of={DpNotificationStories} />
+
+# Notification
+
+The Notification component is used to display brief messages or alerts to users. These messages typically provide feedback, convey information, or alert users about specific events or actions.
+
+## Features
+
+- Four notification types: info, warning, error, and confirm
+- Auto-dismissal functionality (except for errors)
+- Close button for manual dismissal
+- Support for including links within notifications
+- Consistent styling with appropriate icons
+- Accessibility support
+
+## Complete Example
+
+This example demonstrates a notification with link functionality, which showcases all the component's capabilities:
+
+<Canvas of={DpNotificationStories.WithLink} />

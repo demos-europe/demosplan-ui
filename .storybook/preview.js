@@ -1,6 +1,15 @@
 import './style/index.css'
+import { setup } from '@storybook/vue3'
 
 const beautifyHtml = require('js-beautify').html
+
+setup((app) => {
+  app.directive('dp-validate-multiselect', {
+    // This creates an empty directive implementation that won't throw errors
+    mounted: () => {},
+    updated: () => {}
+  })
+})
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

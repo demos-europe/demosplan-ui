@@ -24,6 +24,9 @@ module.exports = {
     '../src/components/DpDetails/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpDraggable/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpEditableList/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpMultiselect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpMultistepNav/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpNotification/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     /*
     '../src/components/DpEditor/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpFlyout/*.@(mdx|stories.@(js|jsx|ts|tsx))',

@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, expect, it } from '@jest/globals'
 import DpButton from '~/components/DpButton'
+import DpResettableInput from '~/components/DpResettableInput'
 import DpSearchField from '~/components/DpSearchField'
 import { mount } from '@vue/test-utils'
 
@@ -12,19 +13,17 @@ describe('DpSearchField', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(DpSearchField, {
+    wrapper = mount (DpSearchField, {
       components: {
-        DpButton
+        DpButton,
+        DpResettableInput
       },
-      mocks,
-      stubs: {
-        DpResettableInput: true
-      }
+      mocks
     })
   })
 
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   it('emits a search event with the search term when search button is clicked and search term is changed', async() => {

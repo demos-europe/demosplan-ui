@@ -1,0 +1,11 @@
+services:
+  demosplan-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - TZ=Europe/Berlin # Jest tests related to date fail with a UTC container
+    command: sh -c "tail -f /dev/null"

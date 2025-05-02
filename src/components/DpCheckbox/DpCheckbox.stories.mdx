@@ -7,11 +7,16 @@ import DpCheckbox from './'
 
 # Checkbox
 
-The `DpCheckbox` component renders an input of type `checkbox`. Use it for a single option that the user can turn on or
-off.
+The `DpCheckbox` component renders an input of type `checkbox`. Use it for a single option that the user
+can turn on or off.
 
 In order to display several checkboxes grouped together, use `DpCheckboxGroup`.
 It allows for defining an additional group label and have checkbox labels with normal `font-weight`.
+
+## When to use
+
+Checkboxes are used when a user can select multiple options. It is possible to select zero,
+some, or all options.
 
 export const Template = (args, { argTypes }) => ({
     props: Object.keys(argTypes),

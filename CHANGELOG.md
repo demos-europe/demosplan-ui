@@ -4,9 +4,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.14 - 2025-04-24
+
 ### Fixed
 
 - ([#1246](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditor: Adjust headingLevel function to expect an object with a level property ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+
+- ([#1249](https://github.com/demos-europe/demosplan-ui/pull/1249)) DpMultiselect: add 'openDirection' prop ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.4.13 - 2025-04-14
 

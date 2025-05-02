@@ -27,6 +27,12 @@ module.exports = {
     '../src/components/DpMultiselect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpMultistepNav/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpNotification/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpPager/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpProgressBar/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpRadio/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpResettableInput/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpSearchField/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpSelect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     /*
     '../src/components/DpEditor/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpFlyout/*.@(mdx|stories.@(js|jsx|ts|tsx))',

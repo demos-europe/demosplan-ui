@@ -78,6 +78,8 @@ export default {
     }
   },
 
+  emits: ['page-change', 'size-change'],
+
   data () {
     return {
       itemsPerPage: this.perPage <= this.totalItems ? this.perPage : this.totalItems,

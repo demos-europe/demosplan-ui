@@ -1,10 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpInput from './'
-
-const meta: Meta<typeof DpInput> = {
-    component: DpInput,
-    title: "Components/Input"
-}
 
 interface IDpInput {
     ariaLabelledby: string | boolean
@@ -37,9 +32,14 @@ interface IDpInput {
     enter: object
 }
 
-type Story = StoryObj<IDpInput>
+const meta: Meta<typeof DpInput> = {
+    component: DpInput,
+    title: "Components/Input"
+}
 
 export default meta
+
+type Story = StoryObj<IDpInput>
 
 export const Default: Story = {
     args: {

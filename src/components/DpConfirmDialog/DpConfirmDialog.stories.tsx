@@ -45,7 +45,7 @@ export const Default: Story = {
       <div>
         <p class="mb-4">A confirm dialog component. In actual usage, you would call the <code>open()</code> method to show the dialog.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button 
+        <button
           class="px-4 py-2 bg-blue-500 text-white rounded"
           @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
           Open Dialog
@@ -71,7 +71,7 @@ export const CustomMessage: Story = {
       <div>
         <p class="mb-4">A confirm dialog with a custom message.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button 
+        <button
           class="px-4 py-2 bg-red-500 text-white rounded"
           @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
           Delete Item

@@ -1,0 +1,465 @@
+import { Meta, Controls, Story } from '@storybook/blocks'
+import * as DpIconStories from './DpIcon.stories'
+import { iconComponents as ICONS } from './util/iconConfig'
+
+<Meta of={DpIconStories} />
+
+# Icon
+
+The `DpIcon` component renders SVG icons, exposing a selected set of [PhosphorIcons](https://phosphoricons.com/) in regular variants
+and some icons in filled variants.
+
+<Story of={DpIconStories.Default} height="50px" />
+<Controls of={DpIconStories.Default} />
+
+## Icon Sizes
+
+### Large
+<Story 
+  name="Large"
+  args={{
+    icon: 'history',
+    size: 'large'
+  }}
+  height="50px"
+/>
+
+### Medium
+<Story 
+  name="Medium"
+  args={{
+    icon: 'history',
+    size: 'medium'
+  }}
+  height="50px"
+/>
+
+### Small
+<Story 
+  name="Small"
+  args={{
+    icon: 'history',
+    size: 'small'
+  }}
+  height="50px"
+/>
+
+## Available Icons
+
+### AI
+Use to communicate that an interface uses AI to assist users.
+<Story 
+  name="AI"
+  args={{
+    icon: 'ai'
+  }}
+  height="50px"
+/>
+
+### Arrow down
+<Story 
+  name="Arrow down"
+  args={{
+    icon: 'arrow-down'
+  }}
+  height="50px"
+/>
+
+### Arrow left
+<Story 
+  name="Arrow left"
+  args={{
+    icon: 'arrow-left'
+  }}
+  height="50px"
+/>
+
+### Arrow right
+<Story 
+  name="Arrow right"
+  args={{
+    icon: 'arrow-right'
+  }}
+  height="50px"
+/>
+
+### Arrow up
+<Story 
+  name="Arrow up"
+  args={{
+    icon: 'arrow-up'
+  }}
+  height="50px"
+/>
+
+### Check
+Use to indicate success state within table rows.
+<Story 
+  name="Check"
+  args={{
+    icon: 'check'
+  }}
+  height="50px"
+/>
+
+### Check Square
+<Story 
+  name="Check Square"
+  args={{
+    icon: 'check-square'
+  }}
+  height="50px"
+/>
+
+### Chevron Down
+Use as expand trigger for revealing patterns like collapsed table row or accordion.
+<Story 
+  name="Chevron Down"
+  args={{
+    icon: 'chevron-down'
+  }}
+  height="50px"
+/>
+
+### Chevron Up
+Use as collapse trigger for revealing patterns like collapsed table row or accordion.
+<Story 
+  name="Chevron Up"
+  args={{
+    icon: 'chevron-up'
+  }}
+  height="50px"
+/>
+
+### Chevron Left
+Use as a visual helper to indicate directional navigation.
+<Story 
+  name="Chevron Left"
+  args={{
+    icon: 'chevron-left'
+  }}
+  height="50px"
+/>
+
+### Chevron Right
+Use as a visual helper to indicate directional navigation.
+<Story 
+  name="Chevron Right"
+  args={{
+    icon: 'chevron-right'
+  }}
+  height="50px"
+/>
+
+### Clock
+Use to illustrate time based actions.
+<Story 
+  name="Clock"
+  args={{
+    icon: 'clock'
+  }}
+  height="50px"
+/>
+
+### Close
+
+In overlay elements, it can be used to illustrate the "Close" trigger.
+
+Alias of: [`xmark`](#xmark)
+
+<Story 
+  name="Close"
+  args={{
+    icon: 'close'
+  }}
+  height="50px"
+/>
+
+### Compress
+Use as trigger for leaving fullscreen mode along with [`expand`](#expand)
+<Story 
+  name="Compress"
+  args={{
+    icon: 'compress'
+  }}
+  height="50px"
+/>
+
+### Copy
+Use to illustrate the action of copying something somewhere.
+<Story 
+  name="Copy"
+  args={{
+    icon: 'copy'
+  }}
+  height="50px"
+/>
+
+### Delete
+
+The delete icon is used to indicate destructive actions.
+
+For non-destructive actions, like removing items from a list, use [`xmark`](#xmark) instead.
+
+<Story 
+  name="Delete"
+  args={{
+    icon: 'delete'
+  }}
+  height="50px"
+/>
+
+### Download
+Use to emphasize downloadable resources.
+<Story 
+  name="Download"
+  args={{
+    icon: 'download'
+  }}
+  height="50px"
+/>
+
+### Drag Handle
+<Story 
+  name="Drag Handle"
+  args={{
+    icon: 'drag-handle'
+  }}
+  height="50px"
+/>
+
+### Edit
+<Story 
+  name="Edit"
+  args={{
+    icon: 'edit'
+  }}
+  height="50px"
+/>
+
+### Expand
+Use as trigger for entering fullscreen mode along with [`compress`](#compress)
+<Story 
+  name="Expand"
+  args={{
+    icon: 'expand'
+  }}
+  height="50px"
+/>
+
+### File
+<Story 
+  name="File"
+  args={{
+    icon: 'file'
+  }}
+  height="50px"
+/>
+
+### Highlighter
+<Story 
+  name="Highlighter"
+  args={{
+    icon: 'highlighter'
+  }}
+  height="50px"
+/>
+
+### History
+Use to illustrate version history.
+<Story 
+  name="History"
+  args={{
+    icon: 'history'
+  }}
+  height="50px"
+/>
+
+### Hourglass
+Use to illustrate indeterminate delay.
+<Story 
+  name="Hourglass"
+  args={{
+    icon: 'hourglass'
+  }}
+  height="50px"
+/>
+
+### Info
+Use to illustrate info notifications.
+<Story 
+  name="Info"
+  args={{
+    icon: 'info'
+  }}
+  height="50px"
+/>
+
+### Lock
+Use to illustrate that an item is edited by someone else.
+<Story 
+  name="Lock"
+  args={{
+    icon: 'lock'
+  }}
+  height="50px"
+/>
+
+### Mail
+<Story 
+  name="Mail"
+  args={{
+    icon: 'mail'
+  }}
+  height="50px"
+/>
+
+### Map Pin
+Use to indicate a location on a map.
+<Story 
+  name="MapPin"
+  args={{
+    icon: 'map-pin'
+  }}
+  height="50px"
+/>
+
+### Phone
+<Story 
+  name="Phone"
+  args={{
+    icon: 'phone'
+  }}
+  height="50px"
+/>
+
+### Question
+Use to communicate helpful content, e.g. for Tooltip triggers.
+<Story 
+  name="Question"
+  args={{
+    icon: 'question'
+  }}
+  height="50px"
+/>
+
+### Refresh
+<Story 
+  name="Refresh"
+  args={{
+    icon: 'refresh'
+  }}
+  height="50px"
+/>
+
+### Search
+<Story 
+  name="Search"
+  args={{
+    icon: 'search'
+  }}
+  height="50px"
+/>
+
+### Settings
+<Story 
+  name="Settings"
+  args={{
+    icon: 'settings'
+  }}
+  height="50px"
+/>
+
+### Severe
+Use to illustrate severe/error notifications.
+<Story 
+  name="Severe"
+  args={{
+    icon: 'severe'
+  }}
+  height="50px"
+/>
+
+### Square
+<Story 
+  name="Square"
+  args={{
+    icon: 'square'
+  }}
+  height="50px"
+/>
+
+### Success
+Use to illustrate success notifications.
+<Story 
+  name="Success"
+  args={{
+    icon: 'success'
+  }}
+  height="50px"
+/>
+
+### Tag
+<Story 
+  name="Tag"
+  args={{
+    icon: 'tag'
+  }}
+  height="50px"
+/>
+
+### Unlock
+Use to illustrate that an item is not being edited by someone else.
+<Story 
+  name="Unlock"
+  args={{
+    icon: 'unlock'
+  }}
+  height="50px"
+/>
+
+### User
+<Story 
+  name="User"
+  args={{
+    icon: 'user'
+  }}
+  height="50px"
+/>
+
+### User (solid)
+<Story 
+  name="User (solid)"
+  args={{
+    icon: 'userSolid'
+  }}
+  height="50px"
+/>
+
+### Warning
+Use to illustrate warning notifications. Also, this is the default icon if `DpIcon` is called with an unsupported icon name.
+<Story 
+  name="Warning"
+  args={{
+    icon: 'warning'
+  }}
+  height="50px"
+/>
+
+### Xmark
+
+Use for these cases:
+
+* In tables, it can indicate success vs. error in columns with limited space in tandem with the "check" icon
+* As a button icon, it is used to cancel an action
+* In form fields, it can be the trigger to clear the field
+
+Do <strong>not use</strong> the xmark icon for destructive actions. Use [`delete`](#delete) instead.
+
+<Story 
+  name="Xmark"
+  args={{
+    icon: 'xmark'
+  }}
+  height="50px"
+/>

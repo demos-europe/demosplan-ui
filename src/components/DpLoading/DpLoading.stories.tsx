@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpLoading from './'
-
-const meta: Meta<typeof DpLoading> = {
-    component: DpLoading,
-    title: "Components/Loading"
-}
 
 interface IDpLoading {
     hideLabel: boolean
     overlay: boolean
 }
 
-type Story = StoryObj<IDpLoading>
+const meta: Meta<typeof DpLoading> = {
+    component: DpLoading,
+    title: "Components/Loading"
+}
 
 export default meta
+
+type Story = StoryObj<IDpLoading>
 
 export const Default: Story = {
     args: {}

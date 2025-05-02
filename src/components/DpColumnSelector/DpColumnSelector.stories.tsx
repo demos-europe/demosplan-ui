@@ -43,31 +43,41 @@ export default meta
 
 type Story = StoryObj<IDpColumnSelector>
 
-const defaultColumns: ColumnEntry[] = [
-  ['title', 'Title'],
-  ['author', 'Author'],
-  ['year', 'Year'],
-  ['genre', 'Genre'],
-  ['price', 'Price']
-]
-
 export const Default: Story = {
   args: {
-    selectableColumns: defaultColumns
+    selectableColumns: [
+      ['title', 'Title'],
+      ['author', 'Author'],
+      ['year', 'Year'],
+      ['genre', 'Genre'],
+      ['price', 'Price']
+    ]
   }
 }
 
 export const WithInitialSelection: Story = {
   args: {
-    selectableColumns: defaultColumns,
-    initialSelection: ['title', 'author', 'year']
+    selectableColumns: [
+      ['title2', 'Title'],
+      ['author2', 'Author'],
+      ['year2', 'Year'],
+      ['genre2', 'Genre'],
+      ['price2', 'Price']
+    ],
+    initialSelection: ['title2', 'author2', 'year2']
   }
 }
 
 export const WithLocalStorage: Story = {
   args: {
-    selectableColumns: defaultColumns,
-    initialSelection: ['title', 'genre'],
+    selectableColumns: [
+      ['title3', 'Title'],
+      ['author3', 'Author'],
+      ['year3', 'Year'],
+      ['genre3', 'Genre'],
+      ['price3', 'Price']
+    ],
+    initialSelection: ['title3', 'genre3'],
     useLocalStorage: true,
     localStorageKey: 'storybook-column-selection'
   }

@@ -1,10 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpFlyout from './'
-
-const meta: Meta<typeof DpFlyout> = {
-    component: DpFlyout,
-    title: "Components/Flyout"
-}
 
 interface IDpFlyout {
     align: string
@@ -15,9 +10,14 @@ interface IDpFlyout {
     padded: boolean
 }
 
-type Story = StoryObj<IDpFlyout>
+const meta: Meta<typeof DpFlyout> = {
+    component: DpFlyout,
+    title: "Components/Flyout"
+}
 
 export default meta
+
+type Story = StoryObj<IDpFlyout>
 
 export const Default: Story = {
     args: {

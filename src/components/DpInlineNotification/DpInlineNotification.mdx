@@ -1,0 +1,54 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpInlineNotificationStories from './DpInlineNotification.stories'
+
+<Meta of={DpInlineNotificationStories} />
+
+# DpInlineNotification
+
+The `DpInlineNotification` component renders inline notification message.
+
+## When to use
+Use this component if you want to display an inline notification (rather than a notification toast).
+
+<Canvas of={DpInlineNotificationStories.Default} />
+<Controls />
+
+## Default usage
+
+```html
+<dp-inline-notification
+  :message="error message"
+  type="error" />
+```
+
+## Props:
+
+### Dismissible
+
+A notification may be too prominent if permanently visible. In that case it can be dismissed.
+
+A small icon will take the place of the notification to bring it back if needed.
+
+<Canvas>
+  <Story 
+    name="Dismissible"
+    args={{
+      dismissible: true,
+      message: 'Dismissible notification message'
+    }}
+  />
+</Canvas>
+
+### DismissibleKey
+
+If set, the dismissed state will be preserved via localStorage.
+
+<Canvas>
+  <Story 
+    name="DismissibleKey"
+    args={{
+      dismissibleKey: 'Key',
+      message: 'Dismissible notification with persistent state'
+    }}
+  />
+</Canvas>

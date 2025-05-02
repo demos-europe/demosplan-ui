@@ -1,10 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpLabel from './'
-
-const meta: Meta<typeof DpLabel> = {
-    component: DpLabel,
-    title: "Components/Label"
-}
 
 interface IDpLabel {
     bold: boolean
@@ -15,9 +10,14 @@ interface IDpLabel {
     required: boolean
 }
 
-type Story = StoryObj<IDpLabel>
+const meta: Meta<typeof DpLabel> = {
+    component: DpLabel,
+    title: "Components/Label"
+}
 
 export default meta
+
+type Story = StoryObj<IDpLabel>
 
 export const Default: Story = {
     args: {

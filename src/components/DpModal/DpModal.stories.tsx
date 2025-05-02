@@ -1,5 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpModal from './'
+
+interface IDpModal {
+    'modal:toggled': object
+}
 
 const meta: Meta<typeof DpModal> = {
     component: DpModal,
@@ -38,13 +42,9 @@ const meta: Meta<typeof DpModal> = {
     })
 }
 
-interface IDpModal {
-    'modal:toggled': object
-}
+export default meta
 
 type Story = StoryObj<IDpModal>
-
-export default meta
 
 export const Default: Story = {
     args: {},

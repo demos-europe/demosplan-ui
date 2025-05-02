@@ -1,0 +1,51 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpLoadingStories from './DpLoading.stories'
+
+<Meta of={DpLoadingStories} />
+
+# Loading
+
+The `DpLoading` component renders a spinning animation alongside some explanatory text.
+
+It indicates background activity and is especially used when components load data on first page load.
+
+<Canvas of={DpLoadingStories.Default} />
+<Controls />
+
+## Default usage
+
+<Canvas>
+  <Story name="Default usage" />
+</Canvas>
+
+## Without label
+
+In contexts with limited space, use the `hide-label` prop.
+
+<Canvas>
+  <Story
+    name="hideLabel"
+    args={{
+      hideLabel: true
+    }}
+  />
+</Canvas>
+
+## As overlay
+
+To block interactions with content that is being refreshed, the `overlay` prop may be used.
+
+<Canvas>
+  <div style={{ position: 'relative' }}>
+    <h3>
+      Some content that is still present but covered by the loading component,
+      which makes it impossible to interact with said content.
+    </h3>
+    <Story
+      name="Overlay"
+      args={{
+        overlay: true
+      }}
+    />
+  </div>
+</Canvas>

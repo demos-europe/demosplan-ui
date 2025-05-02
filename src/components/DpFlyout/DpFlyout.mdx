@@ -1,0 +1,16 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpFlyoutStories from './DpFlyout.stories'
+
+<Meta of={DpFlyoutStories} />
+
+# Flyout
+
+The Flyout component renders a flyout that is intended to show further content.
+
+<Canvas of={DpFlyoutStories.Default} />
+<Controls />
+
+## Roadmap
+
+- use https://popper.js.org/docs/v2/ for positioning instead of basic css - or find
+another way to make left/right offset dynamic.

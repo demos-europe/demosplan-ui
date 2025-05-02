@@ -1,10 +1,7 @@
-import { Meta } from '@storybook/addon-docs'
-import DpEditableList from './'
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpEditableListStories from './DpEditableList.stories'
 
-<Meta
-    title="Components/EditableList"
-    component={DpEditableList}
-/>
+<Meta of={DpEditableListStories} />
 
 # EditableList
 
@@ -12,6 +9,10 @@ The EditableList component used to enable users to add, remove, or modify items 
 such as a to-do list, a list of contacts, or any other type of data.
 
 The component might include features like inline editing, or buttons for adding and removing items.
+
+<Canvas of={DpEditableListStories.Default} />
+
+<Controls />
 
 ## Custom usage
 

@@ -1,11 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpInlineNotification from './'
-
-const meta: Meta<typeof DpInlineNotification> = {
-    component: DpInlineNotification,
-    title: "Components/InlineNotification",
-    argTypes: {}
-}
 
 interface IDpInlineNotification {
     dismissible: boolean
@@ -14,9 +8,15 @@ interface IDpInlineNotification {
     type: string
 }
 
-type Story = StoryObj<IDpInlineNotification>
+const meta: Meta<typeof DpInlineNotification> = {
+    component: DpInlineNotification,
+    title: "Components/InlineNotification",
+    argTypes: {}
+}
 
 export default meta
+
+type Story = StoryObj<IDpInlineNotification>
 
 export const Default: Story = {
     args: {

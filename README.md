@@ -5,19 +5,20 @@
 
 Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.
 
-### Using the local Docker container
+### Using the local Docker container for development
 
 To have a consistent environment for building demosplan-ui, a Docker configuration exists.
-For Docker Compose 1, the syntax has to be adapted to `docker-compose` instead of `docker compose`. 
-The below commands use Docker Compose 2 syntax.
 
 ```shell
-# Start the container
-docker compose -f docker-compose.local.yml up -d
+# When running it for the first time, build the container
+docker compose build
+
+# Start the container in detached mode
+docker compose up -d
 
 # Shell into the container
-docker compose -f docker-compose.local.yml exec demosplan_ui_local sh
+docker compose exec demosplan-ui bash
 
 # Stop container
-docker compose -f docker-compose.local.yml down
+docker compose down
 ```

@@ -97,6 +97,12 @@ export default {
       required: false
     },
 
+    clearAllFiles: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     dataCy: {
       type: String,
       required: false,
@@ -255,6 +261,12 @@ export default {
   },
 
   watch: {
+    clearAllFiles () {
+      if (this.clearAllFiles) {
+        this.clearFilesList()
+      }
+    },
+
     storageName () {
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }

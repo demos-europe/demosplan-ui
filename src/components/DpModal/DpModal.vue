@@ -123,6 +123,10 @@ export default {
       return isInDom && isDisplayed
     },
 
+    /**
+     * Deprecated - not used anymore
+     * @param modalId
+     */
     toggleByEvent (modalId) {
       //  Do not execute without a specified modalId to prevent unintentional toggling of multiple modals
       if (typeof modalId === 'undefined') {

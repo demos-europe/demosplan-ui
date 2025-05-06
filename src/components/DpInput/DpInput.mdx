@@ -5,106 +5,48 @@ import * as DpInputStories from './DpInput.stories'
 
 # Input
 
-The `DpInput` component is used for the following form input fields:
-- text
-- email
-- number
-- password
-- tel
+The `DpInput` component is used for rendering the following form input fields via its `type`prop:
+text, email, number, password, and tel.
+
+## Basic text input field
 
 <Canvas of={DpInputStories.Default} />
-<Controls />
 
-## Examples
+## Input with label, hint and tooltip
 
-### Text input
+`DpInput` uses `DpLabel` to render a label for the input field.
 
-<Canvas>
-  <Story
-    name="Text input"
-    args={{
-      id: 'someId',
-      label: {
-        text: 'First name'
-      },
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
+- The `label` property is used to set the label text.
+- `label.hint` adds the provided string between label and input field.
+- `label.tooltip` adds a contextual help icon that reveals additional information on the input field
+when the user hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information,
+whereas critical information should be presented immediately.
 
-### Hint
+<Canvas of={DpInputStories.LabelOptions} />
 
-The `hint` property adds the provided string between label and input field.
+## Input states: Required, Disabled and Readonly
 
-<Canvas>
-  <Story
-    name="Hint"
-    args={{
-      id: 'someId',
-      label: {
-        hint: 'This is a hint that explains what to enter in the input',
-        text: 'Contact person'
-      },
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
+This example demonstrates different input states:
+- **Required**: An asterisk is added to the label
+- **Disabled**: The input is grayed out and cannot be edited. It will not be submitted with the form.
+- **Readonly**: The input is grayed out and cannot be edited. It will be submitted with the form.
 
-### Required
+<Canvas of={DpInputStories.InputStates} />
 
-If an input field is `required`, an asterisk will be added to its label.
+## Input with placeholder
 
-<Canvas>
-  <Story
-    name="Required"
-    args={{
-      id: 'someId',
-      label: {
-        text: 'Phone'
-      },
-      pattern: '^(\\+?)(-| |[0-9]|\\(|\\))*$',
-      required: true,
-      type: 'tel',
-      width: 'u-1-of-4'
-    }}
-  />
-</Canvas>
+A placeholder provides a hint to the user about what can be entered in the field.
 
-### Disabled
+<Canvas of={DpInputStories.WithPlaceholder} />
 
-<Canvas>
-  <Story
-    name="Disabled"
-    args={{
-      disabled: true,
-      id: 'someId',
-      label: {
-        text: 'Email address'
-      },
-      pattern: '^(\\+?)(-| |[0-9]|\\(|\\))*$',
-      type: 'email',
-      value: 'yourEmail@example.com',
-      width: 'u-1-of-4'
-    }}
-  />
-</Canvas>
+## Input with length constraints
 
-### Tooltip
+When `minlength` or `maxlength` are specified, automatic hints are displayed showing the current character count.
 
-The `tooltip` property adds a contextual help icon that reveals additional information on the input field when the user hovers
-over it with their mouse. It should be used sparingly and only to reveal non-critical information, whereas critical information should be presented immediately.
+<Canvas of={DpInputStories.WithLengthConstraints} />
 
-<Canvas>
-  <Story
-    name="Tooltip"
-    args={{
-      id: 'someId',
-      label: {
-        text: 'Last name',
-        tooltip: 'This is a text adding some more information on the input field'
-      },
-      type: 'text',
-      width: 'u-1-of-4'
-    }}
-  />
-</Canvas>
+## Input with icon
+
+The `hasIcon` prop adds space for an icon element to be positioned inside the input.
+
+<Canvas of={DpInputStories.WithIconSpace} />

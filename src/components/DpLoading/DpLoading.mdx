@@ -3,49 +3,32 @@ import * as DpLoadingStories from './DpLoading.stories'
 
 <Meta of={DpLoadingStories} />
 
-# Loading
+# Loading Indicator
 
-The `DpLoading` component renders a spinning animation alongside some explanatory text.
+The `DpLoading` component renders a spinning animation alongside explanatory text to indicate background activity.
+It's commonly used during data loading, form submissions, or any operation that requires the user to wait.
 
-It indicates background activity and is especially used when components load data on first page load.
+## Basic Usage
+
+The default loading indicator displays a spinner with the text "Daten werden geladen..." (Data is loading...).
 
 <Canvas of={DpLoadingStories.Default} />
-<Controls />
 
-## Default usage
+## Without Label
 
-<Canvas>
-  <Story name="Default usage" />
-</Canvas>
+In contexts with limited space, use the `hideLabel` prop to show only the spinner.
 
-## Without label
+<Canvas of={DpLoadingStories.WithoutLabel} />
 
-In contexts with limited space, use the `hide-label` prop.
+## As Overlay
 
-<Canvas>
-  <Story
-    name="hideLabel"
-    args={{
-      hideLabel: true
-    }}
-  />
-</Canvas>
+To block interactions with content that is being refreshed, use the `overlay` prop. This creates a full overlay that prevents clicks on underlying elements.
 
-## As overlay
+<Canvas of={DpLoadingStories.AsOverlay} />
 
-To block interactions with content that is being refreshed, the `overlay` prop may be used.
+## Best Practices
 
-<Canvas>
-  <div style={{ position: 'relative' }}>
-    <h3>
-      Some content that is still present but covered by the loading component,
-      which makes it impossible to interact with said content.
-    </h3>
-    <Story
-      name="Overlay"
-      args={{
-        overlay: true
-      }}
-    />
-  </div>
-</Canvas>
+- Use the loading indicator for operations that take more than a second to complete
+- For brief operations (less than a second), consider using a more subtle indicator or none at all
+- When using as an overlay, ensure users understand why interaction is blocked
+- Consider using the version without a label for small UI elements or repeated loading indicators

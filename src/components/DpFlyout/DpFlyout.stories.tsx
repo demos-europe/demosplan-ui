@@ -12,7 +12,28 @@ interface IDpFlyout {
 
 const meta: Meta<typeof DpFlyout> = {
     component: DpFlyout,
-    title: "Components/Flyout"
+    title: "Components/Flyout",
+    render: (args) => ({
+        components: { DpFlyout },
+        setup() {
+            return { args }
+        },
+        template: `
+            <dp-flyout>
+                <template #trigger>
+                    Click me
+                </template>
+                <p>Flyout content</p>
+            </dp-flyout>
+        `
+    }),
+    parameters: {
+        docs: {
+            description: {
+                component: 'A flyout component that can be used to display additional information or actions.'
+            }
+        }
+    }
 }
 
 export default meta

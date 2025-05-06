@@ -1,4 +1,4 @@
-import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import { Meta, Canvas } from '@storybook/blocks'
 import * as DpLabelStories from './DpLabel.stories'
 
 <Meta of={DpLabelStories} />
@@ -6,9 +6,6 @@ import * as DpLabelStories from './DpLabel.stories'
 # Label
 
 The `DpLabel` component is used to add a label to form controls.
-
-<Canvas of={DpLabelStories.Default} />
-<Controls />
 
 It is included in the following <strong><i>demosplan-ui</i></strong> form components:
 
@@ -31,64 +28,11 @@ If you want to use any of these components, you don't need to import `DpLabel` s
 
 If you want to use any of these components, you need to import `DpLabel` separately.
 
-## Default usage
+## Props
 
-<Canvas>
-  <Story
-    name="Default usage"
-    args={{
-      for: 'formControlId',
-      text: 'First name',
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
-
-## Required
-
-If a form control is `required`, an asterisk will be added to the label.
-
-<Canvas>
-  <Story
-    name="Required"
-    args={{
-      for: 'formControlId',
-      required: true,
-      text: 'E-mail address',
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
-
-## Hint
-
-The `hint` property adds the provided string below the label.
-
-<Canvas>
-  <Story
-    name="Hint"
-    args={{
-      for: 'formControlId',
-      hint: 'This is a hint that explains what to enter in the corresponding form control',
-      text: 'Contact person',
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
-
-## Tooltip
-
-The `tooltip` property adds a contextual help icon that reveals additional information on the form control when the user
+- If a form control is `required`, an asterisk will be added to the label.
+- The `hint` property adds the provided string below the label.
+- The `tooltip` property adds a contextual help icon that reveals additional information on the form control when the user
 hovers over it with their mouse.
 
-<Canvas>
-  <Story
-    name="Tooltip"
-    args={{
-      for: 'formControlId',
-      tooltip: 'This is a text adding some more information on the form control',
-      text: 'Authorized users',
-      width: 'u-1-of-2'
-    }}
-  />
-</Canvas>
+<Canvas of={DpLabelStories.FullExample} />

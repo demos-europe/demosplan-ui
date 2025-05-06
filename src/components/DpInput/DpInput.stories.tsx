@@ -35,8 +35,9 @@ interface IDpInput {
 }
 
 const meta: Meta<typeof DpInput> = {
-    component: DpInput,
-    title: "Components/Input"
+  component: DpInput,
+  title: "Components/Input",
+  tags: ['autodocs', '!dev'],
 }
 
 export default meta
@@ -44,21 +45,22 @@ export default meta
 type Story = StoryObj<IDpInput>
 
 export const Default: Story = {
-    args: {
-        id: 'DefaultInput'
-    }
+  args: {
+    id: 'DefaultInput'
+  }
 }
 
 export const LabelOptions: Story = {
-    args: {
-        id: 'LabelOptions',
-        label: {
-            hint: 'This is a hint that explains what to enter in the input',
-            text: 'Contact person',
-            tooltip: 'This is a text adding some more information on the input field'
-        },
-        width: 'u-1-of-2'
-    }
+  args: {
+    id: 'LabelOptions',
+    label: {
+      hint: 'This is a hint that explains what to enter in the input',
+      text: 'Contact person',
+      tooltip: 'This is a text adding some more information on the input field'
+    },
+    width: 'u-1-of-2'
+  },
+  tags: ['!autodocs', 'dev']
 }
 
 /**

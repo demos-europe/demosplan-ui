@@ -16,8 +16,36 @@ The Notification component is used to display brief messages or alerts to users.
 - Consistent styling with appropriate icons
 - Accessibility support
 
-## Complete Example
+## Notification Types
 
-This example demonstrates a notification with link functionality, which showcases all the component's capabilities:
+### Info
+
+Use for general information, updates, or non-critical messages.
+
+<Canvas of={DpNotificationStories.Info} />
+
+### Warning
+
+Use to alert users about potential issues or actions that require caution.
+
+<Canvas of={DpNotificationStories.Warning} />
+
+### Error
+
+Use to indicate errors or critical issues that need attention. These notifications do not auto-dismiss.
+
+<Canvas of={DpNotificationStories.Error} />
+
+### Confirm
+
+Use to provide positive feedback or confirmation of successful actions.
+
+<Canvas of={DpNotificationStories.Confirm} />
+
+## Advanced Usage
+
+### Notification with Link
+
+This example demonstrates a notification with link functionality, which allows users to navigate to related resources.
 
 <Canvas of={DpNotificationStories.WithLink} />

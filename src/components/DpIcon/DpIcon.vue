@@ -1,7 +1,9 @@
 <template>
   <component
     :is="_icon"
-    :class="proportionClass" />
+    :class="proportionClass"
+    :size="SIZES[size as IconSize]"
+    :weight="weight" />
 </template>
 
 <script setup lang="ts">
@@ -9,7 +11,6 @@ import {
   computed,
   markRaw,
   PropType,
-  provide,
   toRefs,
   watchEffect
 } from 'vue'
@@ -80,11 +81,4 @@ watchEffect(() => {
     _icon = markRaw(iconComponent)
   }
 })
-
-/**
- * PhosphorIcons may be provided props globally.
- * See https://github.com/phosphor-icons/vue#composition
- */
-provide('size', SIZES[size.value])
-provide('weight', weight.value)
 </script>

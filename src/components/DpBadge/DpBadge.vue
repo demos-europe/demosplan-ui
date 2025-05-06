@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`rounded-md ${colorClasses} ${sizeClasses} badge`"
+    :class="`rounded ${colorClasses} ${sizeClasses} badge`"
     v-text="text" />
 </template>
 
@@ -32,11 +32,11 @@ export default {
   computed: {
     colorClasses () {
       const cssClassMap = {
-        default: 'text-default bg-surface-medium',
-        confirm: 'text-message-success bg-message-success',
-        info: 'text-message-info bg-message-info',
-        warning: 'text-message-warning bg-message-warning',
-        error: 'text-message-severe bg-message-severe'
+        default: 'color-text-default bg-color-light',
+        confirm: 'color-message-success-text bg-color-message-success',
+        info: 'color-message-info-text bg-color-message-info',
+        warning: 'color-message-warning-text bg-color-message-warning',
+        error: 'color-message-severe-text bg-color-message-severe'
       }
 
       return cssClassMap[this.color]
@@ -44,10 +44,10 @@ export default {
 
     sizeClasses () {
       const cssClassMap = {
-        smaller: 'text-xxs px-0.5',
-        small: 'text-xs py-0.5 px-1.5',
-        medium: 'text-sm py-1.5 px-2',
-        large: 'text-base py-2 px-3'
+        smaller: 'font-size-small u-ph-0_25',
+        small: 'font-size-small u-pv-0_125 u-ph-0_25',
+        medium: 'font-size-medium u-pv-0_25 u-ph-0_5',
+        large: 'font-size-large u-pv-0_5 u-ph-0_75'
       }
 
       return cssClassMap[this.size]

@@ -1,16 +1,18 @@
 <template>
-  <div>
+  <div class="o-accordion">
     <button
       v-if="title !== ''"
+      type="button"
       :aria-expanded="isVisible.toString()"
-      class="flex items-center justify-between w-full hover:text-interactive active:text-interactive-hover"
       :data-cy="dataCy"
+      :class="fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'"
+      class="btn--blank o-link--default text-left"
       @click="() => toggle()">
-      <span :class="titleClasses">{{ title }}</span>
-      <dp-icon
-        aria-hidden="true"
-        :icon="isVisible ? 'caret-up' : 'caret-down'"
-        :size="iconSize" />
+      <i
+        class="w-2 fa"
+        :class="{ 'fa-caret-right': !isVisible, 'fa-caret-down': isVisible }"
+        aria-hidden="true" />
+      <span :class="compressed ? 'font-size-medium' : 'o-accordion--title'">{{ title }}</span>
     </button>
     <dp-transition-expand>
       <div v-show="isVisible">
@@ -22,14 +24,12 @@
 </template>
 
 <script>
-import { DpIcon } from '~/components'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
 
 export default {
   name: 'DpAccordion',
 
   components: {
-    DpIcon,
     DpTransitionExpand
   },
 
@@ -68,23 +68,9 @@ export default {
     }
   },
 
-  emits: ['item:toggle'],
-
   data () {
     return {
       isVisible: this.isOpen
-    }
-  },
-
-  computed: {
-    titleClasses () {
-      return [
-        this.compressed ? 'text-base' : 'text-lg',
-        this.fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'
-      ]
-    },
-    iconSize () {
-      return this.compressed ? 'medium' : 'large'
     }
   },
 

@@ -64,7 +64,6 @@ const ariaLabel = de.contextualHelp
  * @return {string|object} Returns either text only or text and other options
  */
 const tooltip = computed(() => {
-  console.log('tooltipOptions', props.tooltipOptions)
   return Object.keys(props.tooltipOptions).length > 0
     ? props.tooltipOptions
     : props.text

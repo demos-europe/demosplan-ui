@@ -29,7 +29,7 @@
       <option
         v-for="(option, idx) in options"
         :key="idx"
-        :selected="option.value === currentValue"
+        :selected="option.value === selected"
         :value="option.value">
         {{ option.label }}
       </option>
@@ -50,6 +50,15 @@ export default {
   },
 
   mixins: [prefixClassMixin],
+
+  /*
+   * Customize the v-model binding names
+   * see https://learn.adamwathan.com/advanced-vue/customizing-controlled-component-bindings
+   */
+  model: {
+    prop: 'selected',
+    event: 'select'
+  },
 
   props: {
     /**
@@ -118,27 +127,12 @@ export default {
       default: true
     },
 
-    /**
-     * Value for the selected option (Vue 3 v-model pattern)
-     * @deprecated Use modelValue instead
-     */
     selected: {
-      type: String,
-      required: false,
-      default: ''
-    },
-
-    /**
-     * Value for the selected option (Vue 3 v-model pattern)
-     */
-    modelValue: {
       type: String,
       required: false,
       default: ''
     }
   },
-
-  emits: ['select', 'update:modelValue'],
 
   data () {
     return {
@@ -153,19 +147,12 @@ export default {
        * it should not be required to specify it.
        */
       return this.id === '' ? this.name : this.id
-    },
-
-    currentValue () {
-      // Use modelValue if available, otherwise fall back to selected for backward compatibility
-      return this.modelValue !== '' ? this.modelValue : this.selected
     }
   },
 
   methods: {
     update (event) {
-      const value = event.target.value
-      this.$emit('select', value)
-      this.$emit('update:modelValue', value)
+      this.$emit('select', event.target.value)
     }
   }
 }

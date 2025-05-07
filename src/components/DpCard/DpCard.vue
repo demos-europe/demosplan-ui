@@ -2,7 +2,7 @@
   <div class="rounded-lg shadow px-4 py-3">
     <h4
       v-if="heading !== ''"
-      class="weight--bold flex gap-1 items-center text-base mb-2">
+      class="flex gap-1 items-center text-base mb-2">
       <span>
         {{ heading }}
       </span>

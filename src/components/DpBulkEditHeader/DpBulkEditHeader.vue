@@ -17,7 +17,7 @@
 
 <script>
 import { de } from '~/components/shared/translations'
-import { DpButton } from '~/components'
+import DpButton from '~/components/DpButton'
 
 export default {
   name: 'DpBulkEditHeader',

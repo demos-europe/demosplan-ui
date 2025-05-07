@@ -136,7 +136,7 @@
                 @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
                 @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)">
                 <dp-icon
-                  class="align-text-top inline-block"
+                  class="inline-block mr-0.5"
                   icon="highlighter" />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>
@@ -172,7 +172,7 @@
                 @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
                 @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
                 <dp-icon
-                  class="align-text-top"
+                  class="inline-block"
                   icon="highlighter" />
               </button>
             </div>
@@ -257,7 +257,7 @@
                 :disabled="readonly"
                 @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
                 @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)">
-                <i :class="prefixClass('fa fa-table')" />
+                <i :class="prefixClass('fa fa-table mr-0.5')" />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>
               <div

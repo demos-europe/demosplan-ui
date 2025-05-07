@@ -4,6 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Removed
+
+- ([#1265](https://github.com/demos-europe/demosplan-ui/pull/1265) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.4.15 - 2025-05-07
+
+### Fixed
+
+- ([#1264](https://github.com/demos-europe/demosplan-ui/pull/1264) DpEditor: Adjust editor menu buttons ([@meissnerdemos](https://github.com/meissnerdemos))
+
 ## v0.4.14 - 2025-04-24
 
 ### Fixed

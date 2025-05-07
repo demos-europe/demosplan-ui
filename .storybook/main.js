@@ -49,6 +49,9 @@ module.exports = {
     '../src/components/DpStickyElement/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTabs/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTextArea/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpTimePicker/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpToggle/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpTooltip/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

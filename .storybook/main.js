@@ -48,6 +48,7 @@ module.exports = {
     '../src/components/DpSplitButton/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpStickyElement/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTabs/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpTextArea/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

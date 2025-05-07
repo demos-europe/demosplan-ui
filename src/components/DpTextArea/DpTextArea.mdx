@@ -1,0 +1,84 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTextAreaStories from './DpTextArea.stories.tsx'
+
+<Meta of={DpTextAreaStories} />
+
+# TextArea
+
+The `DpTextArea` component provides a multi-line text input control for forms. It supports various features like validation, character limiting, and customizable display options.
+
+## Features
+
+- Support for labels with required field indicator
+- Hint text for providing additional information
+- Character count with maxlength validation
+- Form validation integration
+- Customizable height options
+- Ability to grow to parent container height
+- Disabled state support
+
+## Usage
+
+### Default
+
+Basic textarea with label.
+
+<Canvas of={DpTextAreaStories.Default} />
+
+### With Hint
+
+Textarea with additional descriptive text.
+
+<Canvas of={DpTextAreaStories.WithHint} />
+
+### Character Counter
+
+Textarea with maximum character limit and remaining character counter.
+
+<Canvas of={DpTextAreaStories.WithMaxlength} />
+
+### Required Field
+
+Textarea marked as required with an asterisk on the label.
+
+<Canvas of={DpTextAreaStories.Required} />
+
+### Disabled
+
+Textarea that cannot be edited.
+
+<Canvas of={DpTextAreaStories.Disabled} />
+
+### Reduced Height
+
+Textarea with smaller vertical size (60px height).
+
+<Canvas of={DpTextAreaStories.ReducedHeight} />
+
+### Custom Attributes
+
+Textarea with HTML attributes like rows and columns.
+
+<Canvas of={DpTextAreaStories.WithAttributes} />
+
+## Form Validation
+
+The TextArea component integrates with the form validation system through several props:
+
+### Conditional Validation
+
+Use the `dataDpValidateIf` prop to conditionally validate a required textarea based on other form field values.
+
+<Canvas of={DpTextAreaStories.WithValidation} />
+
+### Custom Field Names in Error Messages
+
+The `dataDpValidateErrorFieldname` prop allows customizing how the field is referenced in validation error messages.
+
+## Height Control
+
+The component offers different ways to control the height:
+
+- `reducedHeight`: Uses a predefined smaller height (60px)
+- `growToParent`: Makes the textarea grow to fill its parent container height
+- `attributes`: Allows setting specific dimensions with `rows`

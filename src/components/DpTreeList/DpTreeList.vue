@@ -15,6 +15,9 @@
           check-all
           :style="checkboxIndentationStyle" />
         <div class="grow color--grey">
+          <!--
+            @slot Content displayed at the top of the tree list. Typically used for column headers or global actions.
+          -->
           <slot name="header" />
         </div>
         <dp-tree-list-toggle
@@ -65,6 +68,9 @@
         <template
           v-for="slot in Object.keys($slots)"
           v-slot:[slot]="scope">
+          <!--
+            @slot branch: Template for rendering branch nodes. Receives props: nodeElement, nodeChildren, nodeId, parentId. leaf: Template for rendering leaf nodes. Receives props: nodeElement, nodeId, parentId.
+          -->
           <slot
             :name="slot"
             v-bind="scope" />
@@ -78,6 +84,9 @@
       ref="footer"
       class="c-treelist__footer o-sticky">
       <div class="u-p-0_5 bg-color--white">
+        <!--
+          @slot Content displayed at the bottom of the tree list. Useful for summary information or action buttons.
+        -->
         <slot name="footer" />
       </div>
     </div>
@@ -104,18 +113,24 @@ export default {
   },
 
   props: {
+    /**
+     * Function to determine if a node is a branch or a leaf.
+     */
     branchIdentifier: {
       type: Function,
       required: true
     },
 
+    /**
+     * Enable drag and drop functionality
+     */
     draggable: {
       type: Boolean,
       required: false,
       default: true
     },
 
-    /*
+    /**
      * Callback to be executed on move event of draggable.
      * It can be used to cancel drag by returning false.
      */
@@ -125,17 +140,24 @@ export default {
       default: () => true
     },
 
+    /**
+     * Configuration options for the tree list.
+     */
     options: {
       type: Object,
       required: false,
       default: () => ({})
     },
 
+    /**
+     * Array of tree nodes with hierarchical structure.
+     */
     treeData: {
       type: Array,
       required: true
     }
   },
+emits: ['tree:change', 'draggable:change', 'node-selection-change'],
 
   data () {
     return {
@@ -174,6 +196,10 @@ export default {
       },
 
       set (payload) {
+        /**
+         * Emitted when tree structure changes.
+         * @type {Event}
+         */
         this.$emit('tree:change', payload)
       }
     }
@@ -185,6 +211,10 @@ export default {
     },
 
     bubbleDraggableChange (payload) {
+      /**
+       * Emitted when an element is moved via drag and drop.
+       * @type {Event}
+       */
       this.$emit('draggable:change', payload)
     },
 
@@ -268,6 +298,10 @@ export default {
       this.selectedNodesObjects = this.getAllSelectedNodesObjects(this.treeData)
       const filteredSelections = this.filterSelectableNodes(this.selectedNodesObjects)
 
+      /**
+       * Emitted when node selection changes with array of selected nodes
+       * @type {Event}
+       */
       this.$emit('node-selection-change', filteredSelections)
     },
 

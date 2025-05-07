@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpPagerStories from './DpPager.stories.tsx'
+
+<Meta of={DpPagerStories} />
+
+# Pager
+
+The Pager component combines pagination controls with a dropdown to adjust the number of items displayed per page.
+
+## Features
+
+- Sliding pagination navigation for moving between pages
+- Dropdown selection for items per page
+- Dynamic display adapting to total number of items
+- Accessibility support with proper ARIA labels
+- Emits events for both page changes and size changes
+
+<Canvas of={DpPagerStories.Default} />

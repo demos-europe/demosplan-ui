@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpBulkEditHeaderStories from './DpBulkEditHeader.stories.tsx'
+
+<Meta of={DpBulkEditHeaderStories} />
+
+# BulkEditHeader
+
+The BulkEditHeader component allows users to perform bulk editing operations on a set of records.
+It is typically used in conjunction with `DpDataTable` or a similar component that allows users
+to select multiple records. Then, actions to be performed on that selection can be placed
+inside the default slot of `DpBulkEditHeader`.
+
+The component features a visually prominent style and showcases the number of selected items,
+along with a button to reset the current selection.
+
+## Custom usage
+
+<Canvas of={DpBulkEditHeaderStories.Default} />

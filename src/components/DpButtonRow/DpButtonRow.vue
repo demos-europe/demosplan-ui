@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[align, $attrs.class]"
-    class="space-inline-s">
+    class="space-x-2">
     <dp-button
       v-if="primary"
       :busy="busy ? true : null"

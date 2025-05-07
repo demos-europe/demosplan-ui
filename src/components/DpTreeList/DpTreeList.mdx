@@ -1,0 +1,104 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTreeListStories from './DpTreeList.stories'
+
+<Meta title="Components/DpTreeList" />
+
+# DpTreeList
+
+The DpTreeList component displays data in a hierarchical, tree-like structure while providing functionalities similar to a list.
+
+It is commonly used in various applications, such as file explorers, FAQ, and organizational charts,
+where data has a hierarchical relationship.
+
+### Options Object
+
+```javascript
+{
+  // Selection options
+  branchesSelectable: true, // Allow selection of branches
+  leavesSelectable: true,   // Allow selection of leaves
+
+  // Drag options
+  rootDraggable: false,     // Allow dragging at root level
+  dragAcrossBranches: false, // Allow dragging nodes between branches
+  dragBranches: true,       // Allow dragging branch nodes
+  dragLeaves: true,         // Allow dragging leaf nodes
+
+  // Draggable configuration
+  draggable: {
+    handle: '.c-treelist__drag-handle',
+    ghostClass: 'c-treelist__node-ghost',
+    chosenClass: 'c-treelist__node-chosen'
+  },
+
+  // Checkbox identifier
+  checkboxIdentifier: {
+    branch: 'nodeSelected',
+    leaf: 'nodeSelected'
+  },
+
+  // Selection propagation options
+  selectOn: {
+    childSelect: false,     // Select parent when child is selected
+    parentSelect: false     // Select children when parent is selected
+  },
+
+  // Deselection propagation options
+  deselectOn: {
+    childDeselect: false,   // Deselect parent when child is deselected
+    parentDeselect: false   // Deselect children when parent is deselected
+  }
+}
+```
+
+### Tree Data Structure
+
+The component expects a hierarchical data structure with the following format:
+
+```javascript
+[
+  {
+    id: 'node-1',           // Unique identifier
+    type: 'category',       // Node type (used by branchIdentifier)
+    attributes: {           // Custom attributes
+      title: 'Category 1'
+    },
+    children: [             // Child nodes
+      {
+        id: 'node-1-1',
+        type: 'item',
+        attributes: {
+          title: 'Item 1'
+        },
+        children: []
+      }
+    ]
+  }
+]
+```
+
+## Examples
+
+### Basic Tree List
+
+A simple tree list with default options.
+
+<Canvas of={DpTreeListStories.Default} />
+
+### Selectable Tree List
+
+Tree list with selectable branches and leaves.
+
+<Canvas of={DpTreeListStories.SelectableNodes} />
+
+### Draggable Tree List
+
+Tree list with draggable nodes for reordering.
+
+<Canvas of={DpTreeListStories.DraggableNodes} />
+
+### Custom Rendering
+
+Tree list with custom node rendering.
+
+<Canvas of={DpTreeListStories.CustomRendering} />

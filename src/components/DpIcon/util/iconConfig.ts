@@ -183,3 +183,6 @@ export const SIZES: Record<IconSize, number> = {
   'large': 24,
   'xlarge': 32,
 }
+
+// Export the mapping objects for use in DpIcon stories
+export { mappedIcons, mappedIconAliases }

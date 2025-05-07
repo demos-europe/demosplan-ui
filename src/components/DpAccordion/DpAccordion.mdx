@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpAccordionStories from './DpAccordion.stories.tsx'
+
+<Meta of={DpAccordionStories} />
+
+# Accordion
+
+The accordion component can toggle itself via the `toggle` method, but can also be toggled from outside
+(e.g. via a save or abort button) by passing the parent's open state as prop (`isOpen`) and calling
+a toggle method on the parent `@item:toggle` which toggles the parent's `isOpen` data property.
+
+## Default usage
+
+<Canvas of={DpAccordionStories.Default} />
+
+## Compressed
+
+<Canvas of={DpAccordionStories.Compressed} />

@@ -1,0 +1,31 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpSlidebarStories from './DpSlidebar.stories.tsx'
+
+<Meta of={DpSlidebarStories} />
+
+# Slidebar
+
+The `DpSlidebar` component creates a sliding side panel that can be opened and closed. It initializes a SideNav instance and provides a consistent interface for slide-in panels throughout the application.
+
+## Features
+
+- Right-side sliding panel
+- Built-in close button
+- Events for opening and closing
+- Slots for custom content
+
+## Usage
+
+The slidebar can be used to display additional information or controls without navigating away from the current view.
+
+### Default
+
+The basic slidebar with default configuration.
+
+<Canvas of={DpSlidebarStories.Default} />
+
+## Implementation Notes
+
+- Closing happens via `data-slidebar-hide` attribute
+- Opening happens via emitted event instead of `data-slidebar-show` attribute because sidenav may be initialized before corresponding DOM elements exist
+- Content should be placed inside the default slot

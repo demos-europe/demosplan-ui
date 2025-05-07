@@ -1,0 +1,22 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpToggleStories from './DpToggle.stories.tsx'
+
+<Meta of={DpToggleStories} />
+
+# Toggle
+
+The Toggle component provides a simple switch control that allows users to toggle between two states. It's commonly used for enabling or disabling features or settings in a user interface.
+
+## Usage
+
+### Default
+
+Basic toggle component in its default state (off).
+
+<Canvas of={DpToggleStories.Default} />
+
+### Disabled
+
+Toggle component in disabled state, which prevents user interaction.
+
+<Canvas of={DpToggleStories.Disabled} />

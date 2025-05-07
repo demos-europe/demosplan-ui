@@ -1,0 +1,48 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTimePickerStories from './DpTimePicker.stories.tsx'
+
+<Meta of={DpTimePickerStories} />
+
+# TimePicker
+
+The TimePicker component allows users to enter a time value either by typing directly or by selecting hours and minutes from dropdown lists. It provides a user-friendly interface for time selection with keyboard navigation support.
+
+## Usage
+
+### Default
+
+Basic time picker with default settings (15-minute intervals).
+
+<Canvas of={DpTimePickerStories.Default} />
+
+### Custom Minute Steps
+
+Time picker with customized minute intervals.
+
+<Canvas of={DpTimePickerStories.CustomMinuteSteps} />
+
+### With Label
+
+Time picker with a descriptive label.
+
+<Canvas of={DpTimePickerStories.WithLabel} />
+
+### With Minimum Value
+
+Time picker with a minimum allowed time value.
+
+<Canvas of={DpTimePickerStories.WithMinValue} />
+
+### Disabled
+
+Time picker in disabled state.
+
+<Canvas of={DpTimePickerStories.Disabled} />
+
+## Implementation Notes
+
+- The component adapts to mobile devices by using the native time input
+- Time format is 24-hour (00:00 to 23:59)
+- Keyboard navigation is supported with arrow keys and Enter
+- Click outside the component to close the dropdown
+- Default value is "00:00" if no value is provided

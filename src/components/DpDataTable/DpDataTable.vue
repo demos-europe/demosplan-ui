@@ -507,9 +507,9 @@ export default {
 
   methods: {
     addHoveredClass(idx) {
-      const tableRow = this.$refs.tableRows[idx]
+      const tableRow = this.$refs[`tableRows[${idx}]`]
 
-      return tableRow.$el.classList.add('is-hovered-content')
+      return tableRow[0].$el.classList.add('is-hovered-content')
     },
 
     /**
@@ -562,9 +562,9 @@ export default {
     },
 
     removeHoveredClass(idx) {
-      const tableRow = this.$refs.tableRows[idx]
+      const tableRow = this.$refs[`tableRows[${idx}]`]
 
-      return tableRow.$el.classList.remove('is-hovered-content')
+      return tableRow[0].$el.classList.remove('is-hovered-content')
     },
 
     resetSelection () {

@@ -1,5 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import { DpFormRow, DpSelect } from '~/components'
+
+interface IDpFormRow {
+    elementCount?: number
+}
 
 const meta: Meta<typeof DpFormRow> = {
     component: DpFormRow,
@@ -24,9 +28,9 @@ const meta: Meta<typeof DpFormRow> = {
     })
 }
 
-type Story = StoryObj<typeof DpFormRow>
-
 export default meta
+
+type Story = StoryObj<IDpFormRow>
 
 export const Default: Story = {
     args: {},

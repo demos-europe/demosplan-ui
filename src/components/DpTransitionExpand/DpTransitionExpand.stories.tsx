@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { DpTransitionExpand } from '~/components'
 
 const meta: Meta<typeof DpTransitionExpand> = {
-  title: 'Components/DpTransitionExpand',
+  title: 'Components/TransitionExpand',
   component: DpTransitionExpand,
   parameters: {
     layout: 'centered'

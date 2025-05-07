@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Removed
+
+- ([#](https://github.com/demos-europe/demosplan-ui/pull/) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.4.15 - 2025-05-07
 
 ### Fixed

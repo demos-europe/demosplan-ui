@@ -10,7 +10,7 @@ const mockGetFileByHash = (hash: string) => {
 }
 
 const meta: Meta<typeof DpUploadFiles> = {
-  title: 'Components/DpUploadFiles',
+  title: 'Components/UploadFiles',
   component: DpUploadFiles,
   tags: ['autodocs'],
   parameters: {

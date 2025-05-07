@@ -17,7 +17,7 @@ type Story = StoryObj<{
 
 export const Default: Story = {
   args: {
-    text: 'Badge Text',
+    text: 'Default Badge',
     color: 'default',
     size: 'medium'
   },
@@ -85,7 +85,7 @@ export const SizeSmall: Story = {
 
 export const SizeMedium: Story = {
   args: {
-    text: 'Small Badge',
+    text: 'Medium Badge',
     color: 'default',
     size: 'medium'
   }

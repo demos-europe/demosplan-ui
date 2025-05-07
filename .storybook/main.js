@@ -44,6 +44,8 @@ module.exports = {
     '../src/components/DpSelect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpSkeletonBox/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpSlidebar/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpSlidingPagination/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpSplitButton/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

@@ -26,7 +26,6 @@ module.exports = {
     '../src/components/DpEditableList/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpEditor/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpFlyout/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-
     '../src/components/DpFormRow/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpIcon/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpInlineNotification/*.@(mdx|stories.@(js|jsx|ts|tsx))',
@@ -34,7 +33,6 @@ module.exports = {
     '../src/components/DpLabel/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpLoading/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpModal/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-
     '../src/components/DpMultiselect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpMultistepNav/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpNotification/*.@(mdx|stories.@(js|jsx|ts|tsx))',
@@ -44,17 +42,8 @@ module.exports = {
     '../src/components/DpResettableInput/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpSearchField/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpSelect/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    /*
-    '../src/components/DpEditor/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpFlyout/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpFormRow/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpIcon/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpInlineNotification/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpInput/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpLabel/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpLoading/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    '../src/components/DpModal/*.@(mdx|stories.@(js|jsx|ts|tsx))',
-    */
+    '../src/components/DpSkeletonBox/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpSlidebar/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

@@ -55,6 +55,7 @@ module.exports = {
     '../src/components/DpTransitionExpand/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTreeList/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpUploadFiles/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpVideoPlayer/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

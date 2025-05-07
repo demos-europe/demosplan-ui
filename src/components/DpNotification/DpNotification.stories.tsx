@@ -73,7 +73,8 @@ export const Warning: Story = {
   }
 }
 
-export const Error: Story = {
+export const ErrorState: Story = {
+  name: 'Error',
   args: {
     message: {
       type: 'error',

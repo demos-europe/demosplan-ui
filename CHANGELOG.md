@@ -10,7 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
-- ([#](https://github.com/demos-europe/demosplan-ui/pull/) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
 
 ## v0.4.15 - 2025-05-07
 

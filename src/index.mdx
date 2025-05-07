@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/blocks'
+import Table from '../.storybook/components/Table'
 
 <Meta title="Welcome" />
 
@@ -83,22 +84,66 @@ demosplan-ui is progressively adopting Tailwind CSS for utility-based styling. T
 
 Components are being migrated from traditional CSS classes to Tailwind utilities while maintaining the same visual appearance and functionality.
 
-## Development
+## Tailwind Migration Status
 
-For local development:
+The table below shows the current status of component migration to Tailwind CSS:
 
-```shell
-# Start the Docker container
-docker compose up -d
-
-# Shell into the container
-docker compose exec demosplan-ui bash
-
-# Install dependencies
-yarn install
-
-# Start Storybook
-yarn sb
-```
-
-Visit http://localhost:3000 to browse the component library in Storybook.
+<Table
+  headers={['Component', 'Migrated to Tailwind']}
+  rows={[
+    ["DpAccordion", "Partially (font weight cannot be migrated)"],
+    ["DpAnonymizeText", "❌"],
+    ["DpAutocomplete", "❌"],
+    ["DpBadge", "Partially (onDark missing)"],
+    ["DpBulkEditHeader", "✅"],
+    ["DpButton", "✅"],
+    ["DpButtonRow", "✅"],
+    ["DpCard", "Partially (font weight cannot be migrated)"],
+    ["DpCheckbox", "❌"],
+    ["DpCheckboxGroup", "❌"],
+    ["DpColumnSelector", "❌"],
+    ["DpConfirmDialog", "❌"],
+    ["DpContextualHelp", "✅"],
+    ["DpDataTable", "❌"],
+    ["DpDataTableExtended", "❌"],
+    ["DpDateRangePicker", "❌"],
+    ["DpDatepicker", "❌"],
+    ["DpDatetimePicker", "❌"],
+    ["DpDetails", "❌"],
+    ["DpDraggable", "❌"],
+    ["DpEditableList", "❌"],
+    ["DpEditor", "❌"],
+    ["DpFlyout", "✅"],
+    ["DpFormRow", "❌"],
+    ["DpIcon", "✅"],
+    ["DpInlineNotification", "❌"],
+    ["DpInput", "✅"],
+    ["DpLabel", "✅"],
+    ["DpLoading", "❌"],
+    ["DpModal", "❌"],
+    ["DpMultiselect", "❌"],
+    ["DpMultistepNav", "❌"],
+    ["DpNotification", "❌"],
+    ["DpObscure", "❌"],
+    ["DpPager", "❌"],
+    ["DpProgressBar", "❌"],
+    ["DpRadio", "❌"],
+    ["DpResettableInput", "❌"],
+    ["DpSearchField", "❌"],
+    ["DpSelect", "❌"],
+    ["DpSkeletonBox", "❌"],
+    ["DpSlidebar", "❌"],
+    ["DpSlidingPagination", "❌"],
+    ["DpSplitButton", "❌"],
+    ["DpStickyElement", "❌"],
+    ["DpTabs", "❌"],
+    ["DpTextArea", "❌"],
+    ["DpTimePicker", "❌"],
+    ["DpToggle", "❌"],
+    ["DpTooltip", "✅"],
+    ["DpTransitionExpand", "✅"],
+    ["DpTreeList", "❌"],
+    ["DpUploadFiles", "❌"],
+    ["DpVideoPlayer", "❌"]
+  ]}
+/>

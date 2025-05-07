@@ -53,6 +53,8 @@ module.exports = {
     '../src/components/DpToggle/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTooltip/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTransitionExpand/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpTreeList/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpUploadFiles/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

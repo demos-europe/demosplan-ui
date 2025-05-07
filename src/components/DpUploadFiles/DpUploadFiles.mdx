@@ -1,12 +1,9 @@
-import { Meta } from '@storybook/addon-docs'
-import { DpUploadFiles } from './'
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpUploadFilesStories from './DpUploadFiles.stories'
 
-<Meta
-    title="Components/UploadFiles"
-    component={DpUploadFiles}
-/>
+<Meta title="Components/DpUploadFiles" />
 
-# UploadFiles
+# DpUploadFiles
 
 The UploadFiles component enables users to upload files by dropping them onto a designated area
 or by triggering the process through a button activation.
@@ -19,6 +16,20 @@ This component...
 ## When to use
 
 If you are implementing a file upload in demosplan, use **DpUploadFiles**.
+
+## Examples
+
+### Basic Upload
+
+Basic single file upload configuration with PDF files only.
+
+<Canvas of={DpUploadFilesStories.Basic} />
+
+### Multiple File Upload
+
+Upload multiple files with different configurations.
+
+<Canvas of={DpUploadFilesStories.MultipleFiles} />
 
 ## Custom usage
 

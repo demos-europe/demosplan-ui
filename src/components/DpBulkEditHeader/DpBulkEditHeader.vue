@@ -1,26 +1,30 @@
 <template>
   <div
     role="menu"
-    class="bg-color-selection space-inset-s line-height--1_6">
-    <span class="u-mr">
+    class="flex items-center gap-2 p-2 bg-selected">
+    <span>
       {{ selectedItemsText }}
     </span>
     <slot />
-    <button
-      type="button"
-      class="btn btn--secondary float-right"
+    <dp-button
+      class="ml-auto"
+      color="secondary"
       data-cy="resetSelection"
-      @click="$emit('reset-selection')">
-      {{ deselect }}
-    </button>
+      :text="deselect"
+      @click="$emit('reset-selection')" />
   </div>
 </template>
 
 <script>
 import { de } from '~/components/shared/translations'
+import { DpButton } from '~/components'
 
 export default {
   name: 'DpBulkEditHeader',
+
+  components: {
+    DpButton
+  },
 
   props: {
     selectedItemsText: {
@@ -28,6 +32,8 @@ export default {
       required: true
     }
   },
+
+  emits: ['reset-selection'],
 
   data () {
     return {

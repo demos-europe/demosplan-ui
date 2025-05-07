@@ -1,8 +1,8 @@
 <template>
-  <div class="shadow space-inset-m">
+  <div class="shadow p-4">
     <h4
       v-if="heading !== ''"
-      class="u-mb-0 space-inline-xs">
+      class="space-x-1">
       <span>
         {{ heading }}
       </span>

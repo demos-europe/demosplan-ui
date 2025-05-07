@@ -87,8 +87,6 @@ import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
 
 /**
- * DpAutocomplete component for Vue 3
- *
  * This component provides an autocomplete input field with dropdown suggestions.
  * It fetches suggestions based on user input via an API call.
  */
@@ -203,7 +201,6 @@ const props = defineProps({
   }
 })
 
-// Emits
 const emit = defineEmits([
   'update:modelValue',
   'search-changed',
@@ -211,7 +208,6 @@ const emit = defineEmits([
   'searched'
 ])
 
-// Refs
 const input = ref<HTMLElement | null>(null)
 const currentQuery = ref(props.modelValue)
 const listPosition = ref(-1)
@@ -219,7 +215,7 @@ const isOpenList = ref(true)
 const isInputFocused = ref(false)
 const isLoading = ref(false)
 
-// Computed properties
+
 const boxHeightNumber = computed(() => {
   return parseInt(props.height.replace('px', ''))
 })
@@ -229,25 +225,42 @@ const boxHeightStyle = computed(() => {
 })
 
 const completion = computed(() => {
-  if (!currentQuery.value || currentQuery.value.length === 0) return ''
+  if (!currentQuery.value || currentQuery.value.length === 0) {
+    return ''
+  }
 
   const reg = new RegExp(`^(${currentQuery.value})(.+)`, 'i')
 
   return props.options.reduce((acc: string, val: Record<string, unknown>) => {
     const isMatching = (val[props.label] as string)?.match?.(reg)
-    if (!isMatching) return acc
-    if (acc === '') return isMatching[2]
-    if (isMatching && (val[props.label] as string).length < acc.length) return isMatching[2]
+
+    if (!isMatching) {
+      return acc
+    }
+
+    if (acc === '') {
+      return isMatching[2]
+    }
+
+    if (isMatching && (val[props.label] as string).length < acc.length) {
+      return isMatching[2]
+    }
+
     return acc
   }, '')
 })
 
 const filteredOptions = computed(() => {
-  if (props.disableSearch) return props.options
+  if (props.disableSearch) {
+    return props.options
+  }
 
-  if (!currentQuery.value || currentQuery.value.length === 0) return []
+  if (!currentQuery.value || currentQuery.value.length === 0) {
+    return []
+  }
 
   const reg = new RegExp(`^${currentQuery.value}`, 'i')
+
   return props.options.filter((o: Record<string, unknown>) => (o[props.label] as string)?.match?.(reg))
 })
 
@@ -262,7 +275,6 @@ const isPlaceholderVisible = computed(() => {
   return (!isInputFocused.value && (!currentQuery.value || currentQuery.value.length === 0))
 })
 
-// Watchers
 watch(() => props.modelValue, (newVal) => {
   if (currentQuery.value !== newVal) {
     currentQuery.value = newVal
@@ -280,7 +292,9 @@ function focusInput() {
   isInputFocused.value = true
   const el = input.value
 
-  if (!el) return
+  if (!el) {
+    return
+  }
 
   nextTick(() => {
     if (currentQuery.value) {
@@ -337,7 +351,7 @@ function runSpecialKeys(e: KeyboardEvent) {
   }
 }
 
-function selectCurrentOption(option: Record<string, unknown>) {
+function selectCurrentOption (option: Record<string, unknown>) {
   if (!option) return
 
   currentQuery.value = option[props.label] as string
@@ -351,19 +365,20 @@ function selectCurrentOption(option: Record<string, unknown>) {
   focusInput()
 }
 
-function setTextContent(value: string, el = input.value) {
+function setTextContent (value: string, el = input.value) {
   if (el) {
     el.textContent = value
   }
 }
 
-function triggerSearch() {
+function triggerSearch () {
   emit('searched', currentQuery.value)
   isOpenList.value = !props.closeOnSelect
 }
 
-function updateValue() {
+function updateValue () {
   const content = getTextContent()
+
   if (content !== currentQuery.value) {
     currentQuery.value = content
     isOpenList.value = true
@@ -376,9 +391,12 @@ function updateValue() {
 }
 
 async function fetchOptions(searchString: string) {
-  if (!searchString || searchString.length < props.minChars) return
+  if (!searchString || searchString.length < props.minChars) {
+    return
+  }
 
   isLoading.value = true
+
   try {
     const route = props.routeGenerator(searchString)
     const response = await dpApi({
@@ -402,20 +420,24 @@ async function fetchOptions(searchString: string) {
 
 // Setup mutation observer to track contenteditable changes
 onMounted(() => {
-  if (!input.value) return
+  if (!input.value) {
+    return
+  }
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      const onlyTextAdded = Array.from(mutation.addedNodes)
-        .filter((n: Node) => n.nodeType !== 3).length === 0
-      const onlyTextRemoved = Array.from(mutation.removedNodes)
-        .filter((n: Node) => n.nodeType !== 3).length === 0
-      const isTextInput = mutation.type === 'characterData' ||
-        (onlyTextAdded && onlyTextRemoved)
+      const hasContentChanged = mutations.some(mutation =>
+        // Direct text change
+        mutation.type === 'characterData' ||
+        // Nodes added or removed
+        mutation.addedNodes.length > 0 ||
+        mutation.removedNodes.length > 0
+      )
 
-      if (isTextInput) {
+      if (hasContentChanged) {
         updateValue()
       }
+
     })
   })
 

@@ -55,7 +55,7 @@
         v-if="isOptionsListVisible"
         id="options-list"
         role="listbox"
-        class="absolute w-full border-x border-b border-gray-300 p-2 bg-white z-10 shadow-md mt-[1px]">
+        class="absolute w-full border-x border-b border-gray-300 p-2 bg-surface z-10 shadow-md mt-[1px]">
         <div
           v-for="(option, idx) in filteredOptions"
           :key="option[label] + idx"

@@ -7,7 +7,13 @@ import DpButtonRow from './'
 
 # Button Row
 
-This component contains a button row, currently with save and abort buttons.
+The **Button Row** renders a row with two buttons, typically with 'save' and 'cancel' actions.
+
+## When to use
+
+Use this component once per form (or editable section) to save the user input or either return
+to the previous screen or reset the form.
+
 
 export const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),

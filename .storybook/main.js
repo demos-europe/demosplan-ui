@@ -52,6 +52,7 @@ module.exports = {
     '../src/components/DpTimePicker/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpToggle/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/components/DpTooltip/*.@(mdx|stories.@(js|jsx|ts|tsx))',
+    '../src/components/DpTransitionExpand/*.@(mdx|stories.@(js|jsx|ts|tsx))',
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],

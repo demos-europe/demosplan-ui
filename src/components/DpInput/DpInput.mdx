@@ -1,0 +1,52 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpInputStories from './DpInput.stories'
+
+<Meta of={DpInputStories} />
+
+# Input
+
+The `DpInput` component is used for rendering the following form input fields via its `type`prop:
+text, email, number, password, and tel.
+
+## Basic text input field
+
+<Canvas of={DpInputStories.Default} />
+
+## Input with label, hint and tooltip
+
+`DpInput` uses `DpLabel` to render a label for the input field.
+
+- The `label` property is used to set the label text.
+- `label.hint` adds the provided string between label and input field.
+- `label.tooltip` adds a contextual help icon that reveals additional information on the input field
+when the user hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information,
+whereas critical information should be presented immediately.
+
+<Canvas of={DpInputStories.LabelOptions} />
+
+## Input states: Required, Disabled and Readonly
+
+This example demonstrates different input states:
+- **Required**: An asterisk is added to the label
+- **Disabled**: The input is grayed out and cannot be edited. It will not be submitted with the form.
+- **Readonly**: The input is grayed out and cannot be edited. It will be submitted with the form.
+
+<Canvas of={DpInputStories.InputStates} />
+
+## Input with placeholder
+
+A placeholder provides a hint to the user about what can be entered in the field.
+
+<Canvas of={DpInputStories.WithPlaceholder} />
+
+## Input with length constraints
+
+When `minlength` or `maxlength` are specified, automatic hints are displayed showing the current character count.
+
+<Canvas of={DpInputStories.WithLengthConstraints} />
+
+## Input with icon
+
+The `hasIcon` prop adds space for an icon element to be positioned inside the input.
+
+<Canvas of={DpInputStories.WithIconSpace} />

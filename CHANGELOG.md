@@ -4,9 +4,36 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
+### Added
+
+- ([#1262](https://github.com/demos-europe/demosplan-ui/pull/1262)) DpUploadFiles: add new prop ([@sakutademos](https://github.com/sakutademos)
+
+### Removed
+
+- ([#1265](https://github.com/demos-europe/demosplan-ui/pull/1265) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+### Changed
+
+- ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1271](https://github.com/demos-europe/demosplan-ui/pull/1271)) DpTreeList: initialize the Stickier instances in nextTick and if the element’s height is greater than zero ([@sakutademos](https://github.com/sakutademos)
+
+
+## v0.4.15 - 2025-05-07
+
+### Fixed
+
+- ([#1264](https://github.com/demos-europe/demosplan-ui/pull/1264) DpEditor: Adjust editor menu buttons ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.4.14 - 2025-04-24
+
 ### Fixed
 
 - ([#1246](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditor: Adjust headingLevel function to expect an object with a level property ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+
+- ([#1249](https://github.com/demos-europe/demosplan-ui/pull/1249)) DpMultiselect: add 'openDirection' prop ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.4.13 - 2025-04-14
 

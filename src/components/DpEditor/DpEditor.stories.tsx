@@ -1,5 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import { DpEditor, DpModal, DpButton } from '~/components'
+
+interface IDpEditor {
+    routes: object
+    toolbarItems: object
+    tusEndpoint: string
+    value: string
+}
 
 const meta: Meta<typeof DpEditor> = {
     component: DpEditor,
@@ -15,16 +22,9 @@ const meta: Meta<typeof DpEditor> = {
     })
 }
 
-interface IDpEditor {
-    routes: object
-    toolbarItems: object
-    tusEndpoint: string
-    value: string
-}
+export default meta
 
 type Story = StoryObj<IDpEditor>
-
-export default meta
 
 export const Default: Story = {
     args: {

@@ -1,0 +1,38 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpModalStories from './DpModal.stories'
+
+<Meta of={DpModalStories} />
+
+# Modal
+
+The Modal component creates a focused overlay that temporarily disables the main page content to direct the user's attention to critical information or actions. It's commonly used for confirmations, forms, warnings, and other interactions that require immediate user attention.
+
+## Basic Usage
+
+Click the button below to open a basic modal:
+
+<Canvas of={DpModalStories.Default} />
+
+## Customizing Appearance
+
+You can customize the appearance of the modal using the `contentClasses`, `contentHeaderClasses`,
+and `contentBodyClasses` props:
+
+<Canvas of={DpModalStories.CustomStyling} />
+
+## Accessibility
+
+The modal component follows accessibility best practices:
+
+- Focus management: When a modal is opened, focus moves to the first focusable element inside. When closed, focus returns to the element that opened it.
+- Keyboard navigation: Users can navigate through focusable elements with Tab and close the modal with Escape.
+- Screen reader support: The modal has appropriate ARIA attributes for screen reader users.
+
+## Best Practices
+
+- Use modals sparingly - they interrupt the user's workflow
+- Keep modal content concise and focused on a single task or piece of information
+- Provide a clear way to dismiss the modal (e.g., "Close", "Cancel", or "Done" button)
+- Make sure the modal title clearly describes its purpose
+- For forms, show validation feedback within the modal itself
+- Consider whether a non-modal alternative might be less disruptive

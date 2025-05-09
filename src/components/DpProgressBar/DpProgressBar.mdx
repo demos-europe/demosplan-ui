@@ -1,0 +1,32 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpProgressBarStories from './DpProgressBar.stories.tsx'
+
+<Meta of={DpProgressBarStories} />
+
+# ProgressBar
+
+The ProgressBar component displays a colored bar indicating the progress of a specific task or process.
+Use this component if you want to communicate to the user:
+
+- The exact progress of a task or process (determinate mode)
+- The information that a process is running without specific completion percentage (indeterminate mode)
+
+Do not use it as a loading indicator. To indicate loading state,
+use [DpLoading](/docs/components-loading--docs) or [DpSkeletonBox](/docs/components-skeletonbox--docs).
+
+## Determinate ProgressBar
+
+Use the determinate ProgressBar if you know how long a task will take, and you want to inform users about the current
+status. The green color indicates (increasing) success.
+
+<Canvas of={DpProgressBarStories.Determinate} />
+
+## Indeterminate ProgressBar
+
+Use the indeterminate ProgressBar if you don't know how long a task will take. It shows a cyclic animation instead of
+linear progress.
+
+The blue color indicates that something is happening, but we do not have information on
+the progress towards success.
+
+<Canvas of={DpProgressBarStories.Indeterminate} />

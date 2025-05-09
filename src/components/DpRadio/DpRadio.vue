@@ -101,6 +101,10 @@ export default {
       default: ''
     },
 
+    /**
+     * Input type="radio" does not support the readonly attribute. So this prop should possibly be removed.
+     * See https://stackoverflow.com/questions/1953017/why-cant-radio-buttons-be-readonly
+     */
     readonly: {
       type: Boolean,
       required: false,

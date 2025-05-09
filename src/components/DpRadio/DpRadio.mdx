@@ -1,0 +1,28 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpRadioStories from './DpRadio.stories.tsx'
+
+<Meta of={DpRadioStories} />
+
+# Radio
+
+The Radio component provides a standard radio button input with enhanced styling and accessibility features. Radio buttons allow users to select a single option from a set of mutually exclusive choices.
+
+Use this component when the user needs to select exactly one option from a list of alternatives, such as selecting a single setting from a group of options.
+
+## Default Radio
+
+A basic radio button with label:
+
+<Canvas of={DpRadioStories.Default} />
+
+## Radio States
+
+Radio buttons can be in different states: checked, disabled, and required.
+
+<Canvas of={DpRadioStories.States} />
+
+## Radio with Label Options
+
+DpRadio uses DpLabel, so the DpLabel options can be utilized here as well.
+
+<Canvas of={DpRadioStories.WithLabelOptions} />

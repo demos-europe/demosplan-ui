@@ -1,0 +1,25 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpContextualHelpStories from './DpContextualHelp.stories.tsx'
+
+<Meta of={DpContextualHelpStories} />
+
+# Contextual Help
+
+The Contextual Help component renders an icon indicating contextual help,
+which shows a tooltip able to handle text or HTML content.
+
+## Default usage
+
+<Canvas of={DpContextualHelpStories.Default} />
+
+## With custom icon
+
+<Canvas of={DpContextualHelpStories.CustomIcon} />
+
+## With custom size
+
+<Canvas of={DpContextualHelpStories.CustomSize} />
+
+## With tooltip options
+
+<Canvas of={DpContextualHelpStories.TooltipOptions} />

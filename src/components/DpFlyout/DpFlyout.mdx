@@ -1,0 +1,14 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as DpFlyoutStories from './DpFlyout.stories'
+
+<Meta of={DpFlyoutStories} />
+
+# Flyout
+
+The Flyout component renders a flyout that is intended to show further actions or content.
+
+<Canvas of={DpFlyoutStories.Default} />
+
+## Roadmap
+
+- use [FloatingUI](https://floating-ui.com/) (or the Vue3 Wrapper [FloatingVue](https://github.com/Akryum/floating-vue)) for positioning instead of basic Css

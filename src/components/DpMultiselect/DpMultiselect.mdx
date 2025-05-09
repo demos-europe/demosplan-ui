@@ -1,0 +1,60 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpMultiselectStories from './DpMultiselect.stories.tsx'
+
+<Meta of={DpMultiselectStories} />
+
+# Multiselect
+
+This is a Vue component that provides a feature-rich dropdown selection control.
+It is a wrapper for [vue-multiselect](https://github.com/shentao/vue-multiselect) that integrates with demoplan-ui.
+
+## Key Features
+
+- Single and multiple selection support
+- Search/filtering functionality
+- Support for both simple values and object options
+- Selection controls for bulk operations (select all/deselect all)
+- Validation integration
+- Group selection support
+- Full keyboard navigation
+
+## Usage
+
+The component accepts all the standard props from vue-multiselect, with the most common ones being:
+
+- `options` - Array of items to select from (required)
+- `value` / `v-model` - The selected value(s)
+- `multiple` - Enable multiple selection mode
+- `trackBy` - Key to use for tracking object identity
+- `label` - Key to use for display text
+- `searchable` - Enable filtering the list
+- `closeOnSelect` - Keep dropdown open after selection
+- `selectionControls` - Show select all/deselect all buttons
+
+See the component source code for complete documentation of all available props.
+
+## Group Selection
+
+The component supports grouped options. To use groups:
+
+- Structure your options as an array of group objects
+- Set the `groupLabel` prop to the property containing the group name
+- Set the `groupValues` prop to the property containing the group's options
+- Use `groupSelect` to allow selecting entire groups at once
+
+## With Object Options
+
+<Canvas of={DpMultiselectStories.Default} />
+
+## Multiple Selection
+
+<Canvas of={DpMultiselectStories.MultipleSelection} />
+
+## With Selection Controls
+
+The multiselect component can include selection controls by setting the `selectionControls` prop to `true`.
+This adds "Select All" and "Clear Selection" buttons to help users quickly select or deselect all options.
+
+When using selection controls, you'll need to handle the `@select-all` and `@unselect-all` events in your application code.
+
+<Canvas of={DpMultiselectStories.WithSelectionControls} />

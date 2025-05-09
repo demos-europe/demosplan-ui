@@ -1,0 +1,47 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpVideoPlayerStories from './DpVideoPlayer.stories'
+
+<Meta title="Components/DpVideoPlayer" />
+
+# VideoPlayer
+
+The VideoPlayer component is used to add Video content. It includes controls for play/pause, sound volume,
+playback speed, a download link, and a fullscreen view. The player uses [Plyr](https://github.com/sampotts/plyr) under the hood.
+
+## Features
+
+- Supports both embedded videos (YouTube, Vimeo) and HTML5 video sources
+- Video playback controls (play, pause, volume, mute)
+- Progress bar with duration display
+- Support for captions/subtitles
+- Playback settings (speed)
+- Download option
+- Fullscreen mode
+- Support for multiple video sources with fallbacks
+- Poster image support for video preview
+
+## Examples
+
+### Standard HTML5 Video
+
+Basic video player with an MP4 source.
+
+<Canvas of={DpVideoPlayerStories.Standard} />
+
+### Embedded Video (YouTube)
+
+Video player using an embedded YouTube source.
+
+<Canvas of={DpVideoPlayerStories.YouTube} />
+
+### With Captions
+
+Video player with subtitle/caption tracks.
+
+<Canvas of={DpVideoPlayerStories.WithCaptions} />
+
+### Multiple Sources
+
+Video player with multiple source formats for browser compatibility.
+
+<Canvas of={DpVideoPlayerStories.MultipleSources} />

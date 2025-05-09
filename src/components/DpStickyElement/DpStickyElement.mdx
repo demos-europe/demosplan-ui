@@ -1,0 +1,36 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpStickyElementStories from './DpStickyElement.stories.tsx'
+
+<Meta of={DpStickyElementStories} />
+
+# StickyElement
+
+The StickyElement component is used to create elements that stick to a specific position (top or bottom) while scrolling. This component is particularly useful for creating persistent UI elements like headers, navigation bars, or action buttons that remain visible as users scroll through content.
+
+## Features
+
+- Sticky positioning at either top or bottom of the viewport
+- Configurable offset distance
+- Optional border for visual separation
+- Context-aware sticking behavior
+- Z-index control for proper layering
+
+## Usage
+
+The StickyElement wraps content that should remain fixed during scrolling.
+
+### Default
+
+Default sticky element that sticks to the top of the viewport.
+
+<Canvas of={DpStickyElementStories.Default} />
+
+### Bottom Position
+
+Sticky element that sticks to the bottom of the viewport, useful for persistent action buttons.
+
+<Canvas of={DpStickyElementStories.Bottom} />
+
+## Implementation Notes
+
+The component uses the internal Stickier library to manage sticky positioning, which provides more consistent behavior than relying solely on CSS `position: sticky`.

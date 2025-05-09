@@ -1,0 +1,50 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTooltipStories from './DpTooltip.stories.tsx'
+
+<Meta of={DpTooltipStories} />
+
+# Tooltip
+
+The Tooltip component displays additional information when a user hovers over or focuses on an element.
+It's useful for providing context, explanations, or extra details without cluttering the interface.
+
+## Usage
+
+### Default
+
+Basic tooltip that appears on hover or focus.
+
+<Canvas of={DpTooltipStories.Default} />
+
+### Different Placements
+
+Tooltips can be positioned in different directions relative to the trigger element.
+
+<Canvas of={DpTooltipStories.Placement} />
+
+### With HTML Content
+
+Tooltips can contain rich HTML content including formatting and lists.
+
+<Canvas of={DpTooltipStories.WithHTML} />
+
+### Custom Container
+
+Tooltips can be constrained to a specific container element.
+
+<Canvas of={DpTooltipStories.WithCustomContainer} />
+
+### Custom Node Type
+
+The tooltip trigger element can be customized to use a different HTML tag.
+
+<Canvas of={DpTooltipStories.CustomNodeType} />
+
+## Implementation Notes
+
+The component can be used in two ways:
+
+1. As a wrapper component (shown in these examples)
+2. As a directive (`v-tooltip`) that can be applied to any element
+
+The tooltip is positioned using the Floating UI library, which ensures it stays within the viewport and adapts to available space.

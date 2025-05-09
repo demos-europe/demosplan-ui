@@ -1,0 +1,33 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpDataTableStories from './DpDataTable.stories.tsx'
+
+<Meta of={DpDataTableStories} />
+
+# Data Table
+
+Renders a tabular representation of data.
+
+## How to use
+
+The elements in the items array must have a key which matches a field in the header-fields array.
+Each column is defined with a field key that should match properties in the data items.
+
+## Default usage
+
+<Canvas of={DpDataTableStories.Default} />
+
+## With selection
+
+<Canvas of={DpDataTableStories.WithSelection} />
+
+## With flyout menu
+
+<Canvas of={DpDataTableStories.WithFlyout} />
+
+## With expandable rows
+
+<Canvas of={DpDataTableStories.WithExpandableRows} />
+
+## With custom styling
+
+<Canvas of={DpDataTableStories.WithCustomStyling} />

@@ -1,5 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpEditableList from './'
+
+interface IDpEditableList {
+    entries: object[]
+    delete: object
+    reset: object
+    saveEntry: object
+    showUpdateForm: object
+}
 
 const meta: Meta<typeof DpEditableList> = {
     component: DpEditableList,
@@ -11,7 +19,7 @@ const meta: Meta<typeof DpEditableList> = {
         data () {
             return {
                 formFields: {
-                    item: ''
+                    mail: ''
                 },
                 entries: args['entries'],
                 itemIndex: null
@@ -23,7 +31,7 @@ const meta: Meta<typeof DpEditableList> = {
         methods: {
             addItem () {
                 this.entries.push({
-                    item: this.formFields.item
+                    mail: this.formFields.mail
                 })
             },
 
@@ -34,10 +42,10 @@ const meta: Meta<typeof DpEditableList> = {
             handleSubmit (index) {
                 if (index === 'new') {
                     this.addItem()
-                    this.saveExtraItems(this.formFields.item)
+                    this.saveExtraItems(this.formFields.mail)
                 } else {
                     this.updateItems(index)
-                    this.updateExtraItems(index, this.formFields.item[index])
+                    this.updateExtraItems(index, this.formFields.mail[index])
                 }
 
                 this.resetForm()
@@ -46,7 +54,7 @@ const meta: Meta<typeof DpEditableList> = {
             },
 
             resetForm () {
-                this.formFields.item = ''
+                this.formFields.mail = ''
                 this.itemIndex = null
             },
 
@@ -59,7 +67,7 @@ const meta: Meta<typeof DpEditableList> = {
             },
 
             updateItems (index) {
-                this.entries[index].item = this.formFields.item
+                this.entries[index].mail = this.formFields.mail
             },
         },
         mounted () {
@@ -69,7 +77,7 @@ const meta: Meta<typeof DpEditableList> = {
             })
 
             this.$on('showUpdateForm', (index) => {
-                this.formFields.item = this.entries[index].item
+                this.formFields.mail = this.entries[index].mail
                 this.itemIndex = index
             })
         },
@@ -82,11 +90,11 @@ const meta: Meta<typeof DpEditableList> = {
               ref="listComponent">
             <template v-slot:list="entry">
                 <span>
-                  {{ entry.item }}
+                  {{ entry.mail }}
                   <input
                       class="sr-only"
                       type="email"
-                      :value="entry.item">
+                      :value="entry.mail">
                 </span>
             </template>
             <template v-slot:form="entry">
@@ -94,7 +102,7 @@ const meta: Meta<typeof DpEditableList> = {
                   id="emailAddress"
                   type="email"
                   placeholder="Email Address"
-                  v-model="formFields.item"
+                  v-model="formFields.mail"
                   @enter="handleSubmit(itemIndex !== null ? itemIndex : 'new')" />
             </template>
           </dp-editable-list>
@@ -102,26 +110,18 @@ const meta: Meta<typeof DpEditableList> = {
     })
 }
 
-interface IDpEditableList {
-    entries: object[]
-    delete: object
-    reset: object
-    saveEntry: object
-    showUpdateForm: object
-}
+export default meta
 
 type Story = StoryObj<IDpEditableList>
-
-export default meta
 
 export const Default: Story = {
     args: {
         entries: [
             {
-                item: "mail1@mail.com"
+                mail: "mail1@mail.com"
             },
             {
-                item: "mail2@mail.com"
+                mail: "mail2@mail.com"
             }
         ],
     },

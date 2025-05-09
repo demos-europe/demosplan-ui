@@ -1,0 +1,17 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as DpFormRowStories from './DpFormRow.stories.tsx'
+
+<Meta of={DpFormRowStories} />
+
+# FormRow
+
+The FormRow component is used to insert form fields into the row.
+And through `elementCount` counts the number of elements in the form row.
+
+The Component breaks when trying to render it using Vue3, because it uses `this.$children` which is deprecated
+in Vue3. However, **I think we should abandon `DpFormRow` entirely** and use flex utilities instead. For this
+to work, DpInput, DpSelect and other form Components should not set their own width but always be sized from outside.
+
+## Default usage
+
+<Canvas of={DpFormRowStories.Default} />

@@ -1,0 +1,21 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpColumnSelectorStories from './DpColumnSelector.stories.tsx'
+
+<Meta of={DpColumnSelectorStories} />
+
+# Column Selector
+
+This component can be used as a building block for data tables. It allows for the selection of columns, emits the
+currently selected columns, and it is able to store previous user selections in local storage.
+
+## Default usage
+
+<Canvas of={DpColumnSelectorStories.Default} />
+
+## With initial selection
+
+<Canvas of={DpColumnSelectorStories.WithInitialSelection} />
+
+## With local storage
+
+<Canvas of={DpColumnSelectorStories.WithLocalStorage} />

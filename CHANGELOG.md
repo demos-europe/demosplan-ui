@@ -4,9 +4,19 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
 ### Added
 
 - ([#1262](https://github.com/demos-europe/demosplan-ui/pull/1262)) DpUploadFiles: add new prop ([@sakutademos](https://github.com/sakutademos)
+
+### Removed
+
+- ([#1265](https://github.com/demos-europe/demosplan-ui/pull/1265) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+### Changed
+
+- ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+
 
 ## v0.4.15 - 2025-05-07
 

@@ -41,9 +41,10 @@ tailwindTheme.extend = {
 module.exports = {
   content: [
     './tokens/*.mdx',
-    './src/components/**/*.{js,vue}',
-    './src/directives/**/*.js',
-    './.storybook/**/*.jsx'
+    './src/components/**/*.{js,jsx,mdx,ts,tsx,vue}',
+    './src/directives/**/*.{js,jsx,mdx,ts,tsx}',
+    './.storybook/**/*.{js,jsx,mdx,ts,tsx}',
+    './src/components/**/*.stories.{js,jsx,ts,tsx}'
   ],
   plugins: [
     plugin(function({ addBase, addUtilities }) {

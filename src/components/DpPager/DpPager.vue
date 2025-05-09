@@ -1,7 +1,7 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal flex items-center gap-1"
       :aria-label="translations.selectNumberOfItems">
       <dp-sliding-pagination
         v-if="totalItems > Math.min(...limits)"
@@ -77,6 +77,8 @@ export default {
       default: () => []
     }
   },
+
+  emits: ['page-change', 'size-change'],
 
   data () {
     return {

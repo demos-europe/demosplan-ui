@@ -1,0 +1,36 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpSlidingPaginationStories from './DpSlidingPagination.stories.tsx'
+
+<Meta of={DpSlidingPaginationStories} />
+
+# SlidingPagination
+
+The SlidingPagination component is an ARIA-friendly pagination component with a sliding window that adapts to the number of pages. This component ensures that pagination remains usable and accessible even with a large number of pages.
+
+## Features
+
+- Sliding window pagination with adjustable size
+- ARIA-compliant for accessibility
+- Previous and next page navigation
+- Visual indication of current page
+- Customizable through props
+
+## Usage
+
+The SlidingPagination component provides intuitive navigation through paged content.
+
+### Default
+
+Default pagination with basic configuration.
+
+<Canvas of={DpSlidingPaginationStories.Default} />
+
+### Large Page Count
+
+When dealing with many pages, the component shows a sliding window.
+
+<Canvas of={DpSlidingPaginationStories.LargePageCount} />
+
+## Implementation Notes
+
+The pagination component does not handle page changes internally. Instead, you need to provide a page change handler that contains your page changing logic (e.g., a Vuex store dispatch) and updates the current page. In future releases, a v-model approach to `currentPage` may be offered.

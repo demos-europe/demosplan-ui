@@ -1,0 +1,30 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpDatepickerStories from './DpDatepicker.stories.tsx'
+
+<Meta of={DpDatepickerStories} />
+
+# Datepicker
+
+The Datepicker component allows users to enter a date either by typing or by selecting a date from the calendar.
+
+Use a date picker when you want to provide a view that allows the user to select a calendar date.
+
+## Default usage
+
+<Canvas of={DpDatepickerStories.Default} />
+
+## With preset value
+
+<Canvas of={DpDatepickerStories.WithValue} />
+
+## With min and max dates
+
+<Canvas of={DpDatepickerStories.WithRange} />
+
+## Required field
+
+<Canvas of={DpDatepickerStories.Required} />
+
+## Disabled
+
+<Canvas of={DpDatepickerStories.Disabled} />

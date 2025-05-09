@@ -1,0 +1,47 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpCheckboxStories from './DpCheckbox.stories.tsx'
+
+<Meta of={DpCheckboxStories} />
+
+# Checkbox
+
+The `DpCheckbox` component renders an input of type `checkbox`. Use it for a single option that the user
+can turn on or off.
+
+In order to display several checkboxes grouped together, use `DpCheckboxGroup`.
+It allows for defining an additional group label and have checkbox labels with normal `font-weight`.
+
+## When to use
+
+Checkboxes are used when a user can select multiple options. It is possible to select zero,
+some, or all options.
+
+## Default
+
+<Canvas of={DpCheckboxStories.Default} />
+
+## Disabled
+
+<Canvas of={DpCheckboxStories.Disabled} />
+
+## Checked
+
+<Canvas of={DpCheckboxStories.Checked} />
+
+## Required
+
+If a checkbox is `required`, an asterisk will be added to its label.
+
+<Canvas of={DpCheckboxStories.Required} />
+
+## Hint
+
+<Canvas of={DpCheckboxStories.Hint} />
+
+## Tooltip
+
+The `tooltip` property adds a contextual help icon that reveals additional information on the input field when the user
+hovers over it with their mouse. It should be used sparingly and only to reveal non-critical information, whereas
+critical information should be presented immediately.
+
+<Canvas of={DpCheckboxStories.Tooltip} />

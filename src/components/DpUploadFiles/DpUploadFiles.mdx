@@ -1,0 +1,42 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpUploadFilesStories from './DpUploadFiles.stories'
+
+<Meta title="Components/DpUploadFiles" />
+
+# DpUploadFiles
+
+The UploadFiles component enables users to upload files by dropping them onto a designated area
+or by triggering the process through a button activation.
+
+This component...
+* contains the Uppy drop zone
+* displays the uploaded files in a list
+* handles adding and removing fileHashes to a hidden input (for form posts)
+
+## When to use
+
+If you are implementing a file upload in demosplan, use **DpUploadFiles**.
+
+## Examples
+
+### Basic Upload
+
+Basic single file upload configuration with PDF files only.
+
+<Canvas of={DpUploadFilesStories.Basic} />
+
+### Multiple File Upload
+
+Upload multiple files with different configurations.
+
+<Canvas of={DpUploadFilesStories.MultipleFiles} />
+
+## Custom usage
+
+```html
+<dp-upload-files
+    allowed-file-types="all"
+    :basic-auth="dplan.settings.basicAuth"
+    :get-file-by-hash="hash => RoutingFunction('core_file', { hash: hash })"
+    :tus-endpoint="dplan.paths.tusEndpoint" />
+```

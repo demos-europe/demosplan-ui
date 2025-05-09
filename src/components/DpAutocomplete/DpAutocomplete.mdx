@@ -1,0 +1,15 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpAutocompleteStories from './DpAutocomplete.stories.tsx'
+
+<Meta of={DpAutocompleteStories} />
+
+# Autocomplete
+
+DpAutocomplete is a wrapper for https://npm.io/package/vue-omnibox which is a simple search box for vue applications
+that is able to auto complete search queries.
+
+## Default usage
+
+(Yes this is broken. Swap vue-omnibox for another library within DpAutocomplete to fix it)
+
+<Canvas of={DpAutocompleteStories.Default} />

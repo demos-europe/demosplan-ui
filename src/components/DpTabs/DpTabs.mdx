@@ -1,0 +1,39 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTabsStories from './DpTabs.stories.tsx'
+
+<Meta of={DpTabsStories} />
+
+# Tabs
+
+The DpTabs component provides a structured and interactive way to organize and navigate related content,
+allowing users to switch between different views while maintaining context.
+
+## Usage
+
+The Tabs component consists of `DpTabs` as the container and `DpTab` for individual tab panels.
+
+### Default
+
+Basic tabs with two panels.
+
+<Canvas of={DpTabsStories.Default} />
+
+### With URL Fragment
+
+Tabs that update the URL fragment when switching between tabs, allowing for direct linking.
+
+<Canvas of={DpTabsStories.WithUrlFragment} />
+
+### Medium Size
+
+Tabs with medium-sized labels for more compact interfaces.
+
+<Canvas of={DpTabsStories.MediumSize} />
+
+## Implementation Notes
+
+- DpTabs and DpTab both provide a default slot
+- For each tab, a `DpTab` instance is placed inside the default slot of `DpTabs`
+- The content of each tab is placed inside the default slot of the respective `DpTab` instance
+- Tab panels are automatically associated with their tab headers for accessibility
+- When using URL fragments, browser navigation (back/forward) will switch tabs accordingly

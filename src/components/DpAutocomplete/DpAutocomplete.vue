@@ -51,16 +51,16 @@
 
     <!-- Options list -->
     <div class="relative">
-      <div
+      <ol
         v-if="isOptionsListVisible"
         id="options-list"
         role="listbox"
         class="absolute w-full border-x border-b border-gray-300 p-2 bg-surface z-10 shadow-md mt-[1px]">
-        <div
-          v-for="(option, idx) in filteredOptions"
+        <li
+          v-for="(option, idx) in props.options"
           :key="option[label] + idx"
           :class="{ 'bg-gray-200': idx === listPosition }"
-          class="font-medium cursor-pointer px-2 py-1 hover:bg-gray-200 rounded"
+          class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
           role="option"
           :aria-selected="idx === listPosition"
           tabindex="0"
@@ -70,13 +70,13 @@
             :option="option">
             {{ option[label] }}
           </slot>
-        </div>
-        <div
-          v-if="filteredOptions.length === 0"
+        </li>
+        <li
+          v-if="props.options.length === 0"
           class="text-gray-500 px-2 py-1">
           {{ noResultsText }}
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
   </div>
 </template>
@@ -162,42 +162,6 @@ const props = defineProps({
     type: Number,
     required: false,
     default: 3
-  },
-
-  /**
-   * Whether to enable tab completion
-   */
-  tabCompletion: {
-    type: Boolean,
-    required: false,
-    default: true
-  },
-
-  /**
-   * Whether to show the suggestions list
-   */
-  showList: {
-    type: Boolean,
-    required: false,
-    default: true
-  },
-
-  /**
-   * Whether to close the suggestions list after selection
-   */
-  closeOnSelect: {
-    type: Boolean,
-    required: false,
-    default: true
-  },
-
-  /**
-   * Whether to disable the search functionality
-   */
-  disableSearch: {
-    type: Boolean,
-    required: false,
-    default: false
   }
 })
 
@@ -250,23 +214,8 @@ const completion = computed(() => {
   }, '')
 })
 
-const filteredOptions = computed(() => {
-  if (props.disableSearch) {
-    return props.options
-  }
-
-  if (!currentQuery.value || currentQuery.value.length === 0) {
-    return []
-  }
-
-  const reg = new RegExp(`^${currentQuery.value}`, 'i')
-
-  return props.options.filter((o: Record<string, unknown>) => (o[props.label] as string)?.match?.(reg))
-})
-
 const isOptionsListVisible = computed(() => {
   return currentQuery.value.length >= props.minChars &&
-    props.showList &&
     isOpenList.value &&
     isInputFocused.value
 })
@@ -322,7 +271,7 @@ function getTextContent(el = input.value) {
 function runSpecialKeys(e: KeyboardEvent) {
   const key = e.key
 
-  if (key === 'Tab' && props.tabCompletion && completion.value) {
+  if (key === 'Tab' && completion.value) {
     e.preventDefault()
     currentQuery.value += completion.value
     setTextContent(currentQuery.value)
@@ -330,7 +279,7 @@ function runSpecialKeys(e: KeyboardEvent) {
     emit('update:modelValue', currentQuery.value)
   } else if (key === 'ArrowDown' || key === 'Down') {
     e.preventDefault()
-    if (listPosition.value < filteredOptions.value.length - 1) {
+    if (listPosition.value < props.options.length - 1) {
       listPosition.value += 1
     }
   } else if (key === 'ArrowUp' || key === 'Up') {
@@ -340,8 +289,8 @@ function runSpecialKeys(e: KeyboardEvent) {
     }
   } else if (key === 'Enter') {
     e.preventDefault()
-    if (listPosition.value > -1 && filteredOptions.value[listPosition.value]) {
-      selectCurrentOption(filteredOptions.value[listPosition.value] as Record<string, unknown>)
+    if (listPosition.value > -1 && props.options[listPosition.value]) {
+      selectCurrentOption(props.options[listPosition.value] as Record<string, unknown>)
     } else {
       triggerSearch()
     }
@@ -361,7 +310,7 @@ function selectCurrentOption (option: Record<string, unknown>) {
   emit('selected', option)
   emit('update:modelValue', currentQuery.value)
 
-  isOpenList.value = !props.closeOnSelect
+  isOpenList.value = false
   focusInput()
 }
 
@@ -373,7 +322,7 @@ function setTextContent (value: string, el = input.value) {
 
 function triggerSearch () {
   emit('searched', currentQuery.value)
-  isOpenList.value = !props.closeOnSelect
+  isOpenList.value = false
 }
 
 function updateValue () {
@@ -425,20 +374,17 @@ onMounted(() => {
   }
 
   const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      const hasContentChanged = mutations.some(mutation =>
-        // Direct text change
-        mutation.type === 'characterData' ||
-        // Nodes added or removed
-        mutation.addedNodes.length > 0 ||
-        mutation.removedNodes.length > 0
-      )
+    const hasContentChanged = mutations.some(mutation =>
+      // Direct text change
+      mutation.type === 'characterData' ||
+      // Nodes added or removed
+      mutation.addedNodes.length > 0 ||
+      mutation.removedNodes.length > 0
+    )
 
-      if (hasContentChanged) {
-        updateValue()
-      }
-
-    })
+    if (hasContentChanged) {
+      updateValue()
+    }
   })
 
   observer.observe(input.value, {

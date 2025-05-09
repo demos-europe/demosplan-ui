@@ -2161,7 +2161,6 @@ __metadata:
     vue-eslint-parser: "npm:^10.1.1"
     vue-loader: "npm:^17.4.2"
     vue-multiselect: "npm:^3.1.0"
-    vue-omnibox: "npm:^0.3.7"
     vue-sliding-pagination: "npm:^v2.0.0-alpha-1"
     vue-style-loader: "npm:~4.1.3"
     webpack: "npm:^5.96.1"
@@ -7813,7 +7812,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.26.1, core-js@npm:^3.6.5":
+"core-js@npm:^3.26.1":
   version: 3.35.0
   resolution: "core-js@npm:3.35.0"
   checksum: 10c0/1d545ff4406f2afa5e681f44b45ed5f7f119d158b380234d5aa7787ce7e47fc7a635b98b74c28c766ba8191e3db8c2316ad6ab4ff1ddecbc3fd618413a52c29c
@@ -18846,15 +18845,6 @@ __metadata:
   version: 3.1.0
   resolution: "vue-multiselect@npm:3.1.0"
   checksum: 10c0/4f38050e8f8435d41af4cb86561062c4772844bdcb33ac9fed5b52e0c9e6846794c46b407c3716960a9324403400f09fd75fd0bdcdf0c4c91292a102941a4b6d
-  languageName: node
-  linkType: hard
-
-"vue-omnibox@npm:^0.3.7":
-  version: 0.3.7
-  resolution: "vue-omnibox@npm:0.3.7"
-  dependencies:
-    core-js: "npm:^3.6.5"
-  checksum: 10c0/e3c1d86ad9f3b963e2ffdcf59b7460dfc8b02d8af26aa74ccaaf108f05becb1c50badd350846abcf8eae63eabe56f689e303f5f4475c5a89898e911d32260789
   languageName: node
   linkType: hard
 

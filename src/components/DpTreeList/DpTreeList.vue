@@ -155,12 +155,6 @@ export default {
     treeData: {
       type: Array,
       required: true
-    },
-
-    hasStickyElement: {
-      type: Boolean,
-      required: false,
-      default: true
     }
   },
 emits: ['tree:change', 'draggable:change', 'node-selection-change'],

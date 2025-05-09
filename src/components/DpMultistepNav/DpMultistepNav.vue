@@ -51,6 +51,8 @@ export default {
     }
   },
 
+  emits: ['change-step'],
+
   methods: {
     changeStep (val) {
       this.$emit('change-step', val)

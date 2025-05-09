@@ -1,33 +1,47 @@
-import type { Meta, StoryObj } from '@storybook/vue'
+import type { Meta, StoryObj } from '@storybook/vue3'
 import DpSlidebar from './'
 
-const meta: Meta<typeof DpSlidebar> = {
-    title: 'Components/Slidebar',
-    component: DpSlidebar,
-    render: (args) => ({
-        components: {
-            DpSlidebar,
-        },
-        setup() {
-            return { args }
-        },
-        template: `<dp-slidebar style="position: static !important; left: 0 !important;" v-bind="args">
-        Test
-        </dp-slidebar>`,
-    })
-}
-
 interface IDpSlidebar {
-    close: object
+  close: (event: Event) => void
 }
 
-type Story = StoryObj<IDpSlidebar>
+const meta: Meta<typeof DpSlidebar> = {
+  title: 'Components/Slidebar',
+  component: DpSlidebar,
+  render: (args) => ({
+    components: {
+      DpSlidebar,
+    },
+    setup() {
+      return { args }
+    },
+    template: `
+      <dp-slidebar 
+        style="position: static !important; left: 0 !important;" 
+        v-bind="args"
+        @close="args.close">
+        Example slidebar content
+      </dp-slidebar>
+    `,
+  })
+}
 
 export default meta
+type Story = StoryObj<IDpSlidebar>
 
 export const Default: Story = {
-    args: {},
-    argTypes: {
-        close: { action: 'close' }
+  args: {},
+  argTypes: {
+    close: { 
+      action: 'close',
+      description: 'Event emitted when close button is clicked'
     }
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default slidebar configuration with a close button'
+      }
+    }
+  }
 }

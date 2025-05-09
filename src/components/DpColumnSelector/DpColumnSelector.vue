@@ -25,9 +25,9 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import DpCheckbox from '~/components/DpCheckbox'
 import DpFlyout from '~/components/DpFlyout'
-import { de } from '~/components/shared/translations'
 import { hasOwnProp } from '~/utils'
 
 export default {
@@ -50,22 +50,27 @@ export default {
       required: false,
       default: () => ([])
     },
+
     initialSelection: {
       type: Array,
       required: false,
       default: () => ([])
     },
+
     localStorageKey: {
       type: String,
       required: false,
       default: ''
     },
+
     useLocalStorage: {
       type: Boolean,
       required: false,
       default: false
     }
   },
+
+  emits: ['selection-changed'],
 
   data () {
     return {

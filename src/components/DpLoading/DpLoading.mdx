@@ -1,0 +1,34 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpLoadingStories from './DpLoading.stories'
+
+<Meta of={DpLoadingStories} />
+
+# Loading Indicator
+
+The `DpLoading` component renders a spinning animation alongside explanatory text to indicate background activity.
+It's commonly used during data loading, form submissions, or any operation that requires the user to wait.
+
+## Basic Usage
+
+The default loading indicator displays a spinner with the text "Daten werden geladen..." (Data is loading...).
+
+<Canvas of={DpLoadingStories.Default} />
+
+## Without Label
+
+In contexts with limited space, use the `hideLabel` prop to show only the spinner.
+
+<Canvas of={DpLoadingStories.WithoutLabel} />
+
+## As Overlay
+
+To block interactions with content that is being refreshed, use the `overlay` prop. This creates a full overlay that prevents clicks on underlying elements.
+
+<Canvas of={DpLoadingStories.AsOverlay} />
+
+## Best Practices
+
+- Use the loading indicator for operations that take more than a second to complete
+- For brief operations (less than a second), consider using a more subtle indicator or none at all
+- When using as an overlay, ensure users understand why interaction is blocked
+- Consider using the version without a label for small UI elements or repeated loading indicators

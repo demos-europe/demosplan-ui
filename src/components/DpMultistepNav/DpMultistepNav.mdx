@@ -1,0 +1,19 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpMultistepNavStories from './DpMultistepNav.stories.tsx'
+
+<Meta of={DpMultistepNavStories} />
+
+# Multistep Navigation
+
+The Multistep Navigation component generates a horizontal bar representing a multistep process.
+Each step can be clicked to navigate between different stages of a workflow.
+
+## Features
+
+- Displays a series of steps in a horizontal navigation bar
+- Supports icons for visual distinction between steps
+- Shows active/current step with distinct styling
+- Disables steps that come after the current active step
+- Provides accessibility features including ARIA labels
+
+<Canvas of={DpMultistepNavStories.Default} />

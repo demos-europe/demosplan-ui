@@ -4,6 +4,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.16 - 2025-05-12
 
 ### Added
 

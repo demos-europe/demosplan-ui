@@ -55,7 +55,9 @@ For Tailwind v4 projects, import the theme CSS file and use the @theme directive
 
 ```css
 @import "tailwindcss";
-@import "@demos-europe/demosplan-ui/css/theme.css";
+@import "@demos-europe/demosplan-ui/style.css";
+@import "@demos-europe/demosplan-ui//styles/theme.css" layer(theme);
+@import "@demos-europe/demosplan-ui/styles/utilities.css";
 
 /* Optional: Override specific tokens */
 @theme {

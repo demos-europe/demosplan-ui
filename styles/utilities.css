@@ -1,0 +1,30 @@
+.break-words {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/**
+ * Hide scrollbar while keeping the element scrollable. See https://stackoverflow.com/a/63756377/6234391
+ */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/**
+ * Visualize indeterminate system action. Use in conjunction with "animate-busy".
+ */
+.bg-busy {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+  background-size: 60px 60px;
+}
+
+/**
+ * Visualize invalid input elements. Applied by dpValidateMixin.
+ */
+.is-invalid {
+  @apply outline-interactive-warning border-interactive-warning;
+}

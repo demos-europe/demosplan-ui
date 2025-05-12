@@ -2,15 +2,16 @@
   <div class="relative">
     <!-- Search container -->
     <div
+      aria-haspopup="listbox"
+      aria-controls="options-list"
+      :aria-expanded="isOptionsListVisible"
       :class="[
         isInputFocused ? 'border-interactive' : 'border-gray-300',
         { 'focus-within:ring-1 focus-within:ring-interactive': isInputFocused }
       ]"
-      class="border rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out"
+      class="border rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out px-1 py-[2px]"
       role="combobox"
-      aria-haspopup="listbox"
-      aria-controls="options-list"
-      :aria-expanded="isOptionsListVisible"
+      :style="boxHeightStyle"
       tabindex="0"
       @mousedown.stop.prevent="focusInput">
       <label
@@ -50,7 +51,7 @@
     </div>
 
     <!-- Options list -->
-    <div class="relative">
+    <div class="relative z-flyout">
       <ol
         v-if="isOptionsListVisible"
         id="options-list"
@@ -82,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, onUnmounted, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
 

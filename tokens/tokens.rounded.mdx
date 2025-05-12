@@ -1,51 +1,89 @@
 import { Meta } from '@storybook/blocks'
 import Table from '../.storybook/components/Table'
 
-<Meta title="Design Tokens/Rounded"/>
+<Meta title="Design Tokens/Border Radius"/>
 
+# Border Radius Tokens
 
-# Rounded tokens
+Border radius tokens define the consistent rounding of corners throughout the UI. These tokens help create a cohesive visual language and maintain consistent component styling.
 
-These tokens define the way things may be rounded in demosplan.
+## Available Border Radius Values
 
 <Table
-  headers={['Scss Variable', 'Tailwind Class', 'Description']}
+  headers={['Description', 'Tailwind Class', 'SCSS Variable', 'Use Case']}
   rows={[
-    ["$dp-rounded-full", "rounded-full", "Full - use to craft pill-like elements."],
-    ["$dp-rounded-lg", "rounded-lg", "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via `rounded.sm`."],
-    ["$dp-rounded-md", "rounded-md", "Medium - The 'next best' radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded."],
-    ["$dp-rounded-sm", "rounded-sm", "Default - The standard for UI elements that shall appear rounded. Use this value for form elements and other smaller UI elements. When in doubt, pick this one."],
-    ["$dp-rounded-xs", "rounded-xs", "Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have `rounded.sm` applied as border-radius."],
-    ["$dp-rounded-none", "rounded-none", "No border radius."]
+    ["None", "rounded-none", "$dp-rounded-none", "Elements with sharp corners"],
+    ["Extra Small", "rounded-xs", "$dp-rounded-xs", "Minimal rounding, nested elements inside rounded-sm parents"],
+    ["Small (Default)", "rounded-sm", "$dp-rounded-sm", "Default for most UI elements, form inputs, buttons"],
+    ["Medium", "rounded-md", "$dp-rounded-md", "Larger components, list items, cards"],
+    ["Large", "rounded-lg", "$dp-rounded-lg", "Prominent elements, larger containers"],
+    ["Full", "rounded-full", "$dp-rounded-full", "Circular or pill-shaped elements"]
   ]}
 />
 
-## Usage example - Scss
+## Visual Examples
 
-Rounded tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+<div className="flex flex-wrap gap-4 p-4">
+  <div className="w-16 h-16 border-2 border-interactive rounded-none flex items-center justify-center">None</div>
+  <div className="w-16 h-16 border-2 border-interactive rounded-xs flex items-center justify-center">XS</div>
+  <div className="w-16 h-16 border-2 border-interactive rounded-sm flex items-center justify-center">SM</div>
+  <div className="w-16 h-16 border-2 border-interactive rounded-md flex items-center justify-center">MD</div>
+  <div className="w-16 h-16 border-2 border-interactive rounded-lg flex items-center justify-center">LG</div>
+  <div className="w-16 h-16 border-2 border-interactive rounded-full flex items-center justify-center">Full</div>
+</div>
 
-```scss
-@import '@demos-europe/demosplan-ui/tokens/scss/rounded';
-```
+## Usage
 
-Then, tokens can be used within Scss code:
+### Tailwind Usage
 
-```scss
-.toolbar {
-    border-radius: $dp-rounded-md;
-}
-
-.button {
-    border-radius: $dp-rounded;
-}
-```
-
-## Usage example - Tailwind utility class
-
-As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
+Border radius tokens can be applied directly in HTML with Tailwind utility classes:
 
 ```html
-<div class="rounded-sm">
-  I'm just a little label in a big world.
+<!-- Basic usage -->
+<button class="rounded-sm">Default button</button>
+<div class="rounded-md">Card with medium radius</div>
+<span class="rounded-full px-2 py-1">Pill label</span>
+
+<!-- Directional rounding -->
+<div class="rounded-t-lg">Rounded top corners only</div>
+<div class="rounded-r-md">Rounded right corners only</div>
+<div class="rounded-bl-sm">Rounded bottom-left corner only</div>
+
+<!-- Responsive variants -->
+<div class="rounded-sm md:rounded-lg">
+  Changes radius at different breakpoints
 </div>
+
+<!-- Combining with other properties -->
+<button class="rounded-sm bg-interactive text-on-dark p-2">
+  Styled button
+</button>
 ```
+
+### SCSS Usage
+
+```scss
+// Import border radius tokens
+@import '@demos-europe/demosplan-ui/tokens/scss/rounded';
+
+// Use in your styles
+.button {
+  border-radius: $dp-rounded-sm;
+}
+
+.card {
+  border-radius: $dp-rounded-md;
+}
+
+.badge {
+  border-radius: $dp-rounded-full;
+}
+```
+
+## Guidelines
+
+- Use `rounded-sm` as the default for most UI elements
+- Maintain consistent rounding within similar component types
+- Use `rounded-xs` for nested elements within already rounded containers
+- Apply `rounded-full` for pills and circular elements
+- When in doubt, choose the smaller radius option

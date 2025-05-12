@@ -3,47 +3,153 @@ import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Overview"/>
 
-# Design tokens
+# Design Tokens
 
-Design tokens are **named entities that store visual design attributes**. While both design tokens and utility classes
-are the smallest building blocks of this system, design tokens differ in that they provide a specific usage context
-for the values they represent.
+Design tokens are **named entities that store visual design attributes**. They are the smallest building blocks of the
+design system and provide a specific usage context for the values they represent.
 
-Design tokens help **maintaining a scalable and consistent visual system** for ui development. Furthermore, by introducing
-specific brand tokens we lay the groundwork for a themeable system.
+Design tokens help **maintain a scalable and consistent visual system** for UI development. By introducing specific
+brand tokens, we also lay the groundwork for a themeable system that can be customized across different applications.
 
-## Naming scheme
+## Naming Scheme
 
-Tokens are made up of the following scheme:
+Tokens follow a consistent naming pattern:
 
 ```
 <Namespace>-<Category>(-<Domain>)?-<Concept/Element>-<Variant/State>(-<Context>)?
 ```
 
-- *Namespace* is always "dp"
-- *Category* can be "color", "space", or "font-size"
-- *Domain* can be "brand", "data", "ui" or "palette" (domain part is omitted for the sake of readability within generated variables)
-- *Concept/Element* can be either a color name (in palette colors), or a concept the token applies to (like "main" in brand tokens,
-  or "interactive" in ui tokens).
-- *Variant/State* can either be a shade ("dark-2" oder "base") in palette colors, or a state (like "hover", or "progress")
-- *Context* may further specify in which context a value is intended to be used - `$dp-color-message-severe-interactive`
-  should be applied to interactive elements inside messaging components that convey severe state, while
-  `$dp-color-status-progress-fill` can be applied to shapes (like icons or rectangles) to communicate that something is in progress.
+- **Namespace**: Always "dp" (demosplan)
+- **Category**: "color", "space", "text", "radius", "shadow", "z" (z-index)
+- **Domain**: Can be "brand", "data", "ui" or "palette" (omitted in variable names for readability)
+- **Concept/Element**: A color name (in palette colors), or a concept the token applies to (like "interactive")
+- **Variant/State**: A shade ("dark-2" or "base") or a state (like "hover", "active")
+- **Context**: Further specifies where a value should be used (e.g., "fill", "text", "border")
 
-## Applying Design Tokens as Tailwind Utility Classes and SCSS Variables
+## How to Use Design Tokens
 
-Tokens can be utilized through Tailwind Utility Classes and SCSS Variables. As we're currently migrating to Tailwind,
-not all tokens are already available as Tailwind classes.
+Design tokens can be used through **Tailwind utility classes** (recommended) or **SCSS variables**.
+
+### Tailwind Utility Classes
+
+All tokens are available as Tailwind utility classes in the latest version. To use tokens via Tailwind:
+
+#### Tailwind v3 Configuration
+
+For Tailwind v3 projects, import the configuration from demosplan-ui:
+
+```js
+// tailwind.config.js (Tailwind v3)
+const config = {
+  ...require('@demos-europe/demosplan-ui/tailwind.config'),
+  content: [ // Files to watch for tailwind classes ],
+  // Other config options
+}
+
+module.exports = config
+```
+
+#### Tailwind v4 Configuration
+
+For Tailwind v4 projects, import the theme CSS file and use the @theme directive:
+
+```css
+@import "tailwindcss";
+@import "@demos-europe/demosplan-ui/css/theme.css";
+
+/* Optional: Override specific tokens */
+@theme {
+  --color-interactive: var(--dp-color-purple-base, #5000ca);
+}
+```
+
+#### Using Design Tokens in Markup
+
+Once configured, use tokens in your markup:
+
+```html
+<div class="text-interactive hover:text-interactive-hover p-4 rounded-md shadow bg-surface">
+  Content with design tokens applied
+</div>
+```
+
+#### Tailwind v4 CSS Variables System
+
+With Tailwind v4, design tokens are exposed as CSS variables in two formats:
+
+- In `:root`: All tokens with their raw values (e.g., `--dp-color-blue-base: #0057b8`)
+- In `@theme`: Tokens mapped to tailwind-specific properties (e.g., `--text-color-default: var(--dp-color-neutral-dark-2, #333333)`)
+
+This system allows for simpler theming and more predictable inheritance.
+
+### SCSS Variables (Legacy)
+
+For projects still using SCSS, tokens can be imported and used as variables:
+
+1. **Import tokens**:
+
+```scss
+// Import all tokens
+@import "@demos-europe/demosplan-ui/tokens/scss/color";
+@import "@demos-europe/demosplan-ui/tokens/scss/space";
+// ...other token categories
+```
+
+2. **Use tokens in your styles**:
+
+```scss
+.custom-element {
+  font-size: $dp-font-size-medium;
+  color: $dp-color-interactive-default;
+  padding: $dp-space-4;
+
+  &:hover {
+    color: $dp-color-interactive-hover;
+  }
+}
+```
+
+## Overriding Tokens
+
+### Overriding Tailwind Tokens
+
+You can override design tokens by setting CSS variables:
+
+```css
+:root {
+  /* Override a brand color */
+  --dp-color-blue-base: #2400d0;
+
+  /* Override a specific semantic token */
+  --dp-color-interactive-hover: #e100bd;
+}
+```
+
+### Overriding SCSS Variables
+
+To override SCSS variables, define your overrides before importing the token files:
+
+```scss
+// Override a token
+$dp-color-interactive-hover: #9700ff;
+
+// Import tokens after overrides
+@import '@demos-europe/demosplan-ui/tokens/scss/color.ui';
+```
+
+## Available Token Categories
 
 <Table
-  headers={['Token', 'Scss Variable', 'Tailwind Utility Class']}
+  headers={['Token Category', 'Description', 'Tailwind Example', 'SCSS Example']}
   rows={[
-    ["Border Radius", "✔", "✔"],
-    ["Box Shadow", "✔", "✔"],
-    ["Breakpoints", "✔", "✔"],
-    ["Color", "✔", ""],
-    ["Font Size", "✔", ""],
-    ["Space", "✔", "✔"],
-    ["Z-Index", "✔", "✔"]
+    ["Color", "Brand, UI, and data visualization colors", "text-interactive hover:text-interactive-hover", "$dp-color-interactive-default"],
+    ["Space", "Spacing scale for margins, padding, etc.", "p-4 m-2 gap-1.5", "$dp-space-4"],
+    ["Font Size", "Typography scale and semantic sizes", "text-xs text-h1", "$dp-font-size-medium"],
+    ["Border Radius", "Rounded corners for UI elements", "rounded-md rounded-full", "$dp-rounded-md"],
+    ["Box Shadow", "Elevation effects for components", "shadow shadow-lg", "$dp-box-shadow"],
+    ["Z-Index", "Stacking context values", "z-dropdown z-modal", "$dp-z-index-dropdown"],
+    ["Breakpoints", "Responsive design breakpoints", "sm:flex lg:grid", "$dp-breakpoints-lg"]
   ]}
 />
+
+See the individual token pages for complete details and available values for each category.

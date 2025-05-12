@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import '../../tokens/dist/css/theme.css';
+@import "../../tokens/dist/css/theme.css";
 
 @theme {
   /* Overrides here */

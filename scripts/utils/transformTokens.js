@@ -260,8 +260,8 @@ const transformTailwindTokens =  (formatterArguments, corePluginsColor) => {
  * Uses simplified CSS variable references without redundant fallbacks
  */
 const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }) => {
-  const themeDeclarations = [];
-  const rootDeclarations = [];
+  const themeDeclarations = []
+  const rootDeclarations = []
 
   // Group tokens by category for better organization in @theme
   const tokenCategories = {
@@ -272,127 +272,175 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
     'boxShadow': 'shadow',
     'zIndex': 'z',
     'breakpoints': 'breakpoint'
-  };
+  }
 
   // Transform camelCase to dash-case
   const camelToDash = (str) => {
-    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-  };
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+  }
+
+  // Escape periods in CSS variable names
+  const escapeCssVariableName = (name) => {
+    // Replace dots in variable names with \. (escaped dot)
+    return name.replace(/\.([0-9])/g, '\\.$1')
+  }
 
   // Get raw value for root declaration
   const getRawValue = (token, dictionary) => {
     // For breakpoints, use the raw value
     if (token.path[0] === 'breakpoints') {
-      return token.original.value;
+      return token.original.value
     }
-
     // Return the resolved value without CSS variable references
-    return resolveValue(token, dictionary);
-  };
+    return resolveValue(token, dictionary)
+  }
 
   // Function to get all possible references for a token, from most specific to most primitive
   const getTokenReferenceChain = (token, dictionary) => {
-    const references = [];
-    let current = token;
+    const references = []
+    let current = token
 
     // Get the primitive value (final fallback)
-    const primitiveValue = resolveValue(token, dictionary);
+    const primitiveValue = resolveValue(token, dictionary)
 
     // If token doesn't reference another token, just return the primitive value
     if (!token.original || !token.original.value.startsWith('{')) {
-      return {
-        references: [],
-        primitiveValue
-      };
+      return { references: [], primitiveValue }
     }
 
     // Build the chain of references
     while (current.original && current.original.value.startsWith('{')) {
-      const ref = dictionary.getReferences(current.original.value)[0];
-      const refName = transformTailwindTokenName(ref, true).replace(/\./g, '-');
-      const dashedRefName = camelToDash(refName);
+      const ref = dictionary.getReferences(current.original.value)[0]
+      const refName = transformTailwindTokenName(ref, true).replace(/\./g, '-')
+      const dashedRefName = camelToDash(refName)
       // We'll escape these references at usage time, so we keep them in standard format here
-      references.push(`--${platform.prefix}${dashedRefName}`);
-      current = ref;
+      references.push(`--${platform.prefix}${dashedRefName}`)
+      current = ref
     }
 
-    return {
-      references,
-      primitiveValue
-    };
-  };
+    return { references, primitiveValue }
+  }
 
-  // Escape periods in CSS variable names
-  const escapeCssVariableName = (name) => {
-    // Replace dots in variable names with \. (escaped dot)
-    // For example: spacing-0.5 becomes spacing-0\\.5
-    return name.replace(/\.([0-9])/g, '\\.$1');
-  };
+  // Prepare a token name for use in CSS variables
+  const prepareTokenName = (token, tokenName, keepFullPath = false) => {
+    // If this is a full path token name (for root variables)
+    const name = keepFullPath
+      ? transformTailwindTokenName(token, true).replace(/\./g, '-')
+      : tokenName
 
-  // Process color tokens differently since they have subcategories based on property types in Tailwind
+    // Handle DEFAULT token
+    if (!keepFullPath && token.path[token.path.length - 1] === 'DEFAULT') {
+      // Get the token path without the DEFAULT key
+      const parentPath = token.path.slice(0, -1)
+      // Create a new token name without the DEFAULT suffix
+      return parentPath.slice(token.path[0] === 'color' ? 2 : 1).join('-').toLowerCase()
+    }
+
+    // Convert camelCase to dash-case
+    const dashedName = camelToDash(name)
+    // Escape periods for CSS compatibility
+    return escapeCssVariableName(dashedName)
+  }
+
+  // Build a CSS variable reference with fallbacks
+  const buildVariableWithFallbacks = (safeFullTokenName, references, primitiveValue, platform) => {
+    let varValue = `var(--${platform.prefix}${safeFullTokenName}`
+
+    // Add any referenced tokens as fallbacks
+    if (references.length > 0) {
+      references.forEach(ref => {
+        // Ensure all referenced variables are also escaped
+        const safeRef = escapeCssVariableName(ref)
+        varValue += `, var(${safeRef}`
+      })
+
+      // Add the primitive value as the final fallback
+      varValue += `, ${primitiveValue}` + ')'.repeat(references.length + 1)
+    } else {
+      // If there are no references, just add the primitive value as fallback
+      varValue += `, ${primitiveValue})`
+    }
+
+    return varValue
+  }
+
+  // Add a variable declaration to the root block
+  const addRootDeclaration = (name, value) => {
+    rootDeclarations.push(`  ${name}: ${value};`)
+  }
+
+  // Add a variable declaration to the theme block
+  const addThemeDeclaration = (name, value) => {
+    themeDeclarations.push(`  ${name}: ${value};`)
+  }
+
+  // Determine the property-specific prefix for color tokens
+  const getColorPrefix = (token) => {
+    let prefix = 'color'
+
+    if (token.path[1] === 'ui-tailwind') {
+      if (token.path[2] === 'textColor') {
+        prefix = 'text-color'
+      } else if (token.path[2] === 'backgroundColor') {
+        prefix = 'background-color'
+      } else if (token.path[2] === 'borderColor') {
+        prefix = 'border-color'
+      }
+    }
+
+    return prefix
+  }
+
+  // Process a single token
+  const processToken = (token, sourceCategory = null, targetPrefix = null) => {
+    // Skip legacy tokens
+    if (token.path[0] === 'color' && token.path[1] === 'ui') {
+      return
+    }
+
+    // Extract token name
+    let tokenName = transformTailwindTokenName(token)
+
+    // Process names and prepare safe versions for CSS
+    const safeTokenName = prepareTokenName(token, tokenName)
+    const safeFullTokenName = prepareTokenName(token, tokenName, true)
+
+    // Add to root declarations
+    const rawValue = getRawValue(token, dictionary)
+    addRootDeclaration(`--${platform.prefix}${safeFullTokenName}`, rawValue)
+
+    // Get the reference chain and primitive value for fallbacks
+    const { references, primitiveValue } = getTokenReferenceChain(token, dictionary)
+
+    // Build the variable value with fallbacks
+    const varValue = buildVariableWithFallbacks(safeFullTokenName, references, primitiveValue, platform)
+
+    // Determine the appropriate prefix for this token category
+    const prefix = sourceCategory === 'color'
+      ? getColorPrefix(token)
+      : targetPrefix
+
+    // Add the main variable to theme declarations
+    addThemeDeclaration(`--${prefix}-${safeTokenName}`, varValue)
+
+    // Special handling for font-size tokens with line height
+    if (sourceCategory === 'fontSize' && token.original.$lineHeight) {
+      // For line height, create a paired variable with --line-height suffix
+      const lineHeightVar = `--${targetPrefix}-${safeTokenName}--line-height`
+      const lineHeightRootVar = `--${platform.prefix}${targetPrefix}-${safeTokenName}--line-height`
+
+      // Add line height to theme declarations with simpler fallback
+      addThemeDeclaration(lineHeightVar, `var(${lineHeightRootVar}, ${token.original.$lineHeight})`)
+
+      // Add lineHeight to root variables
+      addRootDeclaration(lineHeightRootVar, token.original.$lineHeight)
+    }
+  }
+
+  // Process color tokens
   dictionary.allTokens
     .filter(token => token.path[0] === 'color' && !isDeprecated(token))
-    .forEach(token => {
-      // Skip legacy tokens
-      if (token.path[1] === 'ui') {
-        return;
-      }
-
-      let tokenName = transformTailwindTokenName(token);
-
-      // Generate root variable name using the full token path
-      const fullTokenName = transformTailwindTokenName(token, true).replace(/\./g, '-');
-      // Convert any camelCase segments to dash-case (e.g. textColor → text-color)
-      const dashedFullTokenName = camelToDash(fullTokenName);
-      // Escape any periods in the token name (e.g. spacing-0.5 → spacing-0\\.5)
-      const safeFullTokenName = escapeCssVariableName(dashedFullTokenName);
-
-      const rawValue = getRawValue(token, dictionary);
-      rootDeclarations.push(`  --${platform.prefix}${safeFullTokenName}: ${rawValue};`);
-
-      // Determine the proper prefix based on the token path
-      let prefix = 'color';
-
-      // Check for property-specific naming within the tailwind config and use dash-case
-      if (token.path[1] === 'ui-tailwind') {
-        if (token.path[2] === 'textColor') {
-          prefix = 'text-color';
-        } else if (token.path[2] === 'backgroundColor') {
-          prefix = 'background-color';
-        } else if (token.path[2] === 'borderColor') {
-          prefix = 'border-color';
-        }
-      }
-
-      // Convert the token name to dash-case
-      const dashedTokenName = camelToDash(tokenName);
-      // Escape any periods in the token name
-      const safeTokenName = escapeCssVariableName(dashedTokenName);
-
-      // Get the reference chain and primitive value
-      const { references, primitiveValue } = getTokenReferenceChain(token, dictionary);
-
-      // Build the variable with references and fallbacks
-      let varValue = `var(--${platform.prefix}${safeFullTokenName}`;
-
-      // Add any referenced tokens as fallbacks
-      if (references.length > 0) {
-        references.forEach(ref => {
-          // Ensure all referenced variables are also escaped
-          const safeRef = escapeCssVariableName(ref);
-          varValue += `, var(${safeRef}`;
-        });
-
-        // Add the primitive value as the final fallback
-        varValue += `, ${primitiveValue}` + ')'.repeat(references.length + 1);
-      } else {
-        // If there are no references, just add the primitive value as fallback
-        varValue += `, ${primitiveValue})`;
-      }
-
-      // Add the variable with the appropriate prefix
-      themeDeclarations.push(`  --${prefix}-${safeTokenName}: ${varValue};`);
-    });
+    .forEach(token => processToken(token, 'color'))
 
   // Process other token categories
   Object.entries(tokenCategories)
@@ -400,74 +448,12 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
     .forEach(([sourceCategory, targetPrefix]) => {
       dictionary.allTokens
         .filter(token => token.path[0] === sourceCategory && !isDeprecated(token))
-        .forEach(token => {
-          // Check if the last path segment is 'DEFAULT' and remove it if necessary
-          let tokenName = transformTailwindTokenName(token);
-          if (token.path[token.path.length - 1] === 'DEFAULT') {
-            // Get the token path without the DEFAULT key
-            const parentPath = token.path.slice(0, -1);
-            // Create a new token name without the DEFAULT suffix
-            tokenName = parentPath.slice(1).join('-').toLowerCase();
-          }
+        .forEach(token => processToken(token, sourceCategory, targetPrefix))
+    })
 
-          // Convert the token name to dash-case
-          const dashedTokenName = camelToDash(tokenName);
-          // Escape any periods in the token name
-          const safeTokenName = escapeCssVariableName(dashedTokenName);
-
-          // Generate root variable name using the full token path and convert to dash-case
-          const fullTokenName = transformTailwindTokenName(token, true).replace(/\./g, '-');
-          const dashedFullTokenName = camelToDash(fullTokenName);
-          // Escape any periods in the token name (e.g. spacing-0.5 → spacing-0\\.5)
-          const safeFullTokenName = escapeCssVariableName(dashedFullTokenName);
-
-          const rawValue = getRawValue(token, dictionary);
-          rootDeclarations.push(`  --${platform.prefix}${safeFullTokenName}: ${rawValue};`);
-
-          // Get the reference chain and primitive value
-          const { references, primitiveValue } = getTokenReferenceChain(token, dictionary);
-
-          // Build the variable with references and fallbacks
-          let varValue = `var(--${platform.prefix}${safeFullTokenName}`;
-
-          // Add any referenced tokens as fallbacks
-          if (references.length > 0) {
-            references.forEach(ref => {
-              // Ensure all referenced variables are also escaped
-              const safeRef = escapeCssVariableName(ref);
-              varValue += `, var(${safeRef}`;
-            });
-
-            // Add the primitive value as the final fallback
-            varValue += `, ${primitiveValue}` + ')'.repeat(references.length + 1);
-          } else {
-            // If there are no references, just add the primitive value as fallback
-            varValue += `, ${primitiveValue})`;
-          }
-
-          // Handle font size tokens that may include line height
-          if (sourceCategory === 'fontSize' && token.original.$lineHeight) {
-            // Add the variable with the appropriate prefix and fallbacks
-            themeDeclarations.push(`  --${targetPrefix}-${safeTokenName}: ${varValue};`);
-
-            // For line height, create a paired variable with --line-height suffix
-            const lineHeightVar = `--${targetPrefix}-${safeTokenName}--line-height`;
-            const lineHeightRootVar = `--${platform.prefix}${targetPrefix}-${safeTokenName}--line-height`;
-
-            // Add line height to theme declarations with simpler fallback
-            themeDeclarations.push(`  ${lineHeightVar}: var(${lineHeightRootVar}, ${token.original.$lineHeight});`);
-
-            // Add lineHeight to root variables
-            rootDeclarations.push(`  ${lineHeightRootVar}: ${token.original.$lineHeight};`);
-          } else {
-            // Add the variable with the appropriate prefix and fallbacks
-            themeDeclarations.push(`  --${targetPrefix}-${safeTokenName}: ${varValue};`);
-          }
-        });
-    });
-
-  const fileComment = fileHeader({ file, commentStyle: 'css' });
-  return `${fileComment}\n:root {\n${rootDeclarations.join('\n')}\n}\n\n@theme {\n${themeDeclarations.join('\n')}\n}\n`;
+  // Generate the final CSS output
+  const fileComment = fileHeader({ file, commentStyle: 'css' })
+  return `${fileComment}\n:root {\n${rootDeclarations.join('\n')}\n}\n\n@theme {\n${themeDeclarations.join('\n')}\n}\n`
 };
 
 module.exports = { transformScssTokens, transformTailwindTokens, transformThemeTokens }

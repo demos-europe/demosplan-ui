@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, onUnmounted, watch } from 'vue'
 import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
 
@@ -367,30 +367,30 @@ async function fetchOptions(searchString: string) {
   }
 }
 
+const observer = new MutationObserver((mutations) => {
+  const hasContentChanged = mutations.some(mutation =>
+    // Direct text change
+    mutation.type === 'characterData' ||
+    // Nodes added or removed
+    mutation.addedNodes.length > 0 ||
+    mutation.removedNodes.length > 0
+  )
+
+  if (hasContentChanged) {
+    updateValue()
+  }
+})
+
 // Setup mutation observer to track contenteditable changes
 onMounted(() => {
-  if (!input.value) {
-    return
-  }
-
-  const observer = new MutationObserver((mutations) => {
-    const hasContentChanged = mutations.some(mutation =>
-      // Direct text change
-      mutation.type === 'characterData' ||
-      // Nodes added or removed
-      mutation.addedNodes.length > 0 ||
-      mutation.removedNodes.length > 0
-    )
-
-    if (hasContentChanged) {
-      updateValue()
-    }
-  })
-
   observer.observe(input.value, {
     childList: true,
     characterData: true,
     subtree: true
   })
+})
+
+onUnmounted(() => {
+  observer.disconnect()
 })
 </script>

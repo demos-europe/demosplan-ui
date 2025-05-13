@@ -50,7 +50,7 @@ export default {
 
           invalidFields.forEach(field => {
             const fieldName = field.getAttribute('data-dp-validate-error-fieldname')
-            if (!fieldName) return // Überspringe Felder ohne Namen
+            if (!fieldName) return
 
             // Search for parent element with data-wizard-topic
             let topicElement = field.closest('[data-wizard-topic]')

@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow space-inset-m">
+  <div class="shadow-sm space-inset-m">
     <h4
       v-if="heading !== ''"
       class="u-mb-0 space-inline-xs">

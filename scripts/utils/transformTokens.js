@@ -270,7 +270,7 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
     'space': 'spacing',
     'fontSize': 'text',
     'boxShadow': 'shadow',
-    'zIndex': 'z',
+    'zIndex': 'z-index',
     'breakpoints': 'breakpoint'
   }
 
@@ -327,28 +327,6 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
     const name = keepFullPath
       ? transformTailwindTokenName(token, true).replace(/\./g, '-')
       : tokenName
-
-    // Handle DEFAULT token
-    if (!keepFullPath && token.path[token.path.length - 1] === 'DEFAULT') {
-      // Get the token path without the DEFAULT key
-      const parentPath = token.path.slice(0, -1)
-      
-      // Special handling for color tokens to avoid "color-color-" duplication
-      if (token.path[0] === 'color') {
-        // Get the concept/element name (slice from index 2 to skip 'color' and the domain)
-        const conceptParts = parentPath.slice(2)
-        
-        // If the first part is 'color', then remove it to prevent duplication
-        if (conceptParts[0] === 'color') {
-          return conceptParts.slice(1).join('-').toLowerCase()
-        } else {
-          return conceptParts.join('-').toLowerCase()
-        }
-      } else {
-        // Standard handling for non-color tokens
-        return parentPath.slice(1).join('-').toLowerCase()
-      }
-    }
 
     // Convert camelCase to dash-case
     const dashedName = camelToDash(name)
@@ -435,12 +413,12 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
       : targetPrefix
 
     // Add the main variable to theme declarations with prefix handling
-    
+
     // Detect if we might have duplication of "color-" prefix
     const finalTokenName = prefix === 'color' && safeTokenName.startsWith('color-')
       ? safeTokenName.replace(/^color-/, '') // Remove leading 'color-' if already present
       : safeTokenName
-      
+
     addThemeDeclaration(`--${prefix}-${finalTokenName}`, varValue)
 
     // Special handling for font-size tokens with line height

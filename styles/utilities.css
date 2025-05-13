@@ -26,5 +26,5 @@
  * Visualize invalid input elements. Applied by dpValidateMixin.
  */
 @utility is-invalid {
-  @apply outline-interactive-warning border-interactive-warning;
+  @apply !outline-interactive-warning !border-interactive-warning;
 }

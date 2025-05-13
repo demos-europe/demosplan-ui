@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/blocks'
 import Table from '../.storybook/components/Table'
+import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Overview"/>
 
@@ -54,9 +55,16 @@ module.exports = config
 For Tailwind v4 projects, import the theme CSS file and use the @theme directive:
 
 ```css
+/* Either, use the simple approach importing everything tailwindcss contains */
 @import "tailwindcss";
-@import "@demos-europe/demosplan-ui/style.css";
-@import "@demos-europe/demosplan-ui//styles/theme.css" layer(theme);
+@import "@demos-europe/demosplan-ui/styles/theme.css" layer(theme);
+@import "@demos-europe/demosplan-ui/styles/utilities.css";
+
+/* Or, only use demosplan-ui Theme and Utilities, and Tailwind Preflight and Utilities */
+@layer theme, base, utilities;
+@import "@demos-europe/demosplan-ui/styles/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 @import "@demos-europe/demosplan-ui/styles/utilities.css";
 
 /* Optional: Override specific tokens */
@@ -64,6 +72,10 @@ For Tailwind v4 projects, import the theme CSS file and use the @theme directive
   --color-interactive: var(--dp-color-purple-base, #5000ca);
 }
 ```
+
+<Notice content={
+  `The utilities.css provided by demosplan-ui can not be imported into the "layer(utilities)" layer, nevertheless Tailwind picks them up accordingly.`
+} />
 
 #### Using Design Tokens in Markup
 
@@ -148,7 +160,7 @@ $dp-color-interactive-hover: #9700ff;
     ["Space", "Spacing scale for margins, padding, etc.", "p-4 m-2 gap-1.5", "$dp-space-4"],
     ["Font Size", "Typography scale and semantic sizes", "text-xs text-h1", "$dp-font-size-medium"],
     ["Border Radius", "Rounded corners for UI elements", "rounded-md rounded-full", "$dp-rounded-md"],
-    ["Box Shadow", "Elevation effects for components", "shadow shadow-lg", "$dp-box-shadow"],
+    ["Box Shadow", "Elevation effects for components", "shadow-sm shadow-lg", "$dp-box-shadow"],
     ["Z-Index", "Stacking context values", "z-dropdown z-modal", "$dp-z-index-dropdown"],
     ["Breakpoints", "Responsive design breakpoints", "sm:flex lg:grid", "$dp-breakpoints-lg"]
   ]}

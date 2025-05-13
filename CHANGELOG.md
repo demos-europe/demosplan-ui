@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) Breaking: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Removed
 
 - ([#1265](https://github.com/demos-europe/demosplan-ui/pull/1265) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))

@@ -245,7 +245,7 @@ const classes = computed(() => {
   let _classes: string[] = [
     `px-1 py-0.5 max-w-full
     text-base leading-4 bg-surface
-    outline outline-1 outline-offset-0 outline-transparent
+    outline-1 outline-offset-0 outline-transparent
     focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
     required:shadow-none`
   ]

@@ -251,7 +251,7 @@ const allColorClasses = {
      * - https://www.natestephens.dev/opacity-with-css-variable-color
      */
     solidOutlineSubtle: `
-      outline outline-4 outline-offset-0 outline-transparent
+      outline-4 outline-offset-0 outline-transparent
       focus-visible:outline-[#005eb1]/50 focus-visible:z-above-zero`,
     /**
      * SolidOutline: classes that apply to "solid" and "outline" button color variants.
@@ -288,7 +288,7 @@ const allColorClasses = {
       active:border-interactive-subtle-active `
   },
   secondary: {
-    solidOutlineSubtle: ' outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#595959]/50 ',
+    solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#595959]/50 ',
     solidOutline: `
       border border-interactive-secondary\
       hover:border-interactive-secondary-hover\
@@ -315,7 +315,7 @@ const allColorClasses = {
       active:border-interactive-secondary-subtle-active `
   },
   warning: {
-    solidOutlineSubtle: ' outline outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#B20000]/50 ',
+    solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#B20000]/50 ',
     solidOutline: `
       border border-interactive-warning\
       hover:border-interactive-warning-hover\

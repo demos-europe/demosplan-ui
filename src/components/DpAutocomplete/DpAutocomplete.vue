@@ -9,7 +9,7 @@
         isInputFocused ? 'border-interactive' : 'border-gray-300',
         { 'focus-within:ring-1 focus-within:ring-interactive': isInputFocused }
       ]"
-      class="border rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out px-1 py-[2px]"
+      class="border border-neutral rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out px-1 py-[2px]"
       role="combobox"
       :style="boxHeightStyle"
       tabindex="0"
@@ -56,7 +56,7 @@
         v-if="isOptionsListVisible"
         id="options-list"
         role="listbox"
-        class="absolute w-full border-x border-b border-gray-300 p-2 bg-surface z-10 shadow-md mt-[1px]">
+        class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]">
         <li
           v-for="(option, idx) in props.options"
           :key="option[label] + idx"

@@ -18,6 +18,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1268](https://github.com/demos-europe/demosplan-ui/pull/1268)) DpAutocomplete: replace vue-omnibox with custom logic ([@salisdemos](https://github.com/salisdemos)
 - ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1272](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditableList: Adjust margin between buttons ([@riechedemos](https://github.com/riechedemos))
 - ([#1271](https://github.com/demos-europe/demosplan-ui/pull/1271)) DpTreeList: initialize the Stickier instances in nextTick and if the element’s height is greater than zero ([@sakutademos](https://github.com/sakutademos)
 
 

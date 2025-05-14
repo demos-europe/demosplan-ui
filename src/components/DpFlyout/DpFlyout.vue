@@ -26,7 +26,7 @@
       </slot>
     </button>
     <span
-      class="dp-flyout-content z-flyout shadow bg-surface text-left"
+      class="dp-flyout-content z-flyout shadow-sm bg-surface text-left"
       :class="{
         'block absolute': isExpanded,
         'hidden': !isExpanded,

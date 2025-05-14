@@ -3,34 +3,36 @@ import Table from '../.storybook/components/Table'
 
 <Meta title="Design Tokens/Space"/>
 
-# Spacing tokens
+# Spacing Tokens
 
-Spacing tokens define the spacing scale available with demosplan-ui.
+Spacing tokens define the consistent spacing scale available throughout demosplan-ui. They are used for padding, margins, gaps, and other spatial relationships in the UI.
+
+## Available Spacing Values
 
 <Table
-  headers={['Scss Variable', 'Tailwind Class Part', 'InuitCSS Class', 'Value']}
+  headers={['Token Value', 'Tailwind Class', 'SCSS Variable', 'Pixel Value', 'InuitCss Variable']}
   rows={[
-    ["$dp-space-0", "0", "", "0px"],
-    ["$dp-space-0_5", "0.5", "", "3px"],
-    ["$dp-space-1", "1", "$inuit-base-spacing-unit--tiny", "6px"],
-    ["$dp-space-1_5", "1.5", "", "9px"],
-    ["$dp-space-2", "2", "$inuit-base-spacing-unit--small", "12px"],
-    ["$dp-space-3", "3", "", "18px"],
-    ["$dp-space-4", "4", "$inuit-base-spacing-unit", "24px"],
-    ["$dp-space-5", "5", "", "36px"],
-    ["$dp-space-6", "6", "$inuit-base-spacing-unit--large", "48px"],
-    ["$dp-space-7", "7", "", "65px"],
-    ["$dp-space-8", "8", "", "90px"],
-    ["$dp-space-9", "9", "", "125px"],
-    ["$dp-space-10", "10", "", "170px"],
-    ["$dp-space-11", "11", "", "230px"],
-    ["$dp-space-12", "12", "", "320px"],
-    ["$dp-space-13", "13", "", "440px"],
-    ["$dp-space-14", "14", "", "600px"]
+    ["0", "p-0, m-0, gap-0, etc.", "$dp-space-0", "0px", ""],
+    ["0.5", "p-0.5, m-0.5, etc.", "$dp-space-0.5", "3px", ""],
+    ["1", "p-1, m-1, etc.", "$dp-space-1", "6px", "$inuit-base-spacing-unit--tiny"],
+    ["1.5", "p-1.5, m-1.5, etc.", "$dp-space-1.5", "9px", ""],
+    ["2", "p-2, m-2, etc.", "$dp-space-2", "12px", "$inuit-base-spacing-unit--small"],
+    ["3", "p-3, m-3, etc.", "$dp-space-3", "18px", ""],
+    ["4", "p-4, m-4, etc.", "$dp-space-4", "24px", "$inuit-base-spacing-unit"],
+    ["5", "p-5, m-5, etc.", "$dp-space-5", "36px", ""],
+    ["6", "p-6, m-6, etc.", "$dp-space-6", "48px", "$inuit-base-spacing-unit--large"],
+    ["7", "p-7, m-7, etc.", "$dp-space-7", "65px", ""],
+    ["8", "p-8, m-8, etc.", "$dp-space-8", "90px", ""],
+    ["9", "p-9, m-9, etc.", "$dp-space-9", "125px", ""],
+    ["10", "p-10, m-10, etc.", "$dp-space-10", "170px", ""],
+    ["11", "p-11, m-11, etc.", "$dp-space-11", "230px", ""],
+    ["12", "p-12, m-12, etc.", "$dp-space-12", "320px", ""],
+    ["13", "p-13, m-13, etc.", "$dp-space-13", "440px", ""],
+    ["14", "p-14, m-14, etc.", "$dp-space-14", "600px", ""]
   ]}
 />
 
-<ul className="sb-unstyled list-none space-y-2 shadow p-2 inline-block">
+<ul className="sb-unstyled list-none space-y-2 shadow-sm p-2 inline-block">
   <li className="w-0 bg-message-debug">0</li>
   <li className="w-px bg-message-debug">px</li>
   <li className="w-0.5 bg-message-debug">0.5</li>
@@ -51,34 +53,51 @@ Spacing tokens define the spacing scale available with demosplan-ui.
   <li className="w-14 bg-message-debug">14</li>
 </ul>
 
-While the values `0.5` to `6` follow a linear progression with "in-betweens",
-the bigger values follow a geometric progression (each step is 1.371 x its predecessor).
-This geometric progression aims to reduce the overall number of available steps while
-ensuring each step is easily distinguishable from the others.
+The spacing scale follows a progressive pattern:
+- Values `0.5` to `6` follow a linear progression with increments
+- Values `7` to `14` follow a geometric progression (each ~1.37× larger than the previous)
 
-## Usage example - Scss
+## Usage
 
-Spacing tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+### Tailwind Usage (Recommended)
 
-```scss
-@import '@demos-europe/demosplan-ui/tokens/scss/space';
-```
+Spacing tokens can be used in any Tailwind utility that accepts spacing values:
 
-Then, they can be used within Scss code:
+```html
+<!-- Padding -->
+<div class="p-4">Padding on all sides</div>
+<div class="pt-2 px-4 pb-6">Different padding per side</div>
 
-```scss
-.huge-element {
-    width: $dp-space-14;
-}
-```
+<!-- Margin -->
+<div class="m-2">Margin on all sides</div>
+<div class="my-4">Vertical margin</div>
 
-## Usage example - Tailwind utility class
+<!-- Width and height -->
+<div class="w-12 h-6">Fixed size element</div>
 
-As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
-They replace the default classes mentioned in the [Tailwind documentation](https://tailwindcss.com/docs/customizing-spacing).
-Instead, the custom spacing scale shown here is inherited by the padding, margin, width, height, maxHeight,
-gap, inset, space, translate, scrollMargin, and scrollPadding core plugins of Tailwind.
+<!-- Gap in flex/grid layouts -->
+<div class="flex gap-1.5">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</div>
 
+<!-- The real world example -->
 <div className="w-6 h-6 space-y-2 gap-1.5 bg-message-debug">
   Css is awesome.
 </div>
+```
+
+### SCSS Usage (Legacy)
+
+```scss
+// Import spacing tokens
+@import '@demos-europe/demosplan-ui/tokens/scss/space';
+
+// Use in your styles
+.element {
+  padding: $dp-space-4;
+  margin-bottom: $dp-space-2;
+  gap: $dp-space-1;
+  width: $dp-space-14;
+}
+```

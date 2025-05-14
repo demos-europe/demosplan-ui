@@ -245,7 +245,7 @@ const classes = computed(() => {
   let _classes: string[] = [
     `px-1 py-0.5 max-w-full
     text-base leading-4 bg-surface
-    outline outline-1 outline-offset-0 outline-transparent
+    outline-1 outline-offset-0 outline-transparent
     focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
     required:shadow-none`
   ]
@@ -253,9 +253,9 @@ const classes = computed(() => {
   if (props.rounded === 'full') {
     _classes.push('rounded-input')
   } else if (props.rounded === 'left') {
-    _classes.push('rounded-l')
+    _classes.push('rounded-l-input')
   } else if (props.rounded === 'right') {
-    _classes.push('rounded-r')
+    _classes.push('rounded-r-input')
   }
 
   if (!(props.size && props.size > 0)) {

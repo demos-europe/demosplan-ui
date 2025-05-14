@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-lg shadow px-4 py-3">
+  <div class="rounded-lg shadow-sm px-4 py-3">
     <h4
       v-if="heading !== ''"
       class="flex gap-1 items-center text-base mb-2">

@@ -1,0 +1,11 @@
+@import "../tokens/dist/css/theme.css";
+
+@theme {
+  --flex-shrink-2: 2;
+  --animate-busy: busy 1.5s linear infinite;
+
+  @keyframes busy {
+    from { background-position: 0 0; }
+    to { background-position: 30px 30px; }
+  }
+}

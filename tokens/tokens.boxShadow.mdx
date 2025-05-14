@@ -1,50 +1,98 @@
 import { Meta } from '@storybook/blocks'
 import Table from '../.storybook/components/Table'
+import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Box Shadow"/>
 
-# Box Shadow tokens
+# Box Shadow Tokens
 
-The BoxShadow tokens add shadow effects around an element's frame.
+Box shadow tokens provide consistent elevation effects across the UI. These tokens help create visual hierarchy and depth in the interface.
+
+## Available Shadow Values
 
 <Table
-  headers={['Scss Variable', 'Tailwind Class', 'Description']}
+  headers={['Description', 'Tailwind Class', 'SCSS Variable', 'Use Case']}
   rows={[
-    ["$dp-box-shadow", ".shadow", "Default elevation. Use for Cards + Buttons."],
-    ["$dp-box-shadow-md", ".shadow-md", "Medium elevation. Use for Elevated Cards + Buttons."],
-    ["$dp-box-shadow-lg", ".shadow-lg", "Highest elevation. Use for Modals."],
-    ["$dp-box-shadow-xl", ".shadow-xl", "Extra shadow optimized for boxes that take up 100% width or height of viewport. Use e.g. for Sidebar, BottomBar."]
+    ["Default shadow", "shadow-sm", "$dp-box-shadow-sm", "Cards, buttons, dropdowns"],
+    ["Medium shadow", "shadow-md", "$dp-box-shadow-md", "Elevated cards, active buttons"],
+    ["Large shadow", "shadow-lg", "$dp-box-shadow-lg", "Modals, popovers"],
+    ["Extra large shadow", "shadow-xl", "$dp-box-shadow-xl", "Full-width/height elements (sidebars, bottom bars)"]
   ]}
 />
 
-Detailed use cases for each can be found in the token description.
+<Notice content={
+  `The legacy SCSS variables $dp-box-shadow-1 through $dp-box-shadow-4 are deprecated and will be removed in a future release.`
+} />
 
-The `$dp-box-shadow-1` to `$dp-box-shadow-4` Scss variables still work, but will be removed eventually.
+## Shadow Examples
 
-## Usage example - Scss
+<div className="flex flex-wrap gap-6 p-4">
+  <div className="w-10 h-10 bg-surface shadow-sm flex items-center justify-center">shadow-sm</div>
+  <div className="w-10 h-10 bg-surface shadow-md flex items-center justify-center">shadow-md</div>
+  <div className="w-10 h-10 bg-surface shadow-lg flex items-center justify-center">shadow-lg</div>
+  <div className="w-10 h-10 bg-surface shadow-xl flex items-center justify-center">shadow-xl</div>
+</div>
 
-BoxShadow tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+## Usage
 
+### Tailwind Usage
+
+Box shadow tokens can be applied directly in HTML with Tailwind utility classes:
+
+```html
+<!-- Basic shadow -->
+<div class="shadow-sm p-4 bg-surface">
+  Card with standard shadow
+</div>
+
+<!-- Elevated element -->
+<div class="shadow-md p-4 bg-surface">
+  Elevated card
+</div>
+
+<!-- Modal -->
+<div class="shadow-lg p-6 bg-surface">
+  Modal content
+</div>
+
+<!-- Sidebar -->
+<aside class="shadow-xl p-4 bg-surface h-screen">
+  Sidebar content
+</aside>
+
+<!-- Hover effects -->
+<button class="shadow-sm hover:shadow-md active:shadow-lg">
+  Button with dynamic shadows
+</button>
 ```
+
+### SCSS Usage
+
+```scss
+// Import box shadow tokens
 @import '@demos-europe/demosplan-ui/tokens/scss/boxShadow';
-```
 
-Then, they can be used within Scss code:
+// Use in your styles
+.card {
+  box-shadow: $dp-box-shadow;
+}
 
-```
-&.is-active:active {
-    box-shadow: $dp-box-shadow;
-    color: $actionbox-color-dark;
+.modal {
+  box-shadow: $dp-box-shadow-lg;
+}
+
+.button {
+  box-shadow: $dp-box-shadow;
+
+  &:hover {
+    box-shadow: $dp-box-shadow-md;
+  }
 }
 ```
 
-## Usage example - Tailwind utility class
+## Guidelines
 
-As Tailwind is configured with these variables, too, they can be used as tailwind utility classes.
-They replace the BoxShadow classes mentioned within the Tailwind documentation.
-
-```
-<div class="shadow">
-  Nicely rounded corners.
-</div
-```
+- Use shadows consistently to convey elevation in the interface
+- Higher elevation (larger shadows) should be used for elements that appear "closer" to the user
+- Combine shadows with slight background color changes for more distinct separation
+- Use shadows sparingly to avoid visual clutter

@@ -1,83 +1,94 @@
 import { Meta } from '@storybook/blocks'
+import Table from '../.storybook/components/Table'
+import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Font Size"/>
 
-# Font Size tokens
+# Font Size Tokens
 
-The demosplan-ui Font Size tokens variables & font properties to be used within demosPlan.
+Font size tokens define the typography scale for demosplan-ui. They include both numerical scale tokens and semantic tokens for different UI contexts.
 
-Global font-size tokens. Do not use them directly.
+## Available Font Size Tokens
 
-## How to use and override color tokens
+<Table
+  headers={['Description', 'Tailwind Class', 'SCSS Variable', 'Value']}
+  rows={[
+    ["Smallest size", "text-xs", "$dp-font-size-0", "10px"],
+    ["Small text", "text-sm", "$dp-font-size-small", "12px"],
+    ["Default text", "text-base text-medium", "$dp-font-size-medium", "16px"],
+    ["Large text", "text-lg", "$dp-font-size-large", "18px"],
+    ["Very large text", "text-xl", "$dp-font-size-larger", "20px"],
+    ["Heading level 6", "text-h6", "$dp-font-size-h6", "16px"],
+    ["Heading level 5", "text-h5", "$dp-font-size-h5", "18px"],
+    ["Heading level 4", "text-h4", "$dp-font-size-h4", "20px"],
+    ["Heading level 3", "text-h3", "$dp-font-size-h3", "24px"],
+    ["Heading level 2", "text-h2", "$dp-font-size-h2", "32px"],
+    ["Heading level 1", "text-h1", "$dp-font-size-h1", "40px"],
+    ["Header text", "text-header", "$dp-font-size-header", "48px"],
+    ["Hero text", "text-hero", "$dp-font-size-hero", "64px"]
+  ]}
+/>
 
-Font Size tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+<Notice content={
+  `Font size tokens with line height settings (like headings) will automatically generate a paired --line-height CSS variable in Tailwind v4.`
+} />
 
+## Usage
+
+### Tailwind Usage
+
+Font size tokens can be used directly in HTML with Tailwind utility classes:
+
+```html
+<!-- Basic font sizes -->
+<p class="text-base">Default text size (16px)</p>
+<p class="text-xs">Very small text (10px)</p>
+<p class="text-lg">Larger text (18px)</p>
+
+<!-- Semantic heading sizes -->
+<h1 class="text-h1">Heading Level 1</h1>
+<h2 class="text-h2">Heading Level 2</h2>
+<h3 class="text-h3">Heading Level 3</h3>
+
+<!-- Special cases -->
+<div class="text-hero">Hero Text</div>
+
+<!-- With line height -->
+<p class="text-h2 leading-h2">Heading with correct line height</p>
 ```
+
+### Tailwind v4 Line Height Pairing
+
+In Tailwind v4, font sizes with associated line heights use a paired variable format:
+
+```html
+<!-- This will apply both the font size and appropriate line height -->
+<h1 class="text-h1">Heading with paired line height</h1>
+```
+
+### SCSS Usage
+
+```scss
+// Import font size tokens
 @import '@demos-europe/demosplan-ui/tokens/scss/fontSize';
-```
 
-Then, tokens can be used within Scss code:
+// Basic usage
+.element {
+  font-size: $dp-font-size-medium;
+}
 
-```
-.ol-attribution {
-    font-size: $dp-font-size-smaller;
+// With inuit-font-size mixin (for line height)
+.heading {
+  @include inuit-font-size($dp-font-size-h1, 1.3);
 }
 ```
 
-```
-.font-size-h1 {
-    @include inuit-font-size($dp-font-size-h1, 1.3);
-}
-```
+## Usage Guidelines
 
-## Available tokens
+- **Heading tokens** (`h1`-`h6`): Use for content structure in long-form text
+- **UI tokens** (`smallest`, `small`, `medium`, etc.): Use for interface elements like buttons, tabs, etc.
+- **Special tokens** (`header`, `hero`): Use sparingly for very specific branded sections
 
-### Basic scale values
-
-The numbers count from 0 (smallest possible size) up to 7 (biggest size used). The default font-size is 16px.
-
-```
-$dp-font-size-0
-// ...
-$dp-font-size-7
-```
-
-### Brand headings
-
-The `header` font size styles the page header in the participation area.
-
-```
-$dp-font-size-header
-```
-
-The `hero` font size is used to style the single most gigantic headline of the site.
-
-```
-$dp-font-size-hero
-```
-
-### Semantic section headings
-
-The `h1` to `h6` sizes are used to create visual hierarchy with heading-like entities that structure long-form content.
-Do not use them when styling interface elements. Use the below UI font sizes like `small`, `medium`, or `large` instead.
-
-```
-$dp-font-size-h1
-// ...
-$dp-font-size-h6
-```
-
-### Font sizes for functional interfaces
-
-The `large|medium|small|smaller|smallest` font sizes are used to create hierarchy between interface elements
-via font size, like tabs, action buttons and the like.
-Do not use it to create visual hierarchy with long text. Go for `h1` to `h6` tokens instead.
-
-```
-$dp-font-size-larger
-$dp-font-size-large
-$dp-font-size-medium
-$dp-font-size-small
-$dp-font-size-smaller
-$dp-font-size-smallest
-```
+<Notice content={
+  `Avoid mixing heading tokens with UI tokens in the same context. For user interfaces, use UI tokens; for content structure, use heading tokens.`
+} />

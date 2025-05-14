@@ -62,7 +62,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     const tooltipHtml = `
       <div class="z-tooltip cursor-help max-w-13 absolute ${classes}" role="tooltip" id="${id}">
         <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1" data-tooltip-arrow></div>
-        <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded">${value}</div>
+        <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm">${value}</div>
       </div>`
     const range = document.createRange()
     const content = range.createContextualFragment(tooltipHtml)

@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import DpAutocomplete from './'
 
-/**
- * HEADS UP! This page breaks in SB because DpAutocomplete uses vue-omnibox
- * which seems to be Vue2 only.
- */
-
 const meta: Meta<typeof DpAutocomplete> = {
   component: DpAutocomplete,
   title: 'Components/Autocomplete',

@@ -253,9 +253,9 @@ const classes = computed(() => {
   if (props.rounded === 'full') {
     _classes.push('rounded-input')
   } else if (props.rounded === 'left') {
-    _classes.push('rounded-l')
+    _classes.push('rounded-l-input')
   } else if (props.rounded === 'right') {
-    _classes.push('rounded-r')
+    _classes.push('rounded-r-input')
   }
 
   if (!(props.size && props.size > 0)) {

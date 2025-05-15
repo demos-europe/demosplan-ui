@@ -52,9 +52,9 @@ export default {
             const fieldName = field.getAttribute('data-dp-validate-error-fieldname')
             if (!fieldName) return
 
-            // Search for parent element with data-wizard-topic
-            let topicElement = field.closest('[data-wizard-topic]')
-            let topicName = topicElement ? topicElement.getAttribute('data-wizard-topic') : ''
+            // Search for parent element with data-dp-validate-topic
+            let topicElement = field.closest('[data-dp-validate-topic]')
+            let topicName = topicElement ? topicElement.getAttribute('data-dp-validate-topic') : ''
 
             const existingIndex = fieldsWithTopics.findIndex(
               item => item.fieldName === fieldName && item.topicName === topicName

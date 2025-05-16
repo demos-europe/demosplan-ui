@@ -4,23 +4,23 @@
       "$description": "None - No radius.",
       "value": "0"
     },
-    "sm": {
+    "xs": {
       "$description": "Smallest available radius discernible from 0. Use this value for rounded elements inside elements that have {rounded.small} applied as border-radius.",
       "value": "2px",
       "themeable": true
     },
     "smallest": {
       "$status": "{_status.deprecated}",
-      "value": "{rounded.sm}"
+      "value": "{rounded.xs}"
     },
-    "DEFAULT": {
+    "sm": {
       "$description": "Default - The standard for ui elements that shall appear rounded. Use this value for form elements and other smaller ui elements. When in doubt, pick this one.",
       "value": "3px",
       "themeable": true
     },
     "small": {
       "$status": "{_status.deprecated}",
-      "value": "{rounded.DEFAULT}"
+      "value": "{rounded.sm}"
     },
     "md": {
       "$description": "Medium - The \"next best\" radius. Use for larger organisms like list items or areas, that should appear softened but not aggressively rounded.",
@@ -32,7 +32,7 @@
       "value": "{rounded.md}"
     },
     "lg": {
-      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via {rounded.DEFAULT}.",
+      "$description": "Large - The biggest radius. Use for boxes that purposefully should appear rounded - plays nice with rounded elements inside it that are rounded via {rounded.sm}.",
       "value": "5px",
       "themeable": true
     },

@@ -1,46 +1,97 @@
 import { Meta } from '@storybook/blocks'
 import Table from '../.storybook/components/Table'
+import Notice from '../.storybook/components/Notice'
 
 <Meta title="Design Tokens/Breakpoints"/>
 
-# Breakpoints
+# Breakpoint Tokens
 
-The following breakpoints are available:
+Breakpoint tokens define the consistent responsive design thresholds throughout the application. These tokens help create a responsive UI that adapts to different screen sizes.
+
+## Available Breakpoint Values
 
 <Table
-  headers={['Scss Variable', 'Tailwind Class', 'Value']}
+  headers={['Description', 'Tailwind Modifier', 'SCSS Variable', 'Value']}
   rows={[
-    ["$dp-breakpoints-sm", "sm:", "620px"],
-    ["$dp-breakpoints-md", "md:", "904px"],
-    ["$dp-breakpoints-lg", "lg:", "1200px"],
-    ["$dp-breakpoints-xl", "xl:", "1400px"]
+    ["Small", "sm:", "$dp-breakpoints-sm", "620px"],
+    ["Medium", "md:", "$dp-breakpoints-md", "904px"],
+    ["Large", "lg:", "$dp-breakpoints-lg", "1200px"],
+    ["Extra Large", "xl:", "$dp-breakpoints-xl", "1400px"]
   ]}
 />
 
-## Usage example - Scss
+<Notice content={
+  `Breakpoints in demosplan-ui follow a "mobile-first" approach, meaning they trigger at the specified width and above.`
+} />
 
-Breakpoint tokens can be consumed as Scss variables. To use them, they have to be imported at first:
+## Usage
 
+### Tailwind Usage
+
+Breakpoint tokens can be used as modifiers with any Tailwind utility class:
+
+```html
+<!-- Responsive layout -->
+<div class="flex flex-col md:flex-row">
+  <!-- Changes from column to row at md breakpoint -->
+</div>
+
+<!-- Responsive visibility -->
+<div class="hidden lg:block">
+  <!-- Only visible on large screens and up -->
+</div>
+
+<div class="block md:hidden">
+  <!-- Only visible on screens smaller than md -->
+</div>
+
+<!-- Responsive spacing -->
+<div class="p-2 md:p-4 lg:p-6">
+  <!-- Padding increases at each breakpoint -->
+</div>
+
+<!-- Complex responsive design -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-4">
+  <!-- Grid that changes columns and spacing at different breakpoints -->
+</div>
 ```
+
+### Tailwind v4 Container Queries
+
+In Tailwind v4, container queries allow for responsive behavior based on parent container width rather than viewport width:
+
+```html
+<div class="@container">
+  <div class="@md:flex @md:flex-row">
+    <!-- Content that responds to container width -->
+  </div>
+</div>
+```
+
+### SCSS Usage
+
+```scss
+// Import breakpoint tokens
 @import '@demos-europe/demosplan-ui/tokens/scss/breakpoints';
-```
 
-Then, tokens can be used within Scss code:
+// Use in media queries
+.element {
+  display: block;
 
-```
-@media all and (min-width: $dp-breakpoints-lg) {
-  .some-selector {
-    display: block;
+  @media (min-width: $dp-breakpoints-md) {
+    display: flex;
+  }
+
+  @media (min-width: $dp-breakpoints-lg) {
+    max-width: 75%;
   }
 }
 ```
 
-## Usage example - Tailwind utility class
+## Responsive Design Guidelines
 
-As Tailwind is configured with these breakpoints, too, they can be used as modifiers for tailwind utility classes.
-
-```
-<div class="hidden lg:block xl:hidden">
-  This only shows up on devices larger than 1200px but smaller than 1400px.
-</div
-```
+- Begin designing for mobile (smallest screens) first
+- Use breakpoints to enhance the experience as screen size increases
+- Avoid creating designs that only work at specific breakpoints
+- Test your designs across a range of screen sizes, not just at the defined breakpoints
+- Consider using container queries (Tailwind v4) for component-specific responsiveness

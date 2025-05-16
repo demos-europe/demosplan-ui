@@ -1,4 +1,5 @@
-import './style/index.css'
+import './index.css'
+
 import { setup } from '@storybook/vue3'
 
 const beautifyHtml = require('js-beautify').html

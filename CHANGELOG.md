@@ -149,6 +149,10 @@ Skipped due to publishing issues
 
 ### Changed
 
+- ([#686](https://github.com/demos-europe/demosplan-ui/pull/686)) **breaking** add checkResponse to doRequest,
+  so it gets called every time a api request is fired.
+  It now must not be added in the leading app after using dpApi or dpRpc to avoid doubled messages
+
 - ([#1105](https://github.com/demos-europe/demosplan-ui/pull/1105)) BREAKING: Minimum required Node version: 20.18.1 ([@salisdemos](https://github.com/salisdemos))
 - ([#1082](https://github.com/demos-europe/demosplan-ui/pull/1082)) DpUpload: Make component available for direct usage ([@hwiem](https://github.com/hwiem))
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))

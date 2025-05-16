@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1278) Do not use css vars for Tailwind breakpoints config ([@spiess-demos](https://github.com/spiess-demos))
+
 ### Changed
 
 - ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) BREAKING: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))

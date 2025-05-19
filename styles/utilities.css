@@ -1,3 +1,5 @@
+@reference "./theme.css"
+
 @utility break-words {
   word-wrap: break-word;
   word-break: break-word;

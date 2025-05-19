@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { DpIcon } from '~/components'
+import DpIcon from '~/components/DpIcon'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
 
 export default {

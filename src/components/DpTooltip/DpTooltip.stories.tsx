@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import DpTooltip from './'
-import { DpButton } from '~/components'
+import DpButton from '~/components/DpButton'
 
 interface IDpTooltip {
   text: string

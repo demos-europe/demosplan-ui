@@ -63,6 +63,16 @@ Components for providing feedback to users:
 - [DpInlineNotification](/docs/components-inlinenotification--docs): In-place message display
 - [DpLoading](/docs/components-loading--docs): Loading indicators
 
+## Overriding Component Styles
+
+Components can be overridden to customize their appearance. Apart from [overriding the Css Variables](?path=/docs/design-tokens-overview--docs#overriding-tailwind-tokens),
+distinct classes within the markup of demosplan components can be used to apply custom styles.
+To target components and their elements, you can use specific css selectors that should be part of any
+of the components. They do not carry any styles and are solely used for this purpose. They are
+prefixed with `dp-` to avoid conflicts with other classes. For example, DpFlyout provides
+the selectors `dp-flyout` for the outer container, `dp-flyout-trigger` for the trigger element,
+and `dp-flyout-content` for the content area.
+
 ## Design Tokens
 
 Design tokens are the foundation of our design system, providing consistent visual attributes across components:

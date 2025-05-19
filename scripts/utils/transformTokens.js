@@ -404,22 +404,25 @@ const transformThemeTokens = ({ dictionary, file, platform = { prefix: 'dp-' } }
     // Get the reference chain and primitive value for fallbacks
     const { references, primitiveValue } = getTokenReferenceChain(token, dictionary)
 
-    // Build the variable value with fallbacks
-    const varValue = buildVariableWithFallbacks(safeFullTokenName, references, primitiveValue, platform)
-
     // Determine the appropriate prefix for this token category
     const prefix = sourceCategory === 'color'
       ? getColorPrefix(token)
       : targetPrefix
-
-    // Add the main variable to theme declarations with prefix handling
 
     // Detect if we might have duplication of "color-" prefix
     const finalTokenName = prefix === 'color' && safeTokenName.startsWith('color-')
       ? safeTokenName.replace(/^color-/, '') // Remove leading 'color-' if already present
       : safeTokenName
 
-    addThemeDeclaration(`--${prefix}-${finalTokenName}`, varValue)
+    // Special handling for breakpoints: use raw px values without var() references
+    if (sourceCategory === 'breakpoints') {
+      // For breakpoints, use the raw pixel value directly without var() references
+      addThemeDeclaration(`--${prefix}-${finalTokenName}`, rawValue)
+    } else {
+      // For all other tokens, build the variable value with fallbacks as usual
+      const varValue = buildVariableWithFallbacks(safeFullTokenName, references, primitiveValue, platform)
+      addThemeDeclaration(`--${prefix}-${finalTokenName}`, varValue)
+    }
 
     // Special handling for font-size tokens with line height
     if (sourceCategory === 'fontSize' && token.original.$lineHeight) {

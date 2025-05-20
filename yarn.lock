@@ -2110,7 +2110,7 @@ __metadata:
     "@vue/test-utils": "npm:^2.4.6"
     "@vue/vue3-jest": "npm:^29.2.6"
     "@vueuse/components": "npm:^13.0.0"
-    "@vueuse/integrations": "npm:^11.1.0"
+    "@vueuse/integrations": "npm:^13.2.0"
     "@webpack-cli/generators": "npm:^3.0.0"
     a11y-datepicker: "npm: ^0.9.0"
     autoprefixer: "npm:^10.4.14"
@@ -4905,13 +4905,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/web-bluetooth@npm:^0.0.20":
-  version: 0.0.20
-  resolution: "@types/web-bluetooth@npm:0.0.20"
-  checksum: 10c0/3a49bd9396506af8f1b047db087aeeea9fe4301b7fad4fe06ae0f6e00d331138caae878fd09e6410658b70b4aaf10e4b191c41c1a5ff72211fe58da290c7d003
-  languageName: node
-  linkType: hard
-
 "@types/web-bluetooth@npm:^0.0.21":
   version: 0.0.21
   resolution: "@types/web-bluetooth@npm:0.0.21"
@@ -5809,18 +5802,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:11.1.0":
-  version: 11.1.0
-  resolution: "@vueuse/core@npm:11.1.0"
-  dependencies:
-    "@types/web-bluetooth": "npm:^0.0.20"
-    "@vueuse/metadata": "npm:11.1.0"
-    "@vueuse/shared": "npm:11.1.0"
-    vue-demi: "npm:>=0.14.10"
-  checksum: 10c0/ecbeb277de81608c78aa4ebc7e4cae8a6d5f0650e2ee5ed71bf387676df4725bd2e8bcfeadcc0798ab6850e6317ff79822ef32adef4646184086764fe7f684ac
-  languageName: node
-  linkType: hard
-
 "@vueuse/core@npm:13.0.0":
   version: 13.0.0
   resolution: "@vueuse/core@npm:13.0.0"
@@ -5834,13 +5815,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/integrations@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "@vueuse/integrations@npm:11.1.0"
+"@vueuse/core@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@vueuse/core@npm:13.2.0"
   dependencies:
-    "@vueuse/core": "npm:11.1.0"
-    "@vueuse/shared": "npm:11.1.0"
-    vue-demi: "npm:>=0.14.10"
+    "@types/web-bluetooth": "npm:^0.0.21"
+    "@vueuse/metadata": "npm:13.2.0"
+    "@vueuse/shared": "npm:13.2.0"
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: 10c0/47c1dd916f5f328aba14c4c8a85f199df14f4f1661fef79aab344aa599ccd68202e9e6eec5009b6d4a6811639e53a732897a76be8afe80b7d46ecdc8316a237b
+  languageName: node
+  linkType: hard
+
+"@vueuse/integrations@npm:^13.2.0":
+  version: 13.2.0
+  resolution: "@vueuse/integrations@npm:13.2.0"
+  dependencies:
+    "@vueuse/core": "npm:13.2.0"
+    "@vueuse/shared": "npm:13.2.0"
   peerDependencies:
     async-validator: ^4
     axios: ^1
@@ -5854,6 +5847,7 @@ __metadata:
     qrcode: ^1.5
     sortablejs: ^1
     universal-cookie: ^7
+    vue: ^3.5.0
   peerDependenciesMeta:
     async-validator:
       optional: true
@@ -5879,14 +5873,7 @@ __metadata:
       optional: true
     universal-cookie:
       optional: true
-  checksum: 10c0/77d6d021a6f8524270ebfc8cfebc22d60b19fca4fea25d18a90b38aa63055e8654230064726f822f3899101ab676738c66ece5e5ffe70ec6df228dbfaa46e581
-  languageName: node
-  linkType: hard
-
-"@vueuse/metadata@npm:11.1.0":
-  version: 11.1.0
-  resolution: "@vueuse/metadata@npm:11.1.0"
-  checksum: 10c0/5063d8b81c31e3c7ea24ff7fad0d0ec43a951540066329f36daf96fc0e8780ed902282d36c6df856288f07d0c5edb525f551cf9e8b84837782e2ac0a1988c498
+  checksum: 10c0/6f707fb01154933cd229f99c28389b48270b6ad6b7bb6a2b766826dd47c2fec492ed8a7942991db41551e658e5e097f3981119b4b447905e06beb1d3dbf3c134
   languageName: node
   linkType: hard
 
@@ -5897,12 +5884,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:11.1.0":
-  version: 11.1.0
-  resolution: "@vueuse/shared@npm:11.1.0"
-  dependencies:
-    vue-demi: "npm:>=0.14.10"
-  checksum: 10c0/ed9a4625537825fe783c66823592560696604f5301e8dcef12dda3a816b85334e7c70ccbaaf1c0c62ea2b8efcce58893b780210162374d2e9bc1e4c5889e066b
+"@vueuse/metadata@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@vueuse/metadata@npm:13.2.0"
+  checksum: 10c0/3bd58c7e2248685368ac9ade62ecc96de526f854b9dbd52a22b0c555095a0614308daa3d2f0f5158cecfafd2471bbc05c56b2585dc39c25e5545c22cc2fbd195
   languageName: node
   linkType: hard
 
@@ -5912,6 +5897,15 @@ __metadata:
   peerDependencies:
     vue: ^3.5.0
   checksum: 10c0/d7730ed05f90a421763f9b5e6e5ac64f0e085fade6090724f09990018106bca8dd63ed6070f2f471a472b84eaf98e0fc8307c282ec0ecb798eaf4035cb195cee
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:13.2.0":
+  version: 13.2.0
+  resolution: "@vueuse/shared@npm:13.2.0"
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: 10c0/ba40631bd0ea6bdb19b3b4e34134cd4d2e7efdb018b22d3ba016a2ec206d9a6103ab880a61c8f73c611fd4a0b4900d53aa8e2ca04512b0326dcb76428f2545cf
   languageName: node
   linkType: hard
 
@@ -18944,22 +18938,6 @@ __metadata:
   version: 2.0.29
   resolution: "vue-component-type-helpers@npm:2.0.29"
   checksum: 10c0/33d7a064f9b1af492818f4df5dc793cad0ab7bed957608bf5eea6c4404d052135c8167aa78f38b9ee5078ab91bf9ad58c2e000246fa9d075843045907ad4239a
-  languageName: node
-  linkType: hard
-
-"vue-demi@npm:>=0.14.10":
-  version: 0.14.10
-  resolution: "vue-demi@npm:0.14.10"
-  peerDependencies:
-    "@vue/composition-api": ^1.0.0-rc.1
-    vue: ^3.0.0-0 || ^2.6.0
-  peerDependenciesMeta:
-    "@vue/composition-api":
-      optional: true
-  bin:
-    vue-demi-fix: bin/vue-demi-fix.js
-    vue-demi-switch: bin/vue-demi-switch.js
-  checksum: 10c0/a9ed8712fa36d01bc13c39757f95f30cebf42d557b99e94bff86d8660c81f2911b41220f7affc023d1ffcc19e13999e4a83019991e264787cca2c616e83aea48
   languageName: node
   linkType: hard
 

@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.1 - 2025-05-19
+
 ### Changed
 
 - ([#1274](https://github.com/demos-europe/demosplan-ui/pull/1274)) dpValidateMixin.js: adding topic names to field names in error messages([@riechedemos](https://github.com/riechedemos))

@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
+- ([#1269](https://github.com/demos-europe/demosplan-ui/pull/1269) BREAKING: Update DpAccordion, DpBadge, DpBulkEditHeader, DpCard, DpFlyout to use Tailwind classes ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.5.1 - 2025-05-19
 
 ### Changed

@@ -13,23 +13,25 @@
       @input="onInput"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')" />
-    <button
-      v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default pr-0.5"
-      data-cy="resetButton"
-      :class="buttonClass"
-      :disabled="currentValue === defaultValue"
-      @click="resetValue">
-      <dp-icon
-        icon="xmark"
-        :size="iconSize" />
-    </button>
-    <!-- Slot for additional buttons -->
-    <slot />
+    <span class="space-x-0.5">
+      <button
+        v-if="!inputAttributes.disabled"
+        class="btn--blank o-link--default"
+        :class="buttonClass"
+        data-cy="resetButton"
+        :disabled="currentValue === defaultValue"
+        @click="resetValue">
+        <dp-icon
+          icon="xmark"
+          :size="iconSize" />
+      </button>
+      <slot />
+    </span>
   </div>
 </template>
 
 <script>
+import { Comment, Fragment, Text } from 'vue'
 import DpIcon from '~/components/DpIcon'
 import DpInput from '~/components/DpInput'
 
@@ -109,6 +111,8 @@ export default {
     }
   },
 
+  emits: ['blur', 'enter', 'focus'],
+
   data () {
     return {
       currentValue: this.value
@@ -118,7 +122,12 @@ export default {
   computed: {
     buttonClass () {
       let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
-      classes = this.$slots.default ? `${classes} grouped` : classes
+      const slotContent = this.$slots.default && this.$slots.default().filter(node => {
+        if (node.type === Comment) return false
+        if (node.type === Text && !node.children.trim()) return false
+        return node.type !== Fragment
+      })
+      classes = slotContent && slotContent.length > 0 ? `${classes} grouped` : classes
 
       return classes
     },

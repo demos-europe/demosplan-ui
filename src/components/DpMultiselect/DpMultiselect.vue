@@ -71,7 +71,7 @@
         <div class="border-bottom">
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === options.length === 0"
+            :disabled="value.length === options.length"
             type="button"
             @click="$emit('select-all')"
             v-text="translations.selectAll" />

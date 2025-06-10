@@ -394,6 +394,14 @@ export default {
       default: () => ({})
     }
   },
+
+  emits: [
+    'changed-order',
+    'items-selected',
+    'items-toggled',
+    'selectAll'
+  ],
+
   data () {
     return {
       allExpanded: false,

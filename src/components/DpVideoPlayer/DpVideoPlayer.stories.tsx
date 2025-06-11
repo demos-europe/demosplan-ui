@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { DpVideoPlayer } from '~/components'
 
 const meta: Meta<typeof DpVideoPlayer> = {
-  title: 'Components/DpVideoPlayer',
+  title: 'Components/VideoPlayer',
   component: DpVideoPlayer,
   tags: ['autodocs'],
   parameters: {

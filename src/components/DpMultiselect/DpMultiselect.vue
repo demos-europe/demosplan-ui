@@ -80,7 +80,7 @@
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :disabled="value.length === 0"
             type="button"
-            @click="$emit('unselectAll')"
+            @click="$emit('deselectAll')"
             v-text="translations.deselectAll" />
         </div>
       </slot>
@@ -328,7 +328,7 @@ export default {
 
     /**
      * Shows "Select All" and "Deselect All" buttons in the dropdown.
-     * When enabled, you should handle @selectAll and @unselectAll events.
+     * When enabled, you should handle @selectAll and @deselectAll events.
      * Only meaningful when multiple=true.
      */
     selectionControls: {
@@ -416,7 +416,7 @@ export default {
     'select',
     'selectAll',
     'tag',
-    'unselectAll'
+    'deselectAll'
   ],
 
   data () {

@@ -19,7 +19,7 @@ interface IDpMultiselect {
   'search-change': (query: string) => void
   'select': (option: any) => void
   'selectAll': () => void
-  'unselectAll': () => void
+  'deselectAll': () => void
 }
 
 const meta: Meta<typeof DpMultiselect> = {
@@ -59,7 +59,7 @@ const meta: Meta<typeof DpMultiselect> = {
       // Handle unselect all action
       const unselectAllHandler = () => {
         // Call the original action handler
-        args['unselectAll']()
+        args['deselectAll']()
 
         // Clear the value
         args.value = args.multiple ? [] : ''
@@ -94,7 +94,7 @@ const meta: Meta<typeof DpMultiselect> = {
           @search-change="args['search-change']"
           @select="args.select"
           @selectAll="selectAllHandler"
-          @unselectAll="unselectAllHandler" />
+          @deselectAll="unselectAllHandler" />
       </div>
     `
   })
@@ -158,7 +158,7 @@ export const WithSelectionControls: Story = {
   argTypes: {
     'input': { action: 'input' },
     'selectAll': { action: 'selectAll' },
-    'unselectAll': { action: 'unselectAll' }
+    'deselectAll': { action: 'deselectAll' }
   },
   parameters: {
     docs: {

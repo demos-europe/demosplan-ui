@@ -10,14 +10,16 @@
         :class="dragHandle">
         <dp-icon
           class="c-treelist__drag-handle-icon"
-          icon="drag-handle" />
+          icon="drag-handle"
+        />
       </div>
       <dp-tree-list-checkbox
         v-if="isSelectable"
-        :checked="node.nodeIsSelected"
+        :checked="isNodeSelected"
         :name="checkboxIdentifier"
         :string-value="nodeId"
-        @check="setSelectionState(!node.nodeIsSelected)" />
+        @check="handleSelectionToggle"
+      />
       <div
         class="flex grow items-start"
         :style="indentationStyle">
@@ -26,7 +28,8 @@
           v-model="isExpanded"
           class="c-treelist__folder text--left u-pv-0_25"
           :class="{ 'pointer-events-none': 0 === children.length }"
-          :icon-class-prop="iconClassFolder" />
+          :icon-class-prop="iconClassFolder"
+        />
         <div class="grow u-pl-0 u-p-0_25">
           <slot
             v-if="isBranch"
@@ -34,13 +37,15 @@
             :node-element="node"
             :node-children="children"
             :node-id="nodeId"
-            :parent-id="parentId" />
+            :parent-id="parentId"
+          />
           <slot
             v-if="isLeaf"
             name="leaf"
             :node-element="node"
             :node-id="nodeId"
-            :parent-id="parentId" />
+            :parent-id="parentId"
+          />
         </div>
       </div>
       <dp-tree-list-toggle
@@ -49,10 +54,12 @@
         v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         data-cy="treeListChildToggle"
         class="self-start"
-        :disabled="!hasToggle" />
+        :disabled="!hasToggle"
+      />
       <div
         v-else
-        class="min-w-4" />
+        class="min-w-4"
+      />
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
@@ -84,9 +91,10 @@
         :on-move="onMove"
         :options="options"
         :parent-id="nodeId"
+        :selection-manager="selectionManager"
         @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
-        @node-selected="handleChildSelectionChange(child)"
+        @node-selected="bubbleSelectionChange"
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
@@ -94,7 +102,8 @@
           v-slot:[slot]="scope">
           <slot
             v-bind="scope"
-            :name="slot" />
+            :name="slot"
+          />
         </template>
       </dp-tree-list-node>
     </component>
@@ -191,12 +200,18 @@ export default {
       default: ''
     },
 
-    parentSelected: {
-      type: Boolean,
+    selectionManager: {
+      type: Object,
       required: false,
-      default: false
-    }
+      default: null
+    },
   },
+
+  emits: [
+    'draggable:change',
+    'tree:change',
+    'node-selected'
+  ],
 
   data () {
     return {
@@ -278,7 +293,13 @@ export default {
     },
 
     isSelectable () {
-      return (this.isBranch && this.options.branchesSelectable) || (this.isLeaf && this.options.leavesSelectable) || false
+      return (this.isBranch && this.options.branchesSelectable) ||
+        (this.isLeaf && this.options.leavesSelectable) ||
+        false
+    },
+
+    isNodeSelected () {
+      return this.selectionManager.isSelected(this.nodeId)
     },
 
     // See docblock in `tree` computed of parent component.
@@ -293,14 +314,6 @@ export default {
     }
   },
 
-  watch: {
-    parentSelected (val) {
-      if (this.options.selectOn.parentSelect || this.options.deselectOn.parentDeselect) {
-        this.setSelectionState(val)
-      }
-    }
-  },
-
   methods: {
     bubbleChangeEvent (payload) {
       this.$emit('tree:change', payload)
@@ -310,45 +323,13 @@ export default {
       this.$emit('draggable:change', payload)
     },
 
-    handleChildSelectionChange (child) {
-      if (this.options.deselectOn.childDeselect && child.nodeIsSelected === false && this.node.nodeIsSelected === true) {
-        this.setSelectionState(child.nodeIsSelected)
-      } else if (this.options.selectOn.childSelect && child.nodeIsSelected === true && this.node.nodeIsSelected === false) {
-        this.setSelectionState(child.nodeIsSelected)
-        // Just bubble the event if the current node doesn't require any changes
-      } else {
-        this.$emit('node-selected')
-      }
+    bubbleSelectionChange (nodeId) {
+      this.$emit('node-selected', nodeId)
     },
 
-    setNodeAndChildrenSelection (selectionState) {
-      this.node.nodeId = this.nodeId
-      this.node.nodeIsSelected = selectionState
-      this.node.nodeType = this.isBranch === true ? 'branch' : 'leaf'
-
-      if (this.node.children && this.node.children.length > 0) {
-        this.setSelectionRecursively(this.node.children, selectionState)
-      }
+    handleSelectionToggle () {
+      this.$emit('node-selected', this.nodeId)
     },
-
-    // Update isSelected property of the parent element and call recursively updateSelectedStatus on children
-    setSelectionRecursively (childObjects, state) {
-      childObjects.forEach(childObj => {
-        childObj.nodeId = childObj.id
-        childObj.nodeIsSelected = state
-        childObj.nodeType = this.checkBranch({ node: childObj }) === true ? 'branch' : 'leaf'
-
-
-        if (childObj.children && childObj.children.length > 0) {
-          this.setSelectionRecursively(childObj.children, state)
-        }
-      })
-    },
-
-    setSelectionState (selectionState) {
-      this.setNodeAndChildrenSelection(selectionState)
-      this.$emit('node-selected')
-    }
   },
 
   mounted () {

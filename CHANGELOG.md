@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+- ([#1292](https://github.com/demos-europe/demosplan-ui/pull/1292)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
+
 ## v0.5.1 - 2025-05-19
 
 ### Changed

@@ -64,7 +64,6 @@ export class SelectionManager {
         this.nodeChildren.get(parentId).add(nodeId)
       }
 
-      // Preserve existing selection state
       if (node.nodeIsSelected) {
         this.selectedNodes.add(nodeId)
         this.explicitlySelected.add(nodeId)
@@ -76,9 +75,6 @@ export class SelectionManager {
     })
   }
 
-  /**
-   * Count selectable nodes and update selected count
-   */
   _countSelectableNodes() {
     this.totalSelectableCount = 0
     this.selectedSelectableCount = 0
@@ -234,9 +230,9 @@ export class SelectionManager {
 
     if (allSiblingsSelected) {
       const wasSelected = this.selectedNodes.has(parentId)
+
       this.selectedNodes.add(parentId)
 
-      // Update count if this parent wasn't selected before
       if (!wasSelected) {
         this.selectedSelectableCount++
       }
@@ -284,9 +280,6 @@ export class SelectionManager {
       || (nodeType === 'leaf' && this.options.leavesSelectable)
   }
 
-  /**
-   * Get selection state
-   */
   isSelected(nodeId) {
     return this.selectedNodes.has(nodeId)
   }
@@ -366,9 +359,6 @@ export class SelectionManager {
     this.selectedSelectableCount = 0
   }
 
-  /**
-   * Select all selectable nodes in the tree
-   */
   selectAllSelectableNodes() {
     this.nodeType.forEach((nodeType, nodeId) => {
       if (this._isNodeSelectable(nodeId)) {
@@ -377,7 +367,6 @@ export class SelectionManager {
         this.selectedNodes.add(nodeId)
         this.explicitlySelected.add(nodeId)
 
-        // Update count if this node wasn't selected before
         if (!wasSelected) {
           this.selectedSelectableCount++
         }
@@ -387,7 +376,6 @@ export class SelectionManager {
 
   /**
    * Check if all selectable nodes are currently selected
-   * O(1) operation using cached counts
    */
   areAllSelectableNodesSelected() {
     return this.totalSelectableCount > 0 && this.selectedSelectableCount === this.totalSelectableCount

@@ -15,7 +15,7 @@
     }"
     :current="current"
     :total="total"
-    @page-change="payload => pageChange(payload)" />
+    @page-change="pageChange" />
 </template>
 
 <script>

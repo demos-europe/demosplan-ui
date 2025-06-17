@@ -15,7 +15,7 @@
     }"
     :current="current"
     :total="total"
-    @page-change="payload => $emit('page-change', payload)" />
+    @page-change="payload => pageChange(payload)" />
 </template>
 
 <script>
@@ -55,6 +55,12 @@ export default {
   },
 
   methods: {
+    pageChange (page) {
+      if (page >= 1 && page <= this.total) {
+        this.$emit('page-change', page)
+      }
+    },
+
     prefixClass (classList) {
       return prefixClass(classList)
     }

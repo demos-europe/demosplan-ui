@@ -19,19 +19,18 @@ export class SelectionManager {
     }
 
     // High-performance data structures
-    this.nodePathMap = new Map() // nodeId -> path array
-    this.nodeParentMap = new Map() // nodeId -> parentId
-    this.nodeChildrenMap = new Map() // nodeId -> Set of childIds
+    this.nodePath = new Map() // nodeId -> path array
+    this.nodeParentId = new Map() // nodeId -> parentId
+    this.nodeChildren = new Map() // nodeId -> Set of childIds
     this.selectedNodes = new Set() // Set of selected nodeIds
     this.explicitlySelected = new Set() // Nodes explicitly selected by user
-    this.nodeTypeMap = new Map() // nodeId -> 'branch' | 'leaf'
-    this.nodeObjectMap = new Map() // nodeId -> full node object reference
+    this.nodeType = new Map() // nodeId -> 'branch' | 'leaf'
+    this.nodeObject = new Map() // nodeId -> full node object reference
 
     // Selection counting for performance optimization
     this.totalSelectableCount = 0 // Total nodes that CAN be selected
-    this.selectedSelectableCount = 0 // Selected nodes that ARE selectable
+    this.selectedSelectableCount = 0 // Actually selected selectable nodes
 
-    // Batch operation support
     this.pendingOperations = []
     this.isProcessingBatch = false
   }
@@ -43,8 +42,6 @@ export class SelectionManager {
   buildIndexes(treeData, branchIdentifier) {
     this.clearIndexes()
     this._buildIndexesRecursively(treeData, null, [], branchIdentifier)
-    
-    // Count selectable nodes after building indexes
     this._countSelectableNodes()
   }
 
@@ -55,16 +52,16 @@ export class SelectionManager {
       const isBranch = branchIdentifier({ node })
 
       // Build all indexes
-      this.nodePathMap.set(nodeId, currentPath)
-      this.nodeParentMap.set(nodeId, parentId)
-      this.nodeTypeMap.set(nodeId, isBranch ? 'branch' : 'leaf')
-      this.nodeObjectMap.set(nodeId, node)
+      this.nodePath.set(nodeId, currentPath)
+      this.nodeParentId.set(nodeId, parentId)
+      this.nodeType.set(nodeId, isBranch ? 'branch' : 'leaf')
+      this.nodeObject.set(nodeId, node)
 
       if (parentId) {
-        if (!this.nodeChildrenMap.has(parentId)) {
-          this.nodeChildrenMap.set(parentId, new Set())
+        if (!this.nodeChildren.has(parentId)) {
+          this.nodeChildren.set(parentId, new Set())
         }
-        this.nodeChildrenMap.get(parentId).add(nodeId)
+        this.nodeChildren.get(parentId).add(nodeId)
       }
 
       // Preserve existing selection state
@@ -85,10 +82,11 @@ export class SelectionManager {
   _countSelectableNodes() {
     this.totalSelectableCount = 0
     this.selectedSelectableCount = 0
-    
-    this.nodeTypeMap.forEach((nodeType, nodeId) => {
+
+    this.nodeType.forEach((nodeType, nodeId) => {
       if (this._isNodeSelectable(nodeId)) {
         this.totalSelectableCount++
+
         if (this.selectedNodes.has(nodeId)) {
           this.selectedSelectableCount++
         }
@@ -137,7 +135,6 @@ export class SelectionManager {
 
     this.isProcessingBatch = false
 
-    // Process any operations that were queued during batch processing
     if (this.pendingOperations.length > 0) {
       this.processBatchOperations()
     }
@@ -146,33 +143,29 @@ export class SelectionManager {
   _processToggleOperation(nodeId, newState) {
     const wasSelected = this.selectedNodes.has(nodeId)
     const isSelectable = this._isNodeSelectable(nodeId)
-    
+
     if (newState) {
       this.explicitlySelected.add(nodeId)
       this.selectedNodes.add(nodeId)
-      
-      // Update count if this is a selectable node that wasn't selected before
+
       if (isSelectable && !wasSelected) {
         this.selectedSelectableCount++
       }
     } else {
       this.explicitlySelected.delete(nodeId)
       this.selectedNodes.delete(nodeId)
-      
-      // Update count if this is a selectable node that was selected before
+
       if (isSelectable && wasSelected) {
         this.selectedSelectableCount--
       }
     }
 
-    // Handle parent-child propagation based on options
     if (newState && this.options.selectOn.parentSelect) {
       this._selectAllChildren(nodeId)
     } else if (!newState && this.options.deselectOn.parentDeselect) {
       this._deselectAllChildren(nodeId)
     }
 
-    // Handle child-parent propagation
     if (newState && this.options.selectOn.childSelect) {
       this._selectParentIfAllChildrenSelected(nodeId)
     } else if (!newState && this.options.deselectOn.childDeselect) {
@@ -181,7 +174,7 @@ export class SelectionManager {
   }
 
   _selectAllChildren(nodeId) {
-    const children = this.nodeChildrenMap.get(nodeId)
+    const children = this.nodeChildren.get(nodeId)
 
     if (!children) {
       return
@@ -190,20 +183,20 @@ export class SelectionManager {
     children.forEach(childId => {
       if (this._isNodeSelectable(childId)) {
         const wasSelected = this.selectedNodes.has(childId)
+
         this.selectedNodes.add(childId)
-        
-        // Update count if this node wasn't selected before
+
         if (!wasSelected) {
           this.selectedSelectableCount++
         }
-        
-        this._selectAllChildren(childId) // Recurse
+
+        this._selectAllChildren(childId)
       }
     })
   }
 
   _deselectAllChildren(nodeId) {
-    const children = this.nodeChildrenMap.get(nodeId)
+    const children = this.nodeChildren.get(nodeId)
 
     if (!children) {
       return
@@ -211,21 +204,21 @@ export class SelectionManager {
 
     children.forEach(childId => {
       const wasSelected = this.selectedNodes.has(childId)
+
       this.selectedNodes.delete(childId)
       this.explicitlySelected.delete(childId)
-      
-      // Update count if this was a selectable node that was selected
+
       if (wasSelected && this._isNodeSelectable(childId)) {
         this.selectedSelectableCount--
       }
-      
+
       this._deselectAllChildren(childId)
     })
   }
 
   _selectParentIfAllChildrenSelected(nodeId) {
-    const parentId = this.nodeParentMap.get(nodeId)
-    const siblings = this.nodeChildrenMap.get(parentId)
+    const parentId = this.nodeParentId.get(nodeId)
+    const siblings = this.nodeChildren.get(parentId)
 
     if (!parentId || !this._isNodeSelectable(parentId)) {
       return
@@ -242,19 +235,19 @@ export class SelectionManager {
     if (allSiblingsSelected) {
       const wasSelected = this.selectedNodes.has(parentId)
       this.selectedNodes.add(parentId)
-      
+
       // Update count if this parent wasn't selected before
       if (!wasSelected) {
         this.selectedSelectableCount++
       }
-      
+
       this._selectParentIfAllChildrenSelected(parentId)
     }
   }
 
   _deselectParentIfNoChildrenSelected(nodeId) {
-    const parentId = this.nodeParentMap.get(nodeId)
-    const siblings = this.nodeChildrenMap.get(parentId)
+    const parentId = this.nodeParentId.get(nodeId)
+    const siblings = this.nodeChildren.get(parentId)
 
     if (!parentId) {
       return
@@ -272,12 +265,11 @@ export class SelectionManager {
       const wasSelected = this.selectedNodes.has(parentId)
       this.selectedNodes.delete(parentId)
       this.explicitlySelected.delete(parentId)
-      
-      // Update count if this parent was selected before and is selectable
+
       if (wasSelected && this._isNodeSelectable(parentId)) {
         this.selectedSelectableCount--
       }
-      
+
       this._deselectParentIfNoChildrenSelected(parentId)
     }
   }
@@ -286,7 +278,7 @@ export class SelectionManager {
    * Check if a node is selectable based on type and options
    */
   _isNodeSelectable(nodeId) {
-    const nodeType = this.nodeTypeMap.get(nodeId)
+    const nodeType = this.nodeType.get(nodeId)
 
     return (nodeType === 'branch' && this.options.branchesSelectable)
       || (nodeType === 'leaf' && this.options.leavesSelectable)
@@ -308,16 +300,17 @@ export class SelectionManager {
 
     this.selectedNodes.forEach(nodeId => {
       if (this._isNodeSelectable(nodeId)) {
-        const nodeObject = this.nodeObjectMap.get(nodeId)
+        const nodeObject = this.nodeObject.get(nodeId)
 
         if (nodeObject) {
           const enrichedNode = {
             ...nodeObject,
             nodeId: nodeId,
-            nodeType: this.nodeTypeMap.get(nodeId),
+            nodeType: this.nodeType.get(nodeId),
             nodeIsSelected: true,
             explicitlySelected: this.explicitlySelected.has(nodeId)
           }
+
           result.push(enrichedNode)
         }
       }
@@ -344,7 +337,7 @@ export class SelectionManager {
           ...node,
           nodeIsSelected: isSelected,
           nodeId: node.id,
-          nodeType: this.nodeTypeMap.get(node.id)
+          nodeType: this.nodeType.get(node.id)
         }
       }
 
@@ -377,12 +370,13 @@ export class SelectionManager {
    * Select all selectable nodes in the tree
    */
   selectAllSelectableNodes() {
-    this.nodeTypeMap.forEach((nodeType, nodeId) => {
+    this.nodeType.forEach((nodeType, nodeId) => {
       if (this._isNodeSelectable(nodeId)) {
         const wasSelected = this.selectedNodes.has(nodeId)
+
         this.selectedNodes.add(nodeId)
         this.explicitlySelected.add(nodeId)
-        
+
         // Update count if this node wasn't selected before
         if (!wasSelected) {
           this.selectedSelectableCount++
@@ -396,19 +390,18 @@ export class SelectionManager {
    * O(1) operation using cached counts
    */
   areAllSelectableNodesSelected() {
-    return this.totalSelectableCount > 0 && 
-           this.selectedSelectableCount === this.totalSelectableCount
+    return this.totalSelectableCount > 0 && this.selectedSelectableCount === this.totalSelectableCount
   }
 
   /**
    * Clear all indexes (when tree structure changes)
    */
   clearIndexes() {
-    this.nodePathMap.clear()
-    this.nodeParentMap.clear()
-    this.nodeChildrenMap.clear()
-    this.nodeTypeMap.clear()
-    this.nodeObjectMap.clear()
+    this.nodePath.clear()
+    this.nodeParentId.clear()
+    this.nodeChildren.clear()
+    this.nodeType.clear()
+    this.nodeObject.clear()
     this.selectedNodes.clear()
     this.explicitlySelected.clear()
     this.totalSelectableCount = 0

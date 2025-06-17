@@ -4,7 +4,6 @@ const Translator = {
 }
 const prefixClass = jest.fn(key => key)
 
-// Create a mock $root for Vue components
 const $rootMock = {
   $on: jest.fn(),
   $off: jest.fn(),

@@ -214,25 +214,21 @@ export default {
       }
     },
 
-    /**
-     * Computed property for checkbox "select all" state
-     * Uses O(1) operations via SelectionManager for performance
-     */
     allElementsSelected: {
       get() {
         return this.selectionManager?.areAllSelectableNodesSelected() || false
       },
-      
+
       set(value) {
         if (!this.selectionManager) return
-        
+
         if (value) {
           this.selectionManager.selectAllSelectableNodes()
         } else {
           this.selectionManager.clearAllSelections()
         }
         this.scheduleTreeUpdate()
-        
+
         const selectedNodes = this.selectionManager.getSelectedNodes()
         const filteredSelections = this.filterSelectableNodes(selectedNodes)
         this.$emit('node-selection-change', filteredSelections)
@@ -280,7 +276,6 @@ export default {
       // Schedule tree update for next tick to batch multiple operations
       this.scheduleTreeUpdate()
 
-      // Emit selection change with filtered selectable nodes
       const selectedNodes = this.selectionManager.getSelectedNodes()
       const filteredSelections = this.filterSelectableNodes(selectedNodes)
 
@@ -444,10 +439,9 @@ export default {
 
     this.opts = deepMerge(defaults, this.options)
 
-    // Initialize selection manager
     this.selectionManager = new SelectionManager(this.opts)
-
     this.rebuildIndexesAndUpdateTree(this.treeData)
+
     this.initFixedControls()
   },
 

@@ -99,7 +99,6 @@ export class SelectionManager {
 
     // Batch the operation
     this.pendingOperations.push({
-      type: 'toggle',
       nodeId,
       newState
     })
@@ -123,11 +122,7 @@ export class SelectionManager {
     const operations = [...this.pendingOperations]
     this.pendingOperations = []
 
-    operations.forEach(op => {
-      if (op.type === 'toggle') {
-        this._processToggleOperation(op.nodeId, op.newState)
-      }
-    })
+    operations.forEach(op => this._processToggleOperation(op.nodeId, op.newState))
 
     this.isProcessingBatch = false
 

@@ -112,7 +112,6 @@ export default {
   },
 
   mounted () {
-    console.log('hier')
     this.editor = new Editor({
       content: this.value,
       editable: true,

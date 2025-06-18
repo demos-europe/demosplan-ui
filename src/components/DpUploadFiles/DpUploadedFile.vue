@@ -1,8 +1,8 @@
 <template>
   <li data-cy="uploadFile:uploadedFileItem">
     <span
-      aria-hidden="true"
-      v-if="file.mimeType === 'txt'">
+      v-if="file.mimeType === 'txt'"
+      aria-hidden="true">
       <i
         :class="fileIcon" />
     </span>
@@ -42,8 +42,6 @@ import { prefixClassMixin } from '~/mixins'
 export default {
   name: 'DpUploadedFile',
 
-  inject: ['getFileByHash'],
-
   mixins: [prefixClassMixin],
 
   props: {
@@ -52,6 +50,10 @@ export default {
       required: true
     }
   },
+
+  emits: ['file-remove'],
+
+  inject: ['getFileByHash'],
 
   data () {
     return {

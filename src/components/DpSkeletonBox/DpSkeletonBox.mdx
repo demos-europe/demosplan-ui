@@ -1,0 +1,35 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpSkeletonBoxStories from './DpSkeletonBox.stories.tsx'
+
+<Meta of={DpSkeletonBoxStories} />
+
+# SkeletonBox
+
+The `DpSkeletonBox` component renders a skeleton loading animation with shimmer effect. It's used to indicate that content is loading, providing visual feedback to users while waiting for data to load.
+
+## Features
+
+- Customizable height and width
+- Shimmer animation to indicate loading state
+- Simple implementation with minimal overhead
+- Flexible sizing to match various UI elements
+
+## Usage Examples
+
+### Default
+
+The default SkeletonBox has a height of '1em' and width of '100%'.
+
+<Canvas of={DpSkeletonBoxStories.Default} />
+
+### Custom Size
+
+You can customize the height and width of the skeleton box to match the size of the content it's replacing.
+
+<Canvas of={DpSkeletonBoxStories.CustomSize} />
+
+### Multiple Instances
+
+Commonly used in lists or grids to simulate loading multiple items.
+
+<Canvas of={DpSkeletonBoxStories.MultipleItems} />

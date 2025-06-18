@@ -23,10 +23,10 @@ function assignHandlersForSingleInput (input) {
         const matchers = condition.split(comparisonType === 'isNotEqual' ? '!==' : '===')
         const validationContainer = input.closest('[data-dp-validate]')
         /**
-           Use the form as the validation container. This is necessary because in some cases, such as wizard,
-           the value of the 'data-dp-validate-if' attribute may refer to a different fieldset.
-           By using the form, this condition can be found throughout the entire form.
-        */
+         * Use the form as the validation container. This is necessary because in some cases, such as wizard,
+         * the value of the 'data-dp-validate-if' attribute may refer to a different fieldset.
+         * By using the form, this condition can be found throughout the entire form.
+         */
         const form = validationContainer.tagName === 'FIELDSET' && validationContainer.form ? validationContainer.form : validationContainer
 
         try {
@@ -49,56 +49,56 @@ function assignHandlersForSingleInput (input) {
   }
 
   switch (type) {
-    case 'tiptap':
-      awaitElement('div[contenteditable="true"]', input.parentNode).then(() => {
-        const tiptapField = input.parentNode.querySelector('div[contenteditable="true"]')
-        tiptapField.addEventListener('blur', () => validateTiptap(input))
-        tiptapField.addEventListener('focus', () => {
-          // If input has error remove it on focus
-          if (tiptapField.classList.contains(errorClass)) {
-            tiptapField.classList.remove(errorClass)
-          }
-        })
-        observeValidationRelations(input, () => validateTiptap(input))
+  case 'tiptap':
+    awaitElement('div[contenteditable="true"]', input.parentNode).then(() => {
+      const tiptapField = input.parentNode.querySelector('div[contenteditable="true"]')
+      tiptapField.addEventListener('blur', () => validateTiptap(input))
+      tiptapField.addEventListener('focus', () => {
+        // If input has error remove it on focus
+        if (tiptapField.classList.contains(errorClass)) {
+          tiptapField.classList.remove(errorClass)
+        }
       })
-      break
-    case 'fieldset':
-      checkboxes = Array.from(input.querySelectorAll('input[type="checkbox"]'))
-      radios = Array.from(input.querySelectorAll('input[type="radio"]'))
+      observeValidationRelations(input, () => validateTiptap(input))
+    })
+    break
+  case 'fieldset':
+    checkboxes = Array.from(input.querySelectorAll('input[type="checkbox"]'))
+    radios = Array.from(input.querySelectorAll('input[type="radio"]'))
 
-      if (checkboxes.length > 0) {
-        fieldsToCheck = checkboxes
-      } else if (radios.length > 0) {
-        fieldsToCheck = radios
-      } else {
-        fieldsToCheck = []
+    if (checkboxes.length > 0) {
+      fieldsToCheck = checkboxes
+    } else if (radios.length > 0) {
+      fieldsToCheck = radios
+    } else {
+      fieldsToCheck = []
+    }
+
+    fieldsToCheck.forEach(checkbox => checkbox.addEventListener('blur', () => validateFieldset(input)))
+    fieldsToCheck.forEach(checkbox => checkbox.addEventListener('change', () => validateFieldset(input)))
+    observeValidationRelations(input, () => validateFieldset(input))
+    break
+  case 'datepicker':
+    input.addEventListener('focus', () => {
+      // If input has error remove it on focus
+      if (input.classList.contains(errorClass)) {
+        input.classList.remove(errorClass)
       }
-
-      fieldsToCheck.forEach(checkbox => checkbox.addEventListener('blur', () => validateFieldset(input)))
-      fieldsToCheck.forEach(checkbox => checkbox.addEventListener('change', () => validateFieldset(input)))
-      observeValidationRelations(input, () => validateFieldset(input))
-      break
-    case 'datepicker':
-      input.addEventListener('focus', () => {
-        // If input has error remove it on focus
-        if (input.classList.contains(errorClass)) {
-          input.classList.remove(errorClass)
-        }
-      })
-      input.addEventListener('blur', () => validateDatepicker(input))
-      observeValidationRelations(input, () => validateDatepicker(input))
-      break
-    case 'input':
-      input.addEventListener('focus', () => {
-        // If input has error remove it on focus
-        if (input.classList.contains(errorClass)) {
-          input.classList.remove(errorClass)
-        }
-      })
-      input.addEventListener('blur', () => validateInput(input))
-      observeValidationRelations(input, () => validateInput(input))
-      break
-    default:
+    })
+    input.addEventListener('blur', () => validateDatepicker(input))
+    observeValidationRelations(input, () => validateDatepicker(input))
+    break
+  case 'input':
+    input.addEventListener('focus', () => {
+      // If input has error remove it on focus
+      if (input.classList.contains(errorClass)) {
+        input.classList.remove(errorClass)
+      }
+    })
+    input.addEventListener('blur', () => validateInput(input))
+    observeValidationRelations(input, () => validateInput(input))
+    break
+  default:
   }
 }
 

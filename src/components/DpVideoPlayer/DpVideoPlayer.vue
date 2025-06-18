@@ -121,6 +121,12 @@ export default defineComponent({
     }
   },
 
+  data () {
+    return {
+      player: {}
+    }
+  },
+
   computed: {
     isEmbeddedSource() {
       return this.primarySource && this.primarySource.embedId && this.primarySource.provider
@@ -130,14 +136,8 @@ export default defineComponent({
     }
   },
 
-  data () {
-    return {
-      player: {}
-    }
-  },
-
   mounted () {
-    // eslint-disable-next-line new-cap
+     
     this.player = new Plyr('#' + this.id, {
       iconUrl: this.iconUrl,
       // For a full list of available controls see https://github.com/sampotts/plyr/blob/master/CONTROLS.md

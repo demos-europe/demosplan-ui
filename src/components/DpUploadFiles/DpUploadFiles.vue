@@ -26,9 +26,9 @@
 
  --><dp-uploaded-file-list
       v-if="uploadedFiles.length > 0"
-      @file-remove="handleRemove"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1 u-mt')]"
-      :files="uploadedFiles" />
+      :files="uploadedFiles"
+      @file-remove="handleRemove" />
 
     <!--
       If the component is used in the context of a "traditional" form post, the hashes (ids)
@@ -63,12 +63,6 @@ export default {
 
   mixins: [prefixClassMixin, sessionStorageMixin],
 
-  provide () {
-    return {
-      getFileByHash: this.getFileByHash
-    }
-  },
-
   props: {
     /**
      * Array of mimeTypes or a defined preset as String
@@ -101,6 +95,12 @@ export default {
       type: Number,
       default: Infinity,
       required: false
+    },
+
+    clearAllFiles: {
+      type: Boolean,
+      required: false,
+      default: false
     },
 
     dataCy: {
@@ -241,6 +241,14 @@ export default {
     }
   },
 
+  emits: ['upload-success'],
+
+  provide () {
+    return {
+      getFileByHash: this.getFileByHash
+    }
+  },
+
   data () {
     return {
       fileHashes: [],
@@ -253,6 +261,12 @@ export default {
   },
 
   watch: {
+    clearAllFiles () {
+      if (this.clearAllFiles) {
+        this.clearFilesList()
+      }
+    },
+
     storageName () {
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
     }

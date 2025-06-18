@@ -1,0 +1,39 @@
+import { Meta, Controls, Story, Canvas } from '@storybook/blocks'
+import * as DpEditableListStories from './DpEditableList.stories'
+
+<Meta of={DpEditableListStories} />
+
+# EditableList
+
+The EditableList component used to enable users to add, remove, or modify items within a list,
+such as a to-do list, a list of contacts, or any other type of data.
+
+The component might include features like inline editing, or buttons for adding and removing items.
+
+<Canvas of={DpEditableListStories.Default} />
+
+<Controls />
+
+## Custom usage
+
+```html
+<dp-editable-list
+    :entries="args.entries"
+    v-bind="args">
+    <template v-slot:list="entry">
+        <span>
+          {{ entry.mail }}
+          <input
+              class="sr-only"
+              type="email"
+              :value="entry.mail">
+        </span>
+    </template>
+    <template v-slot:form="entry">
+      <input
+          id="emailAddress"
+          type="email"
+          v-model="entry.mail"/>
+    </template>
+</dp-editable-list>
+```

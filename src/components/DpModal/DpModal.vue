@@ -22,8 +22,8 @@
         </button>
         <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
           <h2
-            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
-            v-if="hasHeader">
+            v-if="hasHeader"
+            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)">
             <slot name="header" />
           </h2>
           <slot name="default" />
@@ -36,8 +36,8 @@
       @after-leave="preventScroll(false)">
       <div
         v-if="isOpenModal"
-        @click.prevent.stop="toggle()"
-        :class="prefixClass('o-modal__backdrop')" />
+        :class="prefixClass('o-modal__backdrop')"
+        @click.prevent.stop="toggle()" />
     </transition>
   </div>
 </template>
@@ -123,6 +123,10 @@ export default {
       return isInDom && isDisplayed
     },
 
+    /**
+     * Deprecated - not used anymore
+     * @param modalId
+     */
     toggleByEvent (modalId) {
       //  Do not execute without a specified modalId to prevent unintentional toggling of multiple modals
       if (typeof modalId === 'undefined') {
@@ -150,7 +154,7 @@ export default {
           }
         })
       } else {
-        this.preventScroll(false) // it could be removed after dropping the assessment table
+        this.preventScroll(false) // It could be removed after dropping the assessment table
         this.lastFocusedElement.focus()
       }
     },

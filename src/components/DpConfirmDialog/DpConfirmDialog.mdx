@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpConfirmDialogStories from './DpConfirmDialog.stories.tsx'
+
+<Meta of={DpConfirmDialogStories} />
+
+# Confirm Dialog
+
+This is a modal dialog component that shows a message and offers confirm/cancel actions.
+
+The dialog returns a Promise that resolves to `true` when confirmed or `false` when canceled.
+
+## Default usage
+
+<Canvas of={DpConfirmDialogStories.Default} />
+
+## Custom message
+
+<Canvas of={DpConfirmDialogStories.CustomMessage} />

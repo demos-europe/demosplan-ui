@@ -6,8 +6,112 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1207](https://github.com/demos-europe/demosplan-ui/pull/1207)) Fix importing Mention Extiention in DpEditor ([@salisdemos](https://github.com/salisdemos))
+
+### Changed
+- ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
+
+## v0.4.17 - 2025-06-11
+
+### Changed
+
+- ([#1274](https://github.com/demos-europe/demosplan-ui/pull/1274)) dpValidateMixin.js: Allow adding topic names to field names in error messages ([@riechedemos](https://github.com/riechedemos))
+- ([#1289](https://github.com/demos-europe/demosplan-ui/pull/1289)) DpMultiselect: Adjust condition for button disabling / adjust custom event names in 6 files ([@rafelddemos](https://github.com/rafelddemos))
+
+
+## v0.4.16 - 2025-05-12
+
+### Added
+
+- ([#1262](https://github.com/demos-europe/demosplan-ui/pull/1262)) DpUploadFiles: add new prop ([@sakutademos](https://github.com/sakutademos)
+
+### Removed
+
+- ([#1265](https://github.com/demos-europe/demosplan-ui/pull/1265) Remove DpTooltipIcon in favor of DpContextualHelp ([@spiess-demos](https://github.com/spiess-demos))
+
+### Changed
+
+- ([#1268](https://github.com/demos-europe/demosplan-ui/pull/1268)) DpAutocomplete: replace vue-omnibox with custom logic ([@salisdemos](https://github.com/salisdemos)
+- ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1271](https://github.com/demos-europe/demosplan-ui/pull/1271)) DpTreeList: initialize the Stickier instances in nextTick and if the element’s height is greater than zero ([@sakutademos](https://github.com/sakutademos)
+
+## v0.4.15 - 2025-05-07
+
+### Fixed
+
+- ([#1264](https://github.com/demos-europe/demosplan-ui/pull/1264) DpEditor: Adjust editor menu buttons ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.4.14 - 2025-04-24
+
+### Fixed
+
+- ([#1246](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditor: Adjust headingLevel function to expect an object with a level property ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+
+- ([#1249](https://github.com/demos-europe/demosplan-ui/pull/1249)) DpMultiselect: add 'openDirection' prop ([@sakutademos](https://github.com/sakutademos)
+
+## v0.4.13 - 2025-04-14
+
+### Added
+
+- ([#1243](https://github.com/demos-europe/demosplan-ui/pull/1243)) DpButton: emit blur, focus and mousedown events ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+
+- ([#1239](https://github.com/demos-europe/demosplan-ui/pull/1239)) DpSearchField: Allow setting an input width for the search field ([@hwiem](https://github.com/hwiem))
+- ([#1242](https://github.com/demos-europe/demosplan-ui/pull/1242)) DpDataTable: Set correct colCount for empty data table ([@hwiem](https://github.com/hwiem))
+
+## v0.4.12 - 2025-04-08
+
+### Fixed
+
+- ([#1236](https://github.com/demos-europe/demosplan-ui/pull/1236)) DpResettableInput: update currentValue on input ([@sakutademos](https://github.com/sakutademos)
+
+
+## v0.4.11 - 2025-04-07
+
+### Fixed
+
+- ([#1234](https://github.com/demos-europe/demosplan-ui/pull/1234)) Add padding to align DpFlyout button ([@riechedemos](https://github.com/riechedemos))
+- ([#1235](https://github.com/demos-europe/demosplan-ui/pull/1235)) DpSlidingPagination: Make component vue3-compatible by updating vue-sliding-pagination  ([@hwiem](https://github.com/hwiem))
+
+### Added
+- ([#1228](https://github.com/demos-europe/demosplan-ui/pull/1228)) Create DpConfirmDialog component ([@sakutademos](https://github.com/sakutademos)
+
+
+## v0.4.10 - 2025-04-07
+
+Skipped due to publishing issues
+
+
+## v0.4.9 - 2025-04-02
+
+### Fixed
+- ([#1224](https://github.com/demos-europe/demosplan-ui/pull/1224)) Changed DpTreeList to render toggle depending on content ([@riechedemos](https://github.com/riechedemos))
+
+## v0.4.8 - 2025-03-24
+
+### Fixed
+- ([#1220](https://github.com/demos-europe/demosplan-ui/pull/1220)) DpEditor: Fix emitValue to pass obscure tag ([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.4.7 - 2025-03-20
+
+### Fixed
+- ([#1217](https://github.com/demos-europe/demosplan-ui/pull/1217)) DpEditor: Fix image upload ([@hwiem](https://github.com/hwiem))
+
+
+## v0.4.6 - 2025-03-18
+
+### Fixed
+- ([#1208](https://github.com/demos-europe/demosplan-ui/pull/1208)) Remove useless wrapping div to make Multiselect Validation work again ([@salisdemos](https://github.com/salisdemos))
+- ([#1214](https://github.com/demos-europe/demosplan-ui/pull/1214)) Properly emit checkboxGroup events ([@salisdemos](https://github.com/salisdemos))
 - ([#1209](https://github.com/demos-europe/demosplan-ui/pull/1209)) Escape Multiline String Endings to avoid \n in classlist in DpButton ([@salisdemos](https://github.com/salisdemos))
 - ([#1213](https://github.com/demos-europe/demosplan-ui/pull/1213)) Changed Icon to caret in DpWrapTrigger ([@riechedemos](https://github.com/riechedemos))
+
+### Added
+- ([#1215](https://github.com/demos-europe/demosplan-ui/pull/1215)) Reintroduce ClickOutside for some Components ([@salisdemos](https://github.com/salisdemos))
+- ([#1216](https://github.com/demos-europe/demosplan-ui/pull/1216)) DpInput: Add prop for rounded input to allow full or only left or right rounded input ([@gruenbergerdemos](https://github.com/gruenbergerdemos))
 
 
 ## v0.4.5 - 2025-03-04

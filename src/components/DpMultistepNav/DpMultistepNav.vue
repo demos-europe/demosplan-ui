@@ -5,14 +5,14 @@
       :key="`step_${idx}`"
       :data-cy="`${dataCy}:${idx}`"
       :disabled="idx > activeStep"
-      @click="changeStep(idx)"
       class="btn--blank"
       :aria-label="step.title ? step.title : step.label"
       :class="[
         prefixClass('c-multistep__step'),
         idx === activeStep ? prefixClass('is-active') : '',
         idx > activeStep ? prefixClass('is-disabled') : ''
-      ]">
+      ]"
+      @click="changeStep(idx)">
       <span>
         <i
           v-if="step.icon"
@@ -50,6 +50,8 @@ export default {
       required: true
     }
   },
+
+  emits: ['change-step'],
 
   methods: {
     changeStep (val) {

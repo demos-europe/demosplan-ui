@@ -16,7 +16,7 @@ function shouldValidate (input) {
     isRequired ||
     input.hasAttribute('pattern') ||
     input.getAttribute('type') === 'email' ||
-    input.hasAttribute('data-ad-id') || /* this attribute is used to get the input of the Datepicker */
+    input.hasAttribute('data-ad-id') || /* This attribute is used to get the input of the Datepicker */
     input.hasAttribute('minlength') ||
     input.hasAttribute('maxlength') ||
     input.hasAttribute('data-dp-validate-maxlength') ||
@@ -32,9 +32,9 @@ function validateConditionsFulfilled (input) {
     const matchers = condition.split(comparisonType === 'isNotEqual' ? '!==' : '===')
     const validationContainer = input.closest('[data-dp-validate]')
     /**
-     Use the form as the validation container. This is necessary because in some cases, such as wizard,
-     the value of the 'data-dp-validate-if' attribute may refer to a different fieldset.
-     By using the form, this condition can be found throughout the entire form.
+     *Use the form as the validation container. This is necessary because in some cases, such as wizard,
+     *the value of the 'data-dp-validate-if' attribute may refer to a different fieldset.
+     *By using the form, this condition can be found throughout the entire form.
      */
     const form = validationContainer.tagName === 'FIELDSET' && validationContainer.form ? validationContainer.form : validationContainer
 

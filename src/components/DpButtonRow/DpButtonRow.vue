@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[align, $attrs.class]"
-    class="space-inline-s">
+    class="space-x-2">
     <dp-button
       v-if="primary"
       :busy="busy ? true : null"
@@ -33,11 +33,6 @@ export default {
   components: {
     DpButton
   },
-
-  emits: [
-    'primary-action',
-    'secondary-action'
-  ],
 
   props: {
     /**
@@ -136,6 +131,11 @@ export default {
       validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
     }
   },
+
+  emits: [
+    'primary-action',
+    'secondary-action'
+  ],
 
   computed: {
     align () {

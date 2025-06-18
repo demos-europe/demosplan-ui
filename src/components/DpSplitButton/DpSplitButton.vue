@@ -1,5 +1,6 @@
 <template>
   <div
+    v-on-click-outside="close"
     class="c-splitbutton">
     <slot>
       <button
@@ -12,7 +13,7 @@
       v-if="hasDropdownContent"
       data-cy="splitButtonTrigger"
       class="c-splitbutton__trigger"
-      :class="{'is-open': isOpen}"
+      :class="{ 'is-open': isOpen }"
       type="button"
       aria-haspopup="true"
       :aria-expanded="isOpen"
@@ -25,7 +26,7 @@
       v-if="hasDropdownContent"
       class="c-splitbutton__dropdown"
       role="menu"
-      :class="{'is-open': isOpen}">
+      :class="{ 'is-open': isOpen }">
       <slot name="dropdown">
         Dropdown Actions
       </slot>
@@ -34,14 +35,14 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
 import { de } from "~/components/shared/translations"
+import { vOnClickOutside } from '@vueuse/components'
 
 export default {
   name: 'DpSplitButton',
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
 
   data () {
@@ -66,7 +67,6 @@ export default {
   },
 
   mounted () {
-    this.popupItem = this.$el
     this.hasDropdownContent = (typeof this.$slots.dropdown !== 'undefined')
   }
 }

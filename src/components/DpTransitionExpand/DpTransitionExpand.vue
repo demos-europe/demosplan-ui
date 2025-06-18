@@ -29,7 +29,7 @@ export default {
          * Force repaint to make sure the
          * animation is triggered correctly.
          */
-        /* eslint-disable no-unused-expressions */
+         
         getComputedStyle(element).height
 
         /*
@@ -55,7 +55,11 @@ export default {
       }
     }
 
-    return h(Transition, data, () => this.$slots.default)
+    return h(
+      Transition,
+      data,
+      () => this.$slots.default ? this.$slots.default() : null
+    )
   }
 }
 </script>

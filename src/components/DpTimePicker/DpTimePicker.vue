@@ -1,5 +1,6 @@
 <template>
   <div
+    v-on-click-outside="closeFlyout"
     class="c-timepicker inline-block"
     @keydown.esc="closeFlyout"
     @keydown.enter="e => handleEnter(e)">
@@ -9,30 +10,30 @@
       :text="label" />
     <dp-resettable-input
       v-if="!isMobileDevice"
-      :data-cy="dataCy"
       :id="`timeInput:${id}`"
       :ref="`timeInput:${id}`"
+      :data-cy="dataCy"
       class="w-8"
       button-variant="small"
       default-value="00:00"
       :input-attributes="{ disabled: disabled, autocomplete: 'off' }"
+      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+      :value="currentTime"
       @reset="handleReset"
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @input="val => handleInput(val)"
-      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-      :value="currentTime" />
+      @input="val => handleInput(val)" />
     <dp-input
       v-else
-      :data-cy="dataCy"
       :id="`timeInput:${id}`"
+      :data-cy="dataCy"
       class="w-8"
       type="time"
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"
-      @input="val => handleInput(val)"
-      autocomplete="off" />
+      autocomplete="off"
+      @input="val => handleInput(val)" />
 
     <div
       ref="flyout"
@@ -44,13 +45,13 @@
           v-for="hour in availableHours"
           :key="`${id}:hour:${hour}`"
           class="c-timepicker__flyout-item"
-          :class="{'is-selected': currentHour === hour}">
+          :class="{ 'is-selected': currentHour === hour }">
           <button
-            @click.prevent="handleInput(hour, 'hour')"
+            :id="`${id}:hour:${hour}`"
             class="btn--blank u-ph-0_125 u-pv-0_125"
             tabindex="0"
             :value="hour"
-            :id="`${id}:hour:${hour}`">
+            @click.prevent="handleInput(hour, 'hour')">
             {{ hour }}
           </button>
         </li>
@@ -62,13 +63,13 @@
           v-for="minute in availableMinutes"
           :key="`${id}:minute:${minute}`"
           class="c-timepicker__flyout-item"
-          :class="{'is-selected': currentMinutes === minute}">
+          :class="{ 'is-selected': currentMinutes === minute }">
           <button
-            @click.prevent="handleInput(minute, 'minute')"
+            :id="`${id}:minute:${minute}`"
             tabindex="0"
             class="btn--blank u-ph-0_125 u-pv-0_125"
             :value="minute"
-            :id="`${id}:minute:${minute}`">
+            @click.prevent="handleInput(minute, 'minute')">
             {{ minute }}
           </button>
         </li>
@@ -78,11 +79,11 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
 import DpInput from '~/components/DpInput'
 import DpLabel from '~/components/DpLabel'
 import DpResettableInput from '~/components/DpResettableInput'
 import isMobile from 'ismobilejs'
+import { vOnClickOutside } from '@vueuse/components'
 
 const DEFAULT_TIME = '00:00'
 
@@ -96,7 +97,7 @@ export default {
   },
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
 
   props: {

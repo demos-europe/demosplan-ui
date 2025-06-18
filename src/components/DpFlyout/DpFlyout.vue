@@ -1,5 +1,7 @@
 <template>
   <span
+    ref="target"
+    v-on-click-outside="close"
     class="o-flyout"
     :class="{
       'o-flyout--left': align === 'left',
@@ -15,12 +17,12 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="o-flyout__trigger btn--blank o-link--default px-1 line-height--2 whitespace-nowrap"
+      class="o-flyout__trigger btn--blank o-link--default px-1 pt-0.5 line-height--2 whitespace-nowrap"
       :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle">
       <slot
         name="trigger"
-        v-bind:isExpanded="isExpanded">
+        :is-expanded="isExpanded">
         <i class="fa fa-ellipsis-h" />
       </slot>
     </button>
@@ -33,13 +35,13 @@
 </template>
 
 <script>
-// import ClickOutside from 'vue-click-outside'
+import { vOnClickOutside } from '@vueuse/components'
 
 export default {
   name: 'DpFlyout',
 
   directives: {
-    // ClickOutside
+    onClickOutside: vOnClickOutside
   },
 
   props: {
@@ -88,6 +90,8 @@ export default {
     },
   },
 
+  emits: ['close', 'open'],
+
   data () {
     return {
       isExpanded: false
@@ -111,10 +115,6 @@ export default {
         this.$emit('close')
       }
     }
-  },
-
-  mounted () {
-    this.popupItem = this.$el
   }
 }
 </script>

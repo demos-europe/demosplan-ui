@@ -39,7 +39,7 @@ const tooltipConfig = {
 VPopover.options = { ...VPopover.options, ...tooltipConfig }
 
 /**
- * v-tooltip directive
+ * V-tooltip directive
  *
  * @type {VueDirective}
  *

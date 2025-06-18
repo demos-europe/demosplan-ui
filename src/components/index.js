@@ -18,6 +18,7 @@ import DpDatepicker from './DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker'
 import DpDetails from './DpDetails'
+import DpConfirmDialog from './DpConfirmDialog'
 import DpDraggable from './DpDraggable'
 import DpEditor from './DpEditor'
 import DpEditableList from './DpEditableList'
@@ -52,7 +53,6 @@ import DpTextArea from './DpTextArea'
 import DpTimePicker from './DpTimePicker'
 import DpToggle from './DpToggle'
 import DpTooltip from './DpTooltip'
-import DpTooltipIcon from './DpTooltipIcon'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
 import {
@@ -67,6 +67,7 @@ export {
   DpBadge,
   DpButton,
   DpButtonRow,
+  DpConfirmDialog,
   DpDetails,
   DpIcon,
   DpInput,
@@ -115,7 +116,6 @@ export {
   DpTimePicker,
   DpToggle,
   DpTooltip,
-  DpTooltipIcon,
   DpTransitionExpand,
   DpTreeList,
   DpUpload,

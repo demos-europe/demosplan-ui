@@ -3,18 +3,19 @@
     <dp-input
       v-bind="inputAttributes"
       :id="id"
+      v-model="currentValue"
       :data-cy="dataCy"
       has-icon
       :required="required"
-      @blur="$emit('blur', currentValue)"
-      @input="$emit('input', currentValue)"
-      @enter="$emit('enter', currentValue)"
-      @focus="$emit('focus')"
+      :rounded="rounded"
       :pattern="pattern"
-      v-model="currentValue" />
+      @blur="$emit('blur', currentValue)"
+      @input="onInput"
+      @enter="$emit('enter', currentValue)"
+      @focus="$emit('focus')" />
     <button
       v-if="!inputAttributes.disabled"
-      class="btn--blank o-link--default"
+      class="btn--blank o-link--default pr-0.5"
       data-cy="resetButton"
       :class="buttonClass"
       :disabled="currentValue === defaultValue"
@@ -86,6 +87,21 @@ export default {
       default: false
     },
 
+    /**
+     * Prop to define the rounded corners of the input.
+     *
+     * @property {String} rounded - The rounded corners style.
+     *                              Can be 'full', 'left', or 'right'.
+     * @default 'full'
+     * @validator Ensures the value is one of 'full', 'left', or 'right'.
+     */
+    rounded: {
+      type: String,
+      required: false,
+      default: 'full',
+      validator: (prop) => ['full', 'left', 'right'].includes(prop)
+    },
+
     value: {
       type: String,
       required: false,
@@ -119,6 +135,11 @@ export default {
   },
 
   methods: {
+    onInput (val) {
+      this.currentValue = val
+      this.$emit('input', val)
+    },
+
     resetValue () {
       this.$emit('reset')
     }

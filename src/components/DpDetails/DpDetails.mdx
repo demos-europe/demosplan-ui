@@ -1,0 +1,23 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpDetailsStories from './DpDetails.stories.tsx'
+
+<Meta of={DpDetailsStories} />
+
+# Details
+
+The `DpDetails` component is used to reveal detailed information only when users need it.
+Other than the accordion or expandable table, it is not used to display tabular data or
+multiple items of the same type and structure - it rather represents a single chunk of
+information that is shortened to ease scanning of the content it is part of.
+
+## Default usage
+
+<Canvas of={DpDetailsStories.Default} />
+
+## Open by default
+
+<Canvas of={DpDetailsStories.OpenByDefault} />
+
+## With HTML content
+
+<Canvas of={DpDetailsStories.WithHTML} />

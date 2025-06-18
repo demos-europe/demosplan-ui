@@ -1,0 +1,28 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpDataTableExtendedStories from './DpDataTableExtended.stories.tsx'
+
+<Meta of={DpDataTableExtendedStories} />
+
+# Extended Data Table
+
+Renders a pre-configured DpDataTable instance, along with a sticky header where a search bar and a pager including
+items-per-page are placed. Additional actions can be placed in the sticky footer.
+
+As in DpDataTable, be aware of the data structure for header-fields and table-items. The Keys in table-items have to
+match the field values of the header-fields.
+
+## Default usage
+
+<Canvas of={DpDataTableExtendedStories.Default} />
+
+## With selection
+
+<Canvas of={DpDataTableExtendedStories.WithSelection} />
+
+## With custom per-page options
+
+<Canvas of={DpDataTableExtendedStories.WithCustomPaging} />
+
+## With footer actions
+
+<Canvas of={DpDataTableExtendedStories.WithFooterActions} />

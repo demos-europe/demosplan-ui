@@ -19,17 +19,17 @@ export const mockNode = {
         }
       ]
     },
-      {
-        "id": "5",
-        "type": "elements",
+    {
+      "id": "5",
+      "type": "elements",
+      "attributes": {},
+      "children": [{
         "attributes": {},
-        "children": [{
-          "attributes": {},
-          "children": [],
-          "id": "6",
-          "type": "singleDocument"
-        }]
-      }
+        "children": [],
+        "id": "6",
+        "type": "singleDocument"
+      }]
+    }
     ]
   }]
 }
@@ -52,17 +52,17 @@ export const mockNodeChildren = [{
       }
     ]
   },
-    {
-      "id": "5",
-      "type": "elements",
+  {
+    "id": "5",
+    "type": "elements",
+    "attributes": {},
+    "children": [{
       "attributes": {},
-      "children": [{
-        "attributes": {},
-        "children": [],
-        "id": "6",
-        "type": "singleDocument"
-      }]
-    }
+      "children": [],
+      "id": "6",
+      "type": "singleDocument"
+    }]
+  }
   ]
 }]
 
@@ -97,23 +97,23 @@ export const mockUpdatedNodes = {
         "children": []
       }]
     },
-      {
-        "id": "5",
-        "type": "elements",
-        "attributes": {},
+    {
+      "id": "5",
+      "type": "elements",
+      "attributes": {},
+      "nodeIsSelected": true,
+      "nodeType": "branch",
+      "nodeId": "5",
+      "children": [{
+        "id": "6",
+        "type": "singleDocument",
         "nodeIsSelected": true,
-        "nodeType": "branch",
-        "nodeId": "5",
-        "children": [{
-          "id": "6",
-          "type": "singleDocument",
-          "nodeIsSelected": true,
-          "nodeType": "leaf",
-          "nodeId": "6",
-          "attributes": {},
-          "children": []
-        }]
-      }
+        "nodeType": "leaf",
+        "nodeId": "6",
+        "attributes": {},
+        "children": []
+      }]
+    }
     ]
   }]
 }

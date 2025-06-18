@@ -1,0 +1,38 @@
+import { Meta, Canvas } from '@storybook/blocks'
+import * as DpLabelStories from './DpLabel.stories'
+
+<Meta of={DpLabelStories} />
+
+# Label
+
+The `DpLabel` component is used to add a label to form controls.
+
+It is included in the following <strong><i>demosplan-ui</i></strong> form components:
+
+- DpCheckbox
+- DpInput
+- DpRadio
+- DpSelect
+- DpDateTimePicker
+- DpTextarea
+- DpTimePicker
+
+If you want to use any of these components, you don't need to import `DpLabel` separately.
+
+`DpLabel` is currently not included in the following <strong><i>demosplan-ui</i></strong> form components:
+
+- DpMultiselect
+- DpTiptap
+- DpDatepicker
+- DpDateRangePicker
+
+If you want to use any of these components, you need to import `DpLabel` separately.
+
+## Props
+
+- If a form control is `required`, an asterisk will be added to the label.
+- The `hint` property adds the provided string below the label.
+- The `tooltip` property adds a contextual help icon that reveals additional information on the form control when the user
+hovers over it with their mouse.
+
+<Canvas of={DpLabelStories.FullExample} />

@@ -16,7 +16,7 @@
       }"
       :name="option.name || ''"
       :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      @change="$emit('update', selected)" />
+      @change="(val) => $emit('update', { ...selected, [option.id]: val })" />
   </fieldset>
 </template>
 
@@ -64,6 +64,10 @@ export default {
     }
   },
 
+  emits: [
+    'update'
+  ],
+
   data () {
     return {
       selected: {}
@@ -71,7 +75,7 @@ export default {
   },
 
   watch: {
-    selectedOptions () {
+      selectedOptions () {
       this.selected = this.selectedOptions
     }
   },

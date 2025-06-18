@@ -1,0 +1,26 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpDraggableStories from './DpDraggable.stories.tsx'
+
+<Meta of={DpDraggableStories} />
+
+# Draggable
+
+Use the Draggable component to change the order of items within a list or to move items between lists.
+
+The component provides a wrapper around the [sortable.js](https://github.com/SortableJS/Sortable) library (through [@vueuse/integrations/useSortable](https://vueuse.org/integrations/useSortable/)).
+
+## Basic usage
+
+<Canvas of={DpDraggableStories.Default} />
+
+## With custom tag
+
+<Canvas of={DpDraggableStories.WithCustomTag} />
+
+## Dragging between lists
+
+<Canvas of={DpDraggableStories.DragBetweenLists} />
+
+## Disabled dragging
+
+<Canvas of={DpDraggableStories.Disabled} />

@@ -1,0 +1,18 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import * as DpTransitionExpandStories from './DpTransitionExpand.stories'
+
+<Meta title="Components/DpTransitionExpand" />
+
+# DpTransitionExpand
+
+A transition component that smoothly animates element height during expand and collapse operations.
+
+## Usage
+
+The DpTransitionExpand component is designed to be used as a wrapper around content that needs to be expanded or collapsed with animation. It's commonly used with `v-show` or `v-if` directives to toggle content visibility.
+
+## Example
+
+A simple example showing the transition effect when toggling visibility.
+
+<Canvas of={DpTransitionExpandStories.Basic} />

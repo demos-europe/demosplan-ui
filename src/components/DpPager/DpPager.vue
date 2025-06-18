@@ -1,27 +1,27 @@
 <template>
   <div class="c-pager__dropdown">
     <label
-      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal inline-block"
+      class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal flex items-center gap-1"
       :aria-label="translations.selectNumberOfItems">
-        <dp-sliding-pagination
-          v-if="totalItems > Math.min(...limits)"
-          class="inline-block"
-          :current="currentPage"
-          :nonSlidingSize="3"
-          :slidingEndingSize="1"
-          :slidingWindowSize="1"
-          :total="totalPages || 1"
-          @page-change="handlePageChange" />
-      <div
+      <dp-sliding-pagination
+        v-if="totalItems > Math.min(...limits)"
         class="inline-block"
-        v-if="totalItems > Math.min(...limits)">
+        :current="currentPage"
+        :non-sliding-size="3"
+        :sliding-ending-size="1"
+        :sliding-window-size="1"
+        :total="totalPages || 1"
+        @page-change="handlePageChange" />
+      <div
+        v-if="totalItems > Math.min(...limits)"
+        class="inline-block">
         <dp-multiselect
           v-model="itemsPerPage"
           class="inline-block"
           :options="filteredLimits"
           :searchable="false"
           selected-label=""
-          @select="handleSizeChange"/>
+          @select="handleSizeChange" />
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
@@ -77,6 +77,8 @@ export default {
       default: () => []
     }
   },
+
+  emits: ['page-change', 'size-change'],
 
   data () {
     return {

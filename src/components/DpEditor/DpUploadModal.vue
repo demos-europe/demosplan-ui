@@ -18,14 +18,14 @@
       v-if="!editAltTextOnly"
       class="mb-2">
       <dp-upload-files
+        id="imageFile"
+        ref="uploader"
         allowed-file-types="img"
         :basic-auth="basicAuth"
-        id="imageFile"
         :get-file-by-hash="getFileByHash"
         :max-file-size="20 * 1024 * 1024/* 20 MiB */"
         :max-number-of-files="1"
-        ref="uploader"
-        :translations="{ dropHereOr: translations.uploadImage('20MB')}"
+        :translations="{ dropHereOr: translations.uploadImage('20MB') }"
         :tus-endpoint="tusEndpoint"
         @upload-success="setFile" />
     </div>
@@ -33,7 +33,7 @@
       <img
         :alt="altText"
         class="mb-4"
-        :src="this.imgSrc">
+        :src="imgSrc">
     </div>
     <dp-input
       id="altText"
@@ -49,9 +49,8 @@
         class="btn btn--primary"
         data-cy="uploadModal:save"
         type="button"
-        @click="emitAndClose()"
-        v-text="editAltTextOnly ? translations.save : translations.insert">
-      </button>
+        @click="emitAndClose"
+        v-text="editAltTextOnly ? translations.save : translations.insert" />
       <button
         class="btn btn--secondary"
         data-cy="uploadModal:abort"
@@ -101,6 +100,12 @@ export default {
       required: true
     }
   },
+
+  emits: [
+    'add-alt',
+    'close',
+    'insert-image'
+  ],
 
   data () {
     return {

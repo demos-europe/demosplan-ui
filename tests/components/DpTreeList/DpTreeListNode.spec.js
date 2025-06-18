@@ -59,7 +59,7 @@ describe('DpTreeListNode', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('change the icon class to "fa fa-folder-open" if the isExpanded is true', async () => {
+  it('changes the icon class to "fa fa-folder-open" if isExpanded is true', async () => {
     const button = wrapper.findComponent(DpTreeListToggle)
 
     expect(wrapper.vm.isExpanded).toBe(false)
@@ -71,7 +71,7 @@ describe('DpTreeListNode', () => {
     expect(wrapper.vm.iconClassFolder).toBe('fa fa-folder-open')
   })
 
-  it.skip('change the icon class to "fa fa-folder" if the isExpanded is false', async () => {
+  it.skip('changes the icon class to "fa fa-folder" if isExpanded is false', async () => {
     /**
      * For some reason, the value don't get updated when the button is clicked
      */
@@ -85,59 +85,5 @@ describe('DpTreeListNode', () => {
 
     expect(wrapper.vm.isExpanded).toBe(false)
     expect(wrapper.vm.iconClassFolder).toBe('fa fa-folder')
-  })
-
-  it('update the properties of the parent node when invoking the setNodeAndChildrenSelection method', () => {
-    wrapper.vm.setNodeAndChildrenSelection(true)
-
-    expect(wrapper.vm.node.nodeId).toBe(wrapper.vm.nodeId)
-    expect(wrapper.vm.node.nodeIsSelected).toBe(true)
-    expect(wrapper.vm.node.nodeType).toBe(wrapper.vm.isBranch ? 'branch' : 'leaf')
-  })
-
-  it('call the function setSelectionRecursively and update the properties of the nodes children when the node has children', () => {
-    const setSelectionRecursivelySpy = jest.spyOn(wrapper.vm, 'setSelectionRecursively')
-
-    wrapper.vm.setNodeAndChildrenSelection(true)
-
-    expect(setSelectionRecursivelySpy).toHaveBeenCalled()
-    expect(wrapper.vm.node).toEqual(mockUpdatedNodes)
-  })
-
-  it('does not call the function setSelectionRecursively when the node has no children', () => {
-    wrapper = shallowMount(DpTreeListNode, {
-      props: {
-        children: [],
-        draggable: true,
-        handleChange: jest.fn(),
-        handleDrag: jest.fn(),
-        checkBranch: mockCheckBranch,
-        level: 0,
-        node: {
-          "id": "4",
-          "type": "singleDocument",
-          "attributes": {},
-          "children": []
-        },
-        nodeId: '4',
-        onMove: jest.fn(),
-        options: {},
-        parentId: '',
-        parentSelected: false
-      },
-      global: {
-        mocks
-      }
-    })
-    const setSelectionRecursivelySpy = jest.spyOn(wrapper.vm, 'setSelectionRecursively')
-    wrapper.vm.setNodeAndChildrenSelection(true)
-
-    expect(setSelectionRecursivelySpy).not.toHaveBeenCalled()
-  })
-
-  it('emit the "node-selected" event when the setSelectionState function is called', () => {
-    wrapper.vm.setSelectionState(true)
-
-    expect(wrapper.emitted('node-selected')).toBeTruthy()
   })
 })

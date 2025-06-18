@@ -13,7 +13,8 @@
           v-model="allElementsSelected"
           name="checkAll"
           check-all
-          :style="checkboxIndentationStyle" />
+          :style="checkboxIndentationStyle"
+        />
         <div class="grow color--grey">
           <!--
             @slot Content displayed at the top of the tree list. Typically used for column headers or global actions.
@@ -26,7 +27,8 @@
           data-cy="treeListNodeToggle"
           :value="allElementsExpanded"
           toggle-all
-          @input="toggleAll" />
+          @input="toggleAll"
+        />
       </div>
     </div>
 
@@ -37,7 +39,7 @@
       :drag-across-branches="opts.dragAcrossBranches ? opts.dragAcrossBranches : null"
       class="list-style-none u-mb-0 u-1-of-1"
       data-cy="treeListNode"
-      :content-data="draggable ? treeData : []"
+      :content-data="draggable ? optimizedTreeData : []"
       draggable-tag="ul"
       :handle-change="handleChange"
       :handle-drag="handleDrag"
@@ -45,7 +47,7 @@
       :on-move="onMove"
       :opts="opts.draggable">
       <dp-tree-list-node
-        v-for="(node, idx) in treeData"
+        v-for="(node, idx) in optimizedTreeData"
         :ref="`node_${node.id}`"
         :key="node.id"
         :data-cy="`treeListNode:${idx}`"
@@ -59,10 +61,10 @@
         :node-id="node.id"
         :on-move="onMove"
         :options="opts"
-        :parent-selected="allElementsSelected"
+        :selection-manager="selectionManager"
         @draggable:change="bubbleDraggableChange"
         @end="handleDrag('end')"
-        @node-selected="handleSelectEvent"
+        @node-selected="handleNodeSelectionChanged"
         @start="handleDrag('start')"
         @tree:change="bubbleChangeEvent">
         <template
@@ -73,7 +75,8 @@
           -->
           <slot
             :name="slot"
-            v-bind="scope" />
+            v-bind="scope"
+          />
         </template>
       </dp-tree-list-node>
     </component>
@@ -100,6 +103,7 @@ import DpTreeListCheckbox from './DpTreeListCheckbox'
 import DpTreeListNode from './DpTreeListNode'
 import DpTreeListToggle from './DpTreeListToggle'
 import { dragHandleWidth } from './utils/constants'
+import { SelectionManager } from './utils/SelectionManager'
 import { Stickier } from '~/lib'
 
 export default {
@@ -157,12 +161,16 @@ export default {
       required: true
     }
   },
-emits: ['tree:change', 'draggable:change', 'node-selection-change'],
+
+  emits: [
+    'tree:change',
+    'draggable:change',
+    'node-selection-change'
+  ],
 
   data () {
     return {
       allElementsExpanded: false,
-      allElementsSelected: false,
 
       /*
        * To be able to control the appearance of nodes when hovered vs. when dragged,
@@ -171,7 +179,9 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
       dragging: false,
 
       opts: {},
-      selectedNodesObjects: []
+      selectionManager: null,
+      optimizedTreeData: [],
+      updateScheduled: false
     }
   },
 
@@ -202,10 +212,76 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
          */
         this.$emit('tree:change', payload)
       }
+    },
+
+    allElementsSelected: {
+      get() {
+        return this.selectionManager?.areAllSelectableNodesSelected() || false
+      },
+
+      set(value) {
+        if (!this.selectionManager) return
+
+        if (value) {
+          this.selectionManager.selectAllSelectableNodes()
+        } else {
+          this.selectionManager.clearAllSelections()
+        }
+        this.scheduleTreeUpdate()
+
+        const selectedNodes = this.selectionManager.getSelectedNodes()
+        const filteredSelections = this.filterSelectableNodes(selectedNodes)
+        this.$emit('node-selection-change', filteredSelections)
+      }
+    }
+  },
+
+  watch: {
+    treeData: {
+      handler(newData) {
+        this.rebuildIndexesAndUpdateTree(newData)
+      },
+      immediate: true,
+      deep: false // Only watch array reference changes for performance
     }
   },
 
   methods: {
+    rebuildIndexesAndUpdateTree(treeData) {
+      if (!this.selectionManager) {
+        return
+      }
+
+      // Rebuild indexes when tree structure changes
+      this.selectionManager.buildIndexes(treeData, this.branchIdentifier)
+      this.scheduleTreeUpdate()
+    },
+
+    scheduleTreeUpdate() {
+      if (this.updateScheduled) {
+        return
+      }
+
+      this.updateScheduled = true
+
+      this.$nextTick(() => {
+        this.optimizedTreeData = this.selectionManager.applySelectionToTreeData(this.treeData)
+        this.updateScheduled = false
+      })
+    },
+
+    handleNodeSelectionChanged(nodeId) {
+      this.selectionManager.toggleSelection(nodeId)
+
+      // Schedule tree update for next tick to batch multiple operations
+      this.scheduleTreeUpdate()
+
+      const selectedNodes = this.selectionManager.getSelectedNodes()
+      const filteredSelections = this.filterSelectableNodes(selectedNodes)
+
+      this.$emit('node-selection-change', filteredSelections)
+    },
+
     bubbleChangeEvent (payload) {
       this.$emit('tree:change', payload)
     },
@@ -219,15 +295,23 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
     },
 
     destroyFixedControls () {
-      this.stickyHeader.destroy()
-      this.stickyFooter.destroy()
+      if (this.stickyHeader) {
+        this.stickyHeader.destroy()
+      }
+
+      if (this.stickyFooter) {
+        this.stickyFooter.destroy()
+      }
     },
 
     filterSelectableNodes (selectedNodes) {
-      if (this.opts.branchesSelectable && this.opts.leavesSelectable) return selectedNodes
+      if (this.opts.branchesSelectable && this.opts.leavesSelectable) {
+        return selectedNodes
+      }
 
       return selectedNodes.filter(({ nodeType }) => {
         let nodeSelectable = false
+
         if ((this.opts.branchesSelectable && nodeType === 'branch') ||
           (this.opts.leavesSelectable && nodeType === 'leaf')) {
           nodeSelectable = true
@@ -237,22 +321,6 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
       })
     },
 
-    getAllSelectedNodesObjects (treeData) {
-      let selectedNodes = []
-
-      treeData.forEach(node => {
-        if (node.nodeIsSelected) {
-          selectedNodes.push(node)
-        }
-
-        if (node.children && node.children.length > 0) {
-          const selectedChildNodes = this.getAllSelectedNodesObjects(node.children)
-          selectedNodes = selectedNodes.concat(selectedChildNodes)
-        }
-      })
-
-      return selectedNodes
-    },
 
     /**
      * Handler for the draggable `change` event.
@@ -294,16 +362,6 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
       this.dragging = (eventType === 'start')
     },
 
-    handleSelectEvent () {
-      this.selectedNodesObjects = this.getAllSelectedNodesObjects(this.treeData)
-      const filteredSelections = this.filterSelectableNodes(this.selectedNodesObjects)
-
-      /**
-       * Emitted when node selection changes with array of selected nodes
-       * @type {Event}
-       */
-      this.$emit('node-selection-change', filteredSelections)
-    },
 
     // Header and Footer should be fixed to the top/bottom of the page when the TreeList exceeds the viewport height.
     initFixedControls () {
@@ -338,14 +396,12 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
     },
 
     unselectAll () {
-      this.selectedNodesObjects.forEach(node => {
-        if (this.$refs['node_' + node.id]) {
-          this.$refs['node_' + node.id][0].setSelectionState(false)
-        }
-      })
-      this.selectedNodesObjects = []
-      this.allElementsSelected = false
-      this.$emit('node-selection-change', this.selectedNodesObjects)
+      if (this.selectionManager) {
+        this.selectionManager.clearAllSelections()
+        this.scheduleTreeUpdate()
+        this.allElementsSelected = false
+        this.$emit('node-selection-change', [])
+      }
     }
   },
 
@@ -380,9 +436,17 @@ emits: ['tree:change', 'draggable:change', 'node-selection-change'],
         parentDeselect: false
       }
     }
+
     this.opts = deepMerge(defaults, this.options)
 
+    this.selectionManager = new SelectionManager(this.opts)
+    this.rebuildIndexesAndUpdateTree(this.treeData)
+
     this.initFixedControls()
+  },
+
+  beforeUnmount() {
+    this.destroyFixedControls()
   }
 }
 </script>

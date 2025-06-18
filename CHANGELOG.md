@@ -4,8 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+
+## v0.4.18 - 2025-06-18
+
+### Fixed
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
-- ([#1292](https://github.com/demos-europe/demosplan-ui/pull/1292)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
+- ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.5.1 - 2025-05-19
 

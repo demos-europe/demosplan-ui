@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 - ([#1294](https://github.com/demos-europe/demosplan-ui/pull/1294)) DpAnonymizeText: bump TipTap to 3.0.0-beta.8 and adjust syntax for BubbleMenu ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.4.17 - 2025-06-11
 

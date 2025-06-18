@@ -394,6 +394,14 @@ export default {
       default: () => ({})
     }
   },
+
+  emits: [
+    'changed-order',
+    'items-selected',
+    'items-toggled',
+    'selectAll'
+  ],
+
   data () {
     return {
       allExpanded: false,
@@ -640,7 +648,7 @@ export default {
       }), status)
 
       // Used by multi-page selection in SegmentsList to determine whether to track selected or deselected items.
-      this.$emit('select-all', status)
+      this.$emit('selectAll', status)
     },
 
     toggleWrap (id) {

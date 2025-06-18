@@ -67,11 +67,7 @@ export default {
 
           if (fieldsWithTopics.length) {
             const fieldsString = fieldsWithTopics.map(item => {
-              return item.topicName
-                ? `${item.fieldName} (${item.topicName})`
-                : item.fieldName
-            }).join(', ')
-
+              return item.topicName ? `${item.fieldName} (${item.topicName})` : item.fieldName }).join(', ')
             const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
             dplan.notify.notify('error', errorMandatoryFields)
           } else {

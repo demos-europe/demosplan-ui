@@ -45,13 +45,29 @@ export default {
         customErrors.forEach(error => dplan.notify.notify('error', error))
 
         if (customErrors.length === 0) {
-          const nonEmptyUniqueFieldNames = invalidFields
-            .map(field => field.getAttribute('data-dp-validate-error-fieldname'))
-            .filter(Boolean)
-            .filter((field, idx, arr) => arr.indexOf(field) === idx)
+          // Collect field information with topics for wizard
+          const fieldsWithTopics = []
 
-          if (nonEmptyUniqueFieldNames.length) {
-            const fieldsString = nonEmptyUniqueFieldNames ? nonEmptyUniqueFieldNames.join(', ') : ' '
+          invalidFields.forEach(field => {
+            const fieldName = field.getAttribute('data-dp-validate-error-fieldname')
+            if (!fieldName) return
+
+            // Search for parent element with data-dp-validate-topic
+            let topicElement = field.closest('[data-dp-validate-topic]')
+            let topicName = topicElement ? topicElement.getAttribute('data-dp-validate-topic') : ''
+
+            const existingIndex = fieldsWithTopics.findIndex(
+              item => item.fieldName === fieldName && item.topicName === topicName
+            )
+
+            if (existingIndex === -1) {
+              fieldsWithTopics.push({ fieldName, topicName })
+            }
+          })
+
+          if (fieldsWithTopics.length) {
+            const fieldsString = fieldsWithTopics.map(item => {
+              return item.topicName ? `${item.fieldName} (${item.topicName})` : item.fieldName }).join(', ')
             const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
             dplan.notify.notify('error', errorMandatoryFields)
           } else {

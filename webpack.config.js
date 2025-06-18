@@ -60,6 +60,7 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/i,
+        include: ['@tiptap'].map(nodeModule => resolve('node_modules/' + nodeModule)),
         exclude: /node_modules/,
         loader: 'babel-loader'
       },

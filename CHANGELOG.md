@@ -3,7 +3,7 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
-
+- ([#1295](https://github.com/demos-europe/demosplan-ui/pull/1295)) DpIcon/util/iconConfig.ts: Change the mapping for chevron icons from arrow to caret ([@huellnerdemos](https://github.com/huellnerdemos))
 
 ## v0.4.18 - 2025-06-18
 

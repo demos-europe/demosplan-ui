@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1207](https://github.com/demos-europe/demosplan-ui/pull/1207)) Fix importing Mention Extiention in DpEditor ([@salisdemos](https://github.com/salisdemos))
+
+### Changed
 - ([#1295](https://github.com/demos-europe/demosplan-ui/pull/1295)) DpIcon/util/iconConfig.ts: Change the mapping for chevron icons from arrow to caret ([@huellnerdemos](https://github.com/huellnerdemos))
 - ([#1294](https://github.com/demos-europe/demosplan-ui/pull/1294)) DpAnonymizeText: bump TipTap to 3.0.0-beta.8 and adjust syntax for BubbleMenu ([@meissnerdemos](https://github.com/meissnerdemos))
 
@@ -126,6 +130,7 @@ Skipped due to publishing issues
 - ([#1203](https://github.com/demos-europe/demosplan-ui/pull/1203)) Fix typo in DpTreeListNode ([@salisdemos](https://github.com/salisdemos))
 - ([#1204](https://github.com/demos-europe/demosplan-ui/pull/1204)) DpEditor: Fix imports for mention extension ([@hwiem](https://github.com/hwiem))
 
+
 ## v0.4.4 - 2025-02-26
 
 ### Added
@@ -140,6 +145,7 @@ Skipped due to publishing issues
 ### Fixed
 - ([#1198](https://github.com/demos-europe/demosplan-ui/pull/1198)) Display Flyout in DpTableRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1157](https://github.com/demos-europe/demosplan-ui/pull/1157)) build: add missing dependency ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.4.3 - 2024-12-11
 
@@ -164,6 +170,7 @@ Skipped due to publishing issues
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
 - ([#1069](https://github.com/demos-europe/demosplan-ui/pull/1069)) DpButtonRow: also disable secondary button if 'disabled' is set to true ([@hwiem](https://github.com/hwiem))
 
+
 ## v0.4.2 - 2024-10-28
 
 ### Fixed
@@ -171,6 +178,7 @@ Skipped due to publishing issues
 - ([#1053](https://github.com/demos-europe/demosplan-ui/pull/1053)) Make `rootDraggable` Option work for dp-draggable ([@salisdemos](https://github.com/salisdemos))
 - ([#1054](https://github.com/demos-europe/demosplan-ui/pull/1054)) Fix validating dpMultiselect ([@salisdemos](https://github.com/salisdemos))
 - ([#1052](https://github.com/demos-europe/demosplan-ui/pull/1052)) Pass RowData from DpDataTableExtended to DpDataTable slots ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.4.1 - 2024-10-07
 

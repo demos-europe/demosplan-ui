@@ -8,7 +8,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1207](https://github.com/demos-europe/demosplan-ui/pull/1207)) Fix importing Mention Extiention in DpEditor ([@salisdemos](https://github.com/salisdemos))
 
 ### Changed
+- ([#1295](https://github.com/demos-europe/demosplan-ui/pull/1295)) DpIcon/util/iconConfig.ts: Change the mapping for chevron icons from arrow to caret ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1294](https://github.com/demos-europe/demosplan-ui/pull/1294)) DpAnonymizeText: bump TipTap to 3.0.0-beta.8 and adjust syntax for BubbleMenu ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.4.18 - 2025-06-18
+
+### Fixed
+
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
+- ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.4.17 - 2025-06-11
 

@@ -6,7 +6,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
 
-
 ### Fixed
 - ([#1207](https://github.com/demos-europe/demosplan-ui/pull/1207)) Fix importing Mention Extiention in DpEditor ([@salisdemos](https://github.com/salisdemos))
 

@@ -63,7 +63,7 @@
       class="btn btn--primary"
       :data-cy="`${dataCy}:showInput`"
       :text="translationKeys.new"
-      @click.prevent="showNewForm()" />
+      @click.prevent="showNewForm" />
   </div>
 </template>
 
@@ -79,6 +79,12 @@ export default {
   },
 
   props: {
+    closeOnSuccess: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+
     dataCy: {
       type: String,
       required: false,
@@ -110,6 +116,14 @@ export default {
       required: false,
       type: Boolean,
       default: true
+    },
+  },
+
+  watch: {
+    closeOnSuccess (newVal) {
+      if (newVal) {
+        this.resetForm()
+      }
     }
   },
 

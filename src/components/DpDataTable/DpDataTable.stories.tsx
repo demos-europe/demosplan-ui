@@ -42,7 +42,7 @@ interface IDpDataTable {
   'changed-order'?: (event: any, item: any) => void
   'items-selected'?: (items: string[]) => void
   'items-toggled'?: (items: {id: string}[], selected: boolean) => void
-  'select-all'?: (selected: boolean) => void
+  'selectAll'?: (selected: boolean) => void
 }
 
 const meta: Meta<typeof DpDataTable> = {
@@ -85,8 +85,8 @@ const meta: Meta<typeof DpDataTable> = {
       action: 'items-selected',
       description: 'Event emitted when items are selected'
     },
-    'select-all': {
-      action: 'select-all',
+    'selectAll': {
+      action: 'selectAll',
       description: 'Event emitted when all items are selected or deselected'
     }
   }

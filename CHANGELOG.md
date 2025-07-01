@@ -8,6 +8,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1269](https://github.com/demos-europe/demosplan-ui/pull/1269) BREAKING: Update DpAccordion, DpBadge, DpBulkEditHeader, DpCard, DpFlyout to use Tailwind classes ([@spiess-demos](https://github.com/spiess-demos))
 
+
+## v0.4.18 - 2025-06-18
+
+### Fixed
+- ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
+- ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
+
+
 ## v0.5.1 - 2025-05-19
 
 ### Changed
@@ -23,6 +31,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 
 - ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) BREAKING: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.4.17 - 2025-06-11
+
+### Changed
+
+- ([#1274](https://github.com/demos-europe/demosplan-ui/pull/1274)) dpValidateMixin.js: Allow adding topic names to field names in error messages ([@riechedemos](https://github.com/riechedemos))
+- ([#1289](https://github.com/demos-europe/demosplan-ui/pull/1289)) DpMultiselect: Adjust condition for button disabling / adjust custom event names in 6 files ([@rafelddemos](https://github.com/rafelddemos))
+
 
 ## v0.4.16 - 2025-05-12
 
@@ -48,6 +64,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1264](https://github.com/demos-europe/demosplan-ui/pull/1264) DpEditor: Adjust editor menu buttons ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.4.14 - 2025-04-24
+
+### Fixed
+
+- ([#1266](https://github.com/demos-europe/demosplan-ui/pull/1266)) DpPager: add space between numbers and text in the pagination ([@rafelddemos](https://github.com/rafelddemos))
 
 ### Fixed
 

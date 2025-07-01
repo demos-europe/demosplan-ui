@@ -1,0 +1,159 @@
+import { Meta } from '@storybook/blocks'
+import Table from '../.storybook/components/Table'
+
+<Meta title="Welcome" />
+
+# demosplan-ui Component Library
+
+Welcome to the demosplan-ui component library. This library provides a set of Vue components, directives,
+and design tokens to build consistent interfaces for demosPlan applications.
+
+## Overview
+
+- **Component System**: A comprehensive set of Vue components built with consistent design patterns
+- **Directives**: Custom Vue directives for common UI behaviors
+- **Design Tokens**: Named entities that store visual design attributes for maintaining consistency
+- **Tailwind Integration**: Progressive adoption of Tailwind CSS for utility-based styling
+
+## Getting Started
+
+```shell
+# Install the package
+yarn add @demos-europe/demosplan-ui
+
+# Import components in your Vue application
+import { DpButton, DpInput } from '@demos-europe/demosplan-ui'
+```
+
+## Component Categories
+
+### Form Components
+
+Our form components provide consistent styling, validation states, and accessibility features:
+
+- [DpInput](/docs/components-input--docs): Text input fields with various types (text, email, number, etc.)
+- [DpTextArea](/docs/components-textarea--docs): Multi-line text input
+- [DpSelect](/docs/components-select--docs): Dropdown selection
+- [DpCheckbox](/docs/components-checkbox--docs): Checkbox control
+- [DpRadio](/docs/components-radio--docs): Radio button control
+- [DpDatepicker](/docs/components-datepicker--docs): Date selection
+
+### Layout Components
+
+Components to structure your application layouts:
+
+- [DpAccordion](/docs/components-accordion--docs): Collapsible content sections
+- [DpCard](/docs/components-card--docs): Content container with optional header
+- [DpModal](/docs/components-modal--docs): Dialog windows for focused interactions
+- [DpTabs](/docs/components-tabs--docs): Tabbed interface for switching between views
+
+### Data Display Components
+
+Components for displaying and interacting with data collections:
+
+- [DpDataTable](/docs/components-datatable--docs): Tabular data representation
+- [DpTreeList](/docs/components-treelist--docs): Hierarchical data display with expandable nodes
+- [DpPager](/docs/components-pager--docs): Pagination control
+
+### Feedback Components
+
+Components for providing feedback to users:
+
+- [DpNotification](/docs/components-notification--docs): Toast notifications
+- [DpInlineNotification](/docs/components-inlinenotification--docs): In-place message display
+- [DpLoading](/docs/components-loading--docs): Loading indicators
+
+## Overriding Component Styles
+
+Components can be overridden to customize their appearance. Apart from [overriding the Css Variables](?path=/docs/design-tokens-overview--docs#overriding-tailwind-tokens),
+distinct classes within the markup of demosplan components can be used to apply custom styles.
+To target components and their elements, you can use specific css selectors that should be part of any
+of the components. They do not carry any styles and are solely used for this purpose. They are
+prefixed with `dp-` to avoid conflicts with other classes. For example, DpFlyout provides
+the selectors `dp-flyout` for the outer container, `dp-flyout-trigger` for the trigger element,
+and `dp-flyout-content` for the content area.
+
+## Design Tokens
+
+Design tokens are the foundation of our design system, providing consistent visual attributes across components:
+
+- **Color Tokens**: Brand colors, UI colors, and message states
+- **Space Tokens**: Spacing scales for margins, padding, and layout
+- **Typography Tokens**: Font sizes, weights, and line heights
+- **Effect Tokens**: Shadows, borders, and other visual effects
+
+[Learn more about Design Tokens](/docs/design-tokens-overview--docs)
+
+## Tailwind CSS Integration
+
+demosplan-ui is progressively adopting Tailwind CSS for utility-based styling. This provides:
+
+- More flexibility in component styling
+- Reduction in custom CSS
+- Faster development through utility classes
+
+Components are being migrated from traditional CSS classes to Tailwind utilities while maintaining the same visual appearance and functionality.
+
+## Tailwind Migration Status
+
+The table below shows the current status of component migration to Tailwind CSS:
+
+<Table
+  headers={['Component', 'Migrated to Tailwind']}
+  rows={[
+    ["DpAccordion", "Partially (font weight cannot be migrated)"],
+    ["DpAnonymizeText", "❌"],
+    ["DpAutocomplete", "❌"],
+    ["DpBadge", "✅"],
+    ["DpBulkEditHeader", "✅"],
+    ["DpButton", "✅"],
+    ["DpButtonRow", "✅"],
+    ["DpCard", "Partially (font weight cannot be migrated)"],
+    ["DpCheckbox", "❌"],
+    ["DpCheckboxGroup", "❌"],
+    ["DpColumnSelector", "❌"],
+    ["DpConfirmDialog", "❌"],
+    ["DpContextualHelp", "✅"],
+    ["DpDataTable", "❌"],
+    ["DpDataTableExtended", "❌"],
+    ["DpDateRangePicker", "❌"],
+    ["DpDatepicker", "❌"],
+    ["DpDatetimePicker", "❌"],
+    ["DpDetails", "❌"],
+    ["DpDraggable", "❌"],
+    ["DpEditableList", "❌"],
+    ["DpEditor", "❌"],
+    ["DpFlyout", "✅"],
+    ["DpFormRow", "❌"],
+    ["DpIcon", "✅"],
+    ["DpInlineNotification", "❌"],
+    ["DpInput", "✅"],
+    ["DpLabel", "✅"],
+    ["DpLoading", "❌"],
+    ["DpModal", "❌"],
+    ["DpMultiselect", "❌"],
+    ["DpMultistepNav", "❌"],
+    ["DpNotification", "❌"],
+    ["DpObscure", "❌"],
+    ["DpPager", "❌"],
+    ["DpProgressBar", "❌"],
+    ["DpRadio", "❌"],
+    ["DpResettableInput", "❌"],
+    ["DpSearchField", "❌"],
+    ["DpSelect", "❌"],
+    ["DpSkeletonBox", "❌"],
+    ["DpSlidebar", "❌"],
+    ["DpSlidingPagination", "❌"],
+    ["DpSplitButton", "❌"],
+    ["DpStickyElement", "❌"],
+    ["DpTabs", "❌"],
+    ["DpTextArea", "❌"],
+    ["DpTimePicker", "❌"],
+    ["DpToggle", "❌"],
+    ["DpTooltip", "✅"],
+    ["DpTransitionExpand", "✅"],
+    ["DpTreeList", "❌"],
+    ["DpUploadFiles", "❌"],
+    ["DpVideoPlayer", "❌"]
+  ]}
+/>

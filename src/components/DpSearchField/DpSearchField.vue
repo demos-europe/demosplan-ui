@@ -1,6 +1,6 @@
 <template>
   <span
-    class="inline-flex"
+    class="inline-flex relative"
     :class="{ 'w-full': inputWidth === '' }">
     <dp-resettable-input
       id="searchField"
@@ -16,7 +16,7 @@
     </dp-resettable-input>
 
     <dp-button
-      class="search rounded-r-md rounded-l-none"
+      class="search rounded-r-md rounded-l-none z-[5] -ml-px"
       data-cy="handleSearch"
       hide-text
       icon="search"
@@ -80,7 +80,7 @@ export default {
 
   computed: {
     cssClasses () {
-      const classes = 'inline-block rounded-r-none'
+      const classes = 'inline-block rounded-r-none focus-within:z-above-zero'
 
       return this.inputWidth !== '' ? `${classes} ${this.inputWidth}` : classes
     }

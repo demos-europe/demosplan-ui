@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+- ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
+
 ## v0.4.19 - 2025-06-30
 
 ### Fixed

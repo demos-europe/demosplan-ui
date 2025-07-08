@@ -75,9 +75,11 @@ class ActionMenu {
 
   handleTriggerKeydown (event) {
     switch (event.keyCode) {
-    // Down
+    // Down, Enter, Space
     case 40:
-      // Prevent page scrolling
+    case 13:
+    case 32:
+      // Prevent page scrolling and default button behavior
       event.preventDefault()
       this.openMenu()
       this.menu.classList.remove(prefixClass('has-focused-trigger'))
@@ -132,8 +134,31 @@ class ActionMenu {
       this.menuItems[this.currentlySelectedIndex].focus()
       break
 
-      // Tab, esc
+      // Tab
     case 9:
+      if (event.shiftKey) {
+        // Shift+Tab: go to previous item or exit if at first
+        if (this.currentlySelectedIndex === 0) {
+          this.trigger.focus()
+          this.closeMenu()
+        } else {
+          this.currentlySelectedIndex--
+          this.menuItems[this.currentlySelectedIndex].focus()
+        }
+        event.preventDefault()
+      } else if (this.currentlySelectedIndex === this.menuItems.length - 1) {
+        // Tab: exit if at last item
+        this.closeMenu()
+        // Let natural tab order continue to next page element
+      } else {
+        // Tab: go to next item
+        this.currentlySelectedIndex++
+        this.menuItems[this.currentlySelectedIndex].focus()
+        event.preventDefault()
+      }
+      break
+
+      // Esc
     case 27:
       this.trigger.focus()
       this.closeMenu()

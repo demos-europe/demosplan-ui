@@ -2,7 +2,7 @@
   <div :class="prefixClass('o-form__element--radio')">
     <input
       :id="id"
-      :name="name !== '' ? name : false"
+      :name="name !== '' ? name : null"
       :class="prefixClass('o-form__control-input')"
       type="radio"
       :required="required"

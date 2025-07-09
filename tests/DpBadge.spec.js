@@ -19,14 +19,14 @@ describe('DpBadge', () => {
   })
 
   it('applies the correct colors for color=default', () => {
-    const defaultClasses = ['color-text-default', 'bg-color-light']
+    const defaultClasses = ['text-default', 'bg-surface-medium']
     defaultClasses.forEach(cssClass => {
       expect(wrapper.classes()).toContain(cssClass)
     })
   })
 
   it('applies the correct size class', () => {
-    const defaultClasses = ['font-size-medium', 'u-pv-0_25', 'u-ph-0_5']
+    const defaultClasses = ['text-sm', 'py-1.5', 'px-2']
     defaultClasses.forEach(cssClass => {
       expect(wrapper.classes()).toContain(cssClass)
     })

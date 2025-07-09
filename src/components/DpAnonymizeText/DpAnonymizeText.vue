@@ -3,7 +3,7 @@
     <bubble-menu
       v-if="editor"
       :editor="editor"
-      :tippy-options="{ duration: 100 }">
+      :options="menuOptions">
       <div class="editor-menububble__wrapper is-active bottom-0">
         <button
           v-if="editor.isActive('anonymize')"
@@ -53,10 +53,11 @@ import {
   Underline
 } from '../DpEditor/libs/tiptapExtensions'
 import {
-  BubbleMenu,
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
 } from '@tiptap/vue-3'
+import { BubbleMenu } from '@tiptap/vue-3/menus'
+import { offset } from '@floating-ui/dom'
 import { de } from '../shared/translations'
 
 export default {
@@ -77,6 +78,10 @@ export default {
   data () {
     return {
       editor: null,
+      menuOptions: {
+        middleware: [offset(6)],
+        placement: 'top'
+      },
       translations: {
         anonymize: de.anonymization.mark,
         unanonymize: de.anonymization.unmark

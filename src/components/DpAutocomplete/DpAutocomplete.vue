@@ -1,5 +1,13 @@
 <template>
   <div class="relative">
+    <!-- Label displayed on small screens if search button is used -->
+    <label
+      v-if="searchButton"
+      id="autocomplete-label"
+      for="input-box"
+      class="mb-1 md:hidden">
+      {{ placeholder }}
+    </label>
     <!-- Search container -->
     <div
       aria-haspopup="listbox"
@@ -7,31 +15,53 @@
       :aria-expanded="isOptionsListVisible"
       :class="[
         isInputFocused ? 'border-interactive' : 'border-gray-300',
+        searchButton && isPlaceholderVisible ? 'justify-between' : 'justify-end',
         { 'focus-within:ring-1 focus-within:ring-interactive': isInputFocused }
       ]"
-      class="border rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out px-1 py-[2px]"
+      class="border rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out"
       role="combobox"
       :style="boxHeightStyle"
       tabindex="0"
       @mousedown.stop.prevent="focusInput">
+      <!-- Placeholder, if search button is used only displayed on lap-up screens -->
       <label
         id="autocomplete-label"
         for="input-box"
         :class="{
-          'h-full w-full px-1 py-[2px] text-gray-400 flex items-center m-0': true,
-          'absolute pointer-events-none': !isPlaceholderVisible,
+          'h-full w-full px-1 py-[2px] text-gray-400 items-center m-0': true,
+          'flex': !searchButton,
+          'hidden md:flex': searchButton,
+          'md:absolute md:pointer-events-none': !isPlaceholderVisible,
           'sr-only': !isPlaceholderVisible
         }">
         {{ placeholder }}
       </label>
+      <!-- Placeholder for small screens if search button is used -->
+      <template v-if="searchButton">
+        <span
+          :class="{ 'hidden': !isPlaceholderVisible }"
+          class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0">
+        {{ de.search.searching }}
+      </span>
+        <dp-button
+          v-if="isPlaceholderVisible"
+          class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 border-l z-[5] -ml-px -mr-px"
+          data-cy="handleSearch"
+          hide-text
+          icon="search"
+          :text="de.search.searching"
+          variant="outline"
+          @click="triggerSearch" />
+      </template>
       <div
         id="input-box"
         ref="input"
         role="textbox"
         :class="{
           'sr-only': isPlaceholderVisible,
-          'w-auto min-w-[10px]': isInputFocused,
-          'w-full': !isInputFocused
+          'min-w-[10px] self-start': isInputFocused,
+          'w-auto': isInputFocused && !searchButton,
+          'w-full': !isInputFocused || searchButton,
         }"
         class="py-[2px] px-1 outline-none whitespace-pre overflow-hidden"
         contenteditable="true"
@@ -41,6 +71,15 @@
         @mousedown.stop.prevent="focusInput"
         @keydown.stop="runSpecialKeys"
         @focusout="isInputFocused = false" />
+      <dp-button
+        v-if="searchButton && !isPlaceholderVisible"
+        class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 !border-l-1 z-[5] -ml-px -mr-px"
+        data-cy="handleSearch"
+        hide-text
+        icon="search"
+        :text="de.search.searching"
+        variant="outline"
+        @click="triggerSearch" />
       <div
         v-show="isInputFocused"
         :style="boxHeightStyle"
@@ -86,6 +125,7 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
+import DpButton from '~/components/DpButton'
 
 /**
  * This component provides an autocomplete input field with dropdown suggestions.
@@ -110,6 +150,33 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'label'
+  },
+
+  /**
+   * Minimum characters required before showing suggestions
+   */
+  minChars: {
+    type: Number,
+    required: false,
+    default: 3
+  },
+
+  /**
+   * Current value of the input (v-model)
+   */
+  modelValue: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  /**
+   * Text to display when no results are found
+   */
+  noResultsText: {
+    type: String,
+    required: false,
+    default: de.autocompleteNoResults
   },
 
   /**
@@ -138,31 +205,10 @@ const props = defineProps({
     required: true
   },
 
-  /**
-   * Current value of the input (v-model)
-   */
-  modelValue: {
-    type: String,
+  searchButton: {
+    type: Boolean,
     required: false,
-    default: ''
-  },
-
-  /**
-   * Text to display when no results are found
-   */
-  noResultsText: {
-    type: String,
-    required: false,
-    default: de.autocompleteNoResults
-  },
-
-  /**
-   * Minimum characters required before showing suggestions
-   */
-  minChars: {
-    type: Number,
-    required: false,
-    default: 3
+    default: false
   }
 })
 
@@ -170,6 +216,7 @@ const emit = defineEmits([
   'update:modelValue',
   'search-changed',
   'selected',
+  'search',
   'searched'
 ])
 
@@ -179,7 +226,6 @@ const listPosition = ref(-1)
 const isOpenList = ref(true)
 const isInputFocused = ref(false)
 const isLoading = ref(false)
-
 
 const boxHeightNumber = computed(() => {
   return parseInt(props.height.replace('px', ''))

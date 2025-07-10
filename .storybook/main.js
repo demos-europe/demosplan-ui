@@ -10,34 +10,15 @@ module.exports = {
 
   addons: [
     "@storybook/addon-links",
-    // {
-    //   name: "@storybook/addon-styling-webpack",
-    //   options: {
-    //     rules: [
-    //       {
-    //         test: /\.css$/,
-    //         sideEffects: true,
-    //         use: [
-    //           require.resolve("style-loader"),
-    //           {
-    //             loader: require.resolve("css-loader"),
-    //             options: {
-    //               importLoaders: 1,
-    //             },
-    //           },
-    //           {
-    //             loader: require.resolve("postcss-loader"),
-    //             options: {
-    //               implementation: require.resolve("postcss"),
-    //             },
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   }
-    // },
     '@storybook/addon-docs'
   ],
+
+  features: {
+    backgrounds: false,  // uncomment to disable backgrounds
+    measure: false,      // uncomment to disable measure tool
+    outline: false,      // uncomment to disable outline tool
+  },
+
 
   webpackFinal: async config => {
     /**

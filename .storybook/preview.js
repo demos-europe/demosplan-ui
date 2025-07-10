@@ -1,8 +1,7 @@
-import './index.css'
+import './theme.css'
 
+import { html as beautifyHtml }from 'js-beautify'
 import { setup } from '@storybook/vue3-vite'
-
-const beautifyHtml = require('js-beautify').html
 
 setup((app) => {
   app.directive('dp-validate-multiselect', {

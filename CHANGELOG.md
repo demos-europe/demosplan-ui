@@ -4,11 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1311](https://github.com/demos-europe/demosplan-ui/pull/1311)) DpAutocomplete: Add optional search button ([@hwiem](https://github.com/hwiem))
 
 ## v0.4.20 - 2025-07-01
 
 ### Changed
-- 
+
 - ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.4.19 - 2025-06-30

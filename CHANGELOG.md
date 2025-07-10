@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1310](https://github.com/demos-europe/demosplan-ui/pull/1310)) Storybook: Upgrade to v9 ([@salisdemos](https://github.com/salisdemos)
+
 
 ## v0.5.2 - 2025-07-09
 

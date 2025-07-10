@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { iconComponents, mappedIcons, mappedIconAliases } from './util/iconConfig'
 import DpIcon from './'
 

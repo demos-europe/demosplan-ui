@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpContextualHelp from './'
 import { SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
 

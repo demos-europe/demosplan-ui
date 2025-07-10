@@ -7,36 +7,19 @@ module.exports = {
     '../src/directives/**/*.mdx',
     '../tokens/**/*.mdx'
   ],
+
   addons: [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    ({
-      name: "@storybook/addon-styling-webpack",
-      options: {
-        rules: [
-          {
-            test: /\.css$/,
-            sideEffects: true,
-            use: [
-              require.resolve("style-loader"),
-              {
-                loader: require.resolve("css-loader"),
-                options: {
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve("postcss-loader"),
-                options: {
-                  implementation: require.resolve("postcss"),
-                },
-              },
-            ],
-          },
-        ],
-      }
-    }),
+    '@storybook/addon-docs'
   ],
+
+  features: {
+    backgrounds: false,  // uncomment to disable backgrounds
+    measure: false,      // uncomment to disable measure tool
+    outline: false,      // uncomment to disable outline tool
+  },
+
+
   webpackFinal: async config => {
     /**
      * This rule is executed first. It ensures that the <license> blocks
@@ -70,8 +53,6 @@ module.exports = {
 
     return config
   },
-  framework: '@storybook/vue3-webpack5',
-  docs: {
-    autodocs: true
-  }
+
+  framework: '@storybook/vue3-vite'
 }

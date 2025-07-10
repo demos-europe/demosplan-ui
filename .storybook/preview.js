@@ -1,8 +1,7 @@
-import './index.css'
+import './theme.css'
 
-import { setup } from '@storybook/vue3'
-
-const beautifyHtml = require('js-beautify').html
+import { html as beautifyHtml }from 'js-beautify'
+import { setup } from '@storybook/vue3-vite'
 
 setup((app) => {
   app.directive('dp-validate-multiselect', {
@@ -32,3 +31,4 @@ export const parameters = {
     }
   }
 }
+export const tags = ['autodocs'];

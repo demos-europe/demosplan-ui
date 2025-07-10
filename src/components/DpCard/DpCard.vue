@@ -1,16 +1,16 @@
 <template>
-  <div class="shadow space-inset-m">
+  <div class="rounded-lg shadow-sm px-4 py-3">
     <h4
       v-if="heading !== ''"
-      class="u-mb-0 space-inline-xs">
+      class="flex gap-1 items-center text-base mb-2">
       <span>
         {{ heading }}
       </span>
       <dp-contextual-help
         v-if="headingTooltip !== ''"
         :text="headingTooltip" />
-    </h4><!--
- --><slot />
+    </h4>
+    <slot />
   </div>
 </template>
 

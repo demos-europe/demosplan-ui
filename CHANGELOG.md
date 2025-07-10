@@ -5,6 +5,29 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 
+## v0.5.2 - 2025-07-09
+
+### Changed
+- ([#1269](https://github.com/demos-europe/demosplan-ui/pull/1269) BREAKING: Update DpAccordion, DpBadge, DpBulkEditHeader, DpCard, DpFlyout to use Tailwind classes ([@spiess-demos](https://github.com/spiess-demos))
+- merge changes from 0.4.x into 0.5.x
+
+
+## v0.5.1 - 2025-05-19
+
+### Changed
+
+- ([#1274](https://github.com/demos-europe/demosplan-ui/pull/1274)) dpValidateMixin.js: adding topic names to field names in error messages([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+
+- ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1278) Do not use css vars for Tailwind breakpoints config ([@spiess-demos](https://github.com/spiess-demos))
+
+## v0.5.0 - 2025-05-15
+
+### Changed
+
+- ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) BREAKING: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))
+
 ## v0.4.20 - 2025-07-01
 
 ### Changed
@@ -26,7 +49,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
-
 
 ## v0.4.17 - 2025-06-11
 
@@ -50,6 +72,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1268](https://github.com/demos-europe/demosplan-ui/pull/1268)) DpAutocomplete: replace vue-omnibox with custom logic ([@salisdemos](https://github.com/salisdemos)
 - ([#1267](https://github.com/demos-europe/demosplan-ui/pull/1267) Update Storybook to v8, enhance component documentation ([@spiess-demos](https://github.com/spiess-demos))
+- ([#1272](https://github.com/demos-europe/demosplan-ui/pull/1246)) DpEditableList: Adjust margin between buttons ([@riechedemos](https://github.com/riechedemos))
 - ([#1271](https://github.com/demos-europe/demosplan-ui/pull/1271)) DpTreeList: initialize the Stickier instances in nextTick and if the element’s height is greater than zero ([@sakutademos](https://github.com/sakutademos)
 
 ## v0.4.15 - 2025-05-07
@@ -59,6 +82,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1264](https://github.com/demos-europe/demosplan-ui/pull/1264) DpEditor: Adjust editor menu buttons ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.4.14 - 2025-04-24
+
+### Fixed
+
+- ([#1266](https://github.com/demos-europe/demosplan-ui/pull/1266)) DpPager: add space between numbers and text in the pagination ([@rafelddemos](https://github.com/rafelddemos))
 
 ### Fixed
 

@@ -5,7 +5,7 @@ FROM node:20
 WORKDIR /app
 
 # Enable corepack and prepare Yarn
-RUN corepack enable && corepack prepare yarn@stable --activate
+RUN corepack enable && corepack prepare yarn@4.2.2 --activate
 
 # Use default user ID
 USER node:1000

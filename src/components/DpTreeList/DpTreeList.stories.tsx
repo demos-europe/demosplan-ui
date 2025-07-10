@@ -11,7 +11,7 @@ const isBranch = ({ node }: { node: any }) => {
 }
 
 const meta: Meta<typeof DpTreeList> = {
-  title: 'Components/DpTreeList',
+  title: 'Components/TreeList',
   component: DpTreeList,
   tags: ['autodocs'],
   parameters: {

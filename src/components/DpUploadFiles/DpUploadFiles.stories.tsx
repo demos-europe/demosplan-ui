@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { DpUploadFiles } from '~/components'
+import * as DpUploadFiles from '~/components'
 
 /**
  * Mock function to simulate getFileByHash
@@ -10,7 +10,7 @@ const mockGetFileByHash = (hash: string) => {
 }
 
 const meta: Meta<typeof DpUploadFiles> = {
-  title: 'Components/DpUploadFiles',
+  title: 'Components/UploadFiles',
   component: DpUploadFiles,
   tags: ['autodocs'],
   parameters: {

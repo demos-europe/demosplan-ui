@@ -2,13 +2,9 @@
   <span
     ref="target"
     v-on-click-outside="close"
-    class="o-flyout"
+    class="dp-flyout relative"
     :class="{
-      'o-flyout--left': align === 'left',
-      'o-flyout--right': align === 'right',
-      'o-flyout--padded': padded,
       'is-expanded': isExpanded,
-      'o-flyout--menu': hasMenu,
       'bg-surface-medium rounded-md': variant === 'dark'
     }"
     data-cy="flyoutTrigger">
@@ -17,7 +13,10 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="o-flyout__trigger btn--blank o-link--default px-1 pt-0.5 line-height--2 whitespace-nowrap"
+      class="dp-flyout-trigger rounded-button px-1 py-0.5 leading-[2] whitespace-nowrap text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active"
+      :class="{
+        'bg-interactive-subtle-hover': isExpanded
+      }"
       :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle">
       <slot
@@ -26,11 +25,18 @@
         <i class="fa fa-ellipsis-h" />
       </slot>
     </button>
-    <div
-      class="o-flyout__content shadow"
+    <span
+      class="dp-flyout-content z-flyout shadow-sm bg-surface text-left"
+      :class="{
+        'block absolute': isExpanded,
+        'hidden': !isExpanded,
+        'left-1': align === 'left',
+        'right-1': align === 'right',
+        'px-2 py-1': padded
+      }"
       data-cy="flyout">
       <slot />
-    </div>
+    </span>
   </span>
 </template>
 
@@ -68,12 +74,6 @@ export default {
       required: false,
       type: Boolean,
       default: false
-    },
-
-    hasMenu: {
-      required: false,
-      type: Boolean,
-      default: true
     },
 
     padded: {

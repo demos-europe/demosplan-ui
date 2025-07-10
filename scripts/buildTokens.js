@@ -2,7 +2,8 @@ const glob = require('glob')
 const StyleDictionary = require('style-dictionary')
 const {
   transformScssTokens,
-  transformTailwindTokens
+  transformTailwindTokens,
+  transformThemeTokens
 } = require('./utils/transformTokens')
 
 const prefix = 'dp-'
@@ -54,6 +55,15 @@ StyleDictionary.registerTransformGroup({
 StyleDictionary.registerFormat({
   name: 'tailwind/variables',
   formatter: (formatterArguments) => transformTailwindTokens(formatterArguments, corePluginsColor)
+})
+
+/**
+ * Custom format that generates a CSS file with @theme directive for Tailwind CSS v4.
+ * This creates CSS variables in the format expected by Tailwind v4.
+ */
+StyleDictionary.registerFormat({
+  name: 'tailwind/theme',
+  formatter: transformThemeTokens
 })
 
 /**
@@ -111,6 +121,18 @@ const StyleDictionaryExtended = StyleDictionary.extend({
           format: 'tailwind/variables'
         }
       }),
+    },
+    // New platform for Tailwind CSS v4 theme
+    css: {
+      transformGroup: 'custom/web',
+      prefix,
+      buildPath: 'tokens/dist/css/',
+      files: [
+        {
+          destination: 'theme.css',
+          format: 'tailwind/theme'
+        }
+      ],
     },
   }
 })

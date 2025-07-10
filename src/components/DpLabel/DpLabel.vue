@@ -25,9 +25,9 @@
 
 <script setup lang="ts">
 import { computed, PropType } from 'vue'
-import { CleanHtml as vCleanhtml } from '~/directives'
-import { prefixClass } from '~/utils'
 import DpContextualHelp from '~/components/DpContextualHelp'
+import { prefixClass } from '~/utils'
+import { CleanHtml as vCleanhtml } from '~/directives'
 
 const props = defineProps({
   bold: {

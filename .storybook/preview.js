@@ -1,6 +1,6 @@
 import './index.css'
 
-import { setup } from '@storybook/vue3'
+import { setup } from '@storybook/vue3-vite'
 
 const beautifyHtml = require('js-beautify').html
 
@@ -32,3 +32,4 @@ export const parameters = {
     }
   }
 }
+export const tags = ['autodocs'];

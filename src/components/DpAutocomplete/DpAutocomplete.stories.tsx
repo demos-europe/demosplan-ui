@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpAutocomplete from './'
 
 const meta: Meta<typeof DpAutocomplete> = {

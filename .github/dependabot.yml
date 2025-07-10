@@ -21,4 +21,9 @@ updates:
       vue:
         patterns:
           - "vue"
-          - "vue-template-compiler"
+          - "@vue/compiler-sfc"
+          - "@vue/compat"
+          - "@vue/server-renderer"
+      vueuse:
+        patterns:
+          - "@vueuse*"

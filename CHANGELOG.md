@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.5.2 - 2025-07-09
 

@@ -3,7 +3,7 @@
     :class="{ 'c-progress-bar--no-border': hideBorder }"
     class="c-progress-bar">
     <template v-if="indeterminate">
-      <div class="u-mb-0_25 weight--bold">
+      <div class="mb-1 font-bold">
         {{ label }}
       </div>
 
@@ -11,7 +11,7 @@
     </template>
 
     <template v-else>
-      <div class="u-mb-0_25 weight--bold">
+      <div class="mb-1 font-bold">
         {{ label }}
       </div>
 
@@ -19,7 +19,7 @@
         <div
           :class="{ 'c-progress-bar__line--blue': alternativeColor }"
           :style="style"
-          class="u-mb-0_25 c-progress-bar__line" />
+          class="mb-1 c-progress-bar__line" />
       </div>
       <span v-if="!hidePercentage">
         {{ percentage }}%

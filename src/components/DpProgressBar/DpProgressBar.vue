@@ -1,7 +1,5 @@
 <template>
-  <div
-    :class="{ 'c-progress-bar--no-border': hideBorder }"
-    class="c-progress-bar">
+  <div class="c-progress-bar">
     <template v-if="indeterminate">
       <div class="mb-1 font-bold">
         {{ label }}
@@ -32,12 +30,6 @@ export default {
   name: 'DpProgressBar',
 
   props: {
-    hideBorder: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
     hidePercentage: {
       type: Boolean,
       required: false,

@@ -1,7 +1,10 @@
 <template>
-  <div class="c-progress-bar">
+  <div
+    :class="{ 'c-progress-bar--no-border': hideBorder }"
+    class="c-progress-bar">
     <template v-if="indeterminate">
-      <div class="u-mb-0_25 weight--bold">
+      <div
+        class="u-mb-0_25 weight--bold">
         {{ label }}
       </div>
 
@@ -9,16 +12,18 @@
     </template>
 
     <template v-else>
-      <div class="u-mb-0_25 weight--bold">
+      <div
+        class="u-mb-0_25 weight--bold">
         {{ label }}
       </div>
 
       <div class="bg-color--grey-light-2">
         <div
-          class="u-mb-0_25 c-progress-bar__line"
-          :style="style" />
+          :class="{ 'c-progress-bar__line--blue': alternativeColor }"
+          :style="style"
+          class="u-mb-0_25 c-progress-bar__line" />
       </div>
-      <span>
+      <span v-if="!hidePercentage">
         {{ percentage }}%
       </span>
     </template>
@@ -30,6 +35,24 @@ export default {
   name: 'DpProgressBar',
 
   props: {
+    alternativeColor: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    hideBorder: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
+    hidePercentage: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+
     indeterminate: {
       type: Boolean,
       required: false,

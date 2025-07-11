@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
+
 
 ## v0.5.2 - 2025-07-09
 
@@ -408,7 +411,7 @@ to `~0.3.*` in your package.json.
 
 ### Added
 
-- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are not longer available. ([@spiess-demos](https://github.com/spiess-demos))
+- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are no longer available. ([@spiess-demos](https://github.com/spiess-demos))
 
 
 ## v0.3.19 - 2024-07-12
@@ -834,7 +837,7 @@ still be accessed via its release tag._
 
 ### Changed
 
-- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (eg. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (e.g. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
 - ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))
 - ([#230](https://github.com/demos-europe/demosplan-ui/pull/230)) Move from Functional Component to Template in DpDataTable ([@sakutademos](https://github.com/sakutademos))
 - ([#233](https://github.com/demos-europe/demosplan-ui/pull/233)) Move from Functional Component to Template in DpTableRow ([@sakutademos](https://github.com/sakutademos))

@@ -26,7 +26,7 @@ describe('DpAccordion', () => {
   })
 
   it('displays the title as "bold" if "fontWeight" is set to "bold"', () => {
-    expect(wrapper.find('button').classes()).toContain('weight--bold')
+    expect(wrapper.find('button > span').classes()).toContain('weight--bold')
   })
 
   it('sets "aria-expanded" to false if "isOpen" is false', () => {
@@ -61,6 +61,6 @@ describe('DpAccordion', () => {
 
   it('displays a reduced font size if "compressed" is set to "true"', async () => {
     await wrapper.setProps({ compressed: true })
-    expect(wrapper.find('span').classes()).toContain('font-size-medium')
+    expect(wrapper.find('span').classes()).toContain('text-base')
   })
 })

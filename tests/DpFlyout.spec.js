@@ -24,9 +24,9 @@ describe('DpFlyout', () => {
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.find('[data-cy="flyoutTrigger"]').exists()).toBe(true)
     expect(wrapper.find('button').attributes('disabled')).toBeUndefined()
-    expect(wrapper.find('.o-flyout').classes()).toContain('o-flyout--right')
-    expect(wrapper.find('.o-flyout').classes()).toContain('o-flyout--padded')
-    expect(wrapper.find('.o-flyout').classes()).toContain('o-flyout--menu')
+    expect(wrapper.find('.dp-flyout-content').classes()).toContain('right-1')
+    expect(wrapper.find('.dp-flyout-content').classes()).toContain('px-2')
+    expect(wrapper.find('.dp-flyout-content').classes()).toContain('py-1')
   })
 
   it('toggles isExpanded state when button is clicked', async () => {
@@ -48,7 +48,7 @@ describe('DpFlyout', () => {
     wrapper.setData({ isExpanded: true })
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find('.o-flyout').classes()).toContain('is-expanded')
+    expect(wrapper.find('.dp-flyout').classes()).toContain('is-expanded')
   })
 
   it('disables the button when the disabled prop is true', async () => {
@@ -63,8 +63,8 @@ describe('DpFlyout', () => {
     await wrapper.setProps({ align: 'left' })
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find('.o-flyout').classes()).toContain('o-flyout--left')
-    expect(wrapper.find('.o-flyout').classes()).not.toContain('o-flyout--right')
+    expect(wrapper.find('.dp-flyout-content').classes()).toContain('left-1')
+    expect(wrapper.find('.dp-flyout-content').classes()).not.toContain('right-1')
   })
 
   it('emits close event when close method is called', async () => {

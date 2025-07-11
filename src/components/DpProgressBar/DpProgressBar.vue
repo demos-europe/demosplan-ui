@@ -38,11 +38,13 @@ export default {
       required: false,
       default: false
     },
+
     hideBorder: {
       type: Boolean,
       required: false,
       default: false
     },
+
     hidePercentage: {
       type: Boolean,
       required: false,

@@ -17,7 +17,6 @@
 
       <div class="bg-color--grey-light-2">
         <div
-          :class="{ 'c-progress-bar__line--blue': alternativeColor }"
           :style="style"
           class="mb-1 c-progress-bar__line" />
       </div>
@@ -33,12 +32,6 @@ export default {
   name: 'DpProgressBar',
 
   props: {
-    alternativeColor: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-
     hideBorder: {
       type: Boolean,
       required: false,

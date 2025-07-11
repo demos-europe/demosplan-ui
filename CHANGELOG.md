@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+
 - ([#1314](https://github.com/demos-europe/demosplan-ui/pull/1314)) DpProgressBar: Extend to allow alternative appearance ([@rafelddemos](https://github.com/rafelddemos)
 
 ## v0.4.20 - 2025-07-01

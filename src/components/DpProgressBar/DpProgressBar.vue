@@ -18,7 +18,7 @@
           :style="style"
           class="mb-1 c-progress-bar__line" />
       </div>
-      <span v-if="!hidePercentage">
+      <span v-if="showPercentage">
         {{ percentage }}%
       </span>
     </template>
@@ -30,7 +30,7 @@ export default {
   name: 'DpProgressBar',
 
   props: {
-    hidePercentage: {
+    showPercentage: {
       type: Boolean,
       required: false,
       default: false

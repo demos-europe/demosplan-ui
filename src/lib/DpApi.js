@@ -49,7 +49,27 @@ const appendSerializedUrlParams = (url, params) => {
   return url.includes('?') ? `${url}&${params}` : `${url}?${params}`
 }
 
-const doRequest = (async ({ method = 'GET', url, data = {}, headers, params }) => {
+/**
+ * Perform a request to the API.
+ * @param {Object} options
+ * @param {string} options.method
+ * @param {string} options.url
+ * @param {Object} options.data
+ * @param {Object} options.headers
+ * @param {Object} options.params
+ * @param {Object} options.options
+ * @param {Object} options.options.messages
+ *
+ * @returns {Promise} Object with the following properties:
+ * {
+ *   data: null | Object | String,
+ *   status: number,
+ *   ok: boolean,
+ *   statusText: String,
+ *   url: String
+ * }
+ */
+const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, options = {} }) => {
   const fetchOptions = {
     headers: getHeaders({ headers, url }),
     method
@@ -67,39 +87,43 @@ const doRequest = (async ({ method = 'GET', url, data = {}, headers, params }) =
 
   try {
     const response = await fetch(url, fetchOptions)
+    console.log('DpAPI[doRequest] response:', response, 'fetchOptions:', fetchOptions)
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
-    const content = contentType.includes('json')
-      ? await response.json()
-      : contentType.includes('text')
-        ? await response.text()
-        : null
+    let content = null
 
-    return {
+    if (contentType.includes('json')) {
+      content = await response.json()
+    } else if (contentType.includes('text')) {
+      content = await response.text()
+    }
+
+    return checkResponse({
       data: content,
       status: response.status,
       ok: response.ok,
       statusText: response.statusText,
-      url: response.url
-    }
+      url: response.url,
+    }, options.messages)
   } catch (error) {
     console.error('DpAPI[doRequest] failed: ', error, 'fetchOptions: ', fetchOptions)
 
-    return {
+    return checkResponse({
       data: null,
       status: '400',
       ok: 'Bad Request'
-    }
+    }, options.messages)
   }
 })
 
+
 const dpApi = doRequest
 
-dpApi.post = (url, params = {}, data = {}) => doRequest({ method: 'POST', url, data, params })
-dpApi.get = (url, params = {}) => doRequest({ method: 'GET', url, params })
-dpApi.put = (url, params = {}, data = {}) => doRequest({ method: 'PUT', url, data, params })
-dpApi.patch = (url, params = {}, data = {}) => doRequest({ method: 'PATCH', url, data, params })
-dpApi.delete = (url, params = {}, data = {}) => doRequest({ method: 'DELETE', url, params })
+dpApi.post = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'POST', url, data, params, options })
+dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'GET', url, params, options })
+dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PUT', url, data, params, options })
+dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PATCH', url, data, params, options })
+dpApi.delete = (url, params = {}, options = {}) => doRequest({ method: 'DELETE', url, params, options })
 
 /**
  * Submit a request to the rpc_generic_post API, which implements JSON-RPC 2.0.
@@ -171,13 +195,18 @@ const handleResponseMessages = function (responseMeta) {
  */
 const checkResponse = function (response, messages) {
   return new Promise((resolve, reject) => {
-    if (hasOwnProp(response, 'data') && response.data && hasOwnProp(response.data, 'meta')) {
+    if (!response) {
+      // Got no data
+      resolve(null)
+    }
+
+    if (response.data?.meta) {
       handleResponseMessages(response.data.meta)
       /*
        * Sometimes we get response with status 400 and to display the error messages hidden there we have
        * to pass response.meta (and not response.data.meta as above) to the messages handler
        */
-    } else if (dplan !== undefined && dplan.debug && hasOwnProp(response, 'errors') && hasOwnProp(response, 'meta') && hasOwnProp(response.meta, 'messages')) {
+    } else if (dplan !== undefined && dplan.debug && hasOwnProp(response, 'errors') && response?.meta?.messages) {
       handleResponseMessages(response.meta)
     } else if (messages && hasOwnProp(messages, response.status)) {
       /*
@@ -188,15 +217,12 @@ const checkResponse = function (response, messages) {
     }
 
     if (response.status >= 400) {
-      // @improve handle 404, 500 specially?
-      reject(response.data)
-    } else if (response.status >= 200 && response.status < 400) {
-      // Got data!
-      resolve(response.data ? response.data : null)
-    } else {
-      // Got no data
-      resolve(null)
+      // Handle error cases
+      reject(response)
     }
+
+    // Got data!
+    resolve(response)
   })
 }
 

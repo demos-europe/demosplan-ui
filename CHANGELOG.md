@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+- ([#1319](https://github.com/demos-europe/demosplan-ui/pull/1319)) DpEditableList: ensure Vue 3 v-model works correctly under compat mode ([@sakutademos](https://github.com/sakutademos)
+
+
 ## v0.4.22 - 2025-07-15
 
 ### Added

@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue'
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
+import { computed } from 'vue'
 import DpLabel from '~/components/DpLabel'
 
 const props = defineProps({

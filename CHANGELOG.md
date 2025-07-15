@@ -5,12 +5,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
+
 - ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
 
 
 ## v0.5.2 - 2025-07-09
 
 ### Changed
+
 - ([#1269](https://github.com/demos-europe/demosplan-ui/pull/1269) BREAKING: Update DpAccordion, DpBadge, DpBulkEditHeader, DpCard, DpFlyout to use Tailwind classes ([@spiess-demos](https://github.com/spiess-demos))
 - merge changes from 0.4.x into 0.5.x
 
@@ -25,17 +27,34 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1278) Do not use css vars for Tailwind breakpoints config ([@spiess-demos](https://github.com/spiess-demos))
 
+
 ## v0.5.0 - 2025-05-15
 
 ### Changed
 
 - ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) BREAKING: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))
 
+
+## v0.4.22 - 2025-07-15
+
+### Added
+
+- ([#1311](https://github.com/demos-europe/demosplan-ui/pull/1311)) DpAutocomplete: Add optional search button ([@hwiem](https://github.com/hwiem))
+- ([#1314](https://github.com/demos-europe/demosplan-ui/pull/1314)) DpProgressBar: Extend to allow alternative appearance ([@rafelddemos](https://github.com/rafelddemos)
+
+
+## v0.4.21 - 2025-07-15
+
+### Changed
+
+- ([#1303](https://github.com/demos-europe/demosplan-ui/pull/1303)) ActionMenu.js: improve keyboard navigation ([@meissnerdemos](https://github.com/meissnerdemos)
+
 ## v0.4.20 - 2025-07-01
 
 ### Changed
-- 
+
 - ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
+
 
 ## v0.4.19 - 2025-06-30
 
@@ -48,10 +67,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## v0.4.18 - 2025-06-18
 
+
 ### Fixed
 
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.4.17 - 2025-06-11
 

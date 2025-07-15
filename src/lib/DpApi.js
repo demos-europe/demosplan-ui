@@ -87,7 +87,6 @@ const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, opt
 
   try {
     const response = await fetch(url, fetchOptions)
-    console.log('DpAPI[doRequest] response:', response, 'fetchOptions:', fetchOptions)
     const contentTypeHeader = response.headers.get('Content-Type')
     const contentType = contentTypeHeader ? contentTypeHeader.toLowerCase() : ''
     let content = null

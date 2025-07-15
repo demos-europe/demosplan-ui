@@ -40,8 +40,8 @@
         <span
           :class="{ 'hidden': !isPlaceholderVisible }"
           class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0">
-        {{ de.search.searching }}
-      </span>
+          {{ de.search.searching }}
+        </span>
       </template>
       <div
         id="input-box"

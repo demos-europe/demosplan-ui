@@ -34,7 +34,7 @@
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
       @input="onInput"
-      @keydown.enter="handleEnter" />
+      @keydown.enter="handleEnter">
   </div>
 </template>
 

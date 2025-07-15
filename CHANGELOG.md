@@ -4,10 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.22 - 2025-07-15
+
 ### Added
 
 - ([#1311](https://github.com/demos-europe/demosplan-ui/pull/1311)) DpAutocomplete: Add optional search button ([@hwiem](https://github.com/hwiem))
 - ([#1314](https://github.com/demos-europe/demosplan-ui/pull/1314)) DpProgressBar: Extend to allow alternative appearance ([@rafelddemos](https://github.com/rafelddemos)
+
 
 ## v0.4.21 - 2025-07-15
 
@@ -21,6 +24,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
 
+
 ## v0.4.19 - 2025-06-30
 
 ### Fixed
@@ -31,6 +35,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1294](https://github.com/demos-europe/demosplan-ui/pull/1294)) DpAnonymizeText: bump TipTap to 3.0.0-beta.8 and adjust syntax for BubbleMenu ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.4.18 - 2025-06-18
+
 
 ### Fixed
 

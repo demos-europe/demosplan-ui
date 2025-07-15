@@ -299,18 +299,17 @@ const containerClasses = computed(() => {
 
 const labelHint = computed(() => {
   const hint: string[] = props.label.hint ? [props.label.hint] : []
-  const length = props.modelValue.length
 
   if (props.maxlength && !props.minlength) {
-    hint.push(maxlengthHint(length, props.maxlength))
+    hint.push(maxlengthHint(props.modelValue.length, props.maxlength))
   } else if (props.minlength && !props.maxlength) {
-    hint.push(minlengthHint(length, props.minlength))
+    hint.push(minlengthHint(props.modelValue.length, props.minlength))
   } else if (props.maxlength && props.minlength) {
     if (props.maxlength === props.minlength) {
-      hint.push(exactlengthHint(length, props.maxlength))
+      hint.push(exactlengthHint(props.modelValue.length, props.maxlength))
     } else {
-      hint.push(maxlengthHint(length, props.maxlength))
-      hint.push(minlengthHint(length, props.minlength))
+      hint.push(maxlengthHint(props.modelValue.length, props.maxlength))
+      hint.push(minlengthHint(props.modelValue.length, props.minlength))
     }
   }
 

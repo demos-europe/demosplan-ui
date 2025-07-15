@@ -7,14 +7,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 
 - ([#1311](https://github.com/demos-europe/demosplan-ui/pull/1311)) DpAutocomplete: Add optional search button ([@hwiem](https://github.com/hwiem))
-
+- ([#1314](https://github.com/demos-europe/demosplan-ui/pull/1314)) DpProgressBar: Extend to allow alternative appearance ([@rafelddemos](https://github.com/rafelddemos)
 
 ## v0.4.21 - 2025-07-15
 
 ### Changed
 
 - ([#1303](https://github.com/demos-europe/demosplan-ui/pull/1303)) ActionMenu.js: improve keyboard navigation ([@meissnerdemos](https://github.com/meissnerdemos)
-
 
 ## v0.4.20 - 2025-07-01
 

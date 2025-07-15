@@ -4,9 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.21 - 2025-07-15
+
 ### Changed
 - ([#1303](https://github.com/demos-europe/demosplan-ui/pull/1303)) ActionMenu.js: improve keyboard navigation ([@meissnerdemos](https://github.com/meissnerdemos)
-
 
 ## v0.4.20 - 2025-07-01
 
@@ -25,7 +26,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## v0.4.18 - 2025-06-18
 
 ### Fixed
-
+- 
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
 

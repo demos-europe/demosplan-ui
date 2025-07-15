@@ -31,8 +31,7 @@
           'h-full w-full px-1 py-[2px] text-gray-400 items-center m-0': true,
           'flex': !searchButton,
           'hidden md:flex': searchButton,
-          'md:absolute md:pointer-events-none': !isPlaceholderVisible,
-          'sr-only': !isPlaceholderVisible
+          'md:absolute md:pointer-events-none sr-only': !isPlaceholderVisible
         }">
         {{ placeholder }}
       </label>
@@ -43,15 +42,6 @@
           class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0">
         {{ de.search.searching }}
       </span>
-        <dp-button
-          v-if="isPlaceholderVisible"
-          class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 border-l z-[5] -ml-px -mr-px"
-          data-cy="handleSearch"
-          hide-text
-          icon="search"
-          :text="de.search.searching"
-          variant="outline"
-          @click="triggerSearch" />
       </template>
       <div
         id="input-box"
@@ -72,7 +62,7 @@
         @keydown.stop="runSpecialKeys"
         @focusout="isInputFocused = false" />
       <dp-button
-        v-if="searchButton && !isPlaceholderVisible"
+        v-if="(searchButton && !isPlaceholderVisible) || isPlaceholderVisible"
         class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 !border-l-1 z-[5] -ml-px -mr-px"
         data-cy="handleSearch"
         hide-text

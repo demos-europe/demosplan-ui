@@ -5,12 +5,7 @@ FROM node:20
 WORKDIR /app
 
 # Enable corepack and prepare Yarn
-RUN corepack enable && corepack prepare yarn@4.2.2 --activate && \
-  # Set proper permissions for the working directory
-  chown -R node:node /app
-
-# Use default user ID
-USER node:1000
+RUN corepack enable && corepack prepare yarn@4.2.2 --activate
 
 # Expose the application port
 EXPOSE 3000

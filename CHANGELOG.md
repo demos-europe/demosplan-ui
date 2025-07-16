@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 
+- ([#1318](https://github.com/demos-europe/demosplan-ui/pull/1318)) DpEditableList: ensure Vue 3 v-model works correctly under compat mode ([@sakutademos](https://github.com/sakutademos)
 - ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
 
 

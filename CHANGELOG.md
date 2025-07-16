@@ -5,12 +5,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
+
 - ([#1310](https://github.com/demos-europe/demosplan-ui/pull/1310)) Storybook: Upgrade to v9 ([@salisdemos](https://github.com/salisdemos)
+- ([#1318](https://github.com/demos-europe/demosplan-ui/pull/1318)) DpEditableList: ensure Vue 3 v-model works correctly under compat mode ([@sakutademos](https://github.com/sakutademos)
+- ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
 
 
 ## v0.5.2 - 2025-07-09
 
 ### Changed
+
 - ([#1269](https://github.com/demos-europe/demosplan-ui/pull/1269) BREAKING: Update DpAccordion, DpBadge, DpBulkEditHeader, DpCard, DpFlyout to use Tailwind classes ([@spiess-demos](https://github.com/spiess-demos))
 - merge changes from 0.4.x into 0.5.x
 
@@ -25,17 +29,34 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1278) Do not use css vars for Tailwind breakpoints config ([@spiess-demos](https://github.com/spiess-demos))
 
+
 ## v0.5.0 - 2025-05-15
 
 ### Changed
 
 - ([#1275](https://github.com/demos-europe/demosplan-ui/pull/1275) BREAKING: Update Tailwind to v4, see PR description for details ([@spiess-demos](https://github.com/spiess-demos))
 
+
+## v0.4.22 - 2025-07-15
+
+### Added
+
+- ([#1311](https://github.com/demos-europe/demosplan-ui/pull/1311)) DpAutocomplete: Add optional search button ([@hwiem](https://github.com/hwiem))
+- ([#1314](https://github.com/demos-europe/demosplan-ui/pull/1314)) DpProgressBar: Extend to allow alternative appearance ([@rafelddemos](https://github.com/rafelddemos)
+
+
+## v0.4.21 - 2025-07-15
+
+### Changed
+
+- ([#1303](https://github.com/demos-europe/demosplan-ui/pull/1303)) ActionMenu.js: improve keyboard navigation ([@meissnerdemos](https://github.com/meissnerdemos)
+
 ## v0.4.20 - 2025-07-01
 
 ### Changed
-- 
+
 - ([#1298](https://github.com/demos-europe/demosplan-ui/pull/1298)) DpEditableList: add a new prop to the component ([@sakutademos](https://github.com/sakutademos)
+
 
 ## v0.4.19 - 2025-06-30
 
@@ -48,10 +69,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## v0.4.18 - 2025-06-18
 
+
 ### Fixed
 
 - ([#1293](https://github.com/demos-europe/demosplan-ui/pull/1293)) DpSlidingPagination: add a check to emit the 'page-change' event when the page number does not exceed the total page count ([@sakutademos](https://github.com/sakutademos)
 - ([#1278](https://github.com/demos-europe/demosplan-ui/pull/1287)) DpTreeList: Implement node selection without mutating vuex store state ([@hwiem](https://github.com/hwiem))
+
 
 ## v0.4.17 - 2025-06-11
 
@@ -411,7 +434,7 @@ to `~0.3.*` in your package.json.
 
 ### Added
 
-- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are not longer available. ([@spiess-demos](https://github.com/spiess-demos))
+- ([#932](https://github.com/demos-europe/demosplan-ui/pull/932)) BREAKING: Make color tokens available to Tailwind config, with that the default tokens are no longer available. ([@spiess-demos](https://github.com/spiess-demos))
 
 
 ## v0.3.19 - 2024-07-12
@@ -837,7 +860,7 @@ still be accessed via its release tag._
 
 ### Changed
 
-- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (eg. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
+- ([#294](https://github.com/demos-europe/demosplan-ui/pull/294)) **Breaking**: All script names use the colon instead of the dash as separator (e.g. "build:tokens") ([@spiess-demos](https://github.com/spiess-demos))
 - ([#292](https://github.com/demos-europe/demosplan-ui/pull/292)) DpDataTable: Clean V-if/v-for in Preparation for Vue3 ([@salis-demos](https://github.com/salis-demos))
 - ([#230](https://github.com/demos-europe/demosplan-ui/pull/230)) Move from Functional Component to Template in DpDataTable ([@sakutademos](https://github.com/sakutademos))
 - ([#233](https://github.com/demos-europe/demosplan-ui/pull/233)) Move from Functional Component to Template in DpTableRow ([@sakutademos](https://github.com/sakutademos))

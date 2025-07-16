@@ -30,10 +30,10 @@
       :required="required"
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
-      :value="value"
+      :value="modelValue"
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
-      @input="(event) => { emit('update:modelValue', event.target.value); emit('input', event.target.value) }"
+      @input="onInput"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -150,6 +150,12 @@ const props = defineProps({
     default: null
   },
 
+  modelValue: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
   name: {
     type: String,
     required: false,
@@ -222,12 +228,6 @@ const props = defineProps({
     default: 'text'
   },
 
-  value: {
-    type: String,
-    required: false,
-    default: ''
-  },
-
   /**
    * Full width by default; set to 'auto' to have no width defined.
    * @deprecated Apply width to the parent element of DpInput.
@@ -240,6 +240,18 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
+
+/**
+ *  In Vue-2-compat mode (@vue/compat), v-model still uses value/input.
+ *  To enable Vue 3’s modelValue/update:modelValue behavior here,
+ *  explicitly declare it via the model option:
+ */
+defineOptions({
+  model: {
+    prop: 'modelValue',
+    event: 'update:modelValue'
+  }
+})
 
 const classes = computed(() => {
   let _classes: string[] = [
@@ -289,22 +301,27 @@ const labelHint = computed(() => {
   const hint: string[] = props.label.hint ? [props.label.hint] : []
 
   if (props.maxlength && !props.minlength) {
-    hint.push(maxlengthHint(props.value.length, props.maxlength))
+    hint.push(maxlengthHint(props.modelValue.length, props.maxlength))
   } else if (props.minlength && !props.maxlength) {
-    hint.push(minlengthHint(props.value.length, props.minlength))
+    hint.push(minlengthHint(props.modelValue.length, props.minlength))
   } else if (props.maxlength && props.minlength) {
     if (props.maxlength === props.minlength) {
-      hint.push(exactlengthHint(props.value.length, props.maxlength))
+      hint.push(exactlengthHint(props.modelValue.length, props.maxlength))
     } else {
-      hint.push(maxlengthHint(props.value.length, props.maxlength))
-      hint.push(minlengthHint(props.value.length, props.minlength))
+      hint.push(maxlengthHint(props.modelValue.length, props.maxlength))
+      hint.push(minlengthHint(props.modelValue.length, props.minlength))
     }
   }
 
   return hint
 })
 
-const handleEnter = (event: Event) => {
+const onInput = (event: Event) => {
+  const value = (event.target as HTMLInputElement).value
+  emit('update:modelValue', value)
+  emit('input', value)
+}
+const handleEnter = (event: KeyboardEvent) => {
   if (props.preventDefaultOnEnter) {
     event.preventDefault()
   }

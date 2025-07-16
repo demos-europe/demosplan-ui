@@ -8,8 +8,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#4930](https://github.com/demos-europe/demosplan-core/pull/4930)) BREAKING: Use checkResponse in DpApi to check the response status code. ([@salisdemos](https://github.com/salisdemos))
   With this change, dpApi will now return `response` instead of `response.data`
 - Various Dependency updates
-
-### Changed
 - ([#1312](https://github.com/demos-europe/demosplan-ui/pull/1312)) Adjust tsConfig moduleResolution to bundler  ([@salisdemos](https://github.com/salisdemos))
 
 

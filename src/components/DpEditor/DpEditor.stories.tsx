@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { DpEditor, DpModal, DpButton } from '~/components'
 
 interface IDpEditor {

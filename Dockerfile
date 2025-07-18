@@ -7,8 +7,5 @@ WORKDIR /app
 # Enable corepack and prepare Yarn
 RUN corepack enable && corepack prepare yarn@4.2.2 --activate
 
-# Use default user ID
-USER node:1000
-
 # Expose the application port
 EXPOSE 3000

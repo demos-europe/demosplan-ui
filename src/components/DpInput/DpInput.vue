@@ -150,13 +150,13 @@ const props = defineProps({
     default: null
   },
 
-  name: {
+  modelValue: {
     type: String,
     required: false,
     default: ''
   },
 
-  modelValue: {
+  name: {
     type: String,
     required: false,
     default: ''

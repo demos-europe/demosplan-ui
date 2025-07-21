@@ -23,7 +23,6 @@ import DpDraggable from './DpDraggable'
 import DpEditor from './DpEditor'
 import DpEditableList from './DpEditableList'
 import DpFlyout from './DpFlyout'
-import DpFormRow from './DpFormRow'
 import { getFileIdsByHash } from './DpUploadFiles/utils/GetFileIdsByHash'
 import DpIcon from './DpIcon'
 import DpInlineNotification from './DpInlineNotification'
@@ -91,7 +90,6 @@ export {
   DpEditableList,
   DpEditor,
   DpFlyout,
-  DpFormRow,
   DpInlineNotification,
   DpModal,
   DpMultiselect,

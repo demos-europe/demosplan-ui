@@ -3,8 +3,8 @@
     <button
       v-if="title !== ''"
       :aria-expanded="isVisible.toString()"
-      class="flex items-center gap-1 text-interactive hover:cursor-pointer hover:text-interactive-hover"
       :data-cy="dataCy"
+      class="flex items-center gap-1 text-interactive hover:cursor-pointer hover:text-interactive-hover"
       type="button"
       @click="() => toggle()">
       <i

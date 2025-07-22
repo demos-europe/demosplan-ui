@@ -7,11 +7,11 @@
       :data-cy="dataCy"
       type="button"
       @click="() => toggle()">
-      <span :class="titleClasses">{{ title }}</span>
       <dp-icon
         aria-hidden="true"
         :icon="isVisible ? 'caret-up' : 'caret-down'"
         :size="iconSize" />
+      <span :class="titleClasses">{{ title }}</span>
     </button>
     <dp-transition-expand>
       <div v-show="isVisible">

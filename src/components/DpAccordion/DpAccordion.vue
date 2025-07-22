@@ -7,12 +7,11 @@
       class="flex items-center gap-1 text-interactive hover:cursor-pointer hover:text-interactive-hover"
       type="button"
       @click="() => toggle()">
-      <i
-        :class="{ 'fa-caret-right': !isVisible, 'fa-caret-down': isVisible }"
-        aria-hidden="true"
-        class="w-2 fa"
-      />
       <span :class="titleClasses">{{ title }}</span>
+      <dp-icon
+        aria-hidden="true"
+        :icon="isVisible ? 'caret-up' : 'caret-down'"
+        :size="iconSize" />
     </button>
     <dp-transition-expand>
       <div v-show="isVisible">
@@ -24,12 +23,14 @@
 </template>
 
 <script>
+import DpIcon from '~/components/DpIcon'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
 
 export default {
   name: 'DpAccordion',
 
   components: {
+    DpIcon,
     DpTransitionExpand
   },
 
@@ -83,6 +84,10 @@ export default {
         this.fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'
       ]
     },
+
+    iconSize () {
+      return this.compressed ? 'medium' : 'large'
+    }
   },
 
   watch: {

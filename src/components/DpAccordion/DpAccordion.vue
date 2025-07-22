@@ -5,6 +5,7 @@
       :aria-expanded="isVisible.toString()"
       class="flex items-center justify-between w-full hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
       :data-cy="dataCy"
+      type="button"
       @click="() => toggle()">
       <span :class="titleClasses">{{ title }}</span>
       <dp-icon

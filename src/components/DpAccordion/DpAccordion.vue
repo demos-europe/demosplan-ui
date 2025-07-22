@@ -31,7 +31,6 @@ export default {
   name: 'DpAccordion',
 
   components: {
-    DpIcon,
     DpTransitionExpand
   },
 
@@ -85,9 +84,6 @@ export default {
         this.fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'
       ]
     },
-    iconSize () {
-      return this.compressed ? 'medium' : 'large'
-    }
   },
 
   watch: {

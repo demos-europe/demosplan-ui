@@ -4,7 +4,8 @@
       v-if="title !== ''"
       :aria-expanded="isVisible.toString()"
       :data-cy="dataCy"
-      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover border-b border-neutral pb-2"
+      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+      :class="{ 'border-b border-neutral pb-2': showBorder }"
       type="button"
       @click="() => toggle()">
       <span :class="titleClasses">{{ title }}</span>
@@ -61,12 +62,18 @@ export default {
       default: false
     },
 
+    showBorder: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     // Text displayed in toggle trigger
     title: {
       type: String,
       required: false,
       default: ''
-    }
+    },
   },
 
   emits: ['item:toggle'],

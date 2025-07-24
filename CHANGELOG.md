@@ -11,6 +11,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1324](https://github.com/demos-europe/demosplan-ui/pull/1324)) DpResettableInput: fix slot detection logic for fragments and text nodes ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
+- ([#1323](https://github.com/demos-europe/demosplan-ui/pull/1323)) DpAccordion: Remove default submit behaviour and adjust styles ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1321](https://github.com/demos-europe/demosplan-ui/pull/1321)) BREAKING: Remove DpFormRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1318](https://github.com/demos-europe/demosplan-ui/pull/1318)) DpEditableList: ensure Vue 3 v-model works correctly under compat mode ([@sakutademos](https://github.com/sakutademos)
 

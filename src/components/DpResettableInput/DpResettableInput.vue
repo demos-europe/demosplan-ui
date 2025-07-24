@@ -124,8 +124,14 @@ export default {
       let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
       const slotContent = this.$slots.default && this.$slots.default().filter(node => {
         if (node.type === Comment) return false
-        if (node.type === Text && !node.children.trim()) return false
-        return node.type !== Fragment
+        if (node.type === Text && (!node.children || !node.children.trim())) return false
+        if (node.type === Fragment) {
+          return node.children && node.children.some(child =>
+            child.type !== Comment &&
+            (child.type !== Text || (child.children && child.children.trim()))
+          )
+        }
+        return true
       })
       classes = slotContent && slotContent.length > 0 ? `${classes} grouped` : classes
 

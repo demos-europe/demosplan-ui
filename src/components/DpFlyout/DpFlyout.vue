@@ -2,11 +2,11 @@
   <span
     ref="target"
     v-on-click-outside="close"
-    class="dp-flyout relative"
-    :class="{
+    class="dp-flyout"
+    :class="[{
       'is-expanded': isExpanded,
       'bg-surface-medium rounded-md': variant === 'dark'
-    }"
+    }, position]"
     data-cy="flyoutTrigger">
     <button
       :disabled="disabled"
@@ -80,6 +80,13 @@ export default {
       required: false,
       type: Boolean,
       default: true
+    },
+
+    position: {
+      required: false,
+      type: String,
+      default: 'relative',
+      validator: (prop) => ['relative', 'absolute'].includes(prop)
     },
 
     variant: {

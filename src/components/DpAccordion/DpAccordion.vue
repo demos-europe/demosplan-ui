@@ -3,8 +3,10 @@
     <button
       v-if="title !== ''"
       :aria-expanded="isVisible.toString()"
-      class="flex items-center justify-between w-full hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
       :data-cy="dataCy"
+      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+      :class="{ 'border-b border-neutral pb-2': showBorder }"
+      type="button"
       @click="() => toggle()">
       <span :class="titleClasses">{{ title }}</span>
       <dp-icon
@@ -60,12 +62,18 @@ export default {
       default: false
     },
 
+    showBorder: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+
     // Text displayed in toggle trigger
     title: {
       type: String,
       required: false,
       default: ''
-    }
+    },
   },
 
   emits: ['item:toggle'],
@@ -83,6 +91,7 @@ export default {
         this.fontWeight === 'bold' ? 'weight--bold' : 'weight--normal'
       ]
     },
+
     iconSize () {
       return this.compressed ? 'medium' : 'large'
     }

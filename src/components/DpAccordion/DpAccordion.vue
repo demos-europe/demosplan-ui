@@ -4,7 +4,7 @@
       v-if="title !== ''"
       :aria-expanded="isVisible.toString()"
       :data-cy="dataCy"
-      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover border-b border-neutral pb-2"
       type="button"
       @click="() => toggle()">
       <span :class="titleClasses">{{ title }}</span>

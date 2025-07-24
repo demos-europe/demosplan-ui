@@ -4,10 +4,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-### Changed
-- ([#1321](https://github.com/demos-europe/demosplan-ui/pull/1321)) BREAKING: Remove DpFormRow ([@salisdemos](https://github.com/salisdemos))
+### Added
+- ([#1324](https://github.com/demos-europe/demosplan-ui/pull/1324)) DpFlyout: add position prop to control flyout positioning ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Fixed
+- ([#1324](https://github.com/demos-europe/demosplan-ui/pull/1324)) DpResettableInput: fix slot detection logic for fragments and text nodes ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
+- ([#1321](https://github.com/demos-europe/demosplan-ui/pull/1321)) BREAKING: Remove DpFormRow ([@salisdemos](https://github.com/salisdemos))
 - ([#1318](https://github.com/demos-europe/demosplan-ui/pull/1318)) DpEditableList: ensure Vue 3 v-model works correctly under compat mode ([@sakutademos](https://github.com/sakutademos)
 
 

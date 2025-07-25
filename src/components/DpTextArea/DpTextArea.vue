@@ -10,7 +10,7 @@
       v-model="currentValue"
       :name="name"
       class="o-form__control-textarea"
-      :class="{ 'grow': growToParent, 'h-7': reducedHeight }"
+      :class="[{ 'grow': growToParent, 'h-7': reducedHeight }, disabled ? 'border border-input-disabled' : 'border border-input']"
       :data-dp-validate-if="dataDpValidateIf ? true : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label || null"
       :data-cy="dataCy"

@@ -275,7 +275,7 @@ const classes = computed(() => {
   }
 
   if (props.readonly || props.disabled) {
-    _classes.push('bg-surface-light border-none cursor-default')
+    _classes.push('bg-surface-light border border-input-disabled cursor-default')
   } else {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }

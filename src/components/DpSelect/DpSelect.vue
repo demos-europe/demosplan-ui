@@ -15,7 +15,7 @@
       :required="required"
       :name="name !== '' ? name : null"
       class="o-form__control-select"
-      :class="[disabled ? ' bg-color--grey-light-2' : '', classes]"
+      :class="[disabled ? ' border border-input-disabled bg-surface-light cursor-default' : 'border border-input', classes]"
       :disabled="disabled"
       @change="update">
       <option

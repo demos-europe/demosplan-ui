@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.4 - 2025-07-29
+
 ### Added
 - ([#1324](https://github.com/demos-europe/demosplan-ui/pull/1324)) DpFlyout: add position prop to control flyout positioning ([@meissnerdemos](https://github.com/meissnerdemos))
 

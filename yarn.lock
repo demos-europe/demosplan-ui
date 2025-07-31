@@ -15519,12 +15519,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-model@npm:1.25.1":
-  version: 1.25.1
-  resolution: "prosemirror-model@npm:1.25.1"
+"prosemirror-model@npm:1.25.2":
+  version: 1.25.2
+  resolution: "prosemirror-model@npm:1.25.2"
   dependencies:
     orderedmap: "npm:^2.0.0"
-  checksum: 10c0/0974fec71f1d0fcfaa5c0350864dcdbfd95092a026460bbc96208c7b8d84f86444504cb746fd558009102a7debbde32c35d9d98da97382ad729ccaeaef729131
+  checksum: 10c0/d336a62e021a93711ad326c919e406709ff014caebb33806187b4d45f6860ffc19cf1124a8666164ab612a059125fe016574af546d992610a4daa416af45d97d
   languageName: node
   linkType: hard
 
@@ -15548,7 +15548,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-state@npm:^1.0.0, prosemirror-state@npm:^1.2.2, prosemirror-state@npm:^1.4.3":
+"prosemirror-state@npm:1.4.3":
   version: 1.4.3
   resolution: "prosemirror-state@npm:1.4.3"
   dependencies:
@@ -15586,16 +15586,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-transform@npm:^1.0.0, prosemirror-transform@npm:^1.1.0, prosemirror-transform@npm:^1.7.3":
-  version: 1.8.0
-  resolution: "prosemirror-transform@npm:1.8.0"
-  dependencies:
-    prosemirror-model: "npm:^1.0.0"
-  checksum: 10c0/20861fcb304cc68718e49be6c41f22505689e969507f1e9754bbdfedf98fc4059254a79e1659b930c13ca52c547d3449f1814263a7601aeea1c1c4dfedc80ac1
-  languageName: node
-  linkType: hard
-
-"prosemirror-transform@npm:^1.10.2, prosemirror-transform@npm:^1.10.3":
+"prosemirror-transform@npm:1.10.4":
   version: 1.10.4
   resolution: "prosemirror-transform@npm:1.10.4"
   dependencies:
@@ -15604,14 +15595,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prosemirror-view@npm:1.40.0":
-  version: 1.40.0
-  resolution: "prosemirror-view@npm:1.40.0"
+"prosemirror-view@npm:1.40.1":
+  version: 1.40.1
+  resolution: "prosemirror-view@npm:1.40.1"
   dependencies:
     prosemirror-model: "npm:^1.20.0"
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.1.0"
-  checksum: 10c0/9fde9b415b9beeeda823acc170871f420f8e8646be83d9af5b9b5c124419d9a4b5c1293d9536dd06910b6154a001401d79cdc57a902fb7a0ea19501966f8dfdd
+  checksum: 10c0/b63335343edc68a9dec8c9fddf145e493f0b541b0ce4847dd20c42f2068c5ac6c00762978389e3448bc575230914ab0882679f66077fd1d950e40c83b5e2831f
   languageName: node
   linkType: hard
 

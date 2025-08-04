@@ -76,7 +76,7 @@ export default {
   },
 
   mounted () {
-    if (this.message.type !== 'error') {
+    if (this.message.type !== 'error' && !this.message.persist) {
       setTimeout(() => {
         this.hide()
       }, this.hideTimer)

@@ -7,6 +7,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1328](https://github.com/demos-europe/demosplan-ui/pull/1328)) Add more prosemirror packages to resolutions to prevent dependency conflicts ([@meissnerdemos](https://github.com/meissnerdemos))
 
+### Changed
+- ([#1330](https://github.com/demos-europe/demosplan-ui/pull/1330)) DpNotification: Allow non-error notifications to persist ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.5.4 - 2025-07-29
 
 ### Added

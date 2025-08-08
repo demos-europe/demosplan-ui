@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.5 - 2025-08-08
+
+### Added
+- ([#1331](https://github.com/demos-europe/demosplan-ui/pull/1331)) DpIcon: Add warning-circle icon ([@rafelddemos](https://github.com/rafelddemos))
+
 ### Fixed
 - ([#1328](https://github.com/demos-europe/demosplan-ui/pull/1328)) Add more prosemirror packages to resolutions to prevent dependency conflicts ([@meissnerdemos](https://github.com/meissnerdemos))
 

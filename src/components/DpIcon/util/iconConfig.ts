@@ -44,6 +44,7 @@ import {
   PhUsersThree,
   PhWarning,
   PhWarningDiamond,
+  PhWarningCircle,
   PhX,
   PhXCircle
 } from '@phosphor-icons/vue'
@@ -89,6 +90,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'user': PhUser,
   'users-three': PhUsersThree,
   'warning': PhWarning,
+  'warning-circle': PhWarningCircle,
   'x': PhX,
   'x-circle': PhXCircle,
   'arrows-clockwise': PhArrowsClockwise, // Alias: refresh

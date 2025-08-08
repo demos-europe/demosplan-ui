@@ -73,6 +73,7 @@ export type PhosphorIconName =
   | 'user'
   | 'users-three'
   | 'warning'
+  | 'warning-circle'
   | 'x'
   | 'x-circle'
 

@@ -167,7 +167,7 @@ const emit = defineEmits([
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
 
 const classes = computed(() => [
-  'inline-flex items-center leading-3 text-button select-none focus:z-above-zero focus:relative hover:cursor-pointer',
+  'inline-flex items-center leading-3 text-button select-none focus:z-above-zero hover:cursor-pointer',
   ...colorClasses.value,
   ...spacingClasses.value,
   props.busy && 'bg-busy animate-busy pointer-events-none',

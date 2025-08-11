@@ -4,9 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.6 - 2025-08-11
+
 ### Fixed
 - ([#1332](https://github.com/demos-europe/demosplan-ui/pull/1332)) DpButton: Fix focus style ([@hwiem](https://github.com/hwiem))
 
+### Changed
+- Dependency updates:
+  - globals from 16.0.0 to 16.3.0
+  - ts-loader from 9.5.1 to 9.5.2
+  - typescript from 5.8.3 to 5.9.2
 
 ## v0.5.5 - 2025-08-08
 
@@ -18,6 +25,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 - ([#1330](https://github.com/demos-europe/demosplan-ui/pull/1330)) DpNotification: Allow non-error notifications to persist ([@rafelddemos](https://github.com/rafelddemos))
+
 
 ## v0.5.4 - 2025-07-29
 

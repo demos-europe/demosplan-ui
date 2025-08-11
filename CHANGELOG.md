@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1332](https://github.com/demos-europe/demosplan-ui/pull/1332)) DpButton: Fix focus style ([@hwiem](https://github.com/hwiem))
+
+
 ## v0.5.5 - 2025-08-08
 
 ### Added

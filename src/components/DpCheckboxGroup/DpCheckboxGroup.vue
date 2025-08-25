@@ -83,7 +83,7 @@ export default {
   methods: {
     setSelected () {
       this.options.forEach(option => {
-        this.selected[option.id] = false
+        this.selected[option.id] = this.selectedOptions[option.id] ?? false
       })
     }
   },

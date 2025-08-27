@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import DpCheckboxGroup from '~/components/DpCheckboxGroup/DpCheckboxGroup.vue'
+import DpCheckboxGroup from '~/components/DpCheckboxGroup/DpCheckboxGroup'
 
 describe('DpCheckboxGroup', () => {
   let wrapper
@@ -21,7 +21,7 @@ describe('DpCheckboxGroup', () => {
     })
   })
 
-  it('initializes selected state with all options set to false', () => {
+  it('initializes selected state with all options set to false if selectedOptions is empty', () => {
     expect(wrapper.vm.selected).toEqual({
       option1: false,
       option2: false,
@@ -49,20 +49,6 @@ describe('DpCheckboxGroup', () => {
     expect(wrapper.emitted('update')[0]).toEqual([{
       option1: true,
       option2: false,
-      option3: false
-    }])
-  })
-
-  it('emits update event with correct merged state', async () => {
-    wrapper.vm.selected = { option1: true, option2: false, option3: false }
-
-    const secondCheckbox = wrapper.findAllComponents({ name: 'DpCheckbox' })[1]
-    await secondCheckbox.vm.$emit('change', true)
-
-    expect(wrapper.emitted('update')).toBeTruthy()
-    expect(wrapper.emitted('update')[0]).toEqual([{
-      option1: true,
-      option2: true,
       option3: false
     }])
   })

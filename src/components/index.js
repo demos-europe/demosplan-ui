@@ -1,4 +1,5 @@
 import dataTableSearch from './DpDataTableExtended/DataTableSearch'
+import { de } from './shared/translations'
 import DpAccordion from './DpAccordion'
 import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
@@ -62,6 +63,7 @@ import DpVideoPlayer from './DpVideoPlayer'
 
 export {
   dataTableSearch,
+  de,
   DpAccordion,
   DpBadge,
   DpButton,

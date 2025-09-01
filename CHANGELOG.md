@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.7 - 2025-09-01
+
 ### Added
 - ([#1344](https://github.com/demos-europe/demosplan-ui/pull/1344)) Add the de translations object to index.js, so it can be exported from demosplan-ui ([@sakutademos](https://github.com/sakutademos)
 

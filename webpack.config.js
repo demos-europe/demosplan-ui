@@ -103,6 +103,7 @@ module.exports = () => {
     config.mode = 'production';
   } else {
     config.mode = 'development';
+    config.devtool = 'cheap-module-source-map';
   }
 
   if (process.argv.includes('--analyze')) {

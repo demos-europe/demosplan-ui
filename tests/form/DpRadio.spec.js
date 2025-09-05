@@ -9,7 +9,7 @@ describe('DpRadio', () => {
     }
   })
 
-  const radio = wrapper.find('input[type="radio"]')
+  const radio = wrapper.get('input[type="radio"]')
   runBooleanAttrTests(wrapper, radio, 'required')
   runBooleanAttrTests(wrapper, radio, 'disabled')
   runBooleanAttrTests(wrapper, radio, 'readonly')
@@ -22,7 +22,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = await componentWrapper.find('input[type="radio"]')
+    const radioEl = await componentWrapper.get('input[type="radio"]')
     await componentWrapper.setProps({ checked: true })
     await radioEl.trigger('change')
     await componentWrapper.setProps({ checked: false })
@@ -34,6 +34,26 @@ describe('DpRadio', () => {
     expect(componentWrapper.emitted()['change'][2][0]).toBe(false)
   })
 
+  it('emits correct payload when user clicks the radio input', async () => {
+    const componentWrapper = shallowMount(DpRadio, {
+      props: {
+        id: 'radioId',
+        checked: false,
+        value: 'testValue'
+      }
+    })
+
+    const radioEl = componentWrapper.get('input[type="radio"]')
+
+    // Simulate user clicking the radio
+    radioEl.element.checked = true
+    await radioEl.trigger('change')
+
+    // Verify the event was emitted with the correct payload
+    expect(componentWrapper.emitted()).toHaveProperty('change')
+    expect(componentWrapper.emitted().change[0][0]).toBe(true)
+  })
+
   it('has the value of `value` prop as its value attribute', async () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
@@ -43,7 +63,7 @@ describe('DpRadio', () => {
 
     await componentWrapper.setProps({ value: 'radioValue' })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('value')).toEqual('radioValue')
   })
 
@@ -54,7 +74,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('value')).toEqual('1')
   })
 
@@ -66,7 +86,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.element.checked).toBe(true)
   })
 
@@ -78,7 +98,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.element.checked).toBe(false)
   })
 
@@ -90,7 +110,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('name')).toEqual('radioGroup')
   })
 
@@ -102,7 +122,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('name')).toBeUndefined()
   })
 
@@ -114,7 +134,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('data-cy')).toEqual('radio-test')
   })
 
@@ -126,7 +146,7 @@ describe('DpRadio', () => {
       }
     })
 
-    const radioEl = componentWrapper.find('input[type="radio"]')
+    const radioEl = componentWrapper.get('input[type="radio"]')
     expect(radioEl.attributes('data-cy')).toBeUndefined()
   })
 })

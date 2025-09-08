@@ -34,7 +34,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import Plyr from 'plyr/dist/plyr.polyfilled.min'
+import Plyr from 'plyr'
 export default defineComponent({
   name: 'DpVideoPlayer',
 
@@ -137,7 +137,6 @@ export default defineComponent({
   },
 
   mounted () {
-     
     this.player = new Plyr('#' + this.id, {
       iconUrl: this.iconUrl,
       // For a full list of available controls see https://github.com/sampotts/plyr/blob/master/CONTROLS.md

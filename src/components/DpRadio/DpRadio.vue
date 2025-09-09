@@ -11,7 +11,7 @@
       autocomplete="off"
       :checked="checked"
       :value="value"
-      :data-cy="dataCy !== '' ? dataCy : false"
+      :data-cy="dataCy !== '' ? dataCy : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"><!--
  --><dp-label

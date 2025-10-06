@@ -1,13 +1,56 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks'
-import * as DpAutocompleteStories from './DpAutocomplete.stories.tsx'
+
+import * as DpAutocompleteStories from './DpAutocomplete.stories'
 
 <Meta of={DpAutocompleteStories} />
 
-# Autocomplete
+# DpAutocomplete
 
-DpAutocomplete is a simple search box for vue applications
-that is able to auto complete search queries.
+An autocomplete input component that provides real-time suggestions based on user input via API calls.
 
-## Default usage
+This component is built on top of `DpResettableInput`.
+
+## Features
+
+- **Full keyboard navigation** (arrows, enter, escape, home, end, tab)
+- **Screen reader support** with live region announcements
+- **ARIA combobox pattern** with proper focus management
+- Customizable suggestion rendering via slots
+- Reset functionality
+
+## Basic Usage
 
 <Canvas of={DpAutocompleteStories.Default} />
+
+## With Integrated Search Button
+
+<Canvas of={DpAutocompleteStories.WithSearchButton} />
+
+## Custom Minimum Characters
+
+Control when suggestions appear:
+
+<Canvas of={DpAutocompleteStories.CustomMinChars} />
+
+## Custom Option Rendering
+
+Use slots to customize how suggestions are displayed:
+
+<Canvas of={DpAutocompleteStories.WithCustomSlot} />
+
+
+## Accessibility & Keyboard Navigation
+
+This component follows **WCAG 2.1 AA** guidelines and implements the **WAI-ARIA combobox pattern**:
+
+### Keyboard Controls
+- **Arrow Up/Down**: Navigate through suggestions
+- **Home/End**: Jump to first/last suggestion
+- **Enter**: Select highlighted suggestion or trigger search
+- **Escape**: Close dropdown
+- **Tab**: Close dropdown and move to next focusable element
+
+### Screen Reader Support
+- Live region announces suggestion count and status
+- `aria-activedescendant` indicates currently highlighted option
+

@@ -136,6 +136,7 @@ const de = {
     new: 'Neu',
     none: 'Keine',
     remove: 'Entfernen',
+    reset: 'Zurücksetzen',
     save: 'Speichern',
     select: {
       all: 'Alle auswählen',
@@ -162,8 +163,11 @@ const de = {
   },
   placeholderAutoSuggest: "Suchbegriff...",
   search: {
-    noResults (searchterm) {
-      return `Für den Suchbegriff <span style=\"background-color: yellow;\">${searchterm}</span> konnten keine Einträge gefunden werden.`
+    noResults (searchTerm) {
+      return `Für den Suchbegriff <span style="background-color: yellow;">${searchTerm}</span> konnten keine Einträge gefunden werden.`
+    },
+    resultsHighlighted (count, position) {
+      return count > 1 ? `${count} Suchergebnisse vorhanden, ${position + 1} von ${count} hervorgehoben` : `Ein Suchergebnis vorhanden, ${position + 1} von 1 hervorgehoben`
     },
     searching: 'Suchen',
     text: 'Suche',

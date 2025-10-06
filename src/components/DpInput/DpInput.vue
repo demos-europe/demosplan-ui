@@ -34,6 +34,7 @@
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
       @input="onInput"
+      @keydown="emit('keydown', $event)"
       @keydown.enter="handleEnter">
   </div>
 </template>
@@ -251,7 +252,14 @@ defineOptions({
   }
 })
 
-const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
+const emit = defineEmits([
+  'blur',
+  'enter',
+  'focus',
+  'input',
+  'keydown',
+  'update:modelValue'
+])
 
 const classes = computed(() => {
   let _classes: string[] = [

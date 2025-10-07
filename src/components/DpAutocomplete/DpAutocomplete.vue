@@ -277,11 +277,11 @@ watch(() => props.options, () => {
   showNoResults.value = currentQuery.value.length >= props.minChars && props.options.length === 0
 })
 
-function getOptionId (idx: number): string {
+const getOptionId = (idx: number): string => {
   return `${props.id}-option-${idx}`
 }
 
-function getOptionKey (option: Record<string, unknown>, idx: number): string {
+const getOptionKey = (option: Record<string, unknown>, idx: number): string => {
   return `${option[props.label]}_${idx}`
 }
 
@@ -293,7 +293,7 @@ function getOptionKey (option: Record<string, unknown>, idx: number): string {
  * Handle arrow keys, enter, escape, home, end, tab, and blur events.
  */
 
-function handleArrowDown (event: KeyboardEvent) {
+const handleArrowDown = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (isOptionsListVisible.value && props.options.length > 0) {
@@ -303,7 +303,7 @@ function handleArrowDown (event: KeyboardEvent) {
   }
 }
 
-function handleArrowUp (event: KeyboardEvent) {
+const handleArrowUp = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (isOptionsListVisible.value && props.options.length > 0) {
@@ -313,7 +313,7 @@ function handleArrowUp (event: KeyboardEvent) {
   }
 }
 
-function handleBlur () {
+const handleBlur = () => {
   // Delay blur to allow option selection
   setTimeout(() => {
     isInputFocused.value = false
@@ -321,7 +321,7 @@ function handleBlur () {
   }, 150)
 }
 
-function handleEnd (event: KeyboardEvent) {
+const handleEnd = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (isOptionsListVisible.value && props.options.length > 0) {
@@ -329,7 +329,7 @@ function handleEnd (event: KeyboardEvent) {
   }
 }
 
-function handleEnter (event: KeyboardEvent) {
+const handleEnter = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (listPosition.value >= 0 && props.options[listPosition.value]) {
@@ -339,7 +339,7 @@ function handleEnter (event: KeyboardEvent) {
   }
 }
 
-function handleEscape (event: KeyboardEvent) {
+const handleEscape = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (isOptionsListVisible.value) {
@@ -348,12 +348,12 @@ function handleEscape (event: KeyboardEvent) {
   }
 }
 
-function handleFocus () {
+const handleFocus = () => {
   isInputFocused.value = true
   emit('focus')
 }
 
-function handleHome (event: KeyboardEvent) {
+const handleHome = (event: KeyboardEvent) => {
   event.preventDefault()
 
   if (isOptionsListVisible.value && props.options.length > 0) {
@@ -361,7 +361,7 @@ function handleHome (event: KeyboardEvent) {
   }
 }
 
-function handleReset () {
+const handleReset = () => {
   currentQuery.value = props.defaultValue
   emit('update:modelValue', props.defaultValue)
   emit('reset')
@@ -372,14 +372,14 @@ function handleReset () {
   })
 }
 
-function handleTab () {
+const handleTab = () => {
   if (isOptionsListVisible.value) {
     isInputFocused.value = false
     listPosition.value = -1
   }
 }
 
-function handleKeydown (event: KeyboardEvent) {
+const handleKeydown = (event: KeyboardEvent) => {
   const handlers: Record<string, (event: KeyboardEvent) => void> = {
     'ArrowDown': handleArrowDown,
     'Down': handleArrowDown,
@@ -399,7 +399,7 @@ function handleKeydown (event: KeyboardEvent) {
   }
 }
 
-function selectOption (option: Record<string, unknown>) {
+const selectOption = (option: Record<string, unknown>) => {
   if (!option) {
     return
   }
@@ -418,7 +418,7 @@ function selectOption (option: Record<string, unknown>) {
   })
 }
 
-function handleInput (value: string) {
+const handleInput = (value: string) => {
   currentQuery.value = value
   emit('update:modelValue', value)
 
@@ -429,13 +429,13 @@ function handleInput (value: string) {
   }
 }
 
-function triggerSearch () {
+const triggerSearch = () => {
   emit('searched', currentQuery.value)
   emit('search', currentQuery.value)
   isInputFocused.value = false
 }
 
-async function fetchSuggestions (searchString: string) {
+const fetchSuggestions = async (searchString: string) => {
   if (!searchString || searchString.length < props.minChars) {
     return
   }

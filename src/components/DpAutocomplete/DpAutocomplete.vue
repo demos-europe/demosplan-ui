@@ -464,9 +464,4 @@ async function fetchSuggestions (searchString: string) {
   }
 }
 
-// Expose methods for parent component access
-defineExpose({
-  focus: () => suggestionInput.value?.$el?.querySelector('input')?.focus(),
-  blur: () => suggestionInput.value?.$el?.querySelector('input')?.blur()
-})
 </script>

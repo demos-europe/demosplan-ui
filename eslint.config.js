@@ -1,5 +1,5 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
+const storybook = require("eslint-plugin-storybook")
 
 const globals = require('globals')
 const eslintJs = require('@eslint/js')
@@ -23,13 +23,23 @@ async function getConfig () {
         '**/.yarn/**',
         '**/tokens/dist/**',
         '**/dist/**',
-        '**/.storybook/**'
+        '**/.storybook/**',
+        '*.config.js',
+        'babel.config.js',
+        'jest.config.js',
+        'webpack.config.js',
+        'vite.config.mjs',
+        'jest/**',
+        'scripts/**'
       ]
     },
     {
       files: ["**/*.js", "**/*.ts", "**/*.vue"],
       languageOptions: {
-        globals: globals.browser,
+        globals: {
+          ...globals.browser,
+          ...globals.node
+        },
         parser: vueEslintParser,
         parserOptions: {
           parser: tsEslint.parser
@@ -99,6 +109,16 @@ async function getConfig () {
         }],
         'vue/multi-word-component-names': 'warn',
         'vuejs-accessibility/label-has-for': 'warn'
+      }
+    },
+    {
+      files: ["**/*.spec.js", "**/*.test.js", "tests/**/*.js"],
+      languageOptions: {
+        globals: {
+          ...globals.browser,
+          ...globals.node,
+          ...globals.jest
+        }
       }
     }
   ]

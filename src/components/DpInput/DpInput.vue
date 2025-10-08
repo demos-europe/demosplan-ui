@@ -239,6 +239,8 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
+
 /**
  *  In Vue-2-compat mode (@vue/compat), v-model still uses value/input.
  *  To enable Vue 3’s modelValue/update:modelValue behavior here,
@@ -250,8 +252,6 @@ defineOptions({
     event: 'update:modelValue'
   }
 })
-
-const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
 
 const classes = computed(() => {
   let _classes: string[] = [

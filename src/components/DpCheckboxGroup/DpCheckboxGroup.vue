@@ -75,7 +75,7 @@ export default {
   },
 
   watch: {
-      selectedOptions () {
+    selectedOptions () {
       this.selected = this.selectedOptions
     }
   },

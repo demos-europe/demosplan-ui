@@ -13,8 +13,7 @@
           v-model="allElementsSelected"
           name="checkAll"
           check-all
-          :style="checkboxIndentationStyle"
-        />
+          :style="checkboxIndentationStyle" />
         <div class="grow color--grey">
           <!--
             @slot Content displayed at the top of the tree list. Typically used for column headers or global actions.
@@ -27,8 +26,7 @@
           data-cy="treeListNodeToggle"
           :value="allElementsExpanded"
           toggle-all
-          @input="toggleAll"
-        />
+          @input="toggleAll" />
       </div>
     </div>
 
@@ -75,8 +73,7 @@
           -->
           <slot
             :name="slot"
-            v-bind="scope"
-          />
+            v-bind="scope" />
         </template>
       </dp-tree-list-node>
     </component>

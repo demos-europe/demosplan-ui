@@ -74,7 +74,7 @@ export default {
 
     initResizeObserver () {
       if (this.$refs.imagewrapper.$el) {
-        this.observer = new ResizeObserver(e => this.updateImageDimensions())
+        this.observer = new ResizeObserver(() => this.updateImageDimensions())
         this.observer.observe(this.$refs.imagewrapper.$el)
       } else {
         setTimeout(() => {

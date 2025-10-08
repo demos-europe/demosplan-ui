@@ -94,6 +94,7 @@
 
 <script>
 import dataTableSearch from './DataTableSearch'
+import { de } from "~/components/shared/translations"
 import DomPurify from 'dompurify'
 import DpDataTable from '~/components/DpDataTable'
 import DpSelectPageItemCount from './DpSelectPageItemCount'
@@ -101,7 +102,6 @@ import DpSlidingPagination from '~/components/DpSlidingPagination'
 import DpStickyElement from '~/components/DpStickyElement'
 import { hasOwnProp } from '~/utils'
 import { tableSelectAllItems } from '~/mixins'
-import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpDataTableExtended',
@@ -139,7 +139,7 @@ export default {
      */
     headerFields: {
       type: Array,
-      required: true,
+      required: false,
       default: () => [],
     },
 
@@ -223,6 +223,13 @@ export default {
       default: () => ({}),
     },
   },
+
+  emits: [
+    'items-selected',
+    'updated:filteredItems',
+    'updated:onPageItems',
+    'updated:sortOrder',
+  ],
 
   data () {
     return {

@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpCheckboxGroup from '~/components/DpCheckboxGroup/DpCheckboxGroup'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpCheckboxGroup', () => {
   let wrapper

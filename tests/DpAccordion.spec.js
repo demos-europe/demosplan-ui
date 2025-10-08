@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
 import DpAccordion from '~/components/DpAccordion/DpAccordion.vue'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpAccordion', () => {
   let wrapper

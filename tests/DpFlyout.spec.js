@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpFlyout from '~/components/DpFlyout/DpFlyout.vue'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpFlyout', () => {
   let wrapper

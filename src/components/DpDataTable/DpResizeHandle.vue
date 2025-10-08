@@ -27,5 +27,9 @@ export default {
       default: true,
     },
   },
+
+  emits: [
+    'mousedown',
+  ],
 }
 </script>

@@ -7,23 +7,15 @@
 
 <script>
 import { de } from './utils/UppyTranslations'
-import { hasOwnProp } from '../../utils'
-import { getFileTypes } from '../../lib'
 import DragDrop from '@uppy/drag-drop'
+import { getFileTypes } from '../../lib'
+import { hasOwnProp } from '../../utils'
 import ProgressBar from '@uppy/progress-bar'
 import Tus from '@uppy/tus'
 import Uppy from '@uppy/core'
 
 export default {
   name: 'DpUpload',
-
-  emits: [
-    'file-added',
-    'file-error',
-    'upload',
-    'uploads-completed',
-    'upload-success',
-  ],
 
   props: {
     /**
@@ -109,6 +101,14 @@ export default {
     },
   },
 
+  emits: [
+    'file-added',
+    'file-error',
+    'upload',
+    'uploads-completed',
+    'upload-success',
+  ],
+
   data () {
     return {
       currentFileHash: '',
@@ -141,11 +141,10 @@ export default {
      * break the tus endpoint. This could as well be implemented within the backend.
      *
      * @param currentFile
-     * @param files
      * @return {(*&{meta: (*&{name: *}), name: *})|*}
      * @see https://github.com/transloadit/uppy/blob/main/packages/@uppy/core/src/Uppy.js#L503
      */
-    handleOnBeforeFileAdded (currentFile, files) {
+    handleOnBeforeFileAdded (currentFile) {
       let fileName = currentFile.name
 
       /*
@@ -169,7 +168,9 @@ export default {
         }
       }
 
-      if (fileName !== currentFile.name) {
+      if (fileName === currentFile.name) {
+        return currentFile
+      } else {
         return {
           ...currentFile,
           name: fileName,
@@ -178,8 +179,6 @@ export default {
             name: fileName,
           },
         }
-      } else {
-        return currentFile
       }
     },
 

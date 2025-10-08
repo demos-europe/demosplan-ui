@@ -9,11 +9,12 @@
         class="sr-only"
         v-text="tableDescription"
       />
-      <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
+      <colgroup v-if="headerFields.some(field => field.colClass)">
         <col v-if="isDraggable">
         <col v-if="isSelectable">
         <col
-          v-for="field in headerFields"
+          v-for="(field, index) in headerFields"
+          :key="index"
           :class="field.colClass"
         >
         <col v-if="hasFlyout">
@@ -40,7 +41,8 @@
           @toggle-wrap-all="toggleWrapAll"
         >
           <template
-            v-for="field in headerFields"
+            v-for="(field, index) in headerFields"
+            :key="index"
             v-slot:[`header-${field.field}`]="field"
           >
             <slot
@@ -56,7 +58,10 @@
         v-if="!isDraggable && !isLoading"
         :data-cy="`${dataCy}:tbody`"
       >
-        <template v-for="(item, idx) in items">
+        <template
+          v-for="(item, idx) in items"
+          :key="idx"
+        >
           <dp-table-row
             :ref="`tableRows[${idx}]`"
             :data-cy="`${dataCy}:row:${idx}`"
@@ -82,7 +87,8 @@
             @toggle-wrap="toggleWrap"
           >
             <template
-              v-for="field in fields"
+              v-for="(field, index) in fields"
+              :key="index"
               v-slot:[field]="item"
             >
               <slot
@@ -209,12 +215,12 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
-import { sessionStorageMixin } from '~/mixins'
 import DomPurify from 'dompurify'
 import DpDraggable from '~/components/DpDraggable'
 import DpLoading from '~/components/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
+import { sessionStorageMixin } from '~/mixins'
 
 export default {
   name: 'DpDataTable',

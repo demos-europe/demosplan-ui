@@ -1,5 +1,5 @@
-import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
+import { Extension } from '@tiptap/core'
 
 export default Extension.create({
   name: 'PreventEditing',

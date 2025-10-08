@@ -82,7 +82,9 @@ class SideNav {
           isSupported = true
         },
       })
-    } catch (e) { }
+    } catch (e) {
+      console.error(e)
+    }
     this.supportsPassive = isSupported
     return this.applyPassive()
   }
@@ -118,7 +120,7 @@ class SideNav {
     this.currentX = evt.touches[0].pageX
   }
 
-  onTouchEnd (evt) {
+  onTouchEnd () {
     if (!this.touchingSideNav) { return }
 
     const whenToHideSideNav = this.orientation === 'right' ? this.initialTranslateX : 0

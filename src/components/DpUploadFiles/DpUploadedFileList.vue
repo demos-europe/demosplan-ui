@@ -18,9 +18,9 @@
 </template>
 
 <script>
+import { de } from "~/components/shared/translations"
 import DpUploadedFile from './DpUploadedFile'
 import { prefixClassMixin } from '~/mixins'
-import { de } from "~/components/shared/translations"
 
 export default {
   name: 'DpUploadedFileList',

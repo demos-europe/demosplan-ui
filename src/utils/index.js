@@ -1,7 +1,27 @@
-import { DATE_FORMAT_LONG, formatDate, toDate } from './date'
-import { exactlengthHint, maxlengthHint, minlengthHint } from './lengthHint/lengthHint'
-import { hasAllPermissions, hasAnyPermissions, hasPermission } from './hasPermission'
-import { bindFullScreenChange, isActiveFullScreen, toggleFullscreen, unbindFullScreenChange } from './fullscreen'
+import {
+  bindFullScreenChange,
+  isActiveFullScreen,
+  toggleFullscreen,
+  unbindFullScreenChange,
+} from './fullscreen'
+
+import {
+  DATE_FORMAT_LONG,
+  formatDate,
+  toDate,
+} from './date'
+
+import {
+  exactlengthHint,
+  maxlengthHint,
+  minlengthHint } from './lengthHint/lengthHint'
+
+import {
+  hasAllPermissions,
+  hasAnyPermissions,
+  hasPermission,
+} from './hasPermission'
+
 import { capitalizeFirstLetter } from './formatString'
 import debounce from './debounce'
 import deepMerge from './deepMerge'

@@ -20,5 +20,4 @@ const runLabelTests = (wrapper) => describe('ComponentWithLabel', () => {
   })
 })
 
-// eslint-disable-next-line jest/no-export
 export { runLabelTests }

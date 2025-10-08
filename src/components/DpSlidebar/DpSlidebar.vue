@@ -27,9 +27,9 @@
 </template>
 
 <script>
+import DpIcon from '~/components/DpIcon'
 import { hasOwnProp } from '~/utils'
 import { SideNav } from '~/lib'
-import DpIcon from '~/components/DpIcon'
 
 export default {
   name: 'DpSlidebar',
@@ -37,6 +37,10 @@ export default {
   components: {
     DpIcon,
   },
+
+  emits: [
+    'close',
+  ],
 
   data () {
     return {

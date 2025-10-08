@@ -1,4 +1,13 @@
 import {
+  AliasedPhosphorIconName,
+  IconAlias,
+  IconName,
+  IconProportion,
+  IconSize,
+  PhosphorIconName,
+} from '../../../../types'
+
+import {
   PhArrowDown,
   PhArrowLeft,
   PhArrowRight,
@@ -48,13 +57,7 @@ import {
   PhX,
   PhXCircle,
 } from '@phosphor-icons/vue'
-import {
-  AliasedPhosphorIconName,
-  IconAlias,
-  IconName,
-  IconProportion,
-  IconSize,
-  PhosphorIconName } from '../../../../types'
+
 import type { Component } from 'vue'
 
 // ICONS

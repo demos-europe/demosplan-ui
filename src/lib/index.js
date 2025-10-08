@@ -1,10 +1,22 @@
-import { checkResponse, dpApi, dpRpc, externalApi, handleResponseMessages, makeFormPost } from './DpApi'
-import { convertSize, getFileInfo, getFileTypes, mimeTypes } from './FileInfo'
-import { highlightActiveLinks } from './HighlightHashLink'
+import {
+  checkResponse,
+  dpApi,
+  dpRpc,
+  externalApi,
+  handleResponseMessages,
+  makeFormPost,
+} from './DpApi'
+import {
+  convertSize,
+  getFileInfo,
+  getFileTypes,
+  mimeTypes,
+} from './FileInfo'
 import ActionMenu from './ActionMenu'
 import Confirm from './DpConfirm'
 import Detabinator from './Detabinator'
 import getCssVariable from './DpGetCssVariable'
+import { highlightActiveLinks } from './HighlightHashLink'
 import MatchMedia from './MatchMedia'
 import SideNav from './SideNav'
 import Stickier from './Stickier'

@@ -36,8 +36,8 @@
 </template>
 
 <script setup>
-import { CleanHtml as vCleanhtml } from '~/directives'
 import { computed, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
+import { CleanHtml as vCleanhtml } from '~/directives'
 
 const props = defineProps( {
   activeId: {

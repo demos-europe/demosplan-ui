@@ -1,6 +1,6 @@
 import { runBooleanAttrTests, runStringAttrTests } from './shared/Attributes'
-import { runLabelTests } from './shared/Label'
 import DpInput from '~/components/DpInput'
+import { runLabelTests } from './shared/Label'
 import { shallowMount } from '@vue/test-utils'
 
 const wrapper = shallowMount(DpInput, {

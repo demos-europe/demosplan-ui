@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid'
 // We need empty Variables for our show/hide methods, so we can destroy them later on.
 let handleCreateTooltip = null
 let handleRemoveTooltip = null
-let handleTimeoutForDestroy = null
 let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {

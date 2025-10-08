@@ -163,7 +163,7 @@ const de = {
   placeholderAutoSuggest: "Suchbegriff...",
   search: {
     noResults (searchterm) {
-      return `Für den Suchbegriff <span style=\"background-color: yellow;\">${searchterm}</span> konnten keine Einträge gefunden werden.`
+      return `Für den Suchbegriff <span style="background-color: yellow;">${searchterm}</span> konnten keine Einträge gefunden werden.`
     },
     searching: 'Suchen',
     text: 'Suche',

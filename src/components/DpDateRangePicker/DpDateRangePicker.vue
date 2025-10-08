@@ -145,6 +145,11 @@ export default {
     },
   },
 
+  emits: [
+    'input:start-date',
+    'input:end-date',
+  ],
+
   data () {
     return {
       endDate: this.endValue,

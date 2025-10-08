@@ -50,6 +50,10 @@ export default {
     },
   },
 
+  emits: [
+    'dp-notify-remove',
+  ],
+
   data () {
     return {
       messageId: '',

@@ -1,5 +1,5 @@
-import { mergeAttributes } from '@tiptap/core'
 import { Link } from '@tiptap/extension-link'
+import { mergeAttributes } from '@tiptap/core'
 
 export default Link.extend({
   name: 'customLink',

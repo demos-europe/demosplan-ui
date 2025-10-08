@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
 import Datepicker from 'a11y-datepicker/dist/index.es.min'
 
 export default {
@@ -98,6 +97,10 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+  ],
+
   data () {
     return {
       datepicker: null,
@@ -122,6 +125,7 @@ export default {
     maxDate: function () {
       if (this.datepicker.getDate()) {
         const currentDate = this.datepicker.getDateAsString()
+
         this.datepicker = this.datepicker.updateDatepicker({ maxDate: this.maxDate })
         this.datepicker.setDate(currentDate, true)
       } else {
@@ -132,6 +136,7 @@ export default {
     minDate: function () {
       if (this.datepicker.getDate()) {
         const currentDate = this.datepicker.getDateAsString()
+
         this.datepicker = this.datepicker.updateDatepicker({ minDate: this.minDate })
         this.datepicker.setDate(currentDate, true)
       } else {
@@ -162,6 +167,7 @@ export default {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
+
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
@@ -172,11 +178,11 @@ export default {
     const config = {
       ...this.calendarsAfter > 0 ? { monthsAfterCurrent: this.calendarsAfter } : {},
       ...this.calendarsBefore > 0 ? { monthsBeforeCurrent: this.calendarsBefore } : {},
-      ...this.maxDate !== '' ? { maxDate: this.maxDate } : {},
-      ...this.minDate !== '' ? { minDate: this.minDate } : {},
-      ...this.name !== '' ? { inputName: this.name } : {},
-      ...{ required: this.required },
-      ...{ disabled: this.disabled },
+      ...this.maxDate === '' ?  {} : { maxDate: this.maxDate },
+      ...this.minDate === '' ?  {} : { minDate: this.minDate },
+      ...this.name === '' ? {} : { inputName: this.name },
+      required: this.required,
+      disabled: this.disabled,
       ...this.localConfig,
     }
     this.datepicker = Datepicker(config)

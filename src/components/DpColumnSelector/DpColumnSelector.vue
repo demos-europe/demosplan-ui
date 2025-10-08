@@ -91,8 +91,8 @@ export default {
       }
 
       const currentSelection = this.selectableColumns
-        .filter(([value, label]) => this.selectedColumns.has(value))
-        .map(([value, label]) => value)
+        .filter(([value]) => this.selectedColumns.has(value))
+        .map(([value]) => value)
 
       this.$emit('selection-changed', currentSelection)
 

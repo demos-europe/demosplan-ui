@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpTreeList from '~/components/DpTreeList/DpTreeList.vue'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpTreeList', () => {
   let wrapper

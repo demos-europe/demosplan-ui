@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import DpIcon from '~/components/DpIcon'
 import { de } from '~/components/shared/translations'
+import DpIcon from '~/components/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
@@ -96,6 +96,10 @@ export default {
       default: '',
     },
   },
+
+  emits: [
+    'modal:toggled',
+  ],
 
   data () {
     return {

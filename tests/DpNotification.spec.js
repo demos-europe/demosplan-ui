@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 
 describe('DpNotification', () => {
   it('is named DpNotification', () => {
-    expect(DpNotification.hasOwnProperty('name')).toBe(true)
+    expect(DpNotification.name).toBeDefined()
     expect(DpNotification.name).toBe('DpNotification')
   })
 

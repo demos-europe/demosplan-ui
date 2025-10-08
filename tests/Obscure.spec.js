@@ -1,8 +1,6 @@
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 import DpObscure from '~/components/DpObscure'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
-/* Mock hasPermission for the sake of testing */
-// TODO: hasPermission should probably live in the webpack world
 window.Translator = {
   trans: jest.fn(key => key),
 }

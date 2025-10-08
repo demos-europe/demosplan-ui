@@ -1,7 +1,7 @@
-import { mockNode, mockNodeChildren, mockUpdatedNodes } from './DpTreeListMockData'
-import { shallowMount } from '@vue/test-utils'
+import { mockNode, mockNodeChildren } from './DpTreeListMockData'
 import DpTreeListNode from '~/components/DpTreeList/DpTreeListNode'
 import DpTreeListToggle from '~/components/DpTreeList/DpTreeListToggle'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpTreeListNode', () => {
   let mocks

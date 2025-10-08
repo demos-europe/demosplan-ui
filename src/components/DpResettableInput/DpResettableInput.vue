@@ -114,7 +114,13 @@ export default {
     },
   },
 
-  emits: ['blur', 'enter', 'focus'],
+  emits: [
+    'blur',
+    'enter',
+    'focus',
+    'input',
+    'reset',
+  ],
 
   data () {
     return {

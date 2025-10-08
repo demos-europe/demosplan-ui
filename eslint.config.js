@@ -56,15 +56,12 @@ async function getConfig () {
           'ignoreConsecutiveComments': true,
           'ignoreInlineComments': true
         }],
+        'comma-dangle': ['error', 'always-multiline'],
         'generator-star-spacing': 'off',
         'multiline-comment-style': 'error',
         'sort-imports': ['error', { 'ignoreCase': true }],
         '@/object-curly-spacing': ['error', 'always'],
         '@/indent': ['error', 2],
-        'vue/html-closing-bracket-newline': ['error', {
-          'singleline': 'never',
-          'multiline': 'never'
-        }],
         'vue/object-curly-spacing': ['error', 'always'],
         'vue/order-in-components': ['error', {
           'order': [

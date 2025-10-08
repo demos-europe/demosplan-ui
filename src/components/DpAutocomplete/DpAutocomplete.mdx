@@ -22,9 +22,9 @@ This component is built on top of `DpResettableInput`.
 
 <Canvas of={DpAutocompleteStories.Default} />
 
-## With Integrated Search Button
+## Without Search Button
 
-<Canvas of={DpAutocompleteStories.WithSearchButton} />
+<Canvas of={DpAutocompleteStories.WithoutSearchButton} />
 
 ## Custom Minimum Characters
 
@@ -41,7 +41,7 @@ Use slots to customize how suggestions are displayed:
 
 ## Accessibility & Keyboard Navigation
 
-This component follows **WCAG 2.1 AA** guidelines and implements the **WAI-ARIA combobox pattern**:
+This component follows **WCAG 2.1 AA** guidelines with proper ARIA attributes for autocomplete functionality:
 
 ### Keyboard Controls
 - **Arrow Up/Down**: Navigate through suggestions
@@ -53,4 +53,6 @@ This component follows **WCAG 2.1 AA** guidelines and implements the **WAI-ARIA 
 ### Screen Reader Support
 - Live region announces suggestion count and status
 - `aria-activedescendant` indicates currently highlighted option
+- `aria-haspopup="listbox"` and `aria-controls` indicate the relationship between input and suggestions
+- `aria-expanded` reflects dropdown state
 

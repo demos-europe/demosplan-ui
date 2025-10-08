@@ -8,21 +8,66 @@ const meta: Meta<typeof DpAutocomplete> = {
     actions: { disable: true },
   },
   argTypes: {
+    id: {
+      control: 'text',
+      description: 'Unique identifier for the input (required)'
+    },
     modelValue: {
       control: 'text',
       description: 'Current value of the input (v-model)'
     },
     options: {
       control: 'object',
-      description: 'Array of suggestion options'
+      description: 'Array of suggestion options to display in dropdown'
+    },
+    label: {
+      control: 'text',
+      description: 'Property name from options objects to display (default: "label")'
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text for the input'
     },
     minChars: {
       control: 'number',
-      description: 'Minimum characters before showing suggestions'
+      description: 'Minimum characters before showing suggestions (default: 3)'
     },
     searchButton: {
       control: 'boolean',
-      description: 'Enable mobile search button'
+      description: 'Show search button inside input (default: true)'
+    },
+    searchButtonText: {
+      control: 'text',
+      description: 'Aria-label and title for icon-only search button'
+    },
+    noResultsText: {
+      control: 'text',
+      description: 'Text to display when no results match'
+    },
+    defaultValue: {
+      control: 'text',
+      description: 'Default value for reset functionality'
+    },
+    required: {
+      control: 'boolean',
+      description: 'Whether the input is required'
+    },
+    rounded: {
+      control: 'select',
+      options: ['full', 'left', 'right'],
+      description: 'Border radius style (default: "full")'
+    },
+    ariaLabelledby: {
+      control: 'text',
+      description: 'ID of element that labels this input'
+    },
+    dataCy: {
+      control: 'text',
+      description: 'Cypress test identifier'
+    },
+    routeGenerator: {
+      control: false,
+      description: 'Function that generates the API route for fetching suggestions (required)'
     }
   }
 }
@@ -55,8 +100,8 @@ export const Default: Story = {
     label: 'label',
     placeholder: 'Start typing to see suggestions...',
     options: mockOptions,
-    minChars: 2,
-    searchButton: false,
+    minChars: 3,
+    searchButton: true,
     routeGenerator: (query: string) => `/api/suggestions?q=${encodeURIComponent(query)}`
   },
   render: (args) => ({
@@ -72,12 +117,12 @@ export const Default: Story = {
   })
 }
 
-export const WithSearchButton: Story = {
+export const WithoutSearchButton: Story = {
   args: {
     ...Default.args,
-    id: 'autocomplete-search',
-    searchButton: true,
-    placeholder: 'Search with mobile button...'
+    id: 'autocomplete-no-search',
+    searchButton: false,
+    placeholder: 'Autocomplete without search button...'
   },
   render: Default.render
 }

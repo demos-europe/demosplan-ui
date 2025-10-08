@@ -9,7 +9,7 @@
         'aria-labelledby': ariaLabelledby,
         'aria-haspopup': 'listbox',
         'aria-controls': 'suggestions-list',
-        'aria-expanded': isOptionsListVisible,
+        'aria-expanded': isOptionsListVisible ? 'true' : 'false',
         'aria-activedescendant': activeDescendantId,
         'data-cy': dataCy,
         autocomplete: 'off'
@@ -58,7 +58,7 @@
           :class="idx === listPosition ? 'bg-interactive-subtle-hover text-interactive-hover font-bold' : ''"
           class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
           role="option"
-          :aria-selected="idx === listPosition"
+          :aria-selected="idx === listPosition ? 'true' : 'false'"
           @mousedown.stop.prevent="selectOption(option)"
           @mouseenter="listPosition = idx">
           <slot

@@ -3,18 +3,21 @@
     <bubble-menu
       v-if="editor"
       :editor="editor"
-      :options="menuOptions">
+      :options="menuOptions"
+    >
       <div class="editor-menububble__wrapper is-active bottom-0">
         <button
           v-if="editor.isActive('anonymize')"
           class="editor-menububble__button whitespace-nowrap"
-          @click="editor.chain().focus().toggleUnanonymize().run()">
+          @click="editor.chain().focus().toggleUnanonymize().run()"
+        >
           {{ translations.unanonymize }}
         </button>
         <button
           v-else
           class="editor-menububble__button whitespace-nowrap"
-          @click="editor.chain().focus().toggleAnonymize().run()">
+          @click="editor.chain().focus().toggleAnonymize().run()"
+        >
           {{ translations.anonymize }}
         </button>
       </div>
@@ -26,7 +29,8 @@
       autocapitalize="off"
       spellcheck="false"
       class="editor-content"
-      :editor="editor" />
+      :editor="editor"
+    />
   </div>
 </template>
 
@@ -35,7 +39,7 @@ import {
   Anonymize,
   Obscure,
   PreventEditing,
-  UnAnonymize
+  UnAnonymize,
 } from '../DpEditor/libs/customExtensions'
 import {
   Bold,
@@ -50,7 +54,7 @@ import {
   OrderedList,
   Paragraph,
   Text,
-  Underline
+  Underline,
 } from '../DpEditor/libs/tiptapExtensions'
 import {
   Editor, // Wrapper for prosemirror state
@@ -65,14 +69,14 @@ export default {
 
   components: {
     BubbleMenu,
-    EditorContent
+    EditorContent,
   },
 
   props: {
     value: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
@@ -80,12 +84,12 @@ export default {
       editor: null,
       menuOptions: {
         middleware: [offset(6)],
-        placement: 'top'
+        placement: 'top',
       },
       translations: {
         anonymize: de.anonymization.mark,
-        unanonymize: de.anonymization.unmark
-      }
+        unanonymize: de.anonymization.unmark,
+      },
     }
   },
 
@@ -108,7 +112,7 @@ export default {
       // Update text
       this.editor.commands.setContent(currentValue)
       this.$emit('change', currentValue)
-    }
+    },
   },
 
   mounted () {
@@ -134,12 +138,12 @@ export default {
         PreventEditing,
         Text,
         UnAnonymize,
-        Underline
+        Underline,
       ],
       onUpdate: () => {
         this.setValue()
-      }
+      },
     })
-  }
+  },
 }
 </script>

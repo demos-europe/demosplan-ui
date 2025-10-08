@@ -4,7 +4,7 @@ import DpObscure from '~/components/DpObscure'
 /* Mock hasPermission for the sake of testing */
 // TODO: hasPermission should probably live in the webpack world
 window.Translator = {
-  trans: jest.fn(key => key)
+  trans: jest.fn(key => key),
 }
 
 describe('Obscure', () => {
@@ -20,8 +20,8 @@ describe('Obscure', () => {
     window.hasPermission = () => true
     let slotInstance = shallowMountWithGlobalMocks(DpObscure, {
       slots: {
-        default: '<div>Slot Content</div>'
-      }
+        default: '<div>Slot Content</div>',
+      },
     })
     /*
      * The class is sometimes in the first and sometimes the last attr. That sucks..
@@ -31,8 +31,8 @@ describe('Obscure', () => {
     window.hasPermission = () => false
     slotInstance = shallowMountWithGlobalMocks(DpObscure, {
       slots: {
-        default: '<div>Slot Content</div>'
-      }
+        default: '<div>Slot Content</div>',
+      },
     })
     /*
      * The class is sometimes in the first and sometimes the last attr. That sucks..

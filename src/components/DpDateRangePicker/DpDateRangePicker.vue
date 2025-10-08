@@ -12,7 +12,8 @@
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
-      @input="handleInputStartDate" />
+      @input="handleInputStartDate"
+    />
     <span>-</span>
     <dp-datepicker
       :id="endId"
@@ -26,7 +27,8 @@
       :value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
-      @input="handleInputEndDate" />
+      @input="handleInputEndDate"
+    />
   </div>
 </template>
 
@@ -38,123 +40,123 @@ export default {
   name: 'DpDateRangePicker',
 
   components: {
-    DpDatepicker
+    DpDatepicker,
   },
 
   props: {
     calendarsAfter: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     calendarsBefore: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'dateRangePicker'
+      default: 'dateRangePicker',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     endDisabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     endId: {
       type: String,
-      required: true
+      required: true,
     },
 
     endName: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     endValue: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     enforcePlausibleDates: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     maxDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     minDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     placeholder: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     startDisabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     startId: {
       type: String,
-      required: true
+      required: true,
     },
 
     startName: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     startValue: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
     return {
       endDate: this.endValue,
       maxStartDate: this.enforcePlausibleDates ? this.endValue : '',
-      minEndDate: this.enforcePlausibleDates ? this.startValue : ''
+      minEndDate: this.enforcePlausibleDates ? this.startValue : '',
     }
   },
 
   computed: {
     currentDate () {
       return formatDate()
-    }
+    },
   },
 
   watch: {
@@ -164,7 +166,7 @@ export default {
 
     endValue (newVal) {
       this.maxStartDate = this.enforcePlausibleDates ? newVal : ''
-    }
+    },
   },
 
   methods: {
@@ -185,7 +187,7 @@ export default {
 
     updateMinEndDate (value) {
       this.minEndDate = this.enforcePlausibleDates && value ? value : ''
-    }
-  }
+    },
+  },
 }
 </script>

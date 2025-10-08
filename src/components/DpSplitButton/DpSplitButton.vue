@@ -1,11 +1,13 @@
 <template>
   <div
     v-on-click-outside="close"
-    class="c-splitbutton">
+    class="c-splitbutton"
+  >
     <slot>
       <button
         class="btn btn--primary"
-        type="button">
+        type="button"
+      >
         Primary Action Button
       </button>
     </slot><!--
@@ -18,7 +20,8 @@
       aria-haspopup="true"
       :aria-expanded="isOpen"
       @click="toggleDropdown"
-      @keyup.esc.prevent="isOpen ? isOpen = !isOpen : ''">
+      @keyup.esc.prevent="isOpen ? isOpen = !isOpen : ''"
+>
       <i class="fa fa-caret-down c-splitbutton__trigger-icon" />
       <span class="sr-only">{{ isOpen ? translations.close : translations.open }}</span>
     </button>
@@ -26,7 +29,8 @@
       v-if="hasDropdownContent"
       class="c-splitbutton__dropdown"
       role="menu"
-      :class="{ 'is-open': isOpen }">
+      :class="{ 'is-open': isOpen }"
+    >
       <slot name="dropdown">
         Dropdown Actions
       </slot>
@@ -42,7 +46,7 @@ export default {
   name: 'DpSplitButton',
 
   directives: {
-    onClickOutside: vOnClickOutside
+    onClickOutside: vOnClickOutside,
   },
 
   data () {
@@ -51,8 +55,8 @@ export default {
       hasDropdownContent: false,
       translations: {
         open: de.dropdown.open,
-        close: de.dropdown.close
-      }
+        close: de.dropdown.close,
+      },
     }
   },
 
@@ -63,11 +67,11 @@ export default {
 
     toggleDropdown () {
       this.isOpen = (this.isOpen === false)
-    }
+    },
   },
 
   mounted () {
     this.hasDropdownContent = (typeof this.$slots.dropdown !== 'undefined')
-  }
+  },
 }
 </script>

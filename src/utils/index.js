@@ -40,5 +40,5 @@ export {
   sortAlphabetically,
   throttle,
   prefixClass,
-  uniqueArrayByObjectKey
+  uniqueArrayByObjectKey,
 }

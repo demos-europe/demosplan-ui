@@ -12,8 +12,8 @@ describe('DpAccordion', () => {
         fontWeight: 'bold',
         compressed: false,
         isOpen: false,
-        title: 'Test Title'
-      }
+        title: 'Test Title',
+      },
     })
   })
 

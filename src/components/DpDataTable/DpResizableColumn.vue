@@ -5,12 +5,14 @@
     class="c-data-table__resizable break-words"
     :class="{ 'u-pr-0' : isLast }"
     :data-col-field="headerField.field"
-    :data-col-idx="idx">
+    :data-col-idx="idx"
+  >
     <slot />
     <dp-resize-handle
       v-if="!isLast"
       :display-icon="isResizableColumn"
-      @mousedown="e => initResize(e, idx)" />
+      @mousedown="e => initResize(e, idx)"
+    />
   </th>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   name: 'DpResizableColumn',
 
   components: {
-    DpResizeHandle
+    DpResizeHandle,
   },
 
   mixins: [sessionStorageMixin],
@@ -31,24 +33,24 @@ export default {
   props: {
     idx: {
       required: true,
-      type: Number
+      type: Number,
     },
 
     headerField: {
       type: Object,
-      required: true
+      required: true,
     },
 
     isLast: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     nextHeader: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
   },
 
@@ -61,14 +63,14 @@ export default {
       dragStart: false,
       resize: '',
       resizeWidth: '',
-      nextWidth: ''
+      nextWidth: '',
     }
   },
 
   computed: {
     isResizableColumn () {
       return hasOwnProp(this.headerField, 'resizeable') ? this.headerField.resizeable : true
-    }
+    },
   },
 
   methods: {
@@ -110,7 +112,7 @@ export default {
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
       document.querySelector('body').removeEventListener('mouseup', this.stopResize)
       document.querySelector('body').classList.remove('resizing')
-    }
-  }
+    },
+  },
 }
 </script>

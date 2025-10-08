@@ -1,7 +1,8 @@
 <template>
   <span
     class="inline-flex relative"
-    :class="{ 'w-full': inputWidth === '' }">
+    :class="{ 'w-full': inputWidth === '' }"
+  >
     <dp-resettable-input
       id="searchField"
       v-model="searchTerm"
@@ -10,7 +11,8 @@
       :input-attributes="{ placeholder: translations.search, type: 'search' }"
       rounded="left"
       @reset="handleReset"
-      @enter="handleSearch">
+      @enter="handleSearch"
+    >
       <!-- Slot for additional buttons -->
       <slot />
     </dp-resettable-input>
@@ -22,7 +24,8 @@
       icon="search"
       :text="translations.searching"
       variant="outline"
-      @click="handleSearch" />
+      @click="handleSearch"
+    />
   </span>
 </template>
 
@@ -36,14 +39,14 @@ export default {
 
   components: {
     DpButton,
-    DpResettableInput
+    DpResettableInput,
   },
 
   props: {
     initSearchTerm: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -52,29 +55,29 @@ export default {
      */
     inputWidth: {
       type: String,
-      default: ''
+      default: '',
     },
 
     placeholder: {
       type: String,
       required: false,
-      default: 'search'
-    }
+      default: 'search',
+    },
   },
 
   emits: [
     'search',
-    'reset'
+    'reset',
   ],
 
   data () {
     return {
       translations: {
         search: de.search.text,
-        searching: de.search.searching
+        searching: de.search.searching,
       },
       searchTerm: this.initSearchTerm,
-      searchTermApplied: ''
+      searchTermApplied: '',
     }
   },
 
@@ -83,7 +86,7 @@ export default {
       const classes = 'inline-block rounded-r-none focus-within:z-above-zero'
 
       return this.inputWidth !== '' ? `${classes} ${this.inputWidth}` : classes
-    }
+    },
   },
 
   methods: {
@@ -108,11 +111,11 @@ export default {
 
       this.searchTermApplied = this.searchTerm
       this.$emit('search', this.searchTerm)
-    }
+    },
   },
 
   mounted () {
     this.searchTermApplied = this.searchTerm
-  }
+  },
 }
 </script>

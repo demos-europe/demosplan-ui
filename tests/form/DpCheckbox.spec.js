@@ -6,8 +6,8 @@ import { shallowMount } from '@vue/test-utils'
 describe('DpCheckbox', () => {
   const wrapper = shallowMount(DpCheckbox, {
     props: {
-      id: 'checkboxId'
-    }
+      id: 'checkboxId',
+    },
   })
 
   runLabelTests(wrapper)
@@ -21,8 +21,8 @@ describe('DpCheckbox', () => {
     const componentWrapper = shallowMount(DpCheckbox, {
       props: {
         id: 'checkboxId',
-        checked: true
-      }
+        checked: true,
+      },
     })
 
     const checkboxEl = await componentWrapper.find('input[type="checkbox"]')
@@ -40,8 +40,8 @@ describe('DpCheckbox', () => {
   it('has the value of `valueToSend` as its value', async () => {
     const componentWrapper = shallowMount(DpCheckbox, {
       props: {
-        id: 'checkboxId'
-      }
+        id: 'checkboxId',
+      },
     })
 
     await componentWrapper.setProps({ valueToSend: '1' })

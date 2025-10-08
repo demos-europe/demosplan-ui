@@ -6,7 +6,7 @@ import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
 
 
 window.Translator = {
-  trans: jest.fn(key => key)
+  trans: jest.fn(key => key),
 }
 
 describe('DpSelect', () => {
@@ -14,11 +14,11 @@ describe('DpSelect', () => {
   const options = [
     { label: 'option1', value: 'value1' },
     { label: 'option2', value: 'value2' },
-    { label: 'option3', value: 'value3' }
+    { label: 'option3', value: 'value3' },
   ]
 
   const wrapper = shallowMountWithGlobalMocks(DpSelect, {
-    props: { options }
+    props: { options },
   })
   runLabelTests(wrapper)
 
@@ -31,8 +31,8 @@ describe('DpSelect', () => {
       props: {
         options,
         placeholder,
-        showPlaceholder: true
-      }
+        showPlaceholder: true,
+      },
     })
 
     const placeholderOption = componentWrapper.find('option[data-id="placeholder"]')
@@ -46,8 +46,8 @@ describe('DpSelect', () => {
       props: {
         options,
         placeholder,
-        showPlaceholder: false
-      }
+        showPlaceholder: false,
+      },
     })
 
     const placeholderOption = componentWrapper.find('option[data-id="placeholder"]')
@@ -58,8 +58,8 @@ describe('DpSelect', () => {
   it('emits an event on select with the selected value as argument', async () => {
     const componentWrapper = shallowMountWithGlobalMocks(DpSelect, {
       props: {
-        options
-      }
+        options,
+      },
     })
 
     await componentWrapper

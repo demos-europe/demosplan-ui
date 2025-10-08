@@ -6,16 +6,20 @@
     :aria-disabled="disabled ? true : null"
     tabindex="0"
     @click="toggle"
-    @keydown.space.prevent="toggle">
+    @keydown.space.prevent="toggle"
+  >
     <div
       v-show="disabled"
-      class="toggle-disabled" />
+      class="toggle-disabled"
+    />
     <span
       class="toggle-background"
-      :style="backgroundStyles" />
+      :style="backgroundStyles"
+    />
     <span
       class="toggle-indicator"
-      :style="indicatorStyles" />
+      :style="indicatorStyles"
+    />
   </span>
 </template>
 
@@ -28,26 +32,26 @@ export default {
     value: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
     backgroundStyles () {
       return {
-        backgroundColor: this.value ? '#3490dc' : '#dae1e7'
+        backgroundColor: this.value ? '#3490dc' : '#dae1e7',
       }
     },
 
     indicatorStyles () {
       return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
-    }
+    },
   },
 
   methods: {
@@ -55,7 +59,7 @@ export default {
       if (this.disabled === false) {
         this.$emit('input', !this.value)
       }
-    }
-  }
+    },
+  },
 }
 </script>

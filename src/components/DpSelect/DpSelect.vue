@@ -7,7 +7,8 @@
         for: nameOrId,
         required: required
       }"
-      class="mb-0.5" /><!--
+      class="mb-0.5"
+    /><!--
  --><select
       :id="nameOrId"
       :data-cy="dataCy"
@@ -17,20 +18,23 @@
       class="o-form__control-select"
       :class="[disabled ? ' border border-input-disabled bg-surface-light cursor-default' : 'border border-input', classes]"
       :disabled="disabled"
-      @change="update">
+      @change="update"
+>
       <option
         v-if="showPlaceholder"
         data-id="placeholder"
         disabled
         value=""
-        :selected="selected === ''">
+        :selected="selected === ''"
+>
         {{ selectPlaceholder }}
       </option>
       <option
         v-for="(option, idx) in options"
         :key="idx"
         :selected="option.value === selected"
-        :value="option.value">
+        :value="option.value"
+>
         {{ option.label }}
       </option>
     </select>
@@ -46,7 +50,7 @@ export default {
   name: 'DpSelect',
 
   components: {
-    DpLabel
+    DpLabel,
   },
 
   mixins: [prefixClassMixin],
@@ -57,7 +61,7 @@ export default {
    */
   model: {
     prop: 'selected',
-    event: 'select'
+    event: 'select',
   },
 
   props: {
@@ -67,31 +71,31 @@ export default {
     classes: {
       type: [Array, String],
       required: false,
-      default: ''
+      default: '',
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'selectElement'
+      default: 'selectElement',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     id: {
       type: String,
       required: false,
-      default: () => ''
+      default: () => '',
     },
 
     label: {
@@ -100,43 +104,43 @@ export default {
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => ['bold', 'hint', 'text', 'tooltip'].includes(key))
-      }
+      },
     },
 
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     // Need label and value
     options: {
       required: true,
-      type: Array
+      type: Array,
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     showPlaceholder: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     selected: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
     return {
-      selectPlaceholder: de.operations.select.placeholder
+      selectPlaceholder: de.operations.select.placeholder,
     }
   },
 
@@ -147,13 +151,13 @@ export default {
        * it should not be required to specify it.
        */
       return this.id === '' ? this.name : this.id
-    }
+    },
   },
 
   methods: {
     update (event) {
       this.$emit('select', event.target.value)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -15,7 +15,8 @@
     }"
     :current="current"
     :total="total"
-    @page-change="pageChange" />
+    @page-change="pageChange"
+  />
 </template>
 
 <script>
@@ -27,19 +28,19 @@ export default {
   name: 'DpSlidingPagination',
 
   components: {
-    SlidingPagination
+    SlidingPagination,
   },
 
   props: {
     current: {
       type: Number,
-      required: true
+      required: true,
     },
 
     total: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
@@ -50,7 +51,7 @@ export default {
         pageNavigation: de.pager.pageNavigation,
         pagerPrevious: de.pager.previous,
         pagerNext: de.pager.next,
-      }
+      },
     }
   },
 
@@ -63,7 +64,7 @@ export default {
 
     prefixClass (classList) {
       return prefixClass(classList)
-    }
-  }
+    },
+  },
 }
 </script>

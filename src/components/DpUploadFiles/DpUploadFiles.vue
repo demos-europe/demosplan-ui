@@ -2,7 +2,8 @@
   <fieldset :class="prefixClass('layout')">
     <legend
       class="sr-only"
-      v-text="mergedTranslations.uploadFiles" />
+      v-text="mergedTranslations.uploadFiles"
+    />
     <dp-label
       v-if="label.text"
       class="layout__item"
@@ -10,7 +11,8 @@
         for: id,
         required: required,
         ...label
-      }" />
+      }"
+    />
     <dp-upload
       :allowed-file-types="allowedFileTypes"
       :allow-multiple-uploads="allowMultipleUploads"
@@ -22,13 +24,15 @@
       :max-file-size="maxFileSize"
       :translations="mergedTranslations"
       :tus-endpoint="tusEndpoint"
-      @upload-success="handleUpload" /><!--
+      @upload-success="handleUpload"
+    /><!--
 
  --><dp-uploaded-file-list
       v-if="uploadedFiles.length > 0"
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1 u-mt')]"
       :files="uploadedFiles"
-      @file-remove="handleRemove" />
+      @file-remove="handleRemove"
+/>
 
     <!--
       If the component is used in the context of a "traditional" form post, the hashes (ids)
@@ -41,7 +45,8 @@
       :name="name !== 'uploadedFiles' ? `uploadedFiles[${name}]` : 'uploadedFiles'"
       :required="required"
       :data-dp-validate-if="dataDpValidateIf ? true : null"
-      :value="fileHashes">
+      :value="fileHashes"
+    >
   </fieldset>
 </template>
 
@@ -58,7 +63,7 @@ export default {
   components: {
     DpLabel,
     DpUpload,
-    DpUploadedFileList
+    DpUploadedFileList,
   },
 
   mixins: [prefixClassMixin, sessionStorageMixin],
@@ -71,7 +76,7 @@ export default {
     allowedFileTypes: {
       type: [Array, String],
       required: true,
-      default: 'pdf'
+      default: 'pdf',
     },
 
     /**
@@ -79,13 +84,13 @@ export default {
      */
     allowMultipleUploads: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     basicAuth: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -94,19 +99,19 @@ export default {
     chunkSize: {
       type: Number,
       default: Infinity,
-      required: false
+      required: false,
     },
 
     clearAllFiles: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'uploadFile'
+      default: 'uploadFile',
     },
 
     /**
@@ -116,7 +121,7 @@ export default {
     dataDpValidateIf: {
       type: [Boolean, String],
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -124,7 +129,7 @@ export default {
      */
     getFileByHash: {
       type: Function,
-      required: true
+      required: true,
     },
 
     /**
@@ -133,7 +138,7 @@ export default {
     id: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -148,7 +153,7 @@ export default {
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => ['hint', 'text', 'tooltip'].includes(key))
-      }
+      },
     },
 
     /**
@@ -157,7 +162,7 @@ export default {
     maxFileSize: {
       type: Number,
       required: false,
-      default: 10000000
+      default: 10000000,
     },
 
     /**
@@ -167,7 +172,7 @@ export default {
     maxNumberOfFiles: {
       type: Number,
       required: false,
-      default: 1
+      default: 1,
     },
 
     /**
@@ -176,7 +181,7 @@ export default {
     name: {
       type: String,
       required: false,
-      default: 'uploadedFiles'
+      default: 'uploadedFiles',
     },
 
     /**
@@ -186,7 +191,7 @@ export default {
      */
     needsHiddenInput: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -196,7 +201,7 @@ export default {
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -209,7 +214,7 @@ export default {
     translations: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     /**
@@ -219,7 +224,7 @@ export default {
     sideBySide: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -229,7 +234,7 @@ export default {
     storageName: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -237,15 +242,15 @@ export default {
      */
     tusEndpoint: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: ['upload-success'],
 
   provide () {
     return {
-      getFileByHash: this.getFileByHash
+      getFileByHash: this.getFileByHash,
     }
   },
 
@@ -256,7 +261,7 @@ export default {
         uploadFiles: de.upload.files,
       },
       mergedTranslations: {},
-      uploadedFiles: []
+      uploadedFiles: [],
     }
   },
 
@@ -269,7 +274,7 @@ export default {
 
     storageName () {
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
-    }
+    },
   },
 
   methods: {
@@ -313,7 +318,7 @@ export default {
 
       this.uploadedFiles = this.uploadedFiles.filter(el => el.hash !== file.hash)
       this.updateSessionStorage(this.storageName, this.uploadedFiles)
-    }
+    },
   },
 
   created () {
@@ -322,6 +327,6 @@ export default {
 
   mounted () {
     this.uploadedFiles = this.getItemFromSessionStorage(this.storageName) || []
-  }
+  },
 }
 </script>

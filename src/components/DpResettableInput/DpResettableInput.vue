@@ -12,7 +12,8 @@
       @blur="$emit('blur', currentValue)"
       @input="onInput"
       @enter="$emit('enter', currentValue)"
-      @focus="$emit('focus')" />
+      @focus="$emit('focus')"
+    />
     <span class="space-x-0.5">
       <button
         v-if="!inputAttributes.disabled"
@@ -20,10 +21,12 @@
         :class="buttonClass"
         data-cy="resetButton"
         :disabled="currentValue === defaultValue"
-        @click="resetValue">
+        @click="resetValue"
+      >
         <dp-icon
           icon="xmark"
-          :size="iconSize" />
+          :size="iconSize"
+        />
       </button>
       <slot />
     </span>
@@ -40,7 +43,7 @@ export default {
 
   components: {
     DpIcon,
-    DpInput
+    DpInput,
   },
 
   props: {
@@ -51,42 +54,42 @@ export default {
       type: String,
       required: false,
       default: 'medium',
-      validator: (prop) => ['small', 'medium'].includes(prop)
+      validator: (prop) => ['small', 'medium'].includes(prop),
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     defaultValue: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputAttributes: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     pattern: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -101,21 +104,21 @@ export default {
       type: String,
       required: false,
       default: 'full',
-      validator: (prop) => ['full', 'left', 'right'].includes(prop)
+      validator: (prop) => ['full', 'left', 'right'].includes(prop),
     },
 
     value: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   emits: ['blur', 'enter', 'focus'],
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.value,
     }
   },
 
@@ -128,7 +131,7 @@ export default {
         if (node.type === Fragment) {
           return node.children && node.children.some(child =>
             child.type !== Comment &&
-            (child.type !== Text || (child.children && child.children.trim()))
+            (child.type !== Text || (child.children && child.children.trim())),
           )
         }
         return true
@@ -140,13 +143,13 @@ export default {
 
     iconSize () {
       return this.buttonVariant
-    }
+    },
   },
 
   watch: {
     value: function () {
       this.currentValue = this.value
-    }
+    },
   },
 
   methods: {
@@ -157,7 +160,7 @@ export default {
 
     resetValue () {
       this.$emit('reset')
-    }
-  }
+    },
+  },
 }
 </script>

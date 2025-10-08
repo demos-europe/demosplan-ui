@@ -2,7 +2,8 @@
   <section
     v-show="isActive"
     :id="id"
-    role="tabpanel">
+    role="tabpanel"
+  >
     <slot />
   </section>
 </template>
@@ -14,12 +15,12 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     isActive: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -28,7 +29,7 @@ export default {
      */
     label: {
       type: String,
-      required: true
+      required: true,
     },
 
     /**
@@ -37,8 +38,8 @@ export default {
     suffix: {
       type: String,
       required: false,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

@@ -18,24 +18,24 @@ if (typeof dplan !== 'undefined') {
 
 const apiDefaultHeaders = {
   'X-JWT-Authorization': 'Bearer ' + jwtToken,
-  'x-csrf-token': csrfToken
+  'x-csrf-token': csrfToken,
 }
 
 const api2defaultHeaders = {
   'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
-  'X-JWT-Authorization': 'Bearer ' + jwtToken
+  'X-JWT-Authorization': 'Bearer ' + jwtToken,
 }
 
 const demosplanProcedureHeaders = {
-  'X-Demosplan-Procedure-Id': currentProcedureId
+  'X-Demosplan-Procedure-Id': currentProcedureId,
 }
 
 const getHeaders = function ({ headers, url }) {
   return {
     ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
     ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
-    ...headers
+    ...headers,
   }
 }
 
@@ -72,7 +72,7 @@ const appendSerializedUrlParams = (url, params) => {
 const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, options = {} }) => {
   const fetchOptions = {
     headers: getHeaders({ headers, url }),
-    method
+    method,
   }
 
   if (method.toUpperCase() !== 'GET') {
@@ -110,7 +110,7 @@ const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, opt
     return checkResponse({
       data: null,
       status: '400',
-      ok: 'Bad Request'
+      ok: 'Bad Request',
     }, options.messages)
   }
 })
@@ -138,7 +138,7 @@ const dpRpc = function (method, params, id = null) {
     jsonrpc: '2.0',
     method,
     params,
-    id: id === null ? uuid() : id
+    id: id === null ? uuid() : id,
   }
 
   return doRequest({
@@ -146,8 +146,8 @@ const dpRpc = function (method, params, id = null) {
     url: Routing.generate('rpc_generic_post'),
     data,
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
 }
 
@@ -239,7 +239,7 @@ function makeFormPost (payload, url) {
   return dpApi({
     method: 'POST',
     url: url,
-    data: postData
+    data: postData,
   })
 }
 

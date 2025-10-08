@@ -11,25 +11,25 @@ describe('DpNotification', () => {
     const validCombinations = [
       {
         type: 'confirm',
-        clazz: 'c-notify__message--confirm'
+        clazz: 'c-notify__message--confirm',
       },
       {
         type: 'info',
-        clazz: 'c-notify__message--info'
+        clazz: 'c-notify__message--info',
       },
       {
         type: 'warning',
-        clazz: 'c-notify__message--warning'
-      }
+        clazz: 'c-notify__message--warning',
+      },
     ]
 
     for (const val of validCombinations) {
       const wrapper = mount(DpNotification, {
         props: {
           message: {
-            type: val.type
-          }
-        }
+            type: val.type,
+          },
+        },
       })
 
       expect(wrapper.vm.messageClass).toBe(val.clazz)
@@ -40,9 +40,9 @@ describe('DpNotification', () => {
     let wrapper = mount(DpNotification, {
       props: {
         message: {
-          type: 'error'
-        }
-      }
+          type: 'error',
+        },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -52,9 +52,9 @@ describe('DpNotification', () => {
     wrapper = mount(DpNotification, {
       props: {
         message: {
-          type: 'confirm'
-        }
-      }
+          type: 'confirm',
+        },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -67,9 +67,9 @@ describe('DpNotification', () => {
       props: {
         message: {
           type: 'confirm',
-          text: 'MessageText'
-        }
-      }
+          text: 'MessageText',
+        },
+      },
     })
 
     expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText')
@@ -82,9 +82,9 @@ describe('DpNotification', () => {
           type: 'confirm',
           text: 'MessageText',
           linkUrl: 'about:blank',
-          linkText: 'LinkText'
-        }
-      }
+          linkText: 'LinkText',
+        },
+      },
     })
 
     expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText LinkText')

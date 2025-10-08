@@ -3,11 +3,13 @@
     <div
       v-if="maxlength !== 0"
       v-cleanhtml="counterText"
-      :class="prefixClass('lbl__hint')" />
+      :class="prefixClass('lbl__hint')"
+    />
     <dp-link-modal
       v-if="toolbar.linkButton"
       ref="linkModal"
-      @insert="insertUrl" />
+      @insert="insertUrl"
+    />
     <dp-upload-modal
       v-if="toolbar.imageButton && tusEndpoint"
       ref="uploadModal"
@@ -16,15 +18,18 @@
       :tus-endpoint="tusEndpoint"
       @insert-image="insertImage"
       @add-alt="addAltTextToImage"
-      @close="resetImageId" />
+      @close="resetImageId"
+    />
     <slot
       name="modal"
       :append-text="appendText"
-      :handle-insert-text="handleInsertText" />
+      :handle-insert-text="handleInsertText"
+    />
 
     <div
       v-if="editor"
-      :class="prefixClass('row tiptap')">
+      :class="prefixClass('row tiptap')"
+    >
       <div :class="prefixClass('col')">
         <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
@@ -36,10 +41,12 @@
               data-cy="editor:cut"
               :disabled="readonly"
               type="button"
-              @click="cut">
+              @click="cut"
+            >
               <i
                 :class="prefixClass('fa fa-scissors')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             &#10072;
             <!-- Undo -->
@@ -50,10 +57,12 @@
               data-cy="editor:undo"
               :disabled="readonly"
               type="button"
-              @click="editor.chain().focus().undo().run()">
+              @click="editor.chain().focus().undo().run()"
+            >
               <i
                 :class="prefixClass('fa fa-reply')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             <!-- Redo -->
             <button
@@ -63,10 +72,12 @@
               data-cy="editor:redo"
               :disabled="readonly"
               type="button"
-              @click="editor.chain().focus().redo().run()">
+              @click="editor.chain().focus().redo().run()"
+            >
               <i
                 :class="prefixClass('fa fa-share')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             <template v-if="toolbar.textDecoration">
               &#10072;
@@ -79,10 +90,12 @@
                 data-cy="editor:bold"
                 :disabled="readonly"
                 type="button"
-                @click="editor.chain().focus().toggleBold().run()">
+                @click="editor.chain().focus().toggleBold().run()"
+              >
                 <i
                   :class="prefixClass('fa fa-bold')"
-                  aria-hidden="true" />
+                  aria-hidden="true"
+                />
               </button>
 
               <!-- Italic -->
@@ -93,10 +106,12 @@
                 data-cy="editor:italic"
                 :disabled="readonly"
                 type="button"
-                @click="editor.chain().focus().toggleItalic().run()">
+                @click="editor.chain().focus().toggleItalic().run()"
+              >
                 <i
                   :class="prefixClass('fa fa-italic')"
-                  aria-hidden="true" />
+                  aria-hidden="true"
+                />
               </button>
               <!-- Underline -->
               <button
@@ -106,10 +121,12 @@
                 data-cy="editor:underline"
                 :disabled="readonly"
                 type="button"
-                @click="editor.chain().focus().toggleUnderline().run()">
+                @click="editor.chain().focus().toggleUnderline().run()"
+              >
                 <i
                   :class="prefixClass('fa fa-underline')"
-                  aria-hidden="true" />
+                  aria-hidden="true"
+                />
               </button>
             </template>
             <!-- Strike through -->
@@ -121,28 +138,34 @@
               data-cy="editor:strikethrough"
               :disabled="readonly"
               type="button"
-              @click="editor.chain().focus().toggleStrike().run()">
+              @click="editor.chain().focus().toggleStrike().run()"
+            >
               <i
                 :class="prefixClass('fa fa-strikethrough')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             <div
               v-if="toolbar.insertAndDelete"
-              :class="prefixClass('inline-block relative')">
+              :class="prefixClass('inline-block relative')"
+            >
               <button
                 :class="[editor.isActive('insert') || editor.isActive('delete') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 :disabled="readonly"
                 type="button"
                 @click.stop="toggleSubMenu('diffMenu', !diffMenu.isOpen)"
-                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)">
+                @keydown.tab.shift.exact="toggleSubMenu('diffMenu', false)"
+              >
                 <dp-icon
                   class="inline-block mr-0.5"
-                  icon="highlighter" />
+                  icon="highlighter"
+                />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>
               <div
                 v-if="diffMenu.isOpen"
-                :class="prefixClass('button_submenu')">
+                :class="prefixClass('button_submenu')"
+              >
                 <button
                   v-for="(button, idx) in diffMenu.buttons"
                   :key="`diffMenu_${idx}`"
@@ -151,7 +174,8 @@
                   :disabled="readonly"
                   @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
-                  @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
+                  @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)"
+                >
                   {{ button.label }}
                 </button>
               </div>
@@ -159,7 +183,8 @@
             </div>
             <div
               v-else-if="toolbar.mark /* display the Button without fold out, if ony 'mark' is enabled */"
-              :class="prefixClass('inline-block relative')">
+              :class="prefixClass('inline-block relative')"
+            >
               <button
                 v-for="(button, idx) in diffMenu.buttons"
                 :key="`diffMenu_${idx}`"
@@ -170,10 +195,12 @@
                 :aria-label="button.label"
                 @keydown.tab.exact="() => { idx === diffMenu.buttons.length -1 ? toggleSubMenu('diffMenu', false) : null }"
                 @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('diffMenu', false) : null }"
-                @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)">
+                @click.stop="executeSubMenuButtonAction(button, 'diffMenu', true)"
+              >
                 <dp-icon
                   class="inline-block"
-                  icon="highlighter" />
+                  icon="highlighter"
+                />
               </button>
             </div>
             <!-- lists -->
@@ -185,7 +212,8 @@
                 type="button"
                 :aria-label="translations.unorderedList"
                 :disabled="readonly"
-                @click="editor.chain().focus().toggleBulletList().run()">
+                @click="editor.chain().focus().toggleBulletList().run()"
+              >
                 <i :class="prefixClass('fa fa-list-ul')" />
               </button>
               <!-- Ordered List -->
@@ -195,7 +223,8 @@
                 type="button"
                 :aria-label="translations.orderedList"
                 :disabled="readonly"
-                @click="editor.chain().focus().toggleOrderedList().run()">
+                @click="editor.chain().focus().toggleOrderedList().run()"
+              >
                 <i :class="prefixClass('fa fa-list-ol')" />
               </button>
               &#10072;
@@ -211,7 +240,8 @@
                 :class="[editor.isActive('heading', { level: heading }) ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 :disabled="readonly"
                 type="button"
-                @click="editor.chain().focus().toggleHeading({ level: heading }).run()">
+                @click="editor.chain().focus().toggleHeading({ level: heading }).run()"
+              >
                 {{ `H${heading}` }}
               </button>
               &#10072;
@@ -223,10 +253,12 @@
               :class="[editor.isActive('obscure') ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
               type="button"
               :disabled="readonly"
-              @click="editor.chain().focus().toggleObscure().run()">
+              @click="editor.chain().focus().toggleObscure().run()"
+            >
               <i
                 :class="prefixClass('fa fa-pencil-square')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             <!--Add links-->
             <button
@@ -234,7 +266,8 @@
               v-tooltip="translations.link.editOrInsert"
               :class="prefixClass('menubar__button')"
               type="button"
-              @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))">
+              @click.stop="showLinkPrompt(editor.commands.toggleLink, editor.getAttributes('customLink'))"
+            >
               <i :class="prefixClass('fa fa-link')" />
             </button>
             <!-- Insert images-->
@@ -244,25 +277,29 @@
               :class="prefixClass('menubar__button')"
               type="button"
               :disabled="readonly"
-              @click.stop="openUploadModal(null)">
+              @click.stop="openUploadModal(null)"
+            >
               <i :class="prefixClass('fa fa-picture-o')" />
             </button>
             <!-- Insert and edit tables -->
             <div
               v-if="toolbar.table"
-              :class="prefixClass('inline-block relative')">
+              :class="prefixClass('inline-block relative')"
+            >
               <button
                 :class="[tableMenu.isOpen ? prefixClass('is-active') : '', prefixClass('menubar__button')]"
                 type="button"
                 :disabled="readonly"
                 @click.stop="toggleSubMenu('tableMenu', !tableMenu.isOpen)"
-                @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)">
+                @keydown.tab.shift.exact="toggleSubMenu('tableMenu', false)"
+              >
                 <i :class="prefixClass('fa fa-table mr-0.5')" />
                 <i :class="prefixClass('fa fa-caret-down')" />
               </button>
               <div
                 v-if="tableMenu.isOpen"
-                :class="prefixClass('button_submenu')">
+                :class="prefixClass('button_submenu')"
+              >
                 <button
                   v-for="(button, idx) in tableMenu.buttons"
                   :key="`tableMenu_${idx}`"
@@ -270,7 +307,8 @@
                   :disabled="readonly"
                   @keydown.tab.exact="() => { idx === tableMenu.buttons.length -1 ? toggleSubMenu('tableMenu', false) : null }"
                   @keydown.tab.shift.exact="() => { idx === 0 ? toggleSubMenu('tableMenu', false) : null }"
-                  @click.stop="executeSubMenuButtonAction(button, 'tableMenu')">
+                  @click.stop="executeSubMenuButtonAction(button, 'tableMenu')"
+                >
                   {{ button.label }}
                 </button>
               </div>
@@ -282,10 +320,12 @@
               :class="[isFullscreen ? prefixClass('is-active') : '', prefixClass('menubar__button float-right')]"
               type="button"
               :aria-label="translations.fullscreen"
-              @click="fullscreen">
+              @click="fullscreen"
+            >
               <i
                 :class="prefixClass('fa fa-arrows-alt')"
-                aria-hidden="true" />
+                aria-hidden="true"
+              />
             </button>
             <slot name="button" />
           </div>
@@ -293,7 +333,8 @@
             v-if="editor"
             :data-cy="`editor${editorId}`"
             :editor="editor"
-            :class="prefixClass('editor__content overflow-hidden')" />
+            :class="prefixClass('editor__content overflow-hidden')"
+          />
           <!-- this hidden input is needed if we use this component without the inline-editing-wrapper TiptapEditText.vue,
           so we can save the text entered in the textarea via a form element -->
           <input
@@ -305,13 +346,15 @@
             :name="hiddenInput"
             :class="[required ? prefixClass('is-required') : '', prefixClass('tiptap__input--hidden')]"
             :data-dp-validate-maxlength="maxlength"
-            :value="hiddenInputValue">
+            :value="hiddenInputValue"
+          >
           <i
             v-if="!isFullscreen"
             aria-hidden="true"
             :class="prefixClass('fa fa-angle-down resizeVertical')"
             draggable="true"
-            @mousedown="resizeVertically" />
+            @mousedown="resizeVertically"
+          />
         </div>
       </div>
     </div>
@@ -338,7 +381,7 @@ import {
   TableHeader,
   TableRow,
   Text,
-  Underline
+  Underline,
 } from './libs/tiptapExtensions'
 import { CleanHtml, Tooltip } from '~/directives'
 import {
@@ -353,7 +396,7 @@ import {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
-  Obscure
+  Obscure,
 } from './libs/customExtensions'
 import DpIcon from '../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'
@@ -373,12 +416,12 @@ export default {
     EditorContent,
     DpLinkModal,
     DpResizableImage,
-    DpUploadModal
+    DpUploadModal,
   },
 
   directives: {
     cleanhtml: CleanHtml,
-    tooltip: Tooltip
+    tooltip: Tooltip,
   },
 
   mixins: [prefixClassMixin],
@@ -390,19 +433,19 @@ export default {
     basicAuth: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     dataDpValidateIf: {
       type: String,
       default: '',
-      required: false
+      required: false,
     },
 
     /**
@@ -411,7 +454,7 @@ export default {
     editorId: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -420,7 +463,7 @@ export default {
     tusEndpoint: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -430,13 +473,13 @@ export default {
     hiddenInput: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -459,12 +502,12 @@ export default {
     toolbarItems: {
       required: false,
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
 
     maxlength: {
       type: [Number, null],
-      default: null
+      default: null,
     },
 
     /**
@@ -473,13 +516,13 @@ export default {
     obscure: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     readonly: {
       required: false,
       default: false,
-      type: Boolean
+      type: Boolean,
     },
 
     /**
@@ -492,9 +535,9 @@ export default {
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => [
-          'getFileByHash'
+          'getFileByHash',
         ].includes(key))
-      }
+      },
     },
 
     /**
@@ -507,9 +550,9 @@ export default {
           matcher: {
             char: '@|$|#', // A single char that should trigger a suggestion
             allowSpaces: true || false,
-            startOfLine: true || false
+            startOfLine: true || false,
           },
-          suggestions: [{ id: 'a unique id', name: 'a string that should be displayed when inserting the suggestion' }]
+          suggestions: [{ id: 'a unique id', name: 'a string that should be displayed when inserting the suggestion' }],
         }
         return Array.isArray(value) && value.filter(suggestionGroup => {
           let isValid = suggestionGroup.matcher && suggestionGroup.suggestions
@@ -523,13 +566,13 @@ export default {
         }).length === value.length
       },
       required: false,
-      default: () => ([])
+      default: () => ([]),
     },
 
     value: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
@@ -537,7 +580,7 @@ export default {
       currentValue: '',
       diffMenu: {
         isOpen: false,
-        buttons: []
+        buttons: [],
       },
       imageId: null,
       editor: null,
@@ -554,50 +597,50 @@ export default {
           {
             label: de.editor.table.create,
             command: () => this.editor.commands.insertTable({ rowsCount: 3, colsCount: 3, withHeaderRow: false }),
-            name: 'createTable'
+            name: 'createTable',
           },
           {
             label: de.editor.table.delete,
             command: () => this.editor.commands.deleteTable(),
-            name: 'deleteTable'
+            name: 'deleteTable',
           },
           {
             label: de.editor.table.addColumnBefore,
             command: () => this.editor.commands.addColumnBefore(),
-            name: 'addColumnBefore'
+            name: 'addColumnBefore',
           },
           {
             label: de.editor.table.addColumnAfter,
             command: () => this.editor.commands.addColumnAfter(),
-            name: 'addColumnAfter'
+            name: 'addColumnAfter',
 
           },
           {
             label: de.editor.table.deleteColumn,
             command: () => this.editor.commands.deleteColumn(),
-            name: 'deleteColumn'
+            name: 'deleteColumn',
           },
           {
             label: de.editor.table.addRowBefore,
             command: () => this.editor.commands.addRowBefore(),
-            name: 'addRowBefore'
+            name: 'addRowBefore',
           },
           {
             label: de.editor.table.addRowAfter,
             command: () => this.editor.commands.addRowAfter(),
-            name: 'addRowAfter'
+            name: 'addRowAfter',
           },
           {
             label: de.editor.table.deleteRow,
             command: () => this.editor.commands.deleteRow(),
-            name: 'deleteRow'
+            name: 'deleteRow',
           },
           {
             label: de.editor.table.toggleCellMerge,
             command: () => this.editor.commands.mergeOrSplit(),
-            name: 'toggleCellMerge'
-          }
-        ]
+            name: 'toggleCellMerge',
+          },
+        ],
       },
       toolbar: Object.assign({
         /**
@@ -645,14 +688,14 @@ export default {
          * Set to true if you want table-insert button
          */
         table: false,
-        textDecoration: true
+        textDecoration: true,
       }, this.toolbarItems),
       translations: {
         ...de.editor,
         headingLevel: (level) => de.editor.headingLevel({ level }),
         insertImage: de.image.insert,
-        obscureTitle: de.obscure.title
-      }
+        obscureTitle: de.obscure.title,
+      },
     }
   },
 
@@ -668,7 +711,7 @@ export default {
 
     obscureEnabled () {
       return this.toolbar.obscure
-    }
+    },
   },
 
   watch: {
@@ -685,7 +728,7 @@ export default {
      */
     readonly () {
       this.editor.setOptions({ editable: !this.readonly })
-    }
+    },
   },
 
   methods: {
@@ -723,7 +766,7 @@ export default {
         History,
         HardBreak,
         Heading.configure({ levels: this.toolbar.headings }),
-        InsertAtCursorPos
+        InsertAtCursorPos,
       ]
 
       if (this.suggestions.length > 0) {
@@ -739,17 +782,17 @@ export default {
                   'data-id': node.attrs.id,
                   'data-label': node.attrs.label,
                   'data-suggestion-id': node.attrs.id,
-                  'data-type': self.name
+                  'data-type': self.name,
                 }, HTMLAttributes),
                 self.options.renderText({
                   options: {
-                    suggestion: { char: suggestion.matcher.char }
+                    suggestion: { char: suggestion.matcher.char },
                   },
                   node,
                 }),
               ]
             },
-            suggestion: buildSuggestion(suggestion)
+            suggestion: buildSuggestion(suggestion),
           }))
         })
       }
@@ -778,7 +821,7 @@ export default {
 
       if (this.toolbar.table) {
         extensions.push(Table.configure({
-          resizable: true
+          resizable: true,
         }))
         extensions.push(TableHeader)
         extensions.push(TableCell)
@@ -793,13 +836,13 @@ export default {
           {
             label: de.editor.mark.insert,
             command: () => this.editor.chain().focus().toggleInsert().run(),
-            name: 'insert'
+            name: 'insert',
           },
           {
             label: de.editor.mark.delete,
             command: () => this.editor.chain().focus().toggleDelete().run(),
-            name: 'delete'
-          }
+            name: 'delete',
+          },
         ]
       }
 
@@ -809,7 +852,7 @@ export default {
         this.diffMenu.buttons.unshift({
           label: de.editor.mark.element,
           command: () => this.editor.chain().focus().toggleMarkText().run(),
-          name: 'mark'
+          name: 'mark',
         })
       }
 
@@ -920,10 +963,10 @@ export default {
               type: 'customLink',
               attrs: {
                 href: linkUrl,
-                target: newTab ? '_blank' : null
-              }
-            }
-          ]
+                target: newTab ? '_blank' : null,
+              },
+            },
+          ],
         })
       }
     },
@@ -1061,7 +1104,7 @@ export default {
         }
         document.addEventListener('click', closeMenu)
       }
-    }
+    },
   },
 
   created () {
@@ -1082,7 +1125,7 @@ export default {
       },
       editorProps: {
         attributes: {
-          role: 'textbox'
+          role: 'textbox',
         },
 
         handleDrop: (_view, _event, _slice, moved) => {
@@ -1118,14 +1161,14 @@ export default {
           returnContent = this.transformObscureTag(returnContent)
 
           return returnContent
-        }
+        },
       },
 
       onInit: ({ view }) => {
         this.currentValue = this.transformObscureTag(this.editor.getHTML())
 
         view._props.handleScrollToSelection = customHandleScrollToSelection
-      }
+      },
     })
 
     this.$root.$on('open-image-alt-modal', ({ event, imgId, editorId }) => {
@@ -1158,7 +1201,7 @@ export default {
         this.$el.closest('form').removeEventListener('reset', this.resetEditor)
       }
     }
-  }
+  },
 }
 
 // Custom handling of scrolling after paste
@@ -1167,7 +1210,7 @@ function windowRect (win) {
     left: 0,
     right: win.innerWidth,
     top: 0,
-    bottom: win.innerHeight
+    bottom: win.innerHeight,
   }
 }
 function getSide (value, side) {

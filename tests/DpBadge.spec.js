@@ -9,8 +9,8 @@ describe('DpBadge', () => {
       props: {
         color: 'default',
         size: 'medium',
-        text: 'Test Badge'
-      }
+        text: 'Test Badge',
+      },
     })
   })
 

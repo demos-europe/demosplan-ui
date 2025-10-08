@@ -5,7 +5,8 @@
       v-if="searchButton"
       id="autocomplete-label"
       for="input-box"
-      class="mb-1 md:hidden">
+      class="mb-1 md:hidden"
+    >
       {{ placeholder }}
     </label>
     <!-- Search container -->
@@ -22,7 +23,8 @@
       role="combobox"
       :style="boxHeightStyle"
       tabindex="0"
-      @mousedown.stop.prevent="focusInput">
+      @mousedown.stop.prevent="focusInput"
+    >
       <!-- Placeholder, if search button is used only displayed on lap-up screens -->
       <label
         id="autocomplete-label"
@@ -32,14 +34,16 @@
           'flex': !searchButton,
           'hidden md:flex': searchButton,
           'md:absolute md:pointer-events-none sr-only': !isPlaceholderVisible
-        }">
+        }"
+      >
         {{ placeholder }}
       </label>
       <!-- Placeholder for small screens if search button is used -->
       <template v-if="searchButton">
         <span
           :class="{ 'hidden': !isPlaceholderVisible }"
-          class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0">
+          class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0"
+        >
           {{ de.search.searching }}
         </span>
       </template>
@@ -60,7 +64,8 @@
         :style="boxHeightStyle"
         @mousedown.stop.prevent="focusInput"
         @keydown.stop="runSpecialKeys"
-        @focusout="isInputFocused = false" />
+        @focusout="isInputFocused = false"
+      />
       <dp-button
         v-if="(searchButton && !isPlaceholderVisible) || isPlaceholderVisible"
         class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 !border-l-1 z-[5] -ml-px -mr-px"
@@ -69,12 +74,14 @@
         icon="search"
         :text="de.search.searching"
         variant="outline"
-        @click="triggerSearch" />
+        @click="triggerSearch"
+      />
       <div
         v-show="isInputFocused"
         :style="boxHeightStyle"
         class="w-auto max-w-full py-[2px] text-gray-300 overflow-hidden whitespace-pre flex items-center"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         {{ completion }}
       </div>
     </div>
@@ -85,7 +92,8 @@
         v-if="isOptionsListVisible"
         id="options-list"
         role="listbox"
-        class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]">
+        class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]"
+      >
         <li
           v-for="(option, idx) in props.options"
           :key="option[label] + idx"
@@ -94,16 +102,19 @@
           role="option"
           :aria-selected="idx === listPosition"
           tabindex="0"
-          @mousedown.stop.prevent="selectCurrentOption(option as Record<string, unknown>)">
+          @mousedown.stop.prevent="selectCurrentOption(option as Record<string, unknown>)"
+        >
           <slot
             name="option"
-            :option="option">
+            :option="option"
+          >
             {{ option[label] }}
           </slot>
         </li>
         <li
           v-if="props.options.length === 0"
-          class="text-gray-500 px-2 py-1">
+          class="text-gray-500 px-2 py-1"
+        >
           {{ noResultsText }}
         </li>
       </ol>
@@ -130,7 +141,7 @@ const props = defineProps({
   height: {
     type: String,
     required: false,
-    default: '28px'
+    default: '28px',
   },
 
   /**
@@ -139,7 +150,7 @@ const props = defineProps({
   label: {
     type: String,
     required: false,
-    default: 'label'
+    default: 'label',
   },
 
   /**
@@ -148,7 +159,7 @@ const props = defineProps({
   minChars: {
     type: Number,
     required: false,
-    default: 3
+    default: 3,
   },
 
   /**
@@ -157,7 +168,7 @@ const props = defineProps({
   modelValue: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -166,7 +177,7 @@ const props = defineProps({
   noResultsText: {
     type: String,
     required: false,
-    default: de.autocompleteNoResults
+    default: de.autocompleteNoResults,
   },
 
   /**
@@ -175,7 +186,7 @@ const props = defineProps({
   options: {
     type: Array,
     required: false,
-    default: () => ([])
+    default: () => ([]),
   },
 
   /**
@@ -184,7 +195,7 @@ const props = defineProps({
   placeholder: {
     type: String,
     required: false,
-    default: de.placeholderAutoSuggest
+    default: de.placeholderAutoSuggest,
   },
 
   /**
@@ -192,14 +203,14 @@ const props = defineProps({
    */
   routeGenerator: {
     type: Function,
-    required: true
+    required: true,
   },
 
   searchButton: {
     type: Boolean,
     required: false,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const emit = defineEmits([
@@ -207,7 +218,7 @@ const emit = defineEmits([
   'search-changed',
   'selected',
   'search',
-  'searched'
+  'searched',
 ])
 
 const input = ref<HTMLElement | null>(null)
@@ -390,7 +401,7 @@ async function fetchOptions(searchString: string) {
       url: route,
       params: {},
       headers: {},
-      data: {}
+      data: {},
     })
 
     // Only emit results that match the current search -> prevents race conditions
@@ -410,7 +421,7 @@ const observer = new MutationObserver((mutations) => {
     mutation.type === 'characterData' ||
     // Nodes added or removed
     mutation.addedNodes.length > 0 ||
-    mutation.removedNodes.length > 0
+    mutation.removedNodes.length > 0,
   )
 
   if (hasContentChanged) {
@@ -423,7 +434,7 @@ onMounted(() => {
   observer.observe(input.value, {
     childList: true,
     characterData: true,
-    subtree: true
+    subtree: true,
   })
 })
 

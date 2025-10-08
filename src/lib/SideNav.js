@@ -80,7 +80,7 @@ class SideNav {
       document.addEventListener('test', null, {
         get passive () {
           isSupported = true
-        }
+        },
       })
     } catch (e) { }
     this.supportsPassive = isSupported

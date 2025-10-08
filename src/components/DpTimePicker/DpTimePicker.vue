@@ -3,11 +3,13 @@
     v-on-click-outside="closeFlyout"
     class="c-timepicker inline-block"
     @keydown.esc="closeFlyout"
-    @keydown.enter="e => handleEnter(e)">
+    @keydown.enter="e => handleEnter(e)"
+  >
     <dp-label
       v-if="label !== ''"
       for="timeInput"
-      :text="label" />
+      :text="label"
+    />
     <dp-resettable-input
       v-if="!isMobileDevice"
       :id="`timeInput:${id}`"
@@ -23,7 +25,8 @@
       @enter="val => handleEnter(val)"
       @focus="handleFocus"
       @blur="handleBlur"
-      @input="val => handleInput(val)" />
+      @input="val => handleInput(val)"
+    />
     <dp-input
       v-else
       :id="`timeInput:${id}`"
@@ -33,43 +36,50 @@
       pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
       :value="currentTime"
       autocomplete="off"
-      @input="val => handleInput(val)" />
+      @input="val => handleInput(val)"
+    />
 
     <div
       ref="flyout"
       class="flex items-start justify-evenly c-timepicker__flyout font-size-small"
       :class="{ 'hidden': !showFlyout }"
-      tabindex="0">
+      tabindex="0"
+    >
       <ul class="u-m-0_25 u-mr-0 u-pr-0_25 overflow-y-scroll h-9">
         <li
           v-for="hour in availableHours"
           :key="`${id}:hour:${hour}`"
           class="c-timepicker__flyout-item"
-          :class="{ 'is-selected': currentHour === hour }">
+          :class="{ 'is-selected': currentHour === hour }"
+        >
           <button
             :id="`${id}:hour:${hour}`"
             class="btn--blank u-ph-0_125 u-pv-0_125"
             tabindex="0"
             :value="hour"
-            @click.prevent="handleInput(hour, 'hour')">
+            @click.prevent="handleInput(hour, 'hour')"
+          >
             {{ hour }}
           </button>
         </li>
       </ul>
       <ul
         class="u-m-0_25 h-9"
-        :class="minutes.length > 5 ? 'overflow-y-scroll' : ''">
+        :class="minutes.length > 5 ? 'overflow-y-scroll' : ''"
+      >
         <li
           v-for="minute in availableMinutes"
           :key="`${id}:minute:${minute}`"
           class="c-timepicker__flyout-item"
-          :class="{ 'is-selected': currentMinutes === minute }">
+          :class="{ 'is-selected': currentMinutes === minute }"
+        >
           <button
             :id="`${id}:minute:${minute}`"
             tabindex="0"
             class="btn--blank u-ph-0_125 u-pv-0_125"
             :value="minute"
-            @click.prevent="handleInput(minute, 'minute')">
+            @click.prevent="handleInput(minute, 'minute')"
+          >
             {{ minute }}
           </button>
         </li>
@@ -93,41 +103,41 @@ export default {
   components: {
     DpInput,
     DpLabel,
-    DpResettableInput
+    DpResettableInput,
   },
 
   directives: {
-    onClickOutside: vOnClickOutside
+    onClickOutside: vOnClickOutside,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: 'timePicker'
+      default: 'timePicker',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     minuteSteps: {
       type: Number,
       required: false,
-      default: 15
+      default: 15,
     },
 
     /**
@@ -136,22 +146,22 @@ export default {
     minValue: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     // Expects ISO datetime
     value: {
       type: String,
       required: false,
-      default: DEFAULT_TIME
-    }
+      default: DEFAULT_TIME,
+    },
   },
 
   data: () => ({
     currentHour: '00',
     currentMinutes: '00',
     isInputFocused: false,
-    showFlyout: false
+    showFlyout: false,
   }),
 
   computed: {
@@ -213,7 +223,7 @@ export default {
         return h.toString().padStart(2, '0')
       })
       return minutes
-    }
+    },
   },
 
   watch: {
@@ -236,7 +246,7 @@ export default {
 
     value () {
       this.updateTime(this.value)
-    }
+    },
   },
 
   methods: {
@@ -364,7 +374,7 @@ export default {
 
       this.setHour(hour)
       this.setMinutes(minutes)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -7,7 +7,8 @@
       'is-expanded': isExpanded,
       'bg-surface-medium rounded-md': variant === 'dark'
     }, position]"
-    data-cy="flyoutTrigger">
+    data-cy="flyoutTrigger"
+  >
     <button
       :disabled="disabled"
       type="button"
@@ -18,10 +19,12 @@
         'bg-interactive-subtle-hover': isExpanded
       }"
       :data-cy="dataCy !== '' ? dataCy : null"
-      @click="toggle">
+      @click="toggle"
+    >
       <slot
         name="trigger"
-        :is-expanded="isExpanded">
+        :is-expanded="isExpanded"
+      >
         <i class="fa fa-ellipsis-h" />
       </slot>
     </button>
@@ -34,7 +37,8 @@
         'right-1': align === 'right',
         'px-2 py-1': padded
       }"
-      data-cy="flyout">
+      data-cy="flyout"
+    >
       <slot />
     </span>
   </span>
@@ -47,7 +51,7 @@ export default {
   name: 'DpFlyout',
 
   directives: {
-    onClickOutside: vOnClickOutside
+    onClickOutside: vOnClickOutside,
   },
 
   props: {
@@ -55,45 +59,45 @@ export default {
       required: false,
       type: String,
       default: 'right',
-      validator: (prop) => ['left', 'right'].includes(prop)
+      validator: (prop) => ['left', 'right'].includes(prop),
     },
 
     ariaLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     padded: {
       required: false,
       type: Boolean,
-      default: true
+      default: true,
     },
 
     position: {
       required: false,
       type: String,
       default: 'relative',
-      validator: (prop) => ['relative', 'absolute'].includes(prop)
+      validator: (prop) => ['relative', 'absolute'].includes(prop),
     },
 
     variant: {
       required: false,
       type: String,
       default: 'light',
-      validator: (prop) => ['light', 'dark'].includes(prop)
+      validator: (prop) => ['light', 'dark'].includes(prop),
     },
   },
 
@@ -101,7 +105,7 @@ export default {
 
   data () {
     return {
-      isExpanded: false
+      isExpanded: false,
     }
   },
 
@@ -121,7 +125,7 @@ export default {
       } else {
         this.$emit('close')
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -15,7 +15,8 @@
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       true-value="1"
       false-value="0"
-      @change="$emit('change', $event.target.checked)">
+      @change="$emit('change', $event.target.checked)"
+    >
     <dp-label
       v-if="label.text !== ''"
       :class="prefixClass('o-form__label')"
@@ -25,7 +26,8 @@
         for: id,
         required: required,
         ...label,
-      }" />
+      }"
+    />
   </div>
 </template>
 
@@ -37,44 +39,44 @@ export default {
   name: 'DpCheckbox',
 
   components: {
-    DpLabel
+    DpLabel,
   },
 
   mixins: [prefixClassMixin],
 
   model: {
     prop: 'checked',
-    event: 'change'
+    event: 'change',
   },
 
   props: {
     checked: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     label: {
@@ -82,32 +84,32 @@ export default {
       default: () => ({}),
       validator: (prop) => {
         return Object.keys(prop).every(key => ['bold', 'hint', 'text', 'tooltip'].includes(key))
-      }
+      },
     },
 
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     readonly: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     valueToSend: {
       type: String,
       required: false,
-      default: '1'
-    }
-  }
+      default: '1',
+    },
+  },
 }
 </script>

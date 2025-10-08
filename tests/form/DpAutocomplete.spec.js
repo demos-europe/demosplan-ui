@@ -5,7 +5,7 @@ import { nextTick } from 'vue'
 
 // Mock the dpApi function
 const mockDpApi = jest.fn(() => Promise.resolve({
-  data: { results: [{ id: 4, name: 'Dragon Fruit' }] }
+  data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
 }))
 
 // Spy on the dpApi module
@@ -19,11 +19,11 @@ describe('DpAutocomplete', () => {
     options: [
       { id: 1, name: 'Apple' },
       { id: 2, name: 'Banana' },
-      { id: 3, name: 'Cherry' }
+      { id: 3, name: 'Cherry' },
     ],
     placeholder: 'Search fruits',
     noResultsText: 'No fruits found',
-    minChars: 2
+    minChars: 2,
   }
 
   beforeEach(() => {
@@ -34,8 +34,8 @@ describe('DpAutocomplete', () => {
   it('renders correctly with default props', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
-        routeGenerator: defaultProps.routeGenerator
-      }
+        routeGenerator: defaultProps.routeGenerator,
+      },
     })
 
     expect(wrapper.find('[role="combobox"]').exists()).toBe(true)
@@ -47,8 +47,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         routeGenerator: defaultProps.routeGenerator,
-        placeholder: 'Search fruits'
-      }
+        placeholder: 'Search fruits',
+      },
     })
 
     expect(wrapper.find('label').text()).toBe('Search fruits')
@@ -56,7 +56,7 @@ describe('DpAutocomplete', () => {
 
   it('does not show options list when input is empty', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Focus the input
@@ -68,7 +68,7 @@ describe('DpAutocomplete', () => {
 
   it('shows options list when typing enough characters', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Focus and input text
@@ -92,7 +92,7 @@ describe('DpAutocomplete', () => {
 
   it('filters options based on input text', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Skip DOM-based testing and test the component's filtering logic directly
@@ -103,7 +103,7 @@ describe('DpAutocomplete', () => {
      * as the component (case insensitive match)
      */
     const aMatchingOptions = defaultProps.options.filter(opt =>
-      opt.name.toLowerCase().includes('a')
+      opt.name.toLowerCase().includes('a'),
     )
     expect(aMatchingOptions.length).toBe(2)
     expect(aMatchingOptions[0].name).toBe('Apple')
@@ -114,7 +114,7 @@ describe('DpAutocomplete', () => {
 
     // Manually check if 'Apple' would be filtered using the same logic as the component
     const apMatchingOptions = defaultProps.options.filter(opt =>
-      opt.name.toLowerCase().includes('ap')
+      opt.name.toLowerCase().includes('ap'),
     )
     expect(apMatchingOptions.length).toBe(1)
     expect(apMatchingOptions[0].name).toBe('Apple')
@@ -122,7 +122,7 @@ describe('DpAutocomplete', () => {
 
   it('emits update:modelValue when selecting an option', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Setup
@@ -140,12 +140,12 @@ describe('DpAutocomplete', () => {
 
   it('fetches options from API when typing', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Create a mock response
     const mockResponse = {
-      data: { results: [{ id: 4, name: 'Dragon Fruit' }] }
+      data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
     }
 
     // Setup mock to return our fake response
@@ -161,7 +161,7 @@ describe('DpAutocomplete', () => {
       url: '/api/search?q=dragon',
       params: {},
       headers: {},
-      data: {}
+      data: {},
     })
 
     // Manually trigger the event since fetchOptions() emits it only when currentQuery matches
@@ -175,7 +175,7 @@ describe('DpAutocomplete', () => {
 
   it('handles keyboard navigation properly', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Focus and setup for testing keyboard navigation
@@ -212,8 +212,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        options: [] // Empty options to simulate no results
-      }
+        options: [], // Empty options to simulate no results
+      },
     })
 
     // Focus the input
@@ -236,8 +236,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        options: [{ id: 1, name: 'Apple' }]
-      }
+        options: [{ id: 1, name: 'Apple' }],
+      },
     })
 
     // Focus the input
@@ -260,7 +260,7 @@ describe('DpAutocomplete', () => {
 
   it('handles escape key properly', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Focus the input and ensure the list is open
@@ -280,8 +280,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        minChars: 3
-      }
+        minChars: 3,
+      },
     })
 
     // Focus the input
@@ -312,10 +312,10 @@ describe('DpAutocomplete', () => {
         ...defaultProps,
         options: [
           { id: 1, title: 'Apple' },
-          { id: 2, title: 'Banana' }
+          { id: 2, title: 'Banana' },
         ],
-        label: 'title'
-      }
+        label: 'title',
+      },
     })
 
     // Test custom label without relying on DOM elements
@@ -335,8 +335,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        modelValue: ''
-      }
+        modelValue: '',
+      },
     })
 
     // Update the modelValue prop
@@ -348,7 +348,7 @@ describe('DpAutocomplete', () => {
 
   it('handles accessibility attributes correctly', () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Test appropriate ARIA attributes

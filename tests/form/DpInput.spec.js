@@ -7,9 +7,9 @@ const wrapper = shallowMount(DpInput, {
   props: {
     id: 'inputId',
     label: {
-      hint: 'test hint'
-    }
-  }
+      hint: 'test hint',
+    },
+  },
 })
 
 runLabelTests(wrapper)
@@ -31,9 +31,9 @@ describe('DpInput', () => {
       props: {
         id: 'inputId',
         label: {
-          hint: 'test hint'
-        }
-      }
+          hint: 'test hint',
+        },
+      },
     })
   })
 

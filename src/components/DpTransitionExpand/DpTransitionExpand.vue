@@ -52,15 +52,15 @@ export default {
         requestAnimationFrame(() => {
           element.style.height = 0
         })
-      }
+      },
     }
 
     return h(
       Transition,
       data,
-      () => this.$slots.default ? this.$slots.default() : null
+      () => this.$slots.default ? this.$slots.default() : null,
     )
-  }
+  },
 }
 </script>
 

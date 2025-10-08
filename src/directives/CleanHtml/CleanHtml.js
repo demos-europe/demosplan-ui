@@ -28,7 +28,7 @@ const getOptions = (value) => {
   const type = typeof value
   if (type === 'string') {
     return {
-      content: value
+      content: value,
     }
   } else if (type === 'object') {
     return value
@@ -54,7 +54,7 @@ const CleanHtml = {
     if (binding.value !== binding.oldValue) {
       setSanitizedInnerHTML(el, binding)
     }
-  }
+  },
 }
 
 export { CleanHtml }

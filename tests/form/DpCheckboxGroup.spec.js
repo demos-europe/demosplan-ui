@@ -7,7 +7,7 @@ describe('DpCheckboxGroup', () => {
   const defaultOptions = [
     { id: 'option1', label: 'Option 1', name: 'test-option-1' },
     { id: 'option2', label: 'Option 2', name: 'test-option-2' },
-    { id: 'option3', label: 'Option 3' }
+    { id: 'option3', label: 'Option 3' },
   ]
 
   beforeEach(() => {
@@ -16,8 +16,8 @@ describe('DpCheckboxGroup', () => {
         options: defaultOptions,
         label: 'Test Legend',
         inline: false,
-        dataCy: 'test-group'
-      }
+        dataCy: 'test-group',
+      },
     })
   })
 
@@ -25,18 +25,18 @@ describe('DpCheckboxGroup', () => {
     expect(wrapper.vm.selected).toEqual({
       option1: false,
       option2: false,
-      option3: false
+      option3: false,
     })
   })
 
   it('updates selected state when selectedOptions prop changes', async () => {
     await wrapper.setProps({
-      selectedOptions: { option1: true, option2: false, option3: true }
+      selectedOptions: { option1: true, option2: false, option3: true },
     })
     expect(wrapper.vm.selected).toEqual({
       option1: true,
       option2: false,
-      option3: true
+      option3: true,
     })
   })
 
@@ -49,7 +49,7 @@ describe('DpCheckboxGroup', () => {
     expect(wrapper.emitted('update')[0]).toEqual([{
       option1: true,
       option2: false,
-      option3: false
+      option3: false,
     }])
   })
 
@@ -58,31 +58,31 @@ describe('DpCheckboxGroup', () => {
     const wrapperWithInitialSelection = shallowMount(DpCheckboxGroup, {
       props: {
         options: defaultOptions,
-        selectedOptions: initialSelectedOptions
-      }
+        selectedOptions: initialSelectedOptions,
+      },
     })
 
     expect(wrapperWithInitialSelection.vm.selected).toEqual({
       option1: true,
       option2: false,
-      option3: true
+      option3: true,
     })
   })
 
   it('updates selected state when options prop changes', async () => {
     const newOptions = [
       { id: 'newOption1', label: 'New Option 1' },
-      { id: 'newOption2', label: 'New Option 2' }
+      { id: 'newOption2', label: 'New Option 2' },
     ]
 
     await wrapper.setProps({
       options: newOptions,
-      selectedOptions: { newOption1: true, newOption2: false }
+      selectedOptions: { newOption1: true, newOption2: false },
     })
 
     expect(wrapper.vm.selected).toEqual({
       newOption1: true,
-      newOption2: false
+      newOption2: false,
     })
   })
 
@@ -91,14 +91,14 @@ describe('DpCheckboxGroup', () => {
     const wrapperWithPartial = shallowMount(DpCheckboxGroup, {
       props: {
         options: defaultOptions,
-        selectedOptions: partialSelectedOptions
-      }
+        selectedOptions: partialSelectedOptions,
+      },
     })
 
     expect(wrapperWithPartial.vm.selected).toEqual({
       option1: true,
       option2: false,
-      option3: false
+      option3: false,
     })
   })
 })

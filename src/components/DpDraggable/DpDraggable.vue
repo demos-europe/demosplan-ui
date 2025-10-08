@@ -2,7 +2,8 @@
   <component
     :is="draggableTag"
     :id="groupId"
-    ref="wrapper">
+    ref="wrapper"
+  >
     <slot />
   </component>
 </template>
@@ -17,7 +18,7 @@ const props = defineProps({
    */
   contentData: {
     type: Array,
-    required: true
+    required: true,
   },
 
   /*
@@ -26,7 +27,7 @@ const props = defineProps({
   dragAcrossBranches: {
     type: Boolean,
     required: false,
-    default: true
+    default: true,
   },
 
   /*
@@ -35,7 +36,7 @@ const props = defineProps({
   isDraggable: {
     type: Boolean,
     required: false,
-    default: true
+    default: true,
   },
 
   /*
@@ -44,7 +45,7 @@ const props = defineProps({
   draggableTag: {
     type: String,
     required: false,
-    default: 'div'
+    default: 'div',
   },
 
   /*
@@ -53,7 +54,7 @@ const props = defineProps({
   groupId: {
     type: String,
     required: false,
-    default: 'noIdGiven'
+    default: 'noIdGiven',
   },
 
   /*
@@ -64,7 +65,7 @@ const props = defineProps({
   handleChange: {
     type: Function,
     required: false,
-    default: () => undefined
+    default: () => undefined,
   },
 
   /*
@@ -73,7 +74,7 @@ const props = defineProps({
   handleDrag: {
     type: Function,
     required: false,
-    default: () => undefined
+    default: () => undefined,
   },
 
   /*
@@ -82,7 +83,7 @@ const props = defineProps({
   nodeId: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
 
   /*
@@ -92,20 +93,20 @@ const props = defineProps({
   onMove: {
     type: Function,
     required: false,
-    default: () => true
+    default: () => true,
   },
 
   opts: {
     type: Object,
     required: false,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 const emit = defineEmits(
   [
     'add',
-    'end'
-  ]
+    'end',
+  ],
 )
 const wrapper = ref<HTMLElement | null>(null)
 const list = ref([])
@@ -134,8 +135,8 @@ const { option: changeSortableOption } = useSortable(
       props.onMove(e, isAllowedTarget, props.groupId)
     },
     onStart: (e: Event) => props.handleDrag('start', e),
-    ...props.opts
-  }
+    ...props.opts,
+  },
 )
 
 watch(() => props.isDraggable, () => {

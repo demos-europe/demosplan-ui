@@ -24,8 +24,8 @@ export default Extension.create({
               event.preventDefault()
 
               return true
-            }
-          }
+            },
+          },
         },
       }),
     ]

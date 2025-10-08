@@ -13,7 +13,8 @@
       :value="value"
       :data-cy="dataCy !== '' ? dataCy : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
-      @change="$emit('change', $event.target.checked)"><!--
+      @change="$emit('change', $event.target.checked)"
+    ><!--
  --><dp-label
       v-if="label.text"
       :class="prefixClass('o-form__label')"
@@ -23,7 +24,8 @@
         for: id,
         required: required,
         ...label,
-      }" />
+      }"
+/>
   </div>
 </template>
 
@@ -35,56 +37,56 @@ export default {
   name: 'DpRadio',
 
   components: {
-    DpLabel
+    DpLabel,
   },
 
   mixins: [prefixClassMixin],
 
   model: {
     prop: 'checked',
-    event: 'change'
+    event: 'change',
   },
 
   props: {
     bold: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     checked: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     hint: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     label: {
@@ -92,13 +94,13 @@ export default {
       default: (): Record<string, any> => ({}),
       validator: (prop: Record<string, any>): boolean => {
         return Object.keys(prop).every((key: string) => ['bold', 'hint', 'text'].includes(key))
-      }
+      },
     },
 
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -108,20 +110,20 @@ export default {
     readonly: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     value: {
       type: String,
       required: false,
-      default: '1'
-    }
-  }
+      default: '1',
+    },
+  },
 }
 </script>

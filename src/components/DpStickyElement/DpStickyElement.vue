@@ -1,7 +1,8 @@
 <template>
   <div
     :class="{ 'o-sticky--border': border, 'z-fixed': applyZIndex }"
-    class="o-sticky bg-color--white">
+    class="o-sticky bg-color--white"
+  >
     <slot />
   </div>
 </template>
@@ -19,7 +20,7 @@ export default {
     applyZIndex: {
       required: false,
       type: Boolean,
-      default: true
+      default: true,
     },
 
     /**
@@ -30,7 +31,7 @@ export default {
     border: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -40,7 +41,7 @@ export default {
     context: {
       type: HTMLElement,
       required: false,
-      default: undefined
+      default: undefined,
     },
 
     /**
@@ -49,7 +50,7 @@ export default {
     direction: {
       required: false,
       type: String,
-      default: 'top'
+      default: 'top',
     },
 
     /**
@@ -58,7 +59,7 @@ export default {
     observeContext: {
       required: false,
       type: Boolean,
-      default: true
+      default: true,
     },
 
     /**
@@ -67,8 +68,8 @@ export default {
     offset: {
       required: false,
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
 
   mounted () {
@@ -79,8 +80,8 @@ export default {
       this.direction,
       'palm',
       false,
-      this.observeContext
+      this.observeContext,
     )
-  }
+  },
 }
 </script>

@@ -41,5 +41,5 @@ export {
   TableHeader,
   TableRow,
   Text,
-  Underline
+  Underline,
 }

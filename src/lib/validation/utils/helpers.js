@@ -102,7 +102,7 @@ function awaitElement (selector, context) {
     })
       .observe(document, {
         childList: true,
-        subtree: true
+        subtree: true,
       })
   })
 }
@@ -128,7 +128,7 @@ function scrollToVisibleElement (element) {
     const elementOffset = visibleElement.getBoundingClientRect().top + getScrollTop()
     window.scrollTo({
       behavior: 'smooth',
-      top: elementOffset - 50
+      top: elementOffset - 50,
     })
   }
 }

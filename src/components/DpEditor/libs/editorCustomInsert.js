@@ -26,5 +26,5 @@ export default Mark.create({
         return commands.unsetMark(this.name)
       },
     }
-  }
+  },
 })

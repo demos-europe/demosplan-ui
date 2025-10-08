@@ -12,12 +12,14 @@
         idx === activeStep ? prefixClass('is-active') : '',
         idx > activeStep ? prefixClass('is-disabled') : ''
       ]"
-      @click="changeStep(idx)">
+      @click="changeStep(idx)"
+    >
       <span>
         <i
           v-if="step.icon"
           aria-hidden="true"
-          :class="[prefixClass(step.icon), prefixClass('fa u-mr-0_25')]" />
+          :class="[prefixClass(step.icon), prefixClass('fa u-mr-0_25')]"
+        />
         {{ step.label }}
       </span>
     </button>
@@ -36,19 +38,19 @@ export default {
     activeStep: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'multistepNav'
+      default: 'multistepNav',
     },
 
     steps: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: ['change-step'],
@@ -56,7 +58,7 @@ export default {
   methods: {
     changeStep (val) {
       this.$emit('change-step', val)
-    }
-  }
+    },
+  },
 }
 </script>

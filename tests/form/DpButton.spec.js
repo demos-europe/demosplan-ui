@@ -10,13 +10,13 @@ describe('DpButton', () => {
     return shallowMount(DpButton, {
       props: {
         text: 'Test Button',
-        ...props
+        ...props,
       },
       global: {
         directives: {
-          tooltip: {}
-        }
-      }
+          tooltip: {},
+        },
+      },
     })
   }
 
@@ -372,7 +372,7 @@ describe('DpButton', () => {
       wrapper = createWrapper({ hideText: true, icon: '', iconAfter: '' })
 
       expect(consoleSpy).toHaveBeenCalledWith(
-        'A DpButton instance is used without icon or visible text. Consider showing something to users.'
+        'A DpButton instance is used without icon or visible text. Consider showing something to users.',
       )
 
       consoleSpy.mockRestore()
@@ -446,7 +446,7 @@ describe('DpButton', () => {
       const sizes = [
         { size: 'small', expectedClass: 'p-0.5' },
         { size: 'medium', expectedClass: 'p-[5px]' },
-        { size: 'large', expectedClass: 'p-1.5' }
+        { size: 'large', expectedClass: 'p-1.5' },
       ]
 
       sizes.forEach(({ size, expectedClass }) => {

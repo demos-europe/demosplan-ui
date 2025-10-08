@@ -1,24 +1,29 @@
 <template>
   <label
     :class="classes"
-    :for="labelFor">
+    :for="labelFor"
+  >
     <span>
       <span v-cleanhtml="text" /><span
         v-if="required"
-        aria-hidden="true">*</span>
+        aria-hidden="true"
+      >*</span>
       <dp-contextual-help
         v-if="tooltip"
         :class="prefixClass('ml-0.5')"
-        :text="tooltip" />
+        :text="tooltip"
+      />
     </span>
     <span
       v-if="hints.length"
-      :class="prefixClass('block text-sm font-normal')">
+      :class="prefixClass('block text-sm font-normal')"
+    >
       <span
         v-for="(hint, i) in hints"
         :key="i"
         v-cleanhtml="hint"
-        :class="prefixClass('inline-block')" />
+        :class="prefixClass('inline-block')"
+      />
     </span>
   </label>
 </template>
@@ -33,44 +38,44 @@ const props = defineProps({
   bold: {
     type: Boolean,
     required: false,
-    default: true
+    default: true,
   },
 
   for: {
     type: String,
-    required: true
+    required: true,
   },
 
   // This is used to hide the label visually, but keep it accessible for screen readers
   hide: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
 
   // Can be string or array (the second element being the "maxlength" hint).
   hint: {
     type: [String, Array] as PropType<string | string[]>,
     required: false,
-    default: () => []
+    default: () => [],
   },
 
   text: {
     type: String,
-    required: true
+    required: true,
   },
 
   tooltip: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   required: {
     type: Boolean,
     required: false,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const classes = computed(() : string[] => {

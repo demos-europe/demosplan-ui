@@ -21,5 +21,5 @@ export {
   InsertAtCursorPos,
   Obscure,
   UnAnonymize,
-  PreventEditing
+  PreventEditing,
 }

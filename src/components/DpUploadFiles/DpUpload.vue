@@ -1,7 +1,8 @@
 <template>
   <div
     ref="fileInput"
-    :data-cy="dataCy" />
+    :data-cy="dataCy"
+  />
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
     'file-error',
     'upload',
     'uploads-completed',
-    'upload-success'
+    'upload-success',
   ],
 
   props: {
@@ -32,7 +33,7 @@ export default {
     allowedFileTypes: {
       type: [Array, String],
       required: false,
-      default: 'pdf'
+      default: 'pdf',
     },
 
     /**
@@ -40,7 +41,7 @@ export default {
      */
     allowedFileTypesWarning: {
       type: String,
-      default: de().strings.warningFileType
+      default: de().strings.warningFileType,
     },
 
     /**
@@ -48,13 +49,13 @@ export default {
      */
     allowMultipleUploads: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     basicAuth: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -66,13 +67,13 @@ export default {
     chunkSize: {
       type: Number,
       default: Infinity,
-      required: false
+      required: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'upload'
+      default: 'upload',
     },
 
     /**
@@ -80,7 +81,7 @@ export default {
      */
     maxFileSize: {
       type: Number,
-      default: 10000000
+      default: 10000000,
     },
 
     /**
@@ -90,13 +91,13 @@ export default {
     maxNumberOfFiles: {
       type: Number,
       required: false,
-      default: 1
+      default: 1,
     },
 
     translations: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     /**
@@ -104,8 +105,8 @@ export default {
      */
     tusEndpoint: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
@@ -115,8 +116,8 @@ export default {
       uppy: null,
       uppyTranslations: {
         strings: {
-          ...de().strings, ...this.translations
-        }
+          ...de().strings, ...this.translations,
+        },
       },
     }
   },
@@ -124,7 +125,7 @@ export default {
   computed: {
     allowedFileTypeArray () {
       return getFileTypes(this.allowedFileTypes)
-    }
+    },
   },
 
   methods: {
@@ -159,7 +160,7 @@ export default {
         '"',
         '/',
         ':',
-        '\\'
+        '\\',
       ]
 
       for (let i = 0; i < reservedCharacters.length; i++) {
@@ -174,8 +175,8 @@ export default {
           name: fileName,
           meta: {
             ...currentFile.meta,
-            name: fileName
-          }
+            name: fileName,
+          },
         }
       } else {
         return currentFile
@@ -190,23 +191,23 @@ export default {
         restrictions: {
           allowedFileTypes: this.allowedFileTypeArray,
           maxFileSize: this.maxFileSize,
-          maxNumberOfFiles: this.maxNumberOfFiles
+          maxNumberOfFiles: this.maxNumberOfFiles,
         },
         onBeforeFileAdded: this.handleOnBeforeFileAdded,
-        locale: this.uppyTranslations
+        locale: this.uppyTranslations,
       })
 
       this.uppy.use(DragDrop, {
         target: this.$refs.fileInput,
         width: '100%',
         note: null,
-        locale: this.uppyTranslations
+        locale: this.uppyTranslations,
       })
 
       this.uppy.use(ProgressBar, {
         target: this.$refs.fileInput,
         fixed: false,
-        hideAfterFinish: false
+        hideAfterFinish: false,
       })
 
       let currentProcedureId = null
@@ -234,7 +235,7 @@ export default {
           this.currentFileId = res.getHeader('X-Demosplan-File-Id')
         },
         removeFingerprintOnSuccess: true,
-        headers
+        headers,
       })
 
       // Access the hidden input element, that accepted files array.
@@ -245,7 +246,7 @@ export default {
           uppyInput.setAttribute('data-cy', `uppyDragDropInput:${index}`)
         })
       }
-    }
+    },
   },
 
   mounted () {
@@ -293,7 +294,7 @@ export default {
         size,
         type,
         id: file.id, // The uppy internal file id
-        fileId: this.currentFileId // The id of the file within demosplan
+        fileId: this.currentFileId, // The id of the file within demosplan
       }
       this.currentFileHash = ''
       this.currentFileId = ''
@@ -305,6 +306,6 @@ export default {
     if (this.uppy) {
       this.uppy.clear()
     }
-  }
+  },
 }
 </script>

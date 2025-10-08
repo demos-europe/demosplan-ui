@@ -8,7 +8,7 @@ describe.each([
   { obj: { test: 'x' }, prop: 'test', result: true, warn: 0 },
   { obj: { foo: 'x' }, prop: 'test', result: false, warn: 0 },
   { obj: [], prop: 'foo', result: false, warn: 0 },
-  { obj: 42, prop: 'bar', result: false, warn: 1 }
+  { obj: 42, prop: 'bar', result: false, warn: 1 },
 ])('hasOwnProp - a util to shorten Object.prototype.hasOwnProperty', ({ obj, prop, result, warn }) => {
   const warnings = []
 

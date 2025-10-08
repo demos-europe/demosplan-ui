@@ -11,8 +11,8 @@ describe('DpFlyout', () => {
         dataCy: 'flyoutTrigger',
         disabled: false,
         hasMenu: true,
-        padded: true
-      }
+        padded: true,
+      },
     })
   })
 

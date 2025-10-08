@@ -6,8 +6,8 @@ describe('DpLabel', () => {
     props: {
       for: 'test for',
       hint: '',
-      text: 'test text'
-    }
+      text: 'test text',
+    },
   })
 
   it('returns empty array when hint props is empty', () => {

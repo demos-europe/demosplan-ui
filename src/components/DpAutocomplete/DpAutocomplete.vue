@@ -235,6 +235,14 @@ const isInputFocused = ref(false)
 const isLoading = ref(false)
 const listPosition = ref(-1)
 const showNoResults = ref(false)
+/**
+ * Track timeout for blur event, because after this timeout, the suggestions list is closed.
+ * So when the user e.g. clicks the reset button, then focuses the input again,
+ * the blur event (triggered by clicking the reset button) would hide the suggestions
+ * list after this timeout by setting isInputFocused to false. So no suggestions
+ * would be displayed
+ */
+let blurTimeout: ReturnType<typeof setTimeout> | null = null
 
 const isOptionsListVisible = computed(() => {
   return currentQuery.value.length >= props.minChars &&
@@ -314,8 +322,8 @@ const handleArrowUp = (event: KeyboardEvent) => {
 }
 
 const handleBlur = () => {
-  // Delay blur to allow option selection
-  setTimeout(() => {
+  // Delay blur to ensure option selection completes before hiding the list
+  blurTimeout = setTimeout(() => {
     isInputFocused.value = false
     emit('blur')
   }, 150)
@@ -348,7 +356,17 @@ const handleEscape = (event: KeyboardEvent) => {
   }
 }
 
+/**
+ * To avoid that a blur event that was triggered shortly before the focus event
+ * sets isInputFocused to false after the timeout, overriding our setting it to true here,
+ * we clear the timeout if it exists.
+ * This issue can happen when the user clicks the reset button and then focuses the input again.
+ */
 const handleFocus = () => {
+  if (blurTimeout) {
+    clearTimeout(blurTimeout)
+    blurTimeout = null
+  }
   isInputFocused.value = true
   emit('focus')
 }
@@ -362,10 +380,22 @@ const handleHome = (event: KeyboardEvent) => {
 }
 
 const handleReset = () => {
+  /**
+   * Prevent blur timeout from hiding suggestions after resetting, which might
+   *  override setting isInputFocused to true below
+   */
+  if (blurTimeout) {
+    clearTimeout(blurTimeout)
+    blurTimeout = null
+  }
+
   currentQuery.value = props.defaultValue
   emit('update:modelValue', props.defaultValue)
   emit('reset')
+  // Allow clearing the suggestions (options) in parent component
+  emit('search-changed', [])
   showNoResults.value = false
+  isInputFocused.value = true
 
   nextTick(() => {
     suggestionInput.value?.$el?.querySelector('input')?.focus()

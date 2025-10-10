@@ -141,7 +141,7 @@ export default {
       if (newVal) {
         this.resetForm()
       }
-    }
+    },
   },
 
   methods: {

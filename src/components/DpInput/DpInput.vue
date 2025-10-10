@@ -45,8 +45,6 @@ import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/ut
 import { computed, useAttrs } from 'vue'
 import DpLabel from '~/components/DpLabel'
 
-const attrs = useAttrs()
-
 const props = defineProps({
   /**
    * Reference another element on the page to define an accessible name if there is no label or
@@ -243,6 +241,17 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits([
+  'blur',
+  'enter',
+  'focus',
+  'input',
+  'keydown',
+  'update:modelValue'
+])
+
+const attrs = useAttrs()
+
 /**
  *  In Vue-2-compat mode (@vue/compat), v-model still uses value/input.
  *  To enable Vue 3's modelValue/update:modelValue behavior here,
@@ -255,15 +264,6 @@ defineOptions({
     event: 'update:modelValue'
   }
 })
-
-const emit = defineEmits([
-  'blur',
-  'enter',
-  'focus',
-  'input',
-  'keydown',
-  'update:modelValue'
-])
 
 /**
  * Filter out 'class' attribute so it's passed to the outer div, pass all other

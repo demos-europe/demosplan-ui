@@ -23,7 +23,6 @@
       @keydown="handleKeydown"
       @keyup="handleKeyup"
       @reset="handleReset">
-
       <template v-if="searchButton">
         <dp-button
           class="search h-[32px] w-[34px] justify-center rounded-r-md rounded-l-none border !border-l-1 z-[5] -ml-px"

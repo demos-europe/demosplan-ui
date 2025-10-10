@@ -365,7 +365,7 @@ describe('DpAutocomplete', () => {
       wrapper.vm.listPosition = 0
       await nextTick()
 
-      // aria-activedescendant points to the highlighted option
+      // Aria-activedescendant points to the highlighted option
       expect(input.attributes('aria-activedescendant')).toBe('test-autocomplete-option-0')
     })
 

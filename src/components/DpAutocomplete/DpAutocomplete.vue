@@ -22,7 +22,8 @@
       @input="handleInput"
       @keydown="handleKeydown"
       @keyup="handleKeyup"
-      @reset="handleReset">
+      @reset="handleReset"
+    >
       <template v-if="searchButton">
         <dp-button
           class="search h-[32px] w-[34px] justify-center rounded-r-md rounded-l-none border !border-l-1 z-[5] -ml-px"
@@ -31,7 +32,8 @@
           icon="search"
           :text="searchButtonText"
           variant="outline"
-          @click="triggerSearch" />
+          @click="triggerSearch"
+        />
       </template>
     </dp-resettable-input>
 
@@ -39,7 +41,8 @@
     <div
       aria-live="polite"
       aria-atomic="true"
-      class="sr-only">
+      class="sr-only"
+    >
       {{ screenReaderStatus }}
     </div>
 
@@ -50,10 +53,12 @@
         id="suggestions-list"
         role="listbox"
         class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]"
-        @mouseleave="listPosition = -1">
+        @mouseleave="listPosition = -1"
+      >
         <div
           v-if="isLoading"
-          class="text-gray-500 px-2 py-1">
+          class="text-gray-500 px-2 py-1"
+        >
           {{ de.search.running }}
         </div>
         <template v-else>
@@ -66,16 +71,19 @@
             role="option"
             :aria-selected="idx === listPosition ? 'true' : 'false'"
             @mousedown.stop.prevent="selectOption(option)"
-            @mouseenter="listPosition = idx">
+            @mouseenter="listPosition = idx"
+          >
             <slot
               name="option"
-              :option="option">
+              :option="option"
+            >
               {{ option[label] }}
             </slot>
           </div>
           <div
             v-if="options.length === 0 && showNoResults"
-            class="text-gray-500 px-2 py-1">
+            class="text-gray-500 px-2 py-1"
+          >
             {{ noResultsText }}
           </div>
         </template>
@@ -87,8 +95,8 @@
 <script lang="ts">
 export default {
   compatConfig: {
-    COMPONENT_V_MODEL: false
-  }
+    COMPONENT_V_MODEL: false,
+  },
 }
 </script>
 
@@ -109,13 +117,13 @@ const props = defineProps({
   ariaLabelledby: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
 
   dataCy: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -124,7 +132,7 @@ const props = defineProps({
   defaultValue: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -132,7 +140,7 @@ const props = defineProps({
    */
   id: {
     type: String,
-    required: true
+    required: true,
   },
 
   /**
@@ -189,7 +197,7 @@ const props = defineProps({
   required: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
 
   /**
@@ -204,7 +212,7 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'full',
-    validator: (prop: string) => ['full', 'left', 'right'].includes(prop)
+    validator: (prop: string) => ['full', 'left', 'right'].includes(prop),
   },
 
   /**
@@ -222,8 +230,8 @@ const props = defineProps({
   searchButtonText: {
     type: String,
     required: false,
-    default: de.search.searching
-  }
+    default: de.search.searching,
+  },
 })
 
 const emit = defineEmits([
@@ -453,7 +461,7 @@ const handleKeydown = (event: KeyboardEvent) => {
     'End': handleEnd,
     'Tab': handleTab,
     'Enter': handleEnter,
-    'Escape': handleEscape
+    'Escape': handleEscape,
   }
 
   const handler = handlers[event.key]

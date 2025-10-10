@@ -249,7 +249,7 @@ const emit = defineEmits([
   'focus',
   'input',
   'keydown',
-  'update:modelValue'
+  'update:modelValue',
 ])
 
 const attrs = useAttrs()

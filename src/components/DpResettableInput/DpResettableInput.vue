@@ -17,7 +17,8 @@
     />
     <span
       v-if="hasSlotContent"
-      class="absolute top-0 right-0 h-full flex items-center">
+      class="absolute top-0 right-0 h-full flex items-center"
+    >
       <button
         v-if="!inputAttributes.disabled"
         class="btn--blank o-link--default relative mr-1"
@@ -43,11 +44,13 @@
       :aria-label="translations.reset"
       :title="currentValue === defaultValue ? null : translations.reset"
       :disabled="currentValue === defaultValue"
-      @click="resetValue">
+      @click="resetValue"
+    >
       <dp-icon
         aria-hidden="true"
         icon="xmark"
-        :size="iconSize" />
+        :size="iconSize"
+      />
     </button>
   </div>
 </template>
@@ -141,14 +144,14 @@ export default {
     'focus',
     'input',
     'keydown',
-    'reset'
+    'reset',
   ],
 
   data () {
     return {
       currentValue: this.value,
       translations: {
-        reset: de.operations.reset
+        reset: de.operations.reset,
       },
     }
   },

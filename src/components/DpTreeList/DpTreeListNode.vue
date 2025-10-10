@@ -10,16 +10,14 @@
         :class="dragHandle">
         <dp-icon
           class="c-treelist__drag-handle-icon"
-          icon="drag-handle"
-        />
+          icon="drag-handle" />
       </div>
       <dp-tree-list-checkbox
         v-if="isSelectable"
         :checked="isNodeSelected"
         :name="checkboxIdentifier"
         :string-value="nodeId"
-        @check="handleSelectionToggle"
-      />
+        @check="handleSelectionToggle" />
       <div
         class="flex grow items-start"
         :style="indentationStyle">
@@ -28,8 +26,7 @@
           v-model="isExpanded"
           class="c-treelist__folder text--left u-pv-0_25"
           :class="{ 'pointer-events-none': 0 === children.length }"
-          :icon-class-prop="iconClassFolder"
-        />
+          :icon-class-prop="iconClassFolder" />
         <div class="grow u-pl-0 u-p-0_25">
           <slot
             v-if="isBranch"
@@ -37,15 +34,13 @@
             :node-element="node"
             :node-children="children"
             :node-id="nodeId"
-            :parent-id="parentId"
-          />
+            :parent-id="parentId" />
           <slot
             v-if="isLeaf"
             name="leaf"
             :node-element="node"
             :node-id="nodeId"
-            :parent-id="parentId"
-          />
+            :parent-id="parentId" />
         </div>
       </div>
       <dp-tree-list-toggle
@@ -54,12 +49,10 @@
         v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         data-cy="treeListChildToggle"
         class="self-start"
-        :disabled="!hasToggle"
-      />
+        :disabled="!hasToggle" />
       <div
         v-else
-        class="min-w-4"
-      />
+        class="min-w-4" />
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
@@ -102,8 +95,7 @@
           v-slot:[slot]="scope">
           <slot
             v-bind="scope"
-            :name="slot"
-          />
+            :name="slot" />
         </template>
       </dp-tree-list-node>
     </component>

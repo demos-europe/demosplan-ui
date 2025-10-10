@@ -13,9 +13,10 @@
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
       @input="onInput"
-      @keydown="$emit('keydown', $event)"
-    />
-    <span v-if="hasSlotContent" class="absolute top-0 right-0 h-full flex items-center">
+      @keydown="$emit('keydown', $event)" />
+    <span
+      v-if="hasSlotContent"
+      class="absolute top-0 right-0 h-full flex items-center">
       <button
         v-if="!inputAttributes.disabled"
         class="btn--blank o-link--default relative mr-1"
@@ -56,12 +57,12 @@ import { de } from '~/components/shared/translations'
 export default {
   name: 'DpResettableInput',
 
-  inheritAttrs: false,
-
   components: {
     DpIcon,
     DpInput
   },
+
+  inheritAttrs: false,
 
   props: {
     /**

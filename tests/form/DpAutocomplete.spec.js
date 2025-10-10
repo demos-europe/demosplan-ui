@@ -100,8 +100,10 @@ describe('DpAutocomplete', () => {
 
     expect(wrapper.vm.isOptionsListVisible).toBe(true)
 
-    // The component renders all options and filters inside v-for directive
-    // So checking for all role="option" elements instead of just 'Apple'
+    /*
+     * The component renders all options and filters inside v-for directive
+     * So checking for all role="option" elements instead of just 'Apple'
+     */
     expect(wrapper.findAll('[role="option"]').length).toBe(3)
   })
 
@@ -113,8 +115,10 @@ describe('DpAutocomplete', () => {
     // Skip DOM-based testing and test the component's filtering logic directly
     wrapper.vm.currentQuery = 'a'
 
-    // Manually check if 'Apple' and 'Banana' would be filtered using similar logic
-    // as the component (case-insensitive match)
+    /*
+     * Manually check if 'Apple' and 'Banana' would be filtered using similar logic
+     * as the component (case-insensitive match)
+     */
     const aMatchingOptions = defaultProps.options.filter(opt =>
       opt.name.toLowerCase().includes('a')
     )
@@ -361,7 +365,7 @@ describe('DpAutocomplete', () => {
       wrapper.vm.listPosition = 0
       await nextTick()
 
-      // aria-activedescendant points to the highlighted option
+      // Aria-activedescendant points to the highlighted option
       expect(input.attributes('aria-activedescendant')).toBe('test-autocomplete-option-0')
     })
 

@@ -19,13 +19,13 @@ export class SelectionManager {
     }
 
     // High-performance data structures
-    this.nodePath = new Map() // nodeId -> path array
-    this.nodeParentId = new Map() // nodeId -> parentId
-    this.nodeChildren = new Map() // nodeId -> Set of childIds
+    this.nodePath = new Map() // NodeId -> path array
+    this.nodeParentId = new Map() // NodeId -> parentId
+    this.nodeChildren = new Map() // NodeId -> Set of childIds
     this.selectedNodes = new Set() // Set of selected nodeIds
     this.explicitlySelected = new Set() // Nodes explicitly selected by user
-    this.nodeType = new Map() // nodeId -> 'branch' | 'leaf'
-    this.nodeObject = new Map() // nodeId -> full node object reference
+    this.nodeType = new Map() // NodeId -> 'branch' | 'leaf'
+    this.nodeObject = new Map() // NodeId -> full node object reference
 
     // Selection counting for performance optimization
     this.totalSelectableCount = 0 // Total nodes that CAN be selected

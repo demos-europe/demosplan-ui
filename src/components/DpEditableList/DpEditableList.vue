@@ -119,18 +119,18 @@ export default {
     },
   },
 
+  data () {
+    return {
+      isFormVisible: false,
+      currentlyUpdating: ''
+    }
+  },
+
   watch: {
     closeOnSuccess (newVal) {
       if (newVal) {
         this.resetForm()
       }
-    }
-  },
-
-  data () {
-    return {
-      isFormVisible: false,
-      currentlyUpdating: ''
     }
   },
 

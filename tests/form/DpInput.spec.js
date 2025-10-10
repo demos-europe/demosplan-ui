@@ -83,9 +83,9 @@ describe('DpInput', () => {
     })
 
     const input = wrapperWithClass.find('input')
-    // data-test should be passed through
+    // Data-test should be passed through
     expect(input.attributes('data-test')).toBe('test-value')
-    // class should not be on the input (it stays on the wrapper)
+    // Class should not be on the input (it stays on the wrapper)
     expect(input.attributes('class')).not.toContain('custom-class')
   })
 })

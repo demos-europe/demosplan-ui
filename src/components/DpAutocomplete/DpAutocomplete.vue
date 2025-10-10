@@ -1,140 +1,143 @@
 <template>
   <div class="relative">
-    <!-- Label displayed on small screens if search button is used -->
-    <label
-      v-if="searchButton"
-      id="autocomplete-label"
-      for="input-box"
-      class="mb-1 md:hidden">
-      {{ placeholder }}
-    </label>
-    <!-- Search container -->
-    <div
-      aria-haspopup="listbox"
-      aria-controls="options-list"
-      :aria-expanded="isOptionsListVisible"
-      :class="[
-        isInputFocused ? 'border-interactive' : 'border-gray-300',
-        searchButton && isPlaceholderVisible ? 'justify-between' : 'justify-end',
-        { 'focus-within:ring-1 focus-within:ring-interactive': isInputFocused }
-      ]"
-      class="border border-neutral rounded-md flex items-center overflow-hidden relative transition-colors duration-200 ease-in-out"
-      role="combobox"
-      :style="boxHeightStyle"
-      tabindex="0"
-      @mousedown.stop.prevent="focusInput">
-      <!-- Placeholder, if search button is used only displayed on lap-up screens -->
-      <label
-        id="autocomplete-label"
-        for="input-box"
-        :class="{
-          'h-full w-full px-1 py-[2px] text-gray-400 items-center m-0': true,
-          'flex': !searchButton,
-          'hidden md:flex': searchButton,
-          'md:absolute md:pointer-events-none sr-only': !isPlaceholderVisible
-        }">
-        {{ placeholder }}
-      </label>
-      <!-- Placeholder for small screens if search button is used -->
+    <dp-resettable-input
+      :id="id"
+      ref="suggestionInput"
+      v-model="currentQuery"
+      :input-attributes="{
+        placeholder: placeholder,
+        'aria-labelledby': ariaLabelledby,
+        'aria-haspopup': 'listbox',
+        'aria-controls': 'suggestions-list',
+        'aria-expanded': isOptionsListVisible ? 'true' : 'false',
+        'aria-activedescendant': activeDescendantId,
+        'data-cy': dataCy,
+        autocomplete: 'off'
+      }"
+      :default-value="defaultValue"
+      :required="required"
+      :rounded="rounded"
+      @blur="handleBlur"
+      @focus="handleFocus"
+      @input="handleInput"
+      @keydown="handleKeydown"
+      @keyup="handleKeyup"
+      @reset="handleReset">
+
       <template v-if="searchButton">
-        <span
-          :class="{ 'hidden': !isPlaceholderVisible }"
-          class="md:hidden h-full w-[80%] px-1 py-[2px] text-gray-400 flex items-center m-0">
-          {{ de.search.searching }}
-        </span>
+        <dp-button
+          class="search h-[32px] w-[34px] justify-center rounded-r-md rounded-l-none border !border-l-1 z-[5] -ml-px"
+          data-cy="suggestionSearchButton"
+          hide-text
+          icon="search"
+          :text="searchButtonText"
+          variant="outline"
+          @click="triggerSearch" />
       </template>
-      <div
-        id="input-box"
-        ref="input"
-        role="textbox"
-        :class="{
-          'sr-only': isPlaceholderVisible,
-          'min-w-[10px] self-start': isInputFocused,
-          'w-auto': isInputFocused && !searchButton,
-          'w-full': !isInputFocused || searchButton,
-        }"
-        class="py-[2px] px-1 outline-none whitespace-pre overflow-hidden"
-        contenteditable="true"
-        tabindex="0"
-        aria-labelledby="autocomplete-label"
-        :style="boxHeightStyle"
-        @mousedown.stop.prevent="focusInput"
-        @keydown.stop="runSpecialKeys"
-        @focusout="isInputFocused = false" />
-      <dp-button
-        v-if="(searchButton && !isPlaceholderVisible) || isPlaceholderVisible"
-        class="md:hidden search h-[34px] w-[34px] justify-center rounded-r-md rounded-l-none border-2 !border-l-1 z-[5] -ml-px -mr-px"
-        data-cy="handleSearch"
-        hide-text
-        icon="search"
-        :text="de.search.searching"
-        variant="outline"
-        @click="triggerSearch" />
-      <div
-        v-show="isInputFocused"
-        :style="boxHeightStyle"
-        class="w-auto max-w-full py-[2px] text-gray-300 overflow-hidden whitespace-pre flex items-center"
-        aria-hidden="true">
-        {{ completion }}
-      </div>
+    </dp-resettable-input>
+
+    <!-- Screen reader live region for announcements -->
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only">
+      {{ screenReaderStatus }}
     </div>
 
     <!-- Options list -->
     <div class="relative z-flyout">
-      <ol
-        v-if="isOptionsListVisible"
-        id="options-list"
+      <div
+        v-if="isOptionsListVisible || (isLoading && isInputFocused && currentQuery.length >= minChars)"
+        id="suggestions-list"
         role="listbox"
-        class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]">
-        <li
-          v-for="(option, idx) in props.options"
-          :key="option[label] + idx"
-          :class="{ 'bg-gray-200': idx === listPosition }"
-          class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
-          role="option"
-          :aria-selected="idx === listPosition"
-          tabindex="0"
-          @mousedown.stop.prevent="selectCurrentOption(option as Record<string, unknown>)">
-          <slot
-            name="option"
-            :option="option">
-            {{ option[label] }}
-          </slot>
-        </li>
-        <li
-          v-if="props.options.length === 0"
+        class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]"
+        @mouseleave="listPosition = -1">
+        <div
+          v-if="isLoading"
           class="text-gray-500 px-2 py-1">
-          {{ noResultsText }}
-        </li>
-      </ol>
+          {{ de.search.running }}
+        </div>
+        <template v-else>
+          <div
+            v-for="(option, idx) in options"
+            :id="getOptionId(idx)"
+            :key="getOptionKey(option, idx)"
+            :class="idx === listPosition ? 'bg-interactive-subtle-hover text-interactive-hover font-bold' : ''"
+            class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
+            role="option"
+            :aria-selected="idx === listPosition ? 'true' : 'false'"
+            @mousedown.stop.prevent="selectOption(option)"
+            @mouseenter="listPosition = idx">
+            <slot
+              name="option"
+              :option="option">
+              {{ option[label] }}
+            </slot>
+          </div>
+          <div
+            v-if="options.length === 0 && showNoResults"
+            class="text-gray-500 px-2 py-1">
+            {{ noResultsText }}
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  compatConfig: {
+    COMPONENT_V_MODEL: false
+  }
+}
+</script>
+
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
+import DpResettableInput from '~/components/DpResettableInput'
 import DpButton from '~/components/DpButton'
+import debounce from '~/utils/debounce'
 
 /**
- * This component provides an autocomplete input field with dropdown suggestions.
- * It fetches suggestions based on user input via an API call.
+ * DpAutocomplete - A suggestion input component with dropdown functionality.
+ * Provides real-time suggestions based on user input via API calls.
  */
 
-// Props
 const props = defineProps({
-  /**
-   * Height of the autocomplete box
-   */
-  height: {
+  ariaLabelledby: {
     type: String,
     required: false,
-    default: '28px'
+    default: null
+  },
+
+  dataCy: {
+    type: String,
+    required: false,
+    default: ''
   },
 
   /**
-   * The property name from the options objects to display
+   * Default value for reset functionality
+   */
+  defaultValue: {
+    type: String,
+    required: false,
+    default: ''
+  },
+
+  /**
+   * Unique identifier for the input
+   */
+  id: {
+    type: String,
+    required: true
+  },
+
+  /**
+   * The property name from options objects to display
    */
   label: {
     type: String,
@@ -160,9 +163,6 @@ const props = defineProps({
     default: ''
   },
 
-  /**
-   * Text to display when no results are found
-   */
   noResultsText: {
     type: String,
     required: false,
@@ -179,12 +179,18 @@ const props = defineProps({
   },
 
   /**
-   * Placeholder text to display when the input is empty
+   * Placeholder text for the input
    */
   placeholder: {
     type: String,
     required: false,
     default: de.placeholderAutoSuggest
+  },
+
+  required: {
+    type: Boolean,
+    required: false,
+    default: false
   },
 
   /**
@@ -195,193 +201,328 @@ const props = defineProps({
     required: true
   },
 
+  rounded: {
+    type: String,
+    required: false,
+    default: 'full',
+    validator: (prop: string) => ['full', 'left', 'right'].includes(prop)
+  },
+
+  /**
+   * Show search button inside input
+   */
   searchButton: {
     type: Boolean,
     required: false,
-    default: false
+    default: true
+  },
+
+  /**
+   * Aria-label and title for icon-only search button
+   */
+  searchButtonText: {
+    type: String,
+    required: false,
+    default: de.search.searching
   }
 })
 
 const emit = defineEmits([
-  'update:modelValue',
-  'search-changed',
-  'selected',
+  'blur',
+  'focus',
+  'reset',
   'search',
-  'searched'
+  'search-changed',
+  'searched',
+  'selected',
+  'update:modelValue'
 ])
 
-const input = ref<HTMLElement | null>(null)
+const suggestionInput = ref<InstanceType<typeof DpResettableInput> | null>(null)
 const currentQuery = ref(props.modelValue)
-const listPosition = ref(-1)
-const isOpenList = ref(true)
 const isInputFocused = ref(false)
 const isLoading = ref(false)
-
-const boxHeightNumber = computed(() => {
-  return parseInt(props.height.replace('px', ''))
-})
-
-const boxHeightStyle = computed(() => {
-  return `height: ${props.height}; line-height: ${boxHeightNumber.value - 8}px;`
-})
-
-const completion = computed(() => {
-  if (!currentQuery.value || currentQuery.value.length === 0) {
-    return ''
-  }
-
-  const reg = new RegExp(`^(${currentQuery.value})(.+)`, 'i')
-
-  return props.options.reduce((acc: string, val: Record<string, unknown>) => {
-    const isMatching = (val[props.label] as string)?.match?.(reg)
-
-    if (!isMatching) {
-      return acc
-    }
-
-    if (acc === '') {
-      return isMatching[2]
-    }
-
-    if (isMatching && (val[props.label] as string).length < acc.length) {
-      return isMatching[2]
-    }
-
-    return acc
-  }, '')
-})
+const listPosition = ref(-1)
+const showNoResults = ref(false)
+const isBackspacePressed = ref(false)
+/**
+ * Track timeout for blur event, because after this timeout, the suggestions list is closed.
+ * So when the user e.g. clicks the reset button, then focuses the input again,
+ * the blur event (triggered by clicking the reset button) would hide the suggestions
+ * list after this timeout by setting isInputFocused to false. So no suggestions
+ * would be displayed
+ */
+let blurTimeout: ReturnType<typeof setTimeout> | null = null
 
 const isOptionsListVisible = computed(() => {
   return currentQuery.value.length >= props.minChars &&
-    isOpenList.value &&
-    isInputFocused.value
+    isInputFocused.value &&
+    (props.options.length > 0 || showNoResults.value)
 })
 
-const isPlaceholderVisible = computed(() => {
-  return (!isInputFocused.value && (!currentQuery.value || currentQuery.value.length === 0))
+const activeDescendantId = computed(() => {
+  return listPosition.value >= 0 ? getOptionId(listPosition.value) : null
+})
+
+const screenReaderStatus = computed(() => {
+  if (currentQuery.value.length < props.minChars) {
+    return ''
+  }
+
+  if (isLoading.value) {
+    return de.loadingData
+  }
+
+  if (props.options.length === 0 && showNoResults.value) {
+    return de.search.noResults(currentQuery.value)
+  }
+
+  if (props.options.length > 0) {
+    return de.search.resultsHighlighted(props.options.length, listPosition.value)
+  }
+
+  return ''
 })
 
 watch(() => props.modelValue, (newVal) => {
   if (currentQuery.value !== newVal) {
     currentQuery.value = newVal
-    setTextContent(newVal)
   }
 })
 
 watch(() => props.options, () => {
-  // Reset list position when options change
   listPosition.value = -1
+  showNoResults.value = currentQuery.value.length >= props.minChars && props.options.length === 0
 })
 
-// Methods
-function focusInput() {
-  isInputFocused.value = true
-  const el = input.value
+watch(isInputFocused, (newVal) => {
+}, { immediate: true })
 
-  if (!el) {
-    return
+const getOptionId = (idx: number): string => {
+  return `${props.id}-option-${idx}`
+}
+
+const getOptionKey = (option: Record<string, unknown>, idx: number): string => {
+  return `${option[props.label]}_${idx}`
+}
+
+const clearBlurTimeout = () => {
+  if (blurTimeout) {
+    clearTimeout(blurTimeout)
+    blurTimeout = null
   }
+}
 
+const clearOptions = () => {
+  emit('search-changed', { data: {} })
+}
+
+const focusInput = () => {
   nextTick(() => {
-    if (currentQuery.value) {
-      if (document.createRange && window.getSelection) {
-        const range = document.createRange()
-        const sel = window.getSelection()
-
-        if (el.childNodes.length > 0) {
-          const node = el.childNodes[0]
-          range.setStart(node, node.textContent?.length || 0)
-          range.collapse(true)
-          sel?.removeAllRanges()
-          sel?.addRange(range)
-        }
-      }
-    }
-    el.focus()
+    suggestionInput.value?.$el?.querySelector('input')?.focus()
   })
 }
 
-function getTextContent(el = input.value) {
-  return el?.textContent || ''
+const startSearch = (searchString: string) => {
+  clearOptions()
+  isLoading.value = true
+  showNoResults.value = false
+  isInputFocused.value = true
+  debouncedFetchSuggestions(searchString)
 }
 
-function runSpecialKeys(e: KeyboardEvent) {
-  const key = e.key
+/**
+ * KEYBOARD EVENT HANDLERS
+ * For accessibility and navigation
+ * Handle arrow keys, enter, escape, home, end, tab, and blur events.
+ */
 
-  if (key === 'Tab' && completion.value) {
-    e.preventDefault()
-    currentQuery.value += completion.value
-    setTextContent(currentQuery.value)
-    focusInput()
-    emit('update:modelValue', currentQuery.value)
-  } else if (key === 'ArrowDown' || key === 'Down') {
-    e.preventDefault()
-    if (listPosition.value < props.options.length - 1) {
-      listPosition.value += 1
-    }
-  } else if (key === 'ArrowUp' || key === 'Up') {
-    e.preventDefault()
-    if (listPosition.value > -1) {
-      listPosition.value -= 1
-    }
-  } else if (key === 'Enter') {
-    e.preventDefault()
-    if (listPosition.value > -1 && props.options[listPosition.value]) {
-      selectCurrentOption(props.options[listPosition.value] as Record<string, unknown>)
-    } else {
-      triggerSearch()
-    }
-  } else if (key === 'Escape') {
-    e.preventDefault()
-    isOpenList.value = false
+const handleArrowDown = (event: KeyboardEvent) => {
+  event.preventDefault()
+
+  if (isOptionsListVisible.value && props.options.length > 0) {
+    listPosition.value = listPosition.value < props.options.length - 1
+      ? listPosition.value + 1
+      : 0
   }
 }
 
-function selectCurrentOption (option: Record<string, unknown>) {
-  if (!option) return
+const handleArrowUp = (event: KeyboardEvent) => {
+  event.preventDefault()
 
-  currentQuery.value = option[props.label] as string
-  setTextContent(currentQuery.value)
-  listPosition.value = -1
+  if (isOptionsListVisible.value && props.options.length > 0) {
+    listPosition.value = listPosition.value > 0
+      ? listPosition.value - 1
+      : props.options.length - 1
+  }
+}
 
-  emit('selected', option)
-  emit('update:modelValue', currentQuery.value)
+const handleBlur = () => {
+  // Delay blur to ensure option selection completes before hiding the list
+  blurTimeout = setTimeout(() => {
+    isInputFocused.value = false
+    emit('blur')
+  }, 150)
+}
 
-  isOpenList.value = false
+const handleEnd = (event: KeyboardEvent) => {
+  event.preventDefault()
+
+  if (isOptionsListVisible.value && props.options.length > 0) {
+    listPosition.value = props.options.length - 1
+  }
+}
+
+const handleEnter = (event: KeyboardEvent) => {
+  event.preventDefault()
+
+  if (listPosition.value >= 0 && props.options[listPosition.value]) {
+    selectOption(props.options[listPosition.value] as Record<string, unknown>)
+  } else {
+    triggerSearch()
+  }
+}
+
+const handleEscape = (event: KeyboardEvent) => {
+  event.preventDefault()
+
+  if (isOptionsListVisible.value) {
+    isInputFocused.value = false
+    listPosition.value = -1
+  }
+}
+
+/**
+ * To avoid that a blur event that was triggered shortly before the focus event
+ * sets isInputFocused to false after the timeout, overriding our setting it to true here,
+ * we clear the timeout if it exists.
+ * This issue can happen when the user clicks the reset button and then focuses the input again.
+ */
+const handleFocus = () => {
+  clearBlurTimeout()
+  isInputFocused.value = true
+  emit('focus')
+}
+
+const handleHome = (event: KeyboardEvent) => {
+  event.preventDefault()
+
+  if (isOptionsListVisible.value && props.options.length > 0) {
+    listPosition.value = 0
+  }
+}
+
+const handleReset = () => {
+  /**
+   * Prevent blur timeout from hiding suggestions after resetting, which might
+   *  override setting isInputFocused to true below
+   */
+  clearBlurTimeout()
+
+  currentQuery.value = props.defaultValue
+  emit('update:modelValue', props.defaultValue)
+  emit('reset')
+  clearOptions()
+  showNoResults.value = false
+  isInputFocused.value = true
+
   focusInput()
 }
 
-function setTextContent (value: string, el = input.value) {
-  if (el) {
-    el.textContent = value
+const handleTab = () => {
+  if (isOptionsListVisible.value) {
+    isInputFocused.value = false
+    listPosition.value = -1
   }
 }
 
-function triggerSearch () {
-  emit('searched', currentQuery.value)
-  isOpenList.value = false
+const handleKeydown = (event: KeyboardEvent) => {
+  // Track backspace key press
+  if (event.key === 'Backspace') {
+    isBackspacePressed.value = true
+  } else if (event.key.length === 1) {
+    // Reset backspace flag when regular character keys are pressed
+    isBackspacePressed.value = false
+  }
+
+  const handlers: Record<string, (event: KeyboardEvent) => void> = {
+    'ArrowDown': handleArrowDown,
+    'Down': handleArrowDown,
+    'ArrowUp': handleArrowUp,
+    'Up': handleArrowUp,
+    'Home': handleHome,
+    'End': handleEnd,
+    'Tab': handleTab,
+    'Enter': handleEnter,
+    'Escape': handleEscape
+  }
+
+  const handler = handlers[event.key]
+
+  if (handler) {
+    handler(event)
+  }
 }
 
-function updateValue () {
-  const content = getTextContent()
+const handleKeyup = (event: KeyboardEvent) => {
+  // When backspace is released, trigger search if conditions are met
+  if (event.key === 'Backspace' && isBackspacePressed.value) {
+    isBackspacePressed.value = false
 
-  if (content !== currentQuery.value) {
-    currentQuery.value = content
-    isOpenList.value = true
-    emit('update:modelValue', currentQuery.value)
-
-    if (content && content.length >= props.minChars) {
-      fetchOptions(content)
+    if (currentQuery.value && currentQuery.value.length >= props.minChars) {
+      startSearch(currentQuery.value)
     }
   }
 }
 
-async function fetchOptions(searchString: string) {
+const selectOption = (option: Record<string, unknown>) => {
+  if (!option) {
+    return
+  }
+
+  currentQuery.value = option[props.label] as string
+  emit('update:modelValue', currentQuery.value)
+  emit('selected', option)
+
+  listPosition.value = -1
+  isInputFocused.value = false
+  showNoResults.value = false
+
+  focusInput()
+}
+
+const handleInput = (value: string) => {
+  currentQuery.value = value
+  emit('update:modelValue', value)
+
+  if (value && value.length >= props.minChars) {
+    // Trigger search only if backspace is not pressed
+    if (isBackspacePressed.value) {
+      isInputFocused.value = true
+    } else {
+      startSearch(value)
+    }
+  } else {
+    // Reset loading and no-results state when below minimum characters
+    isLoading.value = false
+    showNoResults.value = false
+    clearOptions()
+  }
+}
+
+const triggerSearch = () => {
+  emit('searched', currentQuery.value)
+  emit('search', currentQuery.value)
+  isInputFocused.value = false
+}
+
+const fetchSuggestions = async (searchString: string) => {
   if (!searchString || searchString.length < props.minChars) {
     return
   }
 
   isLoading.value = true
+  showNoResults.value = false
 
   try {
     const route = props.routeGenerator(searchString)
@@ -393,41 +534,18 @@ async function fetchOptions(searchString: string) {
       data: {}
     })
 
-    // Only emit results that match the current search -> prevents race conditions
+    // Only emit results that match current search to prevent race conditions
     if (currentQuery.value === searchString) {
       emit('search-changed', response)
     }
   } catch (e) {
-    console.error('Error fetching autocomplete options:', e)
+    console.error('Error fetching suggestions:', e)
   } finally {
     isLoading.value = false
   }
 }
 
-const observer = new MutationObserver((mutations) => {
-  const hasContentChanged = mutations.some(mutation =>
-    // Direct text change
-    mutation.type === 'characterData' ||
-    // Nodes added or removed
-    mutation.addedNodes.length > 0 ||
-    mutation.removedNodes.length > 0
-  )
+// Debounced version with 300ms delay
+const debouncedFetchSuggestions = debounce(fetchSuggestions, 300)
 
-  if (hasContentChanged) {
-    updateValue()
-  }
-})
-
-// Setup mutation observer to track contenteditable changes
-onMounted(() => {
-  observer.observe(input.value, {
-    childList: true,
-    characterData: true,
-    subtree: true
-  })
-})
-
-onUnmounted(() => {
-  observer.disconnect()
-})
 </script>

@@ -11,6 +11,7 @@
       :text="label.text"
       class="mb-0.5" />
     <input
+      v-bind="inputAttrs"
       :id="id"
       :name="name !== '' ? name : null"
       :class="prefixClass(classes)"
@@ -34,14 +35,17 @@
       @blur="emit('blur', $event.target.value)"
       @focus="emit('focus')"
       @input="onInput"
+      @keydown="emit('keydown', $event)"
       @keydown.enter="handleEnter">
   </div>
 </template>
 
 <script setup lang="ts">
 import { exactlengthHint, maxlengthHint, minlengthHint, prefixClass } from '~/utils'
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import DpLabel from '~/components/DpLabel'
+
+const attrs = useAttrs()
 
 const props = defineProps({
   /**
@@ -239,18 +243,36 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['blur', 'enter', 'focus', 'input', 'update:modelValue'])
-
 /**
  *  In Vue-2-compat mode (@vue/compat), v-model still uses value/input.
- *  To enable Vue 3’s modelValue/update:modelValue behavior here,
+ *  To enable Vue 3's modelValue/update:modelValue behavior here,
  *  explicitly declare it via the model option:
  */
 defineOptions({
+  inheritAttrs: false,
   model: {
     prop: 'modelValue',
     event: 'update:modelValue'
   }
+})
+
+const emit = defineEmits([
+  'blur',
+  'enter',
+  'focus',
+  'input',
+  'keydown',
+  'update:modelValue'
+])
+
+/**
+ * Filter out 'class' attribute so it's passed to the outer div, pass all other
+ *  attributes to the input element
+ */
+const inputAttrs = computed(() => {
+  const { class: _, ...rest } = attrs
+
+  return rest
 })
 
 const classes = computed(() => {

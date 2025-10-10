@@ -12,20 +12,24 @@
     @blur="emit('blur', $event)"
     @click="emit('click', $event)"
     @focus="emit('focus', $event)"
-    @mousedown="emit('mousedown', $event)">
+    @mousedown="emit('mousedown', $event)"
+  >
     <dp-icon
       v-if="icon"
       aria-hidden="true"
       :icon="icon"
-      :size="iconSize" />
+      :size="iconSize"
+    />
     <span
       v-if="!hideText"
-      v-text="text" />
+      v-text="text"
+    />
     <dp-icon
       v-if="iconAfter"
       aria-hidden="true"
       :icon="iconAfter"
-      :size="iconSize" />
+      :size="iconSize"
+    />
   </component>
 </template>
 
@@ -48,7 +52,7 @@ const props = defineProps({
   busy: {
     type: [Boolean, null],
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -58,13 +62,13 @@ const props = defineProps({
     type: String as PropType<ButtonColor>,
     required: false,
     default: 'primary',
-    validator: (prop: ButtonColor) => ['primary', 'secondary', 'warning'].includes(prop)
+    validator: (prop: ButtonColor) => ['primary', 'secondary', 'warning'].includes(prop),
   },
 
   disabled: {
     type: [Boolean, null],
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -74,7 +78,7 @@ const props = defineProps({
   hideText: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
 
   /**
@@ -84,7 +88,7 @@ const props = defineProps({
   href: {
     type: String,
     required: false,
-    default: '#'
+    default: '#',
   },
 
   /**
@@ -93,7 +97,7 @@ const props = defineProps({
   icon: {
     type: String as PropType<IconName>,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -103,7 +107,7 @@ const props = defineProps({
     type: String as PropType<IconSize>,
     required: false,
     default: 'small',
-    validator: (prop: IconSize) => Object.keys(ICON_SIZES).includes(prop)
+    validator: (prop: IconSize) => Object.keys(ICON_SIZES).includes(prop),
   },
 
   /**
@@ -112,7 +116,7 @@ const props = defineProps({
   iconAfter: {
     type: String as PropType<IconName>,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -121,7 +125,7 @@ const props = defineProps({
   rounded: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
 
   /**
@@ -130,7 +134,7 @@ const props = defineProps({
   text: {
     type: String,
     required: false,
-    default: 'save'
+    default: 'save',
   },
 
   /**
@@ -142,7 +146,7 @@ const props = defineProps({
     type: String as PropType<ButtonType>,
     required: false,
     default: 'button',
-    validator: (prop: ButtonType): boolean  => ['button', 'reset', 'submit'].includes(prop)
+    validator: (prop: ButtonType): boolean  => ['button', 'reset', 'submit'].includes(prop),
   },
 
   /**
@@ -153,15 +157,15 @@ const props = defineProps({
     type: String as PropType<ButtonVariant>,
     required: false,
     default: 'solid',
-    validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop)
-  }
+    validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
+  },
 })
 
 const emit = defineEmits([
   'blur',
   'click',
   'focus',
-  'mousedown'
+  'mousedown',
 ])
 
 const iconOnly = computed(() => (props.icon || props.iconAfter) && props.hideText)
@@ -172,7 +176,7 @@ const classes = computed(() => [
   ...spacingClasses.value,
   props.busy && 'bg-busy animate-busy pointer-events-none',
   props.disabled && 'opacity-40 pointer-events-none',
-  props.rounded ? 'rounded-full' : 'rounded-button'
+  props.rounded ? 'rounded-full' : 'rounded-button',
 ])
 
 const colorClasses = computed(() => {
@@ -222,7 +226,7 @@ const spacingClasses = computed(() => {
   }
   return [
     'space-x-1',
-    padding
+    padding,
   ]
 })
 
@@ -285,7 +289,7 @@ const allColorClasses = {
       hover:border-interactive-subtle-hover\
       focus:border-interactive-subtle-hover\
       focus-visible:border-interactive-subtle-hover\
-      active:border-interactive-subtle-active `
+      active:border-interactive-subtle-active `,
   },
   secondary: {
     solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#595959]/50 ',
@@ -312,7 +316,7 @@ const allColorClasses = {
       hover:border-interactive-secondary-subtle-hover\
       focus:border-interactive-secondary-subtle-hover\
       focus-visible:border-interactive-secondary-subtle-hover\
-      active:border-interactive-secondary-subtle-active `
+      active:border-interactive-secondary-subtle-active `,
   },
   warning: {
     solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#B20000]/50 ',
@@ -339,7 +343,7 @@ const allColorClasses = {
       hover:border-interactive-warning-subtle-hover\
       focus:border-interactive-warning-subtle-hover\
       focus-visible:border-interactive-warning-subtle-hover\
-      active:border-interactive-warning-subtle-active `
-  }
+      active:border-interactive-warning-subtle-active `,
+  },
 }
 </script>

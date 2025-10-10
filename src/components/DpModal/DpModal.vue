@@ -1,29 +1,35 @@
 <template>
   <div
     :class="prefixClass('o-modal')"
-    @keydown="checkKeyEvent">
+    @keydown="checkKeyEvent"
+  >
     <transition
       name="content"
       appear
-      @enter="preventScroll">
+      @enter="preventScroll"
+    >
       <aside
         v-if="isOpenModal"
         :aria-label="ariaLabel"
         :class="prefixClass('o-modal__content ' + contentClasses)"
-        role="dialog">
+        role="dialog"
+      >
         <button
           :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
           :aria-label="title"
           :title="title"
-          @click.prevent.stop="toggle()">
+          @click.prevent.stop="toggle()"
+        >
           <dp-icon
             icon="close"
-            size="large" />
+            size="large"
+          />
         </button>
         <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
           <h2
             v-if="hasHeader"
-            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)">
+            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
+          >
             <slot name="header" />
           </h2>
           <slot name="default" />
@@ -33,11 +39,13 @@
     <transition
       name="backdrop"
       appear
-      @after-leave="preventScroll(false)">
+      @after-leave="preventScroll(false)"
+    >
       <div
         v-if="isOpenModal"
         :class="prefixClass('o-modal__backdrop')"
-        @click.prevent.stop="toggle()" />
+        @click.prevent.stop="toggle()"
+      />
     </transition>
   </div>
 </template>
@@ -51,7 +59,7 @@ export default {
   name: 'DpModal',
 
   components: {
-    DpIcon
+    DpIcon,
   },
 
   mixins: [prefixClassMixin],
@@ -60,33 +68,33 @@ export default {
     ariaLabel: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentBodyClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentHeaderClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     //  Required when toggling modal with toggleByEvent()
     modalId: {
       required: false,
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
@@ -94,14 +102,14 @@ export default {
       isOpenModal: false,
       lastFocusedElement: '',
       focusableElements: [],
-      title: de.window.close
+      title: de.window.close,
     }
   },
 
   computed: {
     hasHeader () {
       return typeof this.$slots.header !== 'undefined'
-    }
+    },
   },
 
   methods: {
@@ -204,13 +212,13 @@ export default {
           this.focusableElements[idxToFocus].focus()
         }
       }
-    }
+    },
   },
 
   updated () {
     // When component is re-rendered, we have to collect all focusable elements again, as new ones may have appeared
     this.$nextTick(() => this.getFocusableElements())
-  }
+  },
 
 }
 </script>

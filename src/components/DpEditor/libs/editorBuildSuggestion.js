@@ -36,7 +36,7 @@ export default ({ suggestions, matcher }) => ({
           theme: 'dark',
           placement: 'top-start',
           inertia: true,
-          duration: [400, 200]
+          duration: [400, 200],
         })
       },
 

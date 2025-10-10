@@ -1,7 +1,7 @@
 const runLabelTests = (wrapper) => describe('ComponentWithLabel', () => {
   it('displays a label if label is defined', async () => {
     const label  = {
-      text: 'someLabel'
+      text: 'someLabel',
     }
     await wrapper.setProps({ label: label })
     const labelStub = wrapper.find('dp-label-stub')
@@ -11,7 +11,7 @@ const runLabelTests = (wrapper) => describe('ComponentWithLabel', () => {
 
   it('does not display a label if label is not defined', async () => {
     const label = {
-      text: ''
+      text: '',
     }
     await wrapper.setProps({ label: label })
 

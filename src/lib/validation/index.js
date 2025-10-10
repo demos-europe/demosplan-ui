@@ -23,5 +23,5 @@ export {
   validateForm,
   validateInput,
   validateMultiselect,
-  validateTiptap
+  validateTiptap,
 }

@@ -8,7 +8,7 @@ export default {
        * DpSelectAll adds the itemId and the corresponding {Boolean} selectedStatus of all items to this Object
        * For huge numbers of items, this is more performant than using an array of itemIds
        */
-      itemSelections: {}
+      itemSelections: {},
     }
   },
 
@@ -41,9 +41,9 @@ export default {
       return Object.keys(items).reduce((acc, key) => {
         return {
           ...acc,
-          ...{ [key]: status }
+          ...{ [key]: status },
         }
       }, {})
-    }
-  }
+    },
+  },
 }

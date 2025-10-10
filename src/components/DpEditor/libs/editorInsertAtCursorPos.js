@@ -26,5 +26,5 @@ export default Node.create({
     const transaction = state.tr.insert(selection.anchor, slice.content)
 
     dispatch(transaction)
-  }
+  },
 })

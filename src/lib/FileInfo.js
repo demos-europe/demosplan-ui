@@ -13,7 +13,7 @@ const fileTypes = {
   csv: ['.csv'],
   'pdf-video': ['.pdf', 'video/*'],
   'pdf-zip-video': ['.pdf', 'video/*', '.zip'],
-  xls: ['.xls', '.xlsx', '.ods']
+  xls: ['.xls', '.xlsx', '.ods'],
 }
 
 const mimeTypes = {
@@ -56,7 +56,7 @@ const mimeTypes = {
   'application/vnd.ms-powerpoint': 'ppt',
   // Open office,
   'application/vnd.oasis.opendocument.text': 'odt',
-  'application/vnd.oasis.opendocument.spreadsheet': 'ods'
+  'application/vnd.oasis.opendocument.spreadsheet': 'ods',
 }
 
 /**
@@ -118,7 +118,7 @@ const convertMimeType = function (value) {
 const getFileInfo = function (fileString = '', options = {}) {
   const defaults = {
     sizeScale: 'KB',
-    separator: ':'
+    separator: ':',
   }
 
   const mergedOptions = { ...defaults, ...options }
@@ -132,7 +132,7 @@ const getFileInfo = function (fileString = '', options = {}) {
       hash: fileArray[1],
       size: convertSize(mergedOptions.sizeScale, fileArray[2]),
       mimeType: convertMimeType(fileArray[3]),
-      id: fileArray[1] || ''
+      id: fileArray[1] || '',
     }
   } else {
     fileObject = {
@@ -140,7 +140,7 @@ const getFileInfo = function (fileString = '', options = {}) {
       hash: fileArray[0],
       size: fileArray[0],
       mimeType: fileArray[0],
-      id: fileArray[0]
+      id: fileArray[0],
     }
   }
 

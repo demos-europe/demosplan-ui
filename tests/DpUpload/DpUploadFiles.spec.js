@@ -13,13 +13,13 @@ describe.skip('DpUploadFiles', () => {
 
   it('should update Files-list after adding a file', () => {
     const File = {
-      hash: 'xxx-qqq-sss'
+      hash: 'xxx-qqq-sss',
     }
 
     const instance = shallowMountWith(DpUploadFiles, {
       props: {
-        allowedFileTypes: 'pdf'
-      }
+        allowedFileTypes: 'pdf',
+      },
     })
 
     const comp = instance.vm
@@ -31,14 +31,14 @@ describe.skip('DpUploadFiles', () => {
 
   it('should update filterhash-list if we need a hidden input', () => {
     const File = {
-      hash: 'xxx-qqq-sss'
+      hash: 'xxx-qqq-sss',
     }
 
     const instance = shallowMount(DpUploadFiles, {
       props: {
         allowedFileTypes: 'pdf',
-        needsHiddenInput: true
-      }
+        needsHiddenInput: true,
+      },
     })
 
     const comp = instance.vm
@@ -51,18 +51,18 @@ describe.skip('DpUploadFiles', () => {
 
   it('should reset the files and filehash-list after calling the clear-list method', () => {
     const File = {
-      hash: 'xxx-qqq-sss'
+      hash: 'xxx-qqq-sss',
     }
 
     const File2 = {
-      hash: 'yyy-qqq-sss'
+      hash: 'yyy-qqq-sss',
     }
 
     const instance = shallowMount(DpUploadFiles, {
       props: {
         allowedFileTypes: 'pdf',
-        needsHiddenInput: true
-      }
+        needsHiddenInput: true,
+      },
     })
 
     const comp = instance.vm

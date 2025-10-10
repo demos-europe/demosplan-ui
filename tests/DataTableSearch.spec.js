@@ -3,7 +3,7 @@ import DataTableSearch from '~/components/DpDataTableExtended/DataTableSearch'
 describe('DataTableSearch a utility function to perform full-text search in strings', () => {
   it('should escape all regex special chars', () => {
     const itemsToSearch = [
-      { text: 'Hello, this is some text.' }
+      { text: 'Hello, this is some text.' },
     ]
     const fields = ['text']
     const searchTerm = 'he*l+l.l?o( t)h[i]s^ is $some|'
@@ -13,7 +13,7 @@ describe('DataTableSearch a utility function to perform full-text search in stri
 
   it('should properly match text containing special chars', () => {
     const itemsToSearch = [
-      { text: 'Hello? import * from ./../stars.js' }
+      { text: 'Hello? import * from ./../stars.js' },
     ]
     const fields = ['text']
     const searchTerm = 'Hello? import * from ./../stars.js'
@@ -23,7 +23,7 @@ describe('DataTableSearch a utility function to perform full-text search in stri
 
   it('should match even if number of whitespaces differ', () => {
     const itemsToSearch = [
-      { text: 'Hello, this is some text.' }
+      { text: 'Hello, this is some text.' },
     ]
     const fields = ['text']
     const searchTerm = 'Hello,  this is some text.'

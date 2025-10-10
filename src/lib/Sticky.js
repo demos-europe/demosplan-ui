@@ -27,7 +27,7 @@ export default function Sticky () {
       elementOffset,
       stickToDirection,
       stickFromBreakpoint,
-      containerElement
+      containerElement,
     ))
   })
 

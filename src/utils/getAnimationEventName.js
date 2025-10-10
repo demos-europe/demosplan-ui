@@ -10,7 +10,7 @@ export default function getAnimationEventName () {
     animation: 'animationend',
     OAnimation: 'oAnimationEnd',
     MozAnimation: 'animationend',
-    WebkitAnimation: 'webkitAnimationEnd'
+    WebkitAnimation: 'webkitAnimationEnd',
   }
   let t
 

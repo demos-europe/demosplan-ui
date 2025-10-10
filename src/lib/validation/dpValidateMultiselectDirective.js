@@ -34,7 +34,7 @@ const dpValidateMultiselectDirective = {
 
     component.$el.setAttribute('data-dp-validate-is-valid', isValid)
     validateMultiselect(component.$el)
-  }
+  },
 }
 
 function checkValue (val) {

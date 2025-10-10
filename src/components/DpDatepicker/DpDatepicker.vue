@@ -2,7 +2,8 @@
   <div
     :id="id"
     :data-cy="dataCy"
-    @input.stop.prevent="emitUpdate" />
+    @input.stop.prevent="emitUpdate"
+  />
 </template>
 
 <script>
@@ -16,31 +17,31 @@ export default {
     calendarsAfter: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     calendarsBefore: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'datepicker'
+      default: 'datepicker',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -48,7 +49,7 @@ export default {
      */
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     /**
@@ -57,7 +58,7 @@ export default {
     maxDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -66,25 +67,25 @@ export default {
     minDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     placeholder: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -93,8 +94,8 @@ export default {
     value: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
@@ -105,8 +106,8 @@ export default {
         locale: 'DE-de',
         dateFormat: 'dd.mm.yyyy',
         id: this.id,
-        inputClass: 'o-form__control-input w-full'
-      }
+        inputClass: 'o-form__control-input w-full',
+      },
     }
   },
 
@@ -144,7 +145,7 @@ export default {
 
     disabled: function () {
       this.datepicker = this.datepicker.updateDatepicker({ disabled: this.disabled })
-    }
+    },
   },
 
   methods: {
@@ -164,7 +165,7 @@ export default {
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
-    }
+    },
   },
 
   mounted () {
@@ -176,11 +177,11 @@ export default {
       ...this.name !== '' ? { inputName: this.name } : {},
       ...{ required: this.required },
       ...{ disabled: this.disabled },
-      ...this.localConfig
+      ...this.localConfig,
     }
     this.datepicker = Datepicker(config)
     this.value !== '' && this.datepicker.setDate(this.value)
     this.addErrorFieldnameAttribute()
-  }
+  },
 }
 </script>

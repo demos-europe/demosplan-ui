@@ -9,13 +9,13 @@ export class SelectionManager {
       leavesSelectable: false,
       selectOn: {
         childSelect: false,
-        parentSelect: false
+        parentSelect: false,
       },
       deselectOn: {
         childDeselect: false,
-        parentDeselect: false
+        parentDeselect: false,
       },
-      ...options
+      ...options,
     }
 
     // High-performance data structures
@@ -100,7 +100,7 @@ export class SelectionManager {
     // Batch the operation
     this.pendingOperations.push({
       nodeId,
-      newState
+      newState,
     })
 
     if (!this.isProcessingBatch) {
@@ -220,7 +220,7 @@ export class SelectionManager {
     }
 
     const allSiblingsSelected = Array.from(siblings).every(siblingId =>
-      this.isSelected(siblingId) || !this._isNodeSelectable(siblingId)
+      this.isSelected(siblingId) || !this._isNodeSelectable(siblingId),
     )
 
     if (allSiblingsSelected) {
@@ -249,7 +249,7 @@ export class SelectionManager {
     }
 
     const noSiblingsSelected = Array.from(siblings).every(siblingId =>
-      !this.isSelected(siblingId)
+      !this.isSelected(siblingId),
     )
 
     if (noSiblingsSelected) {
@@ -296,7 +296,7 @@ export class SelectionManager {
             nodeId: nodeId,
             nodeType: this.nodeType.get(nodeId),
             nodeIsSelected: true,
-            explicitlySelected: this.explicitlySelected.has(nodeId)
+            explicitlySelected: this.explicitlySelected.has(nodeId),
           }
 
           result.push(enrichedNode)
@@ -325,7 +325,7 @@ export class SelectionManager {
           ...node,
           nodeIsSelected: isSelected,
           nodeId: node.id,
-          nodeType: this.nodeType.get(node.id)
+          nodeType: this.nodeType.get(node.id),
         }
       }
 
@@ -335,7 +335,7 @@ export class SelectionManager {
 
         // Only create new object if children actually changed
         const childrenChanged = updatedChildren.some((child, index) =>
-          child !== node.children[index]
+          child !== node.children[index],
         )
 
         if (childrenChanged) {

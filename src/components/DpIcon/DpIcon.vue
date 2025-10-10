@@ -3,7 +3,8 @@
     :is="_icon"
     :class="proportionClass"
     :size="SIZES[size as IconSize]"
-    :weight="weight" />
+    :weight="weight"
+  />
 </template>
 
 <script setup lang="ts">
@@ -12,19 +13,19 @@ import {
   markRaw,
   PropType,
   toRefs,
-  watchEffect
+  watchEffect,
 } from 'vue'
 
 import {
   iconComponents,
   proportions,
-  SIZES
+  SIZES,
 } from './util/iconConfig'
 
 import {
   IconName,
   IconSize,
-  IconWeight
+  IconWeight,
 } from '../../../types'
 
 import type { Component } from 'vue'
@@ -33,7 +34,7 @@ const props = defineProps({
   icon: {
     type: String as PropType<IconName>,
     required: true,
-    validator: (prop: IconName) => Object.keys(iconComponents).includes(prop)
+    validator: (prop: IconName) => Object.keys(iconComponents).includes(prop),
   },
 
   /**
@@ -47,15 +48,15 @@ const props = defineProps({
     type: String as PropType<IconSize>,
     required: false,
     default: 'medium',
-    validator: (prop: IconSize) => Object.keys(SIZES).includes(prop)
+    validator: (prop: IconSize) => Object.keys(SIZES).includes(prop),
   },
 
   weight: {
     type: String as PropType<IconWeight>,
     required: false,
     default: 'regular',
-    validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop)
-  }
+    validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop),
+  },
 })
 
 /**

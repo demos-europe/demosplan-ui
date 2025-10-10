@@ -3,7 +3,8 @@
     <dp-label
       v-if="label !== ''"
       v-bind="labelProps"
-      class="mb-0.5" /><!--
+      class="mb-0.5"
+    /><!--
  --><textarea
       v-bind="allowedAttributes"
       :id="id"
@@ -17,7 +18,8 @@
       :disabled="disabled"
       :maxlength="maxlength"
       :required="required"
-      @input="$emit('input', currentValue)" />
+      @input="$emit('input', currentValue)"
+    />
   </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
   components: {
     DpLabel: defineAsyncComponent(async () => {
       return await import('../DpLabel/DpLabel')
-    })
+    }),
   },
 
   props: {
@@ -41,7 +43,7 @@ export default {
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -50,19 +52,19 @@ export default {
     dataDpValidateIf: {
       type: [Boolean, String],
       required: false,
-      default: false
+      default: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'textAreaElement'
+      default: 'textAreaElement',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -71,25 +73,25 @@ export default {
     growToParent: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     hint: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     id: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     maxlength: length,
@@ -97,7 +99,7 @@ export default {
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -106,25 +108,25 @@ export default {
     reducedHeight: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     value: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.value,
     }
   },
 
@@ -146,15 +148,15 @@ export default {
         hint: this.maxlength ? [this.hint, maxlengthHint(this.currentValue.length, this.maxlength)] : this.hint,
         required: this.required,
         text: this.label,
-        tooltip: this.tooltip
+        tooltip: this.tooltip,
       }
-    }
+    },
   },
 
   watch: {
     value () {
       this.currentValue = this.value
-    }
-  }
+    },
+  },
 }
 </script>

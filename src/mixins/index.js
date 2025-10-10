@@ -9,5 +9,5 @@ export {
   dpValidateMixin,
   prefixClassMixin,
   sessionStorageMixin,
-  tableSelectAllItems
+  tableSelectAllItems,
 }

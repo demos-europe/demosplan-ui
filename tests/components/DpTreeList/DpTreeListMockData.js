@@ -15,9 +15,9 @@ export const mockNode = {
           "attributes": {},
           "children": [],
           "id": "4",
-          "type": "singleDocument"
-        }
-      ]
+          "type": "singleDocument",
+        },
+      ],
     },
     {
       "id": "5",
@@ -27,11 +27,11 @@ export const mockNode = {
         "attributes": {},
         "children": [],
         "id": "6",
-        "type": "singleDocument"
-      }]
-    }
-    ]
-  }]
+        "type": "singleDocument",
+      }],
+    },
+    ],
+  }],
 }
 
 
@@ -48,9 +48,9 @@ export const mockNodeChildren = [{
         "attributes": {},
         "children": [],
         "id": "4",
-        "type": "singleDocument"
-      }
-    ]
+        "type": "singleDocument",
+      },
+    ],
   },
   {
     "id": "5",
@@ -60,10 +60,10 @@ export const mockNodeChildren = [{
       "attributes": {},
       "children": [],
       "id": "6",
-      "type": "singleDocument"
-    }]
-  }
-  ]
+      "type": "singleDocument",
+    }],
+  },
+  ],
 }]
 
 export const mockUpdatedNodes = {
@@ -94,8 +94,8 @@ export const mockUpdatedNodes = {
         "nodeType": "leaf",
         "nodeId": "4",
         "attributes": {},
-        "children": []
-      }]
+        "children": [],
+      }],
     },
     {
       "id": "5",
@@ -111,11 +111,11 @@ export const mockUpdatedNodes = {
         "nodeType": "leaf",
         "nodeId": "6",
         "attributes": {},
-        "children": []
-      }]
-    }
-    ]
-  }]
+        "children": [],
+      }],
+    },
+    ],
+  }],
 }
 
 export const mockSelectedNodes = [
@@ -150,9 +150,9 @@ export const mockSelectedNodes = [
                 "nodeType": "leaf",
                 "nodeId": "4",
                 "attributes": {},
-                "children": []
-              }
-            ]
+                "children": [],
+              },
+            ],
           },
           {
             "id": "5",
@@ -169,13 +169,13 @@ export const mockSelectedNodes = [
                 "nodeType": "leaf",
                 "nodeId": "6",
                 "attributes": {},
-                "children": []
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                "children": [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     "id": "2",
@@ -200,9 +200,9 @@ export const mockSelectedNodes = [
             "nodeType": "leaf",
             "nodeId": "4",
             "attributes": {},
-            "children": []
-          }
-        ]
+            "children": [],
+          },
+        ],
       },
       {
         "id": "5",
@@ -219,11 +219,11 @@ export const mockSelectedNodes = [
             "nodeType": "leaf",
             "nodeId": "6",
             "attributes": {},
-            "children": []
-          }
-        ]
-      }
-    ]
+            "children": [],
+          },
+        ],
+      },
+    ],
   },
   {
     "id": "3",
@@ -240,9 +240,9 @@ export const mockSelectedNodes = [
         "nodeType": "leaf",
         "nodeId": "4",
         "attributes": {},
-        "children": []
-      }
-    ]
+        "children": [],
+      },
+    ],
   },
   {
     "id": "4",
@@ -251,7 +251,7 @@ export const mockSelectedNodes = [
     "nodeType": "leaf",
     "nodeId": "4",
     "attributes": {},
-    "children": []
+    "children": [],
   },
   {
     "id": "5",
@@ -268,9 +268,9 @@ export const mockSelectedNodes = [
         "nodeType": "leaf",
         "nodeId": "6",
         "attributes": {},
-        "children": []
-      }
-    ]
+        "children": [],
+      },
+    ],
   },
   {
     "id": "6",
@@ -279,6 +279,6 @@ export const mockSelectedNodes = [
     "nodeType": "leaf",
     "nodeId": "6",
     "attributes": {},
-    "children": []
-  }
+    "children": [],
+  },
 ]

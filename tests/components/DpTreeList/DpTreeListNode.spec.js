@@ -26,26 +26,26 @@ describe('DpTreeListNode', () => {
       onMove: jest.fn(),
       options: {},
       parentId: '',
-      parentSelected: false
+      parentSelected: false,
     }
 
     mocks = {
       Translator: {
-        trans: jest.fn(key => key)
+        trans: jest.fn(key => key),
       },
-      $on: jest.fn()
+      $on: jest.fn(),
     }
 
     stubs = {
-      DpTreeListToggle
+      DpTreeListToggle,
     }
 
     wrapper = shallowMount(DpTreeListNode, {
       propsData,
       global: {
         stubs,
-        mocks
-      }
+        mocks,
+      },
     })
   })
 

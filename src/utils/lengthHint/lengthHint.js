@@ -35,7 +35,7 @@ const maxlengthHint = (currentLength, maxlength) => {
     ? de.input.text.maxlength({
       cssClass: (max - currentLength > errorThreshold) ? 'text-status-progress' : 'text-status-failed',
       count: max - currentLength,
-      max
+      max,
     })
     : ''
 }

@@ -2,31 +2,37 @@
   <li
     :id="nodeId"
     class="border--top relative"
-    data-cy="treeListNode">
+    data-cy="treeListNode"
+  >
     <div class="c-treelist__node flex">
       <div
         v-if="isDraggable"
         class="inline-block u-p-0_25 u-pr-0 u-mt-0_125"
-        :class="dragHandle">
+        :class="dragHandle"
+      >
         <dp-icon
           class="c-treelist__drag-handle-icon"
-          icon="drag-handle" />
+          icon="drag-handle"
+        />
       </div>
       <dp-tree-list-checkbox
         v-if="isSelectable"
         :checked="isNodeSelected"
         :name="checkboxIdentifier"
         :string-value="nodeId"
-        @check="handleSelectionToggle" />
+        @check="handleSelectionToggle"
+      />
       <div
         class="flex grow items-start"
-        :style="indentationStyle">
+        :style="indentationStyle"
+      >
         <dp-tree-list-toggle
           v-if="isBranch"
           v-model="isExpanded"
           class="c-treelist__folder text--left u-pv-0_25"
           :class="{ 'pointer-events-none': 0 === children.length }"
-          :icon-class-prop="iconClassFolder" />
+          :icon-class-prop="iconClassFolder"
+        />
         <div class="grow u-pl-0 u-p-0_25">
           <slot
             v-if="isBranch"
@@ -34,13 +40,15 @@
             :node-element="node"
             :node-children="children"
             :node-id="nodeId"
-            :parent-id="parentId" />
+            :parent-id="parentId"
+          />
           <slot
             v-if="isLeaf"
             name="leaf"
             :node-element="node"
             :node-id="nodeId"
-            :parent-id="parentId" />
+            :parent-id="parentId"
+          />
         </div>
       </div>
       <dp-tree-list-toggle
@@ -49,10 +57,12 @@
         v-tooltip="!hasToggle ? translations.noElementsExisting : ''"
         data-cy="treeListChildToggle"
         class="self-start"
-        :disabled="!hasToggle" />
+        :disabled="!hasToggle"
+      />
       <div
         v-else
-        class="min-w-4" />
+        class="min-w-4"
+      />
     </div>
     <component
       :is="draggable ? 'dp-draggable' : 'div'"
@@ -67,7 +77,8 @@
       :is-draggable="hasDraggableChildren ? hasDraggableChildren : null"
       :node-id="nodeId"
       :on-move="onMove"
-      :opts="options.draggable">
+      :opts="options.draggable"
+    >
       <dp-tree-list-node
         v-for="(child, idx) in children"
         v-show="true === isExpanded"
@@ -89,13 +100,16 @@
         @end="handleDrag('end')"
         @node-selected="bubbleSelectionChange"
         @start="handleDrag('start')"
-        @tree:change="bubbleChangeEvent">
+        @tree:change="bubbleChangeEvent"
+      >
         <template
           v-for="slot in Object.keys($slots)"
-          v-slot:[slot]="scope">
+          v-slot:[slot]="scope"
+        >
           <slot
             v-bind="scope"
-            :name="slot" />
+            :name="slot"
+          />
         </template>
       </dp-tree-list-node>
     </component>
@@ -118,28 +132,28 @@ export default {
     DpDraggable,
     DpIcon,
     DpTreeListCheckbox,
-    DpTreeListToggle
+    DpTreeListToggle,
   },
 
   directives: {
-    tooltip: Tooltip
+    tooltip: Tooltip,
   },
 
   props: {
     checkBranch: {
       type: Function,
-      required: true
+      required: true,
     },
 
     children: {
       type: Array,
-      required: true
+      required: true,
     },
 
     draggable: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     /*
@@ -149,7 +163,7 @@ export default {
      */
     handleChange: {
       type: Function,
-      required: true
+      required: true,
     },
 
     /*
@@ -157,60 +171,60 @@ export default {
      */
     handleDrag: {
       type: Function,
-      required: true
+      required: true,
     },
 
     level: {
       type: Number,
-      required: true
+      required: true,
     },
 
     node: {
       type: Object,
-      required: true
+      required: true,
     },
 
     nodeId: {
       type: String,
-      required: true
+      required: true,
     },
 
     onMove: {
       type: Function,
-      required: true
+      required: true,
     },
 
     options: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     parentId: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     selectionManager: {
       type: Object,
       required: false,
-      default: null
+      default: null,
     },
   },
 
   emits: [
     'draggable:change',
     'tree:change',
-    'node-selected'
+    'node-selected',
   ],
 
   data () {
     return {
       isExpanded: false,
       translations: {
-        noElementsExisting: de.noElementsExisting
-      }
+        noElementsExisting: de.noElementsExisting,
+      },
     }
   },
 
@@ -302,8 +316,8 @@ export default {
 
       set (payload) {
         this.$emit('tree:change', payload)
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -326,6 +340,6 @@ export default {
 
   mounted () {
     this.$root.$on('treelist:toggle-all', (expanded) => (this.isExpanded = expanded))
-  }
+  },
 }
 </script>

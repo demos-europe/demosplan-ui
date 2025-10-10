@@ -17,8 +17,8 @@ export default Mark.create({
   addAttributes () {
     return {
       title: {
-        default: null
-      }
+        default: null,
+      },
     }
   },
 
@@ -26,20 +26,20 @@ export default Mark.create({
     return {
       HTMLAttributes: {
         title: null,
-      }
+      },
     }
   },
 
   parseHTML () {
     return [{
-      tag: 'span.anonymize-me'
+      tag: 'span.anonymize-me',
     }]
   },
 
   renderHTML: ({ HTMLAttributes, options }) => {
     return ['span', mergeAttributes(
       HTMLAttributes,
-      { class: 'anonymize-me' }
+      { class: 'anonymize-me' },
     ), 0]
   },
 
@@ -47,7 +47,7 @@ export default Mark.create({
     return {
       toggleAnonymize: () => ({ commands }) => {
         return commands.toggleMark(this.name)
-      }
+      },
     }
-  }
+  },
 })

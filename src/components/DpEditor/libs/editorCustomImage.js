@@ -23,7 +23,7 @@ export default Node.create({
       HTMLAttributes: {
         style: 'width: ',
         class: null,
-      }
+      },
     }
   },
 
@@ -34,8 +34,8 @@ export default Node.create({
         keepOnSplit: false,
         parseHTML: element => element.getAttribute('alt'),
         renderHTML: attributes => ({
-          'alt': attributes.alt
-        })
+          'alt': attributes.alt,
+        }),
       },
 
       height: {
@@ -45,8 +45,8 @@ export default Node.create({
           return element.height || element.style.height
         },
         renderHTML: attributes => ({
-          'height': attributes.height
-        })
+          'height': attributes.height,
+        }),
       },
 
       src: {
@@ -54,8 +54,8 @@ export default Node.create({
         keepOnSplit: false,
         parseHTML: element => element.getAttribute('src'),
         renderHTML: attributes => ({
-          'src': attributes.src
-        })
+          'src': attributes.src,
+        }),
       },
 
       title: {
@@ -63,8 +63,8 @@ export default Node.create({
         keepOnSplit: false,
         parseHTML: element => element.getAttribute('title'),
         renderHTML: attributes => ({
-          'title': attributes.title
-        })
+          'title': attributes.title,
+        }),
       },
 
       width: {
@@ -73,10 +73,10 @@ export default Node.create({
         parseHTML: element => element.width || element.style.width,
         renderHTML: attributes => {
           return {
-            'width': attributes.width
+            'width': attributes.width,
           }
-        }
-      }
+        },
+      },
     }
   },
 
@@ -88,9 +88,9 @@ export default Node.create({
 
   parseHTML () {
     return [{
-      tag: `dp-resizable-image[style="width:${this.att}"]`
+      tag: `dp-resizable-image[style="width:${this.att}"]`,
     }, {
-      tag: 'img[src]'
+      tag: 'img[src]',
     }]
   },
 
@@ -107,7 +107,7 @@ export default Node.create({
         const transaction = state.tr.insert(position, node)
 
         dispatch(transaction)
-      }
+      },
     }
   },
 
@@ -115,13 +115,13 @@ export default Node.create({
     return [
       nodeInputRule({
         find: IMAGE_INPUT_REGEX,
-        type: this.type
-      })
+        type: this.type,
+      }),
     ]
   },
 
   // Return a vue component
   addNodeView() {
     return VueNodeViewRenderer(DpResizableImage)
-  }
+  },
 })

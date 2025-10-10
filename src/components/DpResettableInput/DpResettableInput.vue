@@ -13,10 +13,12 @@
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
       @input="onInput"
-      @keydown="$emit('keydown', $event)" />
+      @keydown="$emit('keydown', $event)"
+    />
     <span
       v-if="hasSlotContent"
-      class="absolute top-0 right-0 h-full flex items-center">
+      class="absolute top-0 right-0 h-full flex items-center"
+    >
       <button
         v-if="!inputAttributes.disabled"
         class="btn--blank o-link--default relative mr-1"
@@ -24,11 +26,13 @@
         :aria-label="translations.reset"
         :title="currentValue === defaultValue ? null : translations.reset"
         :disabled="currentValue === defaultValue"
-        @click="resetValue">
+        @click="resetValue"
+      >
         <dp-icon
           aria-hidden="true"
           icon="xmark"
-          :size="iconSize" />
+          :size="iconSize"
+        />
       </button>
       <slot />
     </span>
@@ -40,11 +44,13 @@
       :aria-label="translations.reset"
       :title="currentValue === defaultValue ? null : translations.reset"
       :disabled="currentValue === defaultValue"
-      @click="resetValue">
+      @click="resetValue"
+    >
       <dp-icon
         aria-hidden="true"
         icon="xmark"
-        :size="iconSize" />
+        :size="iconSize"
+      />
     </button>
   </div>
 </template>
@@ -59,7 +65,7 @@ export default {
 
   components: {
     DpIcon,
-    DpInput
+    DpInput,
   },
 
   inheritAttrs: false,
@@ -72,42 +78,42 @@ export default {
       type: String,
       required: false,
       default: 'medium',
-      validator: (prop) => ['small', 'medium'].includes(prop)
+      validator: (prop) => ['small', 'medium'].includes(prop),
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     defaultValue: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     inputAttributes: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     pattern: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -122,14 +128,14 @@ export default {
       type: String,
       required: false,
       default: 'full',
-      validator: (prop) => ['full', 'left', 'right'].includes(prop)
+      validator: (prop) => ['full', 'left', 'right'].includes(prop),
     },
 
     value: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   emits: [
@@ -138,15 +144,15 @@ export default {
     'focus',
     'input',
     'keydown',
-    'reset'
+    'reset',
   ],
 
   data () {
     return {
       currentValue: this.value,
       translations: {
-        reset: de.operations.reset
-      }
+        reset: de.operations.reset,
+      },
     }
   },
 
@@ -161,13 +167,13 @@ export default {
 
     iconSize () {
       return this.buttonVariant
-    }
+    },
   },
 
   watch: {
     value: function () {
       this.currentValue = this.value
-    }
+    },
   },
 
   methods: {
@@ -178,7 +184,7 @@ export default {
 
     resetValue () {
       this.$emit('reset')
-    }
-  }
+    },
+  },
 }
 </script>

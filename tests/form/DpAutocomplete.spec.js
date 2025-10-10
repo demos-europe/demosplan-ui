@@ -5,7 +5,7 @@ import { nextTick } from 'vue'
 
 // Mock the dpApi function
 const mockDpApi = jest.fn(() => Promise.resolve({
-  data: { results: [{ id: 4, name: 'Dragon Fruit' }] }
+  data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
 }))
 
 // Spy on the dpApi module
@@ -19,19 +19,19 @@ describe('DpAutocomplete', () => {
     options: [
       { id: 1, name: 'Apple' },
       { id: 2, name: 'Banana' },
-      { id: 3, name: 'Cherry' }
+      { id: 3, name: 'Cherry' },
     ],
     placeholder: 'Search fruits',
     noResultsText: 'No fruits found',
-    minChars: 2
+    minChars: 2,
   }
 
   const mountComponent = (props = {}) => {
     return mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        ...props
-      }
+        ...props,
+      },
     })
   }
 
@@ -59,7 +59,7 @@ describe('DpAutocomplete', () => {
       props: {
         routeGenerator,
         id,
-      }
+      },
     })
 
     expect(wrapper.find('input').exists()).toBe(true)
@@ -76,7 +76,7 @@ describe('DpAutocomplete', () => {
 
   it('does not show options list when input is empty', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     await wrapper.find('input').trigger('focus')
@@ -87,7 +87,7 @@ describe('DpAutocomplete', () => {
 
   it('shows options list when typing enough characters', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     const input = wrapper.find('input')
@@ -109,7 +109,7 @@ describe('DpAutocomplete', () => {
 
   it('filters options based on input text', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     // Skip DOM-based testing and test the component's filtering logic directly
@@ -120,7 +120,7 @@ describe('DpAutocomplete', () => {
      * as the component (case-insensitive match)
      */
     const aMatchingOptions = defaultProps.options.filter(opt =>
-      opt.name.toLowerCase().includes('a')
+      opt.name.toLowerCase().includes('a'),
     )
     expect(aMatchingOptions.length).toBe(2)
     expect(aMatchingOptions[0].name).toBe('Apple')
@@ -130,7 +130,7 @@ describe('DpAutocomplete', () => {
 
     // Manually check if 'Apple' would be filtered using the same logic as the component
     const apMatchingOptions = defaultProps.options.filter(opt =>
-      opt.name.toLowerCase().includes('ap')
+      opt.name.toLowerCase().includes('ap'),
     )
     expect(apMatchingOptions.length).toBe(1)
     expect(apMatchingOptions[0].name).toBe('Apple')
@@ -138,7 +138,7 @@ describe('DpAutocomplete', () => {
 
   it('emits update:modelValue when selecting an option', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     await wrapper.find('input').trigger('focus')
@@ -151,11 +151,11 @@ describe('DpAutocomplete', () => {
 
   it('fetches options from API when typing', async () => {
     const wrapper = mount(DpAutocomplete, {
-      props: defaultProps
+      props: defaultProps,
     })
 
     const mockResponse = {
-      data: { results: [{ id: 4, name: 'Dragon Fruit' }] }
+      data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
     }
 
     mockDpApi.mockResolvedValue(mockResponse)
@@ -171,7 +171,7 @@ describe('DpAutocomplete', () => {
       url: '/api/search?q=dragon',
       params: {},
       headers: {},
-      data: {}
+      data: {},
     })
 
     expect(wrapper.emitted()).toHaveProperty('search-changed')
@@ -246,8 +246,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        options: [] // Empty options to simulate no results
-      }
+        options: [], // Empty options to simulate no results
+      },
     })
 
     const input = wrapper.find('input')
@@ -268,8 +268,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        minChars: 3
-      }
+        minChars: 3,
+      },
     })
 
     const input = wrapper.find('input')
@@ -295,10 +295,10 @@ describe('DpAutocomplete', () => {
         ...defaultProps,
         options: [
           { id: 1, title: 'Apple' },
-          { id: 2, title: 'Banana' }
+          { id: 2, title: 'Banana' },
         ],
-        label: 'title'
-      }
+        label: 'title',
+      },
     })
 
     expect(wrapper.props('label')).toBe('title')
@@ -313,8 +313,8 @@ describe('DpAutocomplete', () => {
     const wrapper = mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        modelValue: ''
-      }
+        modelValue: '',
+      },
     })
 
     await wrapper.setProps({ modelValue: 'Apple' })

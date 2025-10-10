@@ -3,10 +3,12 @@
     type="button"
     class="o-link--default btn--blank"
     :aria-label="label"
-    @click="toggle">
+    @click="toggle"
+  >
     <i
       :class="iconClass"
-      aria-hidden="true" />
+      aria-hidden="true"
+    />
   </button>
 </template>
 
@@ -20,20 +22,20 @@ export default {
     value: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     iconClassProp: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     toggleAll: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
@@ -52,14 +54,14 @@ export default {
       return this.toggleAll
         ? this.value ? de.aria.collapse.all : de.aria.expand.all
         : this.value ? de.aria.collapse : de.aria.expand
-    }
+    },
   },
 
   methods: {
     toggle () {
       this.$emit('input', !this.value)
       this.$emit('update:modelValue', !this.value)
-    }
-  }
+    },
+  },
 }
 </script>

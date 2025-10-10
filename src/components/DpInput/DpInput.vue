@@ -9,7 +9,8 @@
         required: required
       }"
       :text="label.text"
-      class="mb-0.5" />
+      class="mb-0.5"
+    />
     <input
       v-bind="inputAttrs"
       :id="id"
@@ -36,7 +37,8 @@
       @focus="emit('focus')"
       @input="onInput"
       @keydown="emit('keydown', $event)"
-      @keydown.enter="handleEnter">
+      @keydown.enter="handleEnter"
+    >
   </div>
 </template>
 
@@ -53,7 +55,7 @@ const props = defineProps({
   ariaLabelledby: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -63,49 +65,49 @@ const props = defineProps({
   autocomplete: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataCounter: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataCy: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataDpValidateError: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataDpValidateErrorFieldname: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataDpValidateIf: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   dataDpValidateShouldEqual: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   disabled: {
     type: Boolean,
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -114,12 +116,12 @@ const props = defineProps({
   hasIcon: {
     type: Boolean,
     required: false,
-    default: false
+    default: false,
   },
 
   id: {
     type: String,
-    required: true
+    required: true,
   },
 
   label: {
@@ -130,8 +132,8 @@ const props = defineProps({
       hide: false,
       hint: '',
       text: '',
-      tooltip: ''
-    })
+      tooltip: '',
+    }),
   },
 
   /**
@@ -140,7 +142,7 @@ const props = defineProps({
   maxlength: {
     type: [Number, String],
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -149,31 +151,31 @@ const props = defineProps({
   minlength: {
     type: [Number, String],
     required: false,
-    default: null
+    default: null,
   },
 
   modelValue: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   name: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   pattern: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   placeholder: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
 
   /**
@@ -182,19 +184,19 @@ const props = defineProps({
   preventDefaultOnEnter: {
     type: Boolean,
     required: false,
-    default: true
+    default: true,
   },
 
   readonly: {
     type: Boolean,
     required: false,
-    default: null
+    default: null,
   },
 
   required: {
     type: Boolean,
     required: false,
-    default: null
+    default: null,
   },
 
   /**
@@ -209,7 +211,7 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'full',
-    validator: (prop: string) => ['full', 'left', 'right'].includes(prop)
+    validator: (prop: string) => ['full', 'left', 'right'].includes(prop),
   },
 
   /**
@@ -221,13 +223,13 @@ const props = defineProps({
   size: {
     type: Number,
     required: false,
-    default: null
+    default: null,
   },
 
   type: {
     type: String,
     required: false,
-    default: 'text'
+    default: 'text',
   },
 
   /**
@@ -237,8 +239,8 @@ const props = defineProps({
   width: {
     type: String,
     required: false,
-    default: 'w-full'
-  }
+    default: 'w-full',
+  },
 })
 
 const emit = defineEmits([
@@ -247,7 +249,7 @@ const emit = defineEmits([
   'focus',
   'input',
   'keydown',
-  'update:modelValue'
+  'update:modelValue',
 ])
 
 const attrs = useAttrs()
@@ -261,8 +263,8 @@ defineOptions({
   inheritAttrs: false,
   model: {
     prop: 'modelValue',
-    event: 'update:modelValue'
-  }
+    event: 'update:modelValue',
+  },
 })
 
 /**
@@ -281,7 +283,7 @@ const classes = computed(() => {
     text-base leading-4 bg-surface
     outline-1 outline-offset-0 outline-transparent
     focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
-    required:shadow-none`
+    required:shadow-none`,
   ]
 
   if (props.rounded === 'full') {

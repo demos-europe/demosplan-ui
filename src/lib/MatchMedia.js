@@ -20,7 +20,7 @@ class MatchMedia {
       palm: 0,
       'lap-up': 1,
       'desk-up': 2,
-      wide: 3
+      wide: 3,
     }
   }
 

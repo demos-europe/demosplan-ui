@@ -10,14 +10,14 @@ const de = () => {
        */
       dropHereOr: german.upload.select.pdf({
         browse: '{browse}',
-        maxUploadSize: convertSize('GB', 2)
+        maxUploadSize: convertSize('GB', 2),
       }),
       errorFileUpload: german.validation.error.fileUpload,
       failedToUpload: german.upload.failed,
       // This string is clickable and opens the system file selection dialog.
       browse: german.computer,
-      warningFileType: german.upload.warningFileType
-    }
+      warningFileType: german.upload.warningFileType,
+    },
   }
 }
 

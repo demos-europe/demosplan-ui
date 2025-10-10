@@ -14,13 +14,13 @@ export default Mark.create({
 
   parseHTML () {
     return [{
-      tag: 'span.unanonymized'
+      tag: 'span.unanonymized',
     }]
   },
 
   renderHTML: () => {
     return ['span', {
-      class: 'unanonymized'
+      class: 'unanonymized',
     }, 0]
   },
 
@@ -28,7 +28,7 @@ export default Mark.create({
     return {
       toggleUnanonymize: () => ({ commands }) => {
         return commands.toggleMark(this.name)
-      }
+      },
     }
-  }
+  },
 })

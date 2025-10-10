@@ -27,7 +27,7 @@ export default {
       allItemsCount: null, // Holds the total count of items
       allSelectedVisually: false, // This fakes "select all" for multi-page selection
       toggledItems: [], // All items that either got selected or deselected on multiple pages
-      trackDeselected: false // Determines if `toggledItems` holds selected or deselected items
+      trackDeselected: false, // Determines if `toggledItems` holds selected or deselected items
     }
   },
 
@@ -51,7 +51,7 @@ export default {
       return selected.reduce((acc, el) => {
         return {
           ...acc,
-          [el.id]: true
+          [el.id]: true,
         }
       }, {})
     },
@@ -62,7 +62,7 @@ export default {
       } else {
         return this.toggledItems.length
       }
-    }
+    },
   },
 
   methods: {
@@ -109,6 +109,6 @@ export default {
       this.allSelectedVisually = false
       this.trackDeselected = false
       this.toggledItems = []
-    }
-  }
+    },
+  },
 }

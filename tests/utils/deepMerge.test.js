@@ -5,16 +5,16 @@ let source = {
   autoSuggest: {},
   controls: [],
   hideDefaultLayer: true,
-  procedureExtent: false
+  procedureExtent: false,
 }
 let target = {
   autoSuggest: {
     enabled: true,
-    serviceUrlPath: 'test-path1'
+    serviceUrlPath: 'test-path1',
   },
   controls: ['contr1', 'contr2'],
   hideDefaultLayer: false,
-  procedureExtent: false
+  procedureExtent: false,
 }
 
 describe.each([
@@ -23,7 +23,7 @@ describe.each([
   { wrongType: Array },
   { wrongType: null },
   { wrongType: undefined },
-  { wrongType: true }
+  { wrongType: true },
 ]) ('checks the incorrect data type', ({ wrongType }) => {
   it(`returns a second parameter "source" when the first parameter "target" has a ${wrongType} type`, () => {
     expect(deepMerge(wrongType, source)).toBe(source)
@@ -42,8 +42,8 @@ describe('deepMerge', () => {
       controls: ['contr1', 'contr2'],
       autoSuggest: {
         enabled: true,
-        serviceUrlPath: 'test-path1'
-      }
+        serviceUrlPath: 'test-path1',
+      },
     }
 
     expect(deepMerge(target, source)).toEqual(mergedTarget)
@@ -56,11 +56,11 @@ describe('deepMerge', () => {
       controls: ['contr1', 'contr2', 'contr3'],
       autoSuggest: {
         enabled: true,
-        serviceUrlPath: 'test-path1'
-      }
+        serviceUrlPath: 'test-path1',
+      },
     }
     source = {
-      controls: ['contr3']
+      controls: ['contr3'],
     }
     target = {
       hideDefaultLayer: false,
@@ -68,8 +68,8 @@ describe('deepMerge', () => {
       controls: ['contr1', 'contr2'],
       autoSuggest: {
         enabled: true,
-        serviceUrlPath: 'test-path1'
-      }
+        serviceUrlPath: 'test-path1',
+      },
     }
 
     expect(deepMerge(target, source)).toEqual(mergedTarget)
@@ -82,14 +82,14 @@ describe('deepMerge', () => {
       controls: ['contr1', 'contr2'],
       autoSuggest: {
         enabled: false,
-        serviceUrlPath: 'test-path2'
-      }
+        serviceUrlPath: 'test-path2',
+      },
     }
     source = {
       autoSuggest: {
         enabled: false,
-        serviceUrlPath: 'test-path2'
-      }
+        serviceUrlPath: 'test-path2',
+      },
     }
     target = {
       hideDefaultLayer: false,
@@ -97,8 +97,8 @@ describe('deepMerge', () => {
       controls: ['contr1', 'contr2'],
       autoSuggest: {
         enabled: true,
-        serviceUrlPath: 'test-path1'
-      }
+        serviceUrlPath: 'test-path1',
+      },
     }
 
     expect(deepMerge(target, source)).toEqual(mergedTarget)

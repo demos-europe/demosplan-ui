@@ -57,7 +57,7 @@ import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
 import {
   DpUpload,
-  DpUploadFiles
+  DpUploadFiles,
 } from './DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
 
@@ -121,5 +121,5 @@ export {
   DpUpload,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash
+  getFileIdsByHash,
 }

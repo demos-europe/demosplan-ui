@@ -15,7 +15,7 @@ import validateForm from '~/lib/validation/utils/validateForm'
 export default {
   data () {
     return {
-      dpValidate: {}
+      dpValidate: {},
     }
   },
 
@@ -57,7 +57,7 @@ export default {
             let topicName = topicElement ? topicElement.getAttribute('data-dp-validate-topic') : ''
 
             const existingIndex = fieldsWithTopics.findIndex(
-              item => item.fieldName === fieldName && item.topicName === topicName
+              item => item.fieldName === fieldName && item.topicName === topicName,
             )
 
             if (existingIndex === -1) {
@@ -82,7 +82,7 @@ export default {
       if ((this.dpValidate[formId] === false && forceCallback) || this.dpValidate[formId]) {
         return callback()
       }
-    }
+    },
   },
 
   mounted () {
@@ -137,5 +137,5 @@ export default {
         })
       }
     })
-  }
+  },
 }

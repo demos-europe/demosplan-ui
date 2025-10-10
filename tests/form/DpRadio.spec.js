@@ -5,8 +5,8 @@ import { shallowMount } from '@vue/test-utils'
 describe('DpRadio', () => {
   const wrapper = shallowMount(DpRadio, {
     props: {
-      id: 'radioId'
-    }
+      id: 'radioId',
+    },
   })
 
   const radio = wrapper.get('input[type="radio"]')
@@ -18,8 +18,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        checked: false
-      }
+        checked: false,
+      },
     })
 
     const radioEl = await componentWrapper.get('input[type="radio"]')
@@ -39,8 +39,8 @@ describe('DpRadio', () => {
       props: {
         id: 'radioId',
         checked: false,
-        value: 'testValue'
-      }
+        value: 'testValue',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -57,8 +57,8 @@ describe('DpRadio', () => {
   it('has the value of `value` prop as its value attribute', async () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
-        id: 'radioId'
-      }
+        id: 'radioId',
+      },
     })
 
     await componentWrapper.setProps({ value: 'radioValue' })
@@ -70,8 +70,8 @@ describe('DpRadio', () => {
   it('has default value of "1" when no value prop is provided', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
-        id: 'radioId'
-      }
+        id: 'radioId',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -82,8 +82,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        checked: true
-      }
+        checked: true,
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -94,8 +94,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        checked: false
-      }
+        checked: false,
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -106,8 +106,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        name: 'radioGroup'
-      }
+        name: 'radioGroup',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -118,8 +118,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        name: ''
-      }
+        name: '',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -130,8 +130,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        dataCy: 'radio-test'
-      }
+        dataCy: 'radio-test',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')
@@ -142,8 +142,8 @@ describe('DpRadio', () => {
     const componentWrapper = shallowMount(DpRadio, {
       props: {
         id: 'radioId',
-        dataCy: ''
-      }
+        dataCy: '',
+      },
     })
 
     const radioEl = componentWrapper.get('input[type="radio"]')

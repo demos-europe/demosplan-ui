@@ -6,7 +6,8 @@
           <!-- Search field -->
           <label
             class="inline"
-            for="search">
+            for="search"
+          >
             {{ defaultTranslations.search }}
           </label>
           <input
@@ -16,7 +17,8 @@
             name="search"
             class="o-form__control-input"
             data-cy="dataTableExtended:search"
-            @input="updateFields(null)">
+            @input="updateFields(null)"
+          >
 
           <!-- pager -->
           <dp-sliding-pagination
@@ -24,13 +26,15 @@
             class="inline-block u-ml-0_5 u-mt-0_125"
             :current="currentPage"
             :total="totalPages"
-            @page-change="handlePageChange" />
+            @page-change="handlePageChange"
+          />
           <dp-select-page-item-count
             class="inline-block u-mt-0_125 u-ml-0_5"
             :page-count-options="itemsPerPageOptions"
             :current-item-count="itemsPerPage"
             :label-text="defaultTranslations.showEntries"
-            @changed-count="setPageItemCount" />
+            @changed-count="setPageItemCount"
+          />
         </div>
       </div>
     </dp-sticky-element>
@@ -39,26 +43,32 @@
       v-bind="$props"
       :items="onPageItems"
       :should-be-selected-items="currentlySelectedItems"
-      @items-selected="emitSelectedItems">
+      @items-selected="emitSelectedItems"
+    >
       <template
         v-for="(el, i) in sortableFilteredFields"
-        v-slot:[`header-${el.field}`]="el">
+        v-slot:[`header-${el.field}`]="el"
+      >
         <slot
           :name="`header-${el.field}`"
-          v-bind="sortableFilteredFields[i]">
+          v-bind="sortableFilteredFields[i]"
+        >
           <div
             :key="el.field"
-            class="o-hellip--nowrap relative u-pr-0_75">
+            class="o-hellip--nowrap relative u-pr-0_75"
+          >
             <button
               :aria-label="defaultTranslations.colsSort + ': ' + el.label"
               :title="defaultTranslations.colsSort + ': ' + el.label"
               class="btn--blank u-top-0 u-right-0 absolute"
               type="button"
-              @click="setOrder(el.field)">
+              @click="setOrder(el.field)"
+            >
               <i
                 aria-hidden="true"
                 class="fa"
-                :class="sortIconClass(el.field)" />
+                :class="sortIconClass(el.field)"
+              />
             </button>
             {{ el.label }}
           </div>
@@ -66,11 +76,13 @@
       </template>
       <template
         v-for="el in [...filteredFields, { field: 'expandedContent' }, { field: 'flyout' }]"
-        v-slot:[el.field]="item">
+        v-slot:[el.field]="item"
+      >
         <!-- table cells (TDs) -->
         <slot
           :name="el.field"
-          v-bind="item" />
+          v-bind="item"
+        />
       </template>
     </dp-data-table>
 
@@ -98,7 +110,7 @@ export default {
     DpDataTable,
     DpSelectPageItemCount,
     DpSlidingPagination,
-    DpStickyElement
+    DpStickyElement,
   },
 
   mixins: [tableSelectAllItems],
@@ -113,13 +125,13 @@ export default {
           return hasOwnProp(data, 'key') && hasOwnProp(data, 'direction')
         }
         return data === null
-      }
+      },
     },
 
     hasFlyout: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -128,55 +140,55 @@ export default {
     headerFields: {
       type: Array,
       required: true,
-      default: () => []
+      default: () => [],
     },
 
     initItemsPerPage: {
       type: Number,
       required: false,
-      default: 50
+      default: 50,
     },
 
     isExpandable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isLoading: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isResizable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isSelectable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isSortable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isTruncatable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     itemsPerPageOptions: {
       type: Array,
       required: false,
-      default: () => [10, 50, 100, 200]
+      default: () => [10, 50, 100, 200],
     },
 
     /**
@@ -186,7 +198,7 @@ export default {
     lockCheckboxBy: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
 
     /**
@@ -196,20 +208,20 @@ export default {
     tableItems: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
 
     trackBy: {
       type: String,
       required: false,
-      default: 'id'
+      default: 'id',
     },
 
     translations: {
       type: Object,
       required: false,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   data () {
@@ -218,7 +230,7 @@ export default {
       defaultTranslations: {
         colsSort: de.table.colsSort,
         search: de.search.text,
-        showEntries: de.pager.showEntries
+        showEntries: de.pager.showEntries,
       },
       filteredItems: [],
       filters: this.headerFields.reduce((obj, item) => {
@@ -228,7 +240,7 @@ export default {
       isHighlighted: '',
       itemsPerPage: this.initItemsPerPage,
       searchString: '',
-      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null
+      sortOrder: (this.defaultSortOrder !== null) ? this.defaultSortOrder : (this.headerFields.length > 0) ? { key: this.headerFields[0].field, direction: -1 } : null,
     }
   },
 
@@ -258,7 +270,7 @@ export default {
 
     totalPages () {
       return this.filteredItems.length > 0 ? Math.ceil(this.filteredItems.length / this.itemsPerPage) : 1
-    }
+    },
   },
 
   watch: {
@@ -266,8 +278,8 @@ export default {
       handler () {
         this.updateFields()
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   methods: {
@@ -338,11 +350,11 @@ export default {
         sortedList = dataTableSearch(this.searchString, sortedList, this.headerFields.map(el => el.field))
       }
       this.filteredItems = sortedList
-    }
+    },
   },
 
   mounted () {
     this.updateFields()
-  }
+  },
 }
 </script>

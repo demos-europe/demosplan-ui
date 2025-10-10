@@ -8,8 +8,8 @@ describe('should return result \'Auswahl aufheben\' when props are: checked = tr
     props: {
       checked: true,
       checkAll: true,
-      name: 'someName'
-    }
+      name: 'someName',
+    },
   })
 
   it('returns operations.deselect.all', () => {
@@ -22,8 +22,8 @@ describe('should return result aria.select.all when props are: checked = false, 
     props: {
       checked: false,
       checkAll: true,
-      name: 'someName'
-    }
+      name: 'someName',
+    },
   })
 
   it('returns aria.select.all', () => {
@@ -36,8 +36,8 @@ describe('should return result \'Auswahl für Element aufheben\' when props are:
     props: {
       checked: true,
       checkAll: false,
-      name: 'someName'
-    }
+      name: 'someName',
+    },
   })
 
   it('returns \'Auswahl für Element aufheben\'', () => {
@@ -50,8 +50,8 @@ describe('should return result \'Element auswählen\' when props are: checked = 
     props: {
       checked: false,
       checkAll: false,
-      name: 'someName'
-    }
+      name: 'someName',
+    },
   })
 
   it('returns \'Element auswählen\'', () => {

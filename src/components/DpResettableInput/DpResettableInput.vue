@@ -63,6 +63,8 @@ import { de } from '~/components/shared/translations'
 export default {
   name: 'DpResettableInput',
 
+  inheritAttrs: false,
+
   components: {
     DpIcon,
     DpInput,

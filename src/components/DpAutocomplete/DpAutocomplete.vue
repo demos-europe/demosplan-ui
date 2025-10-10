@@ -103,10 +103,10 @@ export default {
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { de } from '~/components/shared/translations'
-import { dpApi } from '~/lib/DpApi'
-import DpResettableInput from '~/components/DpResettableInput'
-import DpButton from '~/components/DpButton'
 import debounce from '~/utils/debounce'
+import { dpApi } from '~/lib/DpApi'
+import DpButton from '~/components/DpButton'
+import DpResettableInput from '~/components/DpResettableInput'
 
 /**
  * DpAutocomplete - A suggestion input component with dropdown functionality.

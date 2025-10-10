@@ -1,5 +1,5 @@
-import MentionList from '../MentionList.vue'
 import tippy, { sticky } from 'tippy.js'
+import MentionList from '../MentionList.vue'
 import { VueRenderer } from '@tiptap/vue-3'
 
 export default ({ suggestions, matcher }) => ({

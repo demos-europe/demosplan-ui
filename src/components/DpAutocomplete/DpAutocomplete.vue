@@ -21,6 +21,7 @@
       @focus="handleFocus"
       @input="handleInput"
       @keydown="handleKeydown"
+      @keyup="handleKeyup"
       @reset="handleReset">
 
       <template v-if="searchButton">
@@ -46,32 +47,39 @@
     <!-- Options list -->
     <div class="relative z-flyout">
       <div
-        v-if="isOptionsListVisible"
+        v-if="isOptionsListVisible || (isLoading && isInputFocused && currentQuery.length >= minChars)"
         id="suggestions-list"
         role="listbox"
         class="absolute w-full border-x border-b border-neutral p-2 bg-surface z-10 shadow-md mt-[1px]"
         @mouseleave="listPosition = -1">
         <div
-          v-for="(option, idx) in options"
-          :id="getOptionId(idx)"
-          :key="getOptionKey(option, idx)"
-          :class="idx === listPosition ? 'bg-interactive-subtle-hover text-interactive-hover font-bold' : ''"
-          class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
-          role="option"
-          :aria-selected="idx === listPosition ? 'true' : 'false'"
-          @mousedown.stop.prevent="selectOption(option)"
-          @mouseenter="listPosition = idx">
-          <slot
-            name="option"
-            :option="option">
-            {{ option[label] }}
-          </slot>
-        </div>
-        <div
-          v-if="options.length === 0 && showNoResults"
+          v-if="isLoading"
           class="text-gray-500 px-2 py-1">
-          {{ noResultsText }}
+          {{ de.search.running }}
         </div>
+        <template v-else>
+          <div
+            v-for="(option, idx) in options"
+            :id="getOptionId(idx)"
+            :key="getOptionKey(option, idx)"
+            :class="idx === listPosition ? 'bg-interactive-subtle-hover text-interactive-hover font-bold' : ''"
+            class="font-medium cursor-pointer px-2 py-1 hover:bg-interactive-subtle-hover hover:text-interactive-hover"
+            role="option"
+            :aria-selected="idx === listPosition ? 'true' : 'false'"
+            @mousedown.stop.prevent="selectOption(option)"
+            @mouseenter="listPosition = idx">
+            <slot
+              name="option"
+              :option="option">
+              {{ option[label] }}
+            </slot>
+          </div>
+          <div
+            v-if="options.length === 0 && showNoResults"
+            class="text-gray-500 px-2 py-1">
+            {{ noResultsText }}
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -91,6 +99,7 @@ import { de } from '~/components/shared/translations'
 import { dpApi } from '~/lib/DpApi'
 import DpResettableInput from '~/components/DpResettableInput'
 import DpButton from '~/components/DpButton'
+import debounce from '~/utils/debounce'
 
 /**
  * DpAutocomplete - A suggestion input component with dropdown functionality.
@@ -235,6 +244,7 @@ const isInputFocused = ref(false)
 const isLoading = ref(false)
 const listPosition = ref(-1)
 const showNoResults = ref(false)
+const isBackspacePressed = ref(false)
 /**
  * Track timeout for blur event, because after this timeout, the suggestions list is closed.
  * So when the user e.g. clicks the reset button, then focuses the input again,
@@ -285,6 +295,9 @@ watch(() => props.options, () => {
   showNoResults.value = currentQuery.value.length >= props.minChars && props.options.length === 0
 })
 
+watch(isInputFocused, (newVal) => {
+}, { immediate: true })
+
 const getOptionId = (idx: number): string => {
   return `${props.id}-option-${idx}`
 }
@@ -293,7 +306,30 @@ const getOptionKey = (option: Record<string, unknown>, idx: number): string => {
   return `${option[props.label]}_${idx}`
 }
 
+const clearBlurTimeout = () => {
+  if (blurTimeout) {
+    clearTimeout(blurTimeout)
+    blurTimeout = null
+  }
+}
 
+const clearOptions = () => {
+  emit('search-changed', { data: {} })
+}
+
+const focusInput = () => {
+  nextTick(() => {
+    suggestionInput.value?.$el?.querySelector('input')?.focus()
+  })
+}
+
+const startSearch = (searchString: string) => {
+  clearOptions()
+  isLoading.value = true
+  showNoResults.value = false
+  isInputFocused.value = true
+  debouncedFetchSuggestions(searchString)
+}
 
 /**
  * KEYBOARD EVENT HANDLERS
@@ -363,10 +399,7 @@ const handleEscape = (event: KeyboardEvent) => {
  * This issue can happen when the user clicks the reset button and then focuses the input again.
  */
 const handleFocus = () => {
-  if (blurTimeout) {
-    clearTimeout(blurTimeout)
-    blurTimeout = null
-  }
+  clearBlurTimeout()
   isInputFocused.value = true
   emit('focus')
 }
@@ -384,22 +417,16 @@ const handleReset = () => {
    * Prevent blur timeout from hiding suggestions after resetting, which might
    *  override setting isInputFocused to true below
    */
-  if (blurTimeout) {
-    clearTimeout(blurTimeout)
-    blurTimeout = null
-  }
+  clearBlurTimeout()
 
   currentQuery.value = props.defaultValue
   emit('update:modelValue', props.defaultValue)
   emit('reset')
-  // Allow clearing the suggestions (options) in parent component
-  emit('search-changed', [])
+  clearOptions()
   showNoResults.value = false
   isInputFocused.value = true
 
-  nextTick(() => {
-    suggestionInput.value?.$el?.querySelector('input')?.focus()
-  })
+  focusInput()
 }
 
 const handleTab = () => {
@@ -410,6 +437,14 @@ const handleTab = () => {
 }
 
 const handleKeydown = (event: KeyboardEvent) => {
+  // Track backspace key press
+  if (event.key === 'Backspace') {
+    isBackspacePressed.value = true
+  } else if (event.key.length === 1) {
+    // Reset backspace flag when regular character keys are pressed
+    isBackspacePressed.value = false
+  }
+
   const handlers: Record<string, (event: KeyboardEvent) => void> = {
     'ArrowDown': handleArrowDown,
     'Down': handleArrowDown,
@@ -429,6 +464,17 @@ const handleKeydown = (event: KeyboardEvent) => {
   }
 }
 
+const handleKeyup = (event: KeyboardEvent) => {
+  // When backspace is released, trigger search if conditions are met
+  if (event.key === 'Backspace' && isBackspacePressed.value) {
+    isBackspacePressed.value = false
+
+    if (currentQuery.value && currentQuery.value.length >= props.minChars) {
+      startSearch(currentQuery.value)
+    }
+  }
+}
+
 const selectOption = (option: Record<string, unknown>) => {
   if (!option) {
     return
@@ -442,10 +488,7 @@ const selectOption = (option: Record<string, unknown>) => {
   isInputFocused.value = false
   showNoResults.value = false
 
-  // Focus the input after selection
-  nextTick(() => {
-    suggestionInput.value?.$el?.querySelector('input')?.focus()
-  })
+  focusInput()
 }
 
 const handleInput = (value: string) => {
@@ -453,9 +496,17 @@ const handleInput = (value: string) => {
   emit('update:modelValue', value)
 
   if (value && value.length >= props.minChars) {
-    fetchSuggestions(value)
+    // Trigger search only if backspace is not pressed
+    if (isBackspacePressed.value) {
+      isInputFocused.value = true
+    } else {
+      startSearch(value)
+    }
   } else {
+    // Reset loading and no-results state when below minimum characters
+    isLoading.value = false
     showNoResults.value = false
+    clearOptions()
   }
 }
 
@@ -493,5 +544,8 @@ const fetchSuggestions = async (searchString: string) => {
     isLoading.value = false
   }
 }
+
+// Debounced version with 300ms delay
+const debouncedFetchSuggestions = debounce(fetchSuggestions, 300)
 
 </script>

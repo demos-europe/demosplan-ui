@@ -169,6 +169,7 @@ const de = {
     resultsHighlighted (count, position) {
       return count > 1 ? `${count} Suchergebnisse vorhanden, ${position + 1} von ${count} hervorgehoben` : `Ein Suchergebnis vorhanden, ${position + 1} von 1 hervorgehoben`
     },
+    running: 'Suche wird ausgeführt...',
     searching: 'Suchen',
     text: 'Suche',
   },

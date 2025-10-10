@@ -21,7 +21,7 @@
       :aria-expanded="isOpen"
       @click="toggleDropdown"
       @keyup.esc.prevent="isOpen ? isOpen = !isOpen : ''"
->
+    >
       <i class="fa fa-caret-down c-splitbutton__trigger-icon" />
       <span class="sr-only">{{ isOpen ? translations.close : translations.open }}</span>
     </button>

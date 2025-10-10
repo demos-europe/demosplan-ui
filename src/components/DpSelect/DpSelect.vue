@@ -19,14 +19,14 @@
       :class="[disabled ? ' border border-input-disabled bg-surface-light cursor-default' : 'border border-input', classes]"
       :disabled="disabled"
       @change="update"
->
+    >
       <option
         v-if="showPlaceholder"
         data-id="placeholder"
         disabled
         value=""
         :selected="selected === ''"
->
+      >
         {{ selectPlaceholder }}
       </option>
       <option
@@ -34,7 +34,7 @@
         :key="idx"
         :selected="option.value === selected"
         :value="option.value"
->
+      >
         {{ option.label }}
       </option>
     </select>

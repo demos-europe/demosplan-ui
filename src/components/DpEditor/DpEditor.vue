@@ -554,8 +554,8 @@ export default {
         const suggestionGroupSchema = {
           matcher: {
             char: '@|$|#', // A single char that should trigger a suggestion
-            allowSpaces: true || false,
-            startOfLine: true || false,
+            allowSpaces: 'boolean',
+            startOfLine: 'boolean',
           },
           suggestions: [{ id: 'a unique id', name: 'a string that should be displayed when inserting the suggestion' }],
         }

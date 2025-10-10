@@ -19,7 +19,7 @@
       :maxlength="maxlength"
       :required="required"
       @input="$emit('input', currentValue)"
-/>
+    />
   </div>
 </template>
 

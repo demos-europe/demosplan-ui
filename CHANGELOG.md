@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+- ([#1358](https://github.com/demos-europe/demosplan-ui/pull/1358)) DpAutocomplete: Fix several UX issues ([@hwiem](https://github.com/hwiem))
+
 ## v0.5.7 - 2025-09-01
 
 ### Added

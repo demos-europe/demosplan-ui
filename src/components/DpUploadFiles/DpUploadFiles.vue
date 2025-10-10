@@ -32,7 +32,7 @@
       :class="[prefixClass('layout__item u-1-of-1-palm'), prefixClass(sideBySide ? 'u-1-of-2' : 'u-1-of-1 u-mt')]"
       :files="uploadedFiles"
       @file-remove="handleRemove"
-/>
+    />
 
     <!--
       If the component is used in the context of a "traditional" form post, the hashes (ids)

@@ -7,7 +7,9 @@
       <span v-cleanhtml="text" /><span
         v-if="required"
         aria-hidden="true"
-      >*</span>
+      >
+      *
+    </span>
       <dp-contextual-help
         v-if="tooltip"
         :class="prefixClass('ml-0.5')"

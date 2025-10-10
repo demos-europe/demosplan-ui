@@ -15,17 +15,17 @@
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
       @change="$emit('change', $event.target.checked)"
     ><!--
- --><dp-label
-      v-if="label.text"
-      :class="prefixClass('o-form__label')"
-      v-bind="{
-        bold: false,
-        text: '',
-        for: id,
-        required: required,
-        ...label,
-      }"
-/>
+   --><dp-label
+        v-if="label.text"
+        :class="prefixClass('o-form__label')"
+        v-bind="{
+          bold: false,
+          text: '',
+          for: id,
+          required: required,
+          ...label,
+        }"
+      />
   </div>
 </template>
 

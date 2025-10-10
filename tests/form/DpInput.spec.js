@@ -54,14 +54,14 @@ describe('DpInput', () => {
   it('passes through ARIA attributes to the input element', () => {
     const wrapperWithAria = shallowMount(DpInput, {
       props: {
-        id: 'inputId'
+        id: 'inputId',
       },
       attrs: {
         'aria-haspopup': 'listbox',
         'aria-controls': 'listbox-id',
         'aria-expanded': 'true',
-        'aria-activedescendant': 'option-1'
-      }
+        'aria-activedescendant': 'option-1',
+      },
     })
 
     const input = wrapperWithAria.find('input')
@@ -74,12 +74,12 @@ describe('DpInput', () => {
   it('does not pass class attribute to input element', () => {
     const wrapperWithClass = shallowMount(DpInput, {
       props: {
-        id: 'inputId'
+        id: 'inputId',
       },
       attrs: {
         class: 'custom-class',
-        'data-test': 'test-value'
-      }
+        'data-test': 'test-value',
+      },
     })
 
     const input = wrapperWithClass.find('input')

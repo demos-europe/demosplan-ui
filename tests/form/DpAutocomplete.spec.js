@@ -30,8 +30,8 @@ describe('DpAutocomplete', () => {
     return mount(DpAutocomplete, {
       props: {
         ...defaultProps,
-        ...props
-      }
+        ...props,
+      },
     })
   }
 

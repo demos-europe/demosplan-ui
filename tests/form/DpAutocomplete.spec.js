@@ -12,8 +12,8 @@ const mockDpApi = jest.fn(() => Promise.resolve({
 jest.spyOn(DpApiModule, 'dpApi').mockImplementation(mockDpApi)
 
 describe('DpAutocomplete', () => {
-  // Common props
   const defaultProps = {
+    id: 'test-autocomplete',
     routeGenerator: jest.fn((query) => `/api/search?q=${query}`),
     label: 'name',
     options: [
@@ -26,32 +26,52 @@ describe('DpAutocomplete', () => {
     minChars: 2,
   }
 
+  const mountComponent = (props = {}) => {
+    return mount(DpAutocomplete, {
+      props: {
+        ...defaultProps,
+        ...props
+      }
+    })
+  }
+
+  const openSuggestionsList = async (wrapper, query = 'ap') => {
+    wrapper.vm.currentQuery = query
+    wrapper.vm.isInputFocused = true
+    await nextTick()
+  }
+
+  const expectOptionSelected = (wrapper, option, labelValue) => {
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0][0]).toBe(labelValue)
+    expect(wrapper.emitted('selected')).toBeTruthy()
+    expect(wrapper.emitted('selected')[0][0]).toEqual(option)
+  }
+
   beforeEach(() => {
     jest.clearAllMocks()
     mockDpApi.mockClear()
   })
 
   it('renders correctly with default props', () => {
+    const { id, routeGenerator } = defaultProps
     const wrapper = mount(DpAutocomplete, {
       props: {
-        routeGenerator: defaultProps.routeGenerator,
+        routeGenerator,
+        id,
       },
     })
 
-    expect(wrapper.find('[role="combobox"]').exists()).toBe(true)
-    expect(wrapper.find('#input-box').exists()).toBe(true)
-    expect(wrapper.find('#options-list').exists()).toBe(false) // List should be hidden initially
+    expect(wrapper.find('input').exists()).toBe(true)
+    expect(wrapper.find('#suggestions-list').exists()).toBe(false) // List should be hidden initially
   })
 
   it('displays placeholder text correctly', () => {
     const wrapper = mount(DpAutocomplete, {
-      props: {
-        routeGenerator: defaultProps.routeGenerator,
-        placeholder: 'Search fruits',
-      },
+      props: defaultProps,
     })
 
-    expect(wrapper.find('label').text()).toBe('Search fruits')
+    expect(wrapper.find('input').attributes('placeholder')).toBe(defaultProps.placeholder)
   })
 
   it('does not show options list when input is empty', async () => {
@@ -59,11 +79,10 @@ describe('DpAutocomplete', () => {
       props: defaultProps,
     })
 
-    // Focus the input
-    await wrapper.find('#input-box').trigger('mousedown')
+    await wrapper.find('input').trigger('focus')
     await nextTick()
 
-    expect(wrapper.find('#options-list').exists()).toBe(false)
+    expect(wrapper.find('#suggestions-list').exists()).toBe(false)
   })
 
   it('shows options list when typing enough characters', async () => {
@@ -71,14 +90,12 @@ describe('DpAutocomplete', () => {
       props: defaultProps,
     })
 
-    // Focus and input text
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
+    const input = wrapper.find('input')
+    await input.trigger('focus')
 
     // Directly set the currentQuery and trigger updateValue
     wrapper.vm.currentQuery = 'ap'
     wrapper.vm.isInputFocused = true
-    wrapper.vm.isOpenList = true
     await nextTick()
 
     expect(wrapper.vm.isOptionsListVisible).toBe(true)
@@ -87,7 +104,7 @@ describe('DpAutocomplete', () => {
      * The component renders all options and filters inside v-for directive
      * So checking for all role="option" elements instead of just 'Apple'
      */
-    expect(wrapper.findAll('[role="option"]').length).toBe(3) // All options are rendered
+    expect(wrapper.findAll('[role="option"]').length).toBe(3)
   })
 
   it('filters options based on input text', async () => {
@@ -100,7 +117,7 @@ describe('DpAutocomplete', () => {
 
     /*
      * Manually check if 'Apple' and 'Banana' would be filtered using similar logic
-     * as the component (case insensitive match)
+     * as the component (case-insensitive match)
      */
     const aMatchingOptions = defaultProps.options.filter(opt =>
       opt.name.toLowerCase().includes('a'),
@@ -109,7 +126,6 @@ describe('DpAutocomplete', () => {
     expect(aMatchingOptions[0].name).toBe('Apple')
     expect(aMatchingOptions[1].name).toBe('Banana')
 
-    // Verify the option with 'ap' is found
     wrapper.vm.currentQuery = 'ap'
 
     // Manually check if 'Apple' would be filtered using the same logic as the component
@@ -125,17 +141,12 @@ describe('DpAutocomplete', () => {
       props: defaultProps,
     })
 
-    // Setup
-    await wrapper.find('#input-box').trigger('mousedown')
+    await wrapper.find('input').trigger('focus')
 
     // Manually trigger option selection
-    await wrapper.vm.selectCurrentOption({ id: 1, name: 'Apple' })
+    await wrapper.vm.selectOption({ id: 1, name: 'Apple' })
 
-    // Check emitted events
-    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-    expect(wrapper.emitted('update:modelValue')[0][0]).toBe('Apple')
-    expect(wrapper.emitted('selected')).toBeTruthy()
-    expect(wrapper.emitted('selected')[0][0]).toEqual({ id: 1, name: 'Apple' })
+    expectOptionSelected(wrapper, { id: 1, name: 'Apple' }, 'Apple')
   })
 
   it('fetches options from API when typing', async () => {
@@ -143,16 +154,15 @@ describe('DpAutocomplete', () => {
       props: defaultProps,
     })
 
-    // Create a mock response
     const mockResponse = {
       data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
     }
 
-    // Setup mock to return our fake response
     mockDpApi.mockResolvedValue(mockResponse)
 
     // Force update with enough characters to trigger API call
-    await wrapper.vm.fetchOptions('dragon')
+    wrapper.vm.currentQuery = 'dragon'
+    await wrapper.vm.fetchSuggestions('dragon')
     await flushPromises()
 
     // Check if API was called with correct parameters
@@ -164,48 +174,72 @@ describe('DpAutocomplete', () => {
       data: {},
     })
 
-    // Manually trigger the event since fetchOptions() emits it only when currentQuery matches
-    wrapper.vm.currentQuery = 'dragon'
-    await wrapper.vm.fetchOptions('dragon')
-    await flushPromises()
-
-    // Now the event should be emitted
     expect(wrapper.emitted()).toHaveProperty('search-changed')
   })
 
-  it('handles keyboard navigation properly', async () => {
-    const wrapper = mount(DpAutocomplete, {
-      props: defaultProps,
+  describe('Keyboard Navigation', () => {
+    it('navigates through options with arrow keys', async () => {
+      const wrapper = mountComponent()
+      await openSuggestionsList(wrapper)
+
+      expect(wrapper.vm.isOptionsListVisible).toBe(true)
+      // Initial list position should be -1 (no selection)
+      expect(wrapper.vm.listPosition).toBe(-1)
+
+      // Press down arrow
+      await wrapper.vm.handleKeydown({ key: 'ArrowDown', preventDefault: () => {} })
+      await nextTick()
+      expect(wrapper.vm.listPosition).toBe(0)
+
+      // Press down arrow again
+      await wrapper.vm.handleKeydown({ key: 'ArrowDown', preventDefault: () => {} })
+      await nextTick()
+      expect(wrapper.vm.listPosition).toBe(1)
+
+      // Press up arrow
+      await wrapper.vm.handleKeydown({ key: 'ArrowUp', preventDefault: () => {} })
+      await nextTick()
+      expect(wrapper.vm.listPosition).toBe(0)
     })
 
-    // Focus and setup for testing keyboard navigation
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
-    wrapper.vm.currentQuery = 'a' // Set to match multiple options
-    wrapper.vm.isInputFocused = true
-    wrapper.vm.isOpenList = true
-    await nextTick()
+    it('selects option with Enter key', async () => {
+      const wrapper = mountComponent()
+      await openSuggestionsList(wrapper)
+      wrapper.vm.listPosition = 0
+      await nextTick()
 
-    // Initial list position should be -1 (no selection)
-    expect(wrapper.vm.listPosition).toBe(-1)
+      await wrapper.vm.handleKeydown({ key: 'Enter', preventDefault: () => {} })
+      await nextTick()
 
-    // Press down arrow
-    await input.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.vm.listPosition).toBe(0)
+      expect(wrapper.emitted('selected')).toBeTruthy()
+      expect(wrapper.emitted('selected')[0][0]).toEqual({ id: 1, name: 'Apple' })
+    })
 
-    // Press down arrow again
-    await input.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.vm.listPosition).toBe(1)
+    it('closes list with Tab key', async () => {
+      const wrapper = mountComponent({ options: [{ id: 1, name: 'Apple' }] })
+      await openSuggestionsList(wrapper, 'Ap')
 
-    // Press up arrow
-    await input.trigger('keydown', { key: 'ArrowUp' })
-    expect(wrapper.vm.listPosition).toBe(0)
+      expect(wrapper.vm.isOptionsListVisible).toBe(true)
 
-    // Press enter to select the option
-    await input.trigger('keydown', { key: 'Enter' })
+      // Press tab - this should close the list and move focus to the next element
+      await wrapper.vm.handleKeydown({ key: 'Tab', preventDefault: () => {} })
+      await nextTick()
 
-    // Should emit the selected option
-    expect(wrapper.emitted('selected')).toBeTruthy()
+      expect(wrapper.vm.isInputFocused).toBe(false)
+    })
+
+    it('closes list with Escape key', async () => {
+      const wrapper = mountComponent()
+      await openSuggestionsList(wrapper)
+
+      expect(wrapper.vm.isOptionsListVisible).toBe(true)
+
+      // Press escape
+      await wrapper.vm.handleKeydown({ key: 'Escape', preventDefault: () => {} })
+      await nextTick()
+
+      expect(wrapper.vm.isInputFocused).toBe(false)
+    })
   })
 
   it('shows no results message when no options match', async () => {
@@ -216,64 +250,18 @@ describe('DpAutocomplete', () => {
       },
     })
 
-    // Focus the input
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
+    const input = wrapper.find('input')
+    await input.trigger('focus')
 
     // Set query that won't match any options
     wrapper.vm.currentQuery = 'xyz'
     wrapper.vm.isInputFocused = true
-    wrapper.vm.isOpenList = true
+    wrapper.vm.showNoResults = true
     await nextTick()
 
-    // Find the no results message
     const noResults = wrapper.find('.text-gray-500')
     expect(noResults.exists()).toBe(true)
     expect(noResults.text()).toBe('No fruits found')
-  })
-
-  it('supports tab completion feature', async () => {
-    const wrapper = mount(DpAutocomplete, {
-      props: {
-        ...defaultProps,
-        options: [{ id: 1, name: 'Apple' }],
-      },
-    })
-
-    // Focus the input
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
-
-    // Set partial text to trigger completion
-    wrapper.vm.currentQuery = 'A'
-    await nextTick()
-
-    // Verify completion exists
-    expect(wrapper.vm.completion).toBeTruthy()
-
-    // Press tab
-    await input.trigger('keydown', { key: 'Tab' })
-
-    // Should emit the update event
-    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-  })
-
-  it('handles escape key properly', async () => {
-    const wrapper = mount(DpAutocomplete, {
-      props: defaultProps,
-    })
-
-    // Focus the input and ensure the list is open
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
-    wrapper.vm.isOpenList = true
-    await nextTick()
-
-    // Press escape
-    await input.trigger('keydown', { key: 'Escape' })
-
-    // List should be closed
-    expect(wrapper.vm.isOpenList).toBe(false)
   })
 
   it('respects minChars setting', async () => {
@@ -284,25 +272,20 @@ describe('DpAutocomplete', () => {
       },
     })
 
-    // Focus the input
-    const input = wrapper.find('#input-box')
-    await input.trigger('mousedown')
+    const input = wrapper.find('input')
+    await input.trigger('focus')
 
     // Set text that is too short
     wrapper.vm.currentQuery = 'ap'
     wrapper.vm.isInputFocused = true
     await nextTick()
 
-    // List should not be visible
     expect(wrapper.vm.isOptionsListVisible).toBe(false)
 
     // Set text that is long enough
     wrapper.vm.currentQuery = 'app'
     await nextTick()
 
-    // List should be visible with isOpenList=true
-    wrapper.vm.isOpenList = true
-    await nextTick()
     expect(wrapper.vm.isOptionsListVisible).toBe(true)
   })
 
@@ -318,17 +301,12 @@ describe('DpAutocomplete', () => {
       },
     })
 
-    // Test custom label without relying on DOM elements
     expect(wrapper.props('label')).toBe('title')
 
-    // Manually select an option and verify it uses the custom property
-    await wrapper.vm.selectCurrentOption({ id: 1, title: 'Apple' })
+    await wrapper.vm.selectOption({ id: 1, title: 'Apple' })
 
     // Check emitted values
-    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-    expect(wrapper.emitted('update:modelValue')[0][0]).toBe('Apple')
-    expect(wrapper.emitted('selected')).toBeTruthy()
-    expect(wrapper.emitted('selected')[0][0]).toEqual({ id: 1, title: 'Apple' })
+    expectOptionSelected(wrapper, { id: 1, title: 'Apple' }, 'Apple')
   })
 
   it('updates when modelValue prop changes', async () => {
@@ -339,25 +317,104 @@ describe('DpAutocomplete', () => {
       },
     })
 
-    // Update the modelValue prop
     await wrapper.setProps({ modelValue: 'Apple' })
 
-    // Component should update its current query
     expect(wrapper.vm.currentQuery).toBe('Apple')
   })
 
-  it('handles accessibility attributes correctly', () => {
-    const wrapper = mount(DpAutocomplete, {
-      props: defaultProps,
+  describe('Accessibility', () => {
+    it('passes aria-labelledby to the input element', () => {
+      const wrapper = mountComponent({ ariaLabelledby: 'autocomplete-label' })
+      const input = wrapper.find('input')
+
+      expect(input.attributes('aria-labelledby')).toBe('autocomplete-label')
     })
 
-    // Test appropriate ARIA attributes
-    const combobox = wrapper.find('[role="combobox"]')
-    expect(combobox.attributes('aria-haspopup')).toBe('listbox')
-    expect(combobox.attributes('aria-controls')).toBe('options-list')
+    it('has correct ARIA attributes on input element', () => {
+      const wrapper = mountComponent()
+      const input = wrapper.find('input')
 
-    const input = wrapper.find('#input-box')
-    expect(input.attributes('aria-labelledby')).toBe('autocomplete-label')
-    expect(input.attributes('role')).toBe('textbox')
+      expect(input.attributes('aria-haspopup')).toBe('listbox')
+      expect(input.attributes('aria-controls')).toBe('suggestions-list')
+      expect(input.attributes('autocomplete')).toBe('off')
+    })
+
+    it('updates aria-expanded based on list visibility', async () => {
+      const wrapper = mountComponent()
+      const input = wrapper.find('input')
+
+      // Initially collapsed
+      expect(input.attributes('aria-expanded')).toBe('false')
+
+      await openSuggestionsList(wrapper)
+
+      // Now expanded
+      expect(input.attributes('aria-expanded')).toBe('true')
+    })
+
+    it('updates aria-activedescendant when navigating options', async () => {
+      const wrapper = mountComponent()
+      const input = wrapper.find('input')
+
+      await openSuggestionsList(wrapper)
+
+      // No option selected initially
+      expect(input.attributes('aria-activedescendant')).toBeFalsy()
+
+      // Navigate to first option
+      wrapper.vm.listPosition = 0
+      await nextTick()
+
+      // Aria-activedescendant points to the highlighted option
+      expect(input.attributes('aria-activedescendant')).toBe('test-autocomplete-option-0')
+    })
+
+    it('renders listbox with correct role', async () => {
+      const wrapper = mountComponent()
+      await openSuggestionsList(wrapper)
+
+      const listBox = wrapper.find('#suggestions-list')
+      expect(listBox.exists()).toBe(true)
+      expect(listBox.attributes('role')).toBe('listbox')
+    })
+
+    it('renders options with correct ARIA attributes', async () => {
+      const wrapper = mountComponent()
+      await openSuggestionsList(wrapper)
+
+      const options = wrapper.findAll('[role="option"]')
+      expect(options.length).toBe(3)
+
+      // No option selected initially
+      expect(options[0].attributes('aria-selected')).toBe('false')
+      expect(options[1].attributes('aria-selected')).toBe('false')
+      expect(options[2].attributes('aria-selected')).toBe('false')
+
+      // Navigate to first option
+      wrapper.vm.listPosition = 0
+      await nextTick()
+
+      // Only first option should be selected
+      expect(options[0].attributes('aria-selected')).toBe('true')
+      expect(options[1].attributes('aria-selected')).toBe('false')
+      expect(options[2].attributes('aria-selected')).toBe('false')
+    })
+
+    it('has screen reader live region for announcements', async () => {
+      const wrapper = mountComponent()
+      const liveRegion = wrapper.find('[aria-live="polite"]')
+
+      expect(liveRegion.exists()).toBe(true)
+      expect(liveRegion.attributes('aria-atomic')).toBe('true')
+
+      // Initially empty
+      expect(liveRegion.text()).toBe('')
+
+      // Open the suggestions list
+      await openSuggestionsList(wrapper)
+
+      // Should announce results
+      expect(liveRegion.text()).toBeTruthy()
+    })
   })
 })

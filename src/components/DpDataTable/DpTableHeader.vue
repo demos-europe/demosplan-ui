@@ -31,7 +31,10 @@
         @click="toggleSelectAll()"
       >
     </th>
-    <template v-for="(hf, idx) in headerFields">
+    <template
+      v-for="(hf, idx) in headerFields"
+      :key="`header-${idx}`"
+    >
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :is-last="headerFields.length === idx ? true : null"
@@ -90,8 +93,8 @@
 
 <script>
 import DpIcon from '~/components/DpIcon'
-import DpWrapTrigger from './DpWrapTrigger'
 import DpResizableColumn from './DpResizableColumn'
+import DpWrapTrigger from './DpWrapTrigger'
 
 export default {
   name: 'DpTableHeader',
@@ -170,6 +173,12 @@ export default {
       required: true,
     },
   },
+
+  emits: [
+    'toggle-expand-all',
+    'toggle-select-all',
+    'toggle-wrap-all',
+  ],
 
   watch: {
     indeterminate () {

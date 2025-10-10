@@ -2,7 +2,6 @@
   <details
     class="o-details space-stack-xs"
     :data-cy="`${dataCy}:detailsWrapper`"
-    role="group"
   >
     <summary
       :aria-expanded="isOpen"

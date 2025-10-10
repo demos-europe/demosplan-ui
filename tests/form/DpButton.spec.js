@@ -1,7 +1,14 @@
-import { afterEach, describe, expect, it, jest } from '@jest/globals'
-import { shallowMount } from '@vue/test-utils'
+import {
+  afterEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from '@jest/globals'
+
 import DpButton from '~/components/DpButton/DpButton'
 import DpIcon from '~/components/DpIcon/DpIcon'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpButton', () => {
   let wrapper

@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import { de } from '~/components/shared/translations'
 import { prefixClassMixin, sessionStorageMixin } from '~/mixins'
+import { de } from '~/components/shared/translations'
 import DpLabel from '../DpLabel/DpLabel'
 import DpUpload from './DpUpload'
 import DpUploadedFileList from './DpUploadedFileList'
@@ -75,7 +75,7 @@ export default {
      */
     allowedFileTypes: {
       type: [Array, String],
-      required: true,
+      required: false,
       default: 'pdf',
     },
 
@@ -246,7 +246,10 @@ export default {
     },
   },
 
-  emits: ['upload-success'],
+  emits: [
+    'file-remove',
+    'upload-success',
+  ],
 
   provide () {
     return {

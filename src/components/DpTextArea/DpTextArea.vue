@@ -124,6 +124,10 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+  ],
+
   data () {
     return {
       currentValue: this.value,

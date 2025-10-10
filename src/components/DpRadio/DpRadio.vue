@@ -125,5 +125,9 @@ export default {
       default: '1',
     },
   },
+
+  emits: [
+    'change',
+  ],
 }
 </script>

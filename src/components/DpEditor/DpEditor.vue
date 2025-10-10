@@ -362,7 +362,6 @@
 </template>
 
 <script>
-import { de } from '../shared/translations'
 import {
   Bold,
   BulletList,
@@ -383,11 +382,7 @@ import {
   Text,
   Underline,
 } from './libs/tiptapExtensions'
-import { CleanHtml, Tooltip } from '~/directives'
-import {
-  Editor, // Wrapper for prosemirror state
-  EditorContent, // Renderless content element
-} from '@tiptap/vue-3'
+
 import {
   buildSuggestion,
   CustomDelete,
@@ -398,15 +393,26 @@ import {
   InsertAtCursorPos,
   Obscure,
 } from './libs/customExtensions'
+
+import {
+  CleanHtml,
+  Tooltip,
+} from '~/directives'
+
+import {
+  Editor, // Wrapper for prosemirror state
+  EditorContent, // Renderless content element
+} from '@tiptap/vue-3'
+
+import { de } from '../shared/translations'
 import DpIcon from '../DpIcon/DpIcon'
 import DpLinkModal from './DpLinkModal'
 import DpUploadModal from './DpUploadModal'
-import DpResizableImage from './DpResizableImage'
 import { handleWordPaste } from './libs/handleWordPaste'
 import { maxlengthHint } from '~/utils/'
+import { mergeAttributes } from '@tiptap/core'
 import { prefixClassMixin } from '~/mixins'
 import { v4 as uuid } from 'uuid'
-import { mergeAttributes } from '@tiptap/core'
 
 export default {
   name: 'DpEditor',
@@ -415,7 +421,6 @@ export default {
     DpIcon,
     EditorContent,
     DpLinkModal,
-    DpResizableImage,
     DpUploadModal,
   },
 
@@ -574,6 +579,10 @@ export default {
       required: true,
     },
   },
+
+  emits: [
+    'input',
+  ],
 
   data () {
     return {
@@ -1001,6 +1010,8 @@ export default {
           return `<img src="${this.routes.getFileByHash(imageHash)}" width="${imageWidth}" height="${imageHeight}" alt="${altText}">`
         })
       } catch (e) {
+        console.error(e)
+
         return text
       }
     },

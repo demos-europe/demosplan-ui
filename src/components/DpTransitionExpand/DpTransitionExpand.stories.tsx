@@ -14,7 +14,7 @@ export default meta
 type Story = StoryObj<typeof DpTransitionExpand>
 
 export const Basic: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { DpTransitionExpand },
     setup() {
       const isVisible = ref(false)

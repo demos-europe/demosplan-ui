@@ -106,9 +106,9 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
+import DomPurify from 'dompurify'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import DomPurify from 'dompurify'
 
 export default {
   name: 'DpTableRow',
@@ -250,6 +250,12 @@ export default {
       default: false,
     },
   },
+
+  emits: [
+    'toggle-select',
+    'toggle-wrap',
+    'toggle-expand',
+  ],
 
   data () {
     return {

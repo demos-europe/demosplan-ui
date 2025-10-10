@@ -36,7 +36,7 @@ export default Mark.create({
     }]
   },
 
-  renderHTML: ({ HTMLAttributes, options }) => {
+  renderHTML: ({ HTMLAttributes }) => {
     return ['span', mergeAttributes(
       HTMLAttributes,
       { class: 'anonymize-me' },

@@ -16,7 +16,7 @@ describe.skip('DpUploadFiles', () => {
       hash: 'xxx-qqq-sss',
     }
 
-    const instance = shallowMountWith(DpUploadFiles, {
+    const instance = shallowMount(DpUploadFiles, {
       props: {
         allowedFileTypes: 'pdf',
       },

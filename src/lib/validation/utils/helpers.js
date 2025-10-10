@@ -49,6 +49,7 @@ function validateConditionsFulfilled (input) {
         return comparisonType === 'isNotEqual' ? inputToCheck.value !== matchers[1] : inputToCheck.value === matchers[1]
       }
     } catch (e) {
+      console.error(e)
       return false
     }
   })

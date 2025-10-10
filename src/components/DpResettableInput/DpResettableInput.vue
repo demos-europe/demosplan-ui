@@ -56,9 +56,9 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpInput from '~/components/DpInput'
-import { de } from '~/components/shared/translations'
 
 export default {
   name: 'DpResettableInput',

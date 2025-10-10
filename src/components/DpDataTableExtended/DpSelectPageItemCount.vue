@@ -7,7 +7,8 @@
       @change="e => $emit('changed-count', parseInt(e.target.value))"
     >
       <option
-        v-for="option in pageCountOptions"
+        v-for="(option, index) in pageCountOptions"
+        :key="index"
         :data-cy="`selectPageItem:${option}`"
         :value="option"
         :selected="option === currentItemCount"
@@ -46,6 +47,10 @@ export default {
       required: true,
     },
   },
+
+  emits: [
+    'changed-count',
+  ],
 
   data () {
     return {

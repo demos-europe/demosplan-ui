@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import DpLabel from '~/components/DpLabel'
 import { de } from '~/components/shared/translations'
+import DpLabel from '~/components/DpLabel'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
@@ -137,6 +137,10 @@ export default {
       default: '',
     },
   },
+
+  emits: [
+    'select',
+  ],
 
   data () {
     return {

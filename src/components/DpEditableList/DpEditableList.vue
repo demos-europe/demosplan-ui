@@ -102,7 +102,7 @@ export default {
     },
 
     entries: {
-      required: true,
+      required: false,
       type: [Array, Object],
       default: () => { return [] },
     },
@@ -128,6 +128,13 @@ export default {
       default: true,
     },
   },
+
+  emits: [
+    'delete',
+    'reset',
+    'saveEntry',
+    'showUpdateForm',
+  ],
 
   data () {
     return {

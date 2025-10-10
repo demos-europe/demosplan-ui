@@ -41,6 +41,7 @@ import {
   PreventEditing,
   UnAnonymize,
 } from '../DpEditor/libs/customExtensions'
+
 import {
   Bold,
   BulletList,
@@ -56,13 +57,15 @@ import {
   Text,
   Underline,
 } from '../DpEditor/libs/tiptapExtensions'
+
 import {
   Editor, // Wrapper for prosemirror state
   EditorContent, // Renderless content element
 } from '@tiptap/vue-3'
+
 import { BubbleMenu } from '@tiptap/vue-3/menus'
-import { offset } from '@floating-ui/dom'
 import { de } from '../shared/translations'
+import { offset } from '@floating-ui/dom'
 
 export default {
   name: 'DpAnonymizeText',
@@ -78,6 +81,10 @@ export default {
       required: true,
     },
   },
+
+  emits: [
+    'change',
+  ],
 
   data () {
     return {

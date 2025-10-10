@@ -157,6 +157,10 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+  ],
+
   data: () => ({
     currentHour: '00',
     currentMinutes: '00',

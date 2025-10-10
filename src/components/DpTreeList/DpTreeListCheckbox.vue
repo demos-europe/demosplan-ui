@@ -50,6 +50,10 @@ export default {
     },
   },
 
+  emits: [
+    'check',
+  ],
+
   computed: {
     label () {
       if (this.checkAll) {

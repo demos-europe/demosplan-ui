@@ -68,6 +68,10 @@ export default {
 
   mixins: [dpValidateMixin],
 
+  emits: [
+    'insert',
+  ],
+
   data () {
     return {
       initUrl: '',

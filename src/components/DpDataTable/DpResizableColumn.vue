@@ -17,9 +17,9 @@
 </template>
 
 <script>
+import DpResizeHandle from './DpResizeHandle'
 import { hasOwnProp } from '../../utils'
 import { sessionStorageMixin } from '~/mixins'
-import DpResizeHandle from './DpResizeHandle'
 
 export default {
   name: 'DpResizableColumn',

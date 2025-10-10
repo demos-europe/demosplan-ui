@@ -52,5 +52,4 @@ const runStringAttrTests = (wrapper, formControl, prop, val, attr) => describe('
   }
 })
 
-// eslint-disable-next-line jest/no-export
 export { runBooleanAttrTests, runStringAttrTests }

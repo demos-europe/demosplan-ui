@@ -1,5 +1,5 @@
-import DpTreeListCheckbox from '~/components/DpTreeList/DpTreeListCheckbox'
 import { de } from '../src/components/shared/translations'
+import DpTreeListCheckbox from '~/components/DpTreeList/DpTreeListCheckbox'
 
 import { shallowMount } from '@vue/test-utils'
 

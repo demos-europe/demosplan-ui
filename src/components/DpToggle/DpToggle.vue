@@ -42,6 +42,10 @@ export default {
     },
   },
 
+  emits: [
+    'input',
+  ],
+
   computed: {
     backgroundStyles () {
       return {

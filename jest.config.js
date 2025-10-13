@@ -46,7 +46,7 @@ module.exports = {
     '^.+\\.(ts)$': '<rootDir>/node_modules/ts-jest'
   },
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!@tiptap)(.*)'
+    '<rootDir>/node_modules/(?!@tiptap|uuid)(.*)'
   ],
   testEnvironment: "jsdom",
   testEnvironmentOptions: {

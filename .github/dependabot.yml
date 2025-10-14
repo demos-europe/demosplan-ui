@@ -15,6 +15,11 @@ updates:
         patterns:
           - "@storybook*"
           - "storybook"
+      # react and react-dom are needed for storybook, so the versions required by storybook should be installed
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
       tiptap:
         patterns:
           - "@tiptap*"

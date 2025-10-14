@@ -8,6 +8,7 @@ const wrapper = shallowMount(DpInput, {
     id: 'inputId',
     label: {
       hint: 'test hint',
+      text: 'test text',
     },
   },
 })
@@ -32,6 +33,7 @@ describe('DpInput', () => {
         id: 'inputId',
         label: {
           hint: 'test hint',
+          text: 'test text',
         },
       },
     })

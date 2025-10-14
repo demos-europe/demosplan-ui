@@ -30,8 +30,7 @@ describe('DpRadio', () => {
 
     expect(componentWrapper.emitted()).toHaveProperty('change')
     expect(componentWrapper.emitted()['change'][0][0]).toBe(true)
-    // One Event adds two element to the events array, so we have to check the 3rd value
-    expect(componentWrapper.emitted()['change'][2][0]).toBe(false)
+    expect(componentWrapper.emitted()['change'][1][0]).toBe(false)
   })
 
   it('emits correct payload when user clicks the radio input', async () => {

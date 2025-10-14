@@ -33,8 +33,7 @@ describe('DpCheckbox', () => {
 
     expect(componentWrapper.emitted()).toHaveProperty('change')
     expect(componentWrapper.emitted()['change'][0][0]).toBe(true)
-    // One Event adds two element to the events array, therefore we have to check the 3rd value.
-    expect(componentWrapper.emitted()['change'][2][0]).toBe(false)
+    expect(componentWrapper.emitted()['change'][1][0]).toBe(false)
   })
 
   it('has the value of `valueToSend` as its value', async () => {

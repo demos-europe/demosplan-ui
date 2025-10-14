@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerClasses">
+  <div :class="[containerClasses, attrs.class]">
     <dp-label
       v-if="label.text !== ''"
       v-bind="{

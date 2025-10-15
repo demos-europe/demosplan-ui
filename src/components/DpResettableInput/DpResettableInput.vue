@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div :class="['relative', $attrs.class]">
     <dp-input
       v-bind="inputAttributes"
       :id="id"

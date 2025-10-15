@@ -180,7 +180,7 @@ const props = defineProps({
    * Array of options to display in the dropdown
    */
   options: {
-    type: Array,
+    type: Array as () => Record<string, unknown>[],
     required: false,
     default: () => ([]),
   },
@@ -234,16 +234,16 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits([
-  'blur',
-  'focus',
-  'reset',
-  'search',
-  'search-changed',
-  'searched',
-  'selected',
-  'update:modelValue',
-])
+const emit = defineEmits<{
+  blur: []
+  focus: []
+  reset: []
+  search: [query: string]
+  'search-changed': [response: any]
+  searched: [query: string]
+  selected: [option: Record<string, unknown>]
+  'update:modelValue': [value: string]
+}>()
 
 const suggestionInput = ref<InstanceType<typeof DpResettableInput> | null>(null)
 const currentQuery = ref(props.modelValue)
@@ -321,7 +321,7 @@ const clearBlurTimeout = () => {
 }
 
 const clearOptions = () => {
-  emit('search-changed', { data: {} })
+  emit('search-changed', { data: {} } as any)
 }
 
 const focusInput = () => {
@@ -536,14 +536,13 @@ const fetchSuggestions = async (searchString: string) => {
     const response = await dpApi({
       method: 'GET',
       url: route,
-      params: {},
-      headers: {},
-      data: {},
+      headers: undefined,
+      params: undefined,
     })
 
     // Only emit results that match current search to prevent race conditions
     if (currentQuery.value === searchString) {
-      emit('search-changed', response)
+      emit('search-changed', response as any)
     }
   } catch (e) {
     console.error('Error fetching suggestions:', e)

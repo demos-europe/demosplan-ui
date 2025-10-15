@@ -169,9 +169,8 @@ describe('DpAutocomplete', () => {
     expect(mockDpApi).toHaveBeenCalledWith({
       method: 'GET',
       url: '/api/search?q=dragon',
-      params: {},
-      headers: {},
-      data: {},
+      params: undefined,
+      headers: undefined,
     })
 
     expect(wrapper.emitted()).toHaveProperty('search-changed')

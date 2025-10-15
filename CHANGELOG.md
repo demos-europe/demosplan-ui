@@ -4,7 +4,22 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.8 - 2025-10-15
+
+### Fixed
 - ([#1358](https://github.com/demos-europe/demosplan-ui/pull/1358)) DpAutocomplete: Fix several UX issues ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1358](https://github.com/demos-europe/demosplan-ui/pull/1358)) BREAKING: DpInput/DpResettableInput: Pass only class attr to root element ([@hwiem](https://github.com/hwiem))
+- Dependency updates:
+  - vue from 3.5.17 to 3.5.22
+  - @vue/server-renderer from 3.5.13 to 3.5.22
+  - @vue/compat from 3.5.17 to 3.5.22
+  - @vue/compiler-sfc from 3.5.17 to 3.5.22
+  - uuid from 11.1.0 to 13.0.0
+  - react from 18.2.0 to 19.1.0
+  - react-dom from 18.2.0 to 19.1.0
+
 
 ## v0.5.7 - 2025-09-01
 

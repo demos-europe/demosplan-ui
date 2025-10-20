@@ -12,24 +12,28 @@ describe('DpResettableInput', () => {
     })
   })
 
+  const testForwardsEventWithValue = async (eventName, value) => {
+    wrapper = shallowMount(DpResettableInput, {
+      props: {
+        id: 'testInput',
+        value
+      }
+    })
+    const dpInput = wrapper.findComponent({ name: 'DpInput' })
+
+    await dpInput.vm.$emit(eventName)
+
+    expect(wrapper.emitted(eventName)).toBeTruthy()
+    expect(wrapper.emitted(eventName)[0]).toEqual([value])
+  }
+
   it('renders the component', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
   describe('Event handling', () => {
     it('emits blur event when input loses focus', async () => {
-      wrapper = shallowMount(DpResettableInput, {
-        props: {
-          id: 'testInput',
-          value: 'test value'
-        }
-      })
-      const dpInput = wrapper.findComponent({ name: 'DpInput' })
-
-      await dpInput.vm.$emit('blur')
-
-      expect(wrapper.emitted('blur')).toBeTruthy()
-      expect(wrapper.emitted('blur')[0]).toEqual(['test value'])
+      await testForwardsEventWithValue('blur', 'test value')
     })
 
     it('emits input event when user types', async () => {
@@ -42,18 +46,7 @@ describe('DpResettableInput', () => {
     })
 
     it('emits enter event when user presses enter', async () => {
-      wrapper = shallowMount(DpResettableInput, {
-        props: {
-          id: 'testInput',
-          value: 'enter value'
-        }
-      })
-      const dpInput = wrapper.findComponent({ name: 'DpInput' })
-
-      await dpInput.vm.$emit('enter')
-
-      expect(wrapper.emitted('enter')).toBeTruthy()
-      expect(wrapper.emitted('enter')[0]).toEqual(['enter value'])
+      await testForwardsEventWithValue('enter', 'enter value')
     })
 
     it('emits focus event when input is focused', async () => {

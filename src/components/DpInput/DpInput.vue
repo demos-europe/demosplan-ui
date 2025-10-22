@@ -247,7 +247,6 @@ const emit = defineEmits([
   'blur',
   'enter',
   'focus',
-  'input',
   'keydown',
   'update:modelValue',
 ])
@@ -261,9 +260,8 @@ const attrs = useAttrs()
  */
 defineOptions({
   inheritAttrs: false,
-  model: {
-    prop: 'modelValue',
-    event: 'update:modelValue',
+  compatConfig: {
+    COMPONENT_V_MODEL: false,
   },
 })
 
@@ -343,7 +341,6 @@ const labelHint = computed(() => {
 const onInput = (event: Event) => {
   const value = (event.target as HTMLInputElement).value
   emit('update:modelValue', value)
-  emit('input', value)
 }
 
 const handleEnter = (event: KeyboardEvent) => {

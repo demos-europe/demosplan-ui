@@ -95,7 +95,7 @@ export default {
         info: 'fa-info-circle',
         warning: 'fa-exclamation-triangle'
       },
-      isDismissed: true,
+      isDismissed: false,
       translations: {
         hintDismiss: de.hint.dismiss,
         hintShow: de.hint.show

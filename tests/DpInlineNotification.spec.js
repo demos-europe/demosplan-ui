@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from '@jest/globals'
+import { afterEach, beforeEach, describe, expect, it } from '@jest/globals'
 import { shallowMount } from '@vue/test-utils'
 import DpInlineNotification from '~/components/DpInlineNotification/DpInlineNotification'
 
@@ -15,13 +15,19 @@ describe('', () => {
     })
   }
 
+  beforeEach(() => {
+    jest.clearAllMocks()
+    jest.restoreAllMocks()
+  })
+
   afterEach(() => {
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
   it('renders as error notification when only given a message', () => {
     wrapper = createWrapper()
 
+    console.log(wrapper.html())
     expect(wrapper.classes()).toContain('flash-error')
     expect(wrapper.find('[data-cy="inlineNotification:message"]').text()).toBe('Test Notification')
   })
@@ -59,9 +65,11 @@ describe('', () => {
     mockLscacheSet.mockRestore()
   })
 
-  it('renders in dismissed state when localStorage indicates dismissal', () => {
+  it('renders in dismissed state when localStorage indicates dismissal', async () => {
     const mockLscacheGet = jest.spyOn(require('lscache'), 'get').mockReturnValue(1234567890)
     wrapper = createWrapper({ dismissible: true, dismissibleKey: 'test-key' })
+
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.find('[data-cy="inlineNotification:message"]').exists()).toBe(false)
     expect(wrapper.find('[data-cy="inlineNotification:showHint"]').exists()).toBe(true)

@@ -5,6 +5,7 @@
     role="alert"
   >
     <button
+      ref="closeButton"
       :class="prefixClass('c-notify__closer')"
       type="button"
       :aria-label="closeButtonLabel"
@@ -105,10 +106,10 @@ export default {
       }, this.hideTimer)
     }
 
-    // Focus error notifications immediately for accessibility
+    // Focus close button for error notifications immediately for accessibility
     if (this.message.type === 'error') {
       this.$nextTick(() => {
-        this.$refs.notification?.focus()
+        this.$refs.closeButton?.focus()
       })
     }
   },

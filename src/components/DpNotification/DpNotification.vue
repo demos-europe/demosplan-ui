@@ -3,14 +3,13 @@
     ref="notification"
     :class="prefixClass('c-notify__message ' + messageClass)"
     role="alert"
-    tabindex="0"
-    @keydown.esc="hide"
   >
     <button
       :class="prefixClass('c-notify__closer')"
       type="button"
       :aria-label="closeButtonLabel"
       @click.stop.prevent="hide"
+      @keydown.esc="hide"
     >
       <i
         :class="prefixClass('c-notify__icon fa fa-times-circle')"

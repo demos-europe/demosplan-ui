@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
 
 export default {

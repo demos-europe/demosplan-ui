@@ -2,7 +2,7 @@
   <div
     ref="notification"
     :class="prefixClass('c-notify__message ' + messageClass)"
-    role="alert"
+    :role="ariaRole"
   >
     <button
       ref="closeButton"
@@ -90,6 +90,10 @@ export default {
 
     closeButtonLabel () {
       return de.hint.dismiss
+    },
+
+    ariaRole () {
+      return ['error', 'warning'].includes(this.message.type) ? 'alert' : 'status'
     },
   },
 

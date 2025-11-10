@@ -12,8 +12,8 @@
       @blur="$emit('blur', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"
-      @input="onInput"
       @keydown="$emit('keydown', $event)"
+      @update:model-value="handleUpdate"
     />
     <span
       v-if="hasSlotContent"
@@ -177,7 +177,7 @@ export default {
   },
 
   methods: {
-    onInput (val) {
+    handleUpdate (val) {
       this.currentValue = val
       this.$emit('input', val)
     },

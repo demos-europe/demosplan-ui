@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
+
+
 ## v0.5.8 - 2025-10-15
 
 ### Fixed

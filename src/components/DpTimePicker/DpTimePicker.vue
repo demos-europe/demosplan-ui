@@ -31,12 +31,12 @@
       v-else
       :id="`timeInput:${id}`"
       :data-cy="dataCy"
-      class="w-8"
-      type="time"
-      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
-      :value="currentTime"
+      :model-value="currentTime"
       autocomplete="off"
-      @input="val => handleInput(val)"
+      class="w-8"
+      pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]"
+      type="time"
+      @update:model-value="val => handleInput(val)"
     />
 
     <div

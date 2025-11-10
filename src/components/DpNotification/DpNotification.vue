@@ -1,16 +1,27 @@
 <template>
   <div
+    ref="notification"
     :class="prefixClass('c-notify__message ' + messageClass)"
+    role="alert"
+    tabindex="0"
+    @keydown.esc="hide"
   >
-    <i
-      :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer')"
-      aria-hidden="true"
+    <button
+      :class="prefixClass('c-notify__closer')"
+      type="button"
+      :aria-label="closeButtonLabel"
       @click.stop.prevent="hide"
-    />
+    >
+      <i
+        :class="prefixClass('c-notify__icon fa fa-times-circle')"
+        aria-hidden="true"
+      />
+    </button>
 
     <div :class="prefixClass('flow-root')">
       <i
         :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)"
+        aria-hidden="true"
       />
       <div :class="prefixClass('u-ml')">
         {{ message.text }}
@@ -74,6 +85,10 @@ export default {
 
     messageIcon () {
       return this.icons[this.message.type]
+    },
+
+    closeButtonLabel () {
+      return de.hint.dismiss
     },
   },
 

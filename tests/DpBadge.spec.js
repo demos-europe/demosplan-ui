@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpBadge from '~/components/DpBadge/DpBadge.vue'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpBadge', () => {
   let wrapper
@@ -9,8 +9,8 @@ describe('DpBadge', () => {
       props: {
         color: 'default',
         size: 'medium',
-        text: 'Test Badge'
-      }
+        text: 'Test Badge',
+      },
     })
   })
 

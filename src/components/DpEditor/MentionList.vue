@@ -6,7 +6,8 @@
         :key="item.id"
         class="o-list__item suggestion__list-item u-ph-0_5 u-pv-0_25"
         :class="{ 'suggestion__list-item--is-active': index === selectedIndex }"
-        @click="selectItem(index)">
+        @click="selectItem(index)"
+      >
         <button class="btn--blank">
           {{ item.label }}
         </button>
@@ -14,7 +15,8 @@
     </template>
     <li
       v-else
-      class="o-list__item suggestion__list-item">
+      class="o-list__item suggestion__list-item"
+    >
       No result
     </li>
   </ul>
@@ -47,7 +49,7 @@ export default {
       handler () {
         this.selectedIndex = 0
       },
-      deep: true
+      deep: true,
     },
   },
 
@@ -92,7 +94,7 @@ export default {
       if (item) {
         this.command(item)
       }
-    }
-  }
+    },
+  },
 }
 </script>

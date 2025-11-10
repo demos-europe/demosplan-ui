@@ -1,4 +1,13 @@
 import {
+  AliasedPhosphorIconName,
+  IconAlias,
+  IconName,
+  IconProportion,
+  IconSize,
+  PhosphorIconName,
+} from '../../../../types'
+
+import {
   PhArrowDown,
   PhArrowLeft,
   PhArrowRight,
@@ -43,18 +52,12 @@ import {
   PhUser,
   PhUsersThree,
   PhWarning,
-  PhWarningDiamond,
   PhWarningCircle,
+  PhWarningDiamond,
   PhX,
-  PhXCircle
+  PhXCircle,
 } from '@phosphor-icons/vue'
-import {
-  AliasedPhosphorIconName,
-  IconAlias,
-  IconName,
-  IconProportion,
-  IconSize,
-  PhosphorIconName } from '../../../../types'
+
 import type { Component } from 'vue'
 
 // ICONS
@@ -137,7 +140,7 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'success': PhCheck,
   'unlock': PhLockSimpleOpen,
   'userSolid': PhUser,
-  'xmark': PhX
+  'xmark': PhX,
 }
 
 // ICON PROPORTIONS
@@ -155,7 +158,7 @@ const iconsProportions: Record<string, IconProportion> = {
   'caret-double-up': 'portrait',
   'check': 'landscape',
   'dots-six-vertical': 'portrait',
-  'envelope-simple': 'landscape'
+  'envelope-simple': 'landscape',
 }
 
 const aliasedIconsProportions: Record<string, IconProportion> = {
@@ -171,12 +174,12 @@ const aliasedIconsProportions: Record<string, IconProportion> = {
 
 export const iconComponents: Record<IconName, Component> = {
   ...mappedIcons,
-  ...mappedIconAliases
+  ...mappedIconAliases,
 }
 
 export const proportions: Record<string, IconProportion> = {
   ...iconsProportions,
-  ...aliasedIconsProportions
+  ...aliasedIconsProportions,
 }
 
 export const SIZES: Record<IconSize, number> = {

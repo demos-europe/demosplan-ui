@@ -10,19 +10,19 @@ describe('date', () => {
     month: 12,
     time: {
       opt1: '13:15:40.000000',
-      opt2: 'T12:15:40.000Z'
+      opt2: 'T12:15:40.000Z',
     },
-    year: 2019
+    year: 2019,
   }
   const dateTypes = {
     exactDate: new Date(`${date.year}-${date.month}-${date.day}${date.time.opt2}`),
     timestampDate: 1577276140000,
-    IsoDate: `${date.year}-${date.month}-${date.day} ${date.time.opt1}`
+    IsoDate: `${date.year}-${date.month}-${date.day} ${date.time.opt1}`,
   }
   const transformedDates = {
     long:  `${date.day}.${date.month}.${date.year}, 13:15 Uhr`,
     short1: `${date.day}.${date.month}.${date.year}`,
-    short2: `${date.firstDay}.${date.month}.${date.year}`
+    short2: `${date.firstDay}.${date.month}.${date.year}`,
   }
 
   it('sets the short date format as a default value', () => {
@@ -58,7 +58,7 @@ describe('date', () => {
     dateFormat = {
       date1: date.year + '-' + date.month + '-' + date.day,
       date2: date.year + '-' + date.month,
-      date3: date.year + '/' + date.month
+      date3: date.year + '/' + date.month,
     }
 
     expect(formatDate(dateFormat.date1)).toEqual(transformedDates.short1)
@@ -76,7 +76,7 @@ describe('date', () => {
 
   it('transforms valid ISO 8601 date format type to a Date', () => {
     dateFormat = {
-      date: date.year + '/' + date.month + '/' + date.day + date.time.opt1
+      date: date.year + '/' + date.month + '/' + date.day + date.time.opt1,
     }
 
     expect(toDate(dateFormat.date)).toEqual(dateTypes.exactDate)

@@ -1,21 +1,25 @@
 <template>
   <div
-    :class="prefixClass('c-notify__message ' + messageClass)">
+    :class="prefixClass('c-notify__message ' + messageClass)"
+  >
     <i
       :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer')"
       aria-hidden="true"
-      @click.stop.prevent="hide" />
+      @click.stop.prevent="hide"
+    />
 
     <div :class="prefixClass('flow-root')">
       <i
-        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)" />
+        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)"
+      />
       <div :class="prefixClass('u-ml')">
         {{ message.text }}
         <a
           v-if="message.linkUrl"
           :class="prefixClass('c-notify__link u-mt-0_25')"
           :href="message.linkUrl"
-          data-cy="messageLink">
+          data-cy="messageLink"
+        >
           {{ message.linkText || message.linkUrl }}
         </a>
       </div>
@@ -37,14 +41,18 @@ export default {
      */
     message: {
       type: Object,
-      required: true
+      required: true,
     },
     hideTimer: {
       type: Number,
       required: false,
-      default: 20000
-    }
+      default: 20000,
+    },
   },
+
+  emits: [
+    'dp-notify-remove',
+  ],
 
   data () {
     return {
@@ -54,8 +62,8 @@ export default {
         warning: 'fa-exclamation-triangle',
         error: 'fa-exclamation-circle',
         confirm: 'fa-check-circle',
-        dev: 'fa-info-circle'
-      }
+        dev: 'fa-info-circle',
+      },
     }
   },
 
@@ -66,13 +74,13 @@ export default {
 
     messageIcon () {
       return this.icons[this.message.type]
-    }
+    },
   },
 
   methods: {
     hide () {
       this.$emit('dp-notify-remove', this.message)
-    }
+    },
   },
 
   mounted () {
@@ -81,6 +89,6 @@ export default {
         this.hide()
       }, this.hideTimer)
     }
-  }
+  },
 }
 </script>

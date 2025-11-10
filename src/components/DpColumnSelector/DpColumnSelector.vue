@@ -2,12 +2,14 @@
   <dp-flyout
     :has-menu="false"
     :data-cy="dataCy"
-    @close="trackSelection">
+    @close="trackSelection"
+  >
     <template v-slot:trigger>
       <span v-text="triggerText" />
       <i
         class="fa fa-caret-down u-ml-0_25"
-        aria-hidden="true" />
+        aria-hidden="true"
+      />
     </template>
     <div class="space-stack-xs u-pv-0_25">
       <dp-checkbox
@@ -19,7 +21,8 @@
         :label="{
           text: label
         }"
-        @change="broadcastSelection(value, !selectedColumns.has(value))" />
+        @change="broadcastSelection(value, !selectedColumns.has(value))"
+      />
     </div>
   </dp-flyout>
 </template>
@@ -35,39 +38,39 @@ export default {
 
   components: {
     DpCheckbox,
-    DpFlyout
+    DpFlyout,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     selectableColumns: {
       type: Array,
       required: false,
-      default: () => ([])
+      default: () => ([]),
     },
 
     initialSelection: {
       type: Array,
       required: false,
-      default: () => ([])
+      default: () => ([]),
     },
 
     localStorageKey: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     useLocalStorage: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
 
   emits: ['selection-changed'],
@@ -75,7 +78,7 @@ export default {
   data () {
     return {
       selectedColumns: new Set(),
-      triggerText: de.table.colsSelect
+      triggerText: de.table.colsSelect,
     }
   },
 
@@ -88,8 +91,8 @@ export default {
       }
 
       const currentSelection = this.selectableColumns
-        .filter(([value, label]) => this.selectedColumns.has(value))
-        .map(([value, label]) => value)
+        .filter(([value]) => this.selectedColumns.has(value))
+        .map(([value]) => value)
 
       this.$emit('selection-changed', currentSelection)
 
@@ -119,11 +122,11 @@ export default {
       if (hasOwnProp(window, '_paq')) {
         window._paq.push(['trackEvent', 'Column Selection', `View: ${this.localStorageKey}`, `Selected: ${this.selectedColumns.join(', ')}`])
       }
-    }
+    },
   },
 
   mounted () {
     this.initializeColumnSelection()
-  }
+  },
 }
 </script>

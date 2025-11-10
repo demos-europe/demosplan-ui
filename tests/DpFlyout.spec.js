@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpFlyout from '~/components/DpFlyout/DpFlyout.vue'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpFlyout', () => {
   let wrapper
@@ -11,8 +11,8 @@ describe('DpFlyout', () => {
         dataCy: 'flyoutTrigger',
         disabled: false,
         hasMenu: true,
-        padded: true
-      }
+        padded: true,
+      },
     })
   })
 

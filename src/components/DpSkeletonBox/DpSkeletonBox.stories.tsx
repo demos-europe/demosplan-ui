@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpSkeletonBox from './'
 
-interface IDpSkeletonBox {
-  height: string
-  width: string
-}
-
 const meta: Meta<typeof DpSkeletonBox> = {
   component: DpSkeletonBox,
   title: 'Components/SkeletonBox',
@@ -65,10 +60,10 @@ export const MultipleItems: Story = {
     },
     template: `
       <div style="width: 100%;">
-        <dp-skeleton-box 
-          v-for="i in 3" 
-          :key="i" 
-          height="54px" 
+        <dp-skeleton-box
+          v-for="i in 3"
+          :key="i"
+          height="54px"
           style="margin-bottom: 10px;" />
       </div>
     `
@@ -80,7 +75,7 @@ export const MultipleItems: Story = {
       },
       source: {
         code: `
-<dp-skeleton-box 
+<dp-skeleton-box
   v-for="(item, idx) in items"
   :key="\`skeleton:\${idx}\`"
   height="54px" />

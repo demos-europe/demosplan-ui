@@ -1,6 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 import DpModal from '~/components/DpModal'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
 describe('Modal', () => {
   it('should be an object', () => {
@@ -16,11 +15,11 @@ describe('Modal', () => {
 
     const instance = shallowMountWithGlobalMocks(DpModal, {
       props: {
-        modalId: 'test'
+        modalId: 'test',
       },
       slots: {
-        default: '<div>Slot Content</div>'
-      }
+        default: '<div>Slot Content</div>',
+      },
     })
 
     const modal = instance.vm

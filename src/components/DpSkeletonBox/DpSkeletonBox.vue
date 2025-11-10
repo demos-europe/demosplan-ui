@@ -1,7 +1,8 @@
 <template>
   <span
     :style="{ height: height, width: width }"
-    class="c-skeleton-box" />
+    class="c-skeleton-box"
+  />
 </template>
 
 <script>
@@ -11,13 +12,13 @@ export default {
   props: {
     height: {
       type: String,
-      default: '1em'
+      default: '1em',
     },
 
     width: {
       type: String,
-      default: '100%'
-    }
-  }
+      default: '100%',
+    },
+  },
 }
 </script>

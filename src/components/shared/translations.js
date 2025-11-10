@@ -1,39 +1,39 @@
 const de = {
   anonymization: {
     mark: 'Markierung anonymisieren',
-    unmark: 'Anonymisierung aufheben'
+    unmark: 'Anonymisierung aufheben',
   },
   altText: {
-    default: 'Alternativer Text'
+    default: 'Alternativer Text',
   },
   aria: {
     deselect: {
       all: 'Auswahl für alle Elemente aufheben',
-      element: 'Auswahl für Element aufheben'
+      element: 'Auswahl für Element aufheben',
     },
     select: {
       all: 'Alle Elemente auswählen',
-      element: 'Element auswählen'
+      element: 'Element auswählen',
     },
     collapse: {
       all: 'Alle Elemente zuklappen',
-      element: 'Element zuklappen'
+      element: 'Element zuklappen',
     },
     expand: {
       all: 'Alle Elemente ausklappen',
-      element: 'Element ausklappen'
+      element: 'Element ausklappen',
     },
   },
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
   computer: 'Computer',
   confirmDialog: {
-    confirm: 'Sind Sie sicher, dass Sie fortfahren möchten?'
+    confirm: 'Sind Sie sicher, dass Sie fortfahren möchten?',
   },
   contextualHelp: 'Kontexthilfe',
   dropdown: {
     close: "Einklappen",
-    open: "Ausklappen"
+    open: "Ausklappen",
   },
   editor: {
     bold: 'Fett',
@@ -47,12 +47,12 @@ const de = {
       edit: 'Link bearbeiten',
       editOrInsert: 'Link einfügen/bearbeiten',
       insert: 'Link einfügen',
-      hint: 'URLs sollten mit \'https://\' beginnen.'
+      hint: 'URLs sollten mit \'https://\' beginnen.',
     },
     mark: {
       delete: 'Als entfernt markieren',
       element: 'Markieren',
-      insert: 'Als hinzugefügt markieren'
+      insert: 'Als hinzugefügt markieren',
     },
     orderedList: 'Nummerierte Liste',
     redo: 'Wiederholen',
@@ -65,11 +65,11 @@ const de = {
       delete: 'Tabelle löschen',
       deleteColumn: 'Spalte löschen',
       deleteRow: 'Zeile löschen',
-      toggleCellMerge: 'Zelle verbinden / Verbindung aufheben'
+      toggleCellMerge: 'Zelle verbinden / Verbindung aufheben',
     },
     underline: 'Unterstrichen',
     undo: 'Rückgängig',
-    unorderedList: 'Aufzählung'
+    unorderedList: 'Aufzählung',
   },
   entrySelected: "Eintrag ausgewählt",
   entriesSelected: "Einträge ausgewählt",
@@ -77,27 +77,27 @@ const de = {
     mandatoryFields: {
       default: 'Bitte füllen Sie alle Pflichtfelder korrekt aus. Erst dann können Sie Ihre Angaben speichern.',
       intro: 'Bitte korrigieren Sie Ihre Eingabe in folgenden Feldern: ',
-      outro: '. Erst dann können Sie Ihre Angaben speichern.'
-    }
+      outro: '. Erst dann können Sie Ihre Angaben speichern.',
+    },
   },
   expandAll: "Alle Elemente ausklappen",
   file: {
-    remove: 'Datei entfernen'
+    remove: 'Datei entfernen',
   },
   hint: {
     dismiss: 'Hinweis ausblenden',
-    show: 'Hinweis einblenden'
+    show: 'Hinweis einblenden',
   },
   image: {
     alt: {
       editHint: 'Strg + Klick, um den alternativen Text zu bearbeiten',
       explanation: 'Ein Screenreader liest diesen Text anstelle des Bildes vor.',
-      placeholder: 'Hier können Sie Ihren alternativen Text einfügen.'
+      placeholder: 'Hier können Sie Ihren alternativen Text einfügen.',
     },
     edit: 'Bild bearbeiten',
     insert: 'Bild einfügen',
     placeholder: '[An dieser Stelle wird ihr Bild angezeigt]',
-    preview: 'Bildvorschau'
+    preview: 'Bildvorschau',
   },
   input: {
     text: {
@@ -109,18 +109,18 @@ const de = {
       },
       minlength({ cssClass, count, min }) {
         return `Noch <span class="${cssClass}"> ${count} </span> um ${min} Zeichen zu erreichen.`
-      }
-    }
+      },
+    },
   },
   item: {
     lockedForSelection: "Element kann nicht ausgewählt werden",
   },
   link: {
-    text: 'Linktext'
+    text: 'Linktext',
   },
   loadingData: 'Daten werden geladen...',
   obscure: {
-    title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.'
+    title: 'Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen.',
   },
   noElementsExisting: 'Keine Elemente vorhanden',
   noEntriesAvailable: 'Es sind keine Einträge vorhanden.',
@@ -129,19 +129,20 @@ const de = {
     add: 'Hinzufügen',
     delete: 'Löschen',
     deselect: {
-      all: 'Auswahl aufheben'
+      all: 'Auswahl aufheben',
     },
     confirm: 'Bestätigen',
     insert: 'Einfügen',
     new: 'Neu',
     none: 'Keine',
     remove: 'Entfernen',
+    reset: 'Zurücksetzen',
     save: 'Speichern',
     select: {
       all: 'Alle auswählen',
-      placeholder: 'Bitte wählen Sie einen Eintrag aus.'
+      placeholder: 'Bitte wählen Sie einen Eintrag aus.',
     },
-    update: 'Aktualisierung'
+    update: 'Aktualisierung',
   },
   pager: {
     multipleOf: 'von',
@@ -158,22 +159,26 @@ const de = {
     },
     showEntries: 'Einträge anzeigen',
     pageNavigation: 'Seitennavigation',
-    previous: 'Vorherige Seite'
+    previous: 'Vorherige Seite',
   },
   placeholderAutoSuggest: "Suchbegriff...",
   search: {
-    noResults (searchterm) {
-      return `Für den Suchbegriff <span style=\"background-color: yellow;\">${searchterm}</span> konnten keine Einträge gefunden werden.`
+    noResults (searchTerm) {
+      return `Für den Suchbegriff <span style="background-color: yellow;">${searchTerm}</span> konnten keine Einträge gefunden werden.`
     },
+    resultsHighlighted (count, position) {
+      return count > 1 ? `${count} Suchergebnisse vorhanden, ${position + 1} von ${count} hervorgehoben` : `Ein Suchergebnis vorhanden, ${position + 1} von 1 hervorgehoben`
+    },
+    running: 'Suche wird ausgeführt...',
     searching: 'Suchen',
     text: 'Suche',
   },
   tab: {
-    openNew: 'in neuem Tab öffnen'
+    openNew: 'in neuem Tab öffnen',
   },
   table: {
     colsSort: 'Spalten sortieren nach',
-    colsSelect: 'Spalten auswählen'
+    colsSelect: 'Spalten auswählen',
   },
   tag: {
     create: "Tag erstellen",
@@ -181,7 +186,7 @@ const de = {
   text: {
     deleted: 'Dieser Text wurde entfernt',
     inserted: 'Dieser Text wurde hinzugefügt',
-    marked: 'markierter Text'
+    marked: 'markierter Text',
   },
   url: 'URL',
   upload: {
@@ -193,10 +198,10 @@ const de = {
       },
       pdf({ browse, maxUploadSize }) {
         return `PDF-Dokument zum Upload hierher ziehen oder vom ${browse} auswählen (max. ${maxUploadSize})`
-      }
+      },
     },
     uploadedFiles: 'Hochgeladene Dateien',
-    warningFileType: 'Der von Ihnen hochgeladene Dateityp ist nicht erlaubt.'
+    warningFileType: 'Der von Ihnen hochgeladene Dateityp ist nicht erlaubt.',
   },
   validation: {
     error: {
@@ -205,12 +210,12 @@ const de = {
       fileUpload: 'Beim Upload der Datei ist ein Fehler aufgetreten.',
       email: 'Bitte geben Sie eine gültige E-Mail-Adresse an.',
       format: 'Bitte verwenden Sie das korrekte Format.',
-      zipCode: 'Bitte geben Sie genau 5 Zahlen ein (z.B. \'12345\').'
-    }
+      zipCode: 'Bitte geben Sie genau 5 Zahlen ein (z.B. \'12345\').',
+    },
   },
   window: {
-    close: 'Fenster schließen'
-  }
+    close: 'Fenster schließen',
+  },
 }
 
 export { de }

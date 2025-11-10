@@ -2,7 +2,8 @@
   <div class="c-pager__dropdown">
     <label
       class="c-pager__dropdown-label u-m-0 u-p-0 weight--normal flex items-center gap-1"
-      :aria-label="translations.selectNumberOfItems">
+      :aria-label="translations.selectNumberOfItems"
+    >
       <dp-sliding-pagination
         v-if="totalItems > Math.min(...limits)"
         class="inline-block"
@@ -11,17 +12,20 @@
         :sliding-ending-size="1"
         :sliding-window-size="1"
         :total="totalPages || 1"
-        @page-change="handlePageChange" />
+        @page-change="handlePageChange"
+      />
       <div
         v-if="totalItems > Math.min(...limits)"
-        class="inline-block">
+        class="inline-block"
+      >
         <dp-multiselect
           v-model="itemsPerPage"
           class="inline-block"
           :options="filteredLimits"
           :searchable="false"
           selected-label=""
-          @select="handleSizeChange" />
+          @select="handleSizeChange"
+        />
       </div>
       <span v-else>{{ totalItems }}</span>
       <span aria-hidden="true">
@@ -43,39 +47,39 @@ export default {
 
   components: {
     DpSlidingPagination,
-    DpMultiselect
+    DpMultiselect,
   },
 
   props: {
     currentPage: {
       required: false,
       type: Number,
-      default: 1
+      default: 1,
     },
 
     totalItems: {
       required: false,
       type: Number,
-      default: 1
+      default: 1,
     },
 
     totalPages: {
       required: false,
       type: Number,
-      default: 1
+      default: 1,
     },
 
     perPage: {
       required: false,
       type: Number,
-      default: 1
+      default: 1,
     },
 
     limits: {
       required: false,
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   emits: ['page-change', 'size-change'],
@@ -88,9 +92,9 @@ export default {
         multipleItems: de.pager.multipleItems,
         selectNumberOfItems: de.pager.selectNumberOfItems({
           results: this.totalItems,
-          items: de.pager.multipleItems
-        })
-      }
+          items: de.pager.multipleItems,
+        }),
+      },
     }
   },
 
@@ -108,7 +112,7 @@ export default {
       filtered.sort((a, b) => a - b)
 
       return filtered
-    }
+    },
   },
 
   methods: {
@@ -118,7 +122,7 @@ export default {
 
     handleSizeChange (selectedOption) {
       this.$emit('size-change', parseInt(selectedOption))
-    }
-  }
+    },
+  },
 }
 </script>

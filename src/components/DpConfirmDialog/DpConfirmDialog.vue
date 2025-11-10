@@ -4,10 +4,12 @@
     content-classes="w-2/3 xl:w-1/3"
     :data-cy="`confirmDialog:${dataCy}`"
     aria-describedby="dialogDescription"
-    @modal:toggled="onModalToggled">
+    @modal:toggled="onModalToggled"
+  >
     <p
       id="dialogDescription"
-      class="font-normal break-words mb-3">
+      class="font-normal break-words mb-3"
+    >
       {{ message }}
     </p>
     <dp-button-row
@@ -15,7 +17,8 @@
       :primary-text="confirmButtonText"
       secondary
       @primary-action="handleConfirm(true)"
-      @secondary-action="handleConfirm(false)" />
+      @secondary-action="handleConfirm(false)"
+    />
   </dp-modal>
 </template>
 
@@ -29,27 +32,27 @@ export default {
 
   components: {
     DpButtonRow,
-    DpModal
+    DpModal,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     message: {
       type: String,
       required: false,
-      default: de.confirmDialog.confirm
-    }
+      default: de.confirmDialog.confirm,
+    },
   },
 
   data () {
     return {
       confirmButtonText: de.operations.confirm,
-      resolvePromise: null as ((result: boolean) => void) | null
+      resolvePromise: null as ((result: boolean) => void) | null,
     }
   },
   methods: {
@@ -75,7 +78,7 @@ export default {
       return new Promise(resolve => {
         this.resolvePromise = resolve
       })
-    }
-  }
+    },
+  },
 }
 </script>

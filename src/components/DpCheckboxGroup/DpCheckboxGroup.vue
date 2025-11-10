@@ -4,7 +4,8 @@
       v-if="label !== ''"
       v-cleanhtml="label"
       class="font-size-medium is-label"
-      :class="inline ? 'float-left' : 'u-mb-0_25'" />
+      :class="inline ? 'float-left' : 'u-mb-0_25'"
+    />
     <dp-checkbox
       v-for="(option, idx) in options"
       :id="option.id"
@@ -16,7 +17,8 @@
       }"
       :name="option.name || ''"
       :data-cy="dataCy !== '' ? `${dataCy}:${option.id}` : null"
-      @change="(val) => $emit('update', { ...selected, [option.id]: val })" />
+      @change="(val) => $emit('update', { ...selected, [option.id]: val })"
+    />
   </fieldset>
 </template>
 
@@ -28,56 +30,56 @@ export default {
   name: 'DpCheckboxGroup',
 
   components: {
-    DpCheckbox
+    DpCheckbox,
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     options: {
       type: Array,
-      required: true
+      required: true,
     },
 
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     inline: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     selectedOptions: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   emits: [
-    'update'
+    'update',
   ],
 
   data () {
     return {
-      selected: {}
+      selected: {},
     }
   },
 
   watch: {
-      selectedOptions () {
+    selectedOptions () {
       this.selected = this.selectedOptions
-    }
+    },
   },
 
   methods: {
@@ -85,11 +87,11 @@ export default {
       this.options.forEach(option => {
         this.selected[option.id] = this.selectedOptions[option.id] ?? false
       })
-    }
+    },
   },
 
   mounted () {
     this.setSelected()
-  }
+  },
 }
 </script>

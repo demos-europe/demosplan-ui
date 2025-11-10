@@ -1,7 +1,7 @@
-import { mockNode, mockNodeChildren, mockUpdatedNodes } from './DpTreeListMockData'
-import { shallowMount } from '@vue/test-utils'
+import { mockNode, mockNodeChildren } from './DpTreeListMockData'
 import DpTreeListNode from '~/components/DpTreeList/DpTreeListNode'
 import DpTreeListToggle from '~/components/DpTreeList/DpTreeListToggle'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpTreeListNode', () => {
   let mocks
@@ -26,26 +26,26 @@ describe('DpTreeListNode', () => {
       onMove: jest.fn(),
       options: {},
       parentId: '',
-      parentSelected: false
+      parentSelected: false,
     }
 
     mocks = {
       Translator: {
-        trans: jest.fn(key => key)
+        trans: jest.fn(key => key),
       },
-      $on: jest.fn()
+      $on: jest.fn(),
     }
 
     stubs = {
-      DpTreeListToggle
+      DpTreeListToggle,
     }
 
     wrapper = shallowMount(DpTreeListNode, {
       propsData,
       global: {
         stubs,
-        mocks
-      }
+        mocks,
+      },
     })
   })
 

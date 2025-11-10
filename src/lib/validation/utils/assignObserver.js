@@ -46,7 +46,7 @@ export default function assignObserver (form) {
     attributes: true,
     attributeOldValue: true,
     childList: true,
-    subtree: true
+    subtree: true,
   }
   const observer = new MutationObserver(subscriber)
   observer.observe(target, config)

@@ -1,5 +1,5 @@
-import { VPopover as Popover } from 'v-tooltip'
 import { destroyTooltip, initTooltip, updateTooltip } from '~/components/DpTooltip/utils/tooltip'
+import { VPopover as Popover } from 'v-tooltip'
 
 /**
  * @deprecated Use DpTooltip instead
@@ -16,7 +16,7 @@ const tooltipConfig = {
   defaultBoundariesElement: 'scrollParent',
   defaultDelay: {
     show: 300,
-    hide: 100
+    hide: 100,
   },
   defaultOffset: 12,
   defaultTemplate: `
@@ -31,10 +31,10 @@ const tooltipConfig = {
     defaultArrowClass: 'tooltip__arrow',
     defaultDelay: {
       show: 300,
-      hide: 100
+      hide: 100,
     },
-    defaultTrigger: 'hover'
-  }
+    defaultTrigger: 'hover',
+  },
 }
 VPopover.options = { ...VPopover.options, ...tooltipConfig }
 
@@ -86,7 +86,7 @@ const Tooltip = {
 
   unmounted: function (element) {
     destroyTooltip(element)
-  }
+  },
 }
 
 export { VPopover, Tooltip }

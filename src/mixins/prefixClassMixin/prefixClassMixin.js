@@ -7,6 +7,6 @@ export default {
   methods: {
     prefixClass (classList) {
       return prefixClass(classList)
-    }
-  }
+    },
+  },
 }

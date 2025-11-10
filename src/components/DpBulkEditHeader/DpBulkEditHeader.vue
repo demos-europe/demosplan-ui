@@ -1,7 +1,8 @@
 <template>
   <div
     role="menu"
-    class="flex items-center gap-2 p-2 bg-selected">
+    class="flex items-center gap-2 p-2 bg-selected"
+  >
     <span>
       {{ selectedItemsText }}
     </span>
@@ -11,7 +12,8 @@
       color="secondary"
       data-cy="resetSelection"
       :text="deselect"
-      @click="$emit('reset-selection')" />
+      @click="$emit('reset-selection')"
+    />
   </div>
 </template>
 
@@ -23,22 +25,22 @@ export default {
   name: 'DpBulkEditHeader',
 
   components: {
-    DpButton
+    DpButton,
   },
 
   props: {
     selectedItemsText: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: ['reset-selection'],
 
   data () {
     return {
-      deselect: de.operations.deselect.all
+      deselect: de.operations.deselect.all,
     }
-  }
+  },
 }
 </script>

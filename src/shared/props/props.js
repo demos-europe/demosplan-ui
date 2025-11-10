@@ -39,7 +39,7 @@ const length = {
      * converted into a whole number.
      */
     return string !== true && Number(string) % 1 === 0
-  }
+  },
 }
 
 /**
@@ -52,7 +52,7 @@ const length = {
  */
 const attributes = element => {
   const allowed = {
-    textarea: ['cols', 'rows']
+    textarea: ['cols', 'rows'],
   }
   return {
     type: Array,
@@ -68,7 +68,7 @@ const attributes = element => {
       } else {
         console.error(`A Vue form component of type "${element}" is used with the "attributes" prop containing a disallowed attr.`)
       }
-    }
+    },
   }
 }
 

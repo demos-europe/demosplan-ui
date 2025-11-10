@@ -1,6 +1,6 @@
-import prefixClassMixin from './prefixClassMixin/prefixClassMixin'
 import dpSelectAllMixin from './dpSelectAllMixin'
 import dpValidateMixin from './dpValidateMixin'
+import prefixClassMixin from './prefixClassMixin/prefixClassMixin'
 import sessionStorageMixin from'./sessionStorageMixin'
 import tableSelectAllItems from './tableSelectAllItems'
 
@@ -9,5 +9,5 @@ export {
   dpValidateMixin,
   prefixClassMixin,
   sessionStorageMixin,
-  tableSelectAllItems
+  tableSelectAllItems,
 }

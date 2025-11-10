@@ -31,7 +31,7 @@ class Detabinator {
     this._inert = false
     this._focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex], [contenteditable]'
     this._focusableElements = Array.from(
-      element.querySelectorAll(this._focusableElementsString)
+      element.querySelectorAll(this._focusableElementsString),
     )
   }
 

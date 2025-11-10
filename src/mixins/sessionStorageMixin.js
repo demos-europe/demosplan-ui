@@ -20,6 +20,6 @@ export default {
 
     clearSessionStorage () {
       sessionStorage.clear()
-    }
-  }
+    },
+  },
 }

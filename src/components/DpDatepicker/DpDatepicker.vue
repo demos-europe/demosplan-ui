@@ -2,11 +2,11 @@
   <div
     :id="id"
     :data-cy="dataCy"
-    @input.stop.prevent="emitUpdate" />
+    @input.stop.prevent="emitUpdate"
+  />
 </template>
 
 <script>
-// eslint-disable-next-line import/extensions
 import Datepicker from 'a11y-datepicker/dist/index.es.min'
 
 export default {
@@ -16,31 +16,31 @@ export default {
     calendarsAfter: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     calendarsBefore: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'datepicker'
+      default: 'datepicker',
     },
 
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -48,7 +48,7 @@ export default {
      */
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     /**
@@ -57,7 +57,7 @@ export default {
     maxDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -66,25 +66,25 @@ export default {
     minDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     placeholder: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -93,9 +93,13 @@ export default {
     value: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
+
+  emits: [
+    'input',
+  ],
 
   data () {
     return {
@@ -105,8 +109,8 @@ export default {
         locale: 'DE-de',
         dateFormat: 'dd.mm.yyyy',
         id: this.id,
-        inputClass: 'o-form__control-input w-full'
-      }
+        inputClass: 'o-form__control-input w-full',
+      },
     }
   },
 
@@ -121,6 +125,7 @@ export default {
     maxDate: function () {
       if (this.datepicker.getDate()) {
         const currentDate = this.datepicker.getDateAsString()
+
         this.datepicker = this.datepicker.updateDatepicker({ maxDate: this.maxDate })
         this.datepicker.setDate(currentDate, true)
       } else {
@@ -131,6 +136,7 @@ export default {
     minDate: function () {
       if (this.datepicker.getDate()) {
         const currentDate = this.datepicker.getDateAsString()
+
         this.datepicker = this.datepicker.updateDatepicker({ minDate: this.minDate })
         this.datepicker.setDate(currentDate, true)
       } else {
@@ -144,7 +150,7 @@ export default {
 
     disabled: function () {
       this.datepicker = this.datepicker.updateDatepicker({ disabled: this.disabled })
-    }
+    },
   },
 
   methods: {
@@ -161,26 +167,27 @@ export default {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
+
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
-    }
+    },
   },
 
   mounted () {
     const config = {
       ...this.calendarsAfter > 0 ? { monthsAfterCurrent: this.calendarsAfter } : {},
       ...this.calendarsBefore > 0 ? { monthsBeforeCurrent: this.calendarsBefore } : {},
-      ...this.maxDate !== '' ? { maxDate: this.maxDate } : {},
-      ...this.minDate !== '' ? { minDate: this.minDate } : {},
-      ...this.name !== '' ? { inputName: this.name } : {},
-      ...{ required: this.required },
-      ...{ disabled: this.disabled },
-      ...this.localConfig
+      ...this.maxDate === '' ?  {} : { maxDate: this.maxDate },
+      ...this.minDate === '' ?  {} : { minDate: this.minDate },
+      ...this.name === '' ? {} : { inputName: this.name },
+      required: this.required,
+      disabled: this.disabled,
+      ...this.localConfig,
     }
     this.datepicker = Datepicker(config)
     this.value !== '' && this.datepicker.setDate(this.value)
     this.addErrorFieldnameAttribute()
-  }
+  },
 }
 </script>

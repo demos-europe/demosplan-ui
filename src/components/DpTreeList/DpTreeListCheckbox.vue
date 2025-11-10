@@ -7,7 +7,8 @@
       :name="name"
       :checked="checked"
       :value="stringValue"
-      @click="check">
+      @click="check"
+    >
     <span class="sr-only">{{ label }}</span>
   </label>
 </template>
@@ -20,34 +21,38 @@ export default {
 
   model: {
     prop: 'checked',
-    event: 'check'
+    event: 'check',
   },
 
   props: {
     checked: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     checkAll: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     name: {
       type: String,
-      required: true
+      required: true,
     },
 
     // Some implementations may require to set a custom value, eg. when submitting DpTreeList as a whole form.
     stringValue: {
       type: String,
       required: false,
-      default: 'on'
-    }
+      default: 'on',
+    },
   },
+
+  emits: [
+    'check',
+  ],
 
   computed: {
     label () {
@@ -56,7 +61,7 @@ export default {
       }
 
       return this.toggleCheckedStatus(de.aria.deselect.element, de.aria.select.element)
-    }
+    },
   },
 
   methods: {
@@ -66,7 +71,7 @@ export default {
 
     toggleCheckedStatus (deselect, select) {
       return this.checked ? deselect : select
-    }
-  }
+    },
+  },
 }
 </script>

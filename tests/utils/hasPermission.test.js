@@ -6,8 +6,8 @@ window.dplan = {
     notMyPermission: false,
     someOtherPermission: true,
     andICanAccessEverything: true,
-    youShallNotPass: false
-  }
+    youShallNotPass: false,
+  },
 }
 
 describe.each([

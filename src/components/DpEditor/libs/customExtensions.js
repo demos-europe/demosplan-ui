@@ -7,8 +7,8 @@ import CustomLink from './editorCustomLink'
 import CustomMark from './editorCustomMark'
 import InsertAtCursorPos from './editorInsertAtCursorPos'
 import Obscure from './editorObscure'
-import UnAnonymize from './editorUnAnonymize'
 import PreventEditing from './preventEditing'
+import UnAnonymize from './editorUnAnonymize'
 
 export {
   Anonymize,
@@ -20,6 +20,6 @@ export {
   CustomMark,
   InsertAtCursorPos,
   Obscure,
+  PreventEditing,
   UnAnonymize,
-  PreventEditing
 }

@@ -5,12 +5,12 @@ describe('sortAlphabetically', () => {
   const filteredUsersByFirstName =  [
     { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
-    { id: 1067, firstName: 'Torsten', lastName: 'Wulf' }
+    { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },
   ]
   const users = [
     { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
-    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' }
+    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
   ]
 
   it('returns an unchanged array if an object does not contain the given property', () => {
@@ -29,7 +29,7 @@ describe('sortAlphabetically', () => {
     const filteredUsersReverse =  [
       { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },
       { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
-      { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' }
+      { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
     ]
 
     expect(sortAlphabetically(users, 'firstName', 'desc')).toEqual(filteredUsersReverse)

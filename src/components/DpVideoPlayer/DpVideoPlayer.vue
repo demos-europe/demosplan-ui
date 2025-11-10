@@ -5,7 +5,8 @@
         :id="id"
         :data-cy="dataCy"
         :data-plyr-embed-id="primarySource.embedId"
-        :data-plyr-provider="primarySource.provider" />
+        :data-plyr-provider="primarySource.provider"
+      />
     </template>
     <template v-else>
       <video
@@ -13,12 +14,14 @@
         :aria-labelledby="ariaLabelledby"
         :data-cy="dataCy"
         playsinline
-        :data-poster="poster">
+        :data-poster="poster"
+      >
         <source
           v-for="source in sources"
           :key="source.src"
           :src="source.src"
-          :type="source.type">
+          :type="source.type"
+        >
         <track
           v-for="track in tracks"
           :key="track.src"
@@ -26,7 +29,8 @@
           :kind="track.kind"
           :label="track.label"
           :src="track.src"
-          :srclang="track.srclang">
+          :srclang="track.srclang"
+        >
       </video>
     </template>
   </div>
@@ -42,7 +46,7 @@ export default defineComponent({
     dataCy: {
       type: String,
       required: false,
-      default: 'videoPlayer'
+      default: 'videoPlayer',
     },
 
     /**
@@ -51,7 +55,7 @@ export default defineComponent({
     ariaLabelledby: {
       type: [String, Boolean],
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -59,24 +63,24 @@ export default defineComponent({
      */
     iconUrl: {
       type: String,
-      required: true
+      required: true,
     },
 
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     isEmbedded: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     poster: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -108,7 +112,7 @@ export default defineComponent({
           return (source.src && source.type) || (source.embedId && source.provider)
         })
       },
-      default: () => ([])
+      default: () => ([]),
     },
 
     tracks: {
@@ -117,13 +121,13 @@ export default defineComponent({
         // Check if all tracks have their required attributes
         return Array.isArray(value) && value.filter(track => track.kind && track.srclang && track.label && track.src).length === value.length
       },
-      default: () => ([])
-    }
+      default: () => ([]),
+    },
   },
 
   data () {
     return {
-      player: {}
+      player: {},
     }
   },
 
@@ -133,7 +137,7 @@ export default defineComponent({
     },
     primarySource() {
       return this.sources[0] || null
-    }
+    },
   },
 
   mounted () {
@@ -151,9 +155,9 @@ export default defineComponent({
         'captions',
         'settings',
         'download',
-        'fullscreen'
-      ]
+        'fullscreen',
+      ],
     })
-  }
+  },
 })
 </script>

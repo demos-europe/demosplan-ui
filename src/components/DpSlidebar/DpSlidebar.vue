@@ -1,20 +1,24 @@
 <template>
   <div
     class="c-slidebar u-pr-0"
-    data-slidebar="right">
+    data-slidebar="right"
+  >
     <div
       class="c-slidebar__container"
       data-slidebar-container=""
-      data-cy="sidebarModal">
+      data-cy="sidebarModal"
+    >
       <div class="u-ml-1_5">
         <button
           type="button"
           class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
           data-slidebar-hide=""
-          @click="$emit('close')">
+          @click="$emit('close')"
+        >
           <dp-icon
             icon="close"
-            size="large" />
+            size="large"
+          />
         </button>
         <slot />
       </div>
@@ -23,20 +27,24 @@
 </template>
 
 <script>
+import DpIcon from '~/components/DpIcon'
 import { hasOwnProp } from '~/utils'
 import { SideNav } from '~/lib'
-import DpIcon from '~/components/DpIcon'
 
 export default {
   name: 'DpSlidebar',
 
   components: {
-    DpIcon
+    DpIcon,
   },
+
+  emits: [
+    'close',
+  ],
 
   data () {
     return {
-      sideNav: {}
+      sideNav: {},
     }
   },
 
@@ -52,7 +60,7 @@ export default {
       if (hasOwnProp(this.sideNav, 'showSideNav')) {
         this.sideNav.showSideNav()
       }
-    }
+    },
   },
 
   mounted () {
@@ -66,6 +74,6 @@ export default {
     this.$root.$on('show-slidebar', () => {
       this.showSlideBar()
     })
-  }
+  },
 }
 </script>

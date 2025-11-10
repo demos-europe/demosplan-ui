@@ -49,6 +49,7 @@ function validateConditionsFulfilled (input) {
         return comparisonType === 'isNotEqual' ? inputToCheck.value !== matchers[1] : inputToCheck.value === matchers[1]
       }
     } catch (e) {
+      console.error(e)
       return false
     }
   })
@@ -102,7 +103,7 @@ function awaitElement (selector, context) {
     })
       .observe(document, {
         childList: true,
-        subtree: true
+        subtree: true,
       })
   })
 }
@@ -128,7 +129,7 @@ function scrollToVisibleElement (element) {
     const elementOffset = visibleElement.getBoundingClientRect().top + getScrollTop()
     window.scrollTo({
       behavior: 'smooth',
-      top: elementOffset - 50
+      top: elementOffset - 50,
     })
   }
 }

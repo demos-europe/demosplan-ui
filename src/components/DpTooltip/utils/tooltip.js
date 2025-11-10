@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid'
 // We need empty Variables for our show/hide methods, so we can destroy them later on.
 let handleCreateTooltip = null
 let handleRemoveTooltip = null
-let handleTimeoutForDestroy = null
 let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
@@ -45,7 +44,7 @@ const initTooltip = (el, value, options) => {
     id,
     el,
     options,
-    zIndex
+    zIndex,
   )
   handleRemoveTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
@@ -81,15 +80,15 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
         offset(12),
         flip(),
         shift({ padding: 8 }),
-        arrow({ element: arrowEl })
-      ]
-    }
+        arrow({ element: arrowEl }),
+      ],
+    },
   )
 
   Object.assign(tooltipEl.style, {
     left: `${x}px`,
     top: `${y}px`,
-    zIndex: Number(zIndex) + 1
+    zIndex: Number(zIndex) + 1,
   })
 
   /*
@@ -102,7 +101,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     top: 'bottom',
     right: 'left',
     bottom: 'top',
-    left: 'right'
+    left: 'right',
   }[placement.split('-')[0]]
 
   Object.assign(arrowEl.style, {
@@ -110,7 +109,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     top: arrowY ? `${arrowY}px` : '',
     bottom: '',
     right: '',
-    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px' // Always sets the arrow to the correct side.
+    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px', // Always sets the arrow to the correct side.
   })
 }
 

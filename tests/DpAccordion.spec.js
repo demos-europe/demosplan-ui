@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
 import DpAccordion from '~/components/DpAccordion/DpAccordion.vue'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpAccordion', () => {
   let wrapper
@@ -12,8 +12,8 @@ describe('DpAccordion', () => {
         fontWeight: 'bold',
         compressed: false,
         isOpen: false,
-        title: 'Test Title'
-      }
+        title: 'Test Title',
+      },
     })
   })
 

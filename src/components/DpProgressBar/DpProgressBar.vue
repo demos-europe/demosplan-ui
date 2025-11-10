@@ -16,7 +16,8 @@
       <div class="bg-color--grey-light-2">
         <div
           :style="style"
-          class="mb-1 c-progress-bar__line" />
+          class="mb-1 c-progress-bar__line"
+        />
       </div>
       <span v-if="showPercentage">
         {{ percentage }}%
@@ -33,32 +34,32 @@ export default {
     showPercentage: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     indeterminate: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     percentage: {
       type: Number,
       required: false,
-      default: 0
-    }
+      default: 0,
+    },
   },
 
   computed: {
     style () {
       return 'width: ' + this.percentage + '%;'
-    }
-  }
+    },
+  },
 }
 </script>

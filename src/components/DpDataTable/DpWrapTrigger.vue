@@ -1,12 +1,14 @@
 <template>
   <button
     class="c-data-table__wrap-trigger o-link--default btn--blank"
-    :data-cy="dataCy !== '' ? dataCy : false">
+    :data-cy="dataCy !== '' ? dataCy : false"
+  >
     <dp-icon
       aria-hidden="true"
       :aria-label="ariaLabel"
       :icon="icon"
-      size="small" />
+      size="small"
+    />
   </button>
 </template>
 
@@ -18,21 +20,21 @@ export default {
   name: 'DpWrapTrigger',
 
   components: {
-    DpIcon
+    DpIcon,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: 'wrapTriggerIcon'
+      default: 'wrapTriggerIcon',
     },
 
     expanded: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
@@ -42,7 +44,7 @@ export default {
 
     icon () {
       return this.expanded ? 'caret-up' : 'caret-down'
-    }
-  }
+    },
+  },
 }
 </script>

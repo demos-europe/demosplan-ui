@@ -1,14 +1,17 @@
 <template>
   <div
     class="c-data-table__resize-handle"
-    @mousedown.stop.prevent="(e) => $emit('mousedown', e)">
+    @mousedown.stop.prevent="(e) => $emit('mousedown', e)"
+  >
     <template v-if="displayIcon">
       <i
         class="fa fa-angle-left resize-handle__icon"
-        aria-hidden="true" />
+        aria-hidden="true"
+      />
       <i
         class="fa fa-angle-right resize-handle__icon"
-        aria-hidden="true" />
+        aria-hidden="true"
+      />
     </template>
   </div>
 </template>
@@ -21,8 +24,12 @@ export default {
     displayIcon: {
       required: false,
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
+
+  emits: [
+    'mousedown',
+  ],
 }
 </script>

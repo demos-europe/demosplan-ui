@@ -1,7 +1,8 @@
 <template>
   <component
     :is="nodeType"
-    class="inline-block">
+    class="inline-block"
+  >
     <slot />
   </component>
 </template>
@@ -14,36 +15,36 @@ export default {
   name: 'DpTooltip',
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
   },
 
   props: {
     container: {
       type: String,
-      required: false
+      required: false,
     },
 
     placement: {
       type: String,
       required: false,
-      default: 'top'
+      default: 'top',
     },
 
     nodeType: {
       type: String,
       required: false,
-      default: 'div'
+      default: 'div',
     },
 
     text: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data () {
     return {
-      tooltipHook: null
+      tooltipHook: null,
     }
   },
 
@@ -64,6 +65,6 @@ export default {
 
   beforeUnmount () {
     destroyTooltip(this.tooltipHook)
-  }
+  },
 }
 </script>

@@ -11,7 +11,7 @@
 import {
   Mark,
   markInputRule,
-  markPasteRule
+  markPasteRule,
 } from '@tiptap/core'
 
 const markInputRegex = /(?:<o>)([^<o>]+)(?:<o>)$/
@@ -22,7 +22,7 @@ export default Mark.create({
   parseHTML () {
     return [
       { tag: '.u-obscure' },
-      { tag: 'dp-obscure' }
+      { tag: 'dp-obscure' },
     ]
   },
 
@@ -48,8 +48,8 @@ export default Mark.create({
     return [
       markInputRule({
         find: markInputRegex,
-        type: this.type
-      })
+        type: this.type,
+      }),
     ]
   },
 
@@ -57,8 +57,8 @@ export default Mark.create({
     return [
       markPasteRule({
         find: markPasteRegex,
-        type: this.type
-      })
+        type: this.type,
+      }),
     ]
-  }
+  },
 })

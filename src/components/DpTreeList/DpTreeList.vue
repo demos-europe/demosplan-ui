@@ -1,12 +1,14 @@
 <template>
   <div
     class="c-treelist"
-    :class="{ 'is-dragging': dragging }">
+    :class="{ 'is-dragging': dragging }"
+  >
     <!-- Header -->
     <div
       ref="header"
       class="c-treelist__header o-sticky line-height--2"
-      :class="{ 'has-checkbox': checkAll }">
+      :class="{ 'has-checkbox': checkAll }"
+    >
       <div class="flex bg-color--white">
         <dp-tree-list-checkbox
           v-if="checkAll"
@@ -45,7 +47,8 @@
       :handle-drag="handleDrag"
       :is-draggable="draggable ? draggable : null"
       :on-move="onMove"
-      :opts="opts.draggable">
+      :opts="opts.draggable"
+    >
       <dp-tree-list-node
         v-for="(node, idx) in optimizedTreeData"
         :ref="`node_${node.id}`"
@@ -66,10 +69,12 @@
         @end="handleDrag('end')"
         @node-selected="handleNodeSelectionChanged"
         @start="handleDrag('start')"
-        @tree:change="bubbleChangeEvent">
+        @tree:change="bubbleChangeEvent"
+      >
         <template
           v-for="slot in Object.keys($slots)"
-          v-slot:[slot]="scope">
+          v-slot:[slot]="scope"
+        >
           <!--
             @slot branch: Template for rendering branch nodes. Receives props: nodeElement, nodeChildren, nodeId, parentId. leaf: Template for rendering leaf nodes. Receives props: nodeElement, nodeId, parentId.
           -->
@@ -85,7 +90,8 @@
     <div
       v-if="$slots.footer"
       ref="footer"
-      class="c-treelist__footer o-sticky">
+      class="c-treelist__footer o-sticky"
+    >
       <div class="u-p-0_5 bg-color--white">
         <!--
           @slot Content displayed at the bottom of the tree list. Useful for summary information or action buttons.
@@ -113,7 +119,7 @@ export default {
     DpDraggable,
     DpTreeListCheckbox,
     DpTreeListNode,
-    DpTreeListToggle
+    DpTreeListToggle,
   },
 
   props: {
@@ -122,7 +128,7 @@ export default {
      */
     branchIdentifier: {
       type: Function,
-      required: true
+      required: true,
     },
 
     /**
@@ -131,7 +137,7 @@ export default {
     draggable: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     /**
@@ -141,7 +147,7 @@ export default {
     onMove: {
       type: Function,
       required: false,
-      default: () => true
+      default: () => true,
     },
 
     /**
@@ -150,7 +156,7 @@ export default {
     options: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     /**
@@ -158,14 +164,14 @@ export default {
      */
     treeData: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: [
     'tree:change',
     'draggable:change',
-    'node-selection-change'
+    'node-selection-change',
   ],
 
   data () {
@@ -181,7 +187,7 @@ export default {
       opts: {},
       selectionManager: null,
       optimizedTreeData: [],
-      updateScheduled: false
+      updateScheduled: false,
     }
   },
 
@@ -211,7 +217,7 @@ export default {
          * @type {Event}
          */
         this.$emit('tree:change', payload)
-      }
+      },
     },
 
     allElementsSelected: {
@@ -232,8 +238,8 @@ export default {
         const selectedNodes = this.selectionManager.getSelectedNodes()
         const filteredSelections = this.filterSelectableNodes(selectedNodes)
         this.$emit('node-selection-change', filteredSelections)
-      }
-    }
+      },
+    },
   },
 
   watch: {
@@ -242,8 +248,8 @@ export default {
         this.rebuildIndexesAndUpdateTree(newData)
       },
       immediate: true,
-      deep: false // Only watch array reference changes for performance
-    }
+      deep: false, // Only watch array reference changes for performance
+    },
   },
 
   methods: {
@@ -339,7 +345,7 @@ export default {
         const payload = {
           elementId: evt.item.id,
           newIndex: newIndex,
-          parentId: nodeId
+          parentId: nodeId,
         }
 
         this.$emit('draggable:change', payload)
@@ -372,7 +378,7 @@ export default {
             header,
             this.$refs.treeList.$el,
             0,
-            'top'
+            'top',
           )
         }
 
@@ -383,7 +389,7 @@ export default {
               footer,
               this.$refs.treeList.$el,
               0,
-              'bottom'
+              'bottom',
             )
           }
         }
@@ -402,7 +408,7 @@ export default {
         this.allElementsSelected = false
         this.$emit('node-selection-change', [])
       }
-    }
+    },
   },
 
   mounted () {
@@ -421,20 +427,20 @@ export default {
          */
         handle: '.c-treelist__drag-handle',
         ghostClass: 'c-treelist__node-ghost',
-        chosenClass: 'c-treelist__node-chosen'
+        chosenClass: 'c-treelist__node-chosen',
       },
       checkboxIdentifier: {
         branch: 'nodeSelected',
-        leaf: 'nodeSelected'
+        leaf: 'nodeSelected',
       },
       selectOn: {
         childSelect: false,
-        parentSelect: false
+        parentSelect: false,
       },
       deselectOn: {
         childDeselect: false,
-        parentDeselect: false
-      }
+        parentDeselect: false,
+      },
     }
 
     this.opts = deepMerge(defaults, this.options)
@@ -447,6 +453,6 @@ export default {
 
   beforeUnmount() {
     this.destroyFixedControls()
-  }
+  },
 }
 </script>

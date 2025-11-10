@@ -42,7 +42,7 @@ function assignHandlersForSingleInput (input) {
             inputToCheck.addEventListener('select', validationFunction)
           }
         } catch (e) {
-
+          console.error(e)
         }
       })
     }

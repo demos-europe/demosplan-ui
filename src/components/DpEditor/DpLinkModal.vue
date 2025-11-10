@@ -3,7 +3,8 @@
     ref="linkModal"
     content-classes="u-1-of-3"
     data-dp-validate="linkModal"
-    @modal:toggled="setVisible">
+    @modal:toggled="setVisible"
+  >
     <h3>
       {{ hasLink ? translations.linkEdit : translations.linkInsert }}
     </h3>
@@ -14,7 +15,8 @@
         :label="{
           text: translations.linkText
         }"
-        :required="isVisible" />
+        :required="isVisible"
+      />
       <dp-input
         id="link_url"
         v-model="url"
@@ -24,13 +26,15 @@
         }"
         :pattern="isVisible === true ? '(^https?://.*|^//.*|^mailto:.*)' : null"
         :required="isVisible"
-        type="url" />
+        type="url"
+      />
       <dp-checkbox
         id="newTab"
         v-model="newTab"
         :label="{
           text: translations.newTab
-        }" />
+        }"
+      />
       <dp-button-row
         class="u-mt"
         primary
@@ -38,7 +42,8 @@
         secondary
         :secondary-text="translations.remove"
         @primary-action="dpValidateAction('linkModal', () => emitAndClose('insert'), false)"
-        @secondary-action="emitAndClose('remove')" />
+        @secondary-action="emitAndClose('remove')"
+      />
     </div>
   </dp-modal>
 </template>
@@ -58,10 +63,14 @@ export default {
     DpButtonRow,
     DpCheckbox,
     DpInput,
-    DpModal
+    DpModal,
   },
 
   mixins: [dpValidateMixin],
+
+  emits: [
+    'insert',
+  ],
 
   data () {
     return {
@@ -77,16 +86,16 @@ export default {
         linkText: de.link.text,
         remove: de.operations.remove,
         newTab: de.tab.openNew,
-        url: de.url
+        url: de.url,
       },
-      url: ''
+      url: '',
     }
   },
 
   computed: {
     hasLink () {
       return this.initUrl !== ''
-    }
+    },
   },
 
   methods: {
@@ -111,7 +120,7 @@ export default {
         this.text = ''
         this.newTab = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

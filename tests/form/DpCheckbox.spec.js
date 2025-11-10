@@ -6,8 +6,8 @@ import { shallowMount } from '@vue/test-utils'
 describe('DpCheckbox', () => {
   const wrapper = shallowMount(DpCheckbox, {
     props: {
-      id: 'checkboxId'
-    }
+      id: 'checkboxId',
+    },
   })
 
   runLabelTests(wrapper)
@@ -21,8 +21,8 @@ describe('DpCheckbox', () => {
     const componentWrapper = shallowMount(DpCheckbox, {
       props: {
         id: 'checkboxId',
-        checked: true
-      }
+        checked: true,
+      },
     })
 
     const checkboxEl = await componentWrapper.find('input[type="checkbox"]')
@@ -33,15 +33,14 @@ describe('DpCheckbox', () => {
 
     expect(componentWrapper.emitted()).toHaveProperty('change')
     expect(componentWrapper.emitted()['change'][0][0]).toBe(true)
-    // One Event adds two element to the events array, therefore we have to check the 3rd value.
-    expect(componentWrapper.emitted()['change'][2][0]).toBe(false)
+    expect(componentWrapper.emitted()['change'][1][0]).toBe(false)
   })
 
   it('has the value of `valueToSend` as its value', async () => {
     const componentWrapper = shallowMount(DpCheckbox, {
       props: {
-        id: 'checkboxId'
-      }
+        id: 'checkboxId',
+      },
     })
 
     await componentWrapper.setProps({ valueToSend: '1' })

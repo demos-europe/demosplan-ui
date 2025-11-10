@@ -5,10 +5,12 @@
       delay: { show: 1000, hide: 200 }
     }"
     class="btn--icon"
-    @click="$emit('click')">
+    @click="$emit('click')"
+  >
     <i
       :class="`fa ${icon}`"
-      aria-hidden="true" />
+      aria-hidden="true"
+    />
     <span class="sr-only">{{ text }}</span>
   </button>
 </template>
@@ -24,19 +26,23 @@ export default {
   name: 'DpButtonIcon',
 
   directives: {
-    tooltip: Tooltip
+    tooltip: Tooltip,
   },
 
   props: {
     icon: {
       type: String,
-      required: true
+      required: true,
     },
 
     text: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
+
+  emits: [
+    'click',
+  ],
 }
 </script>

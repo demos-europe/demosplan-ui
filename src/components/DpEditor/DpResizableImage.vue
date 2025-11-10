@@ -3,14 +3,16 @@
     ref="imagewrapper"
     as="span"
     class="resizable-image"
-    tabindex="1">
+    tabindex="1"
+  >
     <img
       ref="image"
       :alt="node.attrs.alt"
       data-cy="editor:resizableImage"
       :src="node.attrs.src"
       :title="imageTitle"
-      @click.ctrl="$root.$emit('open-image-alt-modal', { event: $event, imgId: id, editorId: editor.options.id })">
+      @click.ctrl="$root.$emit('open-image-alt-modal', { event: $event, imgId: id, editorId: editor.options.id })"
+    >
   </node-view-wrapper>
 </template>
 
@@ -23,7 +25,7 @@ export default {
   name: 'DpResizableImage',
 
   components: {
-    NodeViewWrapper
+    NodeViewWrapper,
   },
 
   props: nodeViewProps,
@@ -33,7 +35,7 @@ export default {
       id: uuid(),
       imageTitle: de.image.alt.editHint,
       observer: null,
-      ratioFactor: 1
+      ratioFactor: 1,
     }
   },
 
@@ -72,14 +74,14 @@ export default {
 
     initResizeObserver () {
       if (this.$refs.imagewrapper.$el) {
-        this.observer = new ResizeObserver(e => this.updateImageDimensions())
+        this.observer = new ResizeObserver(() => this.updateImageDimensions())
         this.observer.observe(this.$refs.imagewrapper.$el)
       } else {
         setTimeout(() => {
           this.initResizeObserver()
         }, 200)
       }
-    }
+    },
   },
 
   mounted () {
@@ -101,6 +103,6 @@ export default {
     if (this.observer) {
       this.observer.disconnect()
     }
-  }
+  },
 }
 </script>

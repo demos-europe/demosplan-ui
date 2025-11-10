@@ -13,6 +13,38 @@ describe('DpButtonRow', () => {
     })
   }
 
+  const createMockEvent = () => {
+    return { preventDefault: () => {} }
+  }
+
+  const getButtons = () => {
+    return wrapper.findAllComponents({ name: 'DpButton' })
+  }
+
+  const expectButtonColor = (button, color) => {
+    expect(button.props().color).toBe(color)
+  }
+
+  const expectButtonIsDisabled = (button, isDisabled) => {
+    expect(button.props().disabled).toBe(isDisabled)
+  }
+
+  const expectButtonLength = (buttons, length) => {
+    expect(buttons.length).toBe(length)
+  }
+
+  const expectButtonText = (button, text) => {
+    expect(button.props().text).toBe(text)
+  }
+
+  const expectEventEmission = async (eventName) => {
+    const buttons = getButtons()
+    await buttons[0].vm.$emit('click', createMockEvent())
+
+    expect(wrapper.emitted(eventName)).toBeTruthy()
+    expect(wrapper.emitted(eventName)).toHaveLength(1)
+  }
+
   afterEach(() => {
     if (wrapper) {
       wrapper.unmount()
@@ -22,81 +54,83 @@ describe('DpButtonRow', () => {
   describe('Rendering', () => {
     it('renders primary button when primary prop is true', () => {
       wrapper = createWrapper({ primary: true, secondary: false })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents.length).toBe(1)
-      expect(buttonComponents[0].props().color).toBe('primary')
+      expectButtonLength(buttons, 1)
+      expectButtonColor(buttons[0], 'primary')
     })
 
     it('does not render primary button when primary prop is false', () => {
       wrapper = createWrapper({ primary: false, secondary: false })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents.length).toBe(0)
+      expectButtonLength(buttons, 0)
     })
 
     it('renders secondary button when secondary prop is true', () => {
       wrapper = createWrapper({ primary: false, secondary: true })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents.length).toBe(1)
-      expect(buttonComponents[0].props().color).toBe('secondary')
+      expectButtonLength(buttons, 1)
+      expectButtonColor(buttons[0], 'secondary')
     })
 
     it('does not render secondary button when secondary prop is false', () => {
       wrapper = createWrapper({ primary: false, secondary: false })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents.length).toBe(0)
+      expectButtonLength(buttons, 0)
     })
 
     it('renders both buttons when both props are true', () => {
       wrapper = createWrapper({ primary: true, secondary: true })
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
+      const buttons = getButtons()
 
-      expect(buttonComponents.length).toBe(2)
-      expect(buttonComponents[0].props().color).toBe('primary')
-      expect(buttonComponents[1].props().color).toBe('secondary')
+      expectButtonLength(buttons, 2)
+      expectButtonColor(buttons[0], 'primary')
+      expectButtonColor(buttons[1], 'secondary')
     })
   })
 
   describe('Button text', () => {
     it('passes default primary text to primary button', () => {
       wrapper = createWrapper({ primary: true })
+      const buttons = getButtons()
 
-      const primaryButton = wrapper.findComponent({ name: 'DpButton' })
-      expect(primaryButton.props('text')).toBe(de.operations.save)
+      expect(buttons[0].props('text')).toBe(de.operations.save)
     })
 
     it('passes custom primary text to primary button', () => {
-      wrapper = createWrapper({ primary: true, primaryText: 'Save Changes' })
+      const buttonText = 'Save'
+      wrapper = createWrapper({ primary: true, primaryText: buttonText })
+      const buttons = getButtons()
 
-      const primaryButton = wrapper.findComponent({ name: 'DpButton' })
-      expect(primaryButton.props('text')).toBe('Save Changes')
+      expectButtonText(buttons[0], buttonText)
     })
 
     it('passes default secondary text to secondary button', () => {
       wrapper = createWrapper({ secondary: true })
+      const buttons = getButtons()
 
-      const secondaryButton = wrapper.findComponent({ name: 'DpButton' })
-      expect(secondaryButton.props('text')).toBe(de.operations.abort)
+      expectButtonText(buttons[0], de.operations.abort)
     })
 
     it('passes custom secondary text to secondary button', () => {
-      wrapper = createWrapper({ secondary: true, secondaryText: 'Cancel Operation' })
+      const buttonText = 'Cancel'
+      wrapper = createWrapper({ secondary: true, secondaryText: buttonText })
+      const buttons = getButtons()
 
-      const secondaryButton = wrapper.findComponent({ name: 'DpButton' })
-      expect(secondaryButton.props('text')).toBe('Cancel Operation')
+      expectButtonText(buttons[0], buttonText)
     })
   })
 
   describe('Disabled state', () => {
     it('disables both buttons when disabled is true', () => {
       wrapper = createWrapper({ primary: true, secondary: true, disabled: true })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents[0].props('disabled')).toBe(true)
-      expect(buttonComponents[1].props('disabled')).toBe(true)
+      expectButtonIsDisabled(buttons[0], true)
+      expectButtonIsDisabled(buttons[1], true)
     })
 
     it('disables only primary button when disabled object has primary: true', () => {
@@ -105,10 +139,10 @@ describe('DpButtonRow', () => {
         secondary: true,
         disabled: { primary: true }
       })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents[0].props('disabled')).toBe(true)
-      expect(buttonComponents[1].props('disabled')).toBe(false)
+      expectButtonIsDisabled(buttons[0], true)
+      expectButtonIsDisabled(buttons[1], false)
     })
 
     it('disables only secondary button when disabled object has secondary: true', () => {
@@ -117,18 +151,18 @@ describe('DpButtonRow', () => {
         secondary: true,
         disabled: { secondary: true }
       })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents[0].props('disabled')).toBe(false)
-      expect(buttonComponents[1].props('disabled')).toBe(true)
+      expectButtonIsDisabled(buttons[0], false)
+      expectButtonIsDisabled(buttons[1], true)
     })
 
     it('does not disable buttons when disabled is false', () => {
       wrapper = createWrapper({ primary: true, secondary: true, disabled: false })
+      const buttons = getButtons()
 
-      const buttonComponents = wrapper.findAllComponents({ name: 'DpButton' })
-      expect(buttonComponents[0].props('disabled')).toBe(false)
-      expect(buttonComponents[1].props('disabled')).toBe(false)
+      expectButtonIsDisabled(buttons[0], false)
+      expectButtonIsDisabled(buttons[1], false)
     })
   })
 
@@ -136,23 +170,13 @@ describe('DpButtonRow', () => {
     it('emits primary-action when primary button is clicked', async () => {
       wrapper = createWrapper({ primary: true })
 
-      const primaryButton = wrapper.findComponent({ name: 'DpButton' })
-      const mockEvent = { preventDefault: () => {} }
-      await primaryButton.vm.$emit('click', mockEvent)
-
-      expect(wrapper.emitted('primary-action')).toBeTruthy()
-      expect(wrapper.emitted('primary-action')).toHaveLength(1)
+      await expectEventEmission('primary-action')
     })
 
     it('emits secondary-action when secondary button is clicked', async () => {
       wrapper = createWrapper({ secondary: true })
 
-      const secondaryButton = wrapper.findComponent({ name: 'DpButton' })
-      const mockEvent = { preventDefault: () => {} }
-      await secondaryButton.vm.$emit('click', mockEvent)
-
-      expect(wrapper.emitted('secondary-action')).toBeTruthy()
-      expect(wrapper.emitted('secondary-action')).toHaveLength(1)
+      await expectEventEmission('secondary-action')
     })
   })
 

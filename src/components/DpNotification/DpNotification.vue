@@ -105,6 +105,13 @@ export default {
         this.hide()
       }, this.hideTimer)
     }
+
+    // Focus error notifications immediately for accessibility
+    if (this.message.type === 'error') {
+      this.$nextTick(() => {
+        this.$refs.notification?.focus()
+      })
+    }
   },
 }
 </script>

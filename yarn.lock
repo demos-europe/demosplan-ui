@@ -18891,9 +18891,9 @@ __metadata:
   linkType: hard
 
 "vue-multiselect@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "vue-multiselect@npm:3.1.0"
-  checksum: 10c0/4f38050e8f8435d41af4cb86561062c4772844bdcb33ac9fed5b52e0c9e6846794c46b407c3716960a9324403400f09fd75fd0bdcdf0c4c91292a102941a4b6d
+  version: 3.4.0
+  resolution: "vue-multiselect@npm:3.4.0"
+  checksum: 10c0/8387f67642e7381887f87cb785867e14e71f015de2a3b1a6639d10dfd25bc332f30d6eb5ae7b7ce6876b8453f031b5bc4440347ecce76c6b22e245569d150437
   languageName: node
   linkType: hard
 

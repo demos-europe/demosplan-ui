@@ -39,7 +39,7 @@ describe('DpResettableInput', () => {
     it('emits input event when user types', async () => {
       const dpInput = wrapper.findComponent({ name: 'DpInput' })
 
-      await dpInput.vm.$emit('input', 'new value')
+      await dpInput.vm.$emit('update:model-value', 'new value')
 
       expect(wrapper.emitted('input')).toBeTruthy()
       expect(wrapper.emitted('input')[0]).toEqual(['new value'])
@@ -121,7 +121,7 @@ describe('DpResettableInput', () => {
       expect(resetButton.attributes('disabled')).toBeDefined()
 
       const dpInput = wrapper.findComponent({ name: 'DpInput' })
-      await dpInput.vm.$emit('input', 'some value')
+      await dpInput.vm.$emit('update:model-value', 'some value')
       await wrapper.vm.$nextTick()
 
       resetButton = wrapper.find('[data-cy="resetButton"]')

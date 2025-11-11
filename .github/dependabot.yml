@@ -32,3 +32,6 @@ updates:
       vueuse:
         patterns:
           - "@vueuse*"
+      uppy:
+        patterns:
+          - "@uppy*"

@@ -118,7 +118,9 @@ export default {
     value: function () {
       if (this.value !== null) {
         const isNotSet = document.getElementById(this.id).getElementsByTagName('input')[0].value !== this.value
-        this.datepicker && isNotSet && this.datepicker.setDate(this.value, true)
+        if (this.datepicker && isNotSet) {
+          this.datepicker.setDate(this.value, true)
+        }
       }
     },
 
@@ -186,7 +188,9 @@ export default {
       ...this.localConfig,
     }
     this.datepicker = Datepicker(config)
-    this.value !== '' && this.datepicker.setDate(this.value)
+    if (this.value !== '') {
+      this.datepicker.setDate(this.value)
+    }
     this.addErrorFieldnameAttribute()
   },
 }

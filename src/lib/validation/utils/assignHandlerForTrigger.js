@@ -55,7 +55,11 @@ export default function assignHandlerForTrigger (triggerButton, form) {
         const fieldsString = nonEmptyUniqueFieldNames ? nonEmptyUniqueFieldNames.join(', ') : ' '
         const errorMandatoryFields = de.error.mandatoryFields.intro + fieldsString + de.error.mandatoryFields.outro
 
-        nonEmptyUniqueFieldNames.length ? dplan.notify.notify('error', errorMandatoryFields) : dplan.notify.notify('error', de.error.mandatoryFields.default)
+        if (nonEmptyUniqueFieldNames.length) {
+          dplan.notify.notify('error', errorMandatoryFields)
+        } else {
+          dplan.notify.notify('error', de.error.mandatoryFields.default)
+        }
       }
 
       scrollToVisibleElement(validatedForm.invalidFields[0])

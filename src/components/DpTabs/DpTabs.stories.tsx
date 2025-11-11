@@ -23,7 +23,9 @@ const meta: Meta<typeof DpTabs> = {
       // Handle tab change
       const handleChange = (id: string) => {
         activeTab.value = id
-        args.change && args.change(id)
+        if (args.change) {
+          args.change(id)
+        }
       }
       
       return { args, activeTab, handleChange }

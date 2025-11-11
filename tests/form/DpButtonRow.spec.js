@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
-import DpButtonRow from  '~/components/DpButtonRow/DpButtonRow'
 import { de } from '~/components/shared/translations'
+import DpButtonRow from  '~/components/DpButtonRow/DpButtonRow'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpButtonRow', () => {
   let wrapper

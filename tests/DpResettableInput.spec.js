@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpResettableInput from '~/components/DpResettableInput'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpResettableInput', () => {
   let wrapper

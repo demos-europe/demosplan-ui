@@ -80,20 +80,20 @@ export default {
   },
 
   computed: {
-    messageClass () {
-      return 'c-notify__message--' + this.message.type
-    },
-
-    messageIcon () {
-      return this.icons[this.message.type]
+    ariaRole () {
+      return ['error', 'warning'].includes(this.message.type) ? 'alert' : 'status'
     },
 
     closeButtonLabel () {
       return de.hint.dismiss
     },
 
-    ariaRole () {
-      return ['error', 'warning'].includes(this.message.type) ? 'alert' : 'status'
+    messageClass () {
+      return 'c-notify__message--' + this.message.type
+    },
+
+    messageIcon () {
+      return this.icons[this.message.type]
     },
   },
 

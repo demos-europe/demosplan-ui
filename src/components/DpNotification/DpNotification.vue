@@ -1,16 +1,27 @@
 <template>
   <div
+    ref="notification"
     :class="prefixClass('c-notify__message ' + messageClass)"
+    :role="ariaRole"
   >
-    <i
-      :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer')"
-      aria-hidden="true"
+    <button
+      ref="closeButton"
+      :class="prefixClass('c-notify__closer')"
+      type="button"
+      :aria-label="closeButtonLabel"
       @click.stop.prevent="hide"
-    />
+      @keydown.esc="hide"
+    >
+      <i
+        :class="prefixClass('c-notify__icon fa fa-times-circle')"
+        aria-hidden="true"
+      />
+    </button>
 
     <div :class="prefixClass('flow-root')">
       <i
         :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)"
+        aria-hidden="true"
       />
       <div :class="prefixClass('u-ml')">
         {{ message.text }}
@@ -28,6 +39,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
@@ -68,6 +80,14 @@ export default {
   },
 
   computed: {
+    ariaRole () {
+      return ['error', 'warning'].includes(this.message.type) ? 'alert' : 'status'
+    },
+
+    closeButtonLabel () {
+      return de.hint.dismiss
+    },
+
     messageClass () {
       return 'c-notify__message--' + this.message.type
     },
@@ -88,6 +108,13 @@ export default {
       setTimeout(() => {
         this.hide()
       }, this.hideTimer)
+    }
+
+    // Focus close button for error notifications immediately for accessibility
+    if (this.message.type === 'error') {
+      this.$nextTick(() => {
+        this.$refs.closeButton?.focus()
+      })
     }
   },
 }

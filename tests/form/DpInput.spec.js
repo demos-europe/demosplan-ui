@@ -44,7 +44,7 @@ describe('DpInput', () => {
     const input = wrapper.find('input')
     await input.setValue(newValue)
 
-    expect(wrapper.emitted().input[0][0]).toEqual(newValue)
+    expect(wrapper.emitted()['update:modelValue'][0][0]).toEqual(newValue)
   })
 
   it('emits an event on keydown enter', async () => {

@@ -69,13 +69,6 @@ export default {
       type: String,
       default: '',
     },
-
-    //  Required when toggling modal with toggleByEvent()
-    modalId: {
-      required: false,
-      type: String,
-      default: '',
-    },
   },
 
   emits: [
@@ -96,22 +89,6 @@ export default {
   },
 
   methods: {
-    /**
-     * Deprecated - not used anymore
-     * @param modalId
-     */
-    toggleByEvent (modalId) {
-      //  Do not execute without a specified modalId to prevent unintentional toggling of multiple modals
-      if (typeof modalId === 'undefined') {
-        return
-      }
-
-      //  Check if event specifies the correct modal instance
-      if (this.modalId === modalId) {
-        this.toggle()
-      }
-    },
-
     toggle () {
       const dialog = this.$refs.dialog
       if (!dialog) return

@@ -1,53 +1,32 @@
 <template>
-  <div
-    :class="prefixClass('o-modal')"
-    @keydown="checkKeyEvent"
+  <dialog
+    ref="dialog"
+    :aria-label="ariaLabel"
+    :class="prefixClass('o-modal__content ' + contentClasses)"
+    @close="onDialogClose"
+    @click="onBackdropClick"
   >
-    <transition
-      name="content"
-      appear
-      @enter="preventScroll"
+    <button
+      :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
+      :aria-label="title"
+      :title="title"
+      @click.prevent.stop="close()"
     >
-      <aside
-        v-if="isOpenModal"
-        :aria-label="ariaLabel"
-        :class="prefixClass('o-modal__content ' + contentClasses)"
-        role="dialog"
-      >
-        <button
-          :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="title"
-          :title="title"
-          @click.prevent.stop="toggle()"
-        >
-          <dp-icon
-            icon="close"
-            size="large"
-          />
-        </button>
-        <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
-          <h2
-            v-if="hasHeader"
-            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
-          >
-            <slot name="header" />
-          </h2>
-          <slot name="default" />
-        </div>
-      </aside>
-    </transition>
-    <transition
-      name="backdrop"
-      appear
-      @after-leave="preventScroll(false)"
-    >
-      <div
-        v-if="isOpenModal"
-        :class="prefixClass('o-modal__backdrop')"
-        @click.prevent.stop="toggle()"
+      <dp-icon
+        icon="close"
+        size="large"
       />
-    </transition>
-  </div>
+    </button>
+    <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
+      <h2
+        v-if="hasHeader"
+        :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
+      >
+        <slot name="header" />
+      </h2>
+      <slot name="default" />
+    </div>
+  </dialog>
 </template>
 
 <script>
@@ -103,9 +82,6 @@ export default {
 
   data () {
     return {
-      isOpenModal: false,
-      lastFocusedElement: '',
-      focusableElements: [],
       title: de.window.close,
     }
   },
@@ -117,24 +93,6 @@ export default {
   },
 
   methods: {
-    getFocusableElements () {
-      const elementList = Array.from(this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])'))
-
-      if (elementList.length <= 0) {
-        this.focusableElements = []
-      } else {
-        this.focusableElements = [...elementList].filter(el => this.isElementVisible(el))
-      }
-    },
-
-    isElementVisible (el) {
-      const isInDom = el.offsetParent !== null
-      const style = window.getComputedStyle(el)
-      const isDisplayed = style.display !== 'none' && style.opacity !== '0'
-
-      return isInDom && isDisplayed
-    },
-
     /**
      * Deprecated - not used anymore
      * @param modalId
@@ -152,32 +110,51 @@ export default {
     },
 
     toggle () {
-      this.isOpenModal = (this.isOpenModal === false)
-      this.$emit('modal:toggled', this.isOpenModal)
+      const dialog = this.$refs.dialog
+      if (!dialog) return
 
-      if (this.isOpenModal === true) {
-        this.lastFocusedElement = document.activeElement
-        // On toggle get all focusable elements and focus the first one (after everything is rendered)
-        this.$nextTick(() => {
-          this.getFocusableElements()
+      const isOpen = dialog.open
 
-          if (this.focusableElements.length > 0) {
-            this.focusableElements[0].focus({ preventScroll: true })
-          }
-        })
+      if (isOpen) {
+        this.close()
       } else {
-        this.preventScroll(false) // It could be removed after dropping the assessment table
-        this.lastFocusedElement.focus()
+        this.open()
+      }
+    },
+
+    open () {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
+
+      dialog.showModal()
+      this.preventScroll(true)
+      this.$emit('modal:toggled', true)
+    },
+
+    close () {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
+
+      dialog.close()
+      // preventScroll(false) will be called in onDialogClose
+    },
+
+    onDialogClose () {
+      this.preventScroll(false)
+      this.$emit('modal:toggled', false)
+    },
+
+    onBackdropClick (event) {
+      // Close dialog when clicking on the backdrop (outside the dialog content)
+      const dialog = this.$refs.dialog
+      if (event.target === dialog) {
+        this.close()
       }
     },
 
     /**
      * By setting the html element to overflow: hidden, content behind the opened modal is locked for scrolling.
      * To prevent page jumps when the scroll bar disappears, a padding is put onto the body element.
-     *
-     * When toggling the modal in, this can be done immediately. When removing the modal, we have to wait for the
-     * transition to finish, otherwise the modal jumps a little to the left when the "real scrollbar" appears again.
-     * The @after-leave hook is called from the backdrop because the transition applied to it is slightly longer.
      *
      * @param {boolean} toggleIn
      */
@@ -193,35 +170,6 @@ export default {
         bodyElement.style.overflowY = null
       }
     },
-
-    checkKeyEvent (event) {
-      // Close modal and return early if escape
-      if (event.key === 'Escape') {
-        this.toggle()
-      } else if (event.key === 'Tab') {
-        event.preventDefault()
-        const eventTargetIndex = this.focusableElements.findIndex(el => el === event.target)
-        const last = this.focusableElements.length - 1
-
-        if (this.focusableElements.length < 2) {
-          // Do nothing if only 1 or no elements to focus
-        } else if (event.shiftKey === false && event.target === this.focusableElements[last]) {
-          // If last element was previously focused, on tab jump to the first element
-          this.focusableElements[0].focus()
-        } else if (event.shiftKey === true && event.target === this.focusableElements[0]) {
-          // If first element was focused, on tab+shift focus the last element
-          this.focusableElements[last].focus()
-        } else {
-          const idxToFocus = event.shiftKey ? eventTargetIndex - 1 : eventTargetIndex + 1
-          this.focusableElements[idxToFocus].focus()
-        }
-      }
-    },
-  },
-
-  updated () {
-    // When component is re-rendered, we have to collect all focusable elements again, as new ones may have appeared
-    this.$nextTick(() => this.getFocusableElements())
   },
 
 }

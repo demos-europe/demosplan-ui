@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
-import DpButtonRow from  '~/components/DpButtonRow/DpButtonRow'
 import { de } from '~/components/shared/translations'
+import DpButtonRow from  '~/components/DpButtonRow/DpButtonRow'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpButtonRow', () => {
   let wrapper
@@ -8,8 +8,8 @@ describe('DpButtonRow', () => {
   const createWrapper = (props = {}) => {
     return shallowMount(DpButtonRow, {
       props: {
-        ...props
-      }
+        ...props,
+      },
     })
   }
 
@@ -137,7 +137,7 @@ describe('DpButtonRow', () => {
       wrapper = createWrapper({
         primary: true,
         secondary: true,
-        disabled: { primary: true }
+        disabled: { primary: true },
       })
       const buttons = getButtons()
 
@@ -149,7 +149,7 @@ describe('DpButtonRow', () => {
       wrapper = createWrapper({
         primary: true,
         secondary: true,
-        disabled: { secondary: true }
+        disabled: { secondary: true },
       })
       const buttons = getButtons()
 
@@ -204,8 +204,8 @@ describe('DpButtonRow', () => {
     it('renders slot content correctly', () => {
       wrapper = shallowMount(DpButtonRow, {
         slots: {
-          default: '<button class="test-slot">Extra Button</button>'
-        }
+          default: '<button class="test-slot">Extra Button</button>',
+        },
       })
 
       expect(wrapper.find('.test-slot').exists()).toBe(true)

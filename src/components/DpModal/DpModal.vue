@@ -5,6 +5,7 @@
     :class="prefixClass('o-modal__content ' + contentClasses)"
     @close="onDialogClose"
     @click="onBackdropClick"
+    @animationend="onAnimationEnd"
   >
     <button
       :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
@@ -83,6 +84,7 @@ export default {
   data () {
     return {
       title: de.window.close,
+      isClosing: false,
     }
   },
 
@@ -128,6 +130,12 @@ export default {
 
       dialog.showModal()
       this.preventScroll(true)
+
+      // Trigger opening animation by adding class after dialog is shown
+      this.$nextTick(() => {
+        dialog.classList.add('o-modal--opening')
+      })
+
       this.$emit('modal:toggled', true)
     },
 
@@ -135,13 +143,39 @@ export default {
       const dialog = this.$refs.dialog
       if (!dialog) return
 
-      dialog.close()
-      // preventScroll(false) will be called in onDialogClose
+      // If already closing, don't start another close animation
+      if (this.isClosing) return
+
+      // Remove opening class if it exists and add closing class
+      dialog.classList.remove('o-modal--opening')
+      dialog.classList.add('o-modal--closing')
+      this.isClosing = true
+
+      // The actual close() will be called in onAnimationEnd after animation completes
     },
 
     onDialogClose () {
+      const dialog = this.$refs.dialog
+      if (dialog) {
+        // Clean up animation classes
+        dialog.classList.remove('o-modal--opening', 'o-modal--closing')
+      }
+      this.isClosing = false
       this.preventScroll(false)
       this.$emit('modal:toggled', false)
+    },
+
+    onAnimationEnd (event) {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
+
+      // Only handle animations on the dialog itself, not its children
+      if (event.target !== dialog) return
+
+      // If closing animation finished, now actually close the dialog
+      if (this.isClosing && dialog.classList.contains('o-modal--closing')) {
+        dialog.close()
+      }
     },
 
     onBackdropClick (event) {

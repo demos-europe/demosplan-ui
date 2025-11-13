@@ -5,6 +5,7 @@
     :class="prefixClass('o-modal__content ' + contentClasses)"
     @close="onDialogClose"
     @click="onBackdropClick"
+    @keydown.esc.prevent="close()"
     @animationend="onAnimationEnd"
   >
     <button

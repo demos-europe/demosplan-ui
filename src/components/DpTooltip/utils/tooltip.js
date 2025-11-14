@@ -38,6 +38,12 @@ const initTooltip = (el, value, options) => {
   const zIndex = getZIndex(el)
   tooltips[id] = value
 
+  // Check if element is inside a dialog and use it as container
+  const dialogParent = el.closest('dialog')
+  if (dialogParent && !options.container) {
+    options.container = dialogParent
+  }
+
   el.setAttribute('aria-describedby', id)
 
   handleCreateTooltip = () => createTooltip(
@@ -66,7 +72,9 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     const range = document.createRange()
     const content = range.createContextualFragment(tooltipHtml)
 
-    document.querySelector(container).appendChild(content)
+    // Handle both DOM element and selector string
+    const containerEl = container instanceof Element ? container : document.querySelector(container)
+    containerEl.appendChild(content)
   }
 
   const tooltipEl = document.getElementById(id)
@@ -118,6 +126,12 @@ const updateTooltip = (wrapper, value, options) => {
 
   const wrapperId = wrapper.getAttribute('aria-describedby')
   tooltips[wrapperId] = value
+
+  // Check if element is inside a dialog and use it as container
+  const dialogParent = wrapper.closest('dialog')
+  if (dialogParent && !options.container) {
+    options.container = dialogParent
+  }
 
   const zIndex = getZIndex(wrapper)
   const tooltipEl = document.getElementById(wrapperId)

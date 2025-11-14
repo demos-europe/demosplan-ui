@@ -38,7 +38,9 @@ async function getConfig () {
       languageOptions: {
         globals: {
           ...globals.browser,
-          ...globals.node
+          ...globals.node,
+          dplan: 'readonly',
+          Routing: 'readonly'
         },
         parser: vueEslintParser,
         parserOptions: {

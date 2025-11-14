@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpResettableInput from '~/components/DpResettableInput'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpResettableInput', () => {
   let wrapper
@@ -7,8 +7,8 @@ describe('DpResettableInput', () => {
   beforeEach(() => {
     wrapper = shallowMount(DpResettableInput, {
       props: {
-        id: 'testInput'
-      }
+        id: 'testInput',
+      },
     })
   })
 
@@ -16,8 +16,8 @@ describe('DpResettableInput', () => {
     wrapper = shallowMount(DpResettableInput, {
       props: {
         id: 'testInput',
-        value
-      }
+        value,
+      },
     })
     const dpInput = wrapper.findComponent({ name: 'DpInput' })
 
@@ -39,7 +39,7 @@ describe('DpResettableInput', () => {
     it('emits input event when user types', async () => {
       const dpInput = wrapper.findComponent({ name: 'DpInput' })
 
-      await dpInput.vm.$emit('input', 'new value')
+      await dpInput.vm.$emit('update:model-value', 'new value')
 
       expect(wrapper.emitted('input')).toBeTruthy()
       expect(wrapper.emitted('input')[0]).toEqual(['new value'])
@@ -61,8 +61,8 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          value: 'some value'
-        }
+          value: 'some value',
+        },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')
 
@@ -90,8 +90,8 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          buttonVariant: 'small'
-        }
+          buttonVariant: 'small',
+        },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')
 
@@ -102,8 +102,8 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          inputAttributes: { disabled: true }
-        }
+          inputAttributes: { disabled: true },
+        },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')
 
@@ -121,7 +121,7 @@ describe('DpResettableInput', () => {
       expect(resetButton.attributes('disabled')).toBeDefined()
 
       const dpInput = wrapper.findComponent({ name: 'DpInput' })
-      await dpInput.vm.$emit('input', 'some value')
+      await dpInput.vm.$emit('update:model-value', 'some value')
       await wrapper.vm.$nextTick()
 
       resetButton = wrapper.find('[data-cy="resetButton"]')
@@ -132,8 +132,8 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          value: 'some value'
-        }
+          value: 'some value',
+        },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')
 
@@ -151,11 +151,11 @@ describe('DpResettableInput', () => {
     it('renders slot content correctly', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
-          id: 'testInput'
+          id: 'testInput',
         },
         slots: {
-          default: '<span class="test-slot">Slot content</span>'
-        }
+          default: '<span class="test-slot">Slot content</span>',
+        },
       })
 
       expect(wrapper.find('.test-slot').exists()).toBe(true)

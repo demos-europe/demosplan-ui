@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos)
+
 ### Fixed
 - ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
 

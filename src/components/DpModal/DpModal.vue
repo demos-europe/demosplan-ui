@@ -91,7 +91,9 @@ export default {
   methods: {
     toggle () {
       const dialog = this.$refs.dialog
-      if (!dialog) return
+      if (!dialog) {
+        return
+      }
 
       const isOpen = dialog.open
 

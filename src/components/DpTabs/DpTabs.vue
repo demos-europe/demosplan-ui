@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul
-      class="flex space-inline-m list-style-none border--bottom"
+      class="flex flex-wrap flex-col sm:flex-row gap-x-4 gap-y-2 justify-start list-style-none border--bottom"
       role="tablist"
     >
       <li

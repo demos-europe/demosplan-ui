@@ -13,6 +13,14 @@ describe('Modal', () => {
   it('should toggle the modal state', () => {
     window.dplan = () => { return {} }
 
+    // Mock dialog element methods
+    HTMLDialogElement.prototype.showModal = jest.fn(function () {
+      this.open = true
+    })
+    HTMLDialogElement.prototype.close = jest.fn(function () {
+      this.open = false
+    })
+
     const instance = shallowMountWithGlobalMocks(DpModal, {
       props: {
         modalId: 'test',
@@ -25,6 +33,6 @@ describe('Modal', () => {
     const modal = instance.vm
 
     modal.toggle('test')
-    expect(modal.isOpenModal).toBe(true)
+    expect(modal.$refs.dialog.showModal).toHaveBeenCalled()
   })
 })

@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.7-hotfix.1 - 2025-11-24
+
+### Fixed
+- ([#1406](https://github.com/demos-europe/demosplan-ui/pull/1406)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
+
 ## v0.5.7 - 2025-09-01
 
 ### Added

@@ -4,18 +4,22 @@
       :id="selectId"
       class="o-form__control-select w-auto u-mr-0_25"
       data-cy="selectPageMenu"
-      @change="e => $emit('changed-count', parseInt(e.target.value))">
+      @change="e => $emit('changed-count', parseInt(e.target.value))"
+    >
       <option
-        v-for="option in pageCountOptions"
+        v-for="(option, index) in pageCountOptions"
+        :key="index"
         :data-cy="`selectPageItem:${option}`"
         :value="option"
-        :selected="option === currentItemCount">
+        :selected="option === currentItemCount"
+      >
         {{ option }}
       </option>
     </select>
     <label
       :for="selectId"
-      class="inline u-mb-0">
+      class="inline u-mb-0"
+    >
       {{ labelText }}
     </label>
   </div>
@@ -30,24 +34,28 @@ export default {
   props: {
     currentItemCount: {
       type: Number,
-      required: true
+      required: true,
     },
 
     labelText: {
       type: String,
-      required: true
+      required: true,
     },
 
     pageCountOptions: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
+
+  emits: [
+    'changed-count',
+  ],
 
   data () {
     return {
-      selectId: uuid()
+      selectId: uuid(),
     }
-  }
+  },
 }
 </script>

@@ -2,19 +2,23 @@
   <div>
     <ul
       v-if="Object.keys(entries).length > 0"
-      class="u-mb-0_75">
+      class="u-mb-0_75"
+    >
       <li
         v-for="(entry, index) in entries"
         :key="index"
-        :data-cy="`${dataCy}:entryItem`">
+        :data-cy="`${dataCy}:entryItem`"
+      >
         <!--both v-bind below are important and should not be removed (one is for the source data to be passed from parent component, second is for when the source data (entries) is an object)-->
         <slot
           name="list"
           v-bind="entry"
           :entry="entry"
-          :index="index" />
+          :index="index"
+        />
         <span
-          v-if="hasPermissionToEdit">
+          v-if="hasPermissionToEdit"
+        >
           <dp-button
             class="ml-1"
             :data-cy="`${dataCy}:updateEntry`"
@@ -22,7 +26,8 @@
             icon="edit"
             :text="translationKeys.update"
             variant="subtle"
-            @click.prevent="showUpdateForm(index)" />
+            @click.prevent="showUpdateForm(index)"
+          />
           <dp-button
             class="ml-1"
             :data-cy="`${dataCy}:deleteEntry`"
@@ -30,13 +35,15 @@
             icon="delete"
             :text="translationKeys.delete"
             variant="subtle"
-            @click.prevent="deleteEntry(index)" />
+            @click.prevent="deleteEntry(index)"
+          />
         </span>
       </li>
     </ul>
     <div
       v-else
-      class="color--grey u-mb-0_5">
+      class="color--grey u-mb-0_5"
+    >
       {{ translationKeys.noEntries }}
     </div>
 
@@ -49,13 +56,15 @@
         class="btn btn--primary"
         :data-cy="currentlyUpdating !== '' ? `${dataCy}:saveEntry` : `${dataCy}:addEntry`"
         :text="currentlyUpdating !== '' ? translationKeys.update : translationKeys.add"
-        @click.prevent="saveEntry" />
+        @click.prevent="saveEntry"
+      />
 
       <dp-button
         class="btn btn--secondary u-ml-0_5"
         :data-cy="`${dataCy}:abort`"
         :text="translationKeys.abort"
-        @click.prevent="resetForm" />
+        @click.prevent="resetForm"
+      />
     </div>
 
     <dp-button
@@ -63,7 +72,8 @@
       class="btn btn--primary"
       :data-cy="`${dataCy}:showInput`"
       :text="translationKeys.new"
-      @click.prevent="showNewForm" />
+      @click.prevent="showNewForm"
+    />
   </div>
 </template>
 
@@ -75,26 +85,26 @@ export default {
   name: 'DpEditableList',
 
   components: {
-    DpButton
+    DpButton,
   },
 
   props: {
     closeOnSuccess: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'editableList'
+      default: 'editableList',
     },
 
     entries: {
-      required: true,
+      required: false,
       type: [Array, Object],
-      default: () => { return [] }
+      default: () => { return [] },
     },
 
     translationKeys: {
@@ -107,16 +117,30 @@ export default {
           abort: de.operations.abort,
           update: de.operations.update,
           noEntries: de.operations.none,
-          delete: de.operations.delete
+          delete: de.operations.delete,
         }
-      }
+      },
     },
 
     hasPermissionToEdit: {
       required: false,
       type: Boolean,
-      default: true
+      default: true,
     },
+  },
+
+  emits: [
+    'delete',
+    'reset',
+    'saveEntry',
+    'showUpdateForm',
+  ],
+
+  data () {
+    return {
+      isFormVisible: false,
+      currentlyUpdating: '',
+    }
   },
 
   watch: {
@@ -124,14 +148,7 @@ export default {
       if (newVal) {
         this.resetForm()
       }
-    }
-  },
-
-  data () {
-    return {
-      isFormVisible: false,
-      currentlyUpdating: ''
-    }
+    },
   },
 
   methods: {
@@ -166,7 +183,7 @@ export default {
       this.toggleFormVisibility(false)
       this.currentlyUpdating = ''
       this.$emit('delete', index)
-    }
-  }
+    },
+  },
 }
 </script>

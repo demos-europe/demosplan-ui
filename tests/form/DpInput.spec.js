@@ -1,15 +1,16 @@
 import { runBooleanAttrTests, runStringAttrTests } from './shared/Attributes'
-import { runLabelTests } from './shared/Label'
 import DpInput from '~/components/DpInput'
+import { runLabelTests } from './shared/Label'
 import { shallowMount } from '@vue/test-utils'
 
 const wrapper = shallowMount(DpInput, {
   props: {
     id: 'inputId',
     label: {
-      hint: 'test hint'
-    }
-  }
+      hint: 'test hint',
+      text: 'test text',
+    },
+  },
 })
 
 runLabelTests(wrapper)
@@ -31,9 +32,10 @@ describe('DpInput', () => {
       props: {
         id: 'inputId',
         label: {
-          hint: 'test hint'
-        }
-      }
+          hint: 'test hint',
+          text: 'test text',
+        },
+      },
     })
   })
 
@@ -42,12 +44,50 @@ describe('DpInput', () => {
     const input = wrapper.find('input')
     await input.setValue(newValue)
 
-    expect(wrapper.emitted().input[0][0]).toEqual(newValue)
+    expect(wrapper.emitted()['update:modelValue'][0][0]).toEqual(newValue)
   })
 
   it('emits an event on keydown enter', async () => {
     const input = wrapper.find('input')
     await input.trigger('keydown.enter')
     expect(wrapper.emitted().enter).toBeDefined()
+  })
+
+  it('passes through ARIA attributes to the input element', () => {
+    const wrapperWithAria = shallowMount(DpInput, {
+      props: {
+        id: 'inputId',
+      },
+      attrs: {
+        'aria-haspopup': 'listbox',
+        'aria-controls': 'listbox-id',
+        'aria-expanded': 'true',
+        'aria-activedescendant': 'option-1',
+      },
+    })
+
+    const input = wrapperWithAria.find('input')
+    expect(input.attributes('aria-haspopup')).toBe('listbox')
+    expect(input.attributes('aria-controls')).toBe('listbox-id')
+    expect(input.attributes('aria-expanded')).toBe('true')
+    expect(input.attributes('aria-activedescendant')).toBe('option-1')
+  })
+
+  it('does not pass class attribute to input element', () => {
+    const wrapperWithClass = shallowMount(DpInput, {
+      props: {
+        id: 'inputId',
+      },
+      attrs: {
+        class: 'custom-class',
+        'data-test': 'test-value',
+      },
+    })
+
+    const input = wrapperWithClass.find('input')
+    // Data-test should be passed through
+    expect(input.attributes('data-test')).toBe('test-value')
+    // Class should not be on the input (it stays on the wrapper)
+    expect(input.attributes('class')).not.toContain('custom-class')
   })
 })

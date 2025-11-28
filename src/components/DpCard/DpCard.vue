@@ -2,13 +2,15 @@
   <div class="rounded-lg shadow-sm px-4 py-3">
     <h4
       v-if="heading !== ''"
-      class="flex gap-1 items-center text-base mb-2">
+      class="flex gap-1 items-center text-base mb-2"
+    >
       <span>
         {{ heading }}
       </span>
       <dp-contextual-help
         v-if="headingTooltip !== ''"
-        :text="headingTooltip" />
+        :text="headingTooltip"
+      />
     </h4>
     <slot />
   </div>
@@ -21,7 +23,7 @@ export default {
   name: 'DpCard',
 
   components: {
-    DpContextualHelp
+    DpContextualHelp,
   },
 
   props: {
@@ -31,7 +33,7 @@ export default {
     heading: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -40,8 +42,8 @@ export default {
     headingTooltip: {
       type: String,
       required: false,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 }
 </script>

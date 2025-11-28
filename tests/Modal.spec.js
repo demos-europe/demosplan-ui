@@ -1,6 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 import DpModal from '~/components/DpModal'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
 describe('Modal', () => {
   it('should be an object', () => {
@@ -14,18 +13,26 @@ describe('Modal', () => {
   it('should toggle the modal state', () => {
     window.dplan = () => { return {} }
 
+    // Mock dialog element methods
+    HTMLDialogElement.prototype.showModal = jest.fn(function () {
+      this.open = true
+    })
+    HTMLDialogElement.prototype.close = jest.fn(function () {
+      this.open = false
+    })
+
     const instance = shallowMountWithGlobalMocks(DpModal, {
       props: {
-        modalId: 'test'
+        modalId: 'test',
       },
       slots: {
-        default: '<div>Slot Content</div>'
-      }
+        default: '<div>Slot Content</div>',
+      },
     })
 
     const modal = instance.vm
 
     modal.toggle('test')
-    expect(modal.isOpenModal).toBe(true)
+    expect(modal.$refs.dialog.showModal).toHaveBeenCalled()
   })
 })

@@ -1,10 +1,7 @@
+import { de } from '../../shared/translations'
 import {
   Mark,
-  markInputRule,
-  markPasteRule,
 } from '@tiptap/core'
-import { de } from '../../shared/translations'
-
 
 export default Mark.create({
   name: 'delete',
@@ -29,5 +26,5 @@ export default Mark.create({
         return commands.unsetMark(this.name)
       },
     }
-  }
+  },
 })

@@ -4,6 +4,40 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
+
+
+## v0.5.9 - 2025-11-18
+
+### Added
+- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos)
+
+### Fixed
+- ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Changed
+- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos)
+- ([#1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
+
+## v0.5.8 - 2025-10-15
+
+### Fixed
+- ([#1358](https://github.com/demos-europe/demosplan-ui/pull/1358)) DpAutocomplete: Fix several UX issues ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1358](https://github.com/demos-europe/demosplan-ui/pull/1358)) BREAKING: DpInput/DpResettableInput: Pass only class attr to root element ([@hwiem](https://github.com/hwiem))
+- Dependency updates:
+  - vue from 3.5.17 to 3.5.22
+  - @vue/server-renderer from 3.5.13 to 3.5.22
+  - @vue/compat from 3.5.17 to 3.5.22
+  - @vue/compiler-sfc from 3.5.17 to 3.5.22
+  - uuid from 11.1.0 to 13.0.0
+  - react from 18.2.0 to 19.1.0
+  - react-dom from 18.2.0 to 19.1.0
+
+
 ## v0.5.7 - 2025-09-01
 
 ### Added

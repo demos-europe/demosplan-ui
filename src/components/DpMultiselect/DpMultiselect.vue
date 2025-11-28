@@ -32,6 +32,7 @@
     :class="{ 'is-required' : required }"
     :data-cy="dataCy"
     :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
+    :internal-search="useDefaultSearch"
     :model-value="value"
     @close="newVal => $emit('close', newVal)"
     @update:model-value="newVal => $emit('input', newVal)"
@@ -39,7 +40,8 @@
     @remove="newVal => $emit('remove', newVal)"
     @search-change="newVal => $emit('search-change', newVal)"
     @select="newVal => $emit('select', newVal)"
-    @tag="newVal => $emit('tag', newVal)">
+    @tag="newVal => $emit('tag', newVal)"
+  >
     <template v-slot:noOptions>
       <slot name="noOptions">
         {{ translations.noEntriesAvailable }}
@@ -54,34 +56,40 @@
 
     <template
       v-for="slot in subSlots"
-      v-slot:[slot]="props">
+      v-slot:[slot]="props"
+    >
       <slot
         :props="props"
-        :name="slot" />
+        :name="slot"
+      />
     </template>
 
     <!-- put more slots here -->
 
     <template
       v-if="selectionControls"
-      v-slot:beforeList="props">
+      v-slot:beforeList="props"
+    >
       <slot
         name="beforeList"
-        :props="props">
+        :props="props"
+      >
         <div class="border-bottom">
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :disabled="value.length === options.length"
             type="button"
             @click="$emit('selectAll')"
-            v-text="translations.selectAll" />
+            v-text="translations.selectAll"
+          />
 
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :disabled="value.length === 0"
             type="button"
             @click="$emit('deselectAll')"
-            v-text="translations.deselectAll" />
+            v-text="translations.deselectAll"
+          />
         </div>
       </slot>
     </template>
@@ -97,11 +105,11 @@ export default {
   name: 'DpMultiselect',
 
   components: {
-    VueMultiselect
+    VueMultiselect,
   },
 
   directives: {
-    dpValidateMultiselectDirective
+    dpValidateMultiselectDirective,
   },
 
   props: {
@@ -114,7 +122,7 @@ export default {
     allowEmpty: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     /**
@@ -124,7 +132,7 @@ export default {
     clearOnSelect: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     /**
@@ -134,7 +142,7 @@ export default {
     closeOnSelect: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
 
     /**
@@ -145,7 +153,7 @@ export default {
     customLabel: {
       type: Function,
       required: false,
-      default: undefined
+      default: undefined,
     },
 
     /**
@@ -154,7 +162,7 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'multiselect'
+      default: 'multiselect',
     },
 
     /**
@@ -163,7 +171,7 @@ export default {
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -172,7 +180,7 @@ export default {
     deselectLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -181,7 +189,7 @@ export default {
     deselectGroupLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -190,7 +198,7 @@ export default {
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -200,7 +208,7 @@ export default {
     groupLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -210,7 +218,7 @@ export default {
     groupSelect: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -220,7 +228,7 @@ export default {
     groupValues: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -229,7 +237,7 @@ export default {
     id: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -240,7 +248,7 @@ export default {
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -249,7 +257,7 @@ export default {
     loading: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -258,7 +266,7 @@ export default {
     maxHeight: {
       type: Number,
       required: false,
-      default: 300
+      default: 300,
     },
 
     /**
@@ -268,7 +276,7 @@ export default {
     multiple: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -277,7 +285,7 @@ export default {
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -287,7 +295,7 @@ export default {
     openDirection: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -296,7 +304,7 @@ export default {
      */
     options: {
       type: Array,
-      required: true
+      required: true,
     },
 
     /**
@@ -305,7 +313,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: de.choose
+      default: de.choose,
     },
 
     /**
@@ -314,7 +322,7 @@ export default {
     required: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -323,7 +331,7 @@ export default {
     searchable: {
       required: false,
       type: Boolean,
-      default: true
+      default: true,
     },
 
     /**
@@ -334,7 +342,7 @@ export default {
     selectionControls: {
       required: false,
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -343,7 +351,7 @@ export default {
     selectGroupLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -352,7 +360,7 @@ export default {
     selectLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -361,7 +369,7 @@ export default {
     selectedLabel: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -371,7 +379,7 @@ export default {
     subSlots: {
       type: Array,
       required: false,
-      default: () => ['option', 'tag']
+      default: () => ['option', 'tag'],
     },
 
     /**
@@ -380,7 +388,7 @@ export default {
     tagPlaceholder: {
       type: String,
       required: false,
-      default: de.tag.create
+      default: de.tag.create,
     },
 
     /**
@@ -392,7 +400,7 @@ export default {
     trackBy: {
       type: [String, null],
       required: false,
-      default: null
+      default: null,
     },
 
     /**
@@ -403,8 +411,14 @@ export default {
     value: {
       type: [String, Number, Array, Object],
       required: false,
-      default: ''
-    }
+      default: '',
+    },
+
+    useDefaultSearch:  {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
 
   emits: [
@@ -416,7 +430,7 @@ export default {
     'select',
     'selectAll',
     'tag',
-    'deselectAll'
+    'deselectAll',
   ],
 
   data () {
@@ -425,9 +439,9 @@ export default {
         autocompleteNoResults: de.autocompleteNoResults,
         deselectAll: de.operations.deselect.all,
         noEntriesAvailable: de.noEntriesAvailable,
-        selectAll: de.operations.select.all
-      }
+        selectAll: de.operations.select.all,
+      },
     }
-  }
+  },
 }
 </script>

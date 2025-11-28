@@ -16,11 +16,11 @@ function getFileIdsByHash (hashes, route) {
           condition: {
             operator: 'IN',
             path: 'hash',
-            value: hashes
-          }
-        }
-      }
-    }
+            value: hashes,
+          },
+        },
+      },
+    },
   )
     .then(({ data }) => {
       return data.data.map(el => el.id)

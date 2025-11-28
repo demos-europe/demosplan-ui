@@ -1,57 +1,46 @@
 <template>
-  <div
-    :class="prefixClass('o-modal')"
-    @keydown="checkKeyEvent">
-    <transition
-      name="content"
-      appear
-      @enter="preventScroll">
-      <aside
-        v-if="isOpenModal"
-        :aria-label="ariaLabel"
-        :class="prefixClass('o-modal__content ' + contentClasses)"
-        role="dialog">
-        <button
-          :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-          :aria-label="title"
-          :title="title"
-          @click.prevent.stop="toggle()">
-          <dp-icon
-            icon="close"
-            size="large" />
-        </button>
-        <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
-          <h2
-            v-if="hasHeader"
-            :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)">
-            <slot name="header" />
-          </h2>
-          <slot name="default" />
-        </div>
-      </aside>
-    </transition>
-    <transition
-      name="backdrop"
-      appear
-      @after-leave="preventScroll(false)">
-      <div
-        v-if="isOpenModal"
-        :class="prefixClass('o-modal__backdrop')"
-        @click.prevent.stop="toggle()" />
-    </transition>
-  </div>
+  <dialog
+    ref="dialog"
+    :aria-label="ariaLabel"
+    :class="prefixClass('o-modal__content ' + contentClasses)"
+    @close="onDialogClose"
+    @click="onBackdropClick"
+    @keydown.esc.prevent="close()"
+    @animationend="onAnimationEnd"
+  >
+    <button
+      :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
+      :aria-label="title"
+      :title="title"
+      @click.prevent.stop="close()"
+    >
+      <dp-icon
+        icon="close"
+        size="large"
+      />
+    </button>
+    <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
+      <h2
+        v-if="hasHeader"
+        :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
+      >
+        <slot name="header" />
+      </h2>
+      <slot name="default" />
+    </div>
+  </dialog>
 </template>
 
 <script>
-import DpIcon from '~/components/DpIcon'
 import { de } from '~/components/shared/translations'
+import DpIcon from '~/components/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpModal',
 
   components: {
-    DpIcon
+    DpIcon,
   },
 
   mixins: [prefixClassMixin],
@@ -60,112 +49,126 @@ export default {
     ariaLabel: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentBodyClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
 
     contentHeaderClasses: {
       required: false,
       type: String,
-      default: ''
+      default: '',
     },
-
-    //  Required when toggling modal with toggleByEvent()
-    modalId: {
-      required: false,
-      type: String,
-      default: ''
-    }
   },
+
+  emits: [
+    'modal:toggled',
+  ],
 
   data () {
     return {
-      isOpenModal: false,
-      lastFocusedElement: '',
-      focusableElements: [],
-      title: de.window.close
+      title: de.window.close,
+      isClosing: false,
     }
   },
 
   computed: {
     hasHeader () {
       return typeof this.$slots.header !== 'undefined'
-    }
+    },
   },
 
   methods: {
-    getFocusableElements () {
-      const elementList = Array.from(this.$el.querySelectorAll('a, button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])'))
-
-      if (elementList.length <= 0) {
-        this.focusableElements = []
-      } else {
-        this.focusableElements = [...elementList].filter(el => this.isElementVisible(el))
-      }
-    },
-
-    isElementVisible (el) {
-      const isInDom = el.offsetParent !== null
-      const style = window.getComputedStyle(el)
-      const isDisplayed = style.display !== 'none' && style.opacity !== '0'
-
-      return isInDom && isDisplayed
-    },
-
-    /**
-     * Deprecated - not used anymore
-     * @param modalId
-     */
-    toggleByEvent (modalId) {
-      //  Do not execute without a specified modalId to prevent unintentional toggling of multiple modals
-      if (typeof modalId === 'undefined') {
+    toggle () {
+      const dialog = this.$refs.dialog
+      if (!dialog) {
         return
       }
 
-      //  Check if event specifies the correct modal instance
-      if (this.modalId === modalId) {
-        this.toggle()
+      const isOpen = dialog.open
+
+      if (isOpen) {
+        this.close()
+      } else {
+        this.open()
       }
     },
 
-    toggle () {
-      this.isOpenModal = (this.isOpenModal === false)
-      this.$emit('modal:toggled', this.isOpenModal)
+    open () {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
 
-      if (this.isOpenModal === true) {
-        this.lastFocusedElement = document.activeElement
-        // On toggle get all focusable elements and focus the first one (after everything is rendered)
-        this.$nextTick(() => {
-          this.getFocusableElements()
+      dialog.showModal()
+      this.preventScroll(true)
 
-          if (this.focusableElements.length > 0) {
-            this.focusableElements[0].focus({ preventScroll: true })
-          }
-        })
-      } else {
-        this.preventScroll(false) // It could be removed after dropping the assessment table
-        this.lastFocusedElement.focus()
+      // Trigger opening animation by adding class after dialog is shown
+      this.$nextTick(() => {
+        dialog.classList.add('o-modal--opening')
+      })
+
+      this.$emit('modal:toggled', true)
+    },
+
+    close () {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
+
+      // If already closing, don't start another close animation
+      if (this.isClosing) return
+
+      // Remove opening class if it exists and add closing class
+      dialog.classList.remove('o-modal--opening')
+      dialog.classList.add('o-modal--closing')
+      this.isClosing = true
+
+      // The actual close() will be called in onAnimationEnd after animation completes
+    },
+
+    onDialogClose () {
+      const dialog = this.$refs.dialog
+      if (dialog) {
+        // Clean up animation classes
+        dialog.classList.remove('o-modal--opening', 'o-modal--closing')
+      }
+      this.isClosing = false
+      this.preventScroll(false)
+      this.$emit('modal:toggled', false)
+    },
+
+    onAnimationEnd (event) {
+      const dialog = this.$refs.dialog
+      if (!dialog) return
+
+      // Only handle animations on the dialog itself, not its children
+      if (event.target !== dialog) return
+
+      // If closing animation finished, now actually close the dialog
+      if (this.isClosing && dialog.classList.contains('o-modal--closing')) {
+        dialog.close()
+      }
+    },
+
+    onBackdropClick (event) {
+      // Close dialog when clicking on the backdrop (outside the dialog content)
+      const dialog = this.$refs.dialog
+      if (event.target === dialog) {
+        this.close()
       }
     },
 
     /**
      * By setting the html element to overflow: hidden, content behind the opened modal is locked for scrolling.
      * To prevent page jumps when the scroll bar disappears, a padding is put onto the body element.
-     *
-     * When toggling the modal in, this can be done immediately. When removing the modal, we have to wait for the
-     * transition to finish, otherwise the modal jumps a little to the left when the "real scrollbar" appears again.
-     * The @after-leave hook is called from the backdrop because the transition applied to it is slightly longer.
      *
      * @param {boolean} toggleIn
      */
@@ -181,36 +184,7 @@ export default {
         bodyElement.style.overflowY = null
       }
     },
-
-    checkKeyEvent (event) {
-      // Close modal and return early if escape
-      if (event.key === 'Escape') {
-        this.toggle()
-      } else if (event.key === 'Tab') {
-        event.preventDefault()
-        const eventTargetIndex = this.focusableElements.findIndex(el => el === event.target)
-        const last = this.focusableElements.length - 1
-
-        if (this.focusableElements.length < 2) {
-          // Do nothing if only 1 or no elements to focus
-        } else if (event.shiftKey === false && event.target === this.focusableElements[last]) {
-          // If last element was previously focused, on tab jump to the first element
-          this.focusableElements[0].focus()
-        } else if (event.shiftKey === true && event.target === this.focusableElements[0]) {
-          // If first element was focused, on tab+shift focus the last element
-          this.focusableElements[last].focus()
-        } else {
-          const idxToFocus = event.shiftKey ? eventTargetIndex - 1 : eventTargetIndex + 1
-          this.focusableElements[idxToFocus].focus()
-        }
-      }
-    }
   },
-
-  updated () {
-    // When component is re-rendered, we have to collect all focusable elements again, as new ones may have appeared
-    this.$nextTick(() => this.getFocusableElements())
-  }
 
 }
 </script>

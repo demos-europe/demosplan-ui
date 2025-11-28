@@ -60,6 +60,7 @@ export default function validateInput (input) {
     try {
       input.setCustomValidity('')
     } catch (err) {
+      console.error(err)
       // Fail silently if setCustomValidity threw an error
     }
     // Remove aria-invalid
@@ -98,6 +99,7 @@ export default function validateInput (input) {
         input.setCustomValidity(de.validation.error.default) // Theoretically this must not happen hence its not that helpful
       }
     } catch (err) {
+      console.error(err)
       // Fail silently if setCustomValidity threw an error
     }
 

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpLoading from './'
-import { de } from '~/components/shared/translations'
 
 interface IDpLoading {
     hideLabel: boolean

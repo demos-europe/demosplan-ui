@@ -2,20 +2,24 @@
   <li data-cy="uploadFile:uploadedFileItem">
     <span
       v-if="file.mimeType === 'txt'"
-      aria-hidden="true">
+      aria-hidden="true"
+    >
       <i
-        :class="fileIcon" />
+        :class="fileIcon"
+      />
     </span>
     <span v-if="isImage">
       <img
         :alt="file.name"
         :src="getFileByHash(file.hash)"
         :aria-label="translations.imagePreview"
-        width="50px">
+        width="50px"
+      >
     </span>
     <span
       :class="prefixClass('inline-block u-pl-0_5')"
-      style="width: calc(100% - 62px);">
+      style="width: calc(100% - 62px);"
+    >
       <span class="break-words">
         {{ file.name }}
       </span>
@@ -25,10 +29,12 @@
         :class="prefixClass('btn-icns u-m-0')"
         :aria-label="translations.removeFile"
         data-cy="uploadFile:uploadedFileDeleteItem"
-        @click="removeFile">
+        @click="removeFile"
+      >
         <i
           :class="prefixClass('fa fa-trash')"
-          aria-hidden="true" />
+          aria-hidden="true"
+        />
       </button>
     </span>
   </li>
@@ -47,8 +53,8 @@ export default {
   props: {
     file: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: ['file-remove'],
@@ -59,8 +65,8 @@ export default {
     return {
       translations: {
         imagePreview: de.image.preview,
-        removeFile: de.file.remove
-      }
+        removeFile: de.file.remove,
+      },
     }
   },
 
@@ -77,13 +83,13 @@ export default {
     isImage () {
       const imageTypes = ['png', 'jpg', 'gif', 'bmp', 'ico', 'tiff', 'svg']
       return typeof imageTypes.find(type => type === this.file.mimeType) !== 'undefined'
-    }
+    },
   },
 
   methods: {
     removeFile () {
       this.$emit('file-remove', this.file)
-    }
-  }
+    },
+  },
 }
 </script>

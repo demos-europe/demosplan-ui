@@ -2,17 +2,19 @@
   <details
     class="o-details space-stack-xs"
     :data-cy="`${dataCy}:detailsWrapper`"
-    role="group">
+  >
     <summary
       :aria-expanded="isOpen"
       class="o-details__trigger o-link--default cursor-pointer inline-block"
       :data-cy="`${dataCy}:detailsSummary`"
       role="button"
-      @click="isOpen = !isOpen">
+      @click="isOpen = !isOpen"
+    >
       <i
         class="fa w-2 text--center"
         :class="{ 'fa-caret-down': isOpen, 'fa-caret-right': !isOpen }"
-        aria-hidden="true" />
+        aria-hidden="true"
+      />
       <strong v-cleanhtml="summary" />
     </summary>
     <div :data-cy="`${dataCy}:detailsContent`">
@@ -28,14 +30,14 @@ export default {
   name: 'DpDetails',
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: 'element'
+      default: 'element',
     },
 
     /**
@@ -44,14 +46,14 @@ export default {
     summary: {
       type: String,
       required: false,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data () {
     return {
-      isOpen: false
+      isOpen: false,
     }
-  }
+  },
 }
 </script>

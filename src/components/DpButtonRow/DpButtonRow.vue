@@ -1,7 +1,8 @@
 <template>
   <div
     :class="[align, $attrs.class]"
-    class="space-x-2">
+    class="space-x-2"
+  >
     <dp-button
       v-if="primary"
       :busy="busy ? true : null"
@@ -9,7 +10,8 @@
       :disabled="isDisabledPrimary"
       :text="primaryText"
       :variant="variant"
-      @click.prevent="$emit('primary-action')" />
+      @click.prevent="$emit('primary-action')"
+    />
     <dp-button
       v-if="secondary"
       color="secondary"
@@ -18,7 +20,8 @@
       :href="href"
       :text="secondaryText"
       :variant="variant"
-      @click.prevent="$emit('secondary-action')" />
+      @click.prevent="$emit('secondary-action')"
+    />
     <slot />
   </div>
 </template>
@@ -31,7 +34,7 @@ export default {
   name: 'DpButtonRow',
 
   components: {
-    DpButton
+    DpButton,
   },
 
   props: {
@@ -42,7 +45,7 @@ export default {
       type: String,
       required: false,
       default: 'right',
-      validator: (prop) => ['right', 'left'].includes(prop)
+      validator: (prop) => ['right', 'left'].includes(prop),
     },
 
     /**
@@ -51,13 +54,13 @@ export default {
     busy: {
       type: [Boolean, null],
       required: false,
-      default: null
+      default: null,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: 'buttonRow'
+      default: 'buttonRow',
     },
 
     /**
@@ -71,7 +74,7 @@ export default {
     disabled: {
       type: [Boolean, Object],
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -81,7 +84,7 @@ export default {
     href: {
       type: String,
       required: false,
-      default: '#'
+      default: '#',
     },
 
     /**
@@ -90,7 +93,7 @@ export default {
     primary: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -99,7 +102,7 @@ export default {
     primaryText: {
       type: String,
       required: false,
-      default: de.operations.save
+      default: de.operations.save,
     },
 
     /**
@@ -108,7 +111,7 @@ export default {
     secondary: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -117,7 +120,7 @@ export default {
     secondaryText: {
       type: String,
       required: false,
-      default: de.operations.abort
+      default: de.operations.abort,
     },
 
     /**
@@ -128,13 +131,13 @@ export default {
       required: false,
       type: String,
       default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop)
-    }
+      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop),
+    },
   },
 
   emits: [
     'primary-action',
-    'secondary-action'
+    'secondary-action',
   ],
 
   computed: {
@@ -148,7 +151,7 @@ export default {
 
     isDisabledSecondary () {
       return this.disabled === true || (this.disabled.secondary || false)
-    }
-  }
+    },
+  },
 }
 </script>

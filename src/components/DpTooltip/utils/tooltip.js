@@ -4,7 +4,6 @@ import { v4 as uuid } from 'uuid'
 // We need empty Variables for our show/hide methods, so we can destroy them later on.
 let handleCreateTooltip = null
 let handleRemoveTooltip = null
-let handleTimeoutForDestroy = null
 let tooltips = {}
 
 const deleteTooltip = (tooltipEl) => {
@@ -39,13 +38,19 @@ const initTooltip = (el, value, options) => {
   const zIndex = getZIndex(el)
   tooltips[id] = value
 
+  // Check if element is inside a dialog and use it as container
+  const dialogParent = el.closest('dialog')
+  if (dialogParent && !options.container) {
+    options.container = dialogParent
+  }
+
   el.setAttribute('aria-describedby', id)
 
   handleCreateTooltip = () => createTooltip(
     id,
     el,
     options,
-    zIndex
+    zIndex,
   )
   handleRemoveTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
@@ -67,7 +72,9 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     const range = document.createRange()
     const content = range.createContextualFragment(tooltipHtml)
 
-    document.querySelector(container).appendChild(content)
+    // Handle both DOM element and selector string
+    const containerEl = container instanceof Element ? container : document.querySelector(container)
+    containerEl.appendChild(content)
   }
 
   const tooltipEl = document.getElementById(id)
@@ -81,15 +88,15 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
         offset(12),
         flip(),
         shift({ padding: 8 }),
-        arrow({ element: arrowEl })
-      ]
-    }
+        arrow({ element: arrowEl }),
+      ],
+    },
   )
 
   Object.assign(tooltipEl.style, {
     left: `${x}px`,
     top: `${y}px`,
-    zIndex: Number(zIndex) + 1
+    zIndex: Number(zIndex) + 1,
   })
 
   /*
@@ -102,7 +109,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     top: 'bottom',
     right: 'left',
     bottom: 'top',
-    left: 'right'
+    left: 'right',
   }[placement.split('-')[0]]
 
   Object.assign(arrowEl.style, {
@@ -110,7 +117,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
     top: arrowY ? `${arrowY}px` : '',
     bottom: '',
     right: '',
-    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px' // Always sets the arrow to the correct side.
+    [opposedSide]: (opposedSide === 'top' || opposedSide === 'bottom') ? '0px' : '-6px', // Always sets the arrow to the correct side.
   })
 }
 
@@ -119,6 +126,12 @@ const updateTooltip = (wrapper, value, options) => {
 
   const wrapperId = wrapper.getAttribute('aria-describedby')
   tooltips[wrapperId] = value
+
+  // Check if element is inside a dialog and use it as container
+  const dialogParent = wrapper.closest('dialog')
+  if (dialogParent && !options.container) {
+    options.container = dialogParent
+  }
 
   const zIndex = getZIndex(wrapper)
   const tooltipEl = document.getElementById(wrapperId)

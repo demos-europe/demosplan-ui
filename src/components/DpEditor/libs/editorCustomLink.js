@@ -1,5 +1,5 @@
-import { mergeAttributes } from '@tiptap/core'
 import { Link } from '@tiptap/extension-link'
+import { mergeAttributes } from '@tiptap/core'
 
 export default Link.extend({
   name: 'customLink',
@@ -10,22 +10,22 @@ export default Link.extend({
       openOnClick: true,
       HTMLAttributes: {
         target: null,
-        rel: 'noopener noreferrer nofollow'
-      }
+        rel: 'noopener noreferrer nofollow',
+      },
     }
   },
 
   addAttributes () {
     return {
       href: {
-        default: null
+        default: null,
       },
       target: {
-        default: null
+        default: null,
       },
       class: {
-        default: null
-      }
+        default: null,
+      },
     }
   },
 
@@ -34,15 +34,15 @@ export default Link.extend({
   parseHTML () {
     return [
       {
-        tag: 'a[href]'
-      }
+        tag: 'a[href]',
+      },
     ]
   },
 
   renderHTML ({ HTMLAttributes }) {
     return ['a', mergeAttributes(
       this.options.HTMLAttributes,
-      HTMLAttributes
+      HTMLAttributes,
     ), 0]
   },
 
@@ -58,5 +58,5 @@ export default Link.extend({
         return commands.unsetMark(this.name)
       },
     }
-  }
+  },
 })

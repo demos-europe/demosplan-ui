@@ -1,10 +1,8 @@
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 import DpObscure from '~/components/DpObscure'
+import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
-/* Mock hasPermission for the sake of testing */
-// TODO: hasPermission should probably live in the webpack world
 window.Translator = {
-  trans: jest.fn(key => key)
+  trans: jest.fn(key => key),
 }
 
 describe('Obscure', () => {
@@ -16,27 +14,15 @@ describe('Obscure', () => {
     expect(DpObscure.name).toBe('DpObscure')
   })
 
-  it('should add a class based on the', () => {
+  it('should add a \'u-obscure\' class to the slot content', () => {
     window.hasPermission = () => true
     let slotInstance = shallowMountWithGlobalMocks(DpObscure, {
       slots: {
-        default: '<div>Slot Content</div>'
-      }
+        default: '<div>Slot Content</div>',
+      },
     })
-    /*
-     * The class is sometimes in the first and sometimes the last attr. That sucks..
-     */
-    // expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
+    const expectedSlotContent = '<span class="u-obscure" title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen."><div>Slot Content</div></span>'
 
-    window.hasPermission = () => false
-    slotInstance = shallowMountWithGlobalMocks(DpObscure, {
-      slots: {
-        default: '<div>Slot Content</div>'
-      }
-    })
-    /*
-     * The class is sometimes in the first and sometimes the last attr. That sucks..
-     */
-    // expect(slotInstance.html()).toBe('<span title="Dieser Text wurde als geschwärzt markiert, um Datenschutzrichtlinien zu entsprechen." class="u-obscure"><div>Slot Content</div></span>')
+    expect(slotInstance.html()).toBe(expectedSlotContent)
   })
 })

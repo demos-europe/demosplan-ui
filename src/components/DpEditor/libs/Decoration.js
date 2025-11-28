@@ -34,10 +34,10 @@ const placeholderPlugin = new Plugin({
         set = addHandle(tr, set, action.move.pos, action.move.id)
       }
       return set
-    }
+    },
   },
   props: {
-    decorations (state) { return this.getState(state) }
+    decorations (state) { return this.getState(state) },
   },
   filterTransaction (tr, state) {
     const action = tr.getMeta(this)
@@ -51,7 +51,7 @@ const placeholderPlugin = new Plugin({
       tr.setSelection(new TextSelection(state.doc.resolve(action.move.initialPos), state.doc.resolve(action.move.pos)))
     }
     return true
-  }
+  },
 })
 
 export { placeholderPlugin }

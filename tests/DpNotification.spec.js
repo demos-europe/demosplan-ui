@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 
 describe('DpNotification', () => {
   it('is named DpNotification', () => {
-    expect(DpNotification.hasOwnProperty('name')).toBe(true)
+    expect(DpNotification.name).toBeDefined()
     expect(DpNotification.name).toBe('DpNotification')
   })
 
@@ -11,25 +11,25 @@ describe('DpNotification', () => {
     const validCombinations = [
       {
         type: 'confirm',
-        clazz: 'c-notify__message--confirm'
+        clazz: 'c-notify__message--confirm',
       },
       {
         type: 'info',
-        clazz: 'c-notify__message--info'
+        clazz: 'c-notify__message--info',
       },
       {
         type: 'warning',
-        clazz: 'c-notify__message--warning'
-      }
+        clazz: 'c-notify__message--warning',
+      },
     ]
 
     for (const val of validCombinations) {
       const wrapper = mount(DpNotification, {
         props: {
           message: {
-            type: val.type
-          }
-        }
+            type: val.type,
+          },
+        },
       })
 
       expect(wrapper.vm.messageClass).toBe(val.clazz)
@@ -40,26 +40,26 @@ describe('DpNotification', () => {
     let wrapper = mount(DpNotification, {
       props: {
         message: {
-          type: 'error'
-        }
-      }
+          type: 'error',
+        },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    let closer = wrapper.find('i.c-notify__closer')
-    expect(closer.element.tagName).toStrictEqual('I')
+    let closer = wrapper.find('button.c-notify__closer')
+    expect(closer.element.tagName).toStrictEqual('BUTTON')
 
     wrapper = mount(DpNotification, {
       props: {
         message: {
-          type: 'confirm'
-        }
-      }
+          type: 'confirm',
+        },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    closer = wrapper.find('i.c-notify__closer')
-    expect(closer.element.tagName).toStrictEqual('I')
+    closer = wrapper.find('button.c-notify__closer')
+    expect(closer.element.tagName).toStrictEqual('BUTTON')
   })
 
   it('renders the message text', () => {
@@ -67,9 +67,9 @@ describe('DpNotification', () => {
       props: {
         message: {
           type: 'confirm',
-          text: 'MessageText'
-        }
-      }
+          text: 'MessageText',
+        },
+      },
     })
 
     expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText')
@@ -82,9 +82,9 @@ describe('DpNotification', () => {
           type: 'confirm',
           text: 'MessageText',
           linkUrl: 'about:blank',
-          linkText: 'LinkText'
-        }
-      }
+          linkText: 'LinkText',
+        },
+      },
     })
 
     expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText LinkText')

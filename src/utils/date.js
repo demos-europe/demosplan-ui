@@ -37,5 +37,5 @@ const toDate = function (date, format = 'DD.MM.YYYY') {
 export {
   DATE_FORMAT_LONG,
   formatDate,
-  toDate
+  toDate,
 }

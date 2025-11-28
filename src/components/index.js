@@ -1,17 +1,23 @@
+import {
+  DpUpload,
+  DpUploadFiles,
+} from './DpUploadFiles'
+
 import dataTableSearch from './DpDataTableExtended/DataTableSearch'
 import { de } from './shared/translations'
 import DpAccordion from './DpAccordion'
 import DpAnonymizeText from './DpAnonymizeText'
 import DpAutocomplete from './DpAutocomplete'
+import DpBadge from './DpBadge'
 import DpBulkEditHeader from './DpBulkEditHeader'
 import DpButton from './DpButton'
 import DpButtonIcon from './DpButtonIcon'
 import DpButtonRow from './DpButtonRow'
-import DpBadge from './DpBadge'
 import DpCard from './DpCard'
 import DpCheckbox from './DpCheckbox'
 import DpCheckboxGroup from './DpCheckboxGroup'
 import DpColumnSelector from './DpColumnSelector'
+import DpConfirmDialog from './DpConfirmDialog'
 import DpContextualHelp from './DpContextualHelp'
 import DpDataTable from './DpDataTable'
 import DpDataTableExtended from './DpDataTableExtended'
@@ -19,12 +25,10 @@ import DpDatepicker from './DpDatepicker'
 import DpDateRangePicker from './DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker'
 import DpDetails from './DpDetails'
-import DpConfirmDialog from './DpConfirmDialog'
 import DpDraggable from './DpDraggable'
-import DpEditor from './DpEditor'
 import DpEditableList from './DpEditableList'
+import DpEditor from './DpEditor'
 import DpFlyout from './DpFlyout'
-import { getFileIdsByHash } from './DpUploadFiles/utils/GetFileIdsByHash'
 import DpIcon from './DpIcon'
 import DpInlineNotification from './DpInlineNotification'
 import DpInput from './DpInput'
@@ -55,11 +59,8 @@ import DpToggle from './DpToggle'
 import DpTooltip from './DpTooltip'
 import DpTransitionExpand from './DpTransitionExpand'
 import DpTreeList from './DpTreeList'
-import {
-  DpUpload,
-  DpUploadFiles
-} from './DpUploadFiles'
 import DpVideoPlayer from './DpVideoPlayer'
+import { getFileIdsByHash } from './DpUploadFiles/utils/GetFileIdsByHash'
 
 export {
   dataTableSearch,
@@ -121,5 +122,5 @@ export {
   DpUpload,
   DpUploadFiles,
   DpVideoPlayer,
-  getFileIdsByHash
+  getFileIdsByHash,
 }

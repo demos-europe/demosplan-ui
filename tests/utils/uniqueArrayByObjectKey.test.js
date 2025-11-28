@@ -6,12 +6,12 @@ describe('uniqueArrayByObjectKey', () => {
     { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
-    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' }
+    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
   ]
   const uniqueArray = [
     { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
-    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' }
+    { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
   ]
 
   it('filters array of objects by the parameter "id" to hold only unique values', () => {

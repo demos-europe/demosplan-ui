@@ -1,12 +1,14 @@
 <template>
   <div>
     <ul
-      class="flex space-inline-m list-style-none border--bottom"
-      role="tablist">
+      class="flex flex-wrap flex-col sm:flex-row gap-x-4 gap-y-2 justify-start list-style-none border--bottom"
+      role="tablist"
+    >
       <li
         v-for="(tab, idx) in tabs"
         :key="`tab:${idx}`"
-        :class="{ 'is-active': activeTabId === tab.props.id }">
+        :class="{ 'is-active': activeTabId === tab.props.id }"
+      >
         <button
           role="tab"
           class="btn--blank o-link--default u-pb-0_5 border--bottom"
@@ -17,11 +19,13 @@
           :aria-selected="activeTabId === tab.props.id"
           :aria-controls="tab.props.id"
           :data-cy="tab.props.id"
-          @click.prevent="handleTabChange(tab.props.id)">
+          @click.prevent="handleTabChange(tab.props.id)"
+        >
           {{ tab.props.label }}
           <span
             v-if="tab.props.suffix"
-            v-cleanhtml="tab.props.suffix" />
+            v-cleanhtml="tab.props.suffix"
+          />
         </button>
       </li>
     </ul>
@@ -32,21 +36,21 @@
 </template>
 
 <script setup>
-import { CleanHtml as vCleanhtml } from '~/directives'
 import { computed, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
+import { CleanHtml as vCleanhtml } from '~/directives'
 
 const props = defineProps( {
   activeId: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
 
   tabSize: {
     type: String,
     required: false,
     default: 'large',
-    validator: (prop) => ['medium', 'large'].includes(prop)
+    validator: (prop) => ['medium', 'large'].includes(prop),
   },
 
   /**
@@ -56,8 +60,8 @@ const props = defineProps( {
   useUrlFragment: {
     type: Boolean,
     required: false,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const emit = defineEmits(['change'])

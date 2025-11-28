@@ -4,7 +4,8 @@
     :aria-label="ariaLabel"
     :icon="icon"
     :size="size"
-    class="inline-block" />
+    class="inline-block"
+  />
 </template>
 
 <script setup lang="ts">
@@ -22,7 +23,7 @@ const props = defineProps({
   icon: {
     type: String as PropType<IconName>,
     required: false,
-    default: 'question'
+    default: 'question',
   },
 
   /**
@@ -32,7 +33,7 @@ const props = defineProps({
     type: String as PropType<IconSize>,
     required: false,
     default: 'medium',
-    validator: (prop: IconSize) => Object.keys(ICON_SIZES).includes(prop)
+    validator: (prop: IconSize) => Object.keys(ICON_SIZES).includes(prop),
   },
 
   /**
@@ -43,7 +44,7 @@ const props = defineProps({
   text: {
     type: String,
     required: false,
-    default: ''
+    default: '',
   },
   /**
    * For available options check https://floating-vue.starpad.dev/api/#directive-options
@@ -52,8 +53,8 @@ const props = defineProps({
   tooltipOptions: {
     type: Object,
     required: false,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 
 const vTooltip = Tooltip

@@ -31,7 +31,7 @@ class SideNav {
     this.sideNavEl = document.querySelector('[data-slidebar]')
 
     this.sideNavContainerEl = document.querySelector('[data-slidebar-container]')
-    this.orientation = this.sideNavEl.getAttribute('data-slidebar') // Is SideNav aligned to right or left?
+    this.orientation = this.sideNavEl.dataset.slidebar // Is SideNav aligned to right or left?
 
     this.sideNavClassVisible = 'is-visible'
     this.sideNavClassAnimatable = 'is-animatable'
@@ -80,20 +80,24 @@ class SideNav {
       document.addEventListener('test', null, {
         get passive () {
           isSupported = true
-        }
+
+          return isSupported
+        },
       })
-    } catch (e) { }
+    } catch (e) {
+      console.error(e)
+    }
     this.supportsPassive = isSupported
     return this.applyPassive()
   }
 
   addEventListeners () {
-    this.showButtonElements.forEach((el) => {
+    for (const el of this.showButtonElements) {
       el.addEventListener('click', this.showSideNav)
-    })
-    this.hideButtonElements.forEach((el) => {
+    }
+    for (const el of this.hideButtonElements) {
       el.addEventListener('click', this.hideSideNav)
-    })
+    }
     this.sideNavEl.addEventListener('click', this.hideSideNav)
     this.sideNavContainerEl.addEventListener('click', this.blockClicks)
 
@@ -118,7 +122,7 @@ class SideNav {
     this.currentX = evt.touches[0].pageX
   }
 
-  onTouchEnd (evt) {
+  onTouchEnd () {
     if (!this.touchingSideNav) { return }
 
     const whenToHideSideNav = this.orientation === 'right' ? this.initialTranslateX : 0
@@ -156,8 +160,7 @@ class SideNav {
   }
 
   showSideNav () {
-    this.sideNavEl.classList.add(this.sideNavClassAnimatable)
-    this.sideNavEl.classList.add(this.sideNavClassVisible)
+    this.sideNavEl.classList.add(this.sideNavClassAnimatable, this.sideNavClassVisible)
     this.detabinator.inert = false
 
     this.transitionEndProperty = 'transform'
@@ -179,7 +182,7 @@ class SideNav {
   }
 
   getTranslateX (element) {
-    if (!window.getComputedStyle) { return }
+    if (!globalThis.getComputedStyle) { return }
 
     const transArr = []
     const style = getComputedStyle(element)
@@ -187,12 +190,15 @@ class SideNav {
     let mat = transform.match(/^matrix3d\((.+)\)$/)
 
     if (mat) {
-      return parseFloat(mat[1].split(', ')[13])
+      return Number.parseFloat(mat[1].split(', ')[13])
     }
 
     mat = transform.match(/^matrix\((.+)\)$/)
-    mat ? transArr.push(parseFloat(mat[1].split(', ')[4])) : transArr.push(0)
-    mat ? transArr.push(parseFloat(mat[1].split(', ')[5])) : transArr.push(0)
+    if (mat) {
+      transArr.push(Number.parseFloat(mat[1].split(', ')[4]), Number.parseFloat(mat[1].split(', ')[5]))
+    } else {
+      transArr.push(0, 0)
+    }
 
     return transArr[0]
   }

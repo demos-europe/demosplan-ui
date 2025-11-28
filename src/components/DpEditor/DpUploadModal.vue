@@ -3,20 +3,24 @@
     ref="uploadModal"
     content-classes="w-fit"
     data-cy="editor:uploadModal"
-    @modal:toggled="(isOpen) => { if (!isOpen) reset() }">
+    @modal:toggled="(isOpen) => { if (!isOpen) reset() }"
+  >
     <h3
       v-if="editAltTextOnly"
-      class="u-mb">
+      class="u-mb"
+    >
       {{ translations.editImage }}
     </h3>
     <h3
       v-else
-      class="mb-2">
+      class="mb-2"
+    >
       {{ translations.insertImage }}
     </h3>
     <div
       v-if="!editAltTextOnly"
-      class="mb-2">
+      class="mb-2"
+    >
       <dp-upload-files
         id="imageFile"
         ref="uploader"
@@ -27,13 +31,15 @@
         :max-number-of-files="1"
         :translations="{ dropHereOr: translations.uploadImage('20MB') }"
         :tus-endpoint="tusEndpoint"
-        @upload-success="setFile" />
+        @upload-success="setFile"
+      />
     </div>
     <div v-else>
       <img
         :alt="altText"
         class="mb-4"
-        :src="imgSrc">
+        :src="imgSrc"
+      >
     </div>
     <dp-input
       id="altText"
@@ -43,19 +49,22 @@
       :label="{
         hint: translations.altTextHint,
         text: translations.altText,
-      }" />
+      }"
+    />
     <div class="u-mt text-right w-full space-inline-s">
       <button
         class="btn btn--primary"
         data-cy="uploadModal:save"
         type="button"
         @click="emitAndClose"
-        v-text="editAltTextOnly ? translations.save : translations.insert" />
+        v-text="editAltTextOnly ? translations.save : translations.insert"
+      />
       <button
         class="btn btn--secondary"
         data-cy="uploadModal:abort"
         type="button"
-        @click="closeAndReset()">
+        @click="closeAndReset()"
+      >
         {{ translations.abort }}
       </button>
     </div>
@@ -74,7 +83,7 @@ export default {
   components: {
     DpInput,
     DpModal,
-    DpUploadFiles
+    DpUploadFiles,
   },
 
   props: {
@@ -84,12 +93,12 @@ export default {
     basicAuth: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     getFileByHash: {
       type: Function,
-      required: true
+      required: true,
     },
 
     /**
@@ -97,14 +106,14 @@ export default {
      */
     tusEndpoint: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: [
     'add-alt',
     'close',
-    'insert-image'
+    'insert-image',
   ],
 
   data () {
@@ -121,8 +130,8 @@ export default {
         insert: de.operations.insert,
         insertImage: de.image.insert,
         save: de.operations.save,
-        uploadImage: de.upload.select.image
-      }
+        uploadImage: de.upload.select.image,
+      },
     }
   },
 
@@ -163,7 +172,7 @@ export default {
       }
 
       this.$refs.uploadModal.toggle()
-    }
-  }
+    },
+  },
 }
 </script>

@@ -32,7 +32,7 @@ class Stickier {
     stickToDirection = 'top',
     stickFromBreakpoint = 'palm',
     containerElement = null,
-    observeContext = true
+    observeContext = true,
   ) {
     // Set up variables from options
     this.element = stickyElement
@@ -48,7 +48,7 @@ class Stickier {
       top: 'is-top',
       bottom: 'is-bottom',
       fixed: 'is-fixed',
-      bound: 'is-bound'
+      bound: 'is-bound',
     }
 
     // Initialize MatchMedia() for later usage when determining  if the element should be initialized.
@@ -74,7 +74,7 @@ class Stickier {
       this.contextMutationObserver = new MutationObserver(this._handleContextChange.bind(this))
       this.contextMutationObserver.observe(this.context, {
         childList: true,
-        subtree: true
+        subtree: true,
       })
     }
 
@@ -84,7 +84,7 @@ class Stickier {
 
     // Bind scroll handler to check if sticky state has to be updated.
     document.addEventListener('scroll', this._handleScroll.bind(this), {
-      passive: true
+      passive: true,
     })
   }
 
@@ -164,7 +164,7 @@ class Stickier {
     const viewport = stored.viewport
     const scroll = {
       top: getScrollTop() + this.elementOffset,
-      bottom: getScrollTop() + this.elementOffset + viewport.height
+      bottom: getScrollTop() + this.elementOffset + viewport.height,
     }
     const elementScroll = stored.fitsViewport ? 0 : this._getElementScroll(scroll.top)
 
@@ -348,14 +348,14 @@ class Stickier {
   _savePositions () {
     const element = {
       height: this._getHeight(this.element),
-      top: this._getOffsetTop(this.element)
+      top: this._getOffsetTop(this.element),
     }
     const context = {
       height: this._getHeight(this.context),
-      top: this._getOffsetTop(this.context)
+      top: this._getOffsetTop(this.context),
     }
     const viewport = {
-      height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
     }
 
     this.stored = {
@@ -365,16 +365,16 @@ class Stickier {
       element: {
         top: element.top,
         height: element.height,
-        bottom: element.top + element.height
+        bottom: element.top + element.height,
       },
       context: {
         top: context.top,
         height: context.height,
-        bottom: context.top + context.height
+        bottom: context.top + context.height,
       },
       viewport: {
-        height: viewport.height
-      }
+        height: viewport.height,
+      },
     }
 
     this._setContainerHeight()

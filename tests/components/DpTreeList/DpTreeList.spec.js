@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import DpTreeList from '~/components/DpTreeList/DpTreeList.vue'
+import { shallowMount } from '@vue/test-utils'
 
 describe('DpTreeList', () => {
   let wrapper
@@ -8,60 +8,60 @@ describe('DpTreeList', () => {
       id: '1',
       type: 'Elements',
       attributes: {
-        title: 'Branch 1'
+        title: 'Branch 1',
       },
       children: [
         {
           id: '2',
           type: 'SingleDocument',
           attributes: {
-            title: 'Leaf 1'
+            title: 'Leaf 1',
           },
-          children: []
+          children: [],
         },
         {
           id: '3',
           type: 'SingleDocument',
           attributes: {
-            title: 'Leaf 2'
+            title: 'Leaf 2',
           },
-          children: []
-        }
-      ]
+          children: [],
+        },
+      ],
     },
     {
       id: '4',
       type: 'Elements',
       attributes: {
-        title: 'Branch 2'
+        title: 'Branch 2',
       },
       children: [
         {
           id: '5',
           type: 'SingleDocument',
           attributes: {
-            title: 'Leaf 3'
+            title: 'Leaf 3',
           },
-          children: []
+          children: [],
         },
         {
           id: '6',
           type: 'SingleDocument',
           attributes: {
-            title: 'Leaf 4'
+            title: 'Leaf 4',
           },
-          children: []
+          children: [],
         },
         {
           id: '7',
           type: 'SingleDocument',
           attributes: {
-            title: 'Leaf 5'
+            title: 'Leaf 5',
           },
-          children: []
-        }
-      ]
-    }
+          children: [],
+        },
+      ],
+    },
   ]
 
   beforeEach(() => {
@@ -74,15 +74,15 @@ describe('DpTreeList', () => {
         branchIdentifier: jest.fn(({ node }) => node.type === 'Elements'),
         options: {
           branchesSelectable: true,
-          leavesSelectable: true
-        }
+          leavesSelectable: true,
+        },
       },
       attachTo: div,
       global: {
         config: {
           globalProperties: {
-            $root: global.$rootMock
-          }
+            $root: global.$rootMock,
+          },
         },
         stubs: {
           DpTreeListCheckbox: true,
@@ -102,11 +102,11 @@ describe('DpTreeList', () => {
               'nodeId',
               'onMove',
               'options',
-              'selectionManager'
-            ]
-          }
-        }
-      }
+              'selectionManager',
+            ],
+          },
+        },
+      },
     })
   })
 

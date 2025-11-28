@@ -2,8 +2,8 @@ import { prefixClass } from '../src/utils'
 
 window.dplan = {
   settings: {
-    publicCSSClassPrefix: 'dp-'
-  }
+    publicCSSClassPrefix: 'dp-',
+  },
 }
 
 describe('prefixClass', () => {

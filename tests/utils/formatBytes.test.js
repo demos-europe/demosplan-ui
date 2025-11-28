@@ -5,20 +5,20 @@ describe('formatBytes', () => {
     bytes1: 1234,
     bytes2: 1,
     bytes3: 100005464,
-    bytes4: 10000546456
+    bytes4: 10000546456,
   }
   const decimalCounts = {
     decimalCount1: 3,
     decimalCount2: 4,
     decimalCount3: -1,
-    decimalCount4: 0
+    decimalCount4: 0,
   }
   const finalBytes = {
     finalBytes1: 1.205,
     finalBytes2: 1.2051,
     finalBytes3: 1,
     finalBytes4: 95.373,
-    finalBytes5: 9.314
+    finalBytes5: 9.314,
   }
 
   it('transforms the bytes into a size with the same count of decimals like in the argument of the function', () => {

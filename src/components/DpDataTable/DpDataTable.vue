@@ -3,16 +3,20 @@
     <table
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
-      :class="tableClass">
+      :class="tableClass"
+    >
       <caption
         class="sr-only"
-        v-text="tableDescription" />
-      <colgroup v-if="headerFields.filter((field) => field.colClass).length > 0">
+        v-text="tableDescription"
+      />
+      <colgroup v-if="headerFields.some(field => field.colClass)">
         <col v-if="isDraggable">
         <col v-if="isSelectable">
         <col
-          v-for="field in headerFields"
-          :class="field.colClass">
+          v-for="(field, index) in headerFields"
+          :key="index"
+          :class="field.colClass"
+        >
         <col v-if="hasFlyout">
         <col v-if="isExpandable">
         <col v-if="isTruncatable">
@@ -34,13 +38,17 @@
           :translations="headerTranslations"
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
-          @toggle-wrap-all="toggleWrapAll">
+          @toggle-wrap-all="toggleWrapAll"
+        >
           <template
-            v-for="field in headerFields"
-            v-slot:[`header-${field.field}`]="field">
+            v-for="(field, index) in headerFields"
+            :key="index"
+            v-slot:[`header-${field.field}`]="field"
+          >
             <slot
               :name="`header-${field.field}`"
-              v-bind="field" />
+              v-bind="field"
+            />
           </template>
         </dp-table-header>
       </thead>
@@ -48,8 +56,12 @@
       <!-- not draggable -->
       <tbody
         v-if="!isDraggable && !isLoading"
-        :data-cy="`${dataCy}:tbody`">
-        <template v-for="(item, idx) in items">
+        :data-cy="`${dataCy}:tbody`"
+      >
+        <template
+          v-for="(item, idx) in items"
+          :key="idx"
+        >
           <dp-table-row
             :ref="`tableRows[${idx}]`"
             :data-cy="`${dataCy}:row:${idx}`"
@@ -72,33 +84,41 @@
             :wrapped="wrappedElements[item[trackBy]] || false"
             @toggle-expand="toggleExpand"
             @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap">
+            @toggle-wrap="toggleWrap"
+          >
             <template
-              v-for="field in fields"
-              v-slot:[field]="item">
+              v-for="(field, index) in fields"
+              :key="index"
+              v-slot:[field]="item"
+            >
               <slot
                 :name="field"
-                v-bind="item" />
+                v-bind="item"
+              />
             </template>
             <template v-slot:flyout="item">
               <slot
                 name="flyout"
-                v-bind="item" />
+                v-bind="item"
+              />
             </template>
           </dp-table-row>
 
           <!-- DpTableRowExpanded -->
           <tr
             v-if="expandedElements[item[trackBy]] || false"
-            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }">
+            :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }"
+          >
             <td
               :class="{ 'opacity-70': isLoading }"
               :colspan="colCount"
               @mouseenter="addHoveredClass(idx)"
-              @mouseleave="removeHoveredClass(idx)">
+              @mouseleave="removeHoveredClass(idx)"
+            >
               <slot
                 name="expandedContent"
-                v-bind="item" />
+                v-bind="item"
+              />
             </td>
           </tr>
         </template>
@@ -111,10 +131,12 @@
         handle="c-data-table__drag-handle"
         ghost-class="sortable-ghost"
         chosen-class="sortable-chosen"
-        @end="(event, item) => $emit('changed-order', event, item)">
+        @end="(event, item) => $emit('changed-order', event, item)"
+      >
         <template
           v-for="(item, idx) in items"
-          :key="item[trackBy]">
+          :key="item[trackBy]"
+        >
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"
@@ -137,19 +159,23 @@
             :wrapped="wrappedElements[item[trackBy]] || false"
             @toggle-expand="toggleExpand"
             @toggle-select="toggleSelect"
-            @toggle-wrap="toggleWrap">
+            @toggle-wrap="toggleWrap"
+          >
             <template
               v-for="(field, idx) in fields"
               v-slot:[field]="item"
-              :key="idx">
+              :key="idx"
+            >
               <slot
                 :name="field"
-                v-bind="item" />
+                v-bind="item"
+              />
             </template>
             <template v-slot:flyout="item">
               <slot
                 name="flyout"
-                v-bind="item" />
+                v-bind="item"
+              />
             </template>
           </dp-table-row>
         </template>
@@ -162,18 +188,21 @@
           v-if="searchTermSet"
           :colspan="colCount"
           class="u-pt"
-          v-html="noResults" />
+          v-html="noResults"
+        />
 
         <!-- noEntriesItem -->
         <td
           v-else
           :colspan="colCount"
-          class="u-pt">
+          class="u-pt"
+        >
           <dp-loading
             v-if="isLoading"
             is-loading
             class="u-mt"
-            :colspan="colCount" />
+            :colspan="colCount"
+          />
           <template v-else>
             {{ mergedTranslations.tableNoElements }}
           </template>
@@ -186,12 +215,12 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
-import { sessionStorageMixin } from '~/mixins'
 import DomPurify from 'dompurify'
 import DpDraggable from '~/components/DpDraggable'
 import DpLoading from '~/components/DpLoading'
 import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
+import { sessionStorageMixin } from '~/mixins'
 
 export default {
   name: 'DpDataTable',
@@ -200,11 +229,11 @@ export default {
     DpTableRow,
     DpTableHeader,
     DpLoading,
-    DpDraggable
+    DpDraggable,
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
   },
 
   mixins: [sessionStorageMixin],
@@ -213,21 +242,21 @@ export default {
     dataCy: {
       type: String,
       required: false,
-      default: 'dateTable'
+      default: 'dateTable',
     },
 
     // Adds flyout menu
     hasFlyout: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     // The first table row (consisting of column headers) is being fixed to the top of the outer table element.
     hasStickyHeader: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -240,19 +269,19 @@ export default {
      */
     headerFields: {
       type: Array,
-      required: true
+      required: true,
     },
 
     initSelectedItems: {
       type: Array,
       required: false,
-      default: () => []
+      default: () => [],
     },
 
     isDraggable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -262,13 +291,13 @@ export default {
     isExpandable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isLoading: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -277,7 +306,7 @@ export default {
     isResizable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -286,7 +315,7 @@ export default {
     isSelectable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -295,7 +324,7 @@ export default {
     isSelectableName: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
 
     /**
@@ -309,12 +338,12 @@ export default {
     isTruncatable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     items: {
       type: Array,
-      required: true
+      required: true,
     },
 
     /**
@@ -325,7 +354,7 @@ export default {
     multiPageAllSelected: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -335,7 +364,7 @@ export default {
     lockCheckboxBy: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
 
     /**
@@ -345,7 +374,7 @@ export default {
     multiPageSelectionItemsToggled: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     /**
@@ -355,51 +384,51 @@ export default {
     multiPageSelectionItemsTotal: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
 
     searchString: {
       type: [String, null],
       required: false,
-      default: null
+      default: null,
     },
 
     // This allows item selection to be forced from outside. It will override any internal selection state.
     shouldBeSelectedItems: {
       type: Object,
       required: false,
-      default: () => ({})
+      default: () => ({}),
     },
 
     tableClass: {
       type: String,
       required: false,
-      default: 'c-data-table'
+      default: 'c-data-table',
     },
 
     tableDescription: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     trackBy: {
       type: String,
-      required: true
+      required: true,
     },
 
     translations: {
       type: Object,
       required: false,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   emits: [
     'changed-order',
     'items-selected',
     'items-toggled',
-    'selectAll'
+    'selectAll',
   ],
 
   data () {
@@ -415,7 +444,7 @@ export default {
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
         tableLoadingData: de.loadingData,
-        tableNoElements: de.noEntriesAvailable
+        tableNoElements: de.noEntriesAvailable,
       },
       elementSelections: {},
       expandedElements: {},
@@ -428,9 +457,9 @@ export default {
         this.isSelectable,
         this.hasFlyout,
         this.isExpandable,
-        this.isTruncatable
+        this.isTruncatable,
       ],
-      wrappedElements: {}
+      wrappedElements: {},
     }
   },
 
@@ -490,7 +519,7 @@ export default {
 
     selectableItems () {
       return this.lockCheckboxBy ? this.items.filter(item => !item[this.lockCheckboxBy]) : this.items
-    }
+    },
   },
 
   watch: {
@@ -505,12 +534,12 @@ export default {
           })
         }
       },
-      deep: false // HeaderFields are always replaces as a whole and therefor deep watch is not necessary
+      deep: false, // HeaderFields are always replaces as a whole and therefor deep watch is not necessary
     },
 
     shouldBeSelectedItems () {
       this.forceElementSelections(this.shouldBeSelectedItems)
-    }
+    },
   },
 
   methods: {
@@ -612,7 +641,7 @@ export default {
       return elements.reduce((acc, el) => {
         return {
           ...acc,
-          ...{ [el[this.trackBy]]: status }
+          ...{ [el[this.trackBy]]: status },
         }
       }, this.elementSelections)
     },
@@ -625,7 +654,7 @@ export default {
       this.expandedElements = this.items.reduce((acc, item) => {
         return {
           ...acc,
-          ...{ [item[this.trackBy]]: status }
+          ...{ [item[this.trackBy]]: status },
         }
       }, {})
       this.allExpanded = status
@@ -659,12 +688,12 @@ export default {
       this.wrappedElements = this.items.reduce((acc, item) => {
         return {
           ...acc,
-          ...{ [item[this.trackBy]]: status }
+          ...{ [item[this.trackBy]]: status },
         }
       }, {})
 
       this.allWrapped = status
-    }
+    },
   },
 
   created () {
@@ -725,6 +754,6 @@ export default {
     this.forceElementSelections(this.shouldBeSelectedItems)
 
     this.headerCellCount = this.headerFields.length
-  }
+  },
 }
 </script>

@@ -5,7 +5,8 @@
       :for="`datePicker:${id}`"
       :hint="hint"
       :required="required"
-      :text="label" />
+      :text="label"
+    />
     <div class="o-form__control-wrapper o-form__group">
       <dp-datepicker
         :id="`datePicker:${id}`"
@@ -17,7 +18,8 @@
         :max-date="maxDate"
         :min-date="minDate"
         :required="required"
-        @input="$emit('input', currentDatetime)" />
+        @input="$emit('input', currentDatetime)"
+      />
       <dp-time-picker
         :id="`timePicker:${id}`"
         v-model="time"
@@ -25,13 +27,15 @@
         :data-cy="`${dataCy}:time`"
         :disabled="disabled"
         :min-value="minTime"
-        @input="$emit('input', currentDatetime)" />
+        @input="$emit('input', currentDatetime)"
+      />
       <input
         v-if="hiddenInput && name"
         type="hidden"
         :disabled="disabled"
         :name="name"
-        :value="currentDatetime">
+        :value="currentDatetime"
+      >
     </div>
   </div>
 </template>
@@ -53,20 +57,20 @@ export default {
     DpLabel: defineAsyncComponent(async () => {
       return await import('../DpLabel/DpLabel')
     }),
-    DpTimePicker
+    DpTimePicker,
   },
 
   props: {
     dataCy: {
       type: String,
       required: false,
-      default: 'dateTimePicker'
+      default: 'dateTimePicker',
     },
 
     disabled: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -76,13 +80,13 @@ export default {
     hiddenInput: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     hint: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /*
@@ -90,7 +94,7 @@ export default {
      */
     id: {
       type: String,
-      required: true
+      required: true,
     },
 
     /*
@@ -101,7 +105,7 @@ export default {
     label: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /*
@@ -111,7 +115,7 @@ export default {
     maxDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /*
@@ -121,27 +125,27 @@ export default {
     minDate: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     // Used in conjunction with `hiddenInput` to render a hidden input field with this name.
     name: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     required: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     // Expects ISO datetime
     value: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   emits: ['input'],
@@ -149,7 +153,7 @@ export default {
   data () {
     return {
       date: '',
-      time: '00:00'
+      time: '00:00',
     }
   },
 
@@ -169,13 +173,13 @@ export default {
      */
     minTime () {
       return this.isCurrentDateSelected ? new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) : ''
-    }
+    },
   },
 
   watch: {
     value: function (newVal) {
       this.setDatetime(newVal)
-    }
+    },
   },
 
   methods: {
@@ -185,11 +189,11 @@ export default {
         this.date = parsedDateTime.format('DD.MM.YYYY')
         this.time = parsedDateTime.format('HH:mm')
       }
-    }
+    },
   },
 
   mounted () {
     this.setDatetime(this.value)
-  }
+  },
 }
 </script>

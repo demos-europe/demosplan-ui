@@ -24,5 +24,5 @@ export default {
   ...mixins,
   ...shared,
   ...utils,
-  ...validation
+  ...validation,
 }

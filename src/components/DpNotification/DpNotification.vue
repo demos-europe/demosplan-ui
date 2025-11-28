@@ -1,21 +1,36 @@
 <template>
   <div
-    :class="prefixClass('c-notify__message ' + messageClass)">
-    <i
-      :class="prefixClass('c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer')"
-      aria-hidden="true"
-      @click.stop.prevent="hide" />
+    ref="notification"
+    :class="prefixClass('c-notify__message ' + messageClass)"
+    :role="ariaRole"
+  >
+    <button
+      ref="closeButton"
+      :class="prefixClass('c-notify__closer')"
+      type="button"
+      :aria-label="closeButtonLabel"
+      @click.stop.prevent="hide"
+      @keydown.esc="hide"
+    >
+      <i
+        :class="prefixClass('c-notify__icon fa fa-times-circle')"
+        aria-hidden="true"
+      />
+    </button>
 
     <div :class="prefixClass('flow-root')">
       <i
-        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)" />
+        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)"
+        aria-hidden="true"
+      />
       <div :class="prefixClass('u-ml')">
         {{ message.text }}
         <a
           v-if="message.linkUrl"
           :class="prefixClass('c-notify__link u-mt-0_25')"
           :href="message.linkUrl"
-          data-cy="messageLink">
+          data-cy="messageLink"
+        >
           {{ message.linkText || message.linkUrl }}
         </a>
       </div>
@@ -24,6 +39,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
@@ -37,14 +53,18 @@ export default {
      */
     message: {
       type: Object,
-      required: true
+      required: true,
     },
     hideTimer: {
       type: Number,
       required: false,
-      default: 20000
-    }
+      default: 20000,
+    },
   },
+
+  emits: [
+    'dp-notify-remove',
+  ],
 
   data () {
     return {
@@ -54,25 +74,33 @@ export default {
         warning: 'fa-exclamation-triangle',
         error: 'fa-exclamation-circle',
         confirm: 'fa-check-circle',
-        dev: 'fa-info-circle'
-      }
+        dev: 'fa-info-circle',
+      },
     }
   },
 
   computed: {
+    ariaRole () {
+      return ['error', 'warning'].includes(this.message.type) ? 'alert' : 'status'
+    },
+
+    closeButtonLabel () {
+      return de.hint.dismiss
+    },
+
     messageClass () {
       return 'c-notify__message--' + this.message.type
     },
 
     messageIcon () {
       return this.icons[this.message.type]
-    }
+    },
   },
 
   methods: {
     hide () {
       this.$emit('dp-notify-remove', this.message)
-    }
+    },
   },
 
   mounted () {
@@ -81,6 +109,13 @@ export default {
         this.hide()
       }, this.hideTimer)
     }
-  }
+
+    // Focus close button for error notifications immediately for accessibility
+    if (this.message.type === 'error') {
+      this.$nextTick(() => {
+        this.$refs.closeButton?.focus()
+      })
+    }
+  },
 }
 </script>

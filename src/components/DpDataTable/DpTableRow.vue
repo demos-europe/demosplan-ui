@@ -2,23 +2,28 @@
   <tr
     class="row"
     :data-cy="dataCy !== '' ? dataCy : false"
-    :class="[{ 'opacity-70': isLoading }, { 'is-expanded-row': expanded }]">
+    :class="[{ 'opacity-70': isLoading }, { 'is-expanded-row': expanded }]"
+  >
     <td
       v-if="isDraggable"
-      class="c-data-table__cell--narrow">
+      class="c-data-table__cell--narrow"
+    >
       <dp-icon
         icon="drag-handle"
-        class="c-data-table__drag-handle" />
+        class="c-data-table__drag-handle"
+      />
     </td>
 
     <td
       v-if="isSelectable"
-      class="c-data-table__cell--narrow">
+      class="c-data-table__cell--narrow"
+    >
       <dp-icon
         v-if="isLocked"
         v-tooltip="isLockedMessage"
         class="align-middle color--grey-light"
-        icon="lock" />
+        icon="lock"
+      />
       <input
         v-else
         type="checkbox"
@@ -27,14 +32,16 @@
         :name="isSelectableName || null"
         :value="isSelectableName ? item[trackBy] : null"
         :checked="checked"
-        @click="toggleSelect(item[trackBy])">
+        @click="toggleSelect(item[trackBy])"
+      >
     </td>
 
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
       :class="[{ 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }]"
-      :data-col-idx="`${idx}`">
+      :data-col-idx="`${idx}`"
+    >
       <div
         :class="[
           isTruncatable ?? 'break-words',
@@ -44,23 +51,28 @@
               : 'c-data-table__resizable--truncated'
             : ''
         ]"
-        :style="isTruncatable ?? elementStyle(field)">
+        :style="isTruncatable ?? elementStyle(field)"
+      >
         <slot
           v-if="$slots[field](item)[0].children.length > 0"
           :name="field"
-          v-bind="item" />
+          v-bind="item"
+        />
         <span
           v-else
-          v-cleanhtml="highlighted(field)" />
+          v-cleanhtml="highlighted(field)"
+        />
       </div>
     </td>
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible min-w-[50px]">
+      class="overflow-visible min-w-[50px]"
+    >
       <slot
         name="flyout"
-        v-bind="item" />
+        v-bind="item"
+      />
     </td>
 
     <td
@@ -68,10 +80,12 @@
       class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
-      @click="toggleExpand(item[trackBy])">
+      @click="toggleExpand(item[trackBy])"
+    >
       <dp-wrap-trigger
         :data-cy="`isExpandableWrapTrigger:${$attrs.index}`"
-        :expanded="expanded" />
+        :expanded="expanded"
+      />
     </td>
 
     <td
@@ -79,10 +93,12 @@
       class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
       :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
-      @click="toggleWrap(item[trackBy])">
+      @click="toggleWrap(item[trackBy])"
+    >
       <dp-wrap-trigger
         :data-cy="`isTruncatableWrapTrigger:${$attrs.index}`"
-        :expanded="wrapped" />
+        :expanded="wrapped"
+      />
     </td>
   </tr>
 </template>
@@ -90,32 +106,32 @@
 <script>
 import { CleanHtml } from '~/directives'
 import { de } from '~/components/shared/translations'
+import DomPurify from 'dompurify'
 import DpIcon from '~/components/DpIcon'
 import DpWrapTrigger from './DpWrapTrigger'
-import DomPurify from 'dompurify'
 
 export default {
   name: 'DpTableRow',
 
   components: {
     DpIcon,
-    DpWrapTrigger
+    DpWrapTrigger,
   },
 
   directives: {
-    cleanhtml: CleanHtml
+    cleanhtml: CleanHtml,
   },
 
   props: {
     checked: {
       type: Boolean,
-      required: true
+      required: true,
     },
 
     dataCy: {
       type: String,
       required: false,
-      default: ''
+      default: '',
     },
 
     /**
@@ -124,12 +140,12 @@ export default {
     expanded: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     hasFlyout: {
       type: Boolean,
-      required: true
+      required: true,
     },
 
     /**
@@ -142,35 +158,35 @@ export default {
      */
     headerFields: {
       type: Array,
-      required: true
+      required: true,
     },
 
     fields: {
       type: Array,
-      required: true
+      required: true,
     },
 
     item: {
       type: Object,
-      required: true
+      required: true,
     },
 
     isDraggable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isExpandable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isLoading: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -179,7 +195,7 @@ export default {
     isLocked: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     /**
@@ -188,40 +204,40 @@ export default {
     isLockedMessage: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
 
     isResizable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     isSelectable: {
       type: Boolean,
-      required: true
+      required: true,
     },
 
     isSelectableName: {
       type: String,
       required: false,
-      default: null
+      default: null,
     },
 
     isTruncatable: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
 
     searchTerm: {
       type: RegExp,
-      required: true
+      required: true,
     },
 
     trackBy: {
       type: String,
-      required: true
+      required: true,
     },
 
     /**
@@ -231,16 +247,22 @@ export default {
     wrapped: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
+
+  emits: [
+    'toggle-select',
+    'toggle-wrap',
+    'toggle-expand',
+  ],
 
   data () {
     return {
       translations: {
         ariaCollapse: de.aria.collapse.element,
-        ariaExpand: de.aria.expand.element
-      }
+        ariaExpand: de.aria.expand.element,
+      },
     }
   },
 
@@ -276,7 +298,7 @@ export default {
 
         return style
       }
-    }
+    },
   },
 
   methods: {
@@ -290,7 +312,7 @@ export default {
 
     toggleExpand (id) {
       this.$emit('toggle-expand', id)
-    }
-  }
+    },
+  },
 }
 </script>

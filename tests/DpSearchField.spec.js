@@ -8,17 +8,17 @@ describe('DpSearchField', () => {
   let wrapper
   const mocks = {
     Translator: {
-      trans: jest.fn((key => key))
-    }
+      trans: jest.fn((key => key)),
+    },
   }
 
   beforeEach(() => {
     wrapper = mount (DpSearchField, {
       components: {
         DpButton,
-        DpResettableInput
+        DpResettableInput,
       },
-      mocks
+      mocks,
     })
   })
 

@@ -1,7 +1,8 @@
 <template>
   <span
     class="u-obscure"
-    :title="title">
+    :title="title"
+  >
     <slot />
   </span>
 </template>
@@ -14,8 +15,8 @@ export default {
 
   data () {
     return {
-      title: de.obscure.title
+      title: de.obscure.title,
     }
-  }
+  },
 }
 </script>

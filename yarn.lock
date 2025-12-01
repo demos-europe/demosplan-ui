@@ -7419,10 +7419,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.26.1":
-  version: 3.35.0
-  resolution: "core-js@npm:3.35.0"
-  checksum: 10c0/1d545ff4406f2afa5e681f44b45ed5f7f119d158b380234d5aa7787ce7e47fc7a635b98b74c28c766ba8191e3db8c2316ad6ab4ff1ddecbc3fd618413a52c29c
+"core-js@npm:^3.45.1":
+  version: 3.47.0
+  resolution: "core-js@npm:3.47.0"
+  checksum: 10c0/9b1a7088b7c660c7b8f1d4c90bb1816a8d5352ebdcb7bc742e3a0e4eb803316b5aa17bacb8769522342196351a5430178f46914644f2bfdb94ce0ced3c7fd523
   languageName: node
   linkType: hard
 
@@ -11443,10 +11443,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loadjs@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "loadjs@npm:4.2.0"
-  checksum: 10c0/da0dff873148ca0507e84fd5b975f95a015f1cc30552df1958b6f47c9c0e134f29df5cc88db3fed72faade725ce3954378365bd0df2092117e432df430fa4c97
+"loadjs@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "loadjs@npm:4.3.0"
+  checksum: 10c0/8884520a7c5f3b0f6e4d3bc01d200c73b9c468986bea26acb54939d4a3f5da08f40f712812fadc1ff6030fca936e8c9eeb842aaafd287e32ca0ce6ae9f10e759
   languageName: node
   linkType: hard
 
@@ -13033,15 +13033,15 @@ __metadata:
   linkType: hard
 
 "plyr@npm:^3.7.2":
-  version: 3.7.8
-  resolution: "plyr@npm:3.7.8"
+  version: 3.8.3
+  resolution: "plyr@npm:3.8.3"
   dependencies:
-    core-js: "npm:^3.26.1"
+    core-js: "npm:^3.45.1"
     custom-event-polyfill: "npm:^1.0.7"
-    loadjs: "npm:^4.2.0"
+    loadjs: "npm:^4.3.0"
     rangetouch: "npm:^2.0.1"
-    url-polyfill: "npm:^1.1.12"
-  checksum: 10c0/75c3e070f7829f76409e0d34784bf8070b827ad99c4713a36338af7ce8dff7cf38998403f34a4a0b4d6e99efd1856ee056443c7e838db1dbb98ed38828110a97
+    url-polyfill: "npm:^1.1.13"
+  checksum: 10c0/a75774c53cbfbb861a80c06b1e1db66cbbf834d5898ea74a784eba7bea4357a276a18e6ef658a6d2a21e4e5d420fa9838044ee361654b0a6a0e19bb9262cf1f4
   languageName: node
   linkType: hard
 
@@ -16267,10 +16267,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-polyfill@npm:^1.1.12":
-  version: 1.1.12
-  resolution: "url-polyfill@npm:1.1.12"
-  checksum: 10c0/69633c42e3182271d01d2f2f4acd889a9f54b88fd7b2f45fd84fed19eca7cfa98fb6bfbd43d9cd9fad222a11a2dffb562b8435cdaa67fca5e25e3da638741679
+"url-polyfill@npm:^1.1.13":
+  version: 1.1.14
+  resolution: "url-polyfill@npm:1.1.14"
+  checksum: 10c0/945aa8d618da4f30c98a021ea5dd68c5aec711dd45cf6a494ddd30f3525b1d93c5f2f3e205ad3758193f289a66e03c8fa6da2ea4bce2dd0e7de4542c22499a06
   languageName: node
   linkType: hard
 

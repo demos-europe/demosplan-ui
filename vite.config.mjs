@@ -17,7 +17,12 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: '__demos_europe_demosplan_ui',
-      fileName: 'demosplan-ui'
+      fileName: (format) => {
+        if (format === 'es') return 'demosplan-ui.esm.js'
+        if (format === 'umd') return 'demosplan-ui.umd.js'
+        return `demosplan-ui.${format}.js`
+      },
+      formats: ['es', 'umd']
     },
     rollupOptions: {
       external: [
@@ -35,8 +40,14 @@ export default defineConfig({
         'vuedraggable'
       ],
       output: {
+        inlineDynamicImports: true,
         globals: {
           vue: 'Vue'
+        },
+        exports: 'named',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'demosplan-ui.css'
+          return assetInfo.name
         }
       }
     }

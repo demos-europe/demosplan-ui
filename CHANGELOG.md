@@ -10,6 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   node >= 20.19.0 in development), replace webpack with vite
 
 ### Fixed
+- ([#1410](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
 - ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
 
 

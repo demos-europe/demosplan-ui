@@ -104,6 +104,7 @@ export default {
   data () {
     return {
       datepicker: null,
+      labelClickHandler: null,
       localConfig: {
         theme: 'light',
         locale: 'DE-de',
@@ -165,6 +166,11 @@ export default {
       datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
     },
 
+    focusInput () {
+      const input = this.$el.querySelector('input')
+      input?.focus()
+    },
+
     emitUpdate (e) {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
@@ -173,6 +179,14 @@ export default {
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
+    },
+
+    setupLabelClickHandler () {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      if (label) {
+        this.labelClickHandler = () => this.focusInput()
+        label.addEventListener('click', this.labelClickHandler)
+      }
     },
   },
 
@@ -192,6 +206,14 @@ export default {
       this.datepicker.setDate(this.value)
     }
     this.addErrorFieldnameAttribute()
+    this.setupLabelClickHandler()
+  },
+
+  beforeUnmount () {
+    if (this.labelClickHandler) {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      label?.removeEventListener('click', this.labelClickHandler)
+    }
   },
 }
 </script>

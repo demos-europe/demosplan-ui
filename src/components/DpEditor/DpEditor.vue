@@ -594,6 +594,7 @@ export default {
       },
       imageId: null,
       editor: null,
+      labelClickHandler: null,
       editorHeight: '',
       isDiffMenuOpen: false,
       isFullscreen: false,
@@ -746,6 +747,15 @@ export default {
       this.$root.$emit('update-image:' + this.imageId, { alt: text })
       this.resetImageId()
       this.emitValue()
+    },
+
+    /**
+     * Focus the editor
+     */
+    focusEditor () {
+      if (this.editor) {
+        this.editor.commands.focus()
+      }
     },
 
     appendText (text) {
@@ -1079,6 +1089,25 @@ export default {
       this.$emit('input', isEmpty ? '' : this.currentValue)
     },
 
+    setupLabelClickHandler () {
+      let label = null
+
+      // Try editorId (Vue components)
+      if (!label && this.editorId) {
+        label = document.querySelector(`label[for="${this.editorId}"]`)
+      }
+
+      // Fallback: try hiddenInput (Twig templates)
+      if (this.hiddenInput) {
+        label = document.querySelector(`label[for="${this.hiddenInput}"]`)
+      }
+
+      if (label) {
+        this.labelClickHandler = () => this.focusEditor()
+        label.addEventListener('click', this.labelClickHandler)
+      }
+    },
+
     showLinkPrompt (_command, attrs) {
       this.linkUrl = attrs.href ? attrs.href : ''
       const selection = this.editor.view.state.tr.selection
@@ -1207,6 +1236,9 @@ export default {
     if (this.toolbar.imageButton ^ !!this.tusEndpoint) {
       console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
+
+    // Setup label click handling
+    this.setupLabelClickHandler()
   },
 
   beforeUnmount () {
@@ -1215,6 +1247,18 @@ export default {
       if (this.manuallyResetForm) {
         this.$el.closest('form').removeEventListener('reset', this.resetEditor)
       }
+    }
+
+    if (this.labelClickHandler) {
+      // Try same logic as setup
+      let label = null
+      if (this.hiddenInput) {
+        label = document.querySelector(`label[for="${this.hiddenInput}"]`)
+      }
+      if (!label && this.editorId) {
+        label = document.querySelector(`label[for="${this.editorId}"]`)
+      }
+      label?.removeEventListener('click', this.labelClickHandler)
     }
   },
 }

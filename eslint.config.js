@@ -27,7 +27,6 @@ async function getConfig () {
         '*.config.js',
         'babel.config.js',
         'jest.config.js',
-        'webpack.config.js',
         'vite.config.mjs',
         'jest/**',
         'scripts/**'
@@ -38,7 +37,9 @@ async function getConfig () {
       languageOptions: {
         globals: {
           ...globals.browser,
-          ...globals.node
+          ...globals.node,
+          dplan: 'readonly',
+          Routing: 'readonly'
         },
         parser: vueEslintParser,
         parserOptions: {

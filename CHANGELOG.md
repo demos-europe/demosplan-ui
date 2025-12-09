@@ -4,9 +4,28 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-### Changed
-- ([1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
+## v0.6.0 - 2025-12-1
 
+### Changed
+
+- ([#1409](https://github.com/demos-europe/demosplan-ui/pull/1409)) Make demosplan-ui tree-shakeable (requires node >= 20.19.0 in development), replace webpack with vite ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+- ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
+
+
+## v0.5.9 - 2025-11-18
+
+### Added
+- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos)
+
+### Fixed
+- ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Changed
+- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos)
+- ([#1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
 
 ## v0.5.8 - 2025-10-15
 

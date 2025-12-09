@@ -113,12 +113,16 @@ export default {
   methods: {
     dismiss () {
       this.isDismissed = true
-      this.dismissibleKey && lscache.set(this.dismissibleKey, Date.now())
+      if (this.dismissibleKey) {
+        lscache.set(this.dismissibleKey, Date.now())
+      }
     },
 
     show () {
       this.isDismissed = false
-      this.dismissibleKey && lscache.remove(this.dismissibleKey)
+      if (this.dismissibleKey) {
+        lscache.remove(this.dismissibleKey)
+      }
     },
   },
 

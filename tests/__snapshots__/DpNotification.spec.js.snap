@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DpNotification always renders with closemark 1`] = `
-"<div class="c-notify__message c-notify__message--error"><i class="c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer" aria-hidden="true"></i>
-  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-exclamation-circle"></i>
+"<div class="c-notify__message c-notify__message--error" role="alert"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden"><i class="c-notify__icon fa fa-times-circle" aria-hidden="true"></i></button>
+  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-exclamation-circle" aria-hidden="true"></i>
     <div class="u-ml">
       <!--v-if-->
     </div>
@@ -11,8 +11,8 @@ exports[`DpNotification always renders with closemark 1`] = `
 `;
 
 exports[`DpNotification always renders with closemark 2`] = `
-"<div class="c-notify__message c-notify__message--confirm"><i class="c-notify__icon c-notify__closer fa fa-times-circle cursor-pointer" aria-hidden="true"></i>
-  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-check-circle"></i>
+"<div class="c-notify__message c-notify__message--confirm" role="status"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden"><i class="c-notify__icon fa fa-times-circle" aria-hidden="true"></i></button>
+  <div class="flow-root"><i class="c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left fa-check-circle" aria-hidden="true"></i>
     <div class="u-ml">
       <!--v-if-->
     </div>

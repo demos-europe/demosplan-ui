@@ -32,6 +32,7 @@
     :class="{ 'is-required' : required }"
     :data-cy="dataCy"
     :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"
+    :internal-search="useDefaultSearch"
     :model-value="value"
     @close="newVal => $emit('close', newVal)"
     @update:model-value="newVal => $emit('input', newVal)"
@@ -411,6 +412,12 @@ export default {
       type: [String, Number, Array, Object],
       required: false,
       default: '',
+    },
+
+    useDefaultSearch:  {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
 

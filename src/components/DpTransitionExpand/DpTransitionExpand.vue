@@ -29,7 +29,7 @@ export default {
          * Force repaint to make sure the
          * animation is triggered correctly.
          */
-         
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         getComputedStyle(element).height
 
         /*
@@ -47,6 +47,7 @@ export default {
       onLeave (element) {
         element.style.height = getComputedStyle(element).height
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         getComputedStyle(element).height
 
         requestAnimationFrame(() => {

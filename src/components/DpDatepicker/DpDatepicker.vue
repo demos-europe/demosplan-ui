@@ -208,6 +208,7 @@ export default {
     this.addErrorFieldnameAttribute()
     this.setupLabelClickHandler()
   },
+
   beforeUnmount () {
     if (this.labelClickHandler) {
       const label = document.querySelector(`label[for="${this.id}"]`)

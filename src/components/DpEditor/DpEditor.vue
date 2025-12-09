@@ -597,6 +597,7 @@ export default {
       isDiffMenuOpen: false,
       isFullscreen: false,
       isTableMenuOpen: false,
+      labelClickHandler: null,
       linkUrl: '',
       // We have to check if we have a hidden input and a form, then we have to update the field manually. For Api-requests its not neccessary
       manuallyResetForm: true,
@@ -915,6 +916,12 @@ export default {
       this[menu].isOpen = false
     },
 
+    focusEditor () {
+      if (this.editor) {
+        this.editor.commands.focus()
+      }
+    },
+
     fullscreen (e) {
       const editor = e.target.parentElement.parentElement.parentElement.querySelector('.tiptap .editor__content')
       if (this.isFullscreen === false && editor.hasAttribute('style')) {
@@ -1061,6 +1068,22 @@ export default {
       }
     },
 
+    setupLabelClickHandler () {
+      let label = null
+      // Try editorId (Vue components)
+      if (!label && this.editorId) {
+        label = document.querySelector(`label[for="${this.editorId}"]`)
+      }
+      // Fallback: try hiddenInput (Twig templates)
+      if (this.hiddenInput) {
+        label = document.querySelector(`label[for="${this.hiddenInput}"]`)
+      }
+      if (label) {
+        this.labelClickHandler = () => this.focusEditor()
+        label.addEventListener('click', this.labelClickHandler)
+      }
+    },
+
     transformObscureTag (value) {
       const regex = new RegExp(`<span class="${this.prefixClass('u-obscure')}">(.*?)<\\/span>`, 'g')
 
@@ -1203,6 +1226,9 @@ export default {
     if (this.toolbar.imageButton ^ !!this.tusEndpoint) {
       console.warn(`DpEditor is called with only one of toolbar.imageButton or tusEndpoint set. Both must be used.`)
     }
+
+    // Setup label click handling
+    this.setupLabelClickHandler()
   },
 
   beforeUnmount () {
@@ -1211,6 +1237,19 @@ export default {
       if (this.manuallyResetForm) {
         this.$el.closest('form').removeEventListener('reset', this.resetEditor)
       }
+    }
+
+
+    if (this.labelClickHandler) {
+      // Try same logic as setup
+      let label = null
+      if (this.hiddenInput) {
+        label = document.querySelector(`label[for="${this.hiddenInput}"]`)
+      }
+      if (!label && this.editorId) {
+        label = document.querySelector(`label[for="${this.editorId}"]`)
+      }
+      label?.removeEventListener('click', this.labelClickHandler)
     }
   },
 }

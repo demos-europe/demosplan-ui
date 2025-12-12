@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.9-hotfix.1 - 2025-12-12
+
 ### Added
 - ([#1413](https://github.com/demos-europe/demosplan-ui/pull/1413)) DpFlyout: add new props ([@sakutademos](https://github.com/sakutademos))
 

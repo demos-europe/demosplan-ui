@@ -104,6 +104,7 @@ export default {
   data () {
     return {
       datepicker: null,
+      labelClickHandler: null,
       localConfig: {
         theme: 'light',
         locale: 'DE-de',
@@ -174,6 +175,19 @@ export default {
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.addErrorFieldnameAttribute()
     },
+
+    focusInput () {
+      const input = this.$el.querySelector('input')
+      input?.focus()
+    },
+
+    setupLabelClickHandler () {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      if (label) {
+        this.labelClickHandler = () => this.focusInput()
+        label.addEventListener('click', this.labelClickHandler)
+      }
+    },
   },
 
   mounted () {
@@ -192,6 +206,14 @@ export default {
       this.datepicker.setDate(this.value)
     }
     this.addErrorFieldnameAttribute()
+    this.setupLabelClickHandler()
+  },
+
+  beforeUnmount () {
+    if (this.labelClickHandler) {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      label?.removeEventListener('click', this.labelClickHandler)
+    }
   },
 }
 </script>

@@ -1,16 +1,30 @@
 <template>
-  <div
-    :id="id"
-    :data-cy="dataCy"
-    @input.stop.prevent="emitUpdate"
-  />
+  <div>
+    <dp-label
+      v-if="label !== ''"
+      class="mb-0.5"
+      :for="id"
+      :required="required"
+      :text="label"
+    />
+    <div
+      :id="id"
+      :data-cy="dataCy"
+      @input.stop.prevent="emitUpdate"
+    />
+  </div>
 </template>
 
 <script>
 import Datepicker from 'a11y-datepicker/dist/index.es.min'
+import DpLabel from '~/components/DpLabel'
 
 export default {
   name: 'DpDatepicker',
+
+  components: {
+    DpLabel,
+  },
 
   props: {
     calendarsAfter: {
@@ -49,6 +63,13 @@ export default {
     id: {
       type: String,
       required: true,
+    },
+
+
+    label: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     /**

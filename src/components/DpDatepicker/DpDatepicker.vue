@@ -4,6 +4,7 @@
       v-if="label !== ''"
       class="mb-0.5"
       :for="id"
+      :hint="hint"
       :required="required"
       :text="label"
     />
@@ -67,6 +68,12 @@ export default {
 
 
     label: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    hint: {
       type: String,
       required: false,
       default: '',

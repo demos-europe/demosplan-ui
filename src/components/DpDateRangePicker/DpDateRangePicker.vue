@@ -12,6 +12,7 @@
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
+      :label="startLabel"
       @input="handleInputStartDate"
     />
     <span>-</span>
@@ -27,6 +28,7 @@
       :value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
+      :label="endLabel"
       @input="handleInputEndDate"
     />
   </div>
@@ -143,6 +145,19 @@ export default {
       required: false,
       default: '',
     },
+
+    startLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    endLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
   },
 
   emits: [

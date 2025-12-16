@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1415](https://github.com/demos-europe/demosplan-ui/pull/1415)) Accessibility improvements: add aria-label attribute to the DpToggle component ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
 

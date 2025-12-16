@@ -26,6 +26,7 @@
       />
       <input
         v-else
+        :aria-label="translations.selectRow"
         type="checkbox"
         class="u-m-0 align-middle"
         data-cy="selectItem"
@@ -262,6 +263,7 @@ export default {
       translations: {
         ariaCollapse: de.aria.collapse.element,
         ariaExpand: de.aria.expand.element,
+        selectRow: de.aria.select.element,
       },
     }
   },

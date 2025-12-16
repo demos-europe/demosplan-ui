@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-end gap-1">
     <dp-datepicker
       :id="startId"
       :name="startName"
@@ -12,10 +12,10 @@
       :value="startValue"
       :required="required || (endDate !== '' && endDate < currentDate)"
       :data-cy="`${dataCy}:startDate`"
-      :label="startLabel"
+      :label="{ text: startLabel }"
       @input="handleInputStartDate"
     />
-    <span>-</span>
+    <span class="pb-1">-</span>
     <dp-datepicker
       :id="endId"
       :name="endName"
@@ -28,7 +28,7 @@
       :value="endValue"
       :required="required"
       :data-cy="`${dataCy}:endDate`"
-      :label="endLabel"
+      :label="{ text: endLabel }"
       @input="handleInputEndDate"
     />
   </div>
@@ -79,6 +79,12 @@ export default {
     endId: {
       type: String,
       required: true,
+    },
+
+    endLabel: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     endName: {
@@ -134,6 +140,12 @@ export default {
       required: true,
     },
 
+    startLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     startName: {
       type: String,
       required: false,
@@ -145,19 +157,6 @@ export default {
       required: false,
       default: '',
     },
-
-    startLabel: {
-      type: String,
-      required: false,
-      default: '',
-    },
-
-    endLabel: {
-      type: String,
-      required: false,
-      default: '',
-    },
-
   },
 
   emits: [

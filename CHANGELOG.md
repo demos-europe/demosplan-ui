@@ -9,13 +9,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#1413](https://github.com/demos-europe/demosplan-ui/pull/1413)) DpFlyout: add new props ([@sakutademos](https://github.com/sakutademos))
 
+### Fixed
+- ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.5.9 - 2025-11-18
 
 ### Added
 - ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
-- ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
 - ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
 - ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))

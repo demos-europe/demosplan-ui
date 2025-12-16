@@ -1,12 +1,12 @@
 <template>
   <div>
     <dp-label
-      v-if="label !== ''"
+      v-if="label"
       class="mb-0.5"
       :for="id"
-      :hint="hint"
+      :hint="label.hint"
       :required="required"
-      :text="label"
+      :text="label.text"
     />
     <div
       :id="id"
@@ -66,17 +66,13 @@ export default {
       required: true,
     },
 
-
     label: {
-      type: String,
+      type: Object,
       required: false,
-      default: '',
-    },
-
-    hint: {
-      type: String,
-      required: false,
-      default: '',
+      default: () => ({
+        hint: '',
+        text: '',
+      }),
     },
 
     /**

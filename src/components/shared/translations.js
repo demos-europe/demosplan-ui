@@ -185,6 +185,7 @@ const de = {
   },
   text: {
     deleted: 'Dieser Text wurde entfernt',
+    editor: 'Texteditor',
     inserted: 'Dieser Text wurde hinzugefügt',
     marked: 'markierter Text',
   },

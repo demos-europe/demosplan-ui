@@ -1160,6 +1160,7 @@ export default {
       editorProps: {
         attributes: {
           role: 'textbox',
+          'aria-label': Translator.trans('text.editor'),
         },
 
         handleDrop: (_view, _event, _slice, moved) => {

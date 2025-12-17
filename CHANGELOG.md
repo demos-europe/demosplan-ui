@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1416](https://github.com/demos-europe/demosplan-ui/pull/1416)) Accessibility improvements: DpTabs and DpBulkEditHeader ([@sakutademos](https://github.com/sakutademos))
 - ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.5.9-hotfix.1 - 2025-12-12

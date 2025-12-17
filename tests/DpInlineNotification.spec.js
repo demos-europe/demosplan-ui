@@ -27,7 +27,6 @@ describe('', () => {
   it('renders as error notification when only given a message', () => {
     wrapper = createWrapper()
 
-    console.log(wrapper.html())
     expect(wrapper.classes()).toContain('flash-error')
     expect(wrapper.find('[data-cy="inlineNotification:message"]').text()).toBe('Test Notification')
   })

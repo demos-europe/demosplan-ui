@@ -4,7 +4,7 @@
     role="checkbox"
     :aria-checked="value.toString()"
     :aria-disabled="disabled ? true : null"
-    :aria-label="setAriaLabel()"
+    :aria-label="setAriaLabel"
     tabindex="0"
     @click="toggle"
     @keydown.space.prevent="toggle"
@@ -65,9 +65,7 @@ export default {
     indicatorStyles () {
       return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
     },
-  },
 
-  methods: {
     setAriaLabel () {
       const action = this.value ? de.aria.deactivate.element : de.aria.activate.element
 
@@ -77,7 +75,9 @@ export default {
 
       return `${action}: ${this.ariaLabel}`
     },
+  },
 
+  methods: {
     toggle () {
       if (this.disabled === false) {
         this.$emit('input', !this.value)

@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.9-hotfix.2 - 2025-12-18
+
 ### Added
 - ([#1415](https://github.com/demos-europe/demosplan-ui/pull/1415)) Accessibility improvements: add aria-label attribute to the DpToggle component ([@sakutademos](https://github.com/sakutademos))
 
@@ -11,7 +13,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1416](https://github.com/demos-europe/demosplan-ui/pull/1416)) Accessibility improvements: DpTabs and DpBulkEditHeader ([@sakutademos](https://github.com/sakutademos))
 - ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
 - ([#1417](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: DpEditor gets aria-label in editorProps ([@riechedemos](https://github.com/riechedemos))
--
+- ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
+
+
 ## v0.5.9-hotfix.1 - 2025-12-12
 
 ### Added
@@ -24,7 +28,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
-- ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
 - ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
 

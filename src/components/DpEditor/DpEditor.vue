@@ -433,6 +433,15 @@ export default {
 
   props: {
     /**
+     * Aria label for accessibility - will be applied to the editor contenteditable element
+     */
+    ariaLabel: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    /**
      * The Tus endpoint requires basicAuth to be added to the file header.
      */
     basicAuth: {
@@ -1160,7 +1169,7 @@ export default {
       editorProps: {
         attributes: {
           role: 'textbox',
-          'aria-label': de.text.editor,
+          'aria-label': this.ariaLabel || de.text.editor,
         },
 
         handleDrop: (_view, _event, _slice, moved) => {

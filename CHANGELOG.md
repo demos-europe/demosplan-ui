@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.5.9-hotfix.2 - 2025-12-18
 
 ### Added

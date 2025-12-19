@@ -29,6 +29,7 @@
       trackBy,
       value
     }"
+    :aria-required="required"
     :class="{ 'is-required' : required }"
     :data-cy="dataCy"
     :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname"

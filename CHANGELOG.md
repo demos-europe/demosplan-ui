@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1420](https://github.com/demos-europe/demosplan-ui/pull/1420)) DpDataTable & DpTableHeader: fix caret icon state in expandable rows ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1419](https://github.com/demos-europe/demosplan-ui/pull/1419)) DpToggle: rename the computed variable ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed

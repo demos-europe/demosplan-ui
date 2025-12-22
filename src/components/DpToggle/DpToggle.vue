@@ -4,7 +4,7 @@
     role="checkbox"
     :aria-checked="value.toString()"
     :aria-disabled="disabled ? true : null"
-    :aria-label="ariaLabel"
+    :aria-label="toggleAriaLabel"
     tabindex="0"
     @click="toggle"
     @keydown.space.prevent="toggle"
@@ -66,7 +66,7 @@ export default {
       return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
     },
 
-    ariaLabel () {
+    toggleAriaLabel () {
       const action = this.value ? de.aria.deactivate.element : de.aria.activate.element
 
       if (!this.ariaLabel) {

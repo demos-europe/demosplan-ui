@@ -73,6 +73,7 @@
     >
       <dp-wrap-trigger
         data-cy="isExpandableWrapTrigger"
+        :expanded="allExpanded"
         :title="translations.headerExpandHint"
       />
     </th>
@@ -106,6 +107,12 @@ export default {
   },
 
   props: {
+    allExpanded: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     checked: {
       type: Boolean,
       required: true,

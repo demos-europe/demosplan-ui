@@ -6,6 +6,7 @@
       v-model="currentValue"
       :data-cy="dataCy"
       has-icon
+      :number-of-icons="numberOfIconSlots"
       :required="required"
       :rounded="rounded"
       :pattern="pattern"
@@ -159,6 +160,14 @@ export default {
   computed: {
     hasSlotContent () {
       return this.$slots.default && this.$slots.default().length > 0
+    },
+
+    numberOfIconSlots () {
+      if (this.hasSlotContent) {
+        return '2'
+      }
+
+      return '1'
     },
 
     buttonClass () {

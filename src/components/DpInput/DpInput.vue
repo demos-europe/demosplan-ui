@@ -160,6 +160,12 @@ const props = defineProps({
     default: '',
   },
 
+  numberOfIcons: {
+    type: [Number, String],
+    required: false,
+    default: null,
+  },
+
   name: {
     type: String,
     required: false,

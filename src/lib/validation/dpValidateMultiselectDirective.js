@@ -33,7 +33,6 @@ const dpValidateMultiselectDirective = {
     const isValid = !hasOptions ? true : checkValue(component.value)
 
     component.$el.setAttribute('data-dp-validate-is-valid', isValid)
-    validateMultiselect(component.$el)
   },
 }
 

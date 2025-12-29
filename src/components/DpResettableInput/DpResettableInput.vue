@@ -22,7 +22,7 @@
     >
       <button
         v-if="!inputAttributes.disabled"
-        class="btn--blank o-link--default relative mr-1"
+        class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
         :title="currentValue === defaultValue ? null : translations.reset"

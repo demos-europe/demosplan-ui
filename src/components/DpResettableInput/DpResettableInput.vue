@@ -6,6 +6,7 @@
       v-model="currentValue"
       :data-cy="dataCy"
       has-icon
+      :number-of-icons="numberOfIconSlots"
       :required="required"
       :rounded="rounded"
       :pattern="pattern"
@@ -21,9 +22,10 @@
     >
       <button
         v-if="!inputAttributes.disabled"
-        class="btn--blank o-link--default relative mr-1"
+        class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
+        :class="numberOfIconSlots === 1 ? 'mr-1' : 'mr-0.5'"
         :title="currentValue === defaultValue ? null : translations.reset"
         :disabled="currentValue === defaultValue"
         @click="resetValue"
@@ -104,6 +106,16 @@ export default {
       default: () => ({}),
     },
 
+    /**
+     * To prevent text from flowing under the icons, it is necessary to know how many icons are added,
+     * to correctly set the padding for the input field.
+     */
+    numberOfAdditionalIcons: {
+      type: [Number, String],
+      required: false,
+      default: null,
+    },
+
     pattern: {
       type: String,
       required: false,
@@ -159,6 +171,16 @@ export default {
   computed: {
     hasSlotContent () {
       return this.$slots.default && this.$slots.default().length > 0
+    },
+
+    numberOfIconSlots () {
+      if (!this.numberOfAdditionalIcons) {
+        return '1'
+      }
+
+      const totalNumberOfIcons = Number(this.numberOfAdditionalIcons) + 1
+
+      return Math.min(totalNumberOfIcons, 4)
     },
 
     buttonClass () {

@@ -160,6 +160,12 @@ const props = defineProps({
     default: '',
   },
 
+  numberOfIcons: {
+    type: [Number, String],
+    required: false,
+    default: null,
+  },
+
   name: {
     type: String,
     required: false,
@@ -302,7 +308,18 @@ const classes = computed(() => {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (props.hasIcon) {
+  if (props.numberOfIcons && Number(props.numberOfIcons) <= 4) {
+    const paddingMap = {
+      1: 'pr-4',
+      2: 'pr-7',
+      3: 'pr-8',
+      4: 'pr-9',
+    }
+
+    const paddingClass = paddingMap[Number(props.numberOfIcons)] || 'pr-4'
+
+    _classes.push(paddingClass)
+  } else if (props.hasIcon) {
     _classes.push('pr-4')
   }
 

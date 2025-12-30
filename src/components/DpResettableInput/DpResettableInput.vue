@@ -105,6 +105,12 @@ export default {
       default: () => ({}),
     },
 
+    numberOfAdditionalIcons: {
+      type: [Number, String],
+      required: false,
+      default: null,
+    },
+
     pattern: {
       type: String,
       required: false,

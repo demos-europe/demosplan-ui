@@ -106,6 +106,10 @@ export default {
       default: () => ({}),
     },
 
+    /**
+     * To prevent text from flowing under the icons, it is necessary to know how many icons are added,
+     * to correctly set the padding for the input field.
+     */
     numberOfAdditionalIcons: {
       type: [Number, String],
       required: false,

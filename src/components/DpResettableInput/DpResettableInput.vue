@@ -25,6 +25,7 @@
         class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
+        :class="numberOfIconSlots === 1 ? 'mr-1' : 'mr-0.5'"
         :title="currentValue === defaultValue ? null : translations.reset"
         :disabled="currentValue === defaultValue"
         @click="resetValue"
@@ -169,11 +170,13 @@ export default {
     },
 
     numberOfIconSlots () {
-      if (this.hasSlotContent) {
-        return '2'
+      if (!this.numberOfAdditionalIcons) {
+        return '1'
       }
 
-      return '1'
+      const totalNumberOfIcons = Number(this.numberOfAdditionalIcons) + 1
+
+      return Math.min(totalNumberOfIcons, 4)
     },
 
     buttonClass () {

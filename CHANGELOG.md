@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1424](https://github.com/demos-europe/demosplan-ui/pull/1424)) DpButton: add the 'iconWeight' prop to DpButton component ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1421](https://github.com/demos-europe/demosplan-ui/pull/1421)) DpTabs & DpTab: link import buttons in DpTabs to their DpTab children with aria-attributes (`id` and `aria-labelledby`)([@rafelddemos](https://github.com/rafelddemos))
 - ([#1420](https://github.com/demos-europe/demosplan-ui/pull/1420)) DpDataTable & DpTableHeader: fix caret icon state in expandable rows ([@rafelddemos](https://github.com/rafelddemos))

@@ -6,6 +6,7 @@
     >
       <button
         v-for="(tab, idx) in tabs"
+        :id="`tab-${tab.props.id}`"
         :key="`tab:${idx}`"
         role="tab"
         class="btn--blank o-link--default border--bottom"

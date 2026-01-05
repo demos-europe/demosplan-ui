@@ -2,6 +2,7 @@
   <section
     v-show="isActive"
     :id="id"
+    :aria-labelledby="`tab-${id}`"
     role="tabpanel"
   >
     <slot />

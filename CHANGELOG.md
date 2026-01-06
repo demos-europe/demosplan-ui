@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.9-hotfix.3 - 2026-01-06
+
 ### Added
 - ([#1424](https://github.com/demos-europe/demosplan-ui/pull/1424)) DpButton: add the 'iconWeight' prop to DpButton component ([@sakutademos](https://github.com/sakutademos))
 
@@ -11,7 +13,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1421](https://github.com/demos-europe/demosplan-ui/pull/1421)) DpTabs & DpTab: link import buttons in DpTabs to their DpTab children with aria-attributes (`id` and `aria-labelledby`)([@rafelddemos](https://github.com/rafelddemos))
 - ([#1420](https://github.com/demos-europe/demosplan-ui/pull/1420)) DpDataTable & DpTableHeader: fix caret icon state in expandable rows ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1419](https://github.com/demos-europe/demosplan-ui/pull/1419)) DpToggle: rename the computed variable ([@sakutademos](https://github.com/sakutademos))
-- ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
+- ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1418)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.5.9-hotfix.2 - 2025-12-18
 
@@ -21,7 +23,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1416](https://github.com/demos-europe/demosplan-ui/pull/1416)) Accessibility improvements: DpTabs and DpBulkEditHeader ([@sakutademos](https://github.com/sakutademos))
 - ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
-- ([#1417](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: DpEditor gets aria-label in editorProps ([@riechedemos](https://github.com/riechedemos))
+- ([#1417](https://github.com/demos-europe/demosplan-ui/pull/1417)) Accessibility improvements: DpEditor gets aria-label in editorProps ([@riechedemos](https://github.com/riechedemos))
 - ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
 
 

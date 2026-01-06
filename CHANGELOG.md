@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1422](https://github.com/demos-europe/demosplan-ui/pull/1422)) DpMultiselect: Fix premature error styling by removing validation from update hook ([@meissnerdemos](https://github.com/meissnerdemos))
+
 ## v0.6.0 - 2025-12-1
 
 ### Changed

@@ -181,15 +181,6 @@ export default {
   },
 
   methods: {
-    addErrorFieldnameAttribute () {
-      const datePickerInput = document.getElementsByName(this.name)[0]
-      /**
-       * This attribute is needed for validation to display the field name in case of an error
-       * and must be set every time the Datepicker is mounted or updated.
-       */
-      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
-    },
-
     emitUpdate (e) {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
@@ -197,12 +188,28 @@ export default {
 
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
-      this.addErrorFieldnameAttribute()
+      this.setDatepickerInputAttribute()
     },
 
     focusInput () {
       const input = this.$el.querySelector('input')
       input?.focus()
+    },
+
+    setDatepickerInputAttribute () {
+      const datePickerInput = document.getElementsByName(this.name)[0]
+      /**
+       * This attribute is needed for validation to display the field name in case of an error
+       * and must be set every time the Datepicker is mounted or updated.
+       */
+      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
+      /**
+       * The datepicker input is rendered outside the Vue template by the a11y-datepicker API.
+       * Therefore, accessibility attributes like aria-label must be set manually after initialization
+       */
+      if (this.label?.text) {
+        datePickerInput?.setAttribute('aria-label', this.label.text)
+      }
     },
 
     setupLabelClickHandler () {
@@ -229,7 +236,7 @@ export default {
     if (this.value !== '') {
       this.datepicker.setDate(this.value)
     }
-    this.addErrorFieldnameAttribute()
+    this.setDatepickerInputAttribute()
     this.setupLabelClickHandler()
   },
 

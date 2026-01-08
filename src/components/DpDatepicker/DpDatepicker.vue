@@ -188,7 +188,7 @@ export default {
 
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
-      this.setDatepickerInputAttribute()
+      this.setDatepickerInputValidationErrorAndLabel()
     },
 
     focusInput () {
@@ -196,7 +196,7 @@ export default {
       input?.focus()
     },
 
-    setDatepickerInputAttribute () {
+    setDatepickerInputValidationErrorAndLabel () {
       const datePickerInput = document.getElementsByName(this.name)[0]
       /**
        * This attribute is needed for validation to display the field name in case of an error
@@ -236,7 +236,7 @@ export default {
     if (this.value !== '') {
       this.datepicker.setDate(this.value)
     }
-    this.setDatepickerInputAttribute()
+    this.setDatepickerInputValidationErrorAndLabel()
     this.setupLabelClickHandler()
   },
 

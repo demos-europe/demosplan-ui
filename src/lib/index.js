@@ -18,7 +18,6 @@ import Detabinator from './Detabinator'
 import getCssVariable from './DpGetCssVariable'
 import { highlightActiveLinks } from './HighlightHashLink'
 import MatchMedia from './MatchMedia'
-import SideNav from './SideNav'
 import Stickier from './Stickier'
 import Sticky from './Sticky'
 import TableWrapper from './TableWrapper'
@@ -40,7 +39,6 @@ export {
   makeFormPost,
   MatchMedia,
   mimeTypes,
-  SideNav,
   Stickier,
   Sticky,
   TableWrapper,

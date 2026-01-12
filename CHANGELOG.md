@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-- ([#1425](https://github.com/demos-europe/demosplan-ui/pull/1418)) Accessibility improvements: Add aria-label to DpDatapicker ([@riechedemos](https://github.com/riechedemos))
+- ([#1425](https://github.com/demos-europe/demosplan-ui/pull/1425)) Accessibility improvements: Add aria-label to DpDatapicker ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.5.9-hotfix.3 - 2026-01-06
 

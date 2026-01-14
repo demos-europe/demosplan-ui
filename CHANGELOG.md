@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.9-hotfix.4 - 2026-01-14
+
 ### Added
 - ([#1425](https://github.com/demos-europe/demosplan-ui/pull/1425)) Accessibility improvements: Add aria-label to DpDatapicker ([@riechedemos](https://github.com/riechedemos))
 
@@ -18,7 +20,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1419](https://github.com/demos-europe/demosplan-ui/pull/1419)) DpToggle: rename the computed variable ([@sakutademos](https://github.com/sakutademos))
 - ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1418)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
 
-## v0.5.9-hotfix.2 - 2025-12-18
+## v0.5.9-hotfix.2 - <cv-modal2025-12-18
 
 ### Added
 - ([#1415](https://github.com/demos-europe/demosplan-ui/pull/1415)) Accessibility improvements: add aria-label attribute to the DpToggle component ([@sakutademos](https://github.com/sakutademos))

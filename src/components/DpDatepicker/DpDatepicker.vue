@@ -1,16 +1,31 @@
 <template>
-  <div
-    :id="id"
-    :data-cy="dataCy"
-    @input.stop.prevent="emitUpdate"
-  />
+  <div>
+    <dp-label
+      v-if="label"
+      class="mb-0.5"
+      :for="id"
+      :hint="label.hint"
+      :required="required"
+      :text="label.text"
+    />
+    <div
+      :id="id"
+      :data-cy="dataCy"
+      @input.stop.prevent="emitUpdate"
+    />
+  </div>
 </template>
 
 <script>
 import Datepicker from 'a11y-datepicker/dist/index.es.min'
+import DpLabel from '~/components/DpLabel'
 
 export default {
   name: 'DpDatepicker',
+
+  components: {
+    DpLabel,
+  },
 
   props: {
     calendarsAfter: {
@@ -49,6 +64,15 @@ export default {
     id: {
       type: String,
       required: true,
+    },
+
+    label: {
+      type: Object,
+      required: false,
+      default: () => ({
+        hint: '',
+        text: '',
+      }),
     },
 
     /**
@@ -104,6 +128,7 @@ export default {
   data () {
     return {
       datepicker: null,
+      labelClickHandler: null,
       localConfig: {
         theme: 'light',
         locale: 'DE-de',
@@ -156,15 +181,6 @@ export default {
   },
 
   methods: {
-    addErrorFieldnameAttribute () {
-      const datePickerInput = document.getElementsByName(this.name)[0]
-      /**
-       * This attribute is needed for validation to display the field name in case of an error
-       * and must be set every time the Datepicker is mounted or updated.
-       */
-      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
-    },
-
     emitUpdate (e) {
       const currentVal = e.target.value
       const date = this.datepicker.getDateAsString()
@@ -172,7 +188,36 @@ export default {
 
       this.$emit('input', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
-      this.addErrorFieldnameAttribute()
+      this.setDatepickerInputValidationErrorAndLabel()
+    },
+
+    focusInput () {
+      const input = this.$el.querySelector('input')
+      input?.focus()
+    },
+
+    setDatepickerInputValidationErrorAndLabel () {
+      const datePickerInput = document.getElementsByName(this.name)[0]
+      /**
+       * This attribute is needed for validation to display the field name in case of an error
+       * and must be set every time the Datepicker is mounted or updated.
+       */
+      datePickerInput?.setAttribute('data-dp-validate-error-fieldname', this.dataDpValidateErrorFieldname)
+      /**
+       * The datepicker input is rendered outside the Vue template by the a11y-datepicker API.
+       * Therefore, accessibility attributes like aria-label must be set manually after initialization
+       */
+      if (this.label?.text) {
+        datePickerInput?.setAttribute('aria-label', this.label.text)
+      }
+    },
+
+    setupLabelClickHandler () {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      if (label) {
+        this.labelClickHandler = () => this.focusInput()
+        label.addEventListener('click', this.labelClickHandler)
+      }
     },
   },
 
@@ -191,7 +236,15 @@ export default {
     if (this.value !== '') {
       this.datepicker.setDate(this.value)
     }
-    this.addErrorFieldnameAttribute()
+    this.setDatepickerInputValidationErrorAndLabel()
+    this.setupLabelClickHandler()
+  },
+
+  beforeUnmount () {
+    if (this.labelClickHandler) {
+      const label = document.querySelector(`label[for="${this.id}"]`)
+      label?.removeEventListener('click', this.labelClickHandler)
+    }
   },
 }
 </script>

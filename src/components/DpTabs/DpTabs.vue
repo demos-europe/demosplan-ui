@@ -1,34 +1,32 @@
 <template>
   <div>
-    <ul
-      class="flex flex-wrap flex-col sm:flex-row gap-x-4 gap-y-2 justify-start list-style-none border--bottom"
+    <div
+      class="flex flex-wrap flex-col sm:flex-row gap-x-4 gap-y-2 items-start list-style-none border--bottom"
       role="tablist"
     >
-      <li
+      <button
         v-for="(tab, idx) in tabs"
+        :id="`tab-${tab.props.id}`"
         :key="`tab:${idx}`"
-        :class="{ 'is-active': activeTabId === tab.props.id }"
+        role="tab"
+        class="btn--blank o-link--default border--bottom"
+        :class="[
+          { 'is-active': activeTabId === tab.props.id },
+          activeTabId === tab.props.id ? 'color-interactive border-interactive -mb-px pb-[13px]' : 'border--none color-text-muted mb-px pb-2',
+          tabSize === 'large' ? 'font-size-larger' : 'font-size-large',
+        ]"
+        :aria-selected="activeTabId === tab.props.id"
+        :aria-controls="tab.props.id"
+        :data-cy="tab.props.id"
+        @click.prevent="handleTabChange(tab.props.id)"
       >
-        <button
-          role="tab"
-          class="btn--blank o-link--default u-pb-0_5 border--bottom"
-          :class="[
-            activeTabId === tab.props.id ? 'color-interactive border-interactive' : 'border--none color-text-muted',
-            tabSize === 'large' ? 'font-size-larger' : 'font-size-large'
-          ]"
-          :aria-selected="activeTabId === tab.props.id"
-          :aria-controls="tab.props.id"
-          :data-cy="tab.props.id"
-          @click.prevent="handleTabChange(tab.props.id)"
-        >
-          {{ tab.props.label }}
-          <span
-            v-if="tab.props.suffix"
-            v-cleanhtml="tab.props.suffix"
-          />
-        </button>
-      </li>
-    </ul>
+        {{ tab.props.label }}
+        <span
+          v-if="tab.props.suffix"
+          v-cleanhtml="tab.props.suffix"
+        />
+      </button>
+    </div>
     <div>
       <slot :active-tab-id="activeTabId" />
     </div>
@@ -136,9 +134,3 @@ onBeforeUnmount (() => {
   }
 })
 </script>
-
-<style>
-li {
-  margin-bottom: -1px;
-}
-</style>

@@ -17,18 +17,51 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
 
+## v0.5.9-hotfix.4 - 2026-01-14
+
+### Added
+- ([#1425](https://github.com/demos-europe/demosplan-ui/pull/1425)) Accessibility improvements: Add aria-label to DpDatapicker ([@riechedemos](https://github.com/riechedemos))
+
+## v0.5.9-hotfix.3 - 2026-01-06
+
+### Added
+- ([#1424](https://github.com/demos-europe/demosplan-ui/pull/1424)) DpButton: add the 'iconWeight' prop to DpButton component ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+- ([#1421](https://github.com/demos-europe/demosplan-ui/pull/1421)) DpTabs & DpTab: link import buttons in DpTabs to their DpTab children with aria-attributes (`id` and `aria-labelledby`)([@rafelddemos](https://github.com/rafelddemos))
+- ([#1420](https://github.com/demos-europe/demosplan-ui/pull/1420)) DpDataTable & DpTableHeader: fix caret icon state in expandable rows ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1419](https://github.com/demos-europe/demosplan-ui/pull/1419)) DpToggle: rename the computed variable ([@sakutademos](https://github.com/sakutademos))
+- ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1418)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
+
+## v0.5.9-hotfix.2 - <cv-modal2025-12-18
+
+### Added
+- ([#1415](https://github.com/demos-europe/demosplan-ui/pull/1415)) Accessibility improvements: add aria-label attribute to the DpToggle component ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+- ([#1416](https://github.com/demos-europe/demosplan-ui/pull/1416)) Accessibility improvements: DpTabs and DpBulkEditHeader ([@sakutademos](https://github.com/sakutademos))
+- ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
+- ([#1417](https://github.com/demos-europe/demosplan-ui/pull/1417)) Accessibility improvements: DpEditor gets aria-label in editorProps ([@riechedemos](https://github.com/riechedemos))
+- ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.5.9-hotfix.1 - 2025-12-12
+
+### Added
+- ([#1413](https://github.com/demos-europe/demosplan-ui/pull/1413)) DpFlyout: add new props ([@sakutademos](https://github.com/sakutademos))
+
 
 ## v0.5.9 - 2025-11-18
 
 ### Added
-- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos)
+- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
 - ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
-- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos)
+- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos))
 - ([#1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
 
 ## v0.5.8 - 2025-10-15

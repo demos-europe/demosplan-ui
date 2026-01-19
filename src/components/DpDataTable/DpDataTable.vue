@@ -25,6 +25,7 @@
       <thead>
         <dp-table-header
           :data-cy="`${dataCy}:header`"
+          :all-expanded="allExpanded"
           :checked="allSelected"
           :has-flyout="hasFlyout"
           :header-fields="headerFields"
@@ -67,6 +68,7 @@
             :data-cy="`${dataCy}:row:${idx}`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
+            :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
             :has-flyout="hasFlyout"
             :header-fields="headerFields"

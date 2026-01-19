@@ -1,8 +1,5 @@
 <template>
-  <div
-    role="menu"
-    class="flex items-center gap-2 p-2 bg-selected"
-  >
+  <div class="flex items-center gap-2 p-2 bg-selected">
     <span>
       {{ selectedItemsText }}
     </span>

@@ -7,6 +7,12 @@ const de = {
     default: 'Alternativer Text',
   },
   aria: {
+    activate: {
+      element: 'Element aktivieren',
+    },
+    deactivate: {
+      element: 'Element deaktivieren',
+    },
     deselect: {
       all: 'Auswahl für alle Elemente aufheben',
       element: 'Auswahl für Element aufheben',
@@ -185,6 +191,7 @@ const de = {
   },
   text: {
     deleted: 'Dieser Text wurde entfernt',
+    editor: 'Texteditor',
     inserted: 'Dieser Text wurde hinzugefügt',
     marked: 'markierter Text',
   },

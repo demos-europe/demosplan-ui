@@ -5,13 +5,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1430](https://github.com/demos-europe/demosplan-ui/pull/1430)) Build: Fix tree-shaking issues, use ESM-only build ([@hwiem](https://github.com/hwiem))
 - ([#1422](https://github.com/demos-europe/demosplan-ui/pull/1422)) DpMultiselect: Fix premature error styling by removing validation from update hook ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.6.0 - 2025-12-1
 
 ### Changed
 
-- ([#1409](https://github.com/demos-europe/demosplan-ui/pull/1409)) Make demosplan-ui tree-shakeable (requires node >= 20.19.0 in development), replace webpack with vite ([@hwiem](https://github.com/hwiem))
+- ([#1409](https://github.com/demos-europe/demosplan-ui/pull/1409)) Build: Make demosplan-ui tree-shakeable (requires node >= 20.19.0 in development), replace webpack with vite ([@hwiem](https://github.com/hwiem))
 
 ### Fixed
 - ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))

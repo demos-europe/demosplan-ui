@@ -3,13 +3,13 @@
   "version": "0.6.0",
   "license": "MIT",
   "description": "Vue components, Vue directives, Design Token and Scss files to build interfaces for demosPlan.",
-  "main": "./dist/demosplan-ui.umd.js",
-  "module": "./dist/demosplan-ui.esm.js",
+  "main": "./dist/demosplan-ui.mjs",
+  "module": "./dist/demosplan-ui.mjs",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": {
-      "import": "./dist/demosplan-ui.esm.js",
-      "require": "./dist/demosplan-ui.umd.js"
-    },
+    ".": "./dist/demosplan-ui.mjs",
     "./dist/demosplan-ui.css": "./dist/demosplan-ui.css",
     "./styles/*": "./styles/*",
     "./tokens/*": "./tokens/*"

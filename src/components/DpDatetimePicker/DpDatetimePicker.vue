@@ -43,8 +43,8 @@
 <script>
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
-import { defineAsyncComponent } from 'vue'
 import DpDatepicker from '~/components/DpDatepicker'
+import DpLabel from '../DpLabel/DpLabel'
 import DpTimePicker from '~/components/DpTimePicker'
 
 dayjs.extend(customParseFormat)
@@ -54,9 +54,7 @@ export default {
 
   components: {
     DpDatepicker,
-    DpLabel: defineAsyncComponent(async () => {
-      return await import('../DpLabel/DpLabel')
-    }),
+    DpLabel,
     DpTimePicker,
   },
 

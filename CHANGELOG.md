@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1432](https://github.com/demos-europe/demosplan-ui/pull/1432)) DpTextArea: Add missing tooltip prop ([@hwiem](https://github.com/hwiem))
+- ([#1433](https://github.com/demos-europe/demosplan-ui/pull/1433)) Validation: Add missing exports ([@hwiem](https://github.com/hwiem))
 
 ## v0.7.1 - 2026-1-29
 

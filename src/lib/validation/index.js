@@ -11,6 +11,8 @@ import validateInput from './utils/validateInputField'
 import validateMultiselect from './utils/validateMultiselect'
 import validateTiptap from './utils/validateTiptap'
 
+export { errorClass, scrollToVisibleElement } from './utils/helpers'
+
 export {
   assignHandlerForTrigger,
   assignHandlersForInputs,

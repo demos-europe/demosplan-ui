@@ -3,7 +3,6 @@ import { assignHandlersForInputs } from './utils/assignHandlersForInputs'
 import assignObserver from './utils/assignObserver'
 import dpValidate from './dpValidate'
 import dpValidateMultiselectDirective from './dpValidateMultiselectDirective'
-import { errorClass, scrollToVisibleElement } from './utils/helpers'
 import validateDatepicker from './utils/validateDatepicker'
 import validateEmail from './utils/validateEmail'
 import validateFieldset from './utils/validateFieldset'
@@ -12,14 +11,14 @@ import validateInput from './utils/validateInputField'
 import validateMultiselect from './utils/validateMultiselect'
 import validateTiptap from './utils/validateTiptap'
 
+export { errorClass, scrollToVisibleElement } from './utils/helpers'
+
 export {
   assignHandlerForTrigger,
   assignHandlersForInputs,
   assignObserver,
   dpValidate,
   dpValidateMultiselectDirective,
-  errorClass,
-  scrollToVisibleElement,
   validateDatepicker,
   validateEmail,
   validateFieldset,

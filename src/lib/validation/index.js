@@ -3,6 +3,7 @@ import { assignHandlersForInputs } from './utils/assignHandlersForInputs'
 import assignObserver from './utils/assignObserver'
 import dpValidate from './dpValidate'
 import dpValidateMultiselectDirective from './dpValidateMultiselectDirective'
+import { errorClass, scrollToVisibleElement } from './utils/helpers'
 import validateDatepicker from './utils/validateDatepicker'
 import validateEmail from './utils/validateEmail'
 import validateFieldset from './utils/validateFieldset'
@@ -17,6 +18,8 @@ export {
   assignObserver,
   dpValidate,
   dpValidateMultiselectDirective,
+  errorClass,
+  scrollToVisibleElement,
   validateDatepicker,
   validateEmail,
   validateFieldset,

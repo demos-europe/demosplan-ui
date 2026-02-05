@@ -84,29 +84,26 @@ export default {
      * Check if the new size is valid. Otherwise use min/max values.
      */
     handleDrag (event) {
+      const rect = this.target.getBoundingClientRect()
       let newSize
+
       if (this.dimension === 'height') {
-        if (event.type === 'mousemove') {
-          newSize = event.clientY - this.target.getBoundingClientRect().top - this.parentPadding
-        } else {
-          newSize = event.changedTouches[0].clientY - this.target.getBoundingClientRect().top - this.parentPadding
-        }
+        const clientY =
+          event.type === 'mousemove'
+            ? event.clientY // Mouse events
+            : event.changedTouches[0].clientY // Touch events
+          newSize = clientY - rect.top - this.parentPadding
       } else {
         // Width calculation
-        if (event.type === 'mousemove') {
-          // For direction="left", calculate from right edge (right-aligned containers)
-          if (this.direction === 'left') {
-            newSize = this.target.getBoundingClientRect().right - event.clientX - this.parentPadding
-          } else {
-            newSize = event.clientX - this.target.getBoundingClientRect().left - this.parentPadding
-          }
+        const clientX =
+          event.type === 'mousemove'
+            ? event.clientX
+            : event.changedTouches[0].clientX
+
+        if (this.direction === 'left') {
+          newSize = rect.right - clientX - this.parentPadding
         } else {
-          // Touch events
-          if (this.direction === 'left') {
-            newSize = this.target.getBoundingClientRect().right - event.changedTouches[0].clientX - this.parentPadding
-          } else {
-            newSize = event.changedTouches[0].clientX - this.target.getBoundingClientRect().left - this.parentPadding
-          }
+          newSize = clientX - rect.left - this.parentPadding
         }
       }
 
@@ -115,6 +112,7 @@ export default {
       } else if (newSize > this.maxSize) {
         newSize = this.maxSize
       }
+
       this.setNewSize(newSize)
     },
 

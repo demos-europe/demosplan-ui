@@ -1,11 +1,7 @@
 <template>
   <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
   <div
-    :class="[
-      prefixClass('c-drag-handle'),
-      prefixClass(`c-drag-handle--${direction}`),
-      `${direction}-0`,
-    ]"
+    :class="prefixClass(`c-drag-handle c-drag-handle--${direction} ${direction}-0`)"
     draggable="true"
     @mousedown.prevent="startDrag"
     @touchstart.prevent="startDrag"
@@ -21,7 +17,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {
@@ -34,6 +30,7 @@ export default {
       type: String,
       required: false,
       default: 'right',
+      validator: (value: string) => ['right', 'left'].includes(value),
     },
 
     dragTarget: {

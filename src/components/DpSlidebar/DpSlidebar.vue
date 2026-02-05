@@ -8,6 +8,9 @@
       data-slidebar-container=""
       data-cy="sidebarModal"
     >
+      <!-- Drag handle for resizing slidebar -->
+      <slot name="dragHandle" />
+
       <div class="u-ml-1_5">
         <button
           type="button"

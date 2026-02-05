@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1434](https://github.com/demos-europe/demosplan-ui/pull/1434)) DpDragHandle: Create a new component ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.8.0 - 2026-2-4
 
 ### Fixed

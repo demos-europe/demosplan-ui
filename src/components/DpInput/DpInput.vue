@@ -309,15 +309,14 @@ const classes = computed(() => {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (props.numberOfIcons && Number(props.numberOfIcons) <= 4) {
+  if (totalNumberOfIcons.value) {
     const paddingMap = {
       1: 'pr-4',
-      2: 'pr-7',
+      2: 'pr-6',
       3: 'pr-8',
-      4: 'pr-9',
     }
 
-    const paddingClass = paddingMap[Number(props.numberOfIcons)] || 'pr-4'
+    const paddingClass = paddingMap[totalNumberOfIcons.value] || 'pr-4'
 
     _classes.push(paddingClass)
   } else if (props.hasIcon) {
@@ -368,4 +367,14 @@ const handleEnter = (event: KeyboardEvent) => {
 
   emit('enter')
 }
+
+const totalNumberOfIcons = computed(() => {
+  const MAX_NUMBER_OF_ICONS = 3
+
+  if (props.numberOfIcons) {
+    return Math.min(props.numberOfIcons, MAX_NUMBER_OF_ICONS)
+  }
+
+  return null
+})
 </script>

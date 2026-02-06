@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script>
 import { prefixClassMixin } from '@demos-europe/demosplan-ui'
 
 export default {
@@ -30,7 +30,7 @@ export default {
       type: String,
       required: false,
       default: 'right',
-      validator: (value: string) => ['right', 'left'].includes(value),
+      validator: (prop) => ['right', 'left'].includes(prop),
     },
 
     dragTarget: {

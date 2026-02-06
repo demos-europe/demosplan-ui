@@ -85,17 +85,13 @@ export default {
       let newSize
 
       if (this.dimension === 'height') {
-        const clientY =
-          event.type === 'mousemove'
-            ? event.clientY // Mouse events
-            : event.changedTouches[0].clientY // Touch events
-          newSize = clientY - rect.top - this.parentPadding
+        // Mouse events vs touch events
+        const clientY = event.type === 'mousemove' ? event.clientY : event.changedTouches[0].clientY
+
+        newSize = clientY - rect.top - this.parentPadding
       } else {
-        // Width calculation
-        const clientX =
-          event.type === 'mousemove'
-            ? event.clientX
-            : event.changedTouches[0].clientX
+        // Width calculation for mouse and touch events
+        const clientX = event.type === 'mousemove' ? event.clientX : event.changedTouches[0].clientX
 
         if (this.direction === 'left') {
           newSize = rect.right - clientX - this.parentPadding

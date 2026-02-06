@@ -26,6 +26,7 @@ import DpDateRangePicker from './DpDateRangePicker'
 import DpDatetimePicker from './DpDatetimePicker'
 import DpDetails from './DpDetails'
 import DpDraggable from './DpDraggable'
+import DpDragHandle from './DpDragHandle'
 import DpEditableList from './DpEditableList'
 import DpEditor from './DpEditor'
 import DpFlyout from './DpFlyout'
@@ -90,6 +91,7 @@ export {
   DpDateRangePicker,
   DpDatetimePicker,
   DpDraggable,
+  DpDragHandle,
   DpEditableList,
   DpEditor,
   DpFlyout,

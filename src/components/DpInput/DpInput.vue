@@ -161,9 +161,10 @@ const props = defineProps({
   },
 
   numberOfIcons: {
-    type: [Number, String],
+    type: Number,
     required: false,
     default: null,
+    validator: (prop: number) => [1, 2, 3].includes(prop),
   },
 
   name: {

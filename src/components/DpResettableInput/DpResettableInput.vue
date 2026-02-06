@@ -111,9 +111,10 @@ export default {
      * to correctly set the padding for the input field.
      */
     numberOfAdditionalIcons: {
-      type: [Number, String],
+      type: Number,
       required: false,
       default: null,
+      validator: (prop) => [1, 2, 3].includes(prop),
     },
 
     pattern: {

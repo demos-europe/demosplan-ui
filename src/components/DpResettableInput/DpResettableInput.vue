@@ -175,13 +175,13 @@ export default {
     },
 
     numberOfIconSlots () {
+      const NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS = 1
+
       if (!this.numberOfAdditionalIcons) {
-        return '1'
+        return NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS
       }
 
-      const totalNumberOfIcons = Number(this.numberOfAdditionalIcons) + 1
-
-      return Math.min(totalNumberOfIcons, 4)
+      return this.numberOfAdditionalIcons + NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS
     },
 
     buttonClass () {

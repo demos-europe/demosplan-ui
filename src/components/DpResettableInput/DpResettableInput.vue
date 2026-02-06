@@ -191,6 +191,21 @@ export default {
     iconSize () {
       return this.buttonVariant
     },
+
+    resetButtonLeftShift () {
+
+      const shiftMap = {
+        1: 'right-[30px]',
+        2: 'right-[60px]',
+        3: 'right-[90px]',
+      }
+
+      if (this.numberOfAdditionalIcons) {
+        return shiftMap[this.numberOfAdditionalIcons]
+      }
+
+      return ''
+    },
   },
 
   watch: {

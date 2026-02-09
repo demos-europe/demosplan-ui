@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.9.0 - 2026-2-9
+
 ### Added
 - ([#1435](https://github.com/demos-europe/demosplan-ui/pull/1435)) DpSlidebar: Add slot for a resizing button ([@rafelddemos](https://github.com/rafelddemos))
 

@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1436](https://github.com/demos-europe/demosplan-ui/pull/1436)) DpSlidebar: Add wrapper div for scrollable content to allow vertical scroll ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.9.0 - 2026-2-9
 
 ### Added

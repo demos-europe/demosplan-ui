@@ -11,19 +11,21 @@
       <!-- Drag handle for resizing slidebar -->
       <slot name="dragHandle" />
 
-      <div class="u-ml-1_5">
-        <button
-          type="button"
-          class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
-          data-slidebar-hide=""
-          @click="$emit('close')"
-        >
-          <dp-icon
-            icon="close"
-            size="large"
-          />
-        </button>
-        <slot />
+      <div class="c-slidebar__scroll-container">
+        <div class="u-ml-1_5">
+          <button
+            type="button"
+            class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
+            data-slidebar-hide=""
+            @click="$emit('close')"
+          >
+            <dp-icon
+              icon="close"
+              size="large"
+            />
+          </button>
+          <slot />
+        </div>
       </div>
     </div>
   </div>

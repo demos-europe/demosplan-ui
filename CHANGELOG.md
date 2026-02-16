@@ -7,6 +7,22 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#1437](https://github.com/demos-europe/demosplan-ui/pull/1437)) Add a new validation utility function ([@sakutademos](https://github.com/sakutademos))
 
+## v0.10.0 - 2026-2-11
+
+### Fixed
+- ([#1436](https://github.com/demos-europe/demosplan-ui/pull/1436)) DpSlidebar: Add wrapper div for scrollable content to allow vertical scroll ([@rafelddemos](https://github.com/rafelddemos))
+
+## v0.9.0 - 2026-2-9
+
+### Added
+- ([#1435](https://github.com/demos-europe/demosplan-ui/pull/1435)) DpSlidebar: Add slot for a resizing button ([@rafelddemos](https://github.com/rafelddemos))
+
+## v0.8.0 - 2026-2-4
+
+### Fixed
+- ([#1432](https://github.com/demos-europe/demosplan-ui/pull/1432)) DpTextArea: Add missing tooltip prop ([@hwiem](https://github.com/hwiem))
+- ([#1433](https://github.com/demos-europe/demosplan-ui/pull/1433)) Validation: Add missing exports ([@hwiem](https://github.com/hwiem))
+
 ## v0.7.1 - 2026-1-29
 
 ### Fixed

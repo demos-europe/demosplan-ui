@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos))
+
 ### Added
 - ([#1437](https://github.com/demos-europe/demosplan-ui/pull/1437)) Add a new validation utility function ([@sakutademos](https://github.com/sakutademos))
 

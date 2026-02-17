@@ -17,7 +17,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: '__demos_europe_demosplan_ui',
-      fileName: 'demosplan-ui'
+      formats: ['es']
     },
     rollupOptions: {
       external: [
@@ -37,6 +37,11 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue'
+        },
+        exports: 'named',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'demosplan-ui.css'
+          return assetInfo.name
         }
       }
     }

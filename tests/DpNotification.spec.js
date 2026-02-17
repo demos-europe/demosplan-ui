@@ -46,8 +46,8 @@ describe('DpNotification', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    let closer = wrapper.find('i.c-notify__closer')
-    expect(closer.element.tagName).toStrictEqual('I')
+    let closer = wrapper.find('button.c-notify__closer')
+    expect(closer.element.tagName).toStrictEqual('BUTTON')
 
     wrapper = mount(DpNotification, {
       props: {
@@ -58,8 +58,8 @@ describe('DpNotification', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    closer = wrapper.find('i.c-notify__closer')
-    expect(closer.element.tagName).toStrictEqual('I')
+    closer = wrapper.find('button.c-notify__closer')
+    expect(closer.element.tagName).toStrictEqual('BUTTON')
   })
 
   it('renders the message text', () => {

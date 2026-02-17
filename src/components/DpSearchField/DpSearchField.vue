@@ -9,7 +9,6 @@
       data-cy="searchField"
       :class="cssClasses"
       :input-attributes="{ placeholder: translations.search, type: 'search' }"
-      :number-of-additional-icons="numberOfAdditionalIcons ? numberOfAdditionalIcons : null"
       rounded="left"
       @reset="handleReset"
       @enter="handleSearch"
@@ -57,16 +56,6 @@ export default {
     inputWidth: {
       type: String,
       default: '',
-    },
-
-    /**
-     * To prevent text from flowing under the icons, it is necessary to know how many icons are added,
-     * to correctly set the padding for the input field.
-     */
-    numberOfAdditionalIcons: {
-      type: [Number, String],
-      required: false,
-      default: null,
     },
 
     placeholder: {

@@ -25,7 +25,7 @@
         class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
-        :class="numberOfIconSlots === 1 ? 'mr-1' : `absolute top-0 ${resetButtonLeftShift}` "
+        :class="numberOfIconSlots === 1 ? 'mr-1' : 'mr-0.5'"
         :title="currentValue === defaultValue ? null : translations.reset"
         :disabled="currentValue === defaultValue"
         @click="resetValue"
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { Comment, Fragment, Text } from 'vue'
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpInput from '~/components/DpInput'
@@ -104,17 +105,6 @@ export default {
       type: Object,
       required: false,
       default: () => ({}),
-    },
-
-    /**
-     * To prevent text from flowing under the icons, it is necessary to know how many icons are added,
-     * to correctly set the padding for the input field.
-     */
-    numberOfAdditionalIcons: {
-      type: Number,
-      required: false,
-      default: null,
-      validator: (prop) => [1, 2, 3].includes(prop),
     },
 
     pattern: {
@@ -170,41 +160,58 @@ export default {
   },
 
   computed: {
-    hasSlotContent () {
-      return this.$slots.default && this.$slots.default().length > 0
-    },
-
-    numberOfIconSlots () {
-      const NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS = 1
-
-      if (!this.numberOfAdditionalIcons) {
-        return NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS
-      }
-
-      return this.numberOfAdditionalIcons + NUMBER_OF_RESETTABLE_INPUT_SPECIFIC_ICONS
-    },
-
     buttonClass () {
       return this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
+    },
+
+    hasSlotContent () {
+      return this.slotChildrenCount > 0
     },
 
     iconSize () {
       return this.buttonVariant
     },
 
-    resetButtonLeftShift () {
+    numberOfIconSlots () {
+      // Automatically count slot children + 1 (for the reset button itself)
+      const totalNumberOfIcons = this.slotChildrenCount + 1
+      return Math.min(totalNumberOfIcons, 4)
+    },
 
-      const shiftMap = {
-        1: 'right-[30px]',
-        2: 'right-[60px]',
-        3: 'right-[90px]',
+    slotChildrenCount () {
+      if (!this.$slots.default) return 0
+
+      const nodes = this.$slots.default()
+
+      // Flatten fragments and filter meaningful nodes
+      const getMeaningfulNodes = (nodeList) => {
+        const meaningful = []
+
+        for (const node of nodeList) {
+          // Skip comments
+          if (node.type === Comment) continue
+
+          // Skip empty text nodes
+          if (node.type === Text) {
+            if (node.children && node.children.trim()) {
+              meaningful.push(node)
+            }
+            continue
+          }
+
+          // Unwrap fragments recursively
+          if (node.type === Fragment) {
+            meaningful.push(...getMeaningfulNodes(node.children || []))
+            continue
+          }
+
+          meaningful.push(node)
+        }
+
+        return meaningful
       }
 
-      if (this.numberOfAdditionalIcons) {
-        return shiftMap[this.numberOfAdditionalIcons]
-      }
-
-      return ''
+      return getMeaningfulNodes(nodes).length
     },
   },
 

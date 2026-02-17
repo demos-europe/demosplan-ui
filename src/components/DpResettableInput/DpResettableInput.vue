@@ -25,7 +25,6 @@
         class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
-        :class="numberOfIconSlots === 1 ? 'mr-1' : 'mr-0.5'"
         :title="currentValue === defaultValue ? null : translations.reset"
         :disabled="currentValue === defaultValue"
         @click="resetValue"

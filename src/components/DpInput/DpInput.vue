@@ -312,7 +312,7 @@ const classes = computed(() => {
   if (totalNumberOfIcons.value) {
     const paddingMap = {
       1: 'pr-4',
-      2: 'pr-6',
+      2: 'pr-[56px]',
       3: 'pr-8',
     }
 

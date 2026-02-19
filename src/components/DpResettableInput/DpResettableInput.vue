@@ -6,7 +6,7 @@
       v-model="currentValue"
       :data-cy="dataCy"
       has-icon
-      :number-of-icons="numberOfIconSlots"
+      :number-of-icons="totalIcons"
       :required="required"
       :rounded="rounded"
       :pattern="pattern"
@@ -171,11 +171,6 @@ export default {
       return this.buttonVariant
     },
 
-    numberOfIconSlots () {
-      // Automatically count slot children + 1 (for the reset button itself)
-      const totalNumberOfIcons = this.slotChildrenCount + 1
-      return Math.min(totalNumberOfIcons, 4)
-    },
 
     slotChildrenCount () {
       if (!this.$slots.default) return 0
@@ -211,6 +206,11 @@ export default {
       }
 
       return getMeaningfulNodes(nodes).length
+    },
+
+    totalIcons () {
+      // Automatically count slot children + 1 (for the reset button itself)
+      return this.slotChildrenCount + 1
     },
   },
 

@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+
+- ([#1438](https://github.com/demos-europe/demosplan-ui/pull/1438)) Security: Bump qs to ^6.14.2 to fix DoS vulnerability
+  in bracket notation parsing ([@hwiem](https://github.com/hwiem))
+
 ## v0.11.0 - 2026-2-18
 
 ### Added

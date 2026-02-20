@@ -12,22 +12,26 @@
       @click.stop.prevent="hide"
       @keydown.esc="hide"
     >
-      <i
-        :class="prefixClass('c-notify__icon fa fa-times-circle')"
+      <dp-icon
+        :class="prefixClass('c-notify__icon')"
+        icon="x-circle"
         aria-hidden="true"
+        weight="fill"
       />
     </button>
 
     <div :class="prefixClass('flow-root')">
-      <i
-        :class="prefixClass('c-notify__icon fa u-mt-0_125 u-mr-0_25 float-left ' + messageIcon)"
+      <dp-icon
+        :class="prefixClass('c-notify__icon mt-px mr-1 float-left')"
+        :icon="messageIcon"
         aria-hidden="true"
+        weight="fill"
       />
-      <div :class="prefixClass('u-ml')">
+      <div :class="prefixClass('c-notify__text u-ml mt-2')">
         {{ message.text }}
         <a
           v-if="message.linkUrl"
-          :class="prefixClass('c-notify__link u-mt-0_25')"
+          :class="prefixClass('c-notify__link mt-1')"
           :href="message.linkUrl"
           data-cy="messageLink"
         >
@@ -40,10 +44,15 @@
 
 <script>
 import { de } from '~/components/shared/translations'
+import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpNotification',
+
+  components: {
+    DpIcon,
+  },
 
   mixins: [prefixClassMixin],
 
@@ -70,11 +79,11 @@ export default {
     return {
       messageId: '',
       icons: {
-        info: 'fa-info-circle',
-        warning: 'fa-exclamation-triangle',
-        error: 'fa-exclamation-circle',
-        confirm: 'fa-check-circle',
-        dev: 'fa-info-circle',
+        info: 'info',
+        warning: 'warning',
+        error: 'warning-circle',
+        confirm: 'check-circle',
+        dev: 'info',
       },
     }
   },

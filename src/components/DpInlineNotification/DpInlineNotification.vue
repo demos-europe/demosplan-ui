@@ -4,10 +4,12 @@
     :data-cy="dataCy"
     :class="`flash flash-${type} flex`"
   >
-    <i
-      class="fa u-pr-0_25 line-height--1_4"
-      :class="iconClasses[type]"
+    <dp-icon
+      :icon="iconClasses[type]"
+      class="shrink-0 u-pr-0_25 line-height--1_4"
       aria-hidden="true"
+      size="large"
+      weight="fill"
     />
     <div class="space-stack-xs">
       <div
@@ -97,10 +99,10 @@ export default {
   data () {
     return {
       iconClasses: {
-        confirm: 'fa-check',
-        error: 'fa-exclamation-circle',
-        info: 'fa-info-circle',
-        warning: 'fa-exclamation-triangle',
+        confirm: 'check-circle',
+        error: 'warning-circle',
+        info: 'info',
+        warning: 'warning',
       },
       isDismissed: false,
       translations: {

@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
-- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1438](https://github.com/demos-europe/demosplan-ui/pull/1438)) Security: Bump qs to ^6.14.2 to fix DoS vulnerability ([@hwiem](https://github.com/hwiem))
 - ([#1439](https://github.com/demos-europe/demosplan-ui/pull/1439)) Security: Add qs to resolutions to fix transitive DoS vulnerability ([@hwiem](https://github.com/hwiem))
 

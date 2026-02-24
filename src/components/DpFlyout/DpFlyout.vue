@@ -130,9 +130,9 @@ export default {
     appearanceClasses() {
       return {
         'text-black border border-input px-2': this.appearance === 'basic',
-        'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive'
+        'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive',
       }
-    }
+    },
   },
 
   methods: {

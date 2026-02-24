@@ -173,7 +173,9 @@ export default {
 
 
     slotChildrenCount () {
-      if (!this.$slots.default) return 0
+      if (!this.$slots.default) {
+        return 0
+      }
 
       const nodes = this.$slots.default()
 
@@ -183,7 +185,9 @@ export default {
 
         for (const node of nodeList) {
           // Skip comments
-          if (node.type === Comment) continue
+          if (node.type === Comment) {
+            continue
+          }
 
           // Skip empty text nodes
           if (node.type === Text) {

@@ -16,6 +16,7 @@
       primary
       :primary-text="confirmButtonText"
       secondary
+      :secondary-text="declineButtonText"
       @primary-action="handleConfirm(true)"
       @secondary-action="handleConfirm(false)"
     />
@@ -36,10 +37,22 @@ export default {
   },
 
   props: {
+    confirmButtonText: {
+      type: String,
+      required: false,
+      default: de.operations.confirm,
+    },
+
     dataCy: {
       type: String,
       required: false,
       default: '',
+    },
+
+    declineButtonText: {
+      type: String,
+      required: false,
+      default: de.operations.abort,
     },
 
     message: {
@@ -51,7 +64,6 @@ export default {
 
   data () {
     return {
-      confirmButtonText: de.operations.confirm,
       resolvePromise: null as ((result: boolean) => void) | null,
     }
   },

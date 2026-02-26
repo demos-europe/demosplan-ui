@@ -6,6 +6,7 @@
       v-model="currentValue"
       :data-cy="dataCy"
       has-icon
+      :number-of-icons="totalIcons"
       :required="required"
       :rounded="rounded"
       :pattern="pattern"
@@ -21,7 +22,7 @@
     >
       <button
         v-if="!inputAttributes.disabled"
-        class="btn--blank o-link--default relative mr-1"
+        class="btn--blank o-link--default relative"
         data-cy="resetButton"
         :aria-label="translations.reset"
         :title="currentValue === defaultValue ? null : translations.reset"
@@ -56,6 +57,7 @@
 </template>
 
 <script>
+import { Comment, Fragment, Text } from 'vue'
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import DpInput from '~/components/DpInput'
@@ -157,16 +159,62 @@ export default {
   },
 
   computed: {
-    hasSlotContent () {
-      return this.$slots.default && this.$slots.default().length > 0
-    },
-
     buttonClass () {
       return this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
     },
 
+    hasSlotContent () {
+      return this.slotChildrenCount > 0
+    },
+
     iconSize () {
       return this.buttonVariant
+    },
+
+
+    slotChildrenCount () {
+      if (!this.$slots.default) {
+        return 0
+      }
+
+      const nodes = this.$slots.default()
+
+      // Flatten fragments and filter meaningful nodes
+      const getMeaningfulNodes = (nodeList) => {
+        const meaningful = []
+
+        for (const node of nodeList) {
+          // Skip comments
+          if (node.type === Comment) {
+            continue
+          }
+
+          // Skip empty text nodes
+          if (node.type === Text) {
+            if (node.children && node.children.trim()) {
+              meaningful.push(node)
+            }
+            continue
+          }
+
+          // Unwrap fragments recursively
+          if (node.type === Fragment) {
+            meaningful.push(...getMeaningfulNodes(node.children || []))
+            continue
+          }
+
+          meaningful.push(node)
+        }
+
+        return meaningful
+      }
+
+      return getMeaningfulNodes(nodes).length
+    },
+
+    totalIcons () {
+      // Automatically count slot children + 1 (for the reset button itself)
+      return this.slotChildrenCount + 1
     },
   },
 

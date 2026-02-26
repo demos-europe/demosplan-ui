@@ -566,7 +566,13 @@ export default {
 
 
     getFixedColWidth (field) {
-      return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
+      if (field === 'flyout') {
+        return '60px'
+      }
+
+      return ['wrap', 'select', 'dragHandle'].includes(field) ?
+        '30px' :
+        null
     },
 
     removeHoveredClass(idx) {

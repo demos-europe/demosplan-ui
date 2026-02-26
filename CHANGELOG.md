@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## Changed
+- ([#1446](https://github.com/demos-europe/demosplan-ui/pull/1446)) DpDataTable: Add classes to make columns sticky ([@hwiem](https://github.com/hwiem))
+
 ## v0.4.23 - 2025-07-16
 
 ### Fixed

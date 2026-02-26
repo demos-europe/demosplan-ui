@@ -57,7 +57,7 @@
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible min-w-[50px]">
+      class="c-data-table__col--flyout overflow-visible min-w-[50px]">
       <slot
         name="flyout"
         v-bind="item" />
@@ -65,7 +65,7 @@
 
     <td
       v-if="isExpandable"
-      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
+      class="c-data-table__col--expand c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleExpand(item[trackBy])">

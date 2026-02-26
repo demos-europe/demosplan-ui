@@ -63,12 +63,13 @@
     <th
       v-if="hasFlyout"
       :data-col-field="isResizable ? 'flyout' : null"
+      class="c-data-table__col--flyout"
       scope="col"
     />
     <th
       v-if="isExpandable"
       scope="col"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__col--expand c-data-table__cell--narrow"
       @click="toggleExpandAll()"
     >
       <dp-wrap-trigger

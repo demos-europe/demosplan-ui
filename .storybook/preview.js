@@ -1,7 +1,7 @@
 import './theme.css'
 
 import { html as beautifyHtml }from 'js-beautify'
-import { setup } from '@storybook/vue3-vite'
+import { setup } from '@storybook/vue3'
 
 setup((app) => {
   app.directive('dp-validate-multiselect', {

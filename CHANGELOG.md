@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.12.0 - 2026-3-2
+
 ### Added
 - ([#1441](https://github.com/demos-europe/demosplan-ui/pull/1441)) DpConfirmDialog: Add props to customize confirm and decline button text ([@meissnerdemos](https://github.com/meissnerdemos))
 

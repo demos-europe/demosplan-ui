@@ -1,4 +1,5 @@
 import './theme.css'
+import 'plyr/dist/plyr.css'
 
 import { html as beautifyHtml }from 'js-beautify'
 import { setup } from '@storybook/vue3'

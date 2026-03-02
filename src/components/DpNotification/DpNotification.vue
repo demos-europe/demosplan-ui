@@ -44,7 +44,7 @@
 
 <script>
 import { de } from '~/components/shared/translations'
-import DpIcon from '~/components/DpIcon/DpIcon.vue'
+import DpIcon from '~/components/DpIcon/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
 export default {

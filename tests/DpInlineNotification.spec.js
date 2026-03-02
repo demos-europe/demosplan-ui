@@ -39,17 +39,17 @@ describe('', () => {
 
   it('renders correct styling and icon for different types', () => {
     const types = [
-      { type: 'confirm', class: 'flash-confirm', icon: 'fa-check' },
-      { type: 'error', class: 'flash-error', icon: 'fa-exclamation-circle' },
-      { type: 'info', class: 'flash-info', icon: 'fa-info-circle' },
-      { type: 'warning', class: 'flash-warning', icon: 'fa-exclamation-triangle' }
+      { type: 'confirm', class: 'flash-confirm', icon: 'check-circle' },
+      { type: 'error', class: 'flash-error', icon: 'warning-circle' },
+      { type: 'info', class: 'flash-info', icon: 'info' },
+      { type: 'warning', class: 'flash-warning', icon: 'warning' }
     ]
 
     types.forEach(({ type, class: cssClass, icon }) => {
       wrapper = createWrapper({ type })
 
       expect(wrapper.classes()).toContain(cssClass)
-      expect(wrapper.find('i.fa').classes()).toContain(icon)
+      expect(wrapper.find('dp-icon-stub').attributes('icon')).toBe(icon)
     })
   })
 

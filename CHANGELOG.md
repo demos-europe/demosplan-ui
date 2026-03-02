@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
-- ([#1444](https://github.com/demos-europe/demosplan-ui/pull/1444)) Replace font icons with the Phosphor icons in the notification components ([@sakutademos](https://github.com/sakutademos))
+- ([#1444](https://github.com/demos-europe/demosplan-ui/pull/1444)) Replace font-awesome icons with the Phosphor icons in the notification components ([@sakutademos](https://github.com/sakutademos))
 
 ### Added
 - ([#1441](https://github.com/demos-europe/demosplan-ui/pull/1441)) DpConfirmDialog: Add props to customize confirm and decline button text ([@meissnerdemos](https://github.com/meissnerdemos))

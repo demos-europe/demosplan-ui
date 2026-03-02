@@ -5,15 +5,14 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-
 - ([#1441](https://github.com/demos-europe/demosplan-ui/pull/1441)) DpConfirmDialog: Add props to customize confirm and decline button text ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Fixed
-
 - ([#1438](https://github.com/demos-europe/demosplan-ui/pull/1438)) Security: Bump qs to ^6.14.2 to fix DoS vulnerability ([@hwiem](https://github.com/hwiem))
 - ([#1439](https://github.com/demos-europe/demosplan-ui/pull/1439)) Security: Add qs to resolutions to fix transitive DoS vulnerability ([@hwiem](https://github.com/hwiem))
 
 ### Changed
+- ([#1447](https://github.com/demos-europe/demosplan-ui/pull/1447)) DpDataTable: Add classes to make columns sticky ([@hwiem](https://github.com/hwiem))
 - ([#1442](https://github.com/demos-europe/demosplan-ui/pull/1442)) Build: Remove unused dependencies ([@hwiem](https://github.com/hwiem))
 
 ## v0.11.0 - 2026-2-18

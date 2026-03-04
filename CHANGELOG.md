@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1452](https://github.com/demos-europe/demosplan-ui/pull/1452)) Export the DpUploadedFile and DpUploadedFileList components ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.12.0 - 2026-3-2
 
 ### Added

@@ -1,6 +1,8 @@
 import {
   DpUpload,
   DpUploadFiles,
+  DpUploadedFile,
+  DpUploadedFileList,
 } from './DpUploadFiles'
 
 import dataTableSearch from './DpDataTableExtended/DataTableSearch'
@@ -121,6 +123,8 @@ export {
   DpTreeList,
   DpUpload,
   DpUploadFiles,
+  DpUploadedFile,
+  DpUploadedFileList,
   DpVideoPlayer,
   getFileIdsByHash,
 }

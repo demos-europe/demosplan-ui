@@ -12,6 +12,7 @@ import {
   PhArrowLeft,
   PhArrowRight,
   PhArrowsClockwise,
+  PhArrowsLeftRight,
   PhArrowUp,
   PhCaretDoubleDown,
   PhCaretDoubleUp,
@@ -97,6 +98,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'x': PhX,
   'x-circle': PhXCircle,
   'arrows-clockwise': PhArrowsClockwise, // Alias: refresh
+  'arrows-left-right': PhArrowsLeftRight,
   'circle-notch': PhCircleNotch, // Alias: spinner
   'clock-counter-clockwise': PhClockCounterClockwise, // Alias: history
   'corners-in': PhCornersIn, // Alias: compress

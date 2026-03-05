@@ -7,6 +7,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Added
 - ([#1451](https://github.com/demos-europe/demosplan-ui/pull/1451)) Icons: Add PhArrowsLeftRight ([@riechedemos](https://github.com/riechedemos))
 
+### Fixed
+- ([#1450](https://github.com/demos-europe/demosplan-ui/pull/1450)) DpNotification: Wrap long unbroken text to prevent overflow ([@meissnerdemos](https://github.com/meissnerdemos))
+
 ## v0.12.0 - 2026-3-2
 
 ### Added

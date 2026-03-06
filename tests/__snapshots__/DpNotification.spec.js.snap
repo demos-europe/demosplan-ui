@@ -6,7 +6,7 @@ exports[`DpNotification always renders with closemark 1`] = `
   </button>
   <div class="flow-root">
     <!---->
-    <div class="c-notify__text u-ml mt-2">
+    <div class="c-notify__text u-ml mt-2 break-words">
       <!--v-if-->
     </div>
   </div>
@@ -19,7 +19,7 @@ exports[`DpNotification always renders with closemark 2`] = `
   </button>
   <div class="flow-root">
     <!---->
-    <div class="c-notify__text u-ml mt-2">
+    <div class="c-notify__text u-ml mt-2 break-words">
       <!--v-if-->
     </div>
   </div>

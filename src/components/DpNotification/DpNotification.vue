@@ -27,7 +27,7 @@
         aria-hidden="true"
         weight="fill"
       />
-      <div :class="prefixClass('c-notify__text u-ml mt-2')">
+      <div :class="prefixClass('c-notify__text u-ml mt-2 break-words')">
         {{ message.text }}
         <a
           v-if="message.linkUrl"

@@ -1,8 +1,3 @@
-import {
-  DpUpload,
-  DpUploadFiles,
-} from './DpUploadFiles'
-
 import dataTableSearch from './DpDataTableExtended/DataTableSearch'
 import { de } from './shared/translations'
 import DpAccordion from './DpAccordion'
@@ -63,6 +58,13 @@ import DpVideoPlayer from './DpVideoPlayer'
 import { getFileIdsByHash } from './DpUploadFiles/utils/GetFileIdsByHash'
 
 export {
+  DpUpload,
+  DpUploadFiles,
+  DpUploadedFile,
+  DpUploadedFileList
+} from './DpUploadFiles'
+
+export {
   dataTableSearch,
   de,
   DpAccordion,
@@ -119,8 +121,6 @@ export {
   DpTooltip,
   DpTransitionExpand,
   DpTreeList,
-  DpUpload,
-  DpUploadFiles,
   DpVideoPlayer,
   getFileIdsByHash,
 }

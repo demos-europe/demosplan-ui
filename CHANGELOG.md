@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.14.0 - 2026-3-16
+
 ### Fixed
 - ([#1454](https://github.com/demos-europe/demosplan-ui/pull/1454)) DpUpload: Send credentials with TUS upload requests to fix Firefox 401 errors ([@mussbach](https://github.com/mussbach))
 

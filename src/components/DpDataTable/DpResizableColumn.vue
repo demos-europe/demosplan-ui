@@ -97,7 +97,7 @@ export default {
         const mouseMoved = cursorPos - this.cursorStart
         const newWidth = this.resizeWidth + mouseMoved
 
-        if (newWidth <= 25) {
+        if (newWidth <= this.headerField.initialMinWidth) {
           return
         }
 

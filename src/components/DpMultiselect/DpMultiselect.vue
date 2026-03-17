@@ -68,7 +68,7 @@
     <!-- put more slots here -->
 
     <template
-      v-if="selectionControls"
+      v-if="selectionControls && multiple"
       v-slot:beforeList="props"
     >
       <slot
@@ -78,7 +78,8 @@
         <div class="border-bottom">
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === options.length"
+            :data-testid="`${dataCy}-select-all`"
+            :disabled="disabled || value.length === options.length"
             type="button"
             @click="$emit('selectAll')"
             v-text="translations.selectAll"
@@ -86,7 +87,8 @@
 
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :disabled="value.length === 0"
+            :data-testid="`${dataCy}-deselect-all`"
+            :disabled="disabled || value.length === 0"
             type="button"
             @click="$emit('deselectAll')"
             v-text="translations.deselectAll"
@@ -110,7 +112,7 @@ export default {
   },
 
   directives: {
-    dpValidateMultiselectDirective,
+    dpValidateMultiselect: dpValidateMultiselectDirective,
   },
 
   props: {

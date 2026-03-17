@@ -148,6 +148,9 @@ const de = {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.',
     },
+    toggle: {
+      all: 'Alle an/abwählen',
+    },
     update: 'Aktualisierung',
   },
   pager: {

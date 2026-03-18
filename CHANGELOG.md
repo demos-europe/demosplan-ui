@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
+
 ### Fixed
 - ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpFlyout, DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
 

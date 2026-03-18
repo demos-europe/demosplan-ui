@@ -14,8 +14,9 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="dp-flyout-trigger rounded-button px-1 py-0.5 leading-[2] whitespace-nowrap cursor-pointer"
+      class="dp-flyout-trigger rounded-button leading-[2] whitespace-nowrap cursor-pointer"
       :class="[
+        buttonClasses,
         { 'bg-interactive-subtle-hover': isExpanded && appearance === 'interactive' },
         appearanceClasses
       ]"
@@ -78,6 +79,12 @@ export default {
       default: '',
     },
 
+    buttonClasses: {
+      required: false,
+      type: String,
+      default: 'px-1 py-0.5',
+    },
+
     dataCy: {
       type: String,
       required: false,
@@ -130,9 +137,9 @@ export default {
     appearanceClasses() {
       return {
         'text-black border border-input px-2': this.appearance === 'basic',
-        'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive'
+        'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive',
       }
-    }
+    },
   },
 
   methods: {

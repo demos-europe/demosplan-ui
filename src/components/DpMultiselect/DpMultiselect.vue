@@ -78,7 +78,7 @@
         <div class="border-bottom">
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :data-testid="`${dataCy}-select-all`"
+            :data-cy="`${dataCy}-select-all`"
             :disabled="disabled || value.length === options.length"
             type="button"
             @click="$emit('selectAll')"
@@ -87,7 +87,7 @@
 
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
-            :data-testid="`${dataCy}-deselect-all`"
+            :data-cy="`${dataCy}-deselect-all`"
             :disabled="disabled || value.length === 0"
             type="button"
             @click="$emit('deselectAll')"

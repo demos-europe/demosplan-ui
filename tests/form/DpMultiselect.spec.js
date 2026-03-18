@@ -117,8 +117,8 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').exists()).toBe(false)
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').exists()).toBe(false)
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').exists()).toBe(false)
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').exists()).toBe(false)
     })
 
     it('renders selection controls when enabled', () => {
@@ -131,8 +131,8 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').exists()).toBe(true)
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').exists()).toBe(true)
     })
 
     it('disables \'select all\' button when all options are selected', () => {
@@ -145,7 +145,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const selectAllButton = wrapper.find('[data-testid="multiselect-select-all"]')
+      const selectAllButton = wrapper.find('[data-cy="multiselect-select-all"]')
 
       expect(selectAllButton.attributes('disabled')).toBeDefined()
     })
@@ -160,7 +160,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const selectAllButton = wrapper.find('[data-testid="multiselect-select-all"]')
+      const selectAllButton = wrapper.find('[data-cy="multiselect-select-all"]')
 
       expect(selectAllButton.attributes('disabled')).toBeUndefined()
     })
@@ -175,7 +175,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const deselectAllButton = wrapper.find('[data-testid="multiselect-deselect-all"]')
+      const deselectAllButton = wrapper.find('[data-cy="multiselect-deselect-all"]')
 
       expect(deselectAllButton.attributes('disabled')).toBeDefined()
     })
@@ -190,7 +190,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const deselectAllButton = wrapper.find('[data-testid="multiselect-deselect-all"]')
+      const deselectAllButton = wrapper.find('[data-cy="multiselect-deselect-all"]')
 
       expect(deselectAllButton.attributes('disabled')).toBeUndefined()
     })
@@ -205,7 +205,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const selectAllButton = wrapper.find('[data-testid="multiselect-select-all"]')
+      const selectAllButton = wrapper.find('[data-cy="multiselect-select-all"]')
       await selectAllButton.trigger('click')
 
       expect(wrapper.emitted('selectAll')).toBeTruthy()
@@ -223,7 +223,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const deselectAllButton = wrapper.find('[data-testid="multiselect-deselect-all"]')
+      const deselectAllButton = wrapper.find('[data-cy="multiselect-deselect-all"]')
       await deselectAllButton.trigger('click')
 
       expect(wrapper.emitted('deselectAll')).toBeTruthy()
@@ -242,7 +242,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const selectAllButton = wrapper.find('[data-testid="multiselect-select-all"]')
+      const selectAllButton = wrapper.find('[data-cy="multiselect-select-all"]')
       await selectAllButton.trigger('click')
 
       expect(wrapper.emitted('selectAll')[0][0]).toEqual(objectOptions)
@@ -258,11 +258,11 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').attributes('disabled')).toBeDefined()
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').attributes('disabled')).toBeDefined()
 
       await wrapper.setProps({ value: ['A'] })
 
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').attributes('disabled')).toBeUndefined()
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').attributes('disabled')).toBeUndefined()
     })
 
     it('disables select-all button after value changes to all selected', async () => {
@@ -275,11 +275,11 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').attributes('disabled')).toBeUndefined()
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').attributes('disabled')).toBeUndefined()
 
       await wrapper.setProps({ value: ['A', 'B', 'C'] })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').attributes('disabled')).toBeDefined()
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').attributes('disabled')).toBeDefined()
     })
 
     it('enables select-all button after value changes from all to partial', async () => {
@@ -292,11 +292,11 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').attributes('disabled')).toBeDefined()
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').attributes('disabled')).toBeDefined()
 
       await wrapper.setProps({ value: ['A'] })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').attributes('disabled')).toBeUndefined()
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').attributes('disabled')).toBeUndefined()
     })
 
     it('uses custom dataCy value for selection control test ids', () => {
@@ -310,8 +310,8 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="my-select-select-all"]').exists()).toBe(true)
-      expect(wrapper.find('[data-testid="my-select-deselect-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="my-select-select-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="my-select-deselect-all"]').exists()).toBe(true)
     })
 })
 
@@ -389,7 +389,7 @@ describe('DpMultiselect', () => {
       expect(wrapper.find('.custom-controls').exists()).toBe(true)
       expect(wrapper.text()).toContain('Custom controls')
       // Default buttons should not be present
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').exists()).toBe(false)
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').exists()).toBe(false)
     })
   })
 
@@ -466,7 +466,7 @@ describe('DpMultiselect', () => {
         },
       })
 
-      const selectAllButton = wrapper.find('[data-testid="multiselect-select-all"]')
+      const selectAllButton = wrapper.find('[data-cy="multiselect-select-all"]')
       await selectAllButton.trigger('click')
 
       expect(wrapper.emitted('selectAll')).toBeUndefined()
@@ -483,8 +483,8 @@ describe('DpMultiselect', () => {
       })
 
       // Component shouldn't crash
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').exists()).toBe(true)
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').exists()).toBe(true)
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').exists()).toBe(true)
     })
 
     it('handles object options with missing trackBy', () => {
@@ -509,8 +509,8 @@ describe('DpMultiselect', () => {
         },
       })
 
-      expect(wrapper.find('[data-testid="multiselect-select-all"]').exists()).toBe(false)
-      expect(wrapper.find('[data-testid="multiselect-deselect-all"]').exists()).toBe(false)
+      expect(wrapper.find('[data-cy="multiselect-select-all"]').exists()).toBe(false)
+      expect(wrapper.find('[data-cy="multiselect-deselect-all"]').exists()).toBe(false)
     })
 
 })

@@ -26,8 +26,7 @@
       selectLabel,
       selectedLabel,
       tagPlaceholder,
-      trackBy,
-      value
+      trackBy
     }"
     :aria-required="required"
     :class="{ 'is-required' : required }"

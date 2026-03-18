@@ -81,7 +81,7 @@
             :data-cy="`${dataCy}-select-all`"
             :disabled="disabled || value.length === options.length"
             type="button"
-            @click="$emit('selectAll')"
+            @click="$emit('selectAll', options)"
             v-text="translations.selectAll"
           />
 

@@ -66,7 +66,7 @@
     </template>
     <th
       v-if="hasFlyout"
-      :class="{ 'p-[16px]': hasLargePadding }"
+      :class="[{ 'border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
       :data-col-field="isResizable ? 'flyout' : null"
       class="c-data-table__col--flyout"
       scope="col"

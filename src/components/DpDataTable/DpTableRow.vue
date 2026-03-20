@@ -6,6 +6,7 @@
   >
     <td
       v-if="isDraggable"
+      :class="{ 'p-[16px]': hasLargePadding }"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -16,6 +17,7 @@
 
     <td
       v-if="isSelectable"
+      :class="{ 'p-[16px]': hasLargePadding }"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -40,7 +42,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }]"
+      :class="[{ 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': hasLargePadding }]"
       :data-col-idx="`${idx}`"
     >
       <div
@@ -147,6 +149,12 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
+    },
+
+    hasLargePadding: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     /**

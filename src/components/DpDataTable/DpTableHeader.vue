@@ -6,6 +6,7 @@
   >
     <th
       v-if="isDraggable"
+      :class="{ 'p-[16px]': hasLargePadding }"
       :data-col-field="isResizable ? 'dragHandle' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -17,6 +18,7 @@
     </th>
     <th
       v-if="isSelectable"
+      :class="{ 'p-[16px]': hasLargePadding }"
       :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -36,6 +38,7 @@
       :key="`header-${idx}`"
     >
       <component
+        :class="{ 'p-[16px]': hasLargePadding }"
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
@@ -62,6 +65,7 @@
     </template>
     <th
       v-if="hasFlyout"
+      :class="{ 'p-[16px]': hasLargePadding }"
       :data-col-field="isResizable ? 'flyout' : null"
       class="c-data-table__col--flyout"
       scope="col"
@@ -128,6 +132,12 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
+    },
+
+    hasLargePadding: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     headerFields: {
@@ -216,6 +226,10 @@ export default {
 
   beforeUpdate() {
     this.setIndeterminate()
+  },
+
+  mounted () {
+    console.log(this.hasLargePadding)
   },
 }
 </script>

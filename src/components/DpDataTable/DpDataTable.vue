@@ -3,7 +3,8 @@
     <table
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
-      :class="tableClass"
+      :class="[tableClass, { 'border-separate border-spacing-0': isResizable || hasStickyHeader }]"
+
     >
       <caption
         class="sr-only"
@@ -28,6 +29,8 @@
           :all-expanded="allExpanded"
           :checked="allSelected"
           :has-flyout="hasFlyout"
+          :has-borders="hasBorders"
+          :has-large-padding="hasLargePadding"
           :header-fields="headerFields"
           :indeterminate="indeterminate"
           :is-draggable="isDraggable"
@@ -70,7 +73,9 @@
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
+            :has-large-padding="hasLargePadding"
             :header-fields="headerFields"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
@@ -143,7 +148,9 @@
             :checked="elementSelections[item[trackBy]] || false"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
+            :has-large-padding="hasLargePadding"
             :header-fields="headerFields"
             :index="idx"
             :is-draggable="isDraggable"
@@ -247,8 +254,20 @@ export default {
       default: 'dateTable',
     },
 
+    hasBorders: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     // Adds flyout menu
     hasFlyout: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    hasLargePadding: {
       type: Boolean,
       required: false,
       default: false,

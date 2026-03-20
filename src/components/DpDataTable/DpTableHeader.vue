@@ -6,7 +6,8 @@
   >
     <th
       v-if="isDraggable"
-      :class="{ 'p-[16px]': hasLargePadding }"
+      :class="[{ 'border-r border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+
       :data-col-field="isResizable ? 'dragHandle' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -18,7 +19,7 @@
     </th>
     <th
       v-if="isSelectable"
-      :class="{ 'p-[16px]': hasLargePadding }"
+      :class="[{ 'border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
       :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -38,7 +39,7 @@
       :key="`header-${idx}`"
     >
       <component
-        :class="{ 'p-[16px]': hasLargePadding }"
+        :class="[{ 'border-r border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
@@ -127,6 +128,12 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    hasBorders: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     hasFlyout: {

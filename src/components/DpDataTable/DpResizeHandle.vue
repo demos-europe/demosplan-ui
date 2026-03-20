@@ -7,6 +7,7 @@
       <dp-icon
         class="text-interactive"
         icon="arrows-out-line-horizontal"
+        weight="bold"
       />
     </template>
   </div>

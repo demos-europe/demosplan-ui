@@ -9,8 +9,8 @@
       :class="[{ 'border-r border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
 
       :data-col-field="isResizable ? 'dragHandle' : null"
-      scope="col"
       class="c-data-table__cell--narrow"
+      scope="col"
     >
       <dp-icon
         class="c-data-table__drag-handle"

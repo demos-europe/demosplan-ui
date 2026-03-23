@@ -2,7 +2,7 @@
   <th
     ref="resizableColumn"
     v-tooltip="headerField.tooltip || headerField.label"
-    class="c-data-table__resizable break-words"
+    class="c-data-table__resizable break-words !overflow-visible"
     :class="{ 'u-pr-0': isLast, 'is-resizing bg-interactive-subtle-hover !border-r-interactive border-r-2 ': isResizing }"
     :data-col-field="headerField.field"
     :data-col-idx="idx"
@@ -11,6 +11,7 @@
     <dp-resize-handle
       v-if="!isLast"
       :display-icon="isResizableColumn"
+      class="!-right-[21px] !top-[0] z-above-zero"
       @mousedown="e => initResize(e, idx)"
     />
   </th>

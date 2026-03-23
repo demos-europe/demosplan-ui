@@ -97,7 +97,7 @@ export default {
     markResizingColumn (idx) {
       document.querySelectorAll(`td[data-col-idx='${idx}']`)
         .forEach(td => td.classList.add('is-resizing', 'bg-interactive-subtle-hover',
-          'border-r-3', 'border-r-interactive'))
+          'border-r-2', 'border-r-interactive'))
     },
 
     resizeEl (e) {
@@ -128,7 +128,7 @@ export default {
     unmarkResizingColumn () {
       document.querySelectorAll('td.is-resizing')
         .forEach(td => td.classList.remove('is-resizing', 'bg-interactive-subtle-hover',
-          'border-r-3', 'border-r-interactive'))
+          'border-r-2', 'border-r-interactive'))
     },
   },
 }

@@ -4,7 +4,6 @@
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
       :class="[tableClass, { 'border-separate border-spacing-0': isResizable || hasStickyHeader }]"
-
     >
       <caption
         class="sr-only"

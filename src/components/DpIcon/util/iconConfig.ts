@@ -34,7 +34,6 @@ import {
   PhDotsSixVertical,
   PhDotsThree,
   PhDownloadSimple,
-  PhUploadSimple,
   PhEnvelopeSimple,
   PhFaders,
   PhFile,
@@ -54,6 +53,7 @@ import {
   PhSignOut,
   PhTag,
   PhTrash,
+  PhUploadSimple,
   PhUser,
   PhUsersThree,
   PhWarning,
@@ -112,6 +112,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'corners-out': PhCornersOut,
   'dots-six-vertical': PhDotsSixVertical, // Alias: drag-handle
   'download-simple': PhDownloadSimple, // Alias: download
+  'upload-simple': PhUploadSimple, // Alias: upload
   'envelope-simple': PhEnvelopeSimple, // Alias: mail
   'gear-six': PhGearSix, // Alias: settings
   'lock-simple': PhLockSimple, // Alias: lock
@@ -134,7 +135,6 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'compress': PhArrowsIn,
   'delete': PhTrash,
   'download': PhDownloadSimple,
-  'upload': PhUploadSimple,
   'drag-handle': PhDotsSixVertical,
   'edit': PhPencilSimple,
   'expand': PhArrowsOut,
@@ -149,6 +149,7 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'spinner': PhCircleNotch,
   'success': PhCheck,
   'unlock': PhLockSimpleOpen,
+  'upload': PhUploadSimple,
   'userSolid': PhUser,
   'xmark': PhX,
 }

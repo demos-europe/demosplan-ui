@@ -11,7 +11,7 @@
     <dp-resize-handle
       v-if="!isLast"
       :display-icon="isResizableColumn"
-      class="!-right-[21px] !top-[0] z-above-zero"
+      class="!-right-[21px] !top-0 z-above-zero"
       @mousedown="e => initResize(e, idx)"
     />
   </th>
@@ -63,9 +63,9 @@ export default {
       isResizing: false,
       namedFunc: '',
       nextEl: '',
+      nextWidth: '',
       resize: '',
       resizeWidth: '',
-      nextWidth: '',
     }
   },
 

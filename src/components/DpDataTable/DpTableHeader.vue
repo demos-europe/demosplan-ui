@@ -7,7 +7,6 @@
     <th
       v-if="isDraggable"
       :class="[{ 'border-r border-b border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
-
       :data-col-field="isResizable ? 'dragHandle' : null"
       class="c-data-table__cell--narrow"
       scope="col"
@@ -235,8 +234,5 @@ export default {
     this.setIndeterminate()
   },
 
-  mounted () {
-    console.log(this.hasLargePadding)
-  },
 }
 </script>

@@ -29,6 +29,8 @@ export type IconAlias =
 
 export type AliasedPhosphorIconName =
   'arrows-clockwise'
+  | 'arrows-in'
+  | 'arrows-out'
   | 'circle-notch'
   | 'clock-counter-clockwise'
   | 'corners-in'

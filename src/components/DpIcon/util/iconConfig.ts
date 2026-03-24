@@ -12,7 +12,9 @@ import {
   PhArrowLeft,
   PhArrowRight,
   PhArrowsClockwise,
+  PhArrowsIn,
   PhArrowsLeftRight,
+  PhArrowsOut,
   PhArrowsOutLineHorizontal,
   PhArrowUp,
   PhCaretDoubleDown,
@@ -101,11 +103,13 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'x': PhX,
   'x-circle': PhXCircle,
   'arrows-clockwise': PhArrowsClockwise, // Alias: refresh
+  'arrows-in': PhArrowsIn, // Alias: compress
   'arrows-left-right': PhArrowsLeftRight,
+  'arrows-out': PhArrowsOut, // Alias: expand
   'circle-notch': PhCircleNotch, // Alias: spinner
   'clock-counter-clockwise': PhClockCounterClockwise, // Alias: history
-  'corners-in': PhCornersIn, // Alias: compress
-  'corners-out': PhCornersOut, // Alias: expand
+  'corners-in': PhCornersIn,
+  'corners-out': PhCornersOut,
   'dots-six-vertical': PhDotsSixVertical, // Alias: drag-handle
   'download-simple': PhDownloadSimple, // Alias: download
   'envelope-simple': PhEnvelopeSimple, // Alias: mail
@@ -127,13 +131,13 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'chevron-right': PhCaretRight,
   'chevron-up': PhCaretUp,
   'close': PhX,
-  'compress': PhCornersIn,
+  'compress': PhArrowsIn,
   'delete': PhTrash,
   'download': PhDownloadSimple,
   'upload': PhUploadSimple,
   'drag-handle': PhDotsSixVertical,
   'edit': PhPencilSimple,
-  'expand': PhCornersOut,
+  'expand': PhArrowsOut,
   'history': PhClockCounterClockwise,
   'lock': PhLockSimple,
   'mail': PhEnvelopeSimple,

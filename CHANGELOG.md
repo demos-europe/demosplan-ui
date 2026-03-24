@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpFlyout, DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1457](https://github.com/demos-europe/demosplan-ui/pull/1457)) DpResettableInput: Prevent overwriting of attributes that were set in inputAttributes ([@huellnerdemos](https://github.com/huellnerdemos))
 
 ## v0.14.0 - 2026-3-16
 

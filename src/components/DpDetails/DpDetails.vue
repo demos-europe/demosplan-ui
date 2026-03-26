@@ -8,7 +8,7 @@
       class="o-details__trigger o-link--default cursor-pointer inline-block"
       :data-cy="`${dataCy}:detailsSummary`"
       role="button"
-      @click="isOpen = !isOpen"
+      @click="handleSummaryClick"
     >
       <i
         class="fa w-2 text--center"
@@ -50,10 +50,19 @@ export default {
     },
   },
 
+  emits: ['click'],
+
   data () {
     return {
       isOpen: false,
     }
+  },
+
+  methods: {
+    handleSummaryClick () {
+      this.isOpen = !this.isOpen
+      this.$emit('click')
+    },
   },
 }
 </script>

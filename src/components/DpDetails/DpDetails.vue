@@ -1,14 +1,17 @@
 <template>
   <details
-    class="o-details space-stack-xs"
     :data-cy="`${dataCy}:detailsWrapper`"
+    class="o-details space-stack-xs"
   >
     <summary
       :aria-expanded="isOpen"
-      class="o-details__trigger o-link--default cursor-pointer inline-block"
       :data-cy="`${dataCy}:detailsSummary`"
+      class="o-details__trigger o-link--default cursor-pointer inline-block"
       role="button"
+      tabindex="0"
       @click="handleSummaryClick"
+      @keydown.enter="handleSummaryClick"
+      @keydown.space.prevent="handleSummaryClick"
     >
       <i
         class="fa w-2 text--center"

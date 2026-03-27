@@ -11,7 +11,6 @@
       tabindex="0"
       @click="handleSummaryClick"
       @keydown.enter="handleSummaryClick"
-      @keydown.space.prevent="handleSummaryClick"
     >
       <i
         class="fa w-2 text--center"

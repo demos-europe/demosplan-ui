@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.5.9-hotfix.5 - 2026-03-30
+
 ### Fixed
 - ([#1460](https://github.com/demos-europe/demosplan-ui/pull/1460)) DpDataTable, DpTableHeader, DpTableRow: add CSS classes for sticky columns and increase flyout column width ([@hwiem](https://github.com/hwiem))
 

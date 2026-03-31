@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1458](https://github.com/demos-europe/demosplan-ui/pull/1458)) DpDataTable: Add opt-in column borders, compact/spacious styling for table cells, resize state highlighting,
+  and sticky header support; add scrollbar-interactive utility, subtle DpFlyout appearance, DpColumnSelector select-all option,
+  and upload/arrows-in/arrows-out icons ([@riechedemos](https://github.com/riechedemos))
+
 ### Changed
 - ([#1459](https://github.com/demos-europe/demosplan-ui/pull/1459)) DpDetails: Emit click event on summary interaction to allow parent components to react to open/close without wrapping in non-interactive elements ([@huellnerdemos](https://github.com/huellnerdemos))
 

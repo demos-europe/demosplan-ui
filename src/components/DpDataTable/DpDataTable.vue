@@ -3,7 +3,7 @@
     <table
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
-      :class="tableClass"
+      :class="[tableClass, { 'border-separate border-spacing-0': isResizable || hasStickyHeader }]"
     >
       <caption
         class="sr-only"
@@ -27,7 +27,9 @@
           :data-cy="`${dataCy}:header`"
           :all-expanded="allExpanded"
           :checked="allSelected"
+          :density="density"
           :has-flyout="hasFlyout"
+          :has-borders="hasBorders"
           :header-fields="headerFields"
           :indeterminate="indeterminate"
           :is-draggable="isDraggable"
@@ -68,8 +70,10 @@
             :data-cy="`${dataCy}:row:${idx}`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
             :header-fields="headerFields"
             :is-draggable="isDraggable"
@@ -141,8 +145,10 @@
         >
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
             :header-fields="headerFields"
             :index="idx"
@@ -245,6 +251,19 @@ export default {
       type: String,
       required: false,
       default: 'dateTable',
+    },
+
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
+    hasBorders: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     // Adds flyout menu

@@ -160,6 +160,13 @@ const props = defineProps({
     default: '',
   },
 
+  numberOfIcons: {
+    type: [Number, null],
+    required: false,
+    default: null,
+    validator: (prop: number) => [1, 2, 3].includes(prop),
+  },
+
   name: {
     type: String,
     required: false,
@@ -302,7 +309,17 @@ const classes = computed(() => {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (props.hasIcon) {
+  if (totalNumberOfIcons.value) {
+    const paddingMap = {
+      1: 'pr-4',
+      2: 'pr-[56px]',
+      3: 'pr-8',
+    }
+
+    const paddingClass = paddingMap[totalNumberOfIcons.value] || 'pr-4'
+
+    _classes.push(paddingClass)
+  } else if (props.hasIcon) {
     _classes.push('pr-4')
   }
 
@@ -350,4 +367,14 @@ const handleEnter = (event: KeyboardEvent) => {
 
   emit('enter')
 }
+
+const totalNumberOfIcons = computed(() => {
+  const MAX_NUMBER_OF_ICONS = 3
+
+  if (props.numberOfIcons) {
+    return Math.min(props.numberOfIcons, MAX_NUMBER_OF_ICONS)
+  }
+
+  return null
+})
 </script>

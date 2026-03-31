@@ -9,6 +9,18 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   and sticky header support; add scrollbar-interactive utility, subtle DpFlyout appearance, DpColumnSelector select-all option,
   and upload/arrows-in/arrows-out icons ([@riechedemos](https://github.com/riechedemos))
 
+### Changed
+- ([#1459](https://github.com/demos-europe/demosplan-ui/pull/1459)) DpDetails: Emit click event on summary interaction to allow parent components to react to open/close without wrapping in non-interactive elements ([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Fixed
+- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpFlyout, DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1457](https://github.com/demos-europe/demosplan-ui/pull/1457)) DpResettableInput: Prevent overwriting of attributes that were set in inputAttributes ([@huellnerdemos](https://github.com/huellnerdemos))
+
+## v0.14.0 - 2026-3-16
+
+### Fixed
+- ([#1454](https://github.com/demos-europe/demosplan-ui/pull/1454)) DpUpload: Send credentials with TUS upload requests to fix Firefox 401 errors ([@mussbach](https://github.com/mussbach))
+
 ## v0.13.0 - 2026-3-6
 
 ### Added

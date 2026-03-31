@@ -13,8 +13,9 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="dp-flyout-trigger rounded-button px-1 py-0.5 text-button leading-[2] whitespace-nowrap cursor-pointer"
+      class="dp-flyout-trigger rounded-button text-button leading-[2] whitespace-nowrap cursor-pointer"
       :class="[
+        buttonClasses,
         { 'bg-interactive-subtle-hover': isExpanded && appearance === 'interactive' },
         { 'bg-surface-light': isExpanded && appearance === 'subtle' },
         appearanceClasses
@@ -76,6 +77,12 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    buttonClasses: {
+      required: false,
+      type: String,
+      default: 'px-1 py-0.5',
     },
 
     dataCy: {

@@ -5,7 +5,6 @@
     class="dp-flyout"
     :class="[{
       'is-expanded': isExpanded,
-      'bg-surface-medium rounded-md': variant === 'dark'
     }, position]"
     data-cy="flyoutTrigger"
   >
@@ -133,6 +132,7 @@ export default {
         'text-black border border-input px-2': this.appearance === 'basic',
         'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive',
         'text-muted hover:bg-surface-light active:bg-surface-light': this.appearance === 'subtle',
+        'bg-surface-medium rounded-md': this.variant === 'dark',
       }
     },
   },

@@ -27,9 +27,9 @@
           :data-cy="`${dataCy}:header`"
           :all-expanded="allExpanded"
           :checked="allSelected"
+          :density="density"
           :has-flyout="hasFlyout"
           :has-borders="hasBorders"
-          :has-large-padding="hasLargePadding"
           :header-fields="headerFields"
           :indeterminate="indeterminate"
           :is-draggable="isDraggable"
@@ -70,12 +70,12 @@
             :data-cy="`${dataCy}:row:${idx}`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
             :has-borders="hasBorders"
             :has-flyout="hasFlyout"
-            :has-large-padding="hasLargePadding"
-            :header-fields="headerFields"
+              :header-fields="headerFields"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
@@ -145,12 +145,12 @@
         >
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
             :has-borders="hasBorders"
             :has-flyout="hasFlyout"
-            :has-large-padding="hasLargePadding"
-            :header-fields="headerFields"
+              :header-fields="headerFields"
             :index="idx"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
@@ -253,6 +253,13 @@ export default {
       default: 'dateTable',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
     hasBorders: {
       type: Boolean,
       required: false,
@@ -261,12 +268,6 @@ export default {
 
     // Adds flyout menu
     hasFlyout: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
-    hasLargePadding: {
       type: Boolean,
       required: false,
       default: false,

@@ -6,7 +6,7 @@
   >
     <th
       v-if="isDraggable"
-      :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'dragHandle' : null"
       class="c-data-table__cell--narrow"
       scope="col"
@@ -18,7 +18,7 @@
     </th>
     <th
       v-if="isSelectable"
-      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -38,7 +38,7 @@
       :key="`header-${idx}`"
     >
       <component
-        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :is-last="headerFields.length === idx ? true : null"
         :header-field="hf"
@@ -65,7 +65,7 @@
     </template>
     <th
       v-if="hasFlyout"
-      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'flyout' : null"
       class="c-data-table__col--flyout"
       scope="col"
@@ -129,6 +129,13 @@ export default {
       default: '',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
     hasBorders: {
       type: Boolean,
       required: false,
@@ -138,12 +145,6 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
-    },
-
-    hasLargePadding: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
 
     headerFields: {

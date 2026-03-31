@@ -6,7 +6,7 @@
   >
     <td
       v-if="isDraggable"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -17,7 +17,7 @@
 
     <td
       v-if="isSelectable"
-      :class="{ 'p-[16px]': hasLargePadding }"
+      :class="{ 'p-[16px]': density === 'spacious' }"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -42,7 +42,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-idx="`${idx}`"
     >
       <div
@@ -137,6 +137,13 @@ export default {
       default: '',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
     /**
      * Is the expandable content currently expanded?
      */
@@ -155,12 +162,6 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
-    },
-
-    hasLargePadding: {
-      type: Boolean,
-      required: false,
-      default: false,
     },
 
     /**

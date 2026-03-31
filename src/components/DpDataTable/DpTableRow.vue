@@ -6,7 +6,7 @@
   >
     <td
       v-if="isDraggable"
-      :class="[{ 'border-r border-neutral': hasBorders }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': hasLargePadding }]"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -42,7 +42,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'border-r border-neutral': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': hasLargePadding }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': hasLargePadding }]"
       :data-col-idx="`${idx}`"
     >
       <div

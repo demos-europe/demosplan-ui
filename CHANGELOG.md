@@ -5,10 +5,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-- ([#1458](https://github.com/demos-europe/demosplan-ui/pull/1458)) DpDataTable: Add opt-in column borders,
-  large padding, resize state highlighting, and sticky header support; add scrollbar-interactive utility,
-  subtle DpFlyout appearance, DpColumnSelector select-all option, and upload/arrows-in/arrows-out icons
-  ([@riechedemos](https://github.com/riechedemos))
+- ([#1458](https://github.com/demos-europe/demosplan-ui/pull/1458)) DpDataTable: Add opt-in column borders, compact/spacious styling for table cells, resize state highlighting,
+  and sticky header support; add scrollbar-interactive utility, subtle DpFlyout appearance, DpColumnSelector select-all option,
+  and upload/arrows-in/arrows-out icons ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.13.0 - 2026-3-6
 

@@ -15,7 +15,7 @@
     </template>
     <p
       id="dialogDescription"
-      class="font-normal break-words mb-3"
+      class="font-normal break-words whitespace-pre-line mb-3"
     >
       {{ message }}
     </p>

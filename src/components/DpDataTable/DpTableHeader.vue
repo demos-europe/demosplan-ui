@@ -40,6 +40,7 @@
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
+        :data-col-field="hf.field"
         :header-field="hf"
         :idx="idx"
         :is-last="headerFields.length === idx ? true : null"
@@ -250,6 +251,19 @@ export default {
 
   mounted () {
     if (!this.isColumnsDraggable) return
+
+    Sortable.create(this.$refs.tableHeader, {
+      animation: 150,
+      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout',
+      draggable: 'th',
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      onEnd: (event) => {
+        const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
+        const newOrder = ths.map(th => th.getAttribute('data-col-field'))
+        this.$emit('column-reorder', newOrder)
+      }
+    })
 
   },
 

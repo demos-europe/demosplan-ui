@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1468](https://github.com/demos-europe/demosplan-ui/pull/1468))DpDataTable: Add `is-col-hovered` class to table cells when hovering the corresponding column header ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.15.0 - 2026-3-31
 
 ### Added

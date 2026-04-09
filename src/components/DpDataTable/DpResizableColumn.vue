@@ -120,11 +120,7 @@ export default {
 
     setColumnHover (active) {
       const table = this.$el.closest('table')
-      
-      if (!table) {
-        return
-      }
-
+      if (!table) { return }
       table.querySelectorAll(`td[data-col-idx='${this.idx}']`)
         .forEach(td => td.classList.toggle('is-col-hovered', active))
     },

@@ -45,22 +45,28 @@
         :is-last="headerFields.length === idx ? true : null"
         :next-header="headerFields[idx + 1]"
       >
-        <slot
-          v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
-          :name="`header-${hf.field}`"
-          v-bind="hf"
-        >
-          <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
-            <span
-              v-if="hf.label"
-              v-text="hf.label"
-            />
-          </div>
-        </slot>
-        <span
-          v-else-if="hf.label"
-          v-text="hf.label"
-        />
+        <div class="flex items-center justify-between">
+          <slot
+            v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
+            :name="`header-${hf.field}`"
+            v-bind="hf"
+          >
+            <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
+              <span
+                v-if="hf.label"
+                v-text="hf.label"
+              />
+            </div>
+          </slot>
+          <span
+            v-else-if="hf.label"
+            v-text="hf.label"
+          />
+          <dp-icon
+            class="c-data-table__drag-handle"
+            icon="dots-six-vertical"
+          />
+        </div>
       </component>
     </template>
     <th

@@ -4,8 +4,19 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.16.0 - 2026-4-9
+
 ### Changed
 - ([#1468](https://github.com/demos-europe/demosplan-ui/pull/1468)) DpDataTable: Add `is-col-hovered` class to table cells when hovering the corresponding column header ([@riechedemos](https://github.com/riechedemos))
+- Dependency updates:
+  - @stylistic/eslint-plugin from 4.2.0 to 5.0.0
+  - @typescript-eslint/eslint-plugin from 8.29.0 to 8.58.0
+  - @typescript-eslint/parser from 8.29.0 to 8.58.0
+  - @vue/eslint-config-typescript from 14.5.0 to 14.7.0
+  - eslint from 9.23.0 to 10.2.0
+  - eslint-plugin-vue from 10.0.0 to 10.8.0
+  - glob from 11.0.1 to 13.0.6
+
 
 ## v0.15.0 - 2026-3-31
 

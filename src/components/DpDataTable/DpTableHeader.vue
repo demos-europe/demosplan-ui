@@ -38,12 +38,12 @@
       :key="`header-${idx}`"
     >
       <component
-        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
         :is="isResizable ? 'DpResizableColumn' : 'th'"
-        :is-last="headerFields.length === idx ? true : null"
+        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
         :header-field="hf"
-        :next-header="headerFields[idx + 1]"
         :idx="idx"
+        :is-last="headerFields.length === idx ? true : null"
+        :next-header="headerFields[idx + 1]"
       >
         <slot
           v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
@@ -231,7 +231,7 @@ export default {
     },
   },
 
-  beforeUpdate() {
+  beforeUpdate () {
     this.setIndeterminate()
   },
 

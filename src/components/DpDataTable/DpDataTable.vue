@@ -32,6 +32,7 @@
           :has-borders="hasBorders"
           :header-fields="headerFields"
           :indeterminate="indeterminate"
+          :is-columns-draggable="isColumnsDraggable"
           :is-draggable="isDraggable"
           :is-expandable="isExpandable"
           :is-resizable="isResizable"

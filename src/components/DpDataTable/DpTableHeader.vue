@@ -107,6 +107,7 @@
 import DpIcon from '~/components/DpIcon'
 import DpResizableColumn from './DpResizableColumn'
 import DpWrapTrigger from './DpWrapTrigger'
+import Sortable from 'sortablejs'
 
 export default {
   name: 'DpTableHeader',
@@ -159,6 +160,12 @@ export default {
     },
 
     indeterminate: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    isColumnsDraggable: {
       type: Boolean,
       required: false,
       default: false,
@@ -239,6 +246,11 @@ export default {
 
   beforeUpdate () {
     this.setIndeterminate()
+  },
+
+  mounted () {
+    if (!this.isColumnsDraggable) return
+
   },
 
 }

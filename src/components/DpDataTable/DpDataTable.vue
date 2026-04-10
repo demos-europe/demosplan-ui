@@ -548,6 +548,8 @@ export default {
   watch: {
     headerFields: {
       handler () {
+        this.initColumnOrder()
+
         if (this.isResizable) {
           this.$nextTick(() => {
             const firstRow = this.tableEl.getElementsByTagName('tr')[0]

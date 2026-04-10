@@ -301,6 +301,12 @@ export default {
       default: () => [],
     },
 
+    isColumnsDraggable: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     isDraggable: {
       type: Boolean,
       required: false,

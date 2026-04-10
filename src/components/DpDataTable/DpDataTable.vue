@@ -507,7 +507,7 @@ export default {
     },
 
     fields () {
-      return this.headerFields.map(hf => hf.field)
+      return this.orderedHeaderFields.map(hf => hf.field)
     },
 
     headerTranslations () {

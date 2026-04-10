@@ -572,6 +572,19 @@ export default {
       return tableRow[0].$el.classList.add('is-hovered-content')
     },
 
+    applyReorder (newFieldNames) {
+      this.orderedHeaderFields = newFieldNames
+        .map(name => this.orderedHeaderFields.find(f => f.field === name))
+        .filter(Boolean)
+
+      if (this.columnStorageKey) {
+        localStorage.setItem(
+          `dpDataTable:columnOrder:${this.columnStorageKey}`,
+          JSON.stringify(this.orderedHeaderFields.map(f => f.field))
+        )
+      }
+    },
+
     /**
      * This method is used to escape special characters in a string.
      * It specifically targets spaces and plus signs.

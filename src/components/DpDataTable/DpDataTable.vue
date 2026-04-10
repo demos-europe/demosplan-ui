@@ -773,6 +773,8 @@ export default {
     tmpTranslations = { ...tmpTranslations, ...noResults }
 
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
+
+    this.initColumnOrder()
   },
 
   beforeUpdate () {

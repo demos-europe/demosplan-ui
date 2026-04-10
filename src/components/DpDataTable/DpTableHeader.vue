@@ -261,6 +261,15 @@ export default {
       draggable: 'th',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
+      onMove: (event) => {
+        const relatedField = event.related.getAttribute('data-col-field')
+        const systemFields = new Set(['select', 'flyout', 'dragHandle', 'wrap'])
+        // Only allow moving adjacent to other draggable (non-fixed, non-system) columns
+        if (!relatedField || systemFields.has(relatedField) || fixedFields.has(relatedField)) {
+          return false
+        }
+      },
+
       onEnd: (event) => {
         const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
         const newOrder = ths

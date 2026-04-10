@@ -472,6 +472,7 @@ export default {
       expandedElements: {},
       headerCellCount: 0,
       mergedTranslations: {},
+      orderedHeaderFields: [],
       selectedElements: [],
       tableEl: undefined,
       tableProps: [
@@ -624,6 +625,32 @@ export default {
       return ['wrap', 'select', 'dragHandle'].includes(field) ?
         '30px' :
         null
+    },
+
+    initColumnOrder () {
+      if (!this.columnStorageKey) {
+        this.orderedHeaderFields = [...this.headerFields]
+        return
+      }
+
+      try {
+        const stored = localStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
+        if (!stored) {
+          this.orderedHeaderFields = [...this.headerFields]
+          return
+        }
+
+        const storedOrder = JSON.parse(stored)
+        const ordered = storedOrder
+          .map(name => this.headerFields.find(f => f.field === name))
+          .filter(Boolean)
+        const storedSet = new Set(storedOrder)
+        const addedFields = this.headerFields.filter(f => !storedSet.has(f.field))
+
+        this.orderedHeaderFields = [...ordered, ...addedFields]
+      } catch {
+        this.orderedHeaderFields = [...this.headerFields]
+      }
     },
 
     removeHoveredClass(idx) {

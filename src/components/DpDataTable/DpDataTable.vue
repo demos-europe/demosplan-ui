@@ -301,6 +301,12 @@ export default {
       default: () => [],
     },
 
+    columnStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     isColumnsDraggable: {
       type: Boolean,
       required: false,

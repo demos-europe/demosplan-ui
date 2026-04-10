@@ -39,7 +39,7 @@
     >
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
-        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
+        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }, { 'c-data-table__col--fixed': isColumnsDraggable && hf.fixed }]"
         :data-col-field="hf.field"
         :header-field="hf"
         :idx="idx"
@@ -64,7 +64,8 @@
             v-text="hf.label"
           />
           <dp-icon
-            class="c-data-table__drag-handle"
+            v-if="isColumnsDraggable && !hf.fixed"
+            class="c-data-table__col-drag-handle cursor-grab"
             icon="dots-six-vertical"
           />
         </div>
@@ -252,9 +253,11 @@ export default {
   mounted () {
     if (!this.isColumnsDraggable) return
 
+    const fixedFields = new Set(this.headerFields.filter(hf => hf.fixed).map(hf => hf.field))
+
     Sortable.create(this.$refs.tableHeader, {
       animation: 150,
-      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout',
+      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout, .c-data-table__col--fixed',
       draggable: 'th',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
@@ -263,6 +266,7 @@ export default {
         const newOrder = ths
           .map(th => th.getAttribute('data-col-field'))
           .filter(field => !['select', 'flyout', 'dragHandle', 'wrap'].includes(field))
+          .filter(field => !fixedFields.has(field))
         this.$emit('column-reorder', newOrder)
       }
     })

@@ -582,17 +582,23 @@ export default {
     },
 
     applyReorder (newFieldNames) {
-      console.log('applyReorder called with:', newFieldNames)
-      console.log('orderedHeaderFields before:', this.orderedHeaderFields.map(f => f.field))
-      this.orderedHeaderFields = newFieldNames
-        .map(name => this.orderedHeaderFields.find(f => f.field === name))
+      // newFieldNames contains only draggable (non-fixed) columns in new order
+      const draggableNew = newFieldNames
+        .map(name => this.headerFields.find(f => f.field === name))
         .filter(Boolean)
-      console.log('orderedHeaderFields after:', this.orderedHeaderFields.map(f => f.field))
+
+      // Reconstruct full order: fixed columns stay at their original headerFields positions
+      let draggableIdx = 0
+      this.orderedHeaderFields = this.headerFields.map(hf => {
+        if (hf.fixed) return hf
+        return draggableNew[draggableIdx++] || hf
+      })
 
       if (this.columnStorageKey) {
+        const nonFixedOrder = this.orderedHeaderFields.filter(f => !f.fixed).map(f => f.field)
         localStorage.setItem(
           `dpDataTable:columnOrder:${this.columnStorageKey}`,
-          JSON.stringify(this.orderedHeaderFields.map(f => f.field))
+          JSON.stringify(nonFixedOrder)
         )
       }
     },
@@ -665,14 +671,21 @@ export default {
           return
         }
 
-        const storedOrder = JSON.parse(stored)
-        const ordered = storedOrder
-          .map(name => this.headerFields.find(f => f.field === name))
-          .filter(Boolean)
+        const storedOrder = JSON.parse(stored) // only non-fixed fields
+        const nonFixedFields = this.headerFields.filter(f => !f.fixed)
         const storedSet = new Set(storedOrder)
-        const addedFields = this.headerFields.filter(f => !storedSet.has(f.field))
 
-        this.orderedHeaderFields = [...ordered, ...addedFields]
+        const orderedNonFixed = [
+          ...storedOrder.map(name => nonFixedFields.find(f => f.field === name)).filter(Boolean),
+          ...nonFixedFields.filter(f => !storedSet.has(f.field)),
+        ]
+
+        // Reconstruct: fixed fields at original positions, non-fixed in stored order
+        let nonFixedIdx = 0
+        this.orderedHeaderFields = this.headerFields.map(hf => {
+          if (hf.fixed) return hf
+          return orderedNonFixed[nonFixedIdx++] || hf
+        })
       } catch {
         this.orderedHeaderFields = [...this.headerFields]
       }

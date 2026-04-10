@@ -40,6 +40,7 @@
           :is-sticky="hasStickyHeader"
           :is-truncatable="isTruncatable"
           :translations="headerTranslations"
+          @column-reorder="applyReorder"
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
           @toggle-wrap-all="toggleWrapAll"

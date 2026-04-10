@@ -63,11 +63,12 @@
             v-else-if="hf.label"
             v-text="hf.label"
           />
-          <dp-icon
+          <span
             v-if="isColumnsDraggable && !hf.fixed"
             class="c-data-table__col-drag-handle cursor-grab"
-            icon="dots-six-vertical"
-          />
+          >
+            <dp-icon icon="dots-six-vertical" />
+          </span>
         </div>
       </component>
     </template>
@@ -258,6 +259,7 @@ export default {
     Sortable.create(this.$refs.tableHeader, {
       animation: 150,
       filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout, .c-data-table__col--fixed',
+      handle: '.c-data-table__col-drag-handle',
       draggable: 'th',
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',

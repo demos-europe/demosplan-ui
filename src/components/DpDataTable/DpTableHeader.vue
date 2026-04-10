@@ -35,7 +35,7 @@
     </th>
     <template
       v-for="(hf, idx) in headerFields"
-      :key="`header-${idx}`"
+      :key="`header-${hf.field}`"
     >
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
@@ -260,11 +260,12 @@ export default {
       chosenClass: 'sortable-chosen',
       onEnd: (event) => {
         const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
-        const newOrder = ths.map(th => th.getAttribute('data-col-field'))
+        const newOrder = ths
+          .map(th => th.getAttribute('data-col-field'))
+          .filter(field => !['select', 'flyout', 'dragHandle', 'wrap'].includes(field))
         this.$emit('column-reorder', newOrder)
       }
     })
-
   },
 
 }

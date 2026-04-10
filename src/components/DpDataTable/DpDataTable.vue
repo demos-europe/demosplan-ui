@@ -96,7 +96,7 @@
           >
             <template
               v-for="(field, index) in fields"
-              :key="index"
+              :key="field"
               v-slot:[field]="item"
             >
               <slot
@@ -174,7 +174,7 @@
             <template
               v-for="(field, idx) in fields"
               v-slot:[field]="item"
-              :key="idx"
+              :key="field"
             >
               <slot
                 :name="field"
@@ -582,9 +582,12 @@ export default {
     },
 
     applyReorder (newFieldNames) {
+      console.log('applyReorder called with:', newFieldNames)
+      console.log('orderedHeaderFields before:', this.orderedHeaderFields.map(f => f.field))
       this.orderedHeaderFields = newFieldNames
         .map(name => this.orderedHeaderFields.find(f => f.field === name))
         .filter(Boolean)
+      console.log('orderedHeaderFields after:', this.orderedHeaderFields.map(f => f.field))
 
       if (this.columnStorageKey) {
         localStorage.setItem(

@@ -217,6 +217,7 @@ export default {
 
   emits: [
     'toggle-expand-all',
+    'column-reorder',
     'toggle-select-all',
     'toggle-wrap-all',
   ],
@@ -272,14 +273,14 @@ export default {
         }
       },
 
-      onEnd: (event) => {
+      onEnd: () => {
         const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
         const newOrder = ths
           .map(th => th.getAttribute('data-col-field'))
           .filter(field => !['select', 'flyout', 'dragHandle', 'wrap'].includes(field))
           .filter(field => !fixedFields.has(field))
         this.$emit('column-reorder', newOrder)
-      }
+      },
     })
   },
 

@@ -46,13 +46,13 @@
           @toggle-wrap-all="toggleWrapAll"
         >
           <template
-            v-for="(field, index) in headerFields"
-            :key="index"
-            v-slot:[`header-${field.field}`]="field"
+            v-for="field in headerFields"
+            :key="field.field"
+            v-slot:[`header-${field.field}`]="headerSlotData"
           >
             <slot
               :name="`header-${field.field}`"
-              v-bind="field"
+              v-bind="headerSlotData"
             />
           </template>
         </dp-table-header>
@@ -95,19 +95,19 @@
             @toggle-wrap="toggleWrap"
           >
             <template
-              v-for="(field, index) in fields"
+              v-for="field in fields"
               :key="field"
-              v-slot:[field]="item"
+              v-slot:[field]="slotProps"
             >
               <slot
                 :name="field"
-                v-bind="item"
+                v-bind="slotProps"
               />
             </template>
-            <template v-slot:flyout="item">
+            <template v-slot:flyout="flyoutSlotProps">
               <slot
                 name="flyout"
-                v-bind="item"
+                v-bind="flyoutSlotProps"
               />
             </template>
           </dp-table-row>
@@ -120,6 +120,8 @@
             <td
               :class="{ 'opacity-70': isLoading }"
               :colspan="colCount"
+              @focus="addHoveredClass(idx)"
+              @blur="removeHoveredClass(idx)"
               @mouseenter="addHoveredClass(idx)"
               @mouseleave="removeHoveredClass(idx)"
             >
@@ -172,19 +174,19 @@
             @toggle-wrap="toggleWrap"
           >
             <template
-              v-for="(field, idx) in fields"
-              v-slot:[field]="item"
+              v-for="field in fields"
+              v-slot:[field]="slotProps"
               :key="field"
             >
               <slot
                 :name="field"
-                v-bind="item"
+                v-bind="slotProps"
               />
             </template>
-            <template v-slot:flyout="item">
+            <template v-slot:flyout="flyoutSlotProps">
               <slot
                 name="flyout"
-                v-bind="item"
+                v-bind="flyoutSlotProps"
               />
             </template>
           </dp-table-row>
@@ -588,7 +590,7 @@ export default {
     },
 
     applyReorder (newFieldNames) {
-      // newFieldNames contains only draggable (non-fixed) columns in new order
+      // NewFieldNames contains only draggable (non-fixed) columns in new order
       const draggableNew = newFieldNames
         .map(name => this.headerFields.find(f => f.field === name))
         .filter(Boolean)
@@ -604,7 +606,7 @@ export default {
         const nonFixedOrder = this.orderedHeaderFields.filter(f => !f.fixed).map(f => f.field)
         localStorage.setItem(
           `dpDataTable:columnOrder:${this.columnStorageKey}`,
-          JSON.stringify(nonFixedOrder)
+          JSON.stringify(nonFixedOrder),
         )
       }
     },
@@ -677,7 +679,7 @@ export default {
           return
         }
 
-        const storedOrder = JSON.parse(stored) // only non-fixed fields
+        const storedOrder = JSON.parse(stored) // Only non-fixed fields
         const nonFixedFields = this.headerFields.filter(f => !f.fixed)
         const storedSet = new Set(storedOrder)
 

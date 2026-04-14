@@ -6,6 +6,8 @@
     :class="{ 'u-pr-0': isLast, 'is-resizing bg-interactive-subtle-hover !border-r-interactive border-r-2 ': isResizing }"
     :data-col-field="headerField.field"
     :data-col-idx="idx"
+    @blur="setColumnHover(false)"
+    @focus="setColumnHover(true)"
     @mouseenter="setColumnHover(true)"
     @mouseleave="setColumnHover(false)"
   >

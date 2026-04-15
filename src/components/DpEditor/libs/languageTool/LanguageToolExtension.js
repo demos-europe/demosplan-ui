@@ -8,7 +8,7 @@ import {
   buildTextSegments,
   plainOffsetToPmPos,
 } from './textOffsetMapper'
-import { createLanguageToolTooltip, removeLanguageToolTooltip } from './languageToolTooltip'
+import { createLanguageToolTooltip } from './languageToolTooltip'
 
 const languageToolPluginKey = new PluginKey('languageTool')
 
@@ -19,6 +19,7 @@ export const LanguageToolExtension = Extension.create({
     return {
       matches: [],
       runCheck: null,
+      requestId: 0,
     }
   },
 
@@ -41,8 +42,13 @@ export const LanguageToolExtension = Extension.create({
         return
       }
 
+      const currentRequestId = ++extension.storage.requestId
+
       checkTextWithLanguageTool(plainText)
         .then(function (result) {
+          if (currentRequestId !== extension.storage.requestId) {
+            return
+          }
           extension.storage.matches = result.matches || []
 
           editor.view.dispatch(

@@ -740,12 +740,13 @@ export default {
     },
 
     /**
-     * Scale data columns proportionally so their total fills the remaining container width
-     * after subtracting fixed-size system columns (flyout, select, dragHandle, wrap).
+     * Distribute available container width among data columns so the sticky flyout always
+     * stays at its fixed 60px width and no column remains at 0px.
      *
-     * Only scales UP (scale > 1): when columns naturally overflow the container the table
-     * scrolls and the flyout stays at 60px without any intervention. Scaling down would
-     * violate initialMinWidth values and shrink content columns unexpectedly.
+     * When scale > 1 (columns don't fill the container), all data columns are scaled up
+     * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended
+     * up at 0px (added while table-layout:fixed was active and no space remained) are set
+     * to their minimum width — other columns are left untouched.
      */
     _fillContainerWidth (headers) {
       const containerWidth = this.tableEl.parentElement.clientWidth
@@ -762,15 +763,12 @@ export default {
           fixedTotal += parseInt(fixedWidth, 10)
         } else if (field) {
           /*
-           * Use the designed colWidth from headerFields as the natural width for scale calculation.
-           * Avoids reading th.style.width which may carry a previously scaled value,
-           * causing scale to collapse to ≈1 and the column to permanently stay wide.
-           * For newly-added columns whose th.style.width is '0px' (getBoundingClientRect
-           * returns 0 once the table scrolls because table-layout:fixed leaves no remaining
-           * space), fall back to initialMinWidth or 50px as the naturalWidth.
-           * The actualWidth tracks the real current DOM value so we can fix 0px columns
-           * even when scale <= 1 (otherwise the browser redistributes the missing space
-           * to other columns including the sticky flyout, making it wider than 60px).
+           * Prefer colWidth over th.style.width to avoid carrying a previously scaled value
+           * into the next calculation. Fall back to initialMinWidth (or 50px) for columns
+           * that have 0px in the DOM — getBoundingClientRect returns 0 for columns added
+           * after table-layout:fixed is active and the table is already full-width.
+           * actualWidth is kept separately so the scale <= 1 branch can identify and fix
+           * those 0px columns without touching correctly-sized ones.
            */
           const colWidth = this.getColWidthFromHeaderField(field)
           const hf = this.headerFields.find(h => h.field === field)

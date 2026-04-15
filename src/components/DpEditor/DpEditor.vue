@@ -391,6 +391,7 @@ import {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
+  LanguageToolExtension,
   Obscure,
 } from './libs/customExtensions'
 
@@ -787,6 +788,7 @@ export default {
         HardBreak,
         Heading.configure({ levels: this.toolbar.headings }),
         InsertAtCursorPos,
+        LanguageToolExtension,
       ]
 
       if (this.suggestions.length > 0) {
@@ -1174,6 +1176,7 @@ export default {
         attributes: {
           role: 'textbox',
           'aria-label': this.ariaLabel || de.text.editor,
+          spellcheck: 'false',
         },
 
         handleDrop: (_view, _event, _slice, moved) => {

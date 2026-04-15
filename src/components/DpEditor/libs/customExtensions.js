@@ -6,6 +6,7 @@ import CustomInsert from './editorCustomInsert'
 import CustomLink from './editorCustomLink'
 import CustomMark from './editorCustomMark'
 import InsertAtCursorPos from './editorInsertAtCursorPos'
+import { LanguageToolExtension } from './languageTool/LanguageToolExtension'
 import Obscure from './editorObscure'
 import PreventEditing from './preventEditing'
 import UnAnonymize from './editorUnAnonymize'
@@ -19,6 +20,7 @@ export {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
+  LanguageToolExtension,
   Obscure,
   PreventEditing,
   UnAnonymize,

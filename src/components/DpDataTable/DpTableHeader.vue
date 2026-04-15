@@ -259,7 +259,7 @@ export default {
 
     Sortable.create(this.$refs.tableHeader, {
       animation: 150,
-      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout, .c-data-table__col--fixed',
+      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout',
       handle: '.c-data-table__col-drag-handle',
       draggable: 'th',
       ghostClass: 'sortable-ghost',

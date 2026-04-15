@@ -761,15 +761,17 @@ export default {
         if (fixedWidth) {
           fixedTotal += parseInt(fixedWidth, 10)
         } else if (field) {
-          // Use the designed colWidth from headerFields as the natural width for scale calculation.
-          // Avoids reading th.style.width which may carry a previously scaled value,
-          // causing scale to collapse to ≈1 and the column to permanently stay wide.
-          // For newly-added columns whose th.style.width is '0px' (getBoundingClientRect
-          // returns 0 once the table scrolls because table-layout:fixed leaves no remaining
-          // space), fall back to initialMinWidth or 50px as the naturalWidth.
-          // The actualWidth tracks the real current DOM value so we can fix 0px columns
-          // even when scale <= 1 (otherwise the browser redistributes the missing space
-          // to other columns including the sticky flyout, making it wider than 60px).
+          /*
+           * Use the designed colWidth from headerFields as the natural width for scale calculation.
+           * Avoids reading th.style.width which may carry a previously scaled value,
+           * causing scale to collapse to ≈1 and the column to permanently stay wide.
+           * For newly-added columns whose th.style.width is '0px' (getBoundingClientRect
+           * returns 0 once the table scrolls because table-layout:fixed leaves no remaining
+           * space), fall back to initialMinWidth or 50px as the naturalWidth.
+           * The actualWidth tracks the real current DOM value so we can fix 0px columns
+           * even when scale <= 1 (otherwise the browser redistributes the missing space
+           * to other columns including the sticky flyout, making it wider than 60px).
+           */
           const colWidth = this.getColWidthFromHeaderField(field)
           const hf = this.headerFields.find(h => h.field === field)
           const minWidth = (hf && hf.initialMinWidth) || 50
@@ -790,16 +792,20 @@ export default {
       const scale = availableForData / naturalTotal
 
       if (scale > 1) {
-        // Scale up: distribute all available space proportionally so data columns fill
-        // the container and the flyout stays exactly at its fixed width.
+        /*
+         * Scale up: distribute all available space proportionally so data columns fill
+         * the container and the flyout stays exactly at its fixed width.
+         */
         dataCols.forEach(({ th, naturalWidth }) => {
           th.style.width = `${Math.round(naturalWidth * scale)}px`
         })
       } else {
-        // Columns fill or overflow the container — no scaling needed.
-        // Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
-        // was active with no remaining space) so the browser does not redistribute the missing
-        // space to other columns, which would inflate the sticky flyout beyond its 60px.
+        /*
+         * Columns fill or overflow the container — no scaling needed.
+         * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
+         * was active with no remaining space) so the browser does not redistribute the missing
+         * space to other columns, which would inflate the sticky flyout beyond its 60px.
+         */
         dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
           if (actualWidth <= 0) {
             th.style.width = `${naturalWidth}px`

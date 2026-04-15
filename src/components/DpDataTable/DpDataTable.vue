@@ -571,6 +571,7 @@ export default {
             const tableHeaderElements = firstRow ? firstRow.children : null
 
             this.setColsWidth(tableHeaderElements)
+            this._fillContainerWidth(tableHeaderElements)
           })
         }
       },
@@ -738,6 +739,75 @@ export default {
       })
     },
 
+    /**
+     * Scale data columns proportionally so their total fills the remaining container width
+     * after subtracting fixed-size system columns (flyout, select, dragHandle, wrap).
+     *
+     * Only scales UP (scale > 1): when columns naturally overflow the container the table
+     * scrolls and the flyout stays at 60px without any intervention. Scaling down would
+     * violate initialMinWidth values and shrink content columns unexpectedly.
+     */
+    _fillContainerWidth (headers) {
+      const containerWidth = this.tableEl.parentElement.clientWidth
+      if (!containerWidth) return
+
+      const dataCols = []
+      let fixedTotal = 0
+
+      Array.from(headers).forEach(th => {
+        if (th.nodeType !== 1) return
+        const field = th.getAttribute('data-col-field')
+        const fixedWidth = this.getFixedColWidth(field)
+        if (fixedWidth) {
+          fixedTotal += parseInt(fixedWidth, 10)
+        } else if (field) {
+          // Use the designed colWidth from headerFields as the natural width for scale calculation.
+          // Avoids reading th.style.width which may carry a previously scaled value,
+          // causing scale to collapse to ≈1 and the column to permanently stay wide.
+          // For newly-added columns whose th.style.width is '0px' (getBoundingClientRect
+          // returns 0 once the table scrolls because table-layout:fixed leaves no remaining
+          // space), fall back to initialMinWidth or 50px as the naturalWidth.
+          // The actualWidth tracks the real current DOM value so we can fix 0px columns
+          // even when scale <= 1 (otherwise the browser redistributes the missing space
+          // to other columns including the sticky flyout, making it wider than 60px).
+          const colWidth = this.getColWidthFromHeaderField(field)
+          const hf = this.headerFields.find(h => h.field === field)
+          const minWidth = (hf && hf.initialMinWidth) || 50
+          const actualWidth = parseFloat(th.style.width) || 0
+          const naturalWidth = Math.max(parseFloat(colWidth) || actualWidth, minWidth)
+          dataCols.push({ th, naturalWidth, actualWidth })
+        }
+      })
+
+      if (dataCols.length === 0 || fixedTotal === 0) return
+
+      const availableForData = containerWidth - fixedTotal
+      if (availableForData <= 0) return
+
+      const naturalTotal = dataCols.reduce((sum, col) => sum + col.naturalWidth, 0)
+      if (naturalTotal <= 0) return
+
+      const scale = availableForData / naturalTotal
+
+      if (scale > 1) {
+        // Scale up: distribute all available space proportionally so data columns fill
+        // the container and the flyout stays exactly at its fixed width.
+        dataCols.forEach(({ th, naturalWidth }) => {
+          th.style.width = `${Math.round(naturalWidth * scale)}px`
+        })
+      } else {
+        // Columns fill or overflow the container — no scaling needed.
+        // Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
+        // was active with no remaining space) so the browser does not redistribute the missing
+        // space to other columns, which would inflate the sticky flyout beyond its 60px.
+        dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
+          if (actualWidth <= 0) {
+            th.style.width = `${naturalWidth}px`
+          }
+        })
+      }
+    },
+
     setElementSelections (elements, status) {
       return elements.reduce((acc, el) => {
         return {
@@ -832,6 +902,8 @@ export default {
 
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')
+
+      this._fillContainerWidth(tableHeaderElements)
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {

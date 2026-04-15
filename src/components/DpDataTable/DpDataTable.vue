@@ -757,10 +757,10 @@ export default {
 
       Array.from(headers).forEach(th => {
         if (th.nodeType !== 1) return
-        const field = th.getAttribute('data-col-field')
+        const field = th.dataset.colField
         const fixedWidth = this.getFixedColWidth(field)
         if (fixedWidth) {
-          fixedTotal += parseInt(fixedWidth, 10)
+          fixedTotal += Number.parseInt(fixedWidth, 10)
         } else if (field) {
           /*
            * Prefer colWidth over th.style.width to avoid carrying a previously scaled value
@@ -773,8 +773,8 @@ export default {
           const colWidth = this.getColWidthFromHeaderField(field)
           const hf = this.headerFields.find(h => h.field === field)
           const minWidth = (hf && hf.initialMinWidth) || 50
-          const actualWidth = parseFloat(th.style.width) || 0
-          const naturalWidth = Math.max(parseFloat(colWidth) || actualWidth, minWidth)
+          const actualWidth = Number.parseFloat(th.style.width) || 0
+          const naturalWidth = Math.max(Number.parseFloat(colWidth) || actualWidth, minWidth)
           dataCols.push({ th, naturalWidth, actualWidth })
         }
       })

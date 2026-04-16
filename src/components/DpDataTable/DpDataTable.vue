@@ -592,7 +592,7 @@ export default {
     },
 
     applyReorder (newFieldNames) {
-      // NewFieldNames contains only draggable (non-fixed) columns in new order
+      // Contains only draggable (non-fixed) columns in new order
       const draggableNew = newFieldNames
         .map(name => this.headerFields.find(f => f.field === name))
         .filter(Boolean)
@@ -600,7 +600,10 @@ export default {
       // Reconstruct full order: fixed columns stay at their original headerFields positions
       let draggableIdx = 0
       this.orderedHeaderFields = this.headerFields.map(hf => {
-        if (hf.fixed) return hf
+        if (hf.fixed) {
+          return hf
+        }
+
         return draggableNew[draggableIdx++] || hf
       })
 
@@ -693,7 +696,10 @@ export default {
         // Reconstruct: fixed fields at original positions, non-fixed in stored order
         let nonFixedIdx = 0
         this.orderedHeaderFields = this.headerFields.map(hf => {
-          if (hf.fixed) return hf
+          if (hf.fixed) {
+            return hf
+          }
+
           return orderedNonFixed[nonFixedIdx++] || hf
         })
       } catch {
@@ -751,13 +757,18 @@ export default {
      */
     _fillContainerWidth (headers) {
       const containerWidth = this.tableEl.parentElement.clientWidth
-      if (!containerWidth) return
+      if (!containerWidth) {
+        return
+      }
 
       const dataCols = []
       let fixedTotal = 0
 
       Array.from(headers).forEach(th => {
-        if (th.nodeType !== 1) return
+        if (th.nodeType !== 1) {
+          return
+        }
+
         const field = th.dataset.colField
         const fixedWidth = this.getFixedColWidth(field)
         if (fixedWidth) {
@@ -780,13 +791,19 @@ export default {
         }
       })
 
-      if (dataCols.length === 0 || fixedTotal === 0) return
+      if (dataCols.length === 0 || fixedTotal === 0) {
+        return
+      }
 
       const availableForData = containerWidth - fixedTotal
-      if (availableForData <= 0) return
+      if (availableForData <= 0) {
+        return
+      }
 
       const naturalTotal = dataCols.reduce((sum, col) => sum + col.naturalWidth, 0)
-      if (naturalTotal <= 0) return
+      if (naturalTotal <= 0) {
+        return
+      }
 
       const scale = availableForData / naturalTotal
 

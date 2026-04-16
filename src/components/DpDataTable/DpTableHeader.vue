@@ -49,7 +49,7 @@
         <div class="flex items-center justify-between">
           <slot
             v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
-            :name="`header-${hf.field}`"
+            :name="`header-${hf.field}`"ok weiter
             v-bind="hf"
           >
             <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
@@ -254,7 +254,9 @@ export default {
   },
 
   mounted () {
-    if (!this.isColumnsDraggable) return
+    if (!this.isColumnsDraggable) {
+      return
+    }
 
     const fixedFields = new Set(this.headerFields.filter(hf => hf.fixed).map(hf => hf.field))
 

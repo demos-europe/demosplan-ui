@@ -674,6 +674,7 @@ export default {
     initColumnOrder () {
       if (!this.columnStorageKey) {
         this.orderedHeaderFields = [...this.headerFields]
+
         return
       }
 
@@ -681,6 +682,7 @@ export default {
         const stored = sessionStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
         if (!stored) {
           this.orderedHeaderFields = [...this.headerFields]
+
           return
         }
 

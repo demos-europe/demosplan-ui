@@ -292,6 +292,12 @@ export default {
      * The header can also have a tooltip. To define the width the column is initially rendered with
      * when `isResizable` is used, the keys `initialWidth`, `initialMaxWidth` and `initialMinWidth` take a px value.
      */
+    columnStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     headerFields: {
       type: Array,
       required: true,
@@ -301,12 +307,6 @@ export default {
       type: Array,
       required: false,
       default: () => [],
-    },
-
-    columnStorageKey: {
-      type: String,
-      required: false,
-      default: '',
     },
 
     isColumnsDraggable: {
@@ -572,7 +572,7 @@ export default {
             const tableHeaderElements = firstRow ? firstRow.children : null
 
             this.setColsWidth(tableHeaderElements)
-            this._fillContainerWidth(tableHeaderElements)
+            this.fillContainerWidth(tableHeaderElements)
           })
         }
       },
@@ -757,7 +757,7 @@ export default {
      * up at 0px (added while table-layout:fixed was active and no space remained) are set
      * to their minimum width — other columns are left untouched.
      */
-    _fillContainerWidth (headers) {
+    fillContainerWidth (headers) {
       const containerWidth = this.tableEl.parentElement.clientWidth
       if (!containerWidth) {
         return
@@ -927,7 +927,7 @@ export default {
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')
 
-      this._fillContainerWidth(tableHeaderElements)
+      this.fillContainerWidth(tableHeaderElements)
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {

@@ -217,8 +217,8 @@ export default {
   },
 
   emits: [
-    'toggle-expand-all',
     'column-reorder',
+    'toggle-expand-all',
     'toggle-select-all',
     'toggle-wrap-all',
   ],
@@ -270,6 +270,7 @@ export default {
       onMove: (event) => {
         const relatedField = event.related.getAttribute('data-col-field')
         const systemFields = new Set(['select', 'flyout', 'dragHandle', 'wrap'])
+
         // Only allow moving adjacent to other draggable (non-fixed, non-system) columns
         if (!relatedField || systemFields.has(relatedField) || fixedFields.has(relatedField)) {
           return false

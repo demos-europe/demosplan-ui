@@ -65,6 +65,7 @@
           />
           <span
             v-if="isColumnsDraggable && !hf.fixed"
+            :aria-label="translations.headerReorderColumnHint"
             class="c-data-table__col-drag-handle cursor-grab"
           >
             <dp-icon icon="dots-six-vertical" />

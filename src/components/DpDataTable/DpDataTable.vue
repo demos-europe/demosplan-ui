@@ -477,6 +477,7 @@ export default {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
         headerExpandHint: de.expandAll,
+        headerReorderColumnHint: de.aria.reorderColumn,
         headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
@@ -525,7 +526,7 @@ export default {
     },
 
     headerTranslations () {
-      return this.extractTranslations(['headerSelectHint'])
+      return this.extractTranslations(['headerReorderColumnHint', 'headerSelectHint'])
     },
 
     indeterminate () {

@@ -43,7 +43,7 @@
         :data-col-field="hf.field"
         :header-field="hf"
         :idx="idx"
-        :is-last="headerFields.length === idx ? true : null"
+        :is-last="headerFields.length - 1 === idx ? true : null"
         :next-header="headerFields[idx + 1]"
       >
         <div class="flex items-center justify-between">

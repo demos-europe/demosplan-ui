@@ -20,6 +20,7 @@ export const LanguageToolExtension = Extension.create({
       matches: [],
       runCheck: null,
       requestId: 0,
+      scheduleCheck: null,
     }
   },
 
@@ -27,144 +28,183 @@ export const LanguageToolExtension = Extension.create({
     const editor = this.editor
     const extension = this
 
-    extension.storage.runCheck = debounce(function () {
-      const { plainText, segments } = buildTextSegments(editor.state.doc)
+    const refreshLanguageToolDecorations = function () {
+      editor.view.dispatch(editor.state.tr.setMeta(languageToolPluginKey, { refresh: true }))
+    }
+
+    const resetLanguageToolMatches = function () {
+      extension.storage.matches = []
+      refreshLanguageToolDecorations()
+    }
+
+    extension.storage.runCheck = function () {
+      const { plainText, textSegments } = buildTextSegments(editor.state.doc)
+      const isTextEmpty = !plainText.trim()
 
       console.log('Plain text for LanguageTool:', plainText)
-      console.log('Text segments:', segments)
+      console.log('Text segments:', textSegments)
 
-      if (!plainText.trim()) {
-        extension.storage.matches = []
-
-        editor.view.dispatch(
-          editor.state.tr.setMeta(languageToolPluginKey, { refresh: true })
-        )
+      if (isTextEmpty) {
+        resetLanguageToolMatches()
         return
       }
 
       const currentRequestId = ++extension.storage.requestId
 
       checkTextWithLanguageTool(plainText)
-        .then(function (result) {
+        .then(result => {
           if (currentRequestId !== extension.storage.requestId) {
             return
           }
-          extension.storage.matches = result.matches || []
 
-          editor.view.dispatch(
-            editor.state.tr.setMeta(languageToolPluginKey, { refresh: true })
-          )
+          const matches = result.matches || []
+          extension.storage.matches = matches
+
+          refreshLanguageToolDecorations()
         })
-        .catch(function (error) {
+        .catch(error => {
+          if (currentRequestId !== extension.storage.requestId) {
+            return
+          }
+
           console.error('LanguageTool error:', error)
         })
+    }
+
+    extension.storage.scheduleCheck = debounce(function () {
+      extension.storage.runCheck()
     }, 1000)
 
-    // erste Prüfung nach Init
-    setTimeout(function () {
+    /** Wait until the next paint so the editor is fully rendered before the initial check */
+    requestAnimationFrame(() => {
       extension.storage.runCheck()
-    }, 500)
+    })
   },
 
   onUpdate() {
-    if (this.storage.runCheck) {
-      this.storage.runCheck()
+    if (this.storage.scheduleCheck) {
+      this.storage.scheduleCheck()
     }
   },
 
-  addProseMirrorPlugins() {
+  addProseMirrorPlugins () {
     const extension = this
+
+    const createMatchDecorations = function (doc) {
+      const matches = extension.storage.matches || []
+      const { textSegments } = buildTextSegments(doc)
+      const decorations = []
+
+      for (let i = 0; i < matches.length; i++) {
+        const match = matches[i]
+
+        const start = plainOffsetToPmPos(textSegments, match.offset)
+        const end = plainOffsetToPmPos(textSegments, match.offset + match.length, true)
+
+        if (start == null || end == null || end <= start) {
+          continue
+        }
+
+        decorations.push(
+          Decoration.inline(start, end, {
+            class: 'lt-error',
+            'data-lt-match-index': String(i),
+          })
+        )
+      }
+
+      return DecorationSet.create(doc, decorations)
+    }
+
+    const getMatchFromElement = function (errorEl) {
+      const matchIndex = Number(errorEl.dataset.ltMatchIndex)
+
+      return extension.storage.matches[matchIndex] || null
+    }
+
+    const getMatchSuggestions = function (match) {
+      return (match.replacements || [])
+        .slice(0, 5)
+        .map(replacement => replacement.value)
+    }
+
+    const replaceErrorText = function (view, errorEl, selectedSuggestion) {
+      // Use the current DOM position to avoid stale offsets if multiple replacements
+      const from = view.posAtDOM(errorEl, 0)
+      const textLength = errorEl.textContent?.length || 0
+      const to = from + textLength
+
+      if (to <= from) {
+        return
+      }
+
+      const tr = view.state.tr.replaceWith(
+        from,
+        to,
+        view.state.schema.text(selectedSuggestion)
+      )
+
+      view.dispatch(tr)
+      view.focus()
+    }
 
     return [
       new Plugin({
         key: languageToolPluginKey,
 
         state: {
-          init: function () {
+          init() {
             return DecorationSet.empty
           },
 
-          apply: function (tr, oldDecorationSet) {
-            let decorations = oldDecorationSet.map(tr.mapping, tr.doc)
+          apply(tr, oldDecorationSet) {
             const meta = tr.getMeta(languageToolPluginKey)
 
-            if (meta && meta.refresh) {
-              const matches = extension.storage.matches || []
-              const { segments } = buildTextSegments(tr.doc)
-              const newDecorations = []
-
-              for (let i = 0; i < matches.length; i++) {
-                const match = matches[i]
-
-                const start = plainOffsetToPmPos(segments, match.offset)
-                const end = plainOffsetToPmPos(
-                  segments,
-                  match.offset + match.length
-                )
-
-                if (start == null || end == null || end <= start) {
-                  continue
-                }
-
-                newDecorations.push(
-                  Decoration.inline(start, end, {
-                    class: 'lt-error',
-                    'data-lt-message': match.message || '',
-                    'data-lt-suggestions': JSON.stringify(
-                      (match.replacements || []).slice(0, 5).map(function (r) {
-                        return r.value
-                      })
-                    ),
-                    title: match.message || '',
-                  })
-                )
-              }
-
-              decorations = DecorationSet.create(tr.doc, newDecorations)
+            if (meta?.refresh) {
+              return createMatchDecorations(tr.doc)
             }
 
-            return decorations
+            return oldDecorationSet.map(tr.mapping, tr.doc)
           },
         },
 
         props: {
-          decorations: function (state) {
+          decorations (state) {
             return this.getState(state)
           },
 
-          handleClick: function (view, pos, event) {
+          handleClick (view, _pos, event) {
             const target = event.target
 
-            if (target && target.classList && target.classList.contains('lt-error')) {
-              const message = target.dataset.ltMessage
-              const suggestions = JSON.parse(target.dataset.ltSuggestions || '[]')
-
-              // Create tooltip with suggestions
-              createLanguageToolTooltip(
-                message,
-                suggestions,
-                target,
-                function (selectedSuggestion) {
-                  // Find the position of the error in the document
-                  const from = view.posAtDOM(target, 0)
-                  const to = from + target.textContent.length
-
-                  // Replace the error text with the selected suggestion
-                  const tr = view.state.tr.replaceWith(
-                    from,
-                    to,
-                    view.state.schema.text(selectedSuggestion),
-                  )
-
-                  view.dispatch(tr)
-                  view.focus()
-                }
-              )
-
-              return true
+            if (!(target instanceof Element)) {
+              return false
             }
 
-            return false
+            const errorEl = target.closest('.lt-error')
+
+            if (!errorEl) {
+              return false
+            }
+
+            const match = getMatchFromElement(errorEl)
+
+            if (!match) {
+              return false
+            }
+
+            const message = match.message || ''
+            const suggestions = getMatchSuggestions()
+
+            createLanguageToolTooltip(
+              message,
+              suggestions,
+              errorEl,
+              function (selectedSuggestion) {
+                replaceErrorText(view, errorEl, selectedSuggestion)
+              }
+            )
+
+            return true
           },
         },
       }),

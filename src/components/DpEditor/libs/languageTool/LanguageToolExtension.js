@@ -144,6 +144,9 @@ export const LanguageToolExtension = Extension.create({
         view.state.schema.text(selectedSuggestion)
       )
 
+      // Mark this decoration for immediate removal
+      tr.setMeta(languageToolPluginKey, { removeDecoration: { from, to } })
+
       view.dispatch(tr)
       view.focus()
     }
@@ -162,6 +165,19 @@ export const LanguageToolExtension = Extension.create({
 
             if (meta?.refresh) {
               return createMatchDecorations(tr.doc)
+            }
+
+            if (meta?.removeDecoration) {
+              const { from, to } = meta.removeDecoration
+              const toRemove = []
+
+              oldDecorationSet.find(from, to).forEach((deco) => {
+                toRemove.push(deco)
+              })
+
+              let decorations = oldDecorationSet.remove(toRemove)
+
+              return decorations.map(tr.mapping, tr.doc)
             }
 
             return oldDecorationSet.map(tr.mapping, tr.doc)
@@ -193,7 +209,7 @@ export const LanguageToolExtension = Extension.create({
             }
 
             const message = match.message || ''
-            const suggestions = getMatchSuggestions()
+            const suggestions = getMatchSuggestions(match)
 
             createLanguageToolTooltip(
               message,

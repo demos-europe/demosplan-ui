@@ -268,7 +268,7 @@ export default {
       ghostClass: 'sortable-ghost',
       chosenClass: 'sortable-chosen',
       onMove: (event) => {
-        const relatedField = event.related.getAttribute('data-col-field')
+        const relatedField = event.related.dataset.colField
         const systemFields = new Set(['select', 'flyout', 'dragHandle', 'wrap'])
 
         // Only allow moving adjacent to other draggable (non-fixed, non-system) columns
@@ -280,7 +280,7 @@ export default {
       onEnd: () => {
         const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
         const newOrder = ths
-          .map(th => th.getAttribute('data-col-field'))
+          .map(th => th.dataset.colField)
           .filter(field => !['select', 'flyout', 'dragHandle', 'wrap'].includes(field))
           .filter(field => !fixedFields.has(field))
         this.$emit('column-reorder', newOrder)

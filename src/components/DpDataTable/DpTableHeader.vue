@@ -49,7 +49,7 @@
         <div class="flex items-center justify-between">
           <slot
             v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
-            :name="`header-${hf.field}`"ok weiter
+            :name="`header-${hf.field}`"
             v-bind="hf"
           >
             <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">

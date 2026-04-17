@@ -29,6 +29,7 @@ const de = {
       all: 'Alle Elemente ausklappen',
       element: 'Element ausklappen',
     },
+    reorderColumn: 'Spalte verschieben',
   },
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",

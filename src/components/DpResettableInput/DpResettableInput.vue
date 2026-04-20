@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { Comment, Fragment, Text } from 'vue'
 import DpIcon from '~/components/DpIcon'
 import DpInput from '~/components/DpInput'
 
@@ -118,7 +119,20 @@ export default {
   computed: {
     buttonClass () {
       let classes = this.buttonVariant === 'small' ? 'o-form__control-search-reset--small' : 'o-form__control-search-reset'
-      classes = this.$slots.default ? `${classes} grouped` : classes
+
+      const slotContent = this.$slots.default && this.$slots.default().filter(node => {
+          if (node.type === Comment) {
+            return false
+          }
+
+          if (node.type === Text && !node.children.trim()) {
+            return false
+          }
+
+          return node.type !== Fragment
+      })
+
+      classes = slotContent && slotContent.length > 0 ? `${classes} grouped` : classes
 
       return classes
     },

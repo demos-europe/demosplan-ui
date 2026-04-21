@@ -3,7 +3,7 @@ import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { Decoration, DecorationSet } from '@tiptap/pm/view'
 
 import { checkTextWithLanguageTool } from './languageTool'
-import { debounce } from './debounce'
+import { debounce } from '~/utils'
 import {
   buildTextSegments,
   plainOffsetToPmPos,

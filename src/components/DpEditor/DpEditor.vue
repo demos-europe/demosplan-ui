@@ -540,6 +540,12 @@ export default {
       type: Boolean,
     },
 
+    enableSpellcheck: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     /**
      * GetFileByHash: (Optional) function that receives a file hash as parameter
      * and returns a route to that file. Used for displaying images.
@@ -788,7 +794,6 @@ export default {
         HardBreak,
         Heading.configure({ levels: this.toolbar.headings }),
         InsertAtCursorPos,
-        LanguageToolExtension,
       ]
 
       if (this.suggestions.length > 0) {
@@ -817,6 +822,10 @@ export default {
             suggestion: buildSuggestion(suggestion),
           }))
         })
+      }
+
+      if (this.enableSpellcheck) {
+        extensions.push(LanguageToolExtension)
       }
 
       if (this.toolbar.headings.length > 0) {

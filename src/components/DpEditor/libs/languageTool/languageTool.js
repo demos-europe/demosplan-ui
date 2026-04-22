@@ -9,8 +9,7 @@ export function checkTextWithLanguageTool (text = '') {
 
   const data = {
     text,
-    language: 'auto',
-    preferredVariants: 'de-DE,en-US',
+    language: 'de-DE',
   }
 
   return dpApi.post(Routing.generate('core_spellcheck_check'), {}, data)

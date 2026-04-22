@@ -5,7 +5,7 @@ import { de } from '~/components/shared/translations'
  * Positions the tooltip arrow element based on the tooltip placement.
  * The arrow always points toward the reference element (the error text).
  */
-function positionTooltipArrow(arrowEl, middlewareData, placement) {
+const positionTooltipArrow = (arrowEl, middlewareData, placement) => {
   const arrowData = middlewareData?.arrow
 
   if (!arrowData) {
@@ -46,7 +46,8 @@ function positionTooltipArrow(arrowEl, middlewareData, placement) {
 
 let activeTooltip = null
 let activeTooltipCleanup = null
-export function createLanguageToolTooltip(message, suggestions, referenceEl, onSuggestionClick) {
+
+export const createLanguageToolTooltip = (message, suggestions, referenceEl, onSuggestionClick) => {
   removeLanguageToolTooltip()
 
   if (!referenceEl) {
@@ -65,7 +66,7 @@ export function createLanguageToolTooltip(message, suggestions, referenceEl, onS
   registerOutsideClickListenerOnNextFrame(signal, tooltipEl, referenceEl)
 }
 
-function buildLanguageToolTooltip (message, suggestions) {
+const buildLanguageToolTooltip = (message, suggestions) => {
   const tooltipEl = document.createElement('div')
   tooltipEl.className = 'z-tooltip max-w-xs absolute'
   tooltipEl.setAttribute('role', 'tooltip')
@@ -98,7 +99,7 @@ function buildLanguageToolTooltip (message, suggestions) {
   return { tooltipEl, arrowEl }
 }
 
-function buildSuggestionsSection (suggestions) {
+const buildSuggestionsSection = (suggestions) => {
   const suggestionsWrapper = document.createElement('div')
   suggestionsWrapper.className = 'mt-2'
 
@@ -124,7 +125,7 @@ function buildSuggestionsSection (suggestions) {
   return suggestionsWrapper
 }
 
-function positionTooltip (referenceEl, tooltipEl, arrowEl) {
+const positionTooltip = (referenceEl, tooltipEl, arrowEl) => {
   computePosition(referenceEl, tooltipEl, {
     placement: 'bottom-start',
     middleware: [
@@ -146,7 +147,7 @@ function positionTooltip (referenceEl, tooltipEl, arrowEl) {
   })
 }
 
-function registerActiveTooltipCleanup (tooltipEl, controller) {
+const registerActiveTooltipCleanup = (tooltipEl, controller) => {
   activeTooltip = tooltipEl
 
   activeTooltipCleanup = () => {
@@ -163,7 +164,7 @@ function registerActiveTooltipCleanup (tooltipEl, controller) {
   }
 }
 
-function registerOutsideClickListenerOnNextFrame(signal, tooltipEl, referenceEl) {
+const registerOutsideClickListenerOnNextFrame = (signal, tooltipEl, referenceEl) => {
   // Delays execution until the next browser repaint
   requestAnimationFrame(() => {
     document.addEventListener('pointerdown', (event) => {
@@ -179,7 +180,7 @@ function registerOutsideClickListenerOnNextFrame(signal, tooltipEl, referenceEl)
   })
 }
 
-function registerTooltipClickHandler (tooltipEl, suggestions, onSuggestionClick, signal) {
+const registerTooltipClickHandler = (tooltipEl, suggestions, onSuggestionClick, signal) => {
   tooltipEl.addEventListener('click', (event) => {
       const button = event.target.closest('.lt-suggestion')
 
@@ -200,7 +201,7 @@ function registerTooltipClickHandler (tooltipEl, suggestions, onSuggestionClick,
   )
 }
 
-export function removeLanguageToolTooltip () {
+const removeLanguageToolTooltip = () => {
   if (activeTooltipCleanup) {
     activeTooltipCleanup()
   }

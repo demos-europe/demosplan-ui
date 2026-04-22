@@ -150,11 +150,11 @@ const LanguageToolExtension = Extension.create({
         key: languageToolPluginKey,
 
         state: {
-          init() {
+          init () {
             return DecorationSet.empty
           },
 
-          apply(tr, oldDecorationSet) {
+          apply (tr, oldDecorationSet) {
             const meta = tr.getMeta(languageToolPluginKey)
 
             if (meta?.refresh) {

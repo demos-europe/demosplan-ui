@@ -1,4 +1,4 @@
-export function buildTextSegments (doc) {
+export const buildTextSegments = (doc) => {
   const textSegments = []
   let plainText = ''
   let isFirstBlock = true
@@ -47,7 +47,7 @@ export function buildTextSegments (doc) {
  * @param {boolean} isEnd - Whether this offset represents the end of a text range.
  * @returns {number|null} ProseMirror position, or null if not found
  */
-export function plainOffsetToPmPos(textSegments, offset, isEnd = false) {
+export const plainOffsetToPmPos = (textSegments, offset, isEnd = false) => {
   for (const textSegment of textSegments) {
     const isInRange = isEnd
       ? offset >= textSegment.plainStart && offset <= textSegment.plainEnd

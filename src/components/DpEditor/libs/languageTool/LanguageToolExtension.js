@@ -40,11 +40,8 @@ const LanguageToolExtension = Extension.create({
     }
 
     this.storage.runCheck = () => {
-      const { plainText, textSegments } = buildTextSegments(editor.state.doc)
+      const { plainText } = buildTextSegments(editor.state.doc)
       const isTextEmpty = !plainText.trim()
-
-      console.log('Plain text for LanguageTool:', plainText)
-      console.log('Text segments:', textSegments)
 
       if (isTextEmpty) {
         resetLanguageToolMatches()

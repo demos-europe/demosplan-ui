@@ -15,7 +15,7 @@ function positionTooltipArrow(arrowEl, middlewareData, placement) {
   const { x, y } = arrowData
   const side = placement.split('-')[0]
 
-  // If tooltip is below → arrow on top, if tooltip is above → arrow on bottom, etc.
+  // If tooltip is below - arrow on top, if tooltip is above - arrow on bottom, etc.
   const oppositeSideMap = {
     top: 'bottom',
     right: 'left',
@@ -163,8 +163,8 @@ function registerActiveTooltipCleanup (tooltipEl, controller) {
   }
 }
 
-/** Delays execution until the next browser repaint */
 function registerOutsideClickListenerOnNextFrame(signal, tooltipEl, referenceEl) {
+  // Delays execution until the next browser repaint
   requestAnimationFrame(() => {
     document.addEventListener('pointerdown', (event) => {
       const target = event.target

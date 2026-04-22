@@ -2,13 +2,10 @@ import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { Decoration, DecorationSet } from '@tiptap/pm/view'
 
+import { buildTextSegments, plainOffsetToPmPos } from './textOffsetMapper'
 import { checkTextWithLanguageTool } from './languageTool'
-import { debounce } from '~/utils'
-import {
-  buildTextSegments,
-  plainOffsetToPmPos,
-} from './textOffsetMapper'
 import { createLanguageToolTooltip } from './languageToolTooltip'
+import { debounce } from '~/utils'
 
 const languageToolPluginKey = new PluginKey('languageTool')
 
@@ -51,6 +48,7 @@ const LanguageToolExtension = Extension.create({
 
       if (isTextEmpty) {
         resetLanguageToolMatches()
+
         return
       }
 
@@ -62,8 +60,7 @@ const LanguageToolExtension = Extension.create({
             return
           }
 
-          const matches = result.matches || []
-          this.storage.matches = matches
+          this.storage.matches = result.matches || []
 
           refreshLanguageToolDecorations()
         })

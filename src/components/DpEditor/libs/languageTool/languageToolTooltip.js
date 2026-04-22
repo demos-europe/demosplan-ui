@@ -78,7 +78,7 @@ function buildLanguageToolTooltip (message, suggestions) {
   contentEl.className = 'px-3 py-2 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm max-w-14'
 
   const messageEl = document.createElement('span')
-  messageEl.className = 'mb-2'
+  messageEl.className = 'block mb-2'
   messageEl.textContent = message
 
   contentEl.appendChild(messageEl)
@@ -86,9 +86,9 @@ function buildLanguageToolTooltip (message, suggestions) {
   if (suggestions.length > 0) {
     contentEl.appendChild(buildSuggestionsSection(suggestions))
   } else {
-    const emptyEl = document.createElement('div')
-    emptyEl.className = 'text-xs opacity-75'
-    emptyEl.textContent = 'Keine Vorschläge'
+    const emptyEl = document.createElement('span')
+    emptyEl.className = 'block text-xs opacity-75 mt-1'
+    emptyEl.textContent = de.editor.languageTool.noSuggestions
     contentEl.appendChild(emptyEl)
   }
 
@@ -102,8 +102,8 @@ function buildSuggestionsSection (suggestions) {
   const suggestionsWrapper = document.createElement('div')
   suggestionsWrapper.className = 'mt-2'
 
-  const labelEl = document.createElement('div')
-  labelEl.className = 'text-xs opacity-75 mb-1'
+  const labelEl = document.createElement('span')
+  labelEl.className = 'block text-xs opacity-75 mb-1'
   labelEl.textContent = `${de.editor.languageTool.suggestions}:`
 
   const listEl = document.createElement('div')

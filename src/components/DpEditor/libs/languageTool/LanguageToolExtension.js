@@ -12,10 +12,16 @@ import { createLanguageToolTooltip } from './languageToolTooltip'
 
 const languageToolPluginKey = new PluginKey('languageTool')
 
-export const LanguageToolExtension = Extension.create({
+const getMatchSuggestions = (match) => {
+  return (match.replacements || [])
+    .slice(0, 5)
+    .map(replacement => replacement.value)
+}
+
+const LanguageToolExtension = Extension.create({
   name: 'languageTool',
 
-  addStorage() {
+  addStorage () {
     return {
       matches: [],
       runCheck: null,
@@ -24,20 +30,19 @@ export const LanguageToolExtension = Extension.create({
     }
   },
 
-  onCreate() {
+  onCreate () {
     const editor = this.editor
-    const extension = this
 
-    const refreshLanguageToolDecorations = function () {
+    const refreshLanguageToolDecorations = () => {
       editor.view.dispatch(editor.state.tr.setMeta(languageToolPluginKey, { refresh: true }))
     }
 
-    const resetLanguageToolMatches = function () {
-      extension.storage.matches = []
+    const resetLanguageToolMatches = () => {
+      this.storage.matches = []
       refreshLanguageToolDecorations()
     }
 
-    extension.storage.runCheck = function () {
+    this.storage.runCheck = () => {
       const { plainText, textSegments } = buildTextSegments(editor.state.doc)
       const isTextEmpty = !plainText.trim()
 
@@ -49,21 +54,21 @@ export const LanguageToolExtension = Extension.create({
         return
       }
 
-      const currentRequestId = ++extension.storage.requestId
+      const currentRequestId = ++this.storage.requestId
 
       checkTextWithLanguageTool(plainText)
         .then(result => {
-          if (currentRequestId !== extension.storage.requestId) {
+          if (currentRequestId !== this.storage.requestId) {
             return
           }
 
           const matches = result.matches || []
-          extension.storage.matches = matches
+          this.storage.matches = matches
 
           refreshLanguageToolDecorations()
         })
         .catch(error => {
-          if (currentRequestId !== extension.storage.requestId) {
+          if (currentRequestId !== this.storage.requestId) {
             return
           }
 
@@ -71,27 +76,25 @@ export const LanguageToolExtension = Extension.create({
         })
     }
 
-    extension.storage.scheduleCheck = debounce(function () {
-      extension.storage.runCheck()
+    this.storage.scheduleCheck = debounce(() => {
+      this.storage.runCheck()
     }, 1000)
 
     /** Wait until the next paint so the editor is fully rendered before the initial check */
     requestAnimationFrame(() => {
-      extension.storage.runCheck()
+      this.storage.runCheck()
     })
   },
 
-  onUpdate() {
+  onUpdate () {
     if (this.storage.scheduleCheck) {
       this.storage.scheduleCheck()
     }
   },
 
   addProseMirrorPlugins () {
-    const extension = this
-
-    const createMatchDecorations = function (doc) {
-      const matches = extension.storage.matches || []
+    const createMatchDecorations = (doc) => {
+      const matches = this.storage.matches || []
       const { textSegments } = buildTextSegments(doc)
       const decorations = []
 
@@ -116,19 +119,13 @@ export const LanguageToolExtension = Extension.create({
       return DecorationSet.create(doc, decorations)
     }
 
-    const getMatchFromElement = function (errorEl) {
+    const getMatchFromElement = (errorEl) => {
       const matchIndex = Number(errorEl.dataset.ltMatchIndex)
 
-      return extension.storage.matches[matchIndex] || null
+      return this.storage.matches[matchIndex] || null
     }
 
-    const getMatchSuggestions = function (match) {
-      return (match.replacements || [])
-        .slice(0, 5)
-        .map(replacement => replacement.value)
-    }
-
-    const replaceErrorText = function (view, errorEl, selectedSuggestion) {
+    const replaceErrorText = (view, errorEl, selectedSuggestion) => {
       // Use the current DOM position to avoid stale offsets if multiple replacements
       const from = view.posAtDOM(errorEl, 0)
       const textLength = errorEl.textContent?.length || 0
@@ -227,3 +224,5 @@ export const LanguageToolExtension = Extension.create({
     ]
   },
 })
+
+export default LanguageToolExtension

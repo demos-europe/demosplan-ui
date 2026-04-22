@@ -1,4 +1,5 @@
 import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import { de } from '~/components/shared/translations'
 
 /**
  * Positions the tooltip arrow element based on the tooltip placement.
@@ -26,8 +27,8 @@ function positionTooltipArrow(arrowEl, middlewareData, placement) {
   const staticOffset = oppositeSide === 'top' || oppositeSide === 'bottom' ? '0px' : '-6px'
 
   Object.assign(arrowEl.style, {
-    left: x != null ? `${x}px` : '',
-    top: y != null ? `${y}px` : '',
+    left: x == null ? '' : `${x}px`,
+    top: y == null ? '' : `${y}px`,
     bottom: '',
     right: '',
     [oppositeSide]: staticOffset,
@@ -71,14 +72,13 @@ function buildLanguageToolTooltip (message, suggestions) {
 
   const arrowEl = document.createElement('div')
   arrowEl.className = 'absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1'
-  arrowEl.setAttribute('data-tooltip-arrow', '')
+  arrowEl.dataset.tooltipArrow = ''
 
   const contentEl = document.createElement('div')
-  contentEl.className =
-    'px-3 py-2 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm'
+  contentEl.className = 'px-3 py-2 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm max-w-14'
 
-  const messageEl = document.createElement('div')
-  messageEl.className = 'font-medium mb-2'
+  const messageEl = document.createElement('span')
+  messageEl.className = 'mb-2'
   messageEl.textContent = message
 
   contentEl.appendChild(messageEl)
@@ -104,7 +104,7 @@ function buildSuggestionsSection (suggestions) {
 
   const labelEl = document.createElement('div')
   labelEl.className = 'text-xs opacity-75 mb-1'
-  labelEl.textContent = 'Vorschläge:'
+  labelEl.textContent = `${de.editor.languageTool.suggestions}:`
 
   const listEl = document.createElement('div')
   listEl.className = 'flex flex-wrap gap-1'
@@ -112,7 +112,7 @@ function buildSuggestionsSection (suggestions) {
   suggestions.forEach((suggestion, index) => {
     const button = document.createElement('button')
     button.type = 'button'
-    button.className = 'lt-suggestion px-1 py-1 text-xs text-black bg-surface-medium rounded-full hover:bg-surface-light cursor-pointer transition-colors'
+    button.className = 'lt-suggestion px-1 py-0.5 text-xs text-black bg-surface-medium rounded-full hover:bg-surface-light cursor-pointer transition-colors'
     button.dataset.suggestionIndex = String(index)
     button.textContent = suggestion
     listEl.appendChild(button)

@@ -49,6 +49,9 @@ const de = {
       return `Überschrift ${level}`
     },
     italic: 'Kursiv',
+    languageTool: {
+      suggestions: 'Vorschläge'
+    },
     link: {
       edit: 'Link bearbeiten',
       editOrInsert: 'Link einfügen/bearbeiten',

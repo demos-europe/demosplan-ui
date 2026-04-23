@@ -1,6 +1,11 @@
 @import "../tokens/dist/css/theme.css";
 
 @theme {
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
   --flex-shrink-2: 2;
   --animate-busy: busy 1.5s linear infinite;
 

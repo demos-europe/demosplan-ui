@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.4.19-hotfix.1 - 2026-04-23
+
+### Fixed
+- ([#1472](https://github.com/demos-europe/demosplan-ui/pull/1472)) DpSearchField, DpResettableInput: Fix spacing and border between reset and search button ([@hwiem](https://github.com/hwiem))
+
 ## v0.4.19 - 2025-06-30
 
 ### Fixed

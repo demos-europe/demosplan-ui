@@ -119,7 +119,7 @@ const LanguageToolExtension = Extension.create({
       return this.storage.matches[matchIndex] || null
     }
 
-    const replaceErrorText = (view, errorEl, selectedSuggestion) => {
+    const applySelectedSuggestion = (view, errorEl, selectedSuggestion) => {
       // Use the current DOM position to avoid stale offsets if multiple replacements
       const from = view.posAtDOM(errorEl, 0)
       const textLength = errorEl.textContent?.length || 0
@@ -207,7 +207,7 @@ const LanguageToolExtension = Extension.create({
               suggestions,
               errorEl,
               function (selectedSuggestion) {
-                replaceErrorText(view, errorEl, selectedSuggestion)
+                applySelectedSuggestion(view, errorEl, selectedSuggestion)
               }
             )
 

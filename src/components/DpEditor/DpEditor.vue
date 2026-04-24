@@ -539,13 +539,6 @@ export default {
       default: false,
       type: Boolean,
     },
-
-    enableSpellcheck: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
     /**
      * GetFileByHash: (Optional) function that receives a file hash as parameter
      * and returns a route to that file. Used for displaying images.
@@ -736,6 +729,10 @@ export default {
       return (this.currentValue.replace('<p></p>', '') === '') ? '' : this.currentValue
     },
 
+    isSpellcheckEnabled () {
+      return dplan.settings?.spellcheck?.enabled ?? false
+    },
+
     obscureEnabled () {
       return this.toolbar.obscure
     },
@@ -824,7 +821,7 @@ export default {
         })
       }
 
-      if (this.enableSpellcheck) {
+      if (this.isSpellcheckEnabled) {
         extensions.push(LanguageToolExtension)
       }
 

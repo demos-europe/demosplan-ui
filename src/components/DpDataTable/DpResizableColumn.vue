@@ -2,15 +2,20 @@
   <th
     ref="resizableColumn"
     v-tooltip="headerField.tooltip || headerField.label"
-    class="c-data-table__resizable break-words"
-    :class="{ 'u-pr-0' : isLast }"
+    class="c-data-table__resizable break-words !overflow-visible"
+    :class="{ 'u-pr-0': isLast, 'is-resizing bg-interactive-subtle-hover !border-r-interactive border-r-2 ': isResizing }"
     :data-col-field="headerField.field"
     :data-col-idx="idx"
+    @blur="setColumnHover(false)"
+    @focus="setColumnHover(true)"
+    @mouseenter="setColumnHover(true)"
+    @mouseleave="setColumnHover(false)"
   >
     <slot />
     <dp-resize-handle
       v-if="!isLast"
       :display-icon="isResizableColumn"
+      class="!-right-[21px] !top-0 z-above-zero"
       @mousedown="e => initResize(e, idx)"
     />
   </th>
@@ -56,14 +61,15 @@ export default {
 
   data () {
     return {
-      namedFunc: '',
       currentHandle: '',
-      nextEl: '',
       cursorStart: 0,
       dragStart: false,
+      isResizing: false,
+      namedFunc: '',
+      nextEl: '',
+      nextWidth: '',
       resize: '',
       resizeWidth: '',
-      nextWidth: '',
     }
   },
 
@@ -84,11 +90,19 @@ export default {
       const resizeBound = this.resize.getBoundingClientRect()
       this.resizeWidth = resizeBound.width
       this.namedFunc = (e) => this.resizeEl(e, idx)
+      this.isResizing = true
+      this.markResizingColumn(idx)
       const bodyEl = document.getElementsByTagName('body')[0]
 
       bodyEl.classList.add('resizing')
       bodyEl.addEventListener('mousemove', this.namedFunc)
       bodyEl.addEventListener('mouseup', this.stopResize)
+    },
+
+    markResizingColumn (idx) {
+      document.querySelectorAll(`td[data-col-idx='${idx}']`)
+        .forEach(td => td.classList.add('is-resizing', 'bg-interactive-subtle-hover',
+          'border-r-2', 'border-r-interactive'))
     },
 
     resizeEl (e) {
@@ -97,7 +111,7 @@ export default {
         const mouseMoved = cursorPos - this.cursorStart
         const newWidth = this.resizeWidth + mouseMoved
 
-        if (newWidth <= 25) {
+        if (newWidth <= (this.headerField.initialMinWidth ?? 25)) {
           return
         }
 
@@ -106,12 +120,29 @@ export default {
       }
     },
 
+    setColumnHover (active) {
+      const table = this.$el.closest('table')
+      if (!table) {
+        return
+      }
+      table.querySelectorAll(`td[data-col-idx='${this.idx}']`)
+        .forEach(td => td.classList.toggle('is-col-hovered', active))
+    },
+
     stopResize () {
       this.currentHandle.classList.remove('is-active')
       this.dragStart = false
+      this.isResizing = false
+      this.unmarkResizingColumn()
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
       document.querySelector('body').removeEventListener('mouseup', this.stopResize)
       document.querySelector('body').classList.remove('resizing')
+    },
+
+    unmarkResizingColumn () {
+      document.querySelectorAll('td.is-resizing')
+        .forEach(td => td.classList.remove('is-resizing', 'bg-interactive-subtle-hover',
+          'border-r-2', 'border-r-interactive'))
     },
   },
 }

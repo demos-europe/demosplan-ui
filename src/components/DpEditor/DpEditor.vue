@@ -391,6 +391,7 @@ import {
   CustomLink,
   CustomMark,
   InsertAtCursorPos,
+  LanguageToolExtension,
   Obscure,
 } from './libs/customExtensions'
 
@@ -538,7 +539,6 @@ export default {
       default: false,
       type: Boolean,
     },
-
     /**
      * GetFileByHash: (Optional) function that receives a file hash as parameter
      * and returns a route to that file. Used for displaying images.
@@ -729,6 +729,10 @@ export default {
       return (this.currentValue.replace('<p></p>', '') === '') ? '' : this.currentValue
     },
 
+    isSpellcheckEnabled () {
+      return dplan.settings?.spellcheck?.enabled ?? false
+    },
+
     obscureEnabled () {
       return this.toolbar.obscure
     },
@@ -815,6 +819,10 @@ export default {
             suggestion: buildSuggestion(suggestion),
           }))
         })
+      }
+
+      if (this.isSpellcheckEnabled) {
+        extensions.push(LanguageToolExtension)
       }
 
       if (this.toolbar.headings.length > 0) {
@@ -1174,6 +1182,7 @@ export default {
         attributes: {
           role: 'textbox',
           'aria-label': this.ariaLabel || de.text.editor,
+          spellcheck: 'false',
         },
 
         handleDrop: (_view, _event, _slice, moved) => {

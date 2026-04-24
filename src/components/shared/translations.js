@@ -50,6 +50,10 @@ const de = {
       return `Überschrift ${level}`
     },
     italic: 'Kursiv',
+    languageTool: {
+      noSuggestions: 'Keine Vorschläge verfügbar.',
+      suggestions: 'Vorschläge'
+    },
     link: {
       edit: 'Link bearbeiten',
       editOrInsert: 'Link einfügen/bearbeiten',

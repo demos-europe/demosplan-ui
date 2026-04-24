@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1462](https://github.com/demos-europe/demosplan-ui/pull/1462)) DpButtonRow: add the ability to customize button styling; DpConfirmDialog: add a header slot ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1470](https://github.com/demos-europe/demosplan-ui/pull/1470)) Add missing Tailwind 4 font-weight theme variables ([@meissnerdemos](https://github.com/meissnerdemos))
 

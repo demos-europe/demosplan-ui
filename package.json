@@ -76,7 +76,7 @@
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^10.0.0",
     "@jest/globals": "^29.5.0",
-    "@jest/transform": "^29.5.0",
+    "@jest/transform": "^30.3.0",
     "@storybook/addon-docs": "10.2.13",
     "@storybook/addon-links": "10.2.13",
     "@storybook/vue3-vite": "10.2.13",

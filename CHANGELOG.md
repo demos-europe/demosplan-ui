@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1470](https://github.com/demos-europe/demosplan-ui/pull/1470)) Add missing Tailwind 4 font-weight theme variables ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.17.0 - 2026-4-17
+
 ### Added
 - ([#1469](https://github.com/demos-europe/demosplan-ui/pull/1469)) DpDataTable: Drag and Drop for columns ([@riechedemos](https://github.com/riechedemos))
 

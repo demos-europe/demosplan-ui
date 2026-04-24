@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.18.0 - 2026-4-24
+
 ### Added
 - ([#1462](https://github.com/demos-europe/demosplan-ui/pull/1462)) DpButtonRow: add the ability to customize button styling; DpConfirmDialog: add a header slot ([@sakutademos](https://github.com/sakutademos))
 

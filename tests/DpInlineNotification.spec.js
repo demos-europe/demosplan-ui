@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { shallowMount } from '@vue/test-utils'
-import lscache from 'lscache'
 import DpInlineNotification from '~/components/DpInlineNotification/DpInlineNotification'
+import lscache from 'lscache'
+import { shallowMount } from '@vue/test-utils'
 
 
 describe('', () => {
@@ -11,7 +11,7 @@ describe('', () => {
     return shallowMount(DpInlineNotification, {
       props: {
         message: 'Test Notification',
-        ...props
+        ...props,
       },
     })
   }
@@ -43,7 +43,7 @@ describe('', () => {
       { type: 'confirm', class: 'flash-confirm', icon: 'check-circle' },
       { type: 'error', class: 'flash-error', icon: 'warning-circle' },
       { type: 'info', class: 'flash-info', icon: 'info' },
-      { type: 'warning', class: 'flash-warning', icon: 'warning' }
+      { type: 'warning', class: 'flash-warning', icon: 'warning' },
     ]
 
     types.forEach(({ type, class: cssClass, icon }) => {

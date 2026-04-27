@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1477](https://github.com/demos-europe/demosplan-ui/pull/1477)) Unit tests: Replace jest with vitest ([@hwiem](https://github.com/hwiem))
+
 ## v0.18.0 - 2026-4-24
 
 ### Added

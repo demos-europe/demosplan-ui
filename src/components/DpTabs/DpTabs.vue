@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, useSlots } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useSlots, watch } from 'vue'
 import { CleanHtml as vCleanhtml } from '~/directives'
 
 const props = defineProps( {
@@ -119,6 +119,12 @@ const setInitialTab = () => {
     handleTabChange(tabs.value[0].props.id)
   }
 }
+
+watch(() => props.activeId, (newId) => {
+  if (newId && isTabId(newId)) {
+    setActiveTab(newId)
+  }
+})
 
 onMounted (() => {
   setInitialTab()

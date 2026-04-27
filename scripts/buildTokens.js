@@ -76,6 +76,19 @@ StyleDictionary.registerFormat({
   formatter: transformScssTokens
 })
 
+/**
+ * ESM format for use in Vite/browser context (Storybook).
+ * Outputs `export default {...}` instead of `module.exports = {...}`.
+ */
+StyleDictionary.registerFormat({
+  name: 'javascript/esm',
+  formatter: ({ dictionary, file }) =>
+    StyleDictionary.formatHelpers.fileHeader({ file }) +
+    'export default ' +
+    JSON.stringify(dictionary.tokens, null, 2) +
+    ';\n'
+})
+
 const StyleDictionaryExtended = StyleDictionary.extend({
   source: [tokensPath],
   platforms: {
@@ -85,7 +98,7 @@ const StyleDictionaryExtended = StyleDictionary.extend({
       files: files.map((filePath) => {
         return {
           destination: `${filePath}.js`,
-          format: 'javascript/module',
+          format: 'javascript/esm',
           filter: (token) => {
             return token.filePath.includes(filePath) && token.$status !== 'Deprecated'
           },

@@ -6,6 +6,7 @@
   >
     <td
       v-if="isDraggable"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -16,6 +17,7 @@
 
     <td
       v-if="isSelectable"
+      :class="{ 'p-[16px]': density === 'spacious' }"
       class="c-data-table__cell--narrow"
     >
       <dp-icon
@@ -40,7 +42,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-idx="`${idx}`"
     >
       <div
@@ -68,7 +70,7 @@
 
     <td
       v-if="hasFlyout"
-      class="overflow-visible min-w-[50px]"
+      class="c-data-table__col--flyout overflow-visible min-w-[50px]"
     >
       <slot
         name="flyout"
@@ -78,7 +80,7 @@
 
     <td
       v-if="isExpandable"
-      class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
+      class="c-data-table__col--expand c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
       @click="toggleExpand(item[trackBy])"
@@ -135,10 +137,23 @@ export default {
       default: '',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
     /**
      * Is the expandable content currently expanded?
      */
     expanded: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    hasBorders: {
       type: Boolean,
       required: false,
       default: false,

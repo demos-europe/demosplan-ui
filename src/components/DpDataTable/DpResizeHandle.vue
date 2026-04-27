@@ -4,21 +4,24 @@
     @mousedown.stop.prevent="(e) => $emit('mousedown', e)"
   >
     <template v-if="displayIcon">
-      <i
-        class="fa fa-angle-left resize-handle__icon"
-        aria-hidden="true"
-      />
-      <i
-        class="fa fa-angle-right resize-handle__icon"
-        aria-hidden="true"
+      <dp-icon
+        class="text-interactive"
+        icon="arrows-out-line-horizontal"
+        weight="bold"
       />
     </template>
   </div>
 </template>
 
 <script>
+import DpIcon from '~/components/DpIcon'
+
 export default {
   name: 'ResizeHandle',
+
+  components: {
+    DpIcon,
+  },
 
   props: {
     displayIcon: {

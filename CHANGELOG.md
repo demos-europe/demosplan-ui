@@ -4,12 +4,74 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
-### Fixed
+## v0.18.0 - 2026-4-24
 
+### Added
+- ([#1462](https://github.com/demos-europe/demosplan-ui/pull/1462)) DpButtonRow: add the ability to customize button styling; DpConfirmDialog: add a header slot ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+- ([#1470](https://github.com/demos-europe/demosplan-ui/pull/1470)) Add missing Tailwind 4 font-weight theme variables ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.17.0 - 2026-4-17
+
+### Added
+- ([#1469](https://github.com/demos-europe/demosplan-ui/pull/1469)) DpDataTable: Drag and Drop for columns ([@riechedemos](https://github.com/riechedemos))
+
+## v0.16.0 - 2026-4-9
+
+### Changed
+- ([#1468](https://github.com/demos-europe/demosplan-ui/pull/1468)) DpDataTable: Add `is-col-hovered` class to table cells when hovering the corresponding column header ([@riechedemos](https://github.com/riechedemos))
+- Dependency updates:
+  - @stylistic/eslint-plugin from 4.2.0 to 5.0.0
+  - @typescript-eslint/eslint-plugin from 8.29.0 to 8.58.0
+  - @typescript-eslint/parser from 8.29.0 to 8.58.0
+  - @vue/eslint-config-typescript from 14.5.0 to 14.7.0
+  - eslint from 9.23.0 to 10.2.0
+  - eslint-plugin-vue from 10.0.0 to 10.8.0
+  - glob from 11.0.1 to 13.0.6
+
+
+## v0.15.0 - 2026-3-31
+
+### Added
+- ([#1458](https://github.com/demos-europe/demosplan-ui/pull/1458)) DpDataTable: Add opt-in column borders, compact/spacious styling for table cells, resize state highlighting,
+  and sticky header support; add scrollbar-interactive utility, subtle DpFlyout appearance, DpColumnSelector select-all option,
+  and upload/arrows-in/arrows-out icons ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1459](https://github.com/demos-europe/demosplan-ui/pull/1459)) DpDetails: Emit click event on summary interaction to allow parent components to react to open/close without wrapping in non-interactive elements ([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Fixed
+- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpFlyout, DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1457](https://github.com/demos-europe/demosplan-ui/pull/1457)) DpResettableInput: Prevent overwriting of attributes that were set in inputAttributes ([@huellnerdemos](https://github.com/huellnerdemos))
+
+## v0.14.0 - 2026-3-16
+
+### Fixed
+- ([#1454](https://github.com/demos-europe/demosplan-ui/pull/1454)) DpUpload: Send credentials with TUS upload requests to fix Firefox 401 errors ([@mussbach](https://github.com/mussbach))
+
+## v0.13.0 - 2026-3-6
+
+### Added
+- ([#1452](https://github.com/demos-europe/demosplan-ui/pull/1452)) Export the DpUploadedFile and DpUploadedFileList components ([@sakutademos](https://github.com/sakutademos))
+- ([#1451](https://github.com/demos-europe/demosplan-ui/pull/1451)) Icons: Add PhArrowsLeftRight ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1450](https://github.com/demos-europe/demosplan-ui/pull/1450)) DpNotification: Wrap long unbroken text to prevent overflow ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.12.0 - 2026-3-2
+
+### Added
+- ([#1441](https://github.com/demos-europe/demosplan-ui/pull/1441)) DpConfirmDialog: Add props to customize confirm and decline button text ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Fixed
 - ([#1438](https://github.com/demos-europe/demosplan-ui/pull/1438)) Security: Bump qs to ^6.14.2 to fix DoS vulnerability ([@hwiem](https://github.com/hwiem))
 - ([#1439](https://github.com/demos-europe/demosplan-ui/pull/1439)) Security: Add qs to resolutions to fix transitive DoS vulnerability ([@hwiem](https://github.com/hwiem))
 
 ### Changed
+- ([#1443](https://github.com/demos-europe/demosplan-ui/pull/1443)) Storybook: Migrate to v10 ([@hwiem](https://github.com/hwiem))
+- ([#1444](https://github.com/demos-europe/demosplan-ui/pull/1444)) Replace font-awesome icons with the Phosphor icons in the notification components ([@sakutademos](https://github.com/sakutademos))
+- ([#1447](https://github.com/demos-europe/demosplan-ui/pull/1447)) DpDataTable: Add classes to make columns sticky ([@hwiem](https://github.com/hwiem))
 - ([#1442](https://github.com/demos-europe/demosplan-ui/pull/1442)) Build: Remove unused dependencies ([@hwiem](https://github.com/hwiem))
 
 ## v0.11.0 - 2026-2-18

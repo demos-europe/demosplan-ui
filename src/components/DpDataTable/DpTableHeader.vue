@@ -6,9 +6,10 @@
   >
     <th
       v-if="isDraggable"
+      :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'dragHandle' : null"
-      scope="col"
       class="c-data-table__cell--narrow"
+      scope="col"
     >
       <dp-icon
         class="c-data-table__drag-handle"
@@ -17,6 +18,7 @@
     </th>
     <th
       v-if="isSelectable"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'select' : null"
       scope="col"
       class="c-data-table__cell--narrow"
@@ -33,42 +35,55 @@
     </th>
     <template
       v-for="(hf, idx) in headerFields"
-      :key="`header-${idx}`"
+      :key="`header-${hf.field}`"
     >
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
-        :is-last="headerFields.length === idx ? true : null"
+        :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }, { 'c-data-table__col--fixed': isColumnsDraggable && hf.fixed }]"
+        :data-col-field="hf.field"
         :header-field="hf"
-        :next-header="headerFields[idx + 1]"
         :idx="idx"
+        :is-last="headerFields.length - 1 === idx ? true : null"
+        :next-header="headerFields[idx + 1]"
       >
-        <slot
-          v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
-          :name="`header-${hf.field}`"
-          v-bind="hf"
-        >
-          <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
-            <span
-              v-if="hf.label"
-              v-text="hf.label"
-            />
-          </div>
-        </slot>
-        <span
-          v-else-if="hf.label"
-          v-text="hf.label"
-        />
+        <div class="flex items-center justify-between">
+          <slot
+            v-if="$slots[`header-${hf.field}`] && $slots[`header-${hf.field}`](hf)[0].children?.length > 0"
+            :name="`header-${hf.field}`"
+            v-bind="hf"
+          >
+            <div :class="{ 'c-data-table__resizable--truncated': isTruncatable }">
+              <span
+                v-if="hf.label"
+                v-text="hf.label"
+              />
+            </div>
+          </slot>
+          <span
+            v-else-if="hf.label"
+            v-text="hf.label"
+          />
+          <span
+            v-if="isColumnsDraggable && !hf.fixed"
+            :aria-label="translations.headerReorderColumnHint"
+            class="c-data-table__col-drag-handle cursor-grab"
+          >
+            <dp-icon icon="dots-six-vertical" />
+          </span>
+        </div>
       </component>
     </template>
     <th
       v-if="hasFlyout"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'flyout' : null"
+      class="c-data-table__col--flyout"
       scope="col"
     />
     <th
       v-if="isExpandable"
       scope="col"
-      class="c-data-table__cell--narrow"
+      class="c-data-table__col--expand c-data-table__cell--narrow"
       @click="toggleExpandAll()"
     >
       <dp-wrap-trigger
@@ -96,6 +111,7 @@
 import DpIcon from '~/components/DpIcon'
 import DpResizableColumn from './DpResizableColumn'
 import DpWrapTrigger from './DpWrapTrigger'
+import Sortable from 'sortablejs'
 
 export default {
   name: 'DpTableHeader',
@@ -124,6 +140,19 @@ export default {
       default: '',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
+    hasBorders: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     hasFlyout: {
       type: Boolean,
       required: true,
@@ -135,6 +164,12 @@ export default {
     },
 
     indeterminate: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    isColumnsDraggable: {
       type: Boolean,
       required: false,
       default: false,
@@ -182,6 +217,7 @@ export default {
   },
 
   emits: [
+    'column-reorder',
     'toggle-expand-all',
     'toggle-select-all',
     'toggle-wrap-all',
@@ -213,8 +249,44 @@ export default {
     },
   },
 
-  beforeUpdate() {
+  beforeUpdate () {
     this.setIndeterminate()
   },
+
+  mounted () {
+    if (!this.isColumnsDraggable) {
+      return
+    }
+
+    const fixedFields = new Set(this.headerFields.filter(hf => hf.fixed).map(hf => hf.field))
+
+    Sortable.create(this.$refs.tableHeader, {
+      animation: 150,
+      filter: '.c-data-table__cell--narrow, .c-data-table__col--flyout',
+      handle: '.c-data-table__col-drag-handle',
+      draggable: 'th',
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      onMove: (event) => {
+        const relatedField = event.related.dataset.colField
+        const systemFields = new Set(['select', 'flyout', 'dragHandle', 'wrap'])
+
+        // Only allow moving adjacent to other draggable (non-fixed, non-system) columns
+        if (!relatedField || systemFields.has(relatedField) || fixedFields.has(relatedField)) {
+          return false
+        }
+      },
+
+      onEnd: () => {
+        const ths = Array.from(this.$refs.tableHeader.querySelectorAll('th[data-col-field]'))
+        const newOrder = ths
+          .map(th => th.dataset.colField)
+          .filter(field => !['select', 'flyout', 'dragHandle', 'wrap'].includes(field))
+          .filter(field => !fixedFields.has(field))
+        this.$emit('column-reorder', newOrder)
+      },
+    })
+  },
+
 }
 </script>

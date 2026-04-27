@@ -3,8 +3,12 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+
 ### Added
 - ([#1474](https://github.com/demos-europe/demosplan-ui/pull/1474)) DpTabs: add ability that makes it possible to change active tab by prop and not only by click([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Fixed
+- ([#1480](https://github.com/demos-europe/demosplan-ui/pull/1480)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
 
 ## v0.18.0 - 2026-4-24
 

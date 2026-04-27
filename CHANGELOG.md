@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1478](https://github.com/demos-europe/demosplan-ui/pull/1478)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
+
 ## v0.15.0 - 2026-3-31
 
 ### Added

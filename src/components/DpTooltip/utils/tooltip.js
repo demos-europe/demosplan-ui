@@ -24,15 +24,22 @@ const destroyTooltip = (wrapperEl) => {
 }
 
 const getZIndex = (element) => {
-  const z = window.getComputedStyle(element).getPropertyValue('z-index')
-  if (isNaN(z)) {
+  if (!element) {
+    return 1
+  }
+
+  const z = globalThis.getComputedStyle(element).getPropertyValue('z-index')
+
+  if (Number.isNaN(z)) {
     return (element.nodeName === 'HTML') ? 1 : getZIndex(element.parentNode)
   }
   return z
 }
 
 const initTooltip = (el, value, options) => {
-  if (!value) return
+  if (!value) {
+    return
+  }
 
   const id = `tooltip-${uuid()}`
   const zIndex = getZIndex(el)
@@ -40,6 +47,7 @@ const initTooltip = (el, value, options) => {
 
   // Check if element is inside a dialog and use it as container
   const dialogParent = el.closest('dialog')
+
   if (dialogParent && !options.container) {
     options.container = dialogParent
   }

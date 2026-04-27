@@ -9,7 +9,7 @@
       :data-cy="`${dataCy}:saveButton`"
       :disabled="isDisabledPrimary"
       :text="primaryText"
-      :variant="variant"
+      :variant="primaryBtnVariant"
       @click.prevent="$emit('primary-action')"
     />
     <dp-button
@@ -19,16 +19,19 @@
       :disabled="isDisabledSecondary"
       :href="href"
       :text="secondaryText"
-      :variant="variant"
+      :variant="secondaryBtnVariant"
       @click.prevent="$emit('secondary-action')"
     />
     <slot />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { de } from '~/components/shared/translations'
 import DpButton from '~/components/DpButton'
+import { PropType } from 'vue'
+
+type ButtonVariant = 'solid' | 'outline' | 'subtle'
 
 export default {
   name: 'DpButtonRow',
@@ -97,6 +100,17 @@ export default {
     },
 
     /**
+     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
+     */
+    primaryBtnVariant: {
+      required: false,
+      type: String as PropType<ButtonVariant>,
+      default: 'solid',
+      validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
+    },
+
+    /**
      * Custom text for the primary button.
      */
     primaryText: {
@@ -114,6 +128,13 @@ export default {
       default: false,
     },
 
+    secondaryBtnVariant: {
+      required: false,
+      type: String as PropType<ButtonVariant>,
+      default: 'solid',
+      validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
+    },
+
     /**
      * Custom text for the secondary button.
      */
@@ -121,17 +142,6 @@ export default {
       type: String,
       required: false,
       default: de.operations.abort,
-    },
-
-    /**
-     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
-     * When not specified, the `solid` variant (white on colored background) is applied.
-     */
-    variant: {
-      required: false,
-      type: String,
-      default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop),
     },
   },
 

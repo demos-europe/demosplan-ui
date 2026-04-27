@@ -5,7 +5,6 @@
     class="dp-flyout"
     :class="[{
       'is-expanded': isExpanded,
-      'bg-surface-medium rounded-md': variant === 'dark'
     }, position]"
     data-cy="flyoutTrigger"
   >
@@ -14,10 +13,11 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="dp-flyout-trigger rounded-button leading-[2] whitespace-nowrap cursor-pointer"
+      class="dp-flyout-trigger rounded-button text-button leading-[2] whitespace-nowrap cursor-pointer"
       :class="[
         buttonClasses,
         { 'bg-interactive-subtle-hover': isExpanded && appearance === 'interactive' },
+        { 'bg-surface-light': isExpanded && appearance === 'subtle' },
         appearanceClasses
       ]"
       :data-cy="dataCy !== '' ? dataCy : null"
@@ -70,7 +70,7 @@ export default {
       required: false,
       type: String,
       default: 'interactive',
-      validator: (prop) => ['interactive', 'basic'].includes(prop),
+      validator: (prop) => ['interactive', 'basic', 'subtle'].includes(prop),
     },
 
     ariaLabel: {
@@ -134,10 +134,12 @@ export default {
   },
 
   computed: {
-    appearanceClasses() {
+    appearanceClasses () {
       return {
         'text-black border border-input px-2': this.appearance === 'basic',
         'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive',
+        'text-muted hover:bg-surface-light active:bg-surface-light': this.appearance === 'subtle',
+        'bg-surface-medium rounded-md': this.variant === 'dark',
       }
     },
   },

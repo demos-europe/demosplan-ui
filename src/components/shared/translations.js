@@ -29,6 +29,7 @@ const de = {
       all: 'Alle Elemente ausklappen',
       element: 'Element ausklappen',
     },
+    reorderColumn: 'Spalte verschieben',
   },
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
@@ -147,6 +148,9 @@ const de = {
     select: {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.',
+    },
+    toggle: {
+      all: 'Alle an/abwählen',
     },
     update: 'Aktualisierung',
   },

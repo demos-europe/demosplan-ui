@@ -1,15 +1,15 @@
 <template>
   <div :class="['relative', $attrs.class]">
     <dp-input
-      v-bind="inputAttributes"
       :id="id"
       v-model="currentValue"
       :data-cy="dataCy"
-      has-icon
       :number-of-icons="totalIcons"
+      :pattern="pattern"
       :required="required"
       :rounded="rounded"
-      :pattern="pattern"
+      has-icon
+      v-bind="inputAttributes"
       @blur="$emit('blur', currentValue)"
       @enter="$emit('enter', currentValue)"
       @focus="$emit('focus')"

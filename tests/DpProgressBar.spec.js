@@ -41,10 +41,12 @@ describe('DpProgressBar', () => {
   })
 
   describe('Rendering', () => {
-    it('renders label when provided', () => {
-      wrapper = createWrapper({ label: 'Loading...' })
+    const textLabel = 'Loading...'
 
-      expectTextContent('Loading...')
+    it('renders label when provided', () => {
+      wrapper = createWrapper({ label: textLabel })
+
+      expectTextContent(textLabel)
     })
   })
 
@@ -56,12 +58,14 @@ describe('DpProgressBar', () => {
     })
 
     it('renders label in indeterminate mode', () => {
+      const textLabel = 'Processing'
+
       wrapper = createWrapper({
         indeterminate: true,
-        label: 'Processing',
+        label: textLabel,
       })
 
-      expectTextContent('Processing')
+      expectTextContent(textLabel)
     })
 
     it('does not render percentage in indeterminate mode', () => {

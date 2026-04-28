@@ -13,6 +13,25 @@ export default defineConfig({
   css: {
     postcss: './postcss.config.mjs'
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    api: {
+      host: '0.0.0.0',
+      port: 51204
+    },
+    env: {
+      TZ: 'Europe/Berlin'
+    },
+    include: ['tests/**/*.{spec,test}.{js,ts}'],
+    setupFiles: ['./tests/setup.js'],
+    reporters: ['default'],
+    coverage: {
+      provider: 'v8',
+      include: ['src/utils/*.js', 'src/mixins/*.js', 'src/lib/*.js', 'src/components/**/*.vue'],
+      reporter: ['clover', 'json', 'lcov', 'text']
+    }
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),

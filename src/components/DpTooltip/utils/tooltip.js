@@ -30,7 +30,7 @@ const getZIndex = (element) => {
 
   const z = globalThis.getComputedStyle(element).getPropertyValue('z-index')
 
-  if (Number.isNaN(z)) {
+  if (Number.isNaN(Number(z))) {
     return (element.nodeName === 'HTML') ? 1 : getZIndex(element.parentNode)
   }
   return z

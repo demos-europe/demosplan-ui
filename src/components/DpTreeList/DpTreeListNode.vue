@@ -214,9 +214,11 @@ export default {
   },
 
   emits: [
+    'end',
     'draggable:change',
-    'tree:change',
     'node-selected',
+    'start',
+    'tree:change',
   ],
 
   data () {

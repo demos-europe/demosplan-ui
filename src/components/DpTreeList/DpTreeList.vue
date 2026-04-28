@@ -169,9 +169,11 @@ export default {
   },
 
   emits: [
-    'tree:change',
     'draggable:change',
+    'end',
     'node-selection-change',
+    'start',
+    'tree:change',
   ],
 
   data () {

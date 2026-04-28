@@ -9,7 +9,7 @@ describe('DpTreeListNode', () => {
   let stubs
   let wrapper
 
-  const mockCheckBranch = jest.fn(({ node }) => {
+  const mockCheckBranch = vi.fn(({ node }) => {
     return node.type === 'elements'
   })
 
@@ -17,13 +17,13 @@ describe('DpTreeListNode', () => {
     propsData = {
       children: mockNodeChildren,
       draggable: true,
-      handleChange: jest.fn(),
-      handleDrag: jest.fn(),
+      handleChange: vi.fn(),
+      handleDrag: vi.fn(),
       checkBranch: mockCheckBranch,
       level: 0,
       node: mockNode,
       nodeId: '1',
-      onMove: jest.fn(),
+      onMove: vi.fn(),
       options: {},
       parentId: '',
       parentSelected: false,
@@ -31,9 +31,9 @@ describe('DpTreeListNode', () => {
 
     mocks = {
       Translator: {
-        trans: jest.fn(key => key),
+        trans: vi.fn(key => key),
       },
-      $on: jest.fn(),
+      $on: vi.fn(),
     }
 
     stubs = {

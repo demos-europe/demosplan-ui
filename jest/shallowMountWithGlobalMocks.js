@@ -1,18 +1,10 @@
-/**
- * Used to run Jest-Tests
- */
-
-// Use Local Vue for testing
+import { vi } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
 
-/*
- * Then you can use `app.component` here
- * Mocking global stuff
- */
 const globalMocks = {
-  hasPermission: jest.fn(() => true),
+  hasPermission: vi.fn(() => true),
   Translator: {
-    trans: jest.fn(key => key)
+    trans: vi.fn(key => key)
   }
 }
 

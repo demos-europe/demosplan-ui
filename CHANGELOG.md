@@ -4,6 +4,21 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1474](https://github.com/demos-europe/demosplan-ui/pull/1474)) DpTabs: add ability that makes it possible to change active tab by prop and not only by click([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
+
+### Fixed
+- ([#1480](https://github.com/demos-europe/demosplan-ui/pull/1480)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1477](https://github.com/demos-europe/demosplan-ui/pull/1477)) Unit tests: Replace jest with vitest ([@hwiem](https://github.com/hwiem))
+
+## v0.18.0 - 2026-4-24
+
+### Added
+- ([#1462](https://github.com/demos-europe/demosplan-ui/pull/1462)) DpButtonRow: add the ability to customize button styling; DpConfirmDialog: add a header slot ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1470](https://github.com/demos-europe/demosplan-ui/pull/1470)) Add missing Tailwind 4 font-weight theme variables ([@meissnerdemos](https://github.com/meissnerdemos))
 

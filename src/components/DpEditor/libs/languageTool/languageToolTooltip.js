@@ -135,7 +135,9 @@ const positionTooltip = (referenceEl, tooltipEl, arrowEl) => {
       arrow({ element: arrowEl }),
     ],
   }).then(({ x, y, middlewareData, placement }) => {
-    if (!tooltipEl.isConnected) return
+    if (!tooltipEl.isConnected) {
+      return
+    }
 
     Object.assign(tooltipEl.style, {
       left: `${x}px`,

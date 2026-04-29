@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, it } from '@jest/globals'
+import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import DpButton from '~/components/DpButton'
 import DpResettableInput from '~/components/DpResettableInput'
 import DpSearchField from '~/components/DpSearchField'
@@ -8,7 +8,7 @@ describe('DpSearchField', () => {
   let wrapper
   const mocks = {
     Translator: {
-      trans: jest.fn((key => key)),
+      trans: vi.fn((key => key)),
     },
   }
 

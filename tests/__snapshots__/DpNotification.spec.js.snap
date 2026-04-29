@@ -1,11 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`DpNotification always renders with closemark 1`] = `
-"<div class="c-notify__message c-notify__message--error" role="alert"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden">
-    <!---->
-  </button>
-  <div class="flow-root">
-    <!---->
+exports[`DpNotification > always renders with closemark 1`] = `
+"<div class="c-notify__message c-notify__message--error" role="alert"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" class="square c-notify__icon" aria-hidden="true">
+      <g>
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm37.66,130.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+      </g>
+    </svg></button>
+  <div class="flow-root"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" class="square c-notify__icon mt-px mr-1 float-left" aria-hidden="true">
+      <g>
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm-8,56a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z"></path>
+      </g>
+    </svg>
     <div class="c-notify__text u-ml mt-2 break-words">
       <!--v-if-->
     </div>
@@ -13,12 +18,17 @@ exports[`DpNotification always renders with closemark 1`] = `
 </div>"
 `;
 
-exports[`DpNotification always renders with closemark 2`] = `
-"<div class="c-notify__message c-notify__message--confirm" role="status"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden">
-    <!---->
-  </button>
-  <div class="flow-root">
-    <!---->
+exports[`DpNotification > always renders with closemark 2`] = `
+"<div class="c-notify__message c-notify__message--confirm" role="status"><button class="c-notify__closer" type="button" aria-label="Hinweis ausblenden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" class="square c-notify__icon" aria-hidden="true">
+      <g>
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm37.66,130.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+      </g>
+    </svg></button>
+  <div class="flow-root"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" fill="currentColor" class="square c-notify__icon mt-px mr-1 float-left" aria-hidden="true">
+      <g>
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path>
+      </g>
+    </svg>
     <div class="c-notify__text u-ml mt-2 break-words">
       <!--v-if-->
     </div>

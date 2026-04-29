@@ -6,6 +6,12 @@ let handleCreateTooltip = null
 let handleRemoveTooltip = null
 let tooltips = {}
 
+// Floor for the inline z-index: matches the `tooltip` design token (tokens/src/zIndex.json).
+// The inline z-index lifts the tooltip above its trigger's stacking context; without a floor,
+// triggers in containers with no numeric z-index (e.g. native <dialog>) produce values that
+// lose to sibling elements with small explicit z-index utilities.
+const TOOLTIP_Z_INDEX_FLOOR = 2000
+
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
     tooltipEl.remove()
@@ -104,7 +110,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
   Object.assign(tooltipEl.style, {
     left: `${x}px`,
     top: `${y}px`,
-    zIndex: Number(zIndex) + 1,
+    zIndex: Math.max(Number(zIndex) + 1, TOOLTIP_Z_INDEX_FLOOR),
   })
 
   /*

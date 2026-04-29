@@ -9,6 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
 
 ### Fixed
+- ([#1481](https://github.com/demos-europe/demosplan-ui/pull/1481)) DpTooltip: Floor the inline z-index at the tooltip design token ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1480](https://github.com/demos-europe/demosplan-ui/pull/1480)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
 
 ### Changed

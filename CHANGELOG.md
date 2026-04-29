@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1473](https://github.com/demos-europe/demosplan-ui/pull/1473)) DpEditor: Add LanguageTool integration for spellchecking and grammar checking, interactive tooltips for suggestions ([@sakutademos](https://github.com/sakutademos))
 - ([#1474](https://github.com/demos-europe/demosplan-ui/pull/1474)) DpTabs: add ability that makes it possible to change active tab by prop and not only by click([@huellnerdemos](https://github.com/huellnerdemos))
 - ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
 

@@ -52,7 +52,7 @@ const de = {
     italic: 'Kursiv',
     languageTool: {
       noSuggestions: 'Keine Vorschläge verfügbar.',
-      suggestions: 'Vorschläge'
+      suggestions: 'Vorschläge',
     },
     link: {
       edit: 'Link bearbeiten',

@@ -106,7 +106,7 @@ const LanguageToolExtension = Extension.create({
           Decoration.inline(start, end, {
             class: 'lt-error',
             'data-lt-match-index': String(i),
-          })
+          }),
         )
       }
 
@@ -132,7 +132,7 @@ const LanguageToolExtension = Extension.create({
       const tr = view.state.tr.replaceWith(
         from,
         to,
-        view.state.schema.text(selectedSuggestion)
+        view.state.schema.text(selectedSuggestion),
       )
 
       // Mark this decoration for immediate removal
@@ -208,7 +208,7 @@ const LanguageToolExtension = Extension.create({
               errorEl,
               function (selectedSuggestion) {
                 applySelectedSuggestion(view, errorEl, selectedSuggestion)
-              }
+              },
             )
 
             return true

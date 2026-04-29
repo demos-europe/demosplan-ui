@@ -182,22 +182,22 @@ const registerOutsideClickListenerOnNextFrame = (signal, tooltipEl, referenceEl)
 
 const registerTooltipClickHandler = (tooltipEl, suggestions, onSuggestionClick, signal) => {
   tooltipEl.addEventListener('click', (event) => {
-      const button = event.target.closest('.lt-suggestion')
+    const button = event.target.closest('.lt-suggestion')
 
-      if (!button) {
-        return
-      }
+    if (!button) {
+      return
+    }
 
-      const index = Number(button.dataset.suggestionIndex)
-      const suggestion = suggestions[index]
+    const index = Number(button.dataset.suggestionIndex)
+    const suggestion = suggestions[index]
 
-      if (suggestion != null) {
-        onSuggestionClick(suggestion)
-      }
+    if (suggestion != null) {
+      onSuggestionClick(suggestion)
+    }
 
-      removeLanguageToolTooltip()
-    },
-    { signal }
+    removeLanguageToolTooltip()
+  },
+  { signal },
   )
 }
 

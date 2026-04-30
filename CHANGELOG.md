@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1484](https://github.com/demos-europe/demosplan-ui/pull/1484)) DpButtonRow: new button order; set the secondary button to the outline variant ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.19.0 - 2026-4-30
 
 ### Added

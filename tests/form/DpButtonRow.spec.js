@@ -87,8 +87,8 @@ describe('DpButtonRow', () => {
       const buttons = getButtons()
 
       expectButtonLength(buttons, 2)
-      expectButtonColor(buttons[0], 'primary')
-      expectButtonColor(buttons[1], 'secondary')
+      expectButtonColor(buttons[0], 'secondary')
+      expectButtonColor(buttons[1], 'primary')
     })
   })
 
@@ -141,8 +141,8 @@ describe('DpButtonRow', () => {
       })
       const buttons = getButtons()
 
-      expectButtonIsDisabled(buttons[0], true)
-      expectButtonIsDisabled(buttons[1], false)
+      expectButtonIsDisabled(buttons[0], false)
+      expectButtonIsDisabled(buttons[1], true)
     })
 
     it('disables only secondary button when disabled object has secondary: true', () => {
@@ -153,8 +153,8 @@ describe('DpButtonRow', () => {
       })
       const buttons = getButtons()
 
-      expectButtonIsDisabled(buttons[0], false)
-      expectButtonIsDisabled(buttons[1], true)
+      expectButtonIsDisabled(buttons[0], true)
+      expectButtonIsDisabled(buttons[1], false)
     })
 
     it('does not disable buttons when disabled is false', () => {

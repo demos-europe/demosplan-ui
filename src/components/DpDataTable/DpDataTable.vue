@@ -609,7 +609,7 @@ export default {
 
       if (this.columnStorageKey) {
         const nonFixedOrder = this.orderedHeaderFields.filter(f => !f.fixed).map(f => f.field)
-        sessionStorage.setItem(
+        localStorage.setItem(
           `dpDataTable:columnOrder:${this.columnStorageKey}`,
           JSON.stringify(nonFixedOrder),
         )
@@ -679,7 +679,7 @@ export default {
       }
 
       try {
-        const stored = sessionStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
+        const stored = localStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
         if (!stored) {
           this.orderedHeaderFields = [...this.headerFields]
 

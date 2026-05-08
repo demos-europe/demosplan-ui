@@ -123,8 +123,10 @@ export default {
 
         this.resize.style.width = newWidth + 'px'
 
-        // When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
-        // Otherwise fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+        /*
+         * When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
+         * Otherwise fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+         */
         if (this.columnWidthStorageKey) {
           localStorage.setItem(
             `dpDataTable:colWidth:${this.columnWidthStorageKey}:${this.headerField.field}`,

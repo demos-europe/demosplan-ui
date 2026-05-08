@@ -27,6 +27,7 @@
           :data-cy="`${dataCy}:header`"
           :all-expanded="allExpanded"
           :checked="allSelected"
+          :column-width-storage-key="columnWidthStorageKey"
           :density="density"
           :has-flyout="hasFlyout"
           :has-borders="hasBorders"
@@ -734,8 +735,7 @@ export default {
          */
         if (tableHeaderEl.nodeType === 1) {
           const headerField = tableHeaderEl.getAttribute('data-col-field')
-          const storageName = `dpDataTable:data-col-field=${headerField}`
-          const sessionColWidth = this.getItemFromSessionStorage(storageName)
+          const storedColWidth = this.readStoredColWidth(headerField)
           /**
            * Some columns, such as 'flyout' and 'wrap', should not be resizable;
            * their width is fixed; the getBoundingClientRect() function should not be applied to them
@@ -744,14 +744,43 @@ export default {
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-            || sessionColWidth
+            || storedColWidth
             || headerFieldWidth
             || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
-          this.updateSessionStorage(storageName, width)
+          this.writeStoredColWidth(headerField, width)
         }
       })
+    },
+
+    readStoredColWidth (headerField) {
+      // When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
+      // Otherwise, fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+      if (this.columnWidthStorageKey) {
+        try {
+          const stored = localStorage.getItem(`dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`)
+
+          return stored ? JSON.parse(stored) : null
+        } catch {
+          return null
+        }
+      }
+
+      return this.getItemFromSessionStorage(`dpDataTable:data-col-field=${headerField}`)
+    },
+
+    writeStoredColWidth (headerField, width) {
+      if (this.columnWidthStorageKey) {
+        localStorage.setItem(
+          `dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`,
+          JSON.stringify(width),
+        )
+
+        return
+      }
+
+      this.updateSessionStorage(`dpDataTable:data-col-field=${headerField}`, width)
     },
 
     /**

@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1485](https://github.com/demos-europe/demosplan-ui/pull/1485)) DpDataTable: opt-in persistent column widths via the `columnWidthStorageKey` prop (uses `localStorage` instead of `sessionStorage`) ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.20.0 - 2026-5-5
 
 ### Changed

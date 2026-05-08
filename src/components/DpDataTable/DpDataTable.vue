@@ -298,6 +298,12 @@ export default {
       default: '',
     },
 
+    columnWidthStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     headerFields: {
       type: Array,
       required: true,

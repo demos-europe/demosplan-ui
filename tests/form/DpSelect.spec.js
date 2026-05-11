@@ -6,7 +6,7 @@ import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
 
 
 window.Translator = {
-  trans: jest.fn(key => key),
+  trans: vi.fn(key => key),
 }
 
 describe('DpSelect', () => {
@@ -51,7 +51,6 @@ describe('DpSelect', () => {
     })
 
     const placeholderOption = componentWrapper.find('option[data-id="placeholder"]')
-    console.log(placeholderOption)
     expect(placeholderOption.exists()).toBe(false)
   })
 

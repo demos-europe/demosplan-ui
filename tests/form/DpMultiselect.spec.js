@@ -32,7 +32,7 @@ const VueMultiselectStub = {
     'selectLabel',
     'selectedLabel',
     'tagPlaceholder',
-    'trackBy'
+    'trackBy',
   ],
   emits: [
     'close',
@@ -41,7 +41,7 @@ const VueMultiselectStub = {
     'remove',
     'search-change',
     'select',
-    'tag'
+    'tag',
   ],
   render () {
     return h('div', { class: 'vue-multiselect-mock' }, [
@@ -313,7 +313,7 @@ describe('DpMultiselect', () => {
       expect(wrapper.find('[data-cy="my-select-select-all"]').exists()).toBe(true)
       expect(wrapper.find('[data-cy="my-select-deselect-all"]').exists()).toBe(true)
     })
-})
+  })
 
   describe('Translation display', () => {
     it('provides German translation defaults to vue-multiselect', () => {
@@ -476,7 +476,7 @@ describe('DpMultiselect', () => {
       const wrapper = mount(DpMultiselect, {
         props: {
           options: stringOptions,
-          // value intentionally omitted
+          // Value intentionally omitted
           multiple: true,
           selectionControls: true,
         },
@@ -491,7 +491,7 @@ describe('DpMultiselect', () => {
       const wrapper = shallowMount(DpMultiselect, {
         props: {
           options: objectOptions,
-          // trackBy intentionally omitted - will use object reference equality
+          // TrackBy intentionally omitted - will use object reference equality
           value: objectOptions[0],
         },
       })
@@ -513,5 +513,5 @@ describe('DpMultiselect', () => {
       expect(wrapper.find('[data-cy="multiselect-deselect-all"]').exists()).toBe(false)
     })
 
-})
+  })
 })

@@ -25,6 +25,7 @@ const api2defaultHeaders = {
   'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'x-csrf-token': csrfToken,
 }
 
 const demosplanProcedureHeaders = {

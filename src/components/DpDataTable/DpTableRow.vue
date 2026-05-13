@@ -23,8 +23,9 @@
       <dp-icon
         v-if="isLocked"
         v-tooltip="isLockedMessage"
-        class="align-middle color--grey-light"
-        icon="lock"
+        class="align-middle text-interactive"
+        icon="prohibit"
+        weight="fill"
       />
       <input
         v-else

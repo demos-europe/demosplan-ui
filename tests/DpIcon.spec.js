@@ -24,10 +24,10 @@ describe('DpIcon', () => {
     })
 
   it.each([
-    ['arrow-up', 'portrait'],
-    ['check', 'landscape'],
-    ['plus', 'square'],
-  ])('applies proportion class "%s" for icon "%s"', (icon, proportionClass) => {
+    ['portrait', 'arrow-up'],
+    ['landscape', 'check'],
+    ['square', 'plus'],
+  ])('applies proportion class "%s" for icon "%s"', (proportionClass, icon) => {
     const wrapper = shallowMount(DpIcon, {
       props: { icon },
     })

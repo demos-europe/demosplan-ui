@@ -4,17 +4,17 @@ import DpAutocomplete from '~/components/DpAutocomplete/DpAutocomplete.vue'
 import { nextTick } from 'vue'
 
 // Mock the dpApi function
-const mockDpApi = jest.fn(() => Promise.resolve({
+const mockDpApi = vi.fn(() => Promise.resolve({
   data: { results: [{ id: 4, name: 'Dragon Fruit' }] },
 }))
 
 // Spy on the dpApi module
-jest.spyOn(DpApiModule, 'dpApi').mockImplementation(mockDpApi)
+vi.spyOn(DpApiModule, 'dpApi').mockImplementation(mockDpApi)
 
 describe('DpAutocomplete', () => {
   const defaultProps = {
     id: 'test-autocomplete',
-    routeGenerator: jest.fn((query) => `/api/search?q=${query}`),
+    routeGenerator: vi.fn((query) => `/api/search?q=${query}`),
     label: 'name',
     options: [
       { id: 1, name: 'Apple' },
@@ -49,7 +49,7 @@ describe('DpAutocomplete', () => {
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     mockDpApi.mockClear()
   })
 

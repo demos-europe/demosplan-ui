@@ -4,6 +4,16 @@
     class="space-x-2"
   >
     <dp-button
+      v-if="secondary"
+      color="secondary"
+      :data-cy="`${dataCy}:abortButton`"
+      :disabled="isDisabledSecondary"
+      :href="href"
+      :text="secondaryText"
+      variant="outline"
+      @click.prevent="$emit('secondary-action')"
+    />
+    <dp-button
       v-if="primary"
       :busy="busy ? true : null"
       :data-cy="`${dataCy}:saveButton`"
@@ -11,16 +21,6 @@
       :text="primaryText"
       :variant="primaryBtnVariant"
       @click.prevent="$emit('primary-action')"
-    />
-    <dp-button
-      v-if="secondary"
-      color="secondary"
-      :data-cy="`${dataCy}:abortButton`"
-      :disabled="isDisabledSecondary"
-      :href="href"
-      :text="secondaryText"
-      :variant="secondaryBtnVariant"
-      @click.prevent="$emit('secondary-action')"
     />
     <slot />
   </div>
@@ -126,13 +126,6 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    },
-
-    secondaryBtnVariant: {
-      required: false,
-      type: String as PropType<ButtonVariant>,
-      default: 'solid',
-      validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
     },
 
     /**

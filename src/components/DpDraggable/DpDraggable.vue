@@ -123,7 +123,7 @@ const { option: changeSortableOption } = useSortable(
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {
-      const currentElement = list.value[e.oldIndex]
+      const currentElement = e.item
 
       props.handleDrag('end', e, currentElement, props.nodeId)
       emit('end', e, currentElement, props.nodeId)

@@ -966,6 +966,12 @@ export default {
 
       this.fillContainerWidth(tableHeaderElements)
 
+     this.tableEl.style.tableLayout = 'fixed'
+     this.tableEl.classList.add('is-fixed')
+
+     this.fillContainerWidth(tableHeaderElements)
+     this.setColsWidth(tableHeaderElements)
+     
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
         Array.from(tableHeaderElements).forEach(th => {

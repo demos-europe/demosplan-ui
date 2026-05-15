@@ -579,8 +579,7 @@ export default {
             const tableHeaderElements = firstRow ? firstRow.children : null
 
             this.setColsWidth(tableHeaderElements)
-           this.fillContainerWidth(tableHeaderElements)
-           this.setColsWidth(tableHeaderElements)
+            this.fillContainerWidth(tableHeaderElements)
           })
         }
       },

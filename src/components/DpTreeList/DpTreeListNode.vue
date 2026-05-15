@@ -214,8 +214,8 @@ export default {
   },
 
   emits: [
-    'end',
     'draggable:change',
+    'end',
     'node-selected',
     'start',
     'tree:change',

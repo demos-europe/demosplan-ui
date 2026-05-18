@@ -4,14 +4,17 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.22.0 - 2026-05-18
+
+### Added
+- ([#1485](https://github.com/demos-europe/demosplan-ui/pull/1485)) DpDataTable: opt-in persistent column widths via the `columnWidthStorageKey` prop (uses `localStorage` instead of `sessionStorage`) ([@riechedemos](https://github.com/riechedemos))
+
+
 ## v0.21.0 - 2026-05-15
 
 ## Fixed
 - ([#1488](https://github.com/demos-europe/demosplan-ui/pull/1488)) DpDraggable: Use `e.item` in `onEnd` so the dragged
   element is correct on cross-list tag drops & DpTreeList: Add `end` and `start` to the `emits` array to silence Vue warnings([@riechedemos](https://github.com/riechedemos))
-  
-### Added
-- ([#1485](https://github.com/demos-europe/demosplan-ui/pull/1485)) DpDataTable: opt-in persistent column widths via the `columnWidthStorageKey` prop (uses `localStorage` instead of `sessionStorage`) ([@riechedemos](https://github.com/riechedemos))
 
 
 ## v0.20.0 - 2026-5-5

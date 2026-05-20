@@ -40,6 +40,7 @@
       <component
         :is="isResizable ? 'DpResizableColumn' : 'th'"
         :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }, { 'c-data-table__col--fixed': isColumnsDraggable && hf.fixed }]"
+        :column-width-storage-key="columnWidthStorageKey"
         :data-col-field="hf.field"
         :header-field="hf"
         :idx="idx"
@@ -132,6 +133,12 @@ export default {
     checked: {
       type: Boolean,
       required: true,
+    },
+
+    columnWidthStorageKey: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     dataCy: {

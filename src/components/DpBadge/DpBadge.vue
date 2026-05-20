@@ -1,8 +1,15 @@
 <template>
-  <span
-    :class="`rounded-md ${colorClasses} ${sizeClasses} badge`"
-    v-text="text"
-  />
+  <component
+    :is="isButton ? 'button' : 'span'"
+    :type="isButton ? 'button' : null"
+    :class="[
+      `rounded-md ${colorClasses} ${sizeClasses} badge`,
+      isButton && 'cursor-pointer hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-interactive'
+    ]"
+    @click="onClick"
+  >
+    {{ text }}
+  </component>
 </template>
 
 <script>
@@ -17,6 +24,12 @@ export default {
       validator: (prop) => ['confirm', 'default', 'error', 'info', 'warning'].includes(prop),
     },
 
+    isButton: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     size: {
       type: String,
       required: false,
@@ -29,6 +42,8 @@ export default {
       type: String,
     },
   },
+
+  emits: ['click'],
 
   computed: {
     colorClasses () {
@@ -52,6 +67,14 @@ export default {
       }
 
       return cssClassMap[this.size]
+    },
+  },
+
+  methods: {
+    onClick (event) {
+      if (this.isButton) {
+        this.$emit('click', event)
+      }
     },
   },
 }

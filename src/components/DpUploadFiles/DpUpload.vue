@@ -235,6 +235,7 @@ export default {
         },
         removeFingerprintOnSuccess: true,
         headers,
+        withCredentials: true,
       })
 
       // Access the hidden input element, that accepted files array.

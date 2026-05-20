@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { DpVideoPlayer } from '~/components'
 
+const sampleVtt = (lang: string) =>
+  `data:text/vtt,WEBVTT%0A%0A00%3A00%3A00.000%20--%3E%2000%3A00%3A05.000%0A[${lang}%20caption%20line%201]%0A%0A00%3A00%3A05.000%20--%3E%2000%3A00%3A10.000%0A[${lang}%20caption%20line%202]`
+
 const meta: Meta<typeof DpVideoPlayer> = {
   title: 'Components/VideoPlayer',
   component: DpVideoPlayer,
@@ -178,14 +181,14 @@ export const WithCaptions: Story = {
         kind: 'captions',
         label: 'English',
         srclang: 'en',
-        src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt',
+        src: sampleVtt('English'),
         default: true
       },
       {
         kind: 'captions',
         label: 'French',
         srclang: 'fr',
-        src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt'
+        src: sampleVtt('French')
       }
     ]
   },

@@ -4,27 +4,177 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.22.0 - 2026-05-18
+
+### Added
+- ([#1485](https://github.com/demos-europe/demosplan-ui/pull/1485)) DpDataTable: opt-in persistent column widths via the `columnWidthStorageKey` prop (uses `localStorage` instead of `sessionStorage`) ([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.21.0 - 2026-05-15
+
+## Fixed
+- ([#1488](https://github.com/demos-europe/demosplan-ui/pull/1488)) DpDraggable: Use `e.item` in `onEnd` so the dragged
+  element is correct on cross-list tag drops & DpTreeList: Add `end` and `start` to the `emits` array to silence Vue warnings([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.20.0 - 2026-5-5
+
+### Changed
+- ([#1484](https://github.com/demos-europe/demosplan-ui/pull/1484)) DpButtonRow: new button order; set the secondary button to the outline variant ([@sakutademos](https://github.com/sakutademos))
+
+## v0.19.0 - 2026-4-30
+
+### Added
+- ([#1473](https://github.com/demos-europe/demosplan-ui/pull/1473)) DpEditor: Add LanguageTool integration for spellchecking and grammar checking, interactive tooltips for suggestions ([@sakutademos](https://github.com/sakutademos))
+- ([#1474](https://github.com/demos-europe/demosplan-ui/pull/1474)) DpTabs: add ability that makes it possible to change active tab by prop and not only by click([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
+
+### Fixed
+- ([#1481](https://github.com/demos-europe/demosplan-ui/pull/1481)) DpTooltip: Floor the inline z-index at the tooltip design token ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1480](https://github.com/demos-europe/demosplan-ui/pull/1480)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1477](https://github.com/demos-europe/demosplan-ui/pull/1477)) Unit tests: Replace jest with vitest ([@hwiem](https://github.com/hwiem))
+
+## v0.18.0 - 2026-4-24
+
+### Added
+- ([#1462](https://github.com/demos-europe/demosplan-ui/pull/1462)) DpButtonRow: add the ability to customize button styling; DpConfirmDialog: add a header slot ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+- ([#1470](https://github.com/demos-europe/demosplan-ui/pull/1470)) Add missing Tailwind 4 font-weight theme variables ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.17.0 - 2026-4-17
+
+### Added
+- ([#1469](https://github.com/demos-europe/demosplan-ui/pull/1469)) DpDataTable: Drag and Drop for columns ([@riechedemos](https://github.com/riechedemos))
+
+## v0.16.0 - 2026-4-9
+
+### Changed
+- ([#1468](https://github.com/demos-europe/demosplan-ui/pull/1468)) DpDataTable: Add `is-col-hovered` class to table cells when hovering the corresponding column header ([@riechedemos](https://github.com/riechedemos))
+- Dependency updates:
+  - @stylistic/eslint-plugin from 4.2.0 to 5.0.0
+  - @typescript-eslint/eslint-plugin from 8.29.0 to 8.58.0
+  - @typescript-eslint/parser from 8.29.0 to 8.58.0
+  - @vue/eslint-config-typescript from 14.5.0 to 14.7.0
+  - eslint from 9.23.0 to 10.2.0
+  - eslint-plugin-vue from 10.0.0 to 10.8.0
+  - glob from 11.0.1 to 13.0.6
+
+
+## v0.15.0 - 2026-3-31
+
+### Added
+- ([#1458](https://github.com/demos-europe/demosplan-ui/pull/1458)) DpDataTable: Add opt-in column borders, compact/spacious styling for table cells, resize state highlighting,
+  and sticky header support; add scrollbar-interactive utility, subtle DpFlyout appearance, DpColumnSelector select-all option,
+  and upload/arrows-in/arrows-out icons ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1459](https://github.com/demos-europe/demosplan-ui/pull/1459)) DpDetails: Emit click event on summary interaction to allow parent components to react to open/close without wrapping in non-interactive elements ([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Fixed
+- ([#1423](https://github.com/demos-europe/demosplan-ui/pull/1423)) DpFlyout, DpInput, DpResettableInput: prevent search texts from flowing visibly under the icons of search fields ([@huellnerdemos](https://github.com/huellnerdemos)), [@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1457](https://github.com/demos-europe/demosplan-ui/pull/1457)) DpResettableInput: Prevent overwriting of attributes that were set in inputAttributes ([@huellnerdemos](https://github.com/huellnerdemos))
+
+## v0.14.0 - 2026-3-16
+
+### Fixed
+- ([#1454](https://github.com/demos-europe/demosplan-ui/pull/1454)) DpUpload: Send credentials with TUS upload requests to fix Firefox 401 errors ([@mussbach](https://github.com/mussbach))
+
+## v0.13.0 - 2026-3-6
+
+### Added
+- ([#1452](https://github.com/demos-europe/demosplan-ui/pull/1452)) Export the DpUploadedFile and DpUploadedFileList components ([@sakutademos](https://github.com/sakutademos))
+- ([#1451](https://github.com/demos-europe/demosplan-ui/pull/1451)) Icons: Add PhArrowsLeftRight ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1450](https://github.com/demos-europe/demosplan-ui/pull/1450)) DpNotification: Wrap long unbroken text to prevent overflow ([@meissnerdemos](https://github.com/meissnerdemos))
+
+## v0.12.0 - 2026-3-2
+
+### Added
+- ([#1441](https://github.com/demos-europe/demosplan-ui/pull/1441)) DpConfirmDialog: Add props to customize confirm and decline button text ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Fixed
+- ([#1438](https://github.com/demos-europe/demosplan-ui/pull/1438)) Security: Bump qs to ^6.14.2 to fix DoS vulnerability ([@hwiem](https://github.com/hwiem))
+- ([#1439](https://github.com/demos-europe/demosplan-ui/pull/1439)) Security: Add qs to resolutions to fix transitive DoS vulnerability ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1443](https://github.com/demos-europe/demosplan-ui/pull/1443)) Storybook: Migrate to v10 ([@hwiem](https://github.com/hwiem))
+- ([#1444](https://github.com/demos-europe/demosplan-ui/pull/1444)) Replace font-awesome icons with the Phosphor icons in the notification components ([@sakutademos](https://github.com/sakutademos))
+- ([#1447](https://github.com/demos-europe/demosplan-ui/pull/1447)) DpDataTable: Add classes to make columns sticky ([@hwiem](https://github.com/hwiem))
+- ([#1442](https://github.com/demos-europe/demosplan-ui/pull/1442)) Build: Remove unused dependencies ([@hwiem](https://github.com/hwiem))
+
+## v0.11.0 - 2026-2-18
+
+### Added
+- ([#1437](https://github.com/demos-europe/demosplan-ui/pull/1437)) Add a new validation utility function ([@sakutademos](https://github.com/sakutademos))
+
+## v0.10.0 - 2026-2-11
+
+### Fixed
+- ([#1436](https://github.com/demos-europe/demosplan-ui/pull/1436)) DpSlidebar: Add wrapper div for scrollable content to allow vertical scroll ([@rafelddemos](https://github.com/rafelddemos))
+
+## v0.9.0 - 2026-2-9
+
+### Added
+- ([#1435](https://github.com/demos-europe/demosplan-ui/pull/1435)) DpSlidebar: Add slot for a resizing button ([@rafelddemos](https://github.com/rafelddemos))
+
+## v0.8.0 - 2026-2-4
+
+### Fixed
+- ([#1432](https://github.com/demos-europe/demosplan-ui/pull/1432)) DpTextArea: Add missing tooltip prop ([@hwiem](https://github.com/hwiem))
+- ([#1433](https://github.com/demos-europe/demosplan-ui/pull/1433)) Validation: Add missing exports ([@hwiem](https://github.com/hwiem))
+
+## v0.7.1 - 2026-1-29
+
+### Fixed
+
+- ([#1431](https://github.com/demos-europe/demosplan-ui/pull/1431)) preventEditing.js: Allow keys to navigate with keyboard([@riechedemos](https://github.com/riechedemos))
+
+## v0.7.0 - 2026-1-19
+
+_This release includes changes previously released in v0.5.9-hotfix.1 through v0.5.9-hotfix.4._
+
+### Added
+- ([#1425](https://github.com/demos-europe/demosplan-ui/pull/1425)) Accessibility improvements: Add aria-label to DpDatepicker ([@riechedemos](https://github.com/riechedemos))
+- ([#1424](https://github.com/demos-europe/demosplan-ui/pull/1424)) DpButton: Add the 'iconWeight' prop to DpButton component ([@sakutademos](https://github.com/sakutademos))
+- ([#1415](https://github.com/demos-europe/demosplan-ui/pull/1415)) Accessibility improvements: Add aria-label attribute to the DpToggle component ([@sakutademos](https://github.com/sakutademos))
+- ([#1413](https://github.com/demos-europe/demosplan-ui/pull/1413)) DpFlyout: Add new props ([@sakutademos](https://github.com/sakutademos))
+
+### Fixed
+- ([#1430](https://github.com/demos-europe/demosplan-ui/pull/1430)) Build: Fix tree-shaking issues, use ESM-only build ([@hwiem](https://github.com/hwiem))
+- ([#1422](https://github.com/demos-europe/demosplan-ui/pull/1422)) DpMultiselect: Fix premature error styling by removing validation from update hook ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1421](https://github.com/demos-europe/demosplan-ui/pull/1421)) DpTabs & DpTab: Link import buttons in DpTabs to their DpTab children with aria-attributes (`id` and `aria-labelledby`)([@rafelddemos](https://github.com/rafelddemos))
+- ([#1420](https://github.com/demos-europe/demosplan-ui/pull/1420)) DpDataTable & DpTableHeader: Fix caret icon state in expandable rows ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1419](https://github.com/demos-europe/demosplan-ui/pull/1419)) DpToggle: Rename the computed variable ([@sakutademos](https://github.com/sakutademos))
+- ([#1418](https://github.com/demos-europe/demosplan-ui/pull/1418)) Accessibility improvements: Add aria-required attribute to vue multiselect ([@riechedemos](https://github.com/riechedemos))
+- ([#1416](https://github.com/demos-europe/demosplan-ui/pull/1416)) Accessibility improvements: DpTabs and DpBulkEditHeader ([@sakutademos](https://github.com/sakutademos))
+- ([#1414](https://github.com/demos-europe/demosplan-ui/pull/1412)) Accessibility improvements: Separate labels for DpDateRangePicker, internal label support for DpDatepicker, and aria-labels for table checkboxes ([@riechedemos](https://github.com/riechedemos))
+- ([#1417](https://github.com/demos-europe/demosplan-ui/pull/1417)) Accessibility improvements: DpEditor gets aria-label in editorProps ([@riechedemos](https://github.com/riechedemos))
+- ([#1412](https://github.com/demos-europe/demosplan-ui/pull/1412)) DpDatepicker & DpEditor: Fix label click focus ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.6.0 - 2025-12-1
 
 ### Changed
 
-- ([#1409](https://github.com/demos-europe/demosplan-ui/pull/1409)) Make demosplan-ui tree-shakeable (requires node >= 20.19.0 in development), replace webpack with vite ([@hwiem](https://github.com/hwiem))
+- ([#1409](https://github.com/demos-europe/demosplan-ui/pull/1409)) Build: Make demosplan-ui tree-shakeable (requires node >= 20.19.0 in development), replace webpack with vite ([@hwiem](https://github.com/hwiem))
 
 ### Fixed
 - ([#1407](https://github.com/demos-europe/demosplan-ui/pull/1407)) DpEditor: Prevent cursor jump after obscuring text ([@hwiem](https://github.com/hwiem))
 
-
 ## v0.5.9 - 2025-11-18
 
 ### Added
-- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos)
+- ([#1401](https://github.com/demos-europe/demosplan-ui/pull/1401)) DpMultiselect: add new prop ([@sakutademos](https://github.com/sakutademos))
 
 ### Fixed
 - ([#1400](https://github.com/demos-europe/demosplan-ui/pull/1400)) DpModal: Refactor to use native dialog element for improved accessibility and focus management ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1384](https://github.com/demos-europe/demosplan-ui/pull/1384)) DpNotification: Improve accessibility by enabling focus on close button and using appropriate ARIA roles ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
-- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos)
+- ([#1399](https://github.com/demos-europe/demosplan-ui/pull/1399)) DpTabs: make it responsive ([@sakutademos](https://github.com/sakutademos))
 - ([#1377](https://github.com/demos-europe/demosplan-ui/pull/1377)) BREAKING: DpInput: Remove support for vue 2 v-model pattern ([@hwiem](https://github.com/hwiem))
 
 ## v0.5.8 - 2025-10-15

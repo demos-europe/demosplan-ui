@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import * as DpUploadFiles from '~/components'
+import { DpUploadFiles } from '~/components'
 
 /**
  * Mock function to simulate getFileByHash

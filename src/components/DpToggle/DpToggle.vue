@@ -4,6 +4,7 @@
     role="checkbox"
     :aria-checked="value.toString()"
     :aria-disabled="disabled ? true : null"
+    :aria-label="toggleAriaLabel"
     tabindex="0"
     @click="toggle"
     @keydown.space.prevent="toggle"
@@ -24,11 +25,19 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
+
 // Simple Toggle by Adam Wathan https://jsfiddle.net/adamwathan/hfs34ye4/
 export default {
   name: 'DpToggle',
 
   props: {
+    ariaLabel: {
+      required: false,
+      type: String,
+      default: '',
+    },
+
     value: {
       type: Boolean,
       required: false,
@@ -55,6 +64,16 @@ export default {
 
     indicatorStyles () {
       return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
+    },
+
+    toggleAriaLabel () {
+      const action = this.value ? de.aria.deactivate.element : de.aria.activate.element
+
+      if (!this.ariaLabel) {
+        return action
+      }
+
+      return `${action}: ${this.ariaLabel}`
     },
   },
 

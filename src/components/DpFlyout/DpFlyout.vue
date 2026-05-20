@@ -5,7 +5,6 @@
     class="dp-flyout"
     :class="[{
       'is-expanded': isExpanded,
-      'bg-surface-medium rounded-md': variant === 'dark'
     }, position]"
     data-cy="flyoutTrigger"
   >
@@ -14,10 +13,13 @@
       type="button"
       aria-haspopup="true"
       :aria-label="ariaLabel !== '' ? ariaLabel : null"
-      class="dp-flyout-trigger rounded-button px-1 py-0.5 leading-[2] whitespace-nowrap text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active"
-      :class="{
-        'bg-interactive-subtle-hover': isExpanded
-      }"
+      class="dp-flyout-trigger rounded-button text-button leading-[2] whitespace-nowrap cursor-pointer"
+      :class="[
+        buttonClasses,
+        { 'bg-interactive-subtle-hover': isExpanded && appearance === 'interactive' },
+        { 'bg-surface-light': isExpanded && appearance === 'subtle' },
+        appearanceClasses
+      ]"
       :data-cy="dataCy !== '' ? dataCy : null"
       @click="toggle"
     >
@@ -30,13 +32,15 @@
     </button>
     <span
       class="dp-flyout-content z-flyout shadow-sm bg-surface text-left"
-      :class="{
-        'block absolute': isExpanded,
-        'hidden': !isExpanded,
-        'left-1': align === 'left',
-        'right-1': align === 'right',
-        'px-2 py-1': padded
-      }"
+      :class="[
+        isExpanded ? `block ${flyoutPosition}` : 'hidden',
+        {
+          'left-1': align === 'left',
+          'right-1': align === 'right',
+          'top-1': align === 'top',
+          'px-2 py-1': padded
+        }
+      ]"
       data-cy="flyout"
     >
       <slot />
@@ -59,13 +63,26 @@ export default {
       required: false,
       type: String,
       default: 'right',
-      validator: (prop) => ['left', 'right'].includes(prop),
+      validator: (prop) => ['left', 'right', 'top'].includes(prop),
+    },
+
+    appearance: {
+      required: false,
+      type: String,
+      default: 'interactive',
+      validator: (prop) => ['interactive', 'basic', 'subtle'].includes(prop),
     },
 
     ariaLabel: {
       type: String,
       required: false,
       default: '',
+    },
+
+    buttonClasses: {
+      required: false,
+      type: String,
+      default: 'px-1 py-0.5',
     },
 
     dataCy: {
@@ -78,6 +95,13 @@ export default {
       required: false,
       type: Boolean,
       default: false,
+    },
+
+    flyoutPosition: {
+      required: false,
+      type: String,
+      default: 'absolute',
+      validator: (prop) => ['relative', 'absolute'].includes(prop),
     },
 
     padded: {
@@ -107,6 +131,17 @@ export default {
     return {
       isExpanded: false,
     }
+  },
+
+  computed: {
+    appearanceClasses () {
+      return {
+        'text-black border border-input px-2': this.appearance === 'basic',
+        'text-interactive hover:text-interactive-hover hover:bg-interactive-subtle-hover active:text-interactive-active active:bg-interactive-subtle-active': this.appearance === 'interactive',
+        'text-muted hover:bg-surface-light active:bg-surface-light': this.appearance === 'subtle',
+        'bg-surface-medium rounded-md': this.variant === 'dark',
+      }
+    },
   },
 
   methods: {

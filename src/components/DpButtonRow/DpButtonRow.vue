@@ -4,31 +4,34 @@
     class="space-x-2"
   >
     <dp-button
-      v-if="primary"
-      :busy="busy ? true : null"
-      :data-cy="`${dataCy}:saveButton`"
-      :disabled="isDisabledPrimary"
-      :text="primaryText"
-      :variant="variant"
-      @click.prevent="$emit('primary-action')"
-    />
-    <dp-button
       v-if="secondary"
       color="secondary"
       :data-cy="`${dataCy}:abortButton`"
       :disabled="isDisabledSecondary"
       :href="href"
       :text="secondaryText"
-      :variant="variant"
+      variant="outline"
       @click.prevent="$emit('secondary-action')"
+    />
+    <dp-button
+      v-if="primary"
+      :busy="busy ? true : null"
+      :data-cy="`${dataCy}:saveButton`"
+      :disabled="isDisabledPrimary"
+      :text="primaryText"
+      :variant="primaryBtnVariant"
+      @click.prevent="$emit('primary-action')"
     />
     <slot />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { de } from '~/components/shared/translations'
 import DpButton from '~/components/DpButton'
+import { PropType } from 'vue'
+
+type ButtonVariant = 'solid' | 'outline' | 'subtle'
 
 export default {
   name: 'DpButtonRow',
@@ -97,6 +100,17 @@ export default {
     },
 
     /**
+     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
+     * When not specified, the `solid` variant (white on colored background) is applied.
+     */
+    primaryBtnVariant: {
+      required: false,
+      type: String as PropType<ButtonVariant>,
+      default: 'solid',
+      validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
+    },
+
+    /**
      * Custom text for the primary button.
      */
     primaryText: {
@@ -121,17 +135,6 @@ export default {
       type: String,
       required: false,
       default: de.operations.abort,
-    },
-
-    /**
-     * The buttons may have a variant of `solid`, `outline`, or `subtle`.
-     * When not specified, the `solid` variant (white on colored background) is applied.
-     */
-    variant: {
-      required: false,
-      type: String,
-      default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'subtle'].includes(prop),
     },
   },
 

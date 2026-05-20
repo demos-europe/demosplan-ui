@@ -12,6 +12,10 @@ import {
   PhArrowLeft,
   PhArrowRight,
   PhArrowsClockwise,
+  PhArrowsIn,
+  PhArrowsLeftRight,
+  PhArrowsOut,
+  PhArrowsOutLineHorizontal,
   PhArrowUp,
   PhCaretDoubleDown,
   PhCaretDoubleUp,
@@ -49,6 +53,7 @@ import {
   PhSignOut,
   PhTag,
   PhTrash,
+  PhUploadSimple,
   PhUser,
   PhUsersThree,
   PhWarning,
@@ -68,6 +73,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'arrow-left': PhArrowLeft,
   'arrow-right': PhArrowRight,
   'arrow-up': PhArrowUp,
+  'arrows-out-line-horizontal': PhArrowsOutLineHorizontal,
   'caret-down': PhCaretDown,
   'caret-left': PhCaretLeft,
   'caret-right': PhCaretRight,
@@ -97,12 +103,16 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'x': PhX,
   'x-circle': PhXCircle,
   'arrows-clockwise': PhArrowsClockwise, // Alias: refresh
+  'arrows-in': PhArrowsIn, // Alias: compress
+  'arrows-left-right': PhArrowsLeftRight,
+  'arrows-out': PhArrowsOut, // Alias: expand
   'circle-notch': PhCircleNotch, // Alias: spinner
   'clock-counter-clockwise': PhClockCounterClockwise, // Alias: history
-  'corners-in': PhCornersIn, // Alias: compress
-  'corners-out': PhCornersOut, // Alias: expand
+  'corners-in': PhCornersIn,
+  'corners-out': PhCornersOut,
   'dots-six-vertical': PhDotsSixVertical, // Alias: drag-handle
   'download-simple': PhDownloadSimple, // Alias: download
+  'upload-simple': PhUploadSimple, // Alias: upload
   'envelope-simple': PhEnvelopeSimple, // Alias: mail
   'gear-six': PhGearSix, // Alias: settings
   'lock-simple': PhLockSimple, // Alias: lock
@@ -122,12 +132,12 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'chevron-right': PhCaretRight,
   'chevron-up': PhCaretUp,
   'close': PhX,
-  'compress': PhCornersIn,
+  'compress': PhArrowsIn,
   'delete': PhTrash,
   'download': PhDownloadSimple,
   'drag-handle': PhDotsSixVertical,
   'edit': PhPencilSimple,
-  'expand': PhCornersOut,
+  'expand': PhArrowsOut,
   'history': PhClockCounterClockwise,
   'lock': PhLockSimple,
   'mail': PhEnvelopeSimple,
@@ -139,6 +149,7 @@ const mappedIconAliases: Record<IconAlias, Component> = {
   'spinner': PhCircleNotch,
   'success': PhCheck,
   'unlock': PhLockSimpleOpen,
+  'upload': PhUploadSimple,
   'userSolid': PhUser,
   'xmark': PhX,
 }
@@ -150,6 +161,7 @@ const iconsProportions: Record<string, IconProportion> = {
   'arrow-left': 'landscape',
   'arrow-right': 'landscape',
   'arrow-up': 'portrait',
+  'arrows-out-line-horizontal': 'landscape',
   'caret-down': 'landscape',
   'caret-left': 'portrait',
   'caret-right': 'portrait',

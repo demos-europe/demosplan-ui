@@ -17,6 +17,27 @@
 }
 
 /**
+ * Render a compact scrollbar with neutral colors (12px height in Chrome/WebKit).
+ * Firefox does not support pixel-level scrollbar sizing; scrollbar-width: auto is used as fallback.
+ */
+@utility scrollbar-interactive {
+  scrollbar-width: auto;
+  &&::-webkit-scrollbar {
+    height: 12px;
+  }
+  &&::-webkit-scrollbar-thumb {
+    background-color: var(--dp-color-neutral-light-2, #d3d3d3);
+    border-radius: 6px;
+  }
+  &&::-webkit-scrollbar-thumb:active {
+    background-color: var(--dp-color-interactive, #006fd0);
+  }
+  &&::-webkit-scrollbar-track {
+    background: var(--dp-color-neutral-light-4, #f5f5f5);
+  }
+}
+
+/**
  * Visualize indeterminate system action. Use in conjunction with "animate-busy".
  */
 @utility bg-busy {

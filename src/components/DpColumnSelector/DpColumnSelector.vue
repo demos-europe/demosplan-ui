@@ -1,7 +1,8 @@
 <template>
   <dp-flyout
-    :has-menu="false"
+    :appearance="appearance"
     :data-cy="dataCy"
+    :has-menu="false"
     @close="trackSelection"
   >
     <template v-slot:trigger>
@@ -12,6 +13,12 @@
       />
     </template>
     <div class="space-stack-xs u-pv-0_25">
+      <button
+        v-if="hasSelectAllOption"
+        class="btn--blank o-link--default ml-auto mb-1"
+        @click="toggleSelectAll"
+        v-text="labelToggleAll"
+      />
       <dp-checkbox
         v-for="([value, label]) in selectableColumns"
         :id="`columnSelector:${value}`"
@@ -42,16 +49,22 @@ export default {
   },
 
   props: {
+    appearance: {
+      type: String,
+      required: false,
+      default: 'interactive',
+    },
+
     dataCy: {
       type: String,
       required: false,
       default: '',
     },
 
-    selectableColumns: {
-      type: Array,
+    hasSelectAllOption: {
+      type: Boolean,
       required: false,
-      default: () => ([]),
+      default: false,
     },
 
     initialSelection: {
@@ -66,6 +79,12 @@ export default {
       default: '',
     },
 
+    selectableColumns: {
+      type: Array,
+      required: false,
+      default: () => ([]),
+    },
+
     useLocalStorage: {
       type: Boolean,
       required: false,
@@ -77,9 +96,16 @@ export default {
 
   data () {
     return {
+      labelToggleAll: de.operations.toggle.all,
       selectedColumns: new Set(),
       triggerText: de.table.colsSelect,
     }
+  },
+
+  computed: {
+    allColumnsSelected () {
+      return this.selectableColumns.every(([value]) => this.selectedColumns.has(value))
+    },
   },
 
   methods: {
@@ -112,6 +138,15 @@ export default {
       } else {
         this.selectedColumns = new Set(this.initialSelection)
       }
+    },
+
+    toggleSelectAll () {
+      if (this.allColumnsSelected) {
+        this.selectableColumns.forEach(([value]) => this.selectedColumns.delete(value))
+      } else {
+        this.selectableColumns.forEach(([value]) => this.selectedColumns.add(value))
+      }
+      this.broadcastSelection()
     },
 
     /**

@@ -71,7 +71,7 @@ describe('DpTreeList', () => {
     wrapper = shallowMount(DpTreeList, {
       props: {
         treeData: createTreeData(),
-        branchIdentifier: jest.fn(({ node }) => node.type === 'Elements'),
+        branchIdentifier: vi.fn(({ node }) => node.type === 'Elements'),
         options: {
           branchesSelectable: true,
           leavesSelectable: true,

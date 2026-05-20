@@ -19,6 +19,7 @@
       aria-hidden="true"
       :icon="icon"
       :size="iconSize"
+      :weight="iconWeight"
     />
     <span
       v-if="!hideText"
@@ -29,6 +30,7 @@
       aria-hidden="true"
       :icon="iconAfter"
       :size="iconSize"
+      :weight="iconWeight"
     />
   </component>
 </template>
@@ -36,7 +38,7 @@
 <script setup lang="ts">
 import { computed, onMounted, PropType } from 'vue'
 import { proportions as ICON_PROPORTIONS, SIZES as ICON_SIZES } from '~/components/DpIcon/util/iconConfig'
-import { IconName, IconSize } from '../../../types'
+import { IconName, IconSize, IconWeight } from '../../../types'
 import DpIcon from '~/components/DpIcon/DpIcon.vue'
 import { sanitizeUrl } from '@braintree/sanitize-url'
 import { Tooltip } from '~/directives'
@@ -101,6 +103,15 @@ const props = defineProps({
   },
 
   /**
+   * Icon that will be placed after button text.
+   */
+  iconAfter: {
+    type: String as PropType<IconName>,
+    required: false,
+    default: '',
+  },
+
+  /**
    * Define the size of the button icons.
    */
   iconSize: {
@@ -110,13 +121,11 @@ const props = defineProps({
     validator: (prop: IconSize) => Object.keys(ICON_SIZES).includes(prop),
   },
 
-  /**
-   * Icon that will be placed after button text.
-   */
-  iconAfter: {
-    type: String as PropType<IconName>,
+  iconWeight: {
+    type: String as PropType<IconWeight>,
     required: false,
-    default: '',
+    default: 'regular',
+    validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop),
   },
 
   /**

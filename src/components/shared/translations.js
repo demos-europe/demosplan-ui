@@ -7,6 +7,12 @@ const de = {
     default: 'Alternativer Text',
   },
   aria: {
+    activate: {
+      element: 'Element aktivieren',
+    },
+    deactivate: {
+      element: 'Element deaktivieren',
+    },
     deselect: {
       all: 'Auswahl für alle Elemente aufheben',
       element: 'Auswahl für Element aufheben',
@@ -23,6 +29,7 @@ const de = {
       all: 'Alle Elemente ausklappen',
       element: 'Element ausklappen',
     },
+    reorderColumn: 'Spalte verschieben',
   },
   autocompleteNoResults: 'Keine Suchtreffer.',
   choose: "Auswählen",
@@ -43,6 +50,10 @@ const de = {
       return `Überschrift ${level}`
     },
     italic: 'Kursiv',
+    languageTool: {
+      noSuggestions: 'Keine Vorschläge verfügbar.',
+      suggestions: 'Vorschläge',
+    },
     link: {
       edit: 'Link bearbeiten',
       editOrInsert: 'Link einfügen/bearbeiten',
@@ -142,6 +153,9 @@ const de = {
       all: 'Alle auswählen',
       placeholder: 'Bitte wählen Sie einen Eintrag aus.',
     },
+    toggle: {
+      all: 'Alle an/abwählen',
+    },
     update: 'Aktualisierung',
   },
   pager: {
@@ -185,6 +199,7 @@ const de = {
   },
   text: {
     deleted: 'Dieser Text wurde entfernt',
+    editor: 'Texteditor',
     inserted: 'Dieser Text wurde hinzugefügt',
     marked: 'markierter Text',
   },

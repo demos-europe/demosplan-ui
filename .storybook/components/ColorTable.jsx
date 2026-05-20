@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import brandTokens from '../../tokens/dist/js/color.brand'
+import dataTokens from '../../tokens/dist/js/color.data'
+import paletteTokens from '../../tokens/dist/js/color.palette'
 
 const extractPaletteColors = (tokens) => {
     const result = []
@@ -23,9 +26,9 @@ const extractPaletteColors = (tokens) => {
 }
 
 const colors = {
-    brand: extractPaletteColors(require('../../tokens/dist/js/color.brand').color.brand),
-    data: extractPaletteColors(require('../../tokens/dist/js/color.data').color.data),
-    palette: extractPaletteColors(require('../../tokens/dist/js/color.palette').color.palette),
+    brand: extractPaletteColors(brandTokens.color.brand),
+    data: extractPaletteColors(dataTokens.color.data),
+    palette: extractPaletteColors(paletteTokens.color.palette),
 }
 
 const ColorTable = ({namespace}) => (

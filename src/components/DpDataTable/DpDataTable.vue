@@ -3,7 +3,7 @@
     <table
       ref="tableEl"
       :data-cy="`${dataCy}:table`"
-      :class="tableClass"
+      :class="[tableClass, { 'border-separate border-spacing-0': isResizable || hasStickyHeader }]"
     >
       <caption
         class="sr-only"
@@ -25,10 +25,15 @@
       <thead>
         <dp-table-header
           :data-cy="`${dataCy}:header`"
+          :all-expanded="allExpanded"
           :checked="allSelected"
+          :column-width-storage-key="columnWidthStorageKey"
+          :density="density"
           :has-flyout="hasFlyout"
-          :header-fields="headerFields"
+          :has-borders="hasBorders"
+          :header-fields="orderedHeaderFields"
           :indeterminate="indeterminate"
+          :is-columns-draggable="isColumnsDraggable"
           :is-draggable="isDraggable"
           :is-expandable="isExpandable"
           :is-resizable="isResizable"
@@ -36,18 +41,19 @@
           :is-sticky="hasStickyHeader"
           :is-truncatable="isTruncatable"
           :translations="headerTranslations"
+          @column-reorder="applyReorder"
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
           @toggle-wrap-all="toggleWrapAll"
         >
           <template
-            v-for="(field, index) in headerFields"
-            :key="index"
-            v-slot:[`header-${field.field}`]="field"
+            v-for="field in headerFields"
+            :key="field.field"
+            v-slot:[`header-${field.field}`]="headerSlotData"
           >
             <slot
               :name="`header-${field.field}`"
-              v-bind="field"
+              v-bind="headerSlotData"
             />
           </template>
         </dp-table-header>
@@ -67,9 +73,12 @@
             :data-cy="`${dataCy}:row:${idx}`"
             :index="idx"
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
+            :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
-            :header-fields="headerFields"
+            :header-fields="orderedHeaderFields"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
@@ -87,19 +96,19 @@
             @toggle-wrap="toggleWrap"
           >
             <template
-              v-for="(field, index) in fields"
-              :key="index"
-              v-slot:[field]="item"
+              v-for="field in fields"
+              :key="field"
+              v-slot:[field]="slotProps"
             >
               <slot
                 :name="field"
-                v-bind="item"
+                v-bind="slotProps"
               />
             </template>
-            <template v-slot:flyout="item">
+            <template v-slot:flyout="flyoutSlotProps">
               <slot
                 name="flyout"
-                v-bind="item"
+                v-bind="flyoutSlotProps"
               />
             </template>
           </dp-table-row>
@@ -112,6 +121,8 @@
             <td
               :class="{ 'opacity-70': isLoading }"
               :colspan="colCount"
+              @focus="addHoveredClass(idx)"
+              @blur="removeHoveredClass(idx)"
               @mouseenter="addHoveredClass(idx)"
               @mouseleave="removeHoveredClass(idx)"
             >
@@ -139,10 +150,12 @@
         >
           <dp-table-row
             :checked="elementSelections[item[trackBy]] || false"
+            :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :has-borders="hasBorders"
             :has-flyout="hasFlyout"
-            :header-fields="headerFields"
+            :header-fields="orderedHeaderFields"
             :index="idx"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
@@ -162,19 +175,19 @@
             @toggle-wrap="toggleWrap"
           >
             <template
-              v-for="(field, idx) in fields"
-              v-slot:[field]="item"
-              :key="idx"
+              v-for="field in fields"
+              v-slot:[field]="slotProps"
+              :key="field"
             >
               <slot
                 :name="field"
-                v-bind="item"
+                v-bind="slotProps"
               />
             </template>
-            <template v-slot:flyout="item">
+            <template v-slot:flyout="flyoutSlotProps">
               <slot
                 name="flyout"
-                v-bind="item"
+                v-bind="flyoutSlotProps"
               />
             </template>
           </dp-table-row>
@@ -245,6 +258,19 @@ export default {
       default: 'dateTable',
     },
 
+    density: {
+      type: String,
+      required: false,
+      default: 'compact',
+      validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
+    hasBorders: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     // Adds flyout menu
     hasFlyout: {
       type: Boolean,
@@ -267,6 +293,18 @@ export default {
      * The header can also have a tooltip. To define the width the column is initially rendered with
      * when `isResizable` is used, the keys `initialWidth`, `initialMaxWidth` and `initialMinWidth` take a px value.
      */
+    columnStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    columnWidthStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     headerFields: {
       type: Array,
       required: true,
@@ -276,6 +314,12 @@ export default {
       type: Array,
       required: false,
       default: () => [],
+    },
+
+    isColumnsDraggable: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     isDraggable: {
@@ -440,6 +484,7 @@ export default {
         footerSelectedElement: de.entrySelected,
         footerSelectedElements: de.entriesSelected,
         headerExpandHint: de.expandAll,
+        headerReorderColumnHint: de.aria.reorderColumn,
         headerSelectHint: de.operations.select.all,
         lockedForSelection: de.item.lockedForSelection,
         searchNoResults: (searchTerm) =>  de.search.noResults({ searchTerm: searchTerm }),
@@ -450,6 +495,7 @@ export default {
       expandedElements: {},
       headerCellCount: 0,
       mergedTranslations: {},
+      orderedHeaderFields: [],
       selectedElements: [],
       tableEl: undefined,
       tableProps: [
@@ -483,11 +529,11 @@ export default {
     },
 
     fields () {
-      return this.headerFields.map(hf => hf.field)
+      return this.orderedHeaderFields.map(hf => hf.field)
     },
 
     headerTranslations () {
-      return this.extractTranslations(['headerSelectHint'])
+      return this.extractTranslations(['headerReorderColumnHint', 'headerSelectHint'])
     },
 
     indeterminate () {
@@ -525,11 +571,15 @@ export default {
   watch: {
     headerFields: {
       handler () {
+        this.initColumnOrder()
+
         if (this.isResizable) {
           this.$nextTick(() => {
             const firstRow = this.tableEl.getElementsByTagName('tr')[0]
             const tableHeaderElements = firstRow ? firstRow.children : null
 
+            this.setColsWidth(tableHeaderElements)
+            this.fillContainerWidth(tableHeaderElements)
             this.setColsWidth(tableHeaderElements)
           })
         }
@@ -547,6 +597,31 @@ export default {
       const tableRow = this.$refs[`tableRows[${idx}]`]
 
       return tableRow[0].$el.classList.add('is-hovered-content')
+    },
+
+    applyReorder (newFieldNames) {
+      // Contains only draggable (non-fixed) columns in new order
+      const draggableNew = newFieldNames
+        .map(name => this.headerFields.find(f => f.field === name))
+        .filter(Boolean)
+
+      // Reconstruct full order: fixed columns stay at their original headerFields positions
+      let draggableIdx = 0
+      this.orderedHeaderFields = this.headerFields.map(hf => {
+        if (hf.fixed) {
+          return hf
+        }
+
+        return draggableNew[draggableIdx++] || hf
+      })
+
+      if (this.columnStorageKey) {
+        const nonFixedOrder = this.orderedHeaderFields.filter(f => !f.fixed).map(f => f.field)
+        localStorage.setItem(
+          `dpDataTable:columnOrder:${this.columnStorageKey}`,
+          JSON.stringify(nonFixedOrder),
+        )
+      }
     },
 
     /**
@@ -595,7 +670,51 @@ export default {
 
 
     getFixedColWidth (field) {
-      return ['flyout', 'wrap', 'select', 'dragHandle'].includes(field) ? '30px' : null
+      if (field === 'flyout') {
+        return '60px'
+      }
+
+      return ['wrap', 'select', 'dragHandle'].includes(field) ?
+        '30px' :
+        null
+    },
+
+    initColumnOrder () {
+      if (!this.columnStorageKey) {
+        this.orderedHeaderFields = [...this.headerFields]
+
+        return
+      }
+
+      try {
+        const stored = localStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
+        if (!stored) {
+          this.orderedHeaderFields = [...this.headerFields]
+
+          return
+        }
+
+        const storedOrder = JSON.parse(stored) // Only non-fixed fields
+        const nonFixedFields = this.headerFields.filter(f => !f.fixed)
+        const storedSet = new Set(storedOrder)
+
+        const orderedNonFixed = [
+          ...storedOrder.map(name => nonFixedFields.find(f => f.field === name)).filter(Boolean),
+          ...nonFixedFields.filter(f => !storedSet.has(f.field)),
+        ]
+
+        // Reconstruct: fixed fields at original positions, non-fixed in stored order
+        let nonFixedIdx = 0
+        this.orderedHeaderFields = this.headerFields.map(hf => {
+          if (hf.fixed) {
+            return hf
+          }
+
+          return orderedNonFixed[nonFixedIdx++] || hf
+        })
+      } catch {
+        this.orderedHeaderFields = [...this.headerFields]
+      }
     },
 
     removeHoveredClass(idx) {
@@ -617,8 +736,7 @@ export default {
          */
         if (tableHeaderEl.nodeType === 1) {
           const headerField = tableHeaderEl.getAttribute('data-col-field')
-          const storageName = `dpDataTable:data-col-field=${headerField}`
-          const sessionColWidth = this.getItemFromSessionStorage(storageName)
+          const storedColWidth = this.readStoredColWidth(headerField)
           /**
            * Some columns, such as 'flyout' and 'wrap', should not be resizable;
            * their width is fixed; the getBoundingClientRect() function should not be applied to them
@@ -627,14 +745,129 @@ export default {
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-            || sessionColWidth
+            || storedColWidth
             || headerFieldWidth
             || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
-          this.updateSessionStorage(storageName, width)
+          this.writeStoredColWidth(headerField, width)
         }
       })
+    },
+
+    readStoredColWidth (headerField) {
+      /*
+       * When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
+       * Otherwise, fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+       */
+      if (this.columnWidthStorageKey) {
+        try {
+          const stored = localStorage.getItem(`dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`)
+
+          return stored ? JSON.parse(stored) : null
+        } catch {
+          return null
+        }
+      }
+
+      return this.getItemFromSessionStorage(`dpDataTable:data-col-field=${headerField}`)
+    },
+
+    writeStoredColWidth (headerField, width) {
+      if (this.columnWidthStorageKey) {
+        localStorage.setItem(
+          `dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`,
+          JSON.stringify(width),
+        )
+
+        return
+      }
+
+      this.updateSessionStorage(`dpDataTable:data-col-field=${headerField}`, width)
+    },
+
+    /**
+     * Distribute available container width among data columns so the sticky flyout always
+     * stays at its fixed 60px width and no column remains at 0px.
+     *
+     * When scale > 1 (columns don't fill the container), all data columns are scaled up
+     * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended
+     * up at 0px (added while table-layout:fixed was active and no space remained) are set
+     * to their minimum width — other columns are left untouched.
+     */
+    fillContainerWidth (headers) {
+      const containerWidth = this.tableEl.parentElement.clientWidth
+      if (!containerWidth) {
+        return
+      }
+
+      const dataCols = []
+      let fixedTotal = 0
+
+      Array.from(headers).forEach(th => {
+        if (th.nodeType !== 1) {
+          return
+        }
+
+        const field = th.dataset.colField
+        const fixedWidth = this.getFixedColWidth(field)
+        if (fixedWidth) {
+          fixedTotal += Number.parseInt(fixedWidth, 10)
+        } else if (field) {
+          /*
+           * Prefer colWidth over th.style.width to avoid carrying a previously scaled value
+           * into the next calculation. Fall back to initialMinWidth (or 50px) for columns
+           * that have 0px in the DOM — getBoundingClientRect returns 0 for columns added
+           * after table-layout:fixed is active and the table is already full-width.
+           * actualWidth is kept separately so the scale <= 1 branch can identify and fix
+           * those 0px columns without touching correctly-sized ones.
+           */
+          const colWidth = this.getColWidthFromHeaderField(field)
+          const hf = this.headerFields.find(h => h.field === field)
+          const minWidth = (hf && hf.initialMinWidth) || 50
+          const actualWidth = Number.parseFloat(th.style.width) || 0
+          const naturalWidth = Math.max(Number.parseFloat(colWidth) || actualWidth, minWidth)
+          dataCols.push({ th, naturalWidth, actualWidth })
+        }
+      })
+
+      if (dataCols.length === 0 || fixedTotal === 0) {
+        return
+      }
+
+      const availableForData = containerWidth - fixedTotal
+      if (availableForData <= 0) {
+        return
+      }
+
+      const naturalTotal = dataCols.reduce((sum, col) => sum + col.naturalWidth, 0)
+      if (naturalTotal <= 0) {
+        return
+      }
+
+      const scale = availableForData / naturalTotal
+
+      if (scale > 1) {
+        /*
+         * Scale up: distribute all available space proportionally so data columns fill
+         * the container and the flyout stays exactly at its fixed width.
+         */
+        dataCols.forEach(({ th, naturalWidth }) => {
+          th.style.width = `${Math.round(naturalWidth * scale)}px`
+        })
+      } else {
+        /*
+         * Columns fill or overflow the container — no scaling needed.
+         * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
+         * was active with no remaining space) so the browser does not redistribute the missing
+         * space to other columns, which would inflate the sticky flyout beyond its 60px.
+         */
+        dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
+          if (actualWidth <= 0) {
+            th.style.width = `${naturalWidth}px`
+          }
+        })
+      }
     },
 
     setElementSelections (elements, status) {
@@ -705,6 +938,8 @@ export default {
     tmpTranslations = { ...tmpTranslations, ...noResults }
 
     this.mergedTranslations = { ...this.defaultTranslations, ...tmpTranslations }
+
+    this.initColumnOrder()
   },
 
   beforeUpdate () {
@@ -729,6 +964,11 @@ export default {
 
       this.tableEl.style.tableLayout = 'fixed'
       this.tableEl.classList.add('is-fixed')
+
+      this.fillContainerWidth(tableHeaderElements)
+
+      this.fillContainerWidth(tableHeaderElements)
+      this.setColsWidth(tableHeaderElements)
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {

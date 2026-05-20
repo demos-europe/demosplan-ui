@@ -3,8 +3,8 @@ import {
   describe,
   expect,
   it,
-  jest,
-} from '@jest/globals'
+  vi,
+} from 'vitest'
 
 import DpButton from '~/components/DpButton/DpButton'
 import DpIcon from '~/components/DpIcon/DpIcon'
@@ -374,7 +374,7 @@ describe('DpButton', () => {
 
   describe('Error Handling and Edge Cases', () => {
     it('logs console error when hideText is true but no icons provided', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
       wrapper = createWrapper({ hideText: true, icon: '', iconAfter: '' })
 
@@ -386,7 +386,7 @@ describe('DpButton', () => {
     })
 
     it('does not log error when hideText is true and icon is provided', () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
       wrapper = createWrapper({ hideText: true, icon: 'check' })
 

@@ -123,7 +123,14 @@ const { option: changeSortableOption } = useSortable(
     onChange: (e: Event) => props.handleChange(e, props.nodeId, wrapper),
     onAdd: () => emit('add'),
     onEnd: (e) => {
-      const currentElement = list.value[e.oldIndex]
+      const currentElement = e.item
+
+      // Cross-list drops: SortableJS moves the DOM node directly, but Vue's v-for
+      // then rebuilds the destination from state and leaves the moved node as an orphan.
+      // Remove it so Vue is the single source of truth.
+      if (e.from !== e.to) {
+        e.item.parentNode?.removeChild(e.item)
+      }
 
       props.handleDrag('end', e, currentElement, props.nodeId)
       emit('end', e, currentElement, props.nodeId)

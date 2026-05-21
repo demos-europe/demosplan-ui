@@ -1,16 +1,18 @@
 <template>
-  <div class="flex items-center gap-2 p-2 bg-selected">
+  <div class="flex items-center justify-between p-2 bg-selected">
     <span>
       {{ selectedItemsText }}
     </span>
-    <slot />
-    <dp-button
-      class="ml-auto"
-      color="secondary"
-      data-cy="resetSelection"
-      :text="deselect"
-      @click="$emit('reset-selection')"
-    />
+    <div class="flex gap-[16px]">
+      <dp-button
+        class="ml-auto"
+        color="secondary"
+        data-cy="resetSelection"
+        :text="deselect"
+        @click="$emit('reset-selection')"
+      />
+      <slot />
+    </div>
   </div>
 </template>
 

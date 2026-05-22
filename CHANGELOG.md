@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop; DpBadge: add `isButton` prop ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Changed
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
+
 ## v0.20.0 - 2026-5-5
 
 ### Changed

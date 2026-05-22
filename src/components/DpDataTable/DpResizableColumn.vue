@@ -36,6 +36,12 @@ export default {
   mixins: [sessionStorageMixin],
 
   props: {
+    columnWidthStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     idx: {
       required: true,
       type: Number,
@@ -116,7 +122,19 @@ export default {
         }
 
         this.resize.style.width = newWidth + 'px'
-        this.updateSessionStorage(`dpDataTable:data-col-field=${this.headerField.field}`, this.resize.style.width)
+
+        /*
+         * When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
+         * Otherwise fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+         */
+        if (this.columnWidthStorageKey) {
+          localStorage.setItem(
+            `dpDataTable:colWidth:${this.columnWidthStorageKey}:${this.headerField.field}`,
+            JSON.stringify(this.resize.style.width),
+          )
+        } else {
+          this.updateSessionStorage(`dpDataTable:data-col-field=${this.headerField.field}`, this.resize.style.width)
+        }
       }
     },
 

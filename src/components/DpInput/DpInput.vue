@@ -222,7 +222,7 @@ const props = defineProps({
   },
 
   /**
-   * When true, `border-status-failed` class is added to`<input>` classes,
+   * When true, `border-status-failed` class is added to `<input>` classes,
    * rendering the same thin error border as a native required-empty field.
    * This is independent of the dp-validate system,
    * e.g. for client-side checks like duplicate values in the input.

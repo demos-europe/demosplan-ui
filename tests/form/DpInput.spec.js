@@ -90,4 +90,14 @@ describe('DpInput', () => {
     // Class should not be on the input (it stays on the wrapper)
     expect(input.attributes('class')).not.toContain('custom-class')
   })
+
+  it('applies the error border class when showErrorBorder is true', async () => {
+    await wrapper.setProps({ showErrorBorder: true })
+    expect(wrapper.find('input').classes()).toContain('border-status-failed')
+  })
+
+  it('does not apply the error border class when showErrorBorder is false', async () => {
+    await wrapper.setProps({ showErrorBorder: false })
+    expect(wrapper.find('input').classes()).not.toContain('border-status-failed')
+  })
 })

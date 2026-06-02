@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1501](https://github.com/demos-europe/demosplan-ui/pull/1501)) DpInput: Add prop for error border style ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.22.0 - 2026-05-18
 
 ### Added

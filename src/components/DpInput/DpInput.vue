@@ -222,6 +222,18 @@ const props = defineProps({
   },
 
   /**
+   * When true, `border-status-failed` class is added to`<input>` classes,
+   * rendering the same thin error border as a native required-empty field.
+   * This is independent of the dp-validate system,
+   * e.g. for client-side checks like duplicate values in the input.
+   */
+  showErrorBorder: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+
+  /**
    * When setting a number for the `size` prop, this is directly rendered
    * as html attribute on the input element. Also, it is assumed that visual sizing
    * based on that value shall be applied, that is why both container classes
@@ -307,6 +319,10 @@ const classes = computed(() => {
     _classes.push('bg-surface-light border border-input-disabled cursor-default')
   } else {
     _classes.push('text-input bg-surface border border-input cursor-text')
+  }
+
+  if (props.showErrorBorder) {
+    _classes.push('border-status-failed')
   }
 
   if (totalNumberOfIcons.value) {

@@ -63,6 +63,7 @@ export type PhosphorIconName =
   | 'check'
   | 'check-circle'
   | 'clock'
+  | 'cloud-arrow-up'
   | 'copy'
   | 'dots-three'
   | 'faders'

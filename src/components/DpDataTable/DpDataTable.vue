@@ -307,8 +307,9 @@ export default {
 
     flyoutWidth: {
       type: String,
-      required:false,
-      default:'60px',
+      required: false,
+      default: '60px',
+      validator: (value) => /^\d+px$/.test(value),
     },
 
     headerFields: {

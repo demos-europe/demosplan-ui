@@ -305,6 +305,12 @@ export default {
       default: '',
     },
 
+    flyoutWidth: {
+      type: String,
+      required:false,
+      default:'60px',
+    },
+
     headerFields: {
       type: Array,
       required: true,
@@ -671,7 +677,7 @@ export default {
 
     getFixedColWidth (field) {
       if (field === 'flyout') {
-        return '60px'
+        return this.flyoutWidth
       }
 
       return ['wrap', 'select', 'dragHandle'].includes(field) ?

@@ -7,6 +7,14 @@ updates:
         time: "09:00"
         timezone: Europe/Berlin
     open-pull-requests-limit: 10
+    # Cooldown applies to version updates only - security updates (triggered by security alerts) bypass it and are
+    # opened immediately.
+    # See https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
     groups:
       babel:
         patterns:

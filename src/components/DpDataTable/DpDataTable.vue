@@ -197,12 +197,14 @@
       <!-- empty items -->
       <tr v-if="items.length === 0">
         <!-- noResultsData  -->
+        <!-- eslint-disable vue/no-v-html -->
         <td
           v-if="searchTermSet"
           :colspan="colCount"
           class="u-pt"
           v-html="noResults"
         />
+        <!-- eslint-enable vue/no-v-html -->
 
         <!-- noEntriesItem -->
         <td
@@ -309,7 +311,7 @@ export default {
       type: String,
       required: false,
       default: '60px',
-      validator: (value) => /^\d+px$/.test(value),
+      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= 60,
     },
 
     headerFields: {
@@ -795,7 +797,7 @@ export default {
 
     /**
      * Distribute available container width among data columns so the sticky flyout always
-     * stays at its fixed 60px width and no column remains at 0px.
+     * stays at its configured width (default: '60px', prop: flyoutWidth) and no column remains at 0px.
      *
      * When scale > 1 (columns don't fill the container), all data columns are scaled up
      * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended

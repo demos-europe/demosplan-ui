@@ -67,6 +67,7 @@ export type PhosphorIconName =
   | 'dots-three'
   | 'faders'
   | 'file'
+  | 'folders'
   | 'highlighter'
   | 'hourglass'
   | 'info'

@@ -305,6 +305,13 @@ export default {
       default: '',
     },
 
+    flyoutWidth: {
+      type: String,
+      required: false,
+      default: '60px',
+      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= 60,
+    },
+
     headerFields: {
       type: Array,
       required: true,
@@ -671,7 +678,7 @@ export default {
 
     getFixedColWidth (field) {
       if (field === 'flyout') {
-        return '60px'
+        return this.flyoutWidth
       }
 
       return ['wrap', 'select', 'dragHandle'].includes(field) ?
@@ -788,7 +795,7 @@ export default {
 
     /**
      * Distribute available container width among data columns so the sticky flyout always
-     * stays at its fixed 60px width and no column remains at 0px.
+     * stays at its configured width (default: '60px', prop: flyoutWidth) and no column remains at 0px.
      *
      * When scale > 1 (columns don't fill the container), all data columns are scaled up
      * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended
@@ -860,7 +867,7 @@ export default {
          * Columns fill or overflow the container — no scaling needed.
          * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
          * was active with no remaining space) so the browser does not redistribute the missing
-         * space to other columns, which would inflate the sticky flyout beyond its 60px.
+         * space to other columns, which would inflate the sticky flyout beyond its configured width (default: '60px') .
          */
         dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
           if (actualWidth <= 0) {

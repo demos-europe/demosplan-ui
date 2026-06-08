@@ -22,8 +22,8 @@ describe('DpToggle', () => {
     const wrapper = shallowMount(DpToggle, {
       props: {
         value: false,
-        disabled: true
-      }
+        disabled: true,
+      },
     })
 
     await wrapper.find('.toggle-wrapper').trigger('click')

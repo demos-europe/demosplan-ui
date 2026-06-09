@@ -867,7 +867,7 @@ export default {
          * Columns fill or overflow the container — no scaling needed.
          * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
          * was active with no remaining space) so the browser does not redistribute the missing
-         * space to other columns, which would inflate the sticky flyout beyond its configured width (default: '60px') .
+         * space to other columns, which would inflate the sticky flyout beyond its configured width (default: '60px').
          */
         dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
           if (actualWidth <= 0) {

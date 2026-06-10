@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1513](https://github.com/demos-europe/demosplan-ui/pull/1513)) DpDataTable: Add flyoutWidth prop (px only, min: 60px, default: 60px) ([@rafelddemos](https://github.com/rafelddemos))
 
 ## v0.22.0 - 2026-05-18

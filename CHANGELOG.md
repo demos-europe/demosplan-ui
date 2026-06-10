@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+<<<<<<< f_DPLAN-17747-create-statements-groups
 - ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpIcon: add `folders` and `arrow-square-out` icons ([@riechedemos](https://github.com/riechedemos))
 
 ### Fixed
@@ -12,6 +13,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Changed
 - ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpBulkEditHeader: reorder action buttons so abort sits left ([@riechedemos](https://github.com/riechedemos))
+=======
+- DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
+>>>>>>> main
 
 ## v0.22.0 - 2026-05-18
 

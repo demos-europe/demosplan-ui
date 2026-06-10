@@ -51,6 +51,7 @@ export type PhosphorIconName =
   'arrow-down'
   | 'arrow-left'
   | 'arrow-right'
+  | 'arrow-square-out'
   | 'arrow-up'
   | 'arrows-left-right'
   | 'arrows-out-line-horizontal'

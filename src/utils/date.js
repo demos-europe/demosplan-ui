@@ -30,6 +30,20 @@ const formatDate = function (date, format = DATE_FORMAT_SHORT) {
   return d.format(format)
 }
 
+const reformatDate = function (date, inputFormat = 'DD.MM.YYYY', outputFormat = DATE_FORMAT_SHORT) {
+  if (!date) {
+    return ''
+  }
+
+  const parsedDate = dayjs(date, inputFormat, true)
+
+  if (!parsedDate.isValid()) {
+    return ''
+  }
+
+  return parsedDate.format(outputFormat)
+}
+
 const toDate = function (date, format = 'DD.MM.YYYY') {
   return dayjs(date, format).toDate()
 }
@@ -37,5 +51,6 @@ const toDate = function (date, format = 'DD.MM.YYYY') {
 export {
   DATE_FORMAT_LONG,
   formatDate,
+  reformatDate,
   toDate,
 }

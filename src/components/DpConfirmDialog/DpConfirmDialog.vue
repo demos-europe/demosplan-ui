@@ -11,7 +11,14 @@
       v-if="header"
       v-slot:header
     >
-      <span>{{ header }}</span>
+      <span class="inline-flex items-center gap-2">
+        <dp-icon
+          v-if="icon"
+          aria-hidden="true"
+          :icon="icon"
+        />
+        <span>{{ header }}</span>
+      </span>
     </template>
     <p
       id="dialogDescription"
@@ -45,6 +52,7 @@
 import { de } from '~/components/shared/translations'
 import DpButton from '~/components/DpButton'
 import DpButtonRow from '~/components/DpButtonRow'
+import DpIcon from '~/components/DpIcon'
 import DpModal from '~/components/DpModal'
 import { PropType } from 'vue'
 
@@ -56,6 +64,7 @@ export default {
   components: {
     DpButton,
     DpButtonRow,
+    DpIcon,
     DpModal,
   },
 
@@ -85,6 +94,15 @@ export default {
     },
 
     header: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    /**
+     * Optional icon rendered before the header text.
+     */
+    icon: {
       type: String,
       required: false,
       default: '',

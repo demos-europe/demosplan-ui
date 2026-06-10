@@ -23,6 +23,7 @@
       :data-dp-validate-should-equal="dataDpValidateShouldEqual !== '' ? dataDpValidateShouldEqual : null"
       :data-cy="dataCy !== '' ? dataCy : null"
       :aria-labelledby="ariaLabelledby"
+      :aria-invalid="invalid || null"
       :maxlength="maxlength !== '' ? maxlength : null"
       :type="type"
       :pattern="pattern !== '' ? pattern : null"
@@ -222,12 +223,11 @@ const props = defineProps({
   },
 
   /**
-   * When true, `border-status-failed` class is added to `<input>` classes,
-   * rendering the same thin error border as a native required-empty field.
-   * This is independent of the dp-validate system,
-   * e.g. for client-side checks like duplicate values in the input.
+   * When true, invalid styling and `aria-invalid` are applied to the input.
+   * Use for client-side, state-dependent checks that dp-validate
+   * can't express (e.g. a value that must be unique across sibling rows).
    */
-  showErrorBorder: {
+  invalid: {
     type: Boolean,
     required: false,
     default: false,
@@ -299,7 +299,7 @@ const classes = computed(() => {
     `px-1 py-0.5 max-w-full
     text-base leading-4 bg-surface
     outline-1 outline-offset-0 outline-transparent
-    focus-visible:outline-interactive focus-visible:border-interactive focus-visible:z-above-zero
+    focus-visible:outline-interactive focus-visible:z-above-zero
     required:shadow-none`,
   ]
 
@@ -321,8 +321,10 @@ const classes = computed(() => {
     _classes.push('text-input bg-surface border border-input cursor-text')
   }
 
-  if (props.showErrorBorder) {
-    _classes.push('border-status-failed')
+  if (props.invalid) {
+    _classes.push('border-status-failed focus-visible:outline-interactive-warning')
+  } else {
+    _classes.push('focus-visible:border-interactive')
   }
 
   if (totalNumberOfIcons.value) {

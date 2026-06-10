@@ -3,9 +3,8 @@
     <span>
       {{ selectedItemsText }}
     </span>
-    <div class="flex gap-[16px]">
+    <div class="flex items-center gap-[16px]">
       <dp-button
-        class="ml-auto"
         color="secondary"
         data-cy="resetSelection"
         :text="deselect"

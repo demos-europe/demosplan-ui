@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function reformatDate ([@sakutademos](https://github.com/sakutademos))
 - DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.22.0 - 2026-05-18

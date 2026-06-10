@@ -535,6 +535,16 @@ export default {
       return this.headerCellCount + tableCellCount
     },
 
+    /**
+     * Clamp the value to ensure 'px' and min-width of 60px at runtime in every environment.
+     * Invalid units or non-numeric input fall back to the default of 60px.
+     */
+    effectiveFlyoutWidth () {
+      const match = /^(\d+)px$/.exec(this.flyoutWidth)
+      const parsed = match ? Number(match[1]) : 60
+      return `${Math.max(parsed, 60)}px`
+    },
+
     fields () {
       return this.orderedHeaderFields.map(hf => hf.field)
     },
@@ -678,7 +688,7 @@ export default {
 
     getFixedColWidth (field) {
       if (field === 'flyout') {
-        return this.flyoutWidth
+        return this.effectiveFlyoutWidth
       }
 
       return ['wrap', 'select', 'dragHandle'].includes(field) ?

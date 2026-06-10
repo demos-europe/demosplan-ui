@@ -4,6 +4,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpIcon: add `folders` and `arrow-square-out` icons ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpApi: send json:api headers for `api/3.0/` URLs (fixes 415 on API Platform requests) ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpBulkEditHeader: reorder action buttons so abort sits left ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.22.0 - 2026-05-18
 
 ### Added

@@ -16,7 +16,6 @@ describe('date', () => {
   }
   const dateTypes = {
     exactDate: new Date(`${date.year}-${date.month}-${date.day}${date.time.opt2}`),
-    shortExactDate: new Date(`${date.year}-${date.month}-${date.day}`),
     timestampDate: 1577276140000,
     IsoDate: `${date.year}-${date.month}-${date.day} ${date.time.opt1}`,
   }
@@ -130,13 +129,13 @@ describe('date', () => {
     const result1 = toDate(usFormat, 'MM/DD/YYYY')
     const result2 = toDate(isoFormat, 'YYYY-MM-DD')
 
-    expect(result1.getDate()).toEqual(dateTypes.shortExactDate.getDate())
-    expect(result1.getMonth()).toEqual(dateTypes.shortExactDate.getMonth())
-    expect(result1.getFullYear()).toEqual(dateTypes.shortExactDate.getFullYear())
+    expect(result1.getDate()).toEqual(dateTypes.exactDate.getDate())
+    expect(result1.getMonth()).toEqual(dateTypes.exactDate.getMonth())
+    expect(result1.getFullYear()).toEqual(dateTypes.exactDate.getFullYear())
 
-    expect(result2.getDate()).toEqual(dateTypes.shortExactDate.getDate())
-    expect(result2.getMonth()).toEqual(dateTypes.shortExactDate.getMonth())
-    expect(result2.getFullYear()).toEqual(dateTypes.shortExactDate.getFullYear())
+    expect(result2.getDate()).toEqual(dateTypes.exactDate.getDate())
+    expect(result2.getMonth()).toEqual(dateTypes.exactDate.getMonth())
+    expect(result2.getFullYear()).toEqual(dateTypes.exactDate.getFullYear())
   })
 
   it('handles unix timestamps in milliseconds', () => {

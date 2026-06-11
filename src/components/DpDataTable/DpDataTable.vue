@@ -235,6 +235,8 @@ import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import { sessionStorageMixin } from '~/mixins'
 
+const flyoutMinWidth = 60
+
 export default {
   name: 'DpDataTable',
 
@@ -303,6 +305,13 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    flyoutWidth: {
+      type: String,
+      required: false,
+      default: `${flyoutMinWidth}px`,
+      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= flyoutMinWidth,
     },
 
     headerFields: {
@@ -548,6 +557,16 @@ export default {
       return this.headerCellCount + tableCellCount
     },
 
+    /**
+     * Clamp the value to ensure 'px' and min-width of 60px at runtime in every environment.
+     * Invalid units or non-numeric input fall back to the default of 60px.
+     */
+    effectiveFlyoutWidth () {
+      const match = /^(\d+)px$/.exec(this.flyoutWidth)
+      const parsed = match ? Number(match[1]) : flyoutMinWidth
+      return `${Math.max(parsed, flyoutMinWidth)}px`
+    },
+
     fields () {
       return this.orderedHeaderFields.map(hf => hf.field)
     },
@@ -691,7 +710,7 @@ export default {
 
     getFixedColWidth (field) {
       if (field === 'flyout') {
-        return '60px'
+        return this.effectiveFlyoutWidth
       }
 
       return ['wrap', 'select', 'dragHandle'].includes(field) ?
@@ -808,7 +827,7 @@ export default {
 
     /**
      * Distribute available container width among data columns so the sticky flyout always
-     * stays at its fixed 60px width and no column remains at 0px.
+     * stays at its configured width (default: '60px', prop: flyoutWidth) and no column remains at 0px.
      *
      * When scale > 1 (columns don't fill the container), all data columns are scaled up
      * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended
@@ -880,7 +899,7 @@ export default {
          * Columns fill or overflow the container — no scaling needed.
          * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
          * was active with no remaining space) so the browser does not redistribute the missing
-         * space to other columns, which would inflate the sticky flyout beyond its 60px.
+         * space to other columns, which would inflate the sticky flyout beyond its configured width (default: '60px').
          */
         dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
           if (actualWidth <= 0) {

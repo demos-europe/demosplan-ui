@@ -90,4 +90,20 @@ describe('DpInput', () => {
     // Class should not be on the input (it stays on the wrapper)
     expect(input.attributes('class')).not.toContain('custom-class')
   })
+
+  it('applies the error border class and aria-invalid when invalid is true', async () => {
+    await wrapper.setProps({ invalid: true })
+    const input = wrapper.find('input')
+    expect(input.classes()).toContain('border-status-failed')
+    expect(input.classes()).toContain('focus-visible:outline-interactive-warning')
+    expect(input.attributes('aria-invalid')).toBe('true')
+  })
+
+  it('does not apply the error border class or aria-invalid when invalid is false', async () => {
+    await wrapper.setProps({ invalid: false })
+    const input = wrapper.find('input')
+    expect(input.classes()).not.toContain('border-status-failed')
+    expect(input.classes()).not.toContain('focus-visible:outline-interactive-warning')
+    expect(input.attributes('aria-invalid')).toBeUndefined()
+  })
 })

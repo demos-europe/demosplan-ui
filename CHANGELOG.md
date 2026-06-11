@@ -5,7 +5,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function reformatDateString; refactor toDate function ([@sakutademos](https://github.com/sakutademos))
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function `reformatDateString` ([@sakutademos](https://github.com/sakutademos))
+
+### Changed
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514))
+  - Utils: improve `toDate` function with strict date parsing to prevent incorrect date interpretation
+  - index.js: simplify index.js exports using direct re-export syntax ([@sakutademos](https://github.com/sakutademos))
 
 ## v0.23.0 - 2026-06-11
 

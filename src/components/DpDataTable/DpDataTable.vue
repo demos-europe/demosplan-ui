@@ -82,7 +82,7 @@
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="lockCheckboxHint || mergedTranslations.lockedForSelection"
+            :is-locked-message="(lockMessageBy && item[lockMessageBy]) || lockCheckboxHint || mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
             :is-selectable="isSelectable"
             :is-selectable-name="isSelectableName"
@@ -161,7 +161,7 @@
             :is-expandable="isExpandable"
             :is-loading="isLoading"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="lockCheckboxHint || mergedTranslations.lockedForSelection"
+            :is-locked-message="(lockMessageBy && item[lockMessageBy]) || lockCheckboxHint || mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
             :is-selectable="isSelectable"
             :is-selectable-name="isSelectableName"
@@ -415,6 +415,16 @@ export default {
      * This should only be set if `isSelectable` is true.
      */
     lockCheckboxBy: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
+     * Use a String Property of the Item to set a per-row message for the locked checkbox tooltip.
+     * Falls back to the global `lockedForSelection` translation when the item has no such property.
+     */
+    lockMessageBy: {
       type: String,
       required: false,
       default: null,

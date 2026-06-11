@@ -5,12 +5,18 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506))
+  - DpIcon: add `folders` and `arrow-square-out` icons
+  - DpDataTable: add lockMessageBy prop for per-row locked-checkbox tooltip messages
+  - DpApi: send json:api headers for `api/3.0/` URLs (fixes 415 on API Platform requests) ([@riechedemos](https://github.com/riechedemos))
+
 - ([#1513](https://github.com/demos-europe/demosplan-ui/pull/1513)) DpDataTable: Add flyoutWidth prop (px only, min: 60px, default: 60px) ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1501](https://github.com/demos-europe/demosplan-ui/pull/1501)) DpInput: Add prop for invalid state ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
-- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510))DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510)) DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpBulkEditHeader: reorder action buttons so abort sits left ([@riechedemos](https://github.com/riechedemos))
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ## v0.22.0 - 2026-05-18

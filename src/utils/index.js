@@ -8,7 +8,7 @@ import {
 import {
   DATE_FORMAT_LONG,
   formatDate,
-  reformatDate,
+  reformatDateString,
   toDate,
 } from './date'
 
@@ -45,7 +45,7 @@ export {
   exactlengthHint,
   formatBytes,
   formatDate,
-  reformatDate,
+  reformatDateString,
   toggleFullscreen,
   unbindFullScreenChange,
   isActiveFullScreen,

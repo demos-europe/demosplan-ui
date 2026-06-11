@@ -1,4 +1,7 @@
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import dayjs from 'dayjs'
+
+dayjs.extend(customParseFormat)
 
 const DATE_FORMAT_SHORT = 'DD.MM.YYYY'
 const DATE_FORMAT_LONG = 'DD.MM.YYYY, HH:mm [Uhr]'
@@ -30,7 +33,7 @@ const formatDate = function (date, format = DATE_FORMAT_SHORT) {
   return d.format(format)
 }
 
-const reformatDate = function (date, inputFormat = 'DD.MM.YYYY', outputFormat = DATE_FORMAT_SHORT) {
+const reformatDateString = function (date, inputFormat = 'DD.MM.YYYY', outputFormat = DATE_FORMAT_SHORT) {
   if (!date) {
     return ''
   }
@@ -44,13 +47,36 @@ const reformatDate = function (date, inputFormat = 'DD.MM.YYYY', outputFormat = 
   return parsedDate.format(outputFormat)
 }
 
-const toDate = function (date, format = 'DD.MM.YYYY') {
-  return dayjs(date, format).toDate()
+const toDate = function (date, format = DATE_FORMAT_SHORT) {
+  if (date === null || date === undefined) {
+    return null
+  }
+
+  if (date instanceof Date) {
+    return Number.isNaN(date.getTime()) ? null : date
+  }
+
+  let parsedDate
+
+  if (typeof date === 'string') {
+    // First try strict parsing with the provided format
+    parsedDate = dayjs(date, format, true)
+
+    // Fall back to Day.js auto-detection (e.g. ISO dates)
+    if (!parsedDate.isValid()) {
+      parsedDate = dayjs(date)
+    }
+  } else {
+    // Handle timestamps and other supported input types
+    parsedDate = dayjs(date)
+  }
+
+  return parsedDate.isValid() ? parsedDate.toDate() : null
 }
 
 export {
   DATE_FORMAT_LONG,
   formatDate,
-  reformatDate,
+  reformatDateString,
   toDate,
 }

@@ -5,6 +5,7 @@ dayjs.extend(customParseFormat)
 
 const DATE_FORMAT_SHORT = 'DD.MM.YYYY'
 const DATE_FORMAT_LONG = 'DD.MM.YYYY, HH:mm [Uhr]'
+const DATE_FORMAT_ISO_DATE = 'YYYY-MM-DD'
 
 const formatDate = function (date, format = DATE_FORMAT_SHORT) {
   let d
@@ -33,7 +34,7 @@ const formatDate = function (date, format = DATE_FORMAT_SHORT) {
   return d.format(format)
 }
 
-const reformatDateString = function (date, inputFormat = 'DD.MM.YYYY', outputFormat = DATE_FORMAT_SHORT) {
+const reformatDateString = function (date, inputFormat = DATE_FORMAT_SHORT, outputFormat = DATE_FORMAT_ISO_DATE) {
   if (!date) {
     return ''
   }

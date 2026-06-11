@@ -18,6 +18,8 @@ describe('date', () => {
     exactDate: new Date(`${date.year}-${date.month}-${date.day}${date.time.opt2}`),
     timestampDate: 1577276140000,
     IsoDate: `${date.year}-${date.month}-${date.day} ${date.time.opt1}`,
+    isoDateShort: `${date.year}-${date.month}-${date.day}`,
+    usDateShort: `${date.month}/${date.day}/${date.year}`,
   }
   const transformedDates = {
     long:  `${date.day}.${date.month}.${date.year}, 13:15 Uhr`,
@@ -56,7 +58,7 @@ describe('date', () => {
 
   it('transforms valid ISO 8601 date format types to DD.MM.YYYY format', () => {
     dateFormat = {
-      date1: date.year + '-' + date.month + '-' + date.day,
+      date1: dateTypes.isoDateShort,
       date2: date.year + '-' + date.month,
       date3: date.year + '/' + date.month,
     }
@@ -114,8 +116,7 @@ describe('date', () => {
   })
 
   it('falls back to auto-detection when string does not match provided format', () => {
-    const isoFormatDate = `${date.year}-${date.month}-${date.day}`
-    const result = toDate(isoFormatDate, 'DD.MM.YYYY')
+    const result = toDate(dateTypes.isoDateShort, 'DD.MM.YYYY')
 
     expect(result.getDate()).toEqual(dateTypes.exactDate.getDate())
     expect(result.getMonth()).toEqual(dateTypes.exactDate.getMonth())
@@ -123,11 +124,8 @@ describe('date', () => {
   })
 
   it('handles different custom date formats', () => {
-    const usFormat = `${date.month}/${date.day}/${date.year}`
-    const isoFormat = `${date.year}-${date.month}-${date.day}`
-
-    const result1 = toDate(usFormat, 'MM/DD/YYYY')
-    const result2 = toDate(isoFormat, 'YYYY-MM-DD')
+    const result1 = toDate(dateTypes.usDateShort, 'MM/DD/YYYY')
+    const result2 = toDate(dateTypes.isoDateShort, 'YYYY-MM-DD')
 
     expect(result1.getDate()).toEqual(dateTypes.exactDate.getDate())
     expect(result1.getMonth()).toEqual(dateTypes.exactDate.getMonth())
@@ -139,28 +137,31 @@ describe('date', () => {
   })
 
   it('handles unix timestamps in milliseconds', () => {
-    const result = toDate(dateTypes.timestampDate)
-
-    expect(result).toEqual(dateTypes.exactDate)
+    expect(toDate(dateTypes.timestampDate)).toEqual(dateTypes.exactDate)
   })
 
-  it('reformats date from DD.MM.YYYY to DD.MM.YYYY by default', () => {
-    expect(reformatDateString('25.12.2019')).toEqual('25.12.2019')
+  it('reformats date from DD.MM.YYYY to YYYY-MM-DD by default', () => {
+    expect(reformatDateString(transformedDates.short1)).toEqual(dateTypes.isoDateShort)
   })
 
   it('reformats date from DD.MM.YYYY to custom output format', () => {
-    expect(reformatDateString('25.12.2019', 'DD.MM.YYYY', 'YYYY-MM-DD')).toEqual('2019-12-25')
-    expect(reformatDateString('25.12.2019', 'DD.MM.YYYY', 'MM/DD/YYYY')).toEqual('12/25/2019')
+    expect(reformatDateString(transformedDates.short1, 'DD.MM.YYYY', 'YYYY-MM-DD')).toEqual(dateTypes.isoDateShort)
+    expect(reformatDateString(transformedDates.short1, 'DD.MM.YYYY', 'MM/DD/YYYY')).toEqual(dateTypes.usDateShort)
   })
 
-  it('reformats date from custom input format to DD.MM.YYYY', () => {
-    expect(reformatDateString('2019-12-25', 'YYYY-MM-DD')).toEqual('25.12.2019')
-    expect(reformatDateString('12/25/2019', 'MM/DD/YYYY')).toEqual('25.12.2019')
+  it('reformats date from custom input format to YYYY-MM-DD by default', () => {
+    expect(reformatDateString(dateTypes.isoDateShort, 'YYYY-MM-DD')).toEqual(dateTypes.isoDateShort)
+    expect(reformatDateString(dateTypes.usDateShort, 'MM/DD/YYYY')).toEqual(dateTypes.isoDateShort)
+  })
+
+  it('reformats date from custom input format to DD.MM.YYYY when explicitly specified', () => {
+    expect(reformatDateString(dateTypes.isoDateShort, 'YYYY-MM-DD', 'DD.MM.YYYY')).toEqual(transformedDates.short1)
+    expect(reformatDateString(dateTypes.usDateShort, 'MM/DD/YYYY', 'DD.MM.YYYY')).toEqual(transformedDates.short1)
   })
 
   it('reformats date from custom input format to custom output format', () => {
-    expect(reformatDateString('2019-12-25', 'YYYY-MM-DD', 'MM/DD/YYYY')).toEqual('12/25/2019')
-    expect(reformatDateString('12/25/2019', 'MM/DD/YYYY', 'YYYY-MM-DD')).toEqual('2019-12-25')
+    expect(reformatDateString(dateTypes.isoDateShort, 'YYYY-MM-DD', 'MM/DD/YYYY')).toEqual(dateTypes.usDateShort)
+    expect(reformatDateString(dateTypes.usDateShort, 'MM/DD/YYYY', 'YYYY-MM-DD')).toEqual(dateTypes.isoDateShort)
   })
 
   it('returns empty string for null, undefined, or empty date', () => {
@@ -172,7 +173,7 @@ describe('date', () => {
   it('returns empty string for invalid date format', () => {
     expect(reformatDateString('invalid-date')).toEqual('')
     expect(reformatDateString('32.13.2019')).toEqual('')
-    expect(reformatDateString('25.12.2019', 'YYYY-MM-DD')).toEqual('')
+    expect(reformatDateString(transformedDates.short1, 'YYYY-MM-DD')).toEqual('')
   })
 
   it('handles dates with single digit day and month', () => {

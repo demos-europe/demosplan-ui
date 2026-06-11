@@ -1,66 +1,38 @@
-import {
+export {
   bindFullScreenChange,
   isActiveFullScreen,
   toggleFullscreen,
   unbindFullScreenChange,
 } from './fullscreen'
 
-import {
+export {
   DATE_FORMAT_LONG,
   formatDate,
   reformatDateString,
   toDate,
 } from './date'
 
-import {
+export {
   exactlengthHint,
   maxlengthHint,
-  minlengthHint } from './lengthHint/lengthHint'
+  minlengthHint
+} from './lengthHint/lengthHint'
 
-import {
+export {
   hasAllPermissions,
   hasAnyPermissions,
   hasPermission,
 } from './hasPermission'
 
-import { capitalizeFirstLetter } from './formatString'
-import debounce from './debounce'
-import deepMerge from './deepMerge'
-import formatBytes from './formatBytes'
-import getAnimationEventName from './getAnimationEventName'
-import getScrollTop from './getScrollTop'
-import hasOwnProp from './hasOwnProp'
-import prefixClass from './prefixClass'
-import resistFingerprintingDuckTest from './resistFingerprintingDuckTest'
-import sortAlphabetically from './sortAlphabetically'
-import throttle from './throttle'
-import uniqueArrayByObjectKey from './uniqueArrayByObjectKey'
-
-export {
-  bindFullScreenChange,
-  capitalizeFirstLetter,
-  DATE_FORMAT_LONG,
-  debounce,
-  deepMerge,
-  exactlengthHint,
-  formatBytes,
-  formatDate,
-  reformatDateString,
-  toggleFullscreen,
-  unbindFullScreenChange,
-  isActiveFullScreen,
-  toDate,
-  getScrollTop,
-  getAnimationEventName,
-  hasAllPermissions,
-  hasAnyPermissions,
-  hasPermission,
-  hasOwnProp,
-  maxlengthHint,
-  minlengthHint,
-  resistFingerprintingDuckTest,
-  sortAlphabetically,
-  throttle,
-  prefixClass,
-  uniqueArrayByObjectKey,
-}
+export { capitalizeFirstLetter } from './formatString'
+export { default as debounce } from './debounce'
+export { default as deepMerge } from './deepMerge'
+export { default as formatBytes } from './formatBytes'
+export { default as getAnimationEventName } from './getAnimationEventName'
+export { default as getScrollTop } from './getScrollTop'
+export { default as hasOwnProp } from './hasOwnProp'
+export { default as prefixClass } from './prefixClass'
+export { default as resistFingerprintingDuckTest } from './resistFingerprintingDuckTest'
+export { default as sortAlphabetically } from './sortAlphabetically'
+export { default as throttle } from './throttle'
+export { default as uniqueArrayByObjectKey } from './uniqueArrayByObjectKey'

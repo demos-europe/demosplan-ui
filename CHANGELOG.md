@@ -5,13 +5,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1501](https://github.com/demos-europe/demosplan-ui/pull/1501)) DpInput: Add prop for invalid state ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510))DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
-
-### Added
 
 ## v0.22.0 - 2026-05-18
 
@@ -24,6 +23,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## Fixed
 - ([#1488](https://github.com/demos-europe/demosplan-ui/pull/1488)) DpDraggable: Use `e.item` in `onEnd` so the dragged
   element is correct on cross-list tag drops & DpTreeList: Add `end` and `start` to the `emits` array to silence Vue warnings([@riechedemos](https://github.com/riechedemos))
+
 
 ## v0.20.0 - 2026-5-5
 

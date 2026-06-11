@@ -235,6 +235,8 @@ import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import { sessionStorageMixin } from '~/mixins'
 
+const flyoutMinWidth = 60
+
 export default {
   name: 'DpDataTable',
 
@@ -308,8 +310,8 @@ export default {
     flyoutWidth: {
       type: String,
       required: false,
-      default: '60px',
-      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= 60,
+      default: `${flyoutMinWidth}px`,
+      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= flyoutMinWidth,
     },
 
     headerFields: {
@@ -551,8 +553,8 @@ export default {
      */
     effectiveFlyoutWidth () {
       const match = /^(\d+)px$/.exec(this.flyoutWidth)
-      const parsed = match ? Number(match[1]) : 60
-      return `${Math.max(parsed, 60)}px`
+      const parsed = match ? Number(match[1]) : flyoutMinWidth
+      return `${Math.max(parsed, flyoutMinWidth)}px`
     },
 
     fields () {

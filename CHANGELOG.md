@@ -6,13 +6,36 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 - ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function reformatDateString; refactor toDate function ([@sakutademos](https://github.com/sakutademos))
-- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
-- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510))DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 
-### Changed
-- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
+## v0.23.0 - 2026-06-11
 
 ### Added
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506))
+  - DpIcon: add `folders` and `arrow-square-out` icons
+  - DpDataTable: add lockMessageBy prop for per-row locked-checkbox tooltip messages
+  - DpApi: send json:api headers for `api/3.0/` URLs (fixes 415 on API Platform requests) ([@riechedemos](https://github.com/riechedemos))
+- ([#1513](https://github.com/demos-europe/demosplan-ui/pull/1513)) DpDataTable: Add flyoutWidth prop (px only, min: 60px, default: 60px) ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1501](https://github.com/demos-europe/demosplan-ui/pull/1501)) DpInput: Add prop for invalid state ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510)) DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Changed
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpBulkEditHeader: reorder action buttons so abort sits left ([@riechedemos](https://github.com/riechedemos))
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
+- Dependency updates:
+  - @vue/server-renderer from 3.5.24 to 3.5.33,
+  - dompurify from ^3.0.0 to ^3.4.5,
+  - uuid from ^13.0.0 to ^13.0.2
+  - @storybook/addon-docs from 10.2.13 to 10.4.0,
+  - @storybook/addon-links from 10.2.13 to 10.4.0,
+  - @storybook/vue3-vite from 10.2.13 to 10.4.0,
+  - @vue/compat from 3.5.24 to 3.5.33,
+  - @vue/compiler-sfc from 3.5.24 to 3.5.33,
+  - postcss from ^8.4.49 to ^8.5.15
+  - storybook from 10.2.13 to 10.4.0,
+  - vite from ^7.2.2 to ^7.3.3,
+  - vue from 3.5.24 to 3.5.33
+
 
 ## v0.22.0 - 2026-05-18
 

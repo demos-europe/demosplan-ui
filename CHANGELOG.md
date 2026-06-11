@@ -6,9 +6,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510))DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 
 ### Changed
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Added
 
 ## v0.22.0 - 2026-05-18
 

@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
-- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function reformatDateString ([@sakutademos](https://github.com/sakutademos))
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function reformatDateString; refactor toDate function ([@sakutademos](https://github.com/sakutademos))
 - ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
 - ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510))DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
 

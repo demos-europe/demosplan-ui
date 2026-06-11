@@ -48,7 +48,7 @@ const reformatDateString = function (date, inputFormat = 'DD.MM.YYYY', outputFor
 }
 
 const toDate = function (date, format = DATE_FORMAT_SHORT) {
-  if (date === null || date === undefined) {
+  if (!date) {
     return null
   }
 

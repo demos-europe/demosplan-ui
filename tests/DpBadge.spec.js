@@ -2,14 +2,18 @@ import DpBadge from '~/components/DpBadge/DpBadge.vue'
 import { shallowMount } from '@vue/test-utils'
 
 describe('DpBadge', () => {
+  const defaultProps = {
+    color: 'default',
+    size: 'medium',
+    text: 'Test Badge',
+  }
+
   let wrapper
 
   beforeEach(() => {
     wrapper = shallowMount(DpBadge, {
       props: {
-        color: 'default',
-        size: 'medium',
-        text: 'Test Badge',
+        ...defaultProps,
       },
     })
   })
@@ -30,5 +34,9 @@ describe('DpBadge', () => {
     defaultClasses.forEach(cssClass => {
       expect(wrapper.classes()).toContain(cssClass)
     })
+  })
+
+  it('renders as a span', () => {
+    expect(wrapper.element.tagName).toBe('SPAN')
   })
 })

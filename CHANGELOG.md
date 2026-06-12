@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.24.0 - 2026-06-12
+
 ### Added
 - ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function `reformatDateString` ([@sakutademos](https://github.com/sakutademos))
 

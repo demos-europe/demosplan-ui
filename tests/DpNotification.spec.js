@@ -72,7 +72,7 @@ describe('DpNotification', () => {
       },
     })
 
-    expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText')
+    expect(wrapper.find('.c-notify__text').text()).toBe('MessageText')
   })
 
   it('renders a link if link attributes are given', () => {
@@ -87,7 +87,7 @@ describe('DpNotification', () => {
       },
     })
 
-    expect(wrapper.find('.flow-root > .u-ml').text()).toBe('MessageText LinkText')
+    expect(wrapper.find('.c-notify__text').text()).toBe('MessageText LinkText')
   })
 
   /*

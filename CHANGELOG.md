@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
+- ([#1515](https://github.com/demos-europe/demosplan-ui/pull/1515)) DpNotification: Vertically align icon with notification text ([@hwiem](https://github.com/hwiem))
 - ([#1516](https://github.com/demos-europe/demosplan-ui/pull/1516)) prefixClass: Ensure tailwind utility classes containing arbitrary values are prefixed ([@hwiem](https://github.com/hwiem))
 
 

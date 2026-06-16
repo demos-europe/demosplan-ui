@@ -19,4 +19,11 @@ describe('prefixClass', () => {
   it('should return the same string if there are no points at the beginning of a word', () => {
     expect(prefixClass('[data-some-stuff="its all right"] > a:hover > label')).toEqual('[data-some-stuff="its all right"] > a:hover > label')
   })
+
+  it('should prefix Tailwind utilities that contain arbitrary values or fractional spacing', () => {
+    expect(prefixClass('c-notify__icon shrink-0 mt-[2px]')).toEqual('dp-c-notify__icon dp-shrink-0 dp-mt-[2px]')
+    expect(prefixClass('grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4')).toEqual('dp-grid dp-grid-cols-[repeat(auto-fit,minmax(300px,1fr))] dp-gap-4')
+    expect(prefixClass('font-[700] mb-2')).toEqual('dp-font-[700] dp-mb-2')
+    expect(prefixClass('mb-0.5 text-muted')).toEqual('dp-mb-0.5 dp-text-muted')
+  })
 })

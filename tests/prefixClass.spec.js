@@ -26,4 +26,10 @@ describe('prefixClass', () => {
     expect(prefixClass('font-[700] mb-2')).toEqual('dp-font-[700] dp-mb-2')
     expect(prefixClass('mb-0.5 text-muted')).toEqual('dp-mb-0.5 dp-text-muted')
   })
+
+  it('should treat compound selectors with a type selector as querySelectors', () => {
+    expect(prefixClass('div.foo')).toEqual('div.dp-foo')
+    expect(prefixClass('a[href]')).toEqual('a[href]')
+    expect(prefixClass('td.bar > .baz')).toEqual('td.dp-bar > .dp-baz')
+  })
 })

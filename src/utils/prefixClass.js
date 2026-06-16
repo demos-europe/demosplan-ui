@@ -24,10 +24,13 @@ export default function prefixClass (classList = '') {
   }
 
   /*
-   * Assuming that a querySelector is passed when classList contains a dot, only the class selector parts are prefixed.
-   * In the unlikely case that classes contain dots as part of their names, they will not be prefixed.
+   * Assuming that a querySelector is passed when a token *starts* with `.`, `#` or `[`
+   * (at the string start or right after whitespace), only the class selector parts are prefixed.
+   * Matching these characters only at a token boundary avoids misreading Tailwind utilities that
+   * legitimately contain them mid-token (e.g. `mt-[2px]`, `grid-cols-[1fr]`, `mb-0.5`) as selectors,
+   * which would otherwise leave them unprefixed in prefixed builds.
    */
-  const checkClassList = /[.#[]/gi
+  const checkClassList = /(?:^|\s)[.#[]/
   if (checkClassList.test(classList)) {
     prefixed = classList.replace(/(\.)(\S+)/gi, (cl, m1, m2) => `.${prefix}${m2}`)
   } else {

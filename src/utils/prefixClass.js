@@ -7,6 +7,7 @@
  */
 export default function prefixClass (classList = '') {
   let prefix = ''
+
   if (typeof dplan !== 'undefined' && dplan.settings && dplan.settings.publicCSSClassPrefix) {
     prefix = dplan.settings.publicCSSClassPrefix
   }
@@ -24,13 +25,16 @@ export default function prefixClass (classList = '') {
   }
 
   /*
-   * Assuming that a querySelector is passed when a token *starts* with `.`, `#` or `[`
-   * (at the string start or right after whitespace), only the class selector parts are prefixed.
-   * Matching these characters only at a token boundary avoids misreading Tailwind utilities that
-   * legitimately contain them mid-token (e.g. `mt-[2px]`, `grid-cols-[1fr]`, `mb-0.5`) as selectors,
-   * which would otherwise leave them unprefixed in prefixed builds.
+   * Assume a querySelector is passed when a `.`, `#` or `[` either starts a token
+   * (string start or after whitespace, e.g. `.foo`, `#id`, `[data-x]`) or attaches
+   * directly to a type selector (a letter, e.g. `div.foo`, `a[href]`). In that case
+   * only the class selector parts are prefixed.
+   * The letter requirement is what tells these apart from Tailwind utilities, which always
+   * have a `-` or a digit before `.`/`[` (e.g. `mt-[2px]`, `grid-cols-[1fr]`, `mb-0.5`) — those
+   * must stay in classList mode, otherwise they would be left unprefixed in prefixed builds.
    */
-  const checkClassList = /(?:^|\s)[.#[]/
+  const checkClassList = /(?:^|\s)[.#[]|[a-zA-Z][.[]/
+
   if (checkClassList.test(classList)) {
     prefixed = classList.replace(/(\.)(\S+)/gi, (cl, m1, m2) => `.${prefix}${m2}`)
   } else {

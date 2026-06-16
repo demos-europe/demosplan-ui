@@ -25,14 +25,16 @@ export default function prefixClass (classList = '') {
   }
 
   /*
-   * Assume a querySelector is passed when a `.`, `#` or `[` either starts a token
-   * (string start or after whitespace, e.g. `.foo`, `#id`, `[data-x]`) or attaches
-   * directly to a type selector (a letter, e.g. `div.foo`, `div#main`, `a[href]`).
-   * In that case only the class selector parts are prefixed.
-   * The letter requirement is what tells these apart from Tailwind utilities, which always
-   * have a `-` or a digit before `.`/`#`/`[` (e.g. `mt-[2px]`, `grid-cols-[1fr]`, `mb-0.5`,
-   * `bg-[#fff]`) — those must stay in classList mode, otherwise they would be left unprefixed
-   * in prefixed builds.
+   * Assume a querySelector is passed when a `.`, `#` or `[` either starts a token (string start or after whitespace,
+   * e.g. `.foo`, `#id`, `[data-x]`) or attaches directly to a type selector, i.e. follows a letter (e.g. `div.foo`,
+   * `div#main`, `a[href]`). In that case only the class selector parts are prefixed.
+   * The "follows a letter" rule is what tells selectors apart from tailwind utility classes: a tailwind utility class
+   * never has a letter immediately before `.`/`#`/`[` - it's always a `-` or a digit (`mt-[2px]`, `grid-cols-[1fr]`,
+   * `mb-0.5`), or `[` itself for hex colors (`bg-[#fff]`).
+   *
+   * Known limitation: a token that *starts* with `[` is always treated as a selector, so tailwind arbitrary variants/properties
+   * (`[&>svg]:size-4`, `[mask-type:luminance]`) are not prefixed. They are indistinguishable from a real attribute
+   * selector by position alone and are currently not supported by prefixClass
    */
   const checkClassList = /(?:^|\s)[.#[]|[a-zA-Z][.#[]/
 

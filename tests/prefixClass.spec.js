@@ -29,6 +29,7 @@ describe('prefixClass', () => {
 
   it('should treat compound selectors with a type selector as querySelectors', () => {
     expect(prefixClass('div.foo')).toEqual('div.dp-foo')
+    expect(prefixClass('div#main')).toEqual('div#main')
     expect(prefixClass('a[href]')).toEqual('a[href]')
     expect(prefixClass('td.bar > .baz')).toEqual('td.dp-bar > .dp-baz')
   })

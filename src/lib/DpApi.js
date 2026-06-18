@@ -21,10 +21,11 @@ const apiDefaultHeaders = {
   'x-csrf-token': csrfToken,
 }
 
-const api2defaultHeaders = {
+const jsonApiDefaultHeaders = {
   'Accept': 'application/vnd.api+json',
   'Content-Type': 'application/vnd.api+json',
   'X-JWT-Authorization': 'Bearer ' + jwtToken,
+  'x-csrf-token': csrfToken,
 }
 
 const demosplanProcedureHeaders = {
@@ -33,7 +34,7 @@ const demosplanProcedureHeaders = {
 
 const getHeaders = function ({ headers, url }) {
   return {
-    ...(url.includes('api/2.0/') ? api2defaultHeaders : apiDefaultHeaders),
+    ...(url.includes('api/2.0/') || url.includes('api/3.0/') ? jsonApiDefaultHeaders : apiDefaultHeaders),
     ...(currentProcedureId !== null ? demosplanProcedureHeaders : {}),
     ...headers,
   }

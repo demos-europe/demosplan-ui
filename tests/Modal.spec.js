@@ -14,10 +14,10 @@ describe('Modal', () => {
     window.dplan = () => { return {} }
 
     // Mock dialog element methods
-    HTMLDialogElement.prototype.showModal = jest.fn(function () {
+    HTMLDialogElement.prototype.showModal = vi.fn(function () {
       this.open = true
     })
-    HTMLDialogElement.prototype.close = jest.fn(function () {
+    HTMLDialogElement.prototype.close = vi.fn(function () {
       this.open = false
     })
 

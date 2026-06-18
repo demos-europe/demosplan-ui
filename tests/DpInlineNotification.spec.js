@@ -1,6 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it } from '@jest/globals'
-import { shallowMount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import DpInlineNotification from '~/components/DpInlineNotification/DpInlineNotification'
+import lscache from 'lscache'
+import { shallowMount } from '@vue/test-utils'
 
 
 describe('', () => {
@@ -10,14 +11,14 @@ describe('', () => {
     return shallowMount(DpInlineNotification, {
       props: {
         message: 'Test Notification',
-        ...props
+        ...props,
       },
     })
   }
 
   beforeEach(() => {
-    jest.clearAllMocks()
-    jest.restoreAllMocks()
+    vi.clearAllMocks()
+    vi.restoreAllMocks()
   })
 
   afterEach(() => {
@@ -42,7 +43,7 @@ describe('', () => {
       { type: 'confirm', class: 'flash-confirm', icon: 'check-circle' },
       { type: 'error', class: 'flash-error', icon: 'warning-circle' },
       { type: 'info', class: 'flash-info', icon: 'info' },
-      { type: 'warning', class: 'flash-warning', icon: 'warning' }
+      { type: 'warning', class: 'flash-warning', icon: 'warning' },
     ]
 
     types.forEach(({ type, class: cssClass, icon }) => {
@@ -54,7 +55,7 @@ describe('', () => {
   })
 
   it('saves dismissibleKey to localStorage when dismissed', () => {
-    const mockLscacheSet = jest.spyOn(require('lscache'), 'set')
+    const mockLscacheSet = vi.spyOn(lscache, 'set')
     wrapper = createWrapper({ dismissible: true, dismissibleKey: 'test-key' })
 
     wrapper.vm.dismiss()
@@ -65,7 +66,7 @@ describe('', () => {
   })
 
   it('renders in dismissed state when localStorage indicates dismissal', async () => {
-    const mockLscacheGet = jest.spyOn(require('lscache'), 'get').mockReturnValue(1234567890)
+    const mockLscacheGet = vi.spyOn(lscache, 'get').mockReturnValue(1234567890)
     wrapper = createWrapper({ dismissible: true, dismissibleKey: 'test-key' })
 
     await wrapper.vm.$nextTick()

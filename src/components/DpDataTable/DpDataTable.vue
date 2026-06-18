@@ -27,6 +27,7 @@
           :data-cy="`${dataCy}:header`"
           :all-expanded="allExpanded"
           :checked="allSelected"
+          :column-width-storage-key="columnWidthStorageKey"
           :density="density"
           :has-flyout="hasFlyout"
           :has-borders="hasBorders"
@@ -81,7 +82,7 @@
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-locked-message="(lockMessageBy && item[lockMessageBy]) || lockCheckboxHint || mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
             :is-selectable="isSelectable"
             :is-selectable-name="isSelectableName"
@@ -160,7 +161,7 @@
             :is-expandable="isExpandable"
             :is-loading="isLoading"
             :is-locked="lockCheckboxBy ? item[lockCheckboxBy] : false"
-            :is-locked-message="mergedTranslations.lockedForSelection"
+            :is-locked-message="(lockMessageBy && item[lockMessageBy]) || lockCheckboxHint || mergedTranslations.lockedForSelection"
             :is-resizable="isResizable"
             :is-selectable="isSelectable"
             :is-selectable-name="isSelectableName"
@@ -234,6 +235,8 @@ import DpTableHeader from './DpTableHeader'
 import DpTableRow from './DpTableRow'
 import { sessionStorageMixin } from '~/mixins'
 
+const flyoutMinWidth = 60
+
 export default {
   name: 'DpDataTable',
 
@@ -296,6 +299,19 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    columnWidthStorageKey: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    flyoutWidth: {
+      type: String,
+      required: false,
+      default: `${flyoutMinWidth}px`,
+      validator: (value) => /^\d+px$/.test(value) && Number.parseInt(value, 10) >= flyoutMinWidth,
     },
 
     headerFields: {
@@ -399,6 +415,26 @@ export default {
      * This should only be set if `isSelectable` is true.
      */
     lockCheckboxBy: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
+     * Use a String Property of the Item to set a per-row message for the locked checkbox tooltip.
+     * Falls back to the global `lockedForSelection` translation when the item has no such property.
+     */
+    lockMessageBy: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
+     * An optional string to be displayed as a tooltip when a checkbox is locked.
+     * This should only be set if `isSelectable` is true.
+     */
+    lockCheckboxHint: {
       type: String,
       required: false,
       default: null,
@@ -521,6 +557,16 @@ export default {
       return this.headerCellCount + tableCellCount
     },
 
+    /**
+     * Clamp the value to ensure 'px' and min-width of 60px at runtime in every environment.
+     * Invalid units or non-numeric input fall back to the default of 60px.
+     */
+    effectiveFlyoutWidth () {
+      const match = /^(\d+)px$/.exec(this.flyoutWidth)
+      const parsed = match ? Number(match[1]) : flyoutMinWidth
+      return `${Math.max(parsed, flyoutMinWidth)}px`
+    },
+
     fields () {
       return this.orderedHeaderFields.map(hf => hf.field)
     },
@@ -573,6 +619,7 @@ export default {
 
             this.setColsWidth(tableHeaderElements)
             this.fillContainerWidth(tableHeaderElements)
+            this.setColsWidth(tableHeaderElements)
           })
         }
       },
@@ -609,7 +656,7 @@ export default {
 
       if (this.columnStorageKey) {
         const nonFixedOrder = this.orderedHeaderFields.filter(f => !f.fixed).map(f => f.field)
-        sessionStorage.setItem(
+        localStorage.setItem(
           `dpDataTable:columnOrder:${this.columnStorageKey}`,
           JSON.stringify(nonFixedOrder),
         )
@@ -663,7 +710,7 @@ export default {
 
     getFixedColWidth (field) {
       if (field === 'flyout') {
-        return '60px'
+        return this.effectiveFlyoutWidth
       }
 
       return ['wrap', 'select', 'dragHandle'].includes(field) ?
@@ -679,7 +726,7 @@ export default {
       }
 
       try {
-        const stored = sessionStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
+        const stored = localStorage.getItem(`dpDataTable:columnOrder:${this.columnStorageKey}`)
         if (!stored) {
           this.orderedHeaderFields = [...this.headerFields]
 
@@ -728,8 +775,7 @@ export default {
          */
         if (tableHeaderEl.nodeType === 1) {
           const headerField = tableHeaderEl.getAttribute('data-col-field')
-          const storageName = `dpDataTable:data-col-field=${headerField}`
-          const sessionColWidth = this.getItemFromSessionStorage(storageName)
+          const storedColWidth = this.readStoredColWidth(headerField)
           /**
            * Some columns, such as 'flyout' and 'wrap', should not be resizable;
            * their width is fixed; the getBoundingClientRect() function should not be applied to them
@@ -738,19 +784,50 @@ export default {
           const headerFieldWidth = this.getColWidthFromHeaderField(headerField)
 
           const width = fixedWidth
-            || sessionColWidth
+            || storedColWidth
             || headerFieldWidth
             || `${tableHeaderEl.getBoundingClientRect().width}px`
 
           tableHeaderEl.style.width = width
-          this.updateSessionStorage(storageName, width)
+          this.writeStoredColWidth(headerField, width)
         }
       })
     },
 
+    readStoredColWidth (headerField) {
+      /*
+       * When columnWidthStorageKey is set, persist column widths in localStorage (survives tab close).
+       * Otherwise, fall back to the legacy sessionStorage behavior used by other DpDataTable consumers.
+       */
+      if (this.columnWidthStorageKey) {
+        try {
+          const stored = localStorage.getItem(`dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`)
+
+          return stored ? JSON.parse(stored) : null
+        } catch {
+          return null
+        }
+      }
+
+      return this.getItemFromSessionStorage(`dpDataTable:data-col-field=${headerField}`)
+    },
+
+    writeStoredColWidth (headerField, width) {
+      if (this.columnWidthStorageKey) {
+        localStorage.setItem(
+          `dpDataTable:colWidth:${this.columnWidthStorageKey}:${headerField}`,
+          JSON.stringify(width),
+        )
+
+        return
+      }
+
+      this.updateSessionStorage(`dpDataTable:data-col-field=${headerField}`, width)
+    },
+
     /**
      * Distribute available container width among data columns so the sticky flyout always
-     * stays at its fixed 60px width and no column remains at 0px.
+     * stays at its configured width (default: '60px', prop: flyoutWidth) and no column remains at 0px.
      *
      * When scale > 1 (columns don't fill the container), all data columns are scaled up
      * proportionally. When scale <= 1 (columns fill or overflow), only columns that ended
@@ -822,7 +899,7 @@ export default {
          * Columns fill or overflow the container — no scaling needed.
          * Still fix any column whose actual DOM width is 0px (added while table-layout:fixed
          * was active with no remaining space) so the browser does not redistribute the missing
-         * space to other columns, which would inflate the sticky flyout beyond its 60px.
+         * space to other columns, which would inflate the sticky flyout beyond its configured width (default: '60px').
          */
         dataCols.forEach(({ th, naturalWidth, actualWidth }) => {
           if (actualWidth <= 0) {
@@ -928,6 +1005,9 @@ export default {
       this.tableEl.classList.add('is-fixed')
 
       this.fillContainerWidth(tableHeaderElements)
+
+      this.fillContainerWidth(tableHeaderElements)
+      this.setColsWidth(tableHeaderElements)
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {

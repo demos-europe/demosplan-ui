@@ -2,7 +2,7 @@ import DpObscure from '~/components/DpObscure'
 import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
 
 window.Translator = {
-  trans: jest.fn(key => key),
+  trans: vi.fn(key => key),
 }
 
 describe('Obscure', () => {

@@ -6,6 +6,12 @@ let handleCreateTooltip = null
 let handleRemoveTooltip = null
 let tooltips = {}
 
+// Floor for the inline z-index: matches the `tooltip` design token (tokens/src/zIndex.json).
+// The inline z-index lifts the tooltip above its trigger's stacking context; without a floor,
+// triggers in containers with no numeric z-index (e.g. native <dialog>) produce values that
+// lose to sibling elements with small explicit z-index utilities.
+const TOOLTIP_Z_INDEX_FLOOR = 2000
+
 const deleteTooltip = (tooltipEl) => {
   if (tooltipEl) {
     tooltipEl.remove()
@@ -24,15 +30,22 @@ const destroyTooltip = (wrapperEl) => {
 }
 
 const getZIndex = (element) => {
-  const z = window.getComputedStyle(element).getPropertyValue('z-index')
-  if (isNaN(z)) {
+  if (!element) {
+    return 1
+  }
+
+  const z = globalThis.getComputedStyle(element).getPropertyValue('z-index')
+
+  if (Number.isNaN(Number(z))) {
     return (element.nodeName === 'HTML') ? 1 : getZIndex(element.parentNode)
   }
   return z
 }
 
 const initTooltip = (el, value, options) => {
-  if (!value) return
+  if (!value) {
+    return
+  }
 
   const id = `tooltip-${uuid()}`
   const zIndex = getZIndex(el)
@@ -40,6 +53,7 @@ const initTooltip = (el, value, options) => {
 
   // Check if element is inside a dialog and use it as container
   const dialogParent = el.closest('dialog')
+
   if (dialogParent && !options.container) {
     options.container = dialogParent
   }
@@ -96,7 +110,7 @@ const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body',
   Object.assign(tooltipEl.style, {
     left: `${x}px`,
     top: `${y}px`,
-    zIndex: Number(zIndex) + 1,
+    zIndex: Math.max(Number(zIndex) + 1, TOOLTIP_Z_INDEX_FLOOR),
   })
 
   /*

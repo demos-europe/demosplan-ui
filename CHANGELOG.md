@@ -3,8 +3,82 @@
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
 ## UNRELEASED
+
+### Fixed
+- ([#1515](https://github.com/demos-europe/demosplan-ui/pull/1515)) DpNotification: Vertically align icon with notification text ([@hwiem](https://github.com/hwiem))
+- ([#1516](https://github.com/demos-europe/demosplan-ui/pull/1516)) prefixClass: Ensure tailwind utility classes containing arbitrary values are prefixed ([@hwiem](https://github.com/hwiem))
+
+
+## v0.24.0 - 2026-06-12
+
 ### Added
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514)) Utils: add new helper function `reformatDateString` ([@sakutademos](https://github.com/sakutademos))
+
+### Changed
+- ([#1514](https://github.com/demos-europe/demosplan-ui/pull/1514))
+  - Utils: improve `toDate` function with strict date parsing to prevent incorrect date interpretation
+  - index.js: simplify index.js exports using direct re-export syntax ([@sakutademos](https://github.com/sakutademos))
+
+## v0.23.0 - 2026-06-11
+
+### Added
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506))
+  - DpIcon: add `folders` and `arrow-square-out` icons
+  - DpDataTable: add lockMessageBy prop for per-row locked-checkbox tooltip messages
+  - DpApi: send json:api headers for `api/3.0/` URLs (fixes 415 on API Platform requests) ([@riechedemos](https://github.com/riechedemos))
+- ([#1513](https://github.com/demos-europe/demosplan-ui/pull/1513)) DpDataTable: Add flyoutWidth prop (px only, min: 60px, default: 60px) ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1501](https://github.com/demos-europe/demosplan-ui/pull/1501)) DpInput: Add prop for invalid state ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpDataTable: add `lockCheckboxHint` prop ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1510](https://github.com/demos-europe/demosplan-ui/pull/1510)) DpConfirmDialog: optional `icon` prop rendered before the header text ([@meissnerdemos](https://github.com/meissnerdemos))
+
+### Changed
+- ([#1506](https://github.com/demos-europe/demosplan-ui/pull/1506)) DpBulkEditHeader: reorder action buttons so abort sits left ([@riechedemos](https://github.com/riechedemos))
+- ([#1487](https://github.com/demos-europe/demosplan-ui/pull/1487)) DpTableRow: adjust locked icon ([@meissnerdemos](https://github.com/meissnerdemos))
+- Dependency updates:
+  - @vue/server-renderer from 3.5.24 to 3.5.33,
+  - dompurify from ^3.0.0 to ^3.4.5,
+  - uuid from ^13.0.0 to ^13.0.2
+  - @storybook/addon-docs from 10.2.13 to 10.4.0,
+  - @storybook/addon-links from 10.2.13 to 10.4.0,
+  - @storybook/vue3-vite from 10.2.13 to 10.4.0,
+  - @vue/compat from 3.5.24 to 3.5.33,
+  - @vue/compiler-sfc from 3.5.24 to 3.5.33,
+  - postcss from ^8.4.49 to ^8.5.15
+  - storybook from 10.2.13 to 10.4.0,
+  - vite from ^7.2.2 to ^7.3.3,
+  - vue from 3.5.24 to 3.5.33
+
+
+## v0.22.0 - 2026-05-18
+
+### Added
+- ([#1485](https://github.com/demos-europe/demosplan-ui/pull/1485)) DpDataTable: opt-in persistent column widths via the `columnWidthStorageKey` prop (uses `localStorage` instead of `sessionStorage`) ([@riechedemos](https://github.com/riechedemos))
+
+
+## v0.21.0 - 2026-05-15
+
+## Fixed
+- ([#1488](https://github.com/demos-europe/demosplan-ui/pull/1488)) DpDraggable: Use `e.item` in `onEnd` so the dragged
+  element is correct on cross-list tag drops & DpTreeList: Add `end` and `start` to the `emits` array to silence Vue warnings([@riechedemos](https://github.com/riechedemos))
+
+## v0.20.0 - 2026-5-5
+
+### Changed
+- ([#1484](https://github.com/demos-europe/demosplan-ui/pull/1484)) DpButtonRow: new button order; set the secondary button to the outline variant ([@sakutademos](https://github.com/sakutademos))
+
+## v0.19.0 - 2026-4-30
+
+### Added
+- ([#1473](https://github.com/demos-europe/demosplan-ui/pull/1473)) DpEditor: Add LanguageTool integration for spellchecking and grammar checking, interactive tooltips for suggestions ([@sakutademos](https://github.com/sakutademos))
 - ([#1474](https://github.com/demos-europe/demosplan-ui/pull/1474)) DpTabs: add ability that makes it possible to change active tab by prop and not only by click([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1456](https://github.com/demos-europe/demosplan-ui/pull/1456)) DpApi: Add CSRF token to Api 2.0 default headers ([@rafelddemos](https://github.com/rafelddemos))
+
+### Fixed
+- ([#1481](https://github.com/demos-europe/demosplan-ui/pull/1481)) DpTooltip: Floor the inline z-index at the tooltip design token ([@meissnerdemos](https://github.com/meissnerdemos))
+- ([#1480](https://github.com/demos-europe/demosplan-ui/pull/1480)) DpMultiselect: restore beforeList slot for single selects ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1477](https://github.com/demos-europe/demosplan-ui/pull/1477)) Unit tests: Replace jest with vitest ([@hwiem](https://github.com/hwiem))
 
 ## v0.18.0 - 2026-4-24
 

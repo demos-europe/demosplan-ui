@@ -61,7 +61,7 @@ export {
   DpUpload,
   DpUploadFiles,
   DpUploadedFile,
-  DpUploadedFileList
+  DpUploadedFileList,
 } from './DpUploadFiles'
 
 export {

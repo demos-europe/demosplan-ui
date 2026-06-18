@@ -20,14 +20,14 @@
       />
     </button>
 
-    <div :class="prefixClass('flow-root')">
+    <div :class="prefixClass('flex items-start gap-1')">
       <dp-icon
-        :class="prefixClass('c-notify__icon mt-px mr-1 float-left')"
+        :class="prefixClass('c-notify__icon shrink-0 mt-[2px]')"
         :icon="messageIcon"
         aria-hidden="true"
         weight="fill"
       />
-      <div :class="prefixClass('c-notify__text u-ml mt-2 break-words')">
+      <div :class="prefixClass('c-notify__text break-words')">
         {{ message.text }}
         <a
           v-if="message.linkUrl"

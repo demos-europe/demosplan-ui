@@ -67,14 +67,17 @@
     <!-- put more slots here -->
 
     <template
-      v-if="selectionControls && multiple"
+      v-if="$slots['beforeList'] || (selectionControls && multiple)"
       v-slot:beforeList="props"
     >
       <slot
         name="beforeList"
         :props="props"
       >
-        <div class="border-bottom">
+        <div
+          v-if="selectionControls && multiple"
+          class="border-bottom"
+        >
           <button
             class="btn--blank weight--bold u-ph-0_5 u-pv-0_25"
             :data-cy="`${dataCy}-select-all`"

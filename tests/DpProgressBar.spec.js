@@ -1,4 +1,4 @@
-import DpProgressBar from '~/components/DpProgressBar'
+import DpProgressBar from '~/components/DpProgressBar/DpProgressBar.vue'
 import { shallowMount } from '@vue/test-utils'
 
 describe('DpProgressBar', () => {
@@ -18,7 +18,7 @@ describe('DpProgressBar', () => {
 
   const expectProgressWidth = (expectedWidth) => {
     const progressLine = getProgressLine()
-    expect(progressLine.attributes('style')).toContain(`width: ${expectedWidth}%`)
+    expect(progressLine.element.style.width).toBe(`${expectedWidth}%`)
   }
 
   const expectAnimatedClass = (shouldHaveClass) => {
@@ -122,6 +122,20 @@ describe('DpProgressBar', () => {
       wrapper = createWrapper()
 
       expectAnimatedClass(false)
+    })
+  })
+
+  describe('Invalid values', () => {
+    it('does not apply width when given NaN', () => {
+      wrapper = createWrapper({ percentage: NaN })
+
+      expect(getProgressLine().element.style.width).toBe('')
+    })
+
+    it('does not apply width when given null — Vue prop defaults only apply to undefined', () => {
+      wrapper = createWrapper({ percentage: null })
+
+      expect(getProgressLine().element.style.width).toBe('')
     })
   })
 })

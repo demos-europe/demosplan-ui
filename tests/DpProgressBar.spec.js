@@ -1,4 +1,4 @@
-import DpProgressBar from '~/components/DpProgressBar/DpProgressBar.vue'
+import DpProgressBar from '~/components/DpProgressBar/DpProgressBar'
 import { shallowMount } from '@vue/test-utils'
 
 describe('DpProgressBar', () => {

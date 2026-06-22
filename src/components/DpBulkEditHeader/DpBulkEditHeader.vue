@@ -5,9 +5,9 @@
     </span>
     <div class="flex items-center gap-[16px]">
       <dp-button
-        color="secondary"
-        data-cy="resetSelection"
         :text="deselect"
+        data-cy="resetSelection"
+        variant="outline"
         @click="$emit('reset-selection')"
       />
       <slot />

@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1526](https://github.com/demos-europe/demosplan-ui/pull/1526)) DpBulkEditHeader: use `outline` variant for the deselect button ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.24.0 - 2026-06-12
 
 ### Added

@@ -4049,10 +4049,10 @@ __metadata:
   linkType: hard
 
 "@vitest/ui@npm:^4.1.0":
-  version: 4.1.5
-  resolution: "@vitest/ui@npm:4.1.5"
+  version: 4.1.9
+  resolution: "@vitest/ui@npm:4.1.9"
   dependencies:
-    "@vitest/utils": "npm:4.1.5"
+    "@vitest/utils": "npm:4.1.9"
     fflate: "npm:^0.8.2"
     flatted: "npm:^3.4.2"
     pathe: "npm:^2.0.3"
@@ -4060,8 +4060,8 @@ __metadata:
     tinyglobby: "npm:^0.2.15"
     tinyrainbow: "npm:^3.1.0"
   peerDependencies:
-    vitest: 4.1.5
-  checksum: 10c0/2109480d08516abe3350994ebfcb9adc8a2eb4bb1839c48a336d6ff3378eb49a520ad6490f177e60034ed4fcf579206d9ab14995e951cbf6d4c7c792c46fe202
+    vitest: 4.1.9
+  checksum: 10c0/9c480d79a61ebe40552ab4f1fa2a15dad0147d9c5e40186cb210f2199a0bfd886cd34e9ac11b1ef4ff0bf3436be46f5652c3f36200cdb278dfd2b3634996e50a
   languageName: node
   linkType: hard
 

@@ -124,14 +124,12 @@ dpApi.get = (url, params = {}, options = {}) => doRequest({ method: 'GET', url, 
 dpApi.put = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PUT', url, data, params, options })
 dpApi.patch = (url, params = {}, data = {}, options = {}) => doRequest({ method: 'PATCH', url, data, params, options })
 /*
- * `data` is intentionally the 4th param here (after `options`), unlike post/put/patch where it is
- * the 3rd. A DELETE normally has no request body, so this method originally had no `data` param.
- * JSON:API relationship endpoints, however, remove linkage by sending a body even on DELETE, e.g.
- *   DELETE /StatementGroup/{id}/relationships/statements
- *   { "data": [ { "type": "Statement", "id": "…" } ] }
- * so a body is needed. Keeping `data` last preserves existing callers that pass `options` as the
- * 3rd argument (e.g. store/map/Layers.js). For consistency with the other verbs `data` should
- * eventually move to the 3rd position — a breaking change that requires updating every such caller.
+ * `data` is intentionally the 4th param here (after `options`), unlike post/put/patch where it is the 3rd. A DELETE
+ * normally has no request body, so this method originally had no `data` param. JSON:API relationship endpoints,
+ * however, remove linkage by sending a body even on DELETE, e.g. DELETE /StatementGroup/{id}/relationships/statements
+ * { "data": [ { "type": "Statement", "id": "…" } ] } so a body is needed. Keeping `data` last preserves existing
+ * callers that pass `options` as the 3rd argument (e.g. store/map/Layers.js). For consistency with the other verbs
+ * `data` should eventually move to the 3rd position — a breaking change that requires updating every such caller.
  */
 dpApi.delete = (url, params = {}, options = {}, data = {}) => doRequest({ method: 'DELETE', url, data, params, options })
 

@@ -9,7 +9,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1516](https://github.com/demos-europe/demosplan-ui/pull/1516)) prefixClass: Ensure tailwind utility classes containing arbitrary values are prefixed ([@hwiem](https://github.com/hwiem))
 
 ### Changed
-- ([#1533](https://github.com/demos-europe/demosplan-ui/pull/NNN)) DpApi: `dpApi.delete` accepts an optional request body for JSON:API relationship endpoints ([@riechedemos](https://github.com/riechedemos))
+- ([#1533](https://github.com/demos-europe/demosplan-ui/pull/1533)) DpApi: `dpApi.delete` accepts an optional request body for JSON:API relationship endpoints ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.24.0 - 2026-06-12
 

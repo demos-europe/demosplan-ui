@@ -15,7 +15,7 @@
       <p
         v-if="title"
         :data-cy="`${dataCy}:title`"
-        class="weight--bold"
+        class="font-semibold"
         v-text="title"
       />
       <div

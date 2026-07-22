@@ -38,6 +38,19 @@ describe('', () => {
     expect(wrapper.find('[data-cy="inlineNotification:hideHint"]').exists()).toBe(true)
   })
 
+  it('renders title when given', () => {
+    wrapper = createWrapper({ title: 'Test Title' })
+
+    expect(wrapper.find('[data-cy="inlineNotification:title"]').exists()).toBe(true)
+    expect(wrapper.find('[data-cy="inlineNotification:title"]').text()).toBe('Test Title')
+  })
+
+  it('does not render title when not given', () => {
+    wrapper = createWrapper()
+
+    expect(wrapper.find('[data-cy="inlineNotification:title"]').exists()).toBe(false)
+  })
+
   it('renders correct styling and icon for different types', () => {
     const types = [
       { type: 'confirm', class: 'flash-confirm', icon: 'check-circle' },

@@ -96,7 +96,7 @@ export default {
     },
 
     /**
-     * An optional bold headline, rendered above the message/slot content.
+     * An optional semi-bold headline, rendered above the message/slot content.
      */
     title: {
       type: String,

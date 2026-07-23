@@ -44,7 +44,7 @@
       type="hidden"
       :name="name !== 'uploadedFiles' ? `uploadedFiles[${name}]` : 'uploadedFiles'"
       :required="required"
-      :data-dp-validate-if="dataDpValidateIf || null"
+      :data-dp-validate-if="typeof dataDpValidateIf === 'string' && dataDpValidateIf !== '' ? dataDpValidateIf : null"
       :value="fileHashes"
     >
   </fieldset>

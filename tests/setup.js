@@ -26,9 +26,12 @@ vi.mock('@vueuse/components', () => {
 })
 
 vi.mock('@uppy/core', () => ({ default: () => 'mock result' }))
-vi.mock('@uppy/drag-drop', () => ({ default: () => 'mock result' }))
-vi.mock('@uppy/progress-bar', () => ({ default: () => 'mock result' }))
 vi.mock('@uppy/tus', () => ({ default: () => 'mock result' }))
+vi.mock('@uppy/vue', () => ({
+  UppyContextProvider: { name: 'UppyContextProvider', template: '<div><slot /></div>' },
+  UppyContextSymbol: Symbol('uppy'),
+  useDropzone: () => ({ getRootProps: () => ({}), getInputProps: () => ({}) }),
+}))
 vi.mock('a11y-datepicker', () => ({ default: () => 'mock result' }))
 
 vi.mock('~/lib/Stickier', () => ({

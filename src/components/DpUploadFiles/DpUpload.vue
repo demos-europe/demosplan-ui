@@ -1,21 +1,40 @@
 <template>
-  <div
-    ref="fileInput"
-    :data-cy="dataCy"
-  />
+  <uppy-context-provider
+    v-if="uppy"
+    :uppy="uppy"
+  >
+    <dp-upload-area
+      :browse-label="uppyTranslations.strings.browse"
+      :data-cy="dataCy"
+      :drop-label="uppyTranslations.strings.dropHereOr"
+    />
+  </uppy-context-provider>
 </template>
 
 <script>
 import { de } from './utils/UppyTranslations'
-import DragDrop from '@uppy/drag-drop'
+import DpUploadArea from './DpUploadArea'
 import { getFileTypes } from '../../lib'
 import { hasOwnProp } from '../../utils'
-import ProgressBar from '@uppy/progress-bar'
+import { markRaw } from 'vue'
 import Tus from '@uppy/tus'
 import Uppy from '@uppy/core'
+import { UppyContextProvider } from '@uppy/vue'
+
+/*
+ * Guarantees a unique uppy instance id per component instance. Without it every
+ * uploader has the same id, and if several uploaders coexist in one view, `document.getElementById`
+ * always returns the first input, so clicking any dropzone opens the wrong file picker
+ */
+let uppyInstanceCount = 0
 
 export default {
   name: 'DpUpload',
+
+  components: {
+    DpUploadArea,
+    UppyContextProvider,
+  },
 
   props: {
     /**
@@ -129,11 +148,6 @@ export default {
   },
 
   methods: {
-    getCookieValue (a) {
-      const b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)')
-      return b ? b.pop() : ''
-    },
-
     /**
      * Fires immediately before a file is added to the Uppy store.
      *
@@ -142,7 +156,7 @@ export default {
      *
      * @param currentFile
      * @return {(*&{meta: (*&{name: *}), name: *})|*}
-     * @see https://github.com/transloadit/uppy/blob/main/packages/@uppy/core/src/Uppy.js#L503
+     * @see https://uppy.io/docs/uppy/#onbeforefileaddedcurrentfile-files
      */
     handleOnBeforeFileAdded (currentFile) {
       let fileName = currentFile.name
@@ -182,9 +196,15 @@ export default {
       }
     },
 
-    initialize () {
-      this.uppy = new Uppy({
-        disabled: true,
+    /**
+     * Create and configure the uppy instance (core restrictions + tus transport).
+     * The drag & drop UI and the upload status are rendered by DpUploadArea via
+     * the headless @uppy/vue hooks, fed through <UppyContextProvider>
+     */
+    createUppy () {
+      uppyInstanceCount += 1
+      const uppy = new Uppy({
+        id: `uppy-${this.dataCy}-${uppyInstanceCount}`,
         autoProceed: true,
         allowMultipleUploads: this.allowMultipleUploads,
         restrictions: {
@@ -196,24 +216,12 @@ export default {
         locale: this.uppyTranslations,
       })
 
-      this.uppy.use(DragDrop, {
-        target: this.$refs.fileInput,
-        width: '100%',
-        note: null,
-        locale: this.uppyTranslations,
-      })
-
-      this.uppy.use(ProgressBar, {
-        target: this.$refs.fileInput,
-        fixed: false,
-        hideAfterFinish: false,
-      })
-
       let currentProcedureId = null
 
       if (typeof dplan !== 'undefined' && hasOwnProp(dplan, 'procedureId')) {
         currentProcedureId = dplan.procedureId
       }
+
       const headers = {}
       // Add current procedure id only if set
       if (currentProcedureId !== null && currentProcedureId !== '0') {
@@ -225,7 +233,7 @@ export default {
         headers.Authorization = this.basicAuth
       }
 
-      this.uppy.use(Tus, {
+      uppy.use(Tus, {
         endpoint: this.tusEndpoint,
         chunkSize: this.chunkSize,
         limit: 5,
@@ -238,68 +246,67 @@ export default {
         withCredentials: true,
       })
 
-      // Access the hidden input element, that accepted files array.
-      const uppyInputs = document.querySelectorAll('.uppy-DragDrop-input')
-      if (uppyInputs) {
-        uppyInputs.forEach((uppyInput, index) => {
-          // Add data-cy attribute
-          uppyInput.setAttribute('data-cy', `uppyDragDropInput:${index}`)
-        })
-      }
+      return uppy
+    },
+
+    registerUppyEvents () {
+      this.uppy.on('complete', result => {
+        setTimeout(() => {
+          /*
+           * Triggers uppy file-removed event (we are instead using a custom file-remove event). we do not want files to
+           * be removed on resetting the uppy ui
+           */
+          this.uppy.cancelAll()
+        }, 2000)
+
+        this.$emit('uploads-completed', result)
+      })
+
+      this.uppy.on('upload-error', (file, error, response) => {
+        console.error(error)
+        dplan.notify.error(this.uppyTranslations.strings.errorFileUpload)
+        this.$emit('file-error', { file, error, response })
+      })
+
+      this.uppy.on('file-added', file => {
+        this.$emit('file-added', file)
+      })
+
+      this.uppy.on('upload', data => {
+        this.$emit('upload', data)
+      })
+
+      this.uppy.on('restriction-failed', () => {
+        dplan.notify.warning(this.allowedFileTypesWarning)
+      })
+
+      /*
+       * `upload-success` fires each time a single upload completes successfully.
+       * @see https://uppy.io/docs/uppy/#upload-success
+       */
+      this.uppy.on('upload-success', (file) => {
+        const newFile = {
+          name: file.name,
+          hash: this.currentFileHash,
+          size: file.size ?? file.data?.size,
+          type: file.type ?? file.data?.type,
+          id: file.id, // The uppy internal file id
+          fileId: this.currentFileId, // The id of the file within demosplan
+        }
+        this.currentFileHash = ''
+        this.currentFileId = ''
+        this.$emit('upload-success', newFile)
+      })
     },
   },
 
-  mounted () {
-    this.initialize()
-
-    this.uppy.on('complete', result => {
-      setTimeout(() => {
-        /*
-         * Triggers uppy file-removed event (we are instead using a custom file-remove event. we do not want files to
-         * be removed on resetting the uppy ui
-         */
-        this.uppy.cancelAll()
-      }, 2000)
-
-      this.$emit('uploads-completed', result)
-    })
-
-    this.uppy.on('upload-error', (file, error, response) => {
-      console.error(error)
-      dplan.notify.error(this.uppyTranslations.strings.errorFileUpload)
-      this.$emit('file-error', { file, error, response })
-    })
-
-    this.uppy.on('file-added', file => {
-      this.$emit('file-added', file)
-    })
-
-    this.uppy.on('upload', data => {
-      this.$emit('upload', data)
-    })
-
-    this.uppy.on('restriction-failed', () => {
-      dplan.notify.warning(this.allowedFileTypesWarning)
-    })
-
+  created () {
     /*
-     * `upload-success` fires each time a single upload completes successfully.
-     * @see https://uppy.io/docs/uppy/#upload-success
+     * markRaw prevents vue from wrapping the uppy instance in a reactive proxy: uppy v5 relies
+     * on private class fields, and a proxy breaks those identity checks
      */
-    this.uppy.on('upload-success', (file) => {
-      const { name, size, type } = file.data
-      const newFile = {
-        name,
-        hash: this.currentFileHash,
-        size,
-        type,
-        id: file.id, // The uppy internal file id
-        fileId: this.currentFileId, // The id of the file within demosplan
-      }
-      this.currentFileHash = ''
-      this.currentFileId = ''
-      this.$emit('upload-success', newFile)
-    })
+    this.uppy = markRaw(this.createUppy())
+    this.registerUppyEvents()
   },
 
   beforeUnmount () {

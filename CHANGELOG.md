@@ -4,8 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.27.0 - 2026-07-24
+
 ### Changed
 - ([#1541](https://github.com/demos-europe/demosplan-ui/pull/1541)) DpIcon: Replace robot icon with sparkle icon as AI icon ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+- Dependencies: Fix several security alerts by updating transitive dependencies
+  - brace-expansion from 2.1.0 to 2.1.2
+  - ws from 8.18.3 to 8.21.1
+  - linkify-it from 5.0.1 to 5.0.2
 
 ## v0.26.0 - 2026-07-23
 

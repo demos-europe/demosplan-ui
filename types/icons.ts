@@ -1,5 +1,5 @@
 export type IconAlias =
-  'ai' // Alias for 'robot'
+  'ai' // Alias for 'sparkle'
   | 'cancel' // Alias for 'xmark' -> 'x'
   | 'chevron-down' // Alias for 'caret-down'
   | 'chevron-left' // Alias for 'caret-left'
@@ -44,13 +44,15 @@ export type AliasedPhosphorIconName =
   | 'lock-simple-open'
   | 'magnifying-glass'
   | 'pencil-simple'
-  | 'robot'
+  | 'prohibit'
+  | 'sparkle'
   | 'warning-diamond'
 
 export type PhosphorIconName =
   'arrow-down'
   | 'arrow-left'
   | 'arrow-right'
+  | 'arrow-square-out'
   | 'arrow-up'
   | 'arrows-left-right'
   | 'arrows-out-line-horizontal'
@@ -68,6 +70,7 @@ export type PhosphorIconName =
   | 'dots-three'
   | 'faders'
   | 'file'
+  | 'folders'
   | 'highlighter'
   | 'hourglass'
   | 'info'

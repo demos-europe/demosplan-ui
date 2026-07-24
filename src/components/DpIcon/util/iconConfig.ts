@@ -16,6 +16,7 @@ import {
   PhArrowsLeftRight,
   PhArrowsOut,
   PhArrowsOutLineHorizontal,
+  PhArrowSquareOut,
   PhArrowUp,
   PhCaretDoubleDown,
   PhCaretDoubleUp,
@@ -38,6 +39,7 @@ import {
   PhEnvelopeSimple,
   PhFaders,
   PhFile,
+  PhFolders,
   PhGearSix,
   PhHighlighter,
   PhHourglass,
@@ -49,9 +51,10 @@ import {
   PhPencilSimple,
   PhPhone,
   PhPlus,
+  PhProhibit,
   PhQuestion,
-  PhRobot,
   PhSignOut,
+  PhSparkle,
   PhTag,
   PhTrash,
   PhUploadSimple,
@@ -74,6 +77,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'arrow-left': PhArrowLeft,
   'arrow-right': PhArrowRight,
   'arrow-up': PhArrowUp,
+  'arrow-square-out': PhArrowSquareOut,
   'arrows-out-line-horizontal': PhArrowsOutLineHorizontal,
   'caret-down': PhCaretDown,
   'caret-left': PhCaretLeft,
@@ -89,12 +93,14 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'dots-three': PhDotsThree,
   'faders': PhFaders,
   'file': PhFile,
+  'folders': PhFolders,
   'highlighter': PhHighlighter,
   'hourglass': PhHourglass,
   'info': PhInfo,
   'map-pin': PhMapPin,
   'plus': PhPlus,
   'phone': PhPhone,
+  'prohibit': PhProhibit,
   'question': PhQuestion,
   'sign-out': PhSignOut,
   'tag': PhTag,
@@ -121,13 +127,13 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'lock-simple-open': PhLockSimpleOpen, // Alias: unlock
   'magnifying-glass': PhMagnifyingGlass, // Alias: search
   'pencil-simple': PhPencilSimple, // Alias: edit
-  'robot': PhRobot, // Alias: ai
+  'sparkle': PhSparkle, // Alias: ai
   'warning-diamond': PhWarningDiamond, // Alias: severe
 }
 
 // Icon names that are used as aliases - the phosphor icon has a different name
 const mappedIconAliases: Record<IconAlias, Component> = {
-  'ai': PhRobot,
+  'ai': PhSparkle,
   'cancel': PhX,
   'chevron-down': PhCaretDown,
   'chevron-left': PhCaretLeft,

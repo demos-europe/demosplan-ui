@@ -12,6 +12,12 @@
       weight="fill"
     />
     <div class="space-stack-xs">
+      <p
+        v-if="title"
+        :data-cy="`${dataCy}:title`"
+        class="font-semibold"
+        v-text="title"
+      />
       <div
         v-if="message"
         :data-cy="`${dataCy}:message`"
@@ -84,6 +90,15 @@ export default {
     },
 
     message: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
+     * An optional semi-bold headline, rendered above the message/slot content.
+     */
+    title: {
       type: String,
       required: false,
       default: null,

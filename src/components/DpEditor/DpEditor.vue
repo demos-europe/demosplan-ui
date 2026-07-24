@@ -340,7 +340,7 @@
           <input
             v-if="hiddenInput !== ''"
             :id="hiddenInput"
-            :data-dp-validate-if="dataDpValidateIf ? true : null"
+            :data-dp-validate-if="typeof dataDpValidateIf === 'string' && dataDpValidateIf.trim() !== '' ? dataDpValidateIf : null"
             type="hidden"
             :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || null"
             :name="hiddenInput"

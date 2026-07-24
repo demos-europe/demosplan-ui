@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1541](https://github.com/demos-europe/demosplan-ui/pull/1541)) DpIcon: Replace robot icon with sparkle icon as AI icon ([@hwiem](https://github.com/hwiem))
+
 ## v0.26.0 - 2026-07-23
 
 ### Added

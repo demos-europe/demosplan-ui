@@ -52,8 +52,8 @@ import {
   PhPlus,
   PhProhibit,
   PhQuestion,
-  PhRobot,
   PhSignOut,
+  PhSparkle,
   PhTag,
   PhTrash,
   PhUploadSimple,
@@ -125,13 +125,13 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'lock-simple-open': PhLockSimpleOpen, // Alias: unlock
   'magnifying-glass': PhMagnifyingGlass, // Alias: search
   'pencil-simple': PhPencilSimple, // Alias: edit
-  'robot': PhRobot, // Alias: ai
+  'sparkle': PhSparkle, // Alias: ai
   'warning-diamond': PhWarningDiamond, // Alias: severe
 }
 
 // Icon names that are used as aliases - the phosphor icon has a different name
 const mappedIconAliases: Record<IconAlias, Component> = {
-  'ai': PhRobot,
+  'ai': PhSparkle,
   'cancel': PhX,
   'chevron-down': PhCaretDown,
   'chevron-left': PhCaretLeft,

@@ -63,4 +63,19 @@ describe('DpAccordion', () => {
     await wrapper.setProps({ compressed: true })
     expect(wrapper.find('span').classes()).toContain('text-base')
   })
+
+  it('adds inset trigger spacing if "padded" is set to true', async () => {
+    await wrapper.setProps({ padded: true })
+    expect(wrapper.find('button').classes()).toContain('py-2')
+    expect(wrapper.find('button').classes()).toContain('pr-2')
+    expect(wrapper.find('button').classes()).toContain('pl-1.5')
+  })
+
+  it('highlights the trigger if "highlightToggledTrigger" is true and accordion is open', async () => {
+    await wrapper.setProps({
+      highlightToggledTrigger: true,
+      isOpen: true,
+    })
+    expect(wrapper.find('button').classes()).toContain('bg-surface-light')
+  })
 })

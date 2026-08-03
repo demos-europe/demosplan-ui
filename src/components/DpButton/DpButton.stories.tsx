@@ -23,7 +23,7 @@ const meta: Meta<typeof DpButton> = {
       },
     },
     variant: {
-      options: ['solid', 'outline', 'subtle'],
+      options: ['solid', 'outline', 'subtle', 'transparent'],
       control: {type: 'select'},
     },
     iconSize: {
@@ -80,6 +80,13 @@ export const Outline: Story = {
 export const Subtle: Story = {
   args: {
     variant: 'subtle',
+    text: 'Save',
+  }
+}
+
+export const Transparent: Story = {
+  args: {
+    variant: 'transparent',
     text: 'Save',
   }
 }

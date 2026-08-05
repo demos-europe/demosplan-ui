@@ -16,6 +16,8 @@
           <!-- The slidebar always docks to the right, so the close button sits at that outer edge. -->
           <div class="flex justify-end pt-2 pr-1">
             <button
+              :aria-label="translations.close"
+              :title="translations.close"
               type="button"
               class="btn--blank o-link--default"
               data-slidebar-hide=""
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
 import { hasOwnProp } from '~/utils'
 import { SideNav } from '~/lib'
@@ -53,6 +56,9 @@ export default {
   data () {
     return {
       sideNav: {},
+      translations: {
+        close: de.window.close,
+      },
     }
   },
 

@@ -14,7 +14,7 @@
       <div class="c-slidebar__scroll-container">
         <div class="u-ml-1_5">
           <!-- The slidebar always docks to the right, so the close button sits at that outer edge. -->
-          <div class="flex justify-end u-mt-0_5">
+          <div class="flex justify-end pt-2 pr-1">
             <button
               type="button"
               class="btn--blank o-link--default"

@@ -26,7 +26,7 @@ describe('DpAccordion', () => {
   })
 
   it('displays the title as "bold" if "fontWeight" is set to "bold"', () => {
-    expect(wrapper.find('button > span').classes()).toContain('weight--bold')
+    expect(wrapper.find('button > span > span').classes()).toContain('weight--bold')
   })
 
   it('sets "aria-expanded" to false if "isOpen" is false', () => {
@@ -61,6 +61,29 @@ describe('DpAccordion', () => {
 
   it('displays a reduced font size if "compressed" is set to "true"', async () => {
     await wrapper.setProps({ compressed: true })
-    expect(wrapper.find('span').classes()).toContain('text-base')
+    expect(wrapper.find('button > span > span').classes()).toContain('text-base')
+  })
+
+  /*
+   * The prefix must stay outside of the toggle button, otherwise interactive slot content
+   * ends up nested within a button, which is invalid and swallows its own clicks.
+   */
+  it('renders "titlePrefix" content next to the toggle button, not inside it', () => {
+    const wrapperWithPrefix = shallowMount(DpAccordion, {
+      props: { title: 'Test Title' },
+      slots: { titlePrefix: '<input id="prefix" type="checkbox">' },
+    })
+
+    expect(wrapperWithPrefix.find('#prefix').exists()).toBe(true)
+    expect(wrapperWithPrefix.find('button #prefix').exists()).toBe(false)
+  })
+
+  it('renders "titleSuffix" content inside the toggle button, next to the title', () => {
+    const wrapperWithSuffix = shallowMount(DpAccordion, {
+      props: { title: 'Test Title' },
+      slots: { titleSuffix: '<span id="suffix">Suffix</span>' },
+    })
+
+    expect(wrapperWithSuffix.find('button #suffix').exists()).toBe(true)
   })
 })

@@ -13,17 +13,20 @@
 
       <div class="c-slidebar__scroll-container">
         <div class="u-ml-1_5">
-          <button
-            type="button"
-            class="btn--blank o-link--default u-mt-0_5 u-n-ml u-mb"
-            data-slidebar-hide=""
-            @click="$emit('close')"
-          >
-            <dp-icon
-              icon="close"
-              size="large"
-            />
-          </button>
+          <!-- The slidebar always docks to the right, so the close button sits at that outer edge. -->
+          <div class="flex justify-end u-mt-0_5">
+            <button
+              type="button"
+              class="btn--blank o-link--default"
+              data-slidebar-hide=""
+              @click="$emit('close')"
+            >
+              <dp-icon
+                icon="close"
+                size="large"
+              />
+            </button>
+          </div>
           <slot />
         </div>
       </div>

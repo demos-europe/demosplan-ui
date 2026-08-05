@@ -302,7 +302,12 @@ const allColorClasses = {
       focus:border-interactive-subtle-hover\
       focus-visible:border-interactive-subtle-hover\
       active:border-interactive-subtle-active `,
-    // Transparent: classes that only apply to "transparent" button color variant. No background in any state.
+    /**
+     * Transparent: classes that only apply to "transparent" button color variant.
+     *
+     * No background outside the busy state — the "bg-busy" overlay still applies like on every
+     * other variant.
+     */
     transparent: `
       border border-transparent bg-transparent text-interactive\
       hover:text-interactive-hover hover:no-underline\

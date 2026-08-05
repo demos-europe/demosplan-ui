@@ -10,7 +10,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `cut` toolbar item to hide the cut button where content may only be altered, not removed ([@riechedemos](https://github.com/riechedemos))
 
 ### Changed
-- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Move the close button to the right, the edge the slidebar docks to, in line with DpModal ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Move the close button to the right, the edge the slidebar docks to, and give it an accessible name, both in line with DpModal ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.27.0 - 2026-07-24
 

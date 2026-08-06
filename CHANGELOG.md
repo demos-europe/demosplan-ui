@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1543](https://github.com/demos-europe/demosplan-ui/pull/1543)) DpAccordion: add `padded` prop to apply inset spacing to the toggle trigger and `highlightToggledTrigger` prop to give it a background color while its section is expanded ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.27.0 - 2026-07-24
 
 ### Changed

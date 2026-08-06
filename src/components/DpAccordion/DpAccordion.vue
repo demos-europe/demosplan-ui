@@ -5,7 +5,7 @@
       :aria-expanded="isVisible.toString()"
       :data-cy="dataCy"
       class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
-      :class="{ 'border-b border-neutral pb-2': showBorder }"
+      :class="triggerClasses"
       type="button"
       @click="() => toggle()"
     >
@@ -57,8 +57,21 @@ export default {
       default: false,
     },
 
+    // Adds background color to a toggled trigger
+    highlightToggledTrigger: {
+      type: Boolean,
+      default: false,
+    },
+
     // Needed if you want to toggle the accordion from outside
     isOpen: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    // Apply inset spacing to the toggle trigger
+    padded: {
       type: Boolean,
       required: false,
       default: false,
@@ -96,6 +109,32 @@ export default {
 
     iconSize () {
       return this.compressed ? 'medium' : 'large'
+    },
+
+    triggerClasses () {
+      const classes = []
+
+      if (this.padded) {
+        /*
+         * The left inset is kept small on purpose so the title lines up with content
+         * rendered below it, which sits closer to the edge than the other insets.
+         */
+        classes.push('py-2 pr-2 pl-1.5')
+      } else if (this.showBorder) {
+        // Without inset spacing, the bottom spacing stays coupled to the border.
+        classes.push('pb-2')
+      }
+
+      if (this.showBorder) {
+        classes.push('border-b border-neutral')
+      }
+
+      // Highlight the trigger of the section that is currently expanded.
+      if (this.highlightToggledTrigger && this.isVisible) {
+        classes.push('bg-surface-light')
+      }
+
+      return classes
     },
   },
 

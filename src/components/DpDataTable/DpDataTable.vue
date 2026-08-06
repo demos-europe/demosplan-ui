@@ -139,9 +139,7 @@
         v-if="isDraggable && !isLoading"
         draggable-tag="tbody"
         :content-data="items"
-        handle="c-data-table__drag-handle"
-        ghost-class="sortable-ghost"
-        chosen-class="sortable-chosen"
+        :opts="draggableOptions"
         @end="(event, item) => $emit('changed-order', event, item)"
       >
         <template
@@ -555,6 +553,15 @@ export default {
       })
 
       return this.headerCellCount + tableCellCount
+    },
+
+    // SortableJS options for row dragging, so they reach SortableJS via `opts`.
+    draggableOptions () {
+      return {
+        chosenClass: 'sortable-chosen',
+        ghostClass: 'sortable-ghost',
+        handle: '.c-data-table__drag-handle',
+      }
     },
 
     /**

@@ -11,7 +11,7 @@
     >
       <dp-icon
         icon="drag-handle"
-        class="c-data-table__drag-handle"
+        class="c-data-table__drag-handle cursor-grab"
       />
     </td>
 

@@ -34,21 +34,23 @@
         <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
             <!-- Cut -->
-            <button
-              v-tooltip="translations.cut"
-              :aria-label="translations.cut"
-              :class="prefixClass('menubar__button')"
-              data-cy="editor:cut"
-              :disabled="readonly"
-              type="button"
-              @click="cut"
-            >
-              <i
-                :class="prefixClass('fa fa-scissors')"
-                aria-hidden="true"
-              />
-            </button>
-            &#10072;
+            <template v-if="toolbar.cut">
+              <button
+                v-tooltip="translations.cut"
+                :aria-label="translations.cut"
+                :class="prefixClass('menubar__button')"
+                data-cy="editor:cut"
+                :disabled="readonly"
+                type="button"
+                @click="cut"
+              >
+                <i
+                  :class="prefixClass('fa fa-scissors')"
+                  aria-hidden="true"
+                />
+              </button>
+              &#10072;
+            </template>
             <!-- Undo -->
             <button
               v-tooltip="translations.undo"
@@ -663,6 +665,11 @@ export default {
         ],
       },
       toolbar: Object.assign({
+        /**
+         * Enables a menu button to cut out the current text selection.
+         * Set to false where content may only be altered, not removed.
+         */
+        cut: true,
         /**
          * Array with numbers 1-6 defining which heading-buttons we want to show
          */

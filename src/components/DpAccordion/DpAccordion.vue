@@ -1,21 +1,34 @@
 <template>
   <div>
-    <button
+    <div
       v-if="title !== ''"
-      :aria-expanded="isVisible.toString()"
-      :data-cy="dataCy"
-      class="flex items-center justify-between w-full text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+      class="flex items-start"
       :class="{ 'border-b border-neutral pb-2': showBorder }"
-      type="button"
-      @click="() => toggle()"
     >
-      <span :class="titleClasses">{{ title }}</span>
-      <dp-icon
-        aria-hidden="true"
-        :icon="isVisible ? 'caret-up' : 'caret-down'"
-        :size="iconSize"
-      />
-    </button>
+      <!--
+        Rendered beside the toggle button instead of inside it, so that interactive content
+        (e.g. a checkbox) does not end up nested within a button.
+      -->
+      <slot name="titlePrefix" />
+      <button
+        :aria-expanded="isVisible.toString()"
+        :data-cy="dataCy"
+        class="flex items-center justify-between grow text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+        type="button"
+        @click="() => toggle()"
+      >
+        <span class="flex items-center gap-1">
+          <span :class="titleClasses">{{ title }}</span>
+          <!-- Additional non-interactive information displayed next to the title. -->
+          <slot name="titleSuffix" />
+        </span>
+        <dp-icon
+          aria-hidden="true"
+          :icon="isVisible ? 'caret-up' : 'caret-down'"
+          :size="iconSize"
+        />
+      </button>
+    </div>
     <dp-transition-expand>
       <div v-show="isVisible">
         <!-- This is where the accordion content goes. -->

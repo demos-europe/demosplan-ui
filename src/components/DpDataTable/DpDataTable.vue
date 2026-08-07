@@ -499,6 +499,7 @@ export default {
 
   emits: [
     'changed-order',
+    'columns-reordered',
     'items-selected',
     'items-toggled',
     'selectAll',
@@ -661,6 +662,8 @@ export default {
           JSON.stringify(nonFixedOrder),
         )
       }
+
+      this.$emit('columns-reordered', this.orderedHeaderFields.map(headerField => headerField.field))
     },
 
     /**

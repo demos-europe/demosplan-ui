@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="flex items-center flex-wrap gap-y-4 py-2 px-3 rounded-md"
-    :class="isCopied ? 'border-l-4 border-interactive bg-surface-light' : 'bg-selected'"
-  >
+  <div class="flex items-center flex-wrap gap-y-4 py-2 px-3 rounded-md border-l-4 border-interactive bg-surface-light">
     <span>
       {{ selectedItemsText }}
     </span>
@@ -10,7 +7,7 @@
       <slot name="buttonRowStart" />
       <dp-button
         :text="deselect"
-        :variant="isCopied ? 'outline' : 'solid'"
+        variant="outline"
         color="secondary"
         data-cy="resetSelection"
         @click="$emit('reset-selection')"
@@ -32,11 +29,6 @@ export default {
   },
 
   props: {
-    isCopied: {
-      type: Boolean,
-      default: false,
-    },
-
     selectedItemsText: {
       type: String,
       required: true,

@@ -1,13 +1,15 @@
 <template>
-  <div class="flex items-center justify-between p-2 bg-selected">
+  <div class="flex items-center flex-wrap gap-y-4 py-2 px-3 rounded-md border-l-4 border-interactive bg-surface-light">
     <span>
       {{ selectedItemsText }}
     </span>
-    <div class="flex items-center gap-[16px]">
+    <div class="flex items-center gap-[16px] ml-auto whitespace-nowrap">
+      <slot name="buttonRowStart" />
       <dp-button
+        :text="deselect"
+        variant="outline"
         color="secondary"
         data-cy="resetSelection"
-        :text="deselect"
         @click="$emit('reset-selection')"
       />
       <slot />

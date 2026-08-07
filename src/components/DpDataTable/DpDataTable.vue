@@ -155,6 +155,8 @@
             :has-flyout="hasFlyout"
             :header-fields="orderedHeaderFields"
             :index="idx"
+            :is-drag-and-drop-locked="lockDragAndDropBy ? item[lockDragAndDropBy] : false"
+            :is-drag-and-drop-locked-message="lockDragAndDropHint"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-loading="isLoading"
@@ -336,6 +338,17 @@ export default {
     },
 
     /**
+     * Set it on the table the row is dragged *from*, since SortableJS reads the option
+     * from the source list.
+     * This should only be set if `isDraggable` is true.
+     */
+    isDraggableAcrossTables: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /**
      * Rows may be expandable to show additional content inside another row.
      * The `#expandedContent` slot can be utilized to style the content area.
      */
@@ -433,6 +446,23 @@ export default {
      * This should only be set if `isSelectable` is true.
      */
     lockCheckboxHint: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
+     * Name of a Boolean item property. Makes the row non-draggable.
+     * This should only be set if `isDraggable` is true.
+     */
+    lockDragAndDropBy: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    // An optional string to be displayed as a tooltip in place of the drag handle of a locked row.
+    lockDragAndDropHint: {
       type: String,
       required: false,
       default: null,
@@ -561,6 +591,13 @@ export default {
         chosenClass: 'sortable-chosen',
         ghostClass: 'sortable-ghost',
         handle: '.c-data-table__drag-handle',
+
+        // SortableJS feature: on drop outside own table, put the row back at its original position
+        revertOnSpill: true,
+
+        // Allow the move only within the same table && not to a locked item position
+        onMove: event => (this.isDraggableAcrossTables || event.from === event.to) &&
+          !event.related?.classList.contains('is-drag-and-drop-locked'),
       }
     },
 

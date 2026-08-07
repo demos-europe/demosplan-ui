@@ -5,7 +5,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable, DpTableRow:
+  - add props to exclude individual rows from dragging
+  - keep row dragging inside its own table ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1543](https://github.com/demos-europe/demosplan-ui/pull/1543)) DpAccordion: add `padded` prop to apply inset spacing to the toggle trigger and `highlightToggledTrigger` prop to give it a background color while its section is expanded ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable: pass `handle` through to SortableJS so rows are dragged by the drag handle only instead of from anywhere in the row ([@rafelddemos](https://github.com/rafelddemos))
 
 ## v0.27.0 - 2026-07-24
 

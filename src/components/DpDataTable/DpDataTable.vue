@@ -338,17 +338,6 @@ export default {
     },
 
     /**
-     * Set it on the table the row is dragged *from*, since SortableJS reads the option
-     * from the source list.
-     * This should only be set if `isDraggable` is true.
-     */
-    isDraggableAcrossTables: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
-    /**
      * Rows may be expandable to show additional content inside another row.
      * The `#expandedContent` slot can be utilized to style the content area.
      */
@@ -595,9 +584,11 @@ export default {
         // SortableJS feature: on drop outside own table, put the row back at its original position
         revertOnSpill: true,
 
-        // Allow the move only within the same table && not to a locked item position
-        onMove: event => (this.isDraggableAcrossTables || event.from === event.to) &&
-          !event.related?.classList.contains('is-drag-and-drop-locked'),
+        /*
+         * Allow the move only within the same table && not to a locked item position.
+         * SortableJS reads onMove from the list the row is dragged from, so `from` is the source table.
+         */
+        onMove: event => event.from === event.to && !event.related?.classList.contains('is-drag-and-drop-locked'),
       }
     },
 

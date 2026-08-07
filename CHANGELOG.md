@@ -4,6 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpButton: add `transparent` variant ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpDataTable: emit `columns-reordered` when the user drags a column into a new position ([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Changed
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: changed the old design to a new one ([@huellnerdemos](https://github.com/huellnerdemos))
+
 ## v0.27.0 - 2026-07-24
 
 ### Changed

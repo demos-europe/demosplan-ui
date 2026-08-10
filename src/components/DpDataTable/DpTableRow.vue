@@ -6,15 +6,25 @@
   >
     <td
       v-if="isDraggable"
-      v-tooltip="isDragAndDropLocked ? isDragAndDropLockedMessage : null"
-      :aria-label="isDragAndDropLocked ? isDragAndDropLockedMessage : null"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
+      :class="[{ 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__cell--narrow"
     >
+      <template v-if="isDragAndDropLocked">
+        <dp-icon
+          v-tooltip="isDragAndDropLockedMessage"
+          class="align-middle text-interactive"
+          icon="prohibit"
+          weight="fill"
+        />
+        <span
+          class="sr-only"
+          v-text="isDragAndDropLockedMessage"
+        />
+      </template>
       <dp-icon
-        v-if="!isDragAndDropLocked"
-        icon="drag-handle"
+        v-else
         class="c-data-table__drag-handle cursor-grab"
+        icon="drag-handle"
       />
     </td>
 

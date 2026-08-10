@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.28.0 - 2026-08-10
+
 ### Added
 - ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: add `buttonRowStart` slot to render buttons before the deselect button ([@huellnerdemos](https://github.com/huellnerdemos))
 - ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpButton: add `transparent` variant ([@huellnerdemos](https://github.com/huellnerdemos))
@@ -18,6 +20,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable: pass `handle` through to SortableJS so rows are dragged by the drag handle only instead of from anywhere in the row ([@rafelddemos](https://github.com/rafelddemos))
+- Dependencies: Fix several security alerts by updating dependencies
+  - brace-expansion from 5.0.5 to 5.0.8
+  - postcss from 8.5.15 to 8.5.25
+  - ip-address from 10.2.0 to 10.4.0
+  - undici from 7.28.0 to 7.29.0
+
 
 ## v0.27.0 - 2026-07-24
 

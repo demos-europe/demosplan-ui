@@ -5,10 +5,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: add `buttonRowStart` slot to render buttons before the deselect button ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpButton: add `transparent` variant ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpDataTable: emit `columns-reordered` when the user drags a column into a new position ([@huellnerdemos](https://github.com/huellnerdemos))
 - ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable, DpTableRow:
   - add props to exclude individual rows from dragging
   - keep row dragging inside its own table ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1543](https://github.com/demos-europe/demosplan-ui/pull/1543)) DpAccordion: add `padded` prop to apply inset spacing to the toggle trigger and `highlightToggledTrigger` prop to give it a background color while its section is expanded ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: restyle to a light surface with rounded corners and a left accent border, and render the deselect button in the `outline` variant ([@huellnerdemos](https://github.com/huellnerdemos))
 
 ### Fixed
 - ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable: pass `handle` through to SortableJS so rows are dragged by the drag handle only instead of from anywhere in the row ([@rafelddemos](https://github.com/rafelddemos))

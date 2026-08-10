@@ -12,9 +12,8 @@
       <template v-if="isDragAndDropLocked">
         <dp-icon
           v-tooltip="dragAndDropLockedMessage"
-          class="align-middle text-interactive"
+          class="c-data-table__drag-lock-icon align-middle text-interactive"
           icon="prohibit"
-          weight="fill"
         />
         <span
           class="sr-only"

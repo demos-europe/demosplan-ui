@@ -11,14 +11,14 @@
     >
       <template v-if="isDragAndDropLocked">
         <dp-icon
-          v-tooltip="isDragAndDropLockedMessage"
+          v-tooltip="dragAndDropLockedMessage"
           class="align-middle text-interactive"
           icon="prohibit"
           weight="fill"
         />
         <span
           class="sr-only"
-          v-text="isDragAndDropLockedMessage"
+          v-text="dragAndDropLockedMessage"
         />
       </template>
       <dp-icon
@@ -203,7 +203,7 @@ export default {
       default: false,
     },
 
-    isDragAndDropLockedMessage: {
+    dragAndDropLockedMessage: {
       type: String,
       required: false,
       default: null,

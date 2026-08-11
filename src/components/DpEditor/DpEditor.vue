@@ -395,6 +395,7 @@ import {
   InsertAtCursorPos,
   LanguageToolExtension,
   Obscure,
+  PreventEditing,
 } from './libs/customExtensions'
 
 import {
@@ -531,6 +532,18 @@ export default {
      * Set to true if you want to use the 'obscure text' button
      */
     obscure: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /**
+     * Set to true to let users obscure existing text without being able to alter it otherwise.
+     * Text stays selectable so it can be marked and then obscured, while typing, pasting and
+     * dropping are swallowed - the same mechanism DpAnonymizeText uses.
+     * Only useful together with the `obscure` toolbar item, otherwise the content cannot be changed at all.
+     */
+    obscureOnly: {
       type: Boolean,
       required: false,
       default: false,
@@ -846,6 +859,10 @@ export default {
 
       if (this.toolbar.obscure) {
         extensions.push(Obscure)
+      }
+
+      if (this.obscureOnly) {
+        extensions.push(PreventEditing)
       }
 
       if (this.toolbar.listButtons) {

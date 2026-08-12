@@ -139,9 +139,7 @@
         v-if="isDraggable && !isLoading"
         draggable-tag="tbody"
         :content-data="items"
-        handle="c-data-table__drag-handle"
-        ghost-class="sortable-ghost"
-        chosen-class="sortable-chosen"
+        :opts="draggableOptions"
         @end="(event, item) => $emit('changed-order', event, item)"
       >
         <template
@@ -157,6 +155,8 @@
             :has-flyout="hasFlyout"
             :header-fields="orderedHeaderFields"
             :index="idx"
+            :drag-and-drop-locked-message="lockDragAndDropHint"
+            :is-drag-and-drop-locked="lockDragAndDropBy ? item[lockDragAndDropBy] : false"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
             :is-loading="isLoading"
@@ -441,6 +441,23 @@ export default {
     },
 
     /**
+     * Name of a Boolean item property. Makes the row non-draggable.
+     * This should only be set if `isDraggable` is true.
+     */
+    lockDragAndDropBy: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    // An optional string to be displayed as a tooltip in place of the drag handle of a locked row.
+    lockDragAndDropHint: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
+    /**
      * When selection on multiple pages is supported, this variable holds number of items currently toggled.
      * It is used for calculating indeterminate state of the "check all" checkbox.
      */
@@ -499,6 +516,7 @@ export default {
 
   emits: [
     'changed-order',
+    'columns-reordered',
     'items-selected',
     'items-toggled',
     'selectAll',
@@ -555,6 +573,24 @@ export default {
       })
 
       return this.headerCellCount + tableCellCount
+    },
+
+    // SortableJS options for row dragging, so they reach SortableJS via `opts`.
+    draggableOptions () {
+      return {
+        chosenClass: 'sortable-chosen',
+        ghostClass: 'sortable-ghost',
+        handle: '.c-data-table__drag-handle',
+
+        // SortableJS feature: on drop outside own table, put the row back at its original position
+        revertOnSpill: true,
+
+        /*
+         * Allow the move only within the same table && not to a locked item position.
+         * SortableJS reads onMove from the list the row is dragged from, so `from` is the source table.
+         */
+        onMove: event => event.from === event.to && !event.related?.classList.contains('is-drag-and-drop-locked'),
+      }
     },
 
     /**
@@ -661,6 +697,8 @@ export default {
           JSON.stringify(nonFixedOrder),
         )
       }
+
+      this.$emit('columns-reordered', this.orderedHeaderFields.map(headerField => headerField.field))
     },
 
     /**

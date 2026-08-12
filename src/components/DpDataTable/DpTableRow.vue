@@ -2,16 +2,28 @@
   <tr
     class="row"
     :data-cy="dataCy !== '' ? dataCy : false"
-    :class="[{ 'opacity-70': isLoading }, { 'is-expanded-row': expanded }]"
+    :class="[{ 'opacity-70': isLoading }, { 'is-expanded-row': expanded }, { 'is-drag-and-drop-locked': isDragAndDropLocked }]"
   >
     <td
       v-if="isDraggable"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
+      :class="[{ 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__cell--narrow"
     >
+      <template v-if="isDragAndDropLocked">
+        <dp-icon
+          v-tooltip="dragAndDropLockedMessage"
+          class="c-data-table__drag-lock-icon align-middle text-interactive"
+          icon="prohibit"
+        />
+        <span
+          class="sr-only"
+          v-text="dragAndDropLockedMessage"
+        />
+      </template>
       <dp-icon
+        v-else
+        class="c-data-table__drag-handle cursor-grab"
         icon="drag-handle"
-        class="c-data-table__drag-handle"
       />
     </td>
 
@@ -183,9 +195,17 @@ export default {
       required: true,
     },
 
-    item: {
-      type: Object,
-      required: true,
+    // The row can be blocked from dragging. Instead of the drag handle, a tooltip is rendered.
+    isDragAndDropLocked: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    dragAndDropLockedMessage: {
+      type: String,
+      required: false,
+      default: null,
     },
 
     isDraggable: {
@@ -245,6 +265,11 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+
+    item: {
+      type: Object,
+      required: true,
     },
 
     searchTerm: {

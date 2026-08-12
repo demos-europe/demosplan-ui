@@ -78,4 +78,22 @@ describe('DpAccordion', () => {
     expect(wrapperWithPrefix.find('button #prefix').exists()).toBe(false)
   })
 
+  /*
+   * The trigger classes sit on the row around the button, so that inset spacing and the
+   * highlight cover the titlePrefix slot as well.
+   */
+  it('adds inset trigger spacing if "padded" is set to true', async () => {
+    await wrapper.setProps({ padded: true })
+    expect(wrapper.find('[data-cy="accordion:trigger"]').classes()).toContain('py-2')
+    expect(wrapper.find('[data-cy="accordion:trigger"]').classes()).toContain('pr-2')
+    expect(wrapper.find('[data-cy="accordion:trigger"]').classes()).toContain('pl-1.5')
+  })
+
+  it('highlights the trigger if "highlightToggledTrigger" is true and accordion is open', async () => {
+    await wrapper.setProps({
+      highlightToggledTrigger: true,
+      isOpen: true,
+    })
+    expect(wrapper.find('[data-cy="accordion:trigger"]').classes()).toContain('bg-surface-light')
+  })
 })

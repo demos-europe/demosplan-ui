@@ -83,7 +83,7 @@ export default {
       type: Object,
       default: () => ({}),
       validator: (prop) => {
-        return Object.keys(prop).every(key => ['bold', 'hint', 'text', 'tooltip'].includes(key))
+        return Object.keys(prop).every(key => ['bold', 'hide', 'hint', 'text', 'tooltip'].includes(key))
       },
     },
 

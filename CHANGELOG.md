@@ -4,6 +4,16 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpAccordion: Add `titlePrefix` slot to place content next to the title, outside the toggle button so interactive content is not nested within it ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpCheckbox: Accept `hide` in the `label` prop to name the checkbox for screen readers without displaying the text ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `cut` toolbar item to hide the cut button where content may only be altered, not removed ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `obscureOnly` prop to let users obscure existing text without being able to alter it otherwise ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Add `open` prop to drive visibility from outside instead of the `show-slidebar` / `hide-slidebar` root events; the events stay active while the prop is unset ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Move the close button to the right, the edge the slidebar docks to, and give it an accessible name, both in line with DpModal ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.28.0 - 2026-08-10
 
 ### Added

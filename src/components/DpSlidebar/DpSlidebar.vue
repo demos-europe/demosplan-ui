@@ -20,7 +20,7 @@
               :title="translations.close"
               type="button"
               class="btn--blank o-link--default"
-              data-slidebar-hide=""
+              data-slidebar-hide
               @click="$emit('close')"
             >
               <dp-icon

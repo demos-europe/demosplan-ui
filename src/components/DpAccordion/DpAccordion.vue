@@ -22,7 +22,9 @@
           <span
             :class="titleClasses"
             data-cy="accordion:title"
-          >{{ title }}</span>
+          >
+          {{ title }}
+      </span>
         </span>
         <dp-icon
           aria-hidden="true"

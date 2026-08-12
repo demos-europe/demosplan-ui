@@ -26,7 +26,7 @@ describe('DpAccordion', () => {
   })
 
   it('displays the title as "bold" if "fontWeight" is set to "bold"', () => {
-    expect(wrapper.find('button > span > span').classes()).toContain('weight--bold')
+    expect(wrapper.find('[data-cy="accordion:title"]').classes()).toContain('weight--bold')
   })
 
   it('sets "aria-expanded" to false if "isOpen" is false', () => {
@@ -61,7 +61,7 @@ describe('DpAccordion', () => {
 
   it('displays a reduced font size if "compressed" is set to "true"', async () => {
     await wrapper.setProps({ compressed: true })
-    expect(wrapper.find('button > span > span').classes()).toContain('text-base')
+    expect(wrapper.find('[data-cy="accordion:title"]').classes()).toContain('text-base')
   })
 
   /*
@@ -78,12 +78,4 @@ describe('DpAccordion', () => {
     expect(wrapperWithPrefix.find('button #prefix').exists()).toBe(false)
   })
 
-  it('renders "titleSuffix" content inside the toggle button, next to the title', () => {
-    const wrapperWithSuffix = shallowMount(DpAccordion, {
-      props: { title: 'Test Title' },
-      slots: { titleSuffix: '<span id="suffix">Suffix</span>' },
-    })
-
-    expect(wrapperWithSuffix.find('button #suffix').exists()).toBe(true)
-  })
 })

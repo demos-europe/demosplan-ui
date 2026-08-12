@@ -18,9 +18,10 @@
         @click="() => toggle()"
       >
         <span class="flex items-center gap-1">
-          <span :class="titleClasses">{{ title }}</span>
-          <!-- Additional non-interactive information displayed next to the title. -->
-          <slot name="titleSuffix" />
+          <span
+            :class="titleClasses"
+            data-cy="accordion:title"
+          >{{ title }}</span>
         </span>
         <dp-icon
           aria-hidden="true"

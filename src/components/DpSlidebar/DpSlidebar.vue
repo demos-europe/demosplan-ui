@@ -96,7 +96,13 @@ export default {
         return
       }
 
-      this.hideSlideBar()
+      /*
+       * Deliberately not hideSlideBar(): that emits `close`, and reaching this point means the
+       * state it announces has already been applied by whoever set the prop to false.
+       */
+      if (hasOwnProp(this.sideNav, 'hideSideNav')) {
+        this.sideNav.hideSideNav()
+      }
     },
 
     hideSlideBar () {

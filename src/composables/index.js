@@ -1,7 +1,3 @@
-import { sanitizeHtml } from './SanitizeHtml/SanitizeHtml'
-import { useDpValidate } from './UseValidate/UseDpValidate'
+export { sanitizeHtml } from './SanitizeHtml/SanitizeHtml'
+export { useDpValidate } from './UseValidate/UseDpValidate'
 
-export {
-  sanitizeHtml,
-  useDpValidate,
-}

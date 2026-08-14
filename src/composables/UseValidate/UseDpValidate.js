@@ -22,7 +22,7 @@ export function useDpValidate (formRef) {
     if (formValidation.valid === false) {
       const invalidFields = formValidation.invalidFields
       const customErrors = invalidFields
-        .filter(element => element.hasAttribute('data-dp-validate-error'))
+        .filter(element => element.dataset.dpValidateError !== undefined)
         .map(element => element.dataset.dpValidateError)
       customErrors.forEach(error => dplan.notify.notify('error', error))
 
@@ -30,11 +30,11 @@ export function useDpValidate (formRef) {
         const fieldsWithTopics = []
 
         invalidFields.forEach(field => {
-          const fieldName = field.getAttribute('data-dp-validate-error-fieldname')
+          const fieldName = field.dataset.dpValidateErrorFieldname
           if (!fieldName) return
 
           const topicElement = field.closest('[data-dp-validate-topic]')
-          const topicName = topicElement ? topicElement.getAttribute('data-dp-validate-topic') : ''
+          const topicName = topicElement ? (topicElement.dataset.dpValidateTopic ?? '') : ''
 
           const existingIndex = fieldsWithTopics.findIndex(
             item => item.fieldName === fieldName && item.topicName === topicName,

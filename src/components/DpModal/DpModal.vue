@@ -9,9 +9,9 @@
     @animationend="onAnimationEnd"
   >
     <button
-      :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-      :aria-label="title"
-      :title="title"
+      :class="prefixClass('btn--blank o-link--default absolute right-4 top-4')"
+      :aria-label="closeWindow"
+      :title="closeWindow"
       @click.prevent.stop="close()"
     >
       <dp-icon
@@ -19,20 +19,27 @@
         size="large"
       />
     </button>
-    <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
-      <h2
-        v-if="hasHeader"
-        :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
-      >
-        <slot name="header" />
-      </h2>
-      <slot name="default" />
+    <header
+      v-if="hasHeader"
+      :class="prefixClass(`border-b border-neutral px-4 pt-4 pb-2 ${contentHeaderClasses}`)"
+    >
+      <slot name="header" />
+    </header>
+    <div :class="prefixClass(`o-modal__body ${contentBodyClasses}`)">
+      <slot />
     </div>
+    <footer
+      v-if="hasFooter"
+      :class="prefixClass('border-t border-neutral p-4 ')"
+    >
+      <slot name="footer" />
+    </footer>
   </dialog>
 </template>
 
 <script>
 import { de } from '~/components/shared/translations'
+import DpButton from '~/components/DpButton'
 import DpIcon from '~/components/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
@@ -40,6 +47,7 @@ export default {
   name: 'DpModal',
 
   components: {
+    DpButton,
     DpIcon,
   },
 
@@ -73,16 +81,21 @@ export default {
 
   emits: [
     'modal:toggled',
+    'back',
   ],
 
   data () {
     return {
-      title: de.window.close,
+      closeWindow: de.window.close,
       isClosing: false,
     }
   },
 
   computed: {
+    hasFooter () {
+      return typeof this.$slots.footer !== 'undefined'
+    },
+
     hasHeader () {
       return typeof this.$slots.header !== 'undefined'
     },

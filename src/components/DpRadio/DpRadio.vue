@@ -1,9 +1,12 @@
 <template>
-  <div :class="prefixClass('o-form__element--radio')">
+  <div :class="prefixClass('flex items-start gap-2 o-form__element--radio')">
     <input
       :id="id"
       :name="name !== '' ? name : null"
-      :class="prefixClass('o-form__control-input')"
+      :class="[
+        prefixClass('o-form__control-input'),
+        { 'mt-0.5': label.text }
+      ]"
       type="radio"
       :required="required"
       :disabled="disabled"

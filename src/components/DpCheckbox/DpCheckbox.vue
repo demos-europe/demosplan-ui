@@ -1,9 +1,12 @@
 <template>
-  <div :class="prefixClass('o-form__element--checkbox')">
+  <div :class="prefixClass('o-form__element--checkbox flex items-start gap-2')">
     <input
       :id="id"
       :name="name !== '' ? name : null"
-      :class="prefixClass('o-form__control-input')"
+      :class="[
+        prefixClass('o-form__control-input'),
+        { 'mt-0.5': label.text }
+      ]"
       type="checkbox"
       :required="required"
       :disabled="disabled"
@@ -18,7 +21,7 @@
       @change="$emit('change', $event.target.checked)"
     >
     <dp-label
-      v-if="label.text !== ''"
+      v-if="label.text"
       :class="prefixClass('o-form__label')"
       v-bind="{
         bold: false,

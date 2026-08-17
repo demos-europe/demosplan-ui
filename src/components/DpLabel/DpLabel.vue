@@ -62,6 +62,12 @@ const props = defineProps({
     default: () => [],
   },
 
+  regular: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+
   text: {
     type: String,
     required: true,
@@ -89,6 +95,10 @@ const classes = computed(() : string[] => {
 
   if (props.bold) {
     cssClasses.push('font-semibold')
+  }
+
+  if (props.regular) {
+    cssClasses.push('font-normal')
   }
 
   return cssClasses.map((selector) => prefixClass(selector))

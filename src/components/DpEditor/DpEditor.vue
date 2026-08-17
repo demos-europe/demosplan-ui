@@ -386,6 +386,7 @@ import {
 } from './libs/tiptapExtensions'
 
 import {
+  Boilerplate,
   buildSuggestion,
   CustomDelete,
   CustomImage,
@@ -679,6 +680,12 @@ export default {
       },
       toolbar: Object.assign({
         /**
+         * If true, text inserted from a boilerplate is wrapped in its own node that carries the
+         * boilerplate id as a data attribute. Enable it where the origin of inserted text has to
+         * remain identifiable after saving and reloading.
+         */
+        boilerplate: false,
+        /**
          * Enables a menu button to cut out the current text selection.
          * Set to false where content may only be altered, not removed.
          */
@@ -843,6 +850,10 @@ export default {
 
       if (this.isSpellcheckEnabled) {
         extensions.push(LanguageToolExtension)
+      }
+
+      if (this.toolbar.boilerplate) {
+        extensions.push(Boilerplate)
       }
 
       if (this.toolbar.headings.length > 0) {

@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixClass('o-form__element--checkbox flex items-start gap-2')">
+  <div :class="prefixClass('o-form__element--checkbox')">
     <input
       :id="id"
       :name="name !== '' ? name : null"

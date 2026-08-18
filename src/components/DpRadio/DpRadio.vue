@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixClass('flex items-start gap-2 o-form__element--radio')">
+  <div :class="prefixClass('o-form__element--radio')">
     <input
       :id="id"
       :name="name !== '' ? name : null"

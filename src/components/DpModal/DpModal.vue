@@ -39,7 +39,6 @@
 
 <script>
 import { de } from '~/components/shared/translations'
-import DpButton from '~/components/DpButton'
 import DpIcon from '~/components/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
@@ -47,7 +46,6 @@ export default {
   name: 'DpModal',
 
   components: {
-    DpButton,
     DpIcon,
   },
 
@@ -81,7 +79,6 @@ export default {
 
   emits: [
     'modal:toggled',
-    'back',
   ],
 
   data () {

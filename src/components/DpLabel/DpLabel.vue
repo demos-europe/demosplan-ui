@@ -65,7 +65,7 @@ const props = defineProps({
   regular: {
     type: Boolean,
     required: false,
-    default: true,
+    default: false,
   },
 
   text: {

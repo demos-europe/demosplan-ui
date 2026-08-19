@@ -11,10 +11,17 @@
         weight="fill"
       />
       <span class="truncate min-w-0">{{ de.editor.linkedBoilerplate.label({ title: props.extension.options.getBoilerplateTitle(props.node.attrs.boilerplateId) }) }}</span>
-      <dp-icon
-        icon="pencil-simple"
-        weight="fill"
-      />
+      <button
+        :aria-label="de.editor.linkedBoilerplate.editLabel"
+        type="button"
+        @click="handleEditClick"
+      >
+        <dp-icon
+          class="cursor-pointer"
+          icon="pencil-simple"
+          weight="fill"
+        />
+      </button>
     </div>
     <node-view-content
       ref="linkedBoilerplateContent"
@@ -30,4 +37,12 @@ import { de } from '~/components'
 import { DpIcon } from '~/components'
 
 const props = defineProps(nodeViewProps)
+
+const handleEditClick = () => {
+  props.extension.options.onUnlinkRequest({
+    boilerplateId: props.node.attrs.boilerplateId,
+    pos: props.getPos(),
+    editorId: props.editor.options.id,
+  })
+}
 </script>

@@ -455,15 +455,6 @@ export default {
       default: '',
     },
 
-    /**
-     * Passes the name of a linked boilerplate for usage in the boilerplate link node view. The function receives the boilerplateId as parameter and should return a string.
-     */
-    getBoilerplateTitle: {
-      type: Function,
-      required: false,
-      default: () => '',
-    },
-
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
@@ -484,6 +475,16 @@ export default {
       required: false,
       default: '',
     },
+
+    /**
+     * Passes the name of a linked boilerplate for usage in the boilerplate link node view. The function receives the boilerplateId as parameter and should return a string.
+     */
+    getBoilerplateTitle: {
+      type: Function,
+      required: false,
+      default: () => '',
+    },
+
 
     /**
      * Global path for file uploader endpoint.
@@ -557,6 +558,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+
+    onUnlinkRequest: {
+      type: Function,
+      required: false,
+      default: () => {},
     },
 
     readonly: {
@@ -862,7 +869,7 @@ export default {
       }
 
       if (this.toolbar.boilerplate) {
-        extensions.push(Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle }))
+        extensions.push(Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle, onUnlinkRequest: this.onUnlinkRequest }))
       }
 
       if (this.toolbar.headings.length > 0) {

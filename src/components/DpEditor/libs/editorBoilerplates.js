@@ -26,6 +26,7 @@ export default Node.create({
   addOptions() {
     return {
       getBoilerplateTitle: () => '',
+      onUnlinkRequest: () => {},
     }
   },
 

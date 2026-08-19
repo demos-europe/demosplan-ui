@@ -1,4 +1,6 @@
 import { mergeAttributes, Node } from '@tiptap/core'
+import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import DpLinkedBoilerplate from './../DpLinkedBoilerplate.vue'
 
 export default Node.create({
   name: 'boilerplate',
@@ -20,6 +22,13 @@ export default Node.create({
     }
   },
 
+  // sachen die von außen kommen, z.B. title, id, etc. können hier definiert werden
+  addOptions() {
+    return {
+      getBoilerplateTitle: () => '',
+    }
+  },
+
   parseHTML () {
     return [
       { tag: 'div[data-boilerplate-id]' },
@@ -29,4 +38,10 @@ export default Node.create({
   renderHTML ({ HTMLAttributes }) {
     return ['div', mergeAttributes(HTMLAttributes), 0]
   },
+
+  // Return a vue component
+  addNodeView() {
+    return VueNodeViewRenderer(DpLinkedBoilerplate)
+  },
+
 })

@@ -3,7 +3,8 @@
     ref="linkedBoilerplateWrapper"
     v-tooltip="de.editor.linkedBoilerplate.hint"
     as="div"
-    class="border-l-2 border-interactive hover:bg-surface-light"
+    class="mb-4 border-l-2 border-interactive hover:bg-surface-light"
+    contenteditable="false"
   >
     <div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 px-2 pt-2 text-interactive">
       <dp-icon
@@ -26,7 +27,6 @@
     <node-view-content
       ref="linkedBoilerplateContent"
       class="p-2"
-      contenteditable="false"
     />
   </node-view-wrapper>
 </template>

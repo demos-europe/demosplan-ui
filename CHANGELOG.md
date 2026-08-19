@@ -5,7 +5,37 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpAccordion: Add `titlePrefix` slot to place content next to the title, outside the toggle button so interactive content is not nested within it ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpCheckbox: Accept `hide` in the `label` prop to name the checkbox for screen readers without displaying the text ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `cut` toolbar item to hide the cut button where content may only be altered, not removed ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `obscureOnly` prop to let users obscure existing text without being able to alter it otherwise ([@riechedemos](https://github.com/riechedemos))
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Add `open` prop to drive visibility from outside instead of the `show-slidebar` / `hide-slidebar` root events; the events stay active while the prop is unset ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Move the close button to the right, the edge the slidebar docks to, and give it an accessible name, both in line with DpModal ([@riechedemos](https://github.com/riechedemos))
+
+## v0.28.0 - 2026-08-10
+
+### Added
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: add `buttonRowStart` slot to render buttons before the deselect button ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpButton: add `transparent` variant ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpDataTable: emit `columns-reordered` when the user drags a column into a new position ([@huellnerdemos](https://github.com/huellnerdemos))
+- ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable, DpTableRow:
+  - add props to exclude individual rows from dragging
+  - keep row dragging inside its own table ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1543](https://github.com/demos-europe/demosplan-ui/pull/1543)) DpAccordion: add `padded` prop to apply inset spacing to the toggle trigger and `highlightToggledTrigger` prop to give it a background color while its section is expanded ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- ([#1549](https://github.com/demos-europe/demosplan-ui/pull/1549)) DpBulkEditHeader: restyle to a light surface with rounded corners and a left accent border, and render the deselect button in the `outline` variant ([@huellnerdemos](https://github.com/huellnerdemos))
+
+### Fixed
+- ([#1552](https://github.com/demos-europe/demosplan-ui/pull/1552)) DpDataTable: pass `handle` through to SortableJS so rows are dragged by the drag handle only instead of from anywhere in the row ([@rafelddemos](https://github.com/rafelddemos))
+- Dependencies: Fix several security alerts by updating dependencies
+  - brace-expansion from 5.0.5 to 5.0.8
+  - postcss from 8.5.15 to 8.5.25
+  - ip-address from 10.2.0 to 10.4.0
+  - undici from 7.28.0 to 7.29.0
+
 
 ## v0.27.0 - 2026-07-24
 

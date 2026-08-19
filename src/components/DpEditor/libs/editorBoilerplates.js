@@ -9,6 +9,8 @@ export default Node.create({
 
   content: 'block+',
 
+  atom: true,
+
   addAttributes() {
     return {
       boilerplateId: {
@@ -30,6 +32,19 @@ export default Node.create({
     }
   },
 
+  addKeyboardShortcuts() {
+    const preventEditing = () => this.editor.isActive(this.name)
+
+    return {
+      Enter: preventEditing,
+      Backspace: preventEditing,
+      'Mod-Backspace': preventEditing,
+      'Shift-Backspace': preventEditing,
+      Delete: preventEditing,
+      'Mod-Delete': preventEditing,
+    }
+  },
+
   parseHTML () {
     return [
       { tag: 'div[data-boilerplate-id]' },
@@ -42,7 +57,7 @@ export default Node.create({
 
   // Return a vue component
   addNodeView() {
-    return VueNodeViewRenderer(DpLinkedBoilerplate)
+    return VueNodeViewRenderer(DpLinkedBoilerplate, {
+    })
   },
-
 })

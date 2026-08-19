@@ -11,6 +11,8 @@ export default Node.create({
 
   atom: true,
 
+  isolating: true,
+
   addAttributes() {
     return {
       boilerplateId: {

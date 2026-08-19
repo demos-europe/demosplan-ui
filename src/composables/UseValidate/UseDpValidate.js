@@ -31,7 +31,10 @@ export function useDpValidate (formRef) {
 
         invalidFields.forEach(field => {
           const fieldName = field.dataset.dpValidateErrorFieldname
-          if (!fieldName) return
+          
+          if (!fieldName) {
+            return
+          }
 
           const topicElement = field.closest('[data-dp-validate-topic]')
           const topicName = topicElement ? (topicElement.dataset.dpValidateTopic ?? '') : ''

@@ -455,6 +455,15 @@ export default {
       default: '',
     },
 
+    /**
+     * Passes the name of a linked boilerplate for usage in the boilerplate link node view. The function receives the boilerplateId as parameter and should return a string.
+     */
+    getBoilerplateTitle: {
+      type: Function,
+      required: false,
+      default: () => '',
+    },
+
     dataDpValidateErrorFieldname: {
       type: String,
       required: false,
@@ -853,7 +862,7 @@ export default {
       }
 
       if (this.toolbar.boilerplate) {
-        extensions.push(Boilerplate)
+        extensions.push(Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle }))
       }
 
       if (this.toolbar.headings.length > 0) {

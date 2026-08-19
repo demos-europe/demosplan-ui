@@ -90,11 +90,11 @@ export default {
 
   computed: {
     hasFooter () {
-      return typeof this.$slots.footer !== 'undefined'
+      return this.$slots.footer !== undefined
     },
 
     hasHeader () {
-      return typeof this.$slots.header !== 'undefined'
+      return this.$slots.header !== undefined
     },
   },
 

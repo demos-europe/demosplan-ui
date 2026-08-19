@@ -26,7 +26,7 @@
 
 import { nodeViewProps, NodeViewContent, NodeViewWrapper } from '@tiptap/vue-3'
 import { Tooltip as vTooltip } from '~/directives'
-import { de } from '../shared/translations'
+import { de } from '~/components'
 import { DpIcon } from '~/components'
 
 const props = defineProps(nodeViewProps)

@@ -485,7 +485,6 @@ export default {
       default: () => '',
     },
 
-
     /**
      * Global path for file uploader endpoint.
      */

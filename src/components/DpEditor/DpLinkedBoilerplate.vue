@@ -26,6 +26,7 @@
     <node-view-content
       ref="linkedBoilerplateContent"
       class="p-2"
+      contenteditable="false"
     />
   </node-view-wrapper>
 </template>

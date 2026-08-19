@@ -57,6 +57,7 @@ export function useDpValidate (formRef) {
       }
 
       const firstErrorElement = form.querySelector('.' + errorClass)
+      
       scrollToVisibleElement(firstErrorElement)
     }
 

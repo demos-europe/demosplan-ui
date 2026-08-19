@@ -45,7 +45,7 @@ import { Tooltip } from '~/directives'
 
 type ButtonColor = 'primary' | 'secondary' | 'warning'
 type ButtonType = 'button' | 'submit'
-type ButtonVariant = 'solid' | 'outline' | 'subtle'
+type ButtonVariant = 'solid' | 'outline' | 'subtle' | 'transparent'
 
 const props = defineProps({
   /**
@@ -159,14 +159,14 @@ const props = defineProps({
   },
 
   /**
-   * The button may have a variant of `solid`, `outline`, or `subtle`.
+   * The button may have a variant of `solid`, `outline`, `subtle`, or `transparent`.
    * When not specified, the `solid` variant (white on colored background) is applied.
    */
   variant: {
     type: String as PropType<ButtonVariant>,
     required: false,
     default: 'solid',
-    validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle'].includes(prop),
+    validator: (prop: ButtonVariant) => ['solid', 'outline', 'subtle', 'transparent'].includes(prop),
   },
 })
 
@@ -201,6 +201,9 @@ const colorClasses = computed(() => {
     break
   case 'subtle':
     renderedColors.push(colors.outlineSubtle, colors.subtle)
+    break
+  case 'transparent':
+    renderedColors.push(colors.transparent)
     break
   default:
     break
@@ -299,6 +302,18 @@ const allColorClasses = {
       focus:border-interactive-subtle-hover\
       focus-visible:border-interactive-subtle-hover\
       active:border-interactive-subtle-active `,
+    /**
+     * Transparent: classes that only apply to "transparent" button color variant.
+     *
+     * No background outside the busy state — the "bg-busy" overlay still applies like on every
+     * other variant.
+     */
+    transparent: `
+      border border-transparent bg-transparent text-interactive\
+      hover:text-interactive-hover hover:no-underline\
+      focus:text-interactive-hover\
+      focus-visible:text-interactive-hover\
+      active:text-interactive-active `,
   },
   secondary: {
     solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#595959]/50 ',
@@ -326,6 +341,12 @@ const allColorClasses = {
       focus:border-interactive-secondary-subtle-hover\
       focus-visible:border-interactive-secondary-subtle-hover\
       active:border-interactive-secondary-subtle-active `,
+    transparent: `
+      border border-transparent bg-transparent text-interactive-secondary\
+      hover:text-interactive-secondary-hover hover:no-underline\
+      focus:text-interactive-secondary-hover\
+      focus-visible:text-interactive-secondary-hover\
+      active:text-interactive-secondary-active `,
   },
   warning: {
     solidOutlineSubtle: ' outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#B20000]/50 ',
@@ -353,6 +374,12 @@ const allColorClasses = {
       focus:border-interactive-warning-subtle-hover\
       focus-visible:border-interactive-warning-subtle-hover\
       active:border-interactive-warning-subtle-active `,
+    transparent: `
+      border border-transparent bg-transparent text-interactive-warning\
+      hover:text-interactive-warning-hover hover:no-underline\
+      focus:text-interactive-warning-hover\
+      focus-visible:text-interactive-warning-hover\
+      active:text-interactive-warning-active `,
   },
 }
 </script>

@@ -6,7 +6,7 @@
   >
     <th
       v-if="isDraggable"
-      :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-field="isResizable ? 'dragHandle' : null"
       class="c-data-table__cell--narrow"
       scope="col"

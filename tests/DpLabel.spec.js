@@ -25,4 +25,11 @@ describe('DpLabel', () => {
 
     expect(wrapper.vm.hints).toEqual(expect.arrayContaining(['test hint']))
   })
+
+  it('hides the label visually while keeping it in the document if "hide" is set', async () => {
+    await wrapper.setProps({ hide: true })
+
+    expect(wrapper.classes()).toContain('sr-only')
+    expect(wrapper.text()).toContain('test text')
+  })
 })

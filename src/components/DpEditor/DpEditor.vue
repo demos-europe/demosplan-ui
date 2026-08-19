@@ -34,21 +34,23 @@
         <div :class="[isFullscreen ? 'fullscreen': '', prefixClass('editor')]">
           <div :class="[readonly ? prefixClass('readonly'): '', prefixClass('menubar')]">
             <!-- Cut -->
-            <button
-              v-tooltip="translations.cut"
-              :aria-label="translations.cut"
-              :class="prefixClass('menubar__button')"
-              data-cy="editor:cut"
-              :disabled="readonly"
-              type="button"
-              @click="cut"
-            >
-              <i
-                :class="prefixClass('fa fa-scissors')"
-                aria-hidden="true"
-              />
-            </button>
-            &#10072;
+            <template v-if="toolbar.cut">
+              <button
+                v-tooltip="translations.cut"
+                :aria-label="translations.cut"
+                :class="prefixClass('menubar__button')"
+                data-cy="editor:cut"
+                :disabled="readonly"
+                type="button"
+                @click="cut"
+              >
+                <i
+                  :class="prefixClass('fa fa-scissors')"
+                  aria-hidden="true"
+                />
+              </button>
+              &#10072;
+            </template>
             <!-- Undo -->
             <button
               v-tooltip="translations.undo"
@@ -393,6 +395,7 @@ import {
   InsertAtCursorPos,
   LanguageToolExtension,
   Obscure,
+  PreventEditing,
 } from './libs/customExtensions'
 
 import {
@@ -534,6 +537,18 @@ export default {
       default: false,
     },
 
+    /**
+     * Set to true to let users obscure existing text without being able to alter it otherwise.
+     * Text stays selectable so it can be marked and then obscured, while typing, pasting and
+     * dropping are swallowed - the same mechanism DpAnonymizeText uses.
+     * Only useful together with the `obscure` toolbar item, otherwise the content cannot be changed at all.
+     */
+    obscureOnly: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
     readonly: {
       required: false,
       default: false,
@@ -663,6 +678,11 @@ export default {
         ],
       },
       toolbar: Object.assign({
+        /**
+         * Enables a menu button to cut out the current text selection.
+         * Set to false where content may only be altered, not removed.
+         */
+        cut: true,
         /**
          * Array with numbers 1-6 defining which heading-buttons we want to show
          */
@@ -839,6 +859,10 @@ export default {
 
       if (this.toolbar.obscure) {
         extensions.push(Obscure)
+      }
+
+      if (this.obscureOnly) {
+        extensions.push(PreventEditing)
       }
 
       if (this.toolbar.listButtons) {

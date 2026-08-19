@@ -10,8 +10,8 @@
   >
     <button
       :class="prefixClass('btn--blank o-link--default absolute right-4 top-4')"
-      :aria-label="closeWindow"
-      :title="closeWindow"
+      :aria-label="closeLabel"
+      :title="closeLabel"
       @click.prevent.stop="close()"
     >
       <dp-icon
@@ -83,7 +83,7 @@ export default {
 
   data () {
     return {
-      closeWindow: de.window.close,
+      closeLabel: de.window.close,
       isClosing: false,
     }
   },

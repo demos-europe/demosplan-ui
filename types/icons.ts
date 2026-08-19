@@ -76,6 +76,7 @@ export type PhosphorIconName =
   | 'map-pin'
   | 'plus'
   | 'phone'
+  | 'puzzle-piece'
   | 'question'
   | 'sign-out'
   | 'tag'

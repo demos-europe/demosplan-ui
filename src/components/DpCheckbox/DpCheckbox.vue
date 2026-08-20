@@ -3,10 +3,7 @@
     <input
       :id="id"
       :name="name !== '' ? name : null"
-      :class="[
-        prefixClass('o-form__control-input'),
-        { 'mt-0.5': label.text }
-      ]"
+      :class="prefixClass('o-form__control-input')"
       type="checkbox"
       :required="required"
       :disabled="disabled"

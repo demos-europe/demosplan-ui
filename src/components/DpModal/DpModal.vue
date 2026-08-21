@@ -8,17 +8,17 @@
     @keydown.esc.prevent="close()"
     @animationend="onAnimationEnd"
   >
-    <button
-      :class="prefixClass('btn--blank o-link--default absolute right-4 top-4')"
+    <dp-button
       :aria-label="closeLabel"
-      :title="closeLabel"
+      :class="prefixClass('absolute right-3 top-3')"
+      data-cy="closeModal"
+      hide-text
+      icon="close"
+      icon-size="large"
+      :text="closeLabel"
+      variant="transparent"
       @click.prevent.stop="close()"
-    >
-      <dp-icon
-        icon="close"
-        size="large"
-      />
-    </button>
+    />
     <header
       v-if="hasHeader"
       :class="prefixClass(`border-b border-neutral px-4 pt-4 pb-2 ${contentHeaderClasses}`)"
@@ -30,7 +30,7 @@
     </div>
     <footer
       v-if="hasFooter"
-      :class="prefixClass('border-t border-neutral p-4 ')"
+      :class="prefixClass('border-t border-neutral p-4')"
     >
       <slot name="footer" />
     </footer>
@@ -40,12 +40,14 @@
 <script>
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
+import { DpButton } from '~/components'
 import { prefixClassMixin } from '~/mixins'
 
 export default {
   name: 'DpModal',
 
   components: {
+    DpButton,
     DpIcon,
   },
 

@@ -4302,42 +4302,42 @@ __metadata:
   linkType: hard
 
 "@vueuse/components@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "@vueuse/components@npm:14.0.0"
+  version: 14.4.0
+  resolution: "@vueuse/components@npm:14.4.0"
   dependencies:
-    "@vueuse/core": "npm:14.0.0"
-    "@vueuse/shared": "npm:14.0.0"
+    "@vueuse/core": "npm:14.4.0"
+    "@vueuse/shared": "npm:14.4.0"
   peerDependencies:
     vue: ^3.5.0
-  checksum: 10c0/c4d877c65555947f0a8f9d49e902c65bd988b1f822c31fd91bc9827f46bdcba29eafde76f281e155dce0948394a0da9b0d77cf1dbb89f701cc34418373abfe5f
+  checksum: 10c0/d8da70feb5ef2dc56e6a470177a6a4af2151b0cae0d076a9277b0e91ef9a811d4f8a9281b8f24348244ea0bce1c8a9e54b32c69aaba13c571abb474f79ffd8fe
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:14.0.0":
-  version: 14.0.0
-  resolution: "@vueuse/core@npm:14.0.0"
+"@vueuse/core@npm:14.4.0":
+  version: 14.4.0
+  resolution: "@vueuse/core@npm:14.4.0"
   dependencies:
     "@types/web-bluetooth": "npm:^0.0.21"
-    "@vueuse/metadata": "npm:14.0.0"
-    "@vueuse/shared": "npm:14.0.0"
+    "@vueuse/metadata": "npm:14.4.0"
+    "@vueuse/shared": "npm:14.4.0"
   peerDependencies:
     vue: ^3.5.0
-  checksum: 10c0/f82c8c7f8fcf62881982a98090bc4790eb0b781d8dec9f060b56759f0c252c681ad0e52aaebe59d82a97d54f180c3586524e905a92a2ab0a21d2d07a42af9299
+  checksum: 10c0/3f1b61d0669ea118db9b22d8f71748d6b72a3d7a84e1e08343b02568097a43c32aa0cd65912df95cd923156e2b93adccd40b0f1f54fb34a24315ba5814ef3055
   languageName: node
   linkType: hard
 
 "@vueuse/integrations@npm:^14.0.0":
-  version: 14.0.0
-  resolution: "@vueuse/integrations@npm:14.0.0"
+  version: 14.4.0
+  resolution: "@vueuse/integrations@npm:14.4.0"
   dependencies:
-    "@vueuse/core": "npm:14.0.0"
-    "@vueuse/shared": "npm:14.0.0"
+    "@vueuse/core": "npm:14.4.0"
+    "@vueuse/shared": "npm:14.4.0"
   peerDependencies:
     async-validator: ^4
     axios: ^1
     change-case: ^5
     drauu: ^0.4
-    focus-trap: ^7
+    focus-trap: ^7 || ^8
     fuse.js: ^7
     idb-keyval: ^6
     jwt-decode: ^4
@@ -4371,23 +4371,23 @@ __metadata:
       optional: true
     universal-cookie:
       optional: true
-  checksum: 10c0/b4f4bb4b31905c6f7bd94f351943e7f0171aa1a8498d76257f6cab2b205d4b1222f2014d52c9b0702c579ace36293bc98901de0db186b1071f74b0c1b27b4084
+  checksum: 10c0/8b0b2a6cca4338c42ce57875d49167dc9fe51a9bdbb619fa4212f9ce7f496a16a226a84a7af762ce7bb2aa6be9014f950ee5d09259005306b23c638b881173cd
   languageName: node
   linkType: hard
 
-"@vueuse/metadata@npm:14.0.0":
-  version: 14.0.0
-  resolution: "@vueuse/metadata@npm:14.0.0"
-  checksum: 10c0/04868a4b366e096f59edac78b95f743a80bea16a14966323f6b6bdb017333871598a7e9c68089a01fa439fe850e50fd3f8eddcbc87a820583629652e307bc4d8
+"@vueuse/metadata@npm:14.4.0":
+  version: 14.4.0
+  resolution: "@vueuse/metadata@npm:14.4.0"
+  checksum: 10c0/f68e8213c9744be5d5b90554854db9a0707a07c343229484edf76e9877ed8f2dd0c323486fea001ab771df4d1d805d2ab1f079155219aae28bb593d7605acc7a
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:14.0.0":
-  version: 14.0.0
-  resolution: "@vueuse/shared@npm:14.0.0"
+"@vueuse/shared@npm:14.4.0":
+  version: 14.4.0
+  resolution: "@vueuse/shared@npm:14.4.0"
   peerDependencies:
     vue: ^3.5.0
-  checksum: 10c0/4d3e017782965fc9e317ac3574af6af8140a7f618980d7d207f4b92fe6665a34bccd2d8fcfa654833af5c051a832f0670d510eb9c3cf09d2b9989def742e76a8
+  checksum: 10c0/c26228253864134bb6a7a43d8204a4a7234711178406c5ff9735bff4151e901c0196b55017bff0c8d1f9bdb0a466edf1d26152cac9d67aa79e98c8965d16a743
   languageName: node
   linkType: hard
 

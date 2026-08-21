@@ -78,6 +78,7 @@ export type PhosphorIconName =
   | 'phone'
   | 'question'
   | 'sign-out'
+  | 'sliders-horizontal'
   | 'tag'
   | 'user'
   | 'users-three'

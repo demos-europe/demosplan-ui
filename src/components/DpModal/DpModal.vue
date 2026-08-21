@@ -40,7 +40,7 @@
 <script>
 import { de } from '~/components/shared/translations'
 import DpIcon from '~/components/DpIcon'
-import { DpButton } from '~/components'
+import DpButton from '~/components/DpButton'
 import { prefixClassMixin } from '~/mixins'
 
 export default {

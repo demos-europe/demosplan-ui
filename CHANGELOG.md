@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: add a footer slot and a visual divider between sections
+  - new regular prop in DpLabel
+  - new calendar icon
+  - flex refactoring in DpCheckbox/DpRadio ([@sakutademos](https://github.com/sakutademos))
+
 ### Added
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpAccordion: Add `titlePrefix` slot to place content next to the title, outside the toggle button so interactive content is not nested within it ([@riechedemos](https://github.com/riechedemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpCheckbox: Accept `hide` in the `label` prop to name the checkbox for screen readers without displaying the text ([@riechedemos](https://github.com/riechedemos))

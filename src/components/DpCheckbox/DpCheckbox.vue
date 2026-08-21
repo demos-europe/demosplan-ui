@@ -18,7 +18,7 @@
       @change="$emit('change', $event.target.checked)"
     >
     <dp-label
-      v-if="label.text !== ''"
+      v-if="label.text"
       :class="prefixClass('o-form__label')"
       v-bind="{
         bold: false,

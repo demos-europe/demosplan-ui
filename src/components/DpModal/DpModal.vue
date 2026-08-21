@@ -11,7 +11,7 @@
     <dp-button
       :aria-label="closeLabel"
       :class="prefixClass('absolute right-3 top-3')"
-      data-cy="closeModal"
+      data-cy="modal:close"
       hide-text
       icon="close"
       icon-size="large"

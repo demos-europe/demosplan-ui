@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
+- ([#1560](https://github.com/demos-europe/demosplan-ui/pull/1560)) DpModal: replace the native button with the DpButton component for closing the modal ([@sakutademos](https://github.com/sakutademos))
 - ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: add a footer slot and a visual divider between sections
   - new regular prop in DpLabel
   - new calendar icon

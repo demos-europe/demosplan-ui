@@ -23,7 +23,9 @@
     <slot
       name="modal"
       :append-text="appendText"
+      :focus-editor="focusEditor"
       :handle-insert-text="handleInsertText"
+      :insert-boilerplate="insertBoilerplate"
     />
 
     <div
@@ -984,6 +986,11 @@ export default {
       this[menu].isOpen = false
     },
 
+    /**
+     * Puts the caret back into the editor, at whatever position the document currently holds.
+     * Also exposed to the `modal` slot: a modal built on <dialog> hands focus back to its
+     * trigger when it closes, so hosts need a way to reclaim it afterwards.
+     */
     focusEditor () {
       if (this.editor) {
         this.editor.commands.focus()
@@ -1027,6 +1034,25 @@ export default {
 
       this.editor.commands.insertContent(text)
       this.currentValue = this.editor.getHTML()
+    },
+
+    /**
+     * Inserts boilerplate text as a linked node. Exposed to the `modal` slot so hosts can
+     * reach it from their boilerplate picker.
+     *
+     * Chaining focus() first hands focus back to the editor, which the modal held while open —
+     * otherwise the cursor position the command sets exists but stays invisible. Same pattern
+     * as every toolbar command in this file, e.g. toggleBold() above.
+     *
+     * Note this alone is not enough when the picker sits in a <dialog>: closing it hands focus
+     * back to the element that opened it, and that happens after the close animation, i.e.
+     * after this ran. Hosts therefore also call focusEditor() once the modal has really closed.
+     *
+     * @param {String} boilerplateId
+     * @param {String} html
+     */
+    insertBoilerplate (boilerplateId, html) {
+      this.editor.chain().focus().insertBoilerplate({ boilerplateId, html }).run()
     },
 
     insertImage (url, alt) {

@@ -68,7 +68,6 @@ export default {
 
   data () {
     return {
-      isVisible: false,
       sideNav: {},
       translations: {
         close: de.window.close,
@@ -103,36 +102,38 @@ export default {
        */
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
-        this.isVisible = false
       }
     },
 
     handleKeydown (event) {
-      if (event.key === 'Escape' && this.isVisible) {
+      if (event.key === 'Escape' && this.isVisible()) {
         this.hideSlideBar()
       }
     },
 
     hideSlideBar () {
-      if (!this.isVisible) {
+      if (!this.isVisible()) {
         return
       }
 
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
-        this.isVisible = false
         this.$emit('close')
       }
     },
 
+    // The slidebar is open while SideNav keeps the `is-visible` class on the root element.
+    isVisible () {
+      return this.$el.classList.contains('is-visible')
+    },
+
     showSlideBar () {
-      if (this.isVisible) {
+      if (this.isVisible()) {
         return
       }
 
       if (hasOwnProp(this.sideNav, 'showSideNav')) {
         this.sideNav.showSideNav()
-        this.isVisible = true
       }
     },
   },

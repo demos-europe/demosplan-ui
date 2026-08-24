@@ -138,6 +138,7 @@ const de = {
   operations: {
     abort: 'Abbrechen',
     add: 'Hinzufügen',
+    back: 'Zurück',
     delete: 'Löschen',
     deselect: {
       all: 'Auswahl aufheben',

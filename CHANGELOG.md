@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: improve modal structure and transitions
+  - new regular prop in DpLabel
+  - new calendar icon
+  - flex refactoring in DpCheckbox/DpRadio ([@sakutademos](https://github.com/sakutademos))
+
 ### Added
 - ([#1561](https://github.com/demos-europe/demosplan-ui/pull/1561)) Add mapping for `sliders-horizontal` icon ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpAccordion: Add `titlePrefix` slot to place content next to the title, outside the toggle button so interactive content is not nested within it ([@riechedemos](https://github.com/riechedemos))

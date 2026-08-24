@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1563](https://github.com/demos-europe/demosplan-ui/pull/1563)) DpAccordion: Add optional status indicator to accordion's title ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.29.0 - 2026-08-24
 
 ### Changed

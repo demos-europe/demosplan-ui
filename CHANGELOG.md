@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.29.0 - 2026-08-24
+
 ### Changed
 - ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: improve modal structure and transitions
   - new regular prop in DpLabel

@@ -119,10 +119,7 @@ export default {
       default: false,
     },
 
-    /*
-     * For screen readers. Leave empty only if the dot is purely decorative
-     * and its meaning is already conveyed elsewhere.
-     */
+    // For screen readers. Leave empty only if the dot's meaning is already conveyed elsewhere.
     statusDotLabel: {
       type: String,
       required: false,

@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Changed
-- ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: add a footer slot and a visual divider between sections
+- ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: improve modal structure and transitions
   - new regular prop in DpLabel
   - new calendar icon
   - flex refactoring in DpCheckbox/DpRadio ([@sakutademos](https://github.com/sakutademos))

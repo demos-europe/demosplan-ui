@@ -145,6 +145,10 @@ export default {
         dialog.classList.add('o-modal--opening')
         this.updateContentHeight()
         this.initResizeObserver()
+
+        // Focus the dialog itself to prevent auto-focus on the close button
+        // This prevents the tooltip from showing immediately on modal open
+        dialog.focus()
       })
 
       this.$emit('modal:toggled', true)

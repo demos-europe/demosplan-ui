@@ -68,6 +68,7 @@ export default {
 
   data () {
     return {
+      isVisible: false,
       sideNav: {},
       translations: {
         close: de.window.close,
@@ -102,19 +103,36 @@ export default {
        */
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
+        this.isVisible = false
+      }
+    },
+
+    handleKeydown (event) {
+      if (event.key === 'Escape' && this.isVisible) {
+        this.hideSlideBar()
       }
     },
 
     hideSlideBar () {
+      if (!this.isVisible) {
+        return
+      }
+
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
+        this.isVisible = false
         this.$emit('close')
       }
     },
 
     showSlideBar () {
+      if (this.isVisible) {
+        return
+      }
+
       if (hasOwnProp(this.sideNav, 'showSideNav')) {
         this.sideNav.showSideNav()
+        this.isVisible = true
       }
     },
   },
@@ -122,6 +140,7 @@ export default {
   mounted () {
     // Initialize SideNav
     this.sideNav = new SideNav()
+    document.addEventListener('keydown', this.handleKeydown)
 
     if (null !== this.open) {
       /*
@@ -142,6 +161,10 @@ export default {
     this.$root.$on('show-slidebar', () => {
       this.showSlideBar()
     })
+  },
+
+  beforeUnmount () {
+    document.removeEventListener('keydown', this.handleKeydown)
   },
 }
 </script>

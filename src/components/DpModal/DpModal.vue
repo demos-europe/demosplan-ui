@@ -26,7 +26,16 @@
       <slot name="header" />
     </header>
     <div :class="prefixClass(`o-modal__body ${contentBodyClasses}`)">
-      <slot />
+      <div
+        v-if="enableSmoothHeightTransition"
+        :class="prefixClass('o-modal__transition-wrapper')"
+        :style="{ height: contentHeight ? `${contentHeight}px` : 'auto' }"
+      >
+        <div ref="bodyContent">
+          <slot />
+        </div>
+      </div>
+      <slot v-else />
     </div>
     <footer
       v-if="hasFooter"
@@ -75,6 +84,12 @@ export default {
       type: String,
       default: '',
     },
+
+    enableSmoothHeightTransition: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: [
@@ -85,6 +100,8 @@ export default {
     return {
       closeLabel: de.window.close,
       isClosing: false,
+      contentHeight: 0,
+      resizeObserver: null,
     }
   },
 
@@ -124,6 +141,8 @@ export default {
       // Trigger opening animation by adding class after dialog is shown
       this.$nextTick(() => {
         dialog.classList.add('o-modal--opening')
+        this.updateContentHeight()
+        this.initResizeObserver()
       })
 
       this.$emit('modal:toggled', true)
@@ -194,7 +213,57 @@ export default {
         bodyElement.style.overflowY = null
       }
     },
+
+    /**
+     * Update the content height for smooth transitions
+     */
+    updateContentHeight () {
+      if (!this.enableSmoothHeightTransition) {
+        return
+      }
+
+      this.$nextTick(() => {
+        const contentEl = this.$refs.bodyContent
+
+        if (contentEl) {
+          this.contentHeight = contentEl.scrollHeight
+        }
+      })
+    },
+
+    /**
+     * Initialize ResizeObserver for automatic height updates
+     */
+    initResizeObserver () {
+      if (!this.enableSmoothHeightTransition || typeof ResizeObserver === 'undefined') {
+        return
+      }
+
+      this.resizeObserver = new ResizeObserver(() => {
+        this.updateContentHeight()
+      })
+
+      const contentEl = this.$refs.bodyContent
+
+      if (contentEl) {
+        this.resizeObserver.observe(contentEl)
+      }
+    },
+
+    destroyResizeObserver () {
+      if (this.resizeObserver) {
+        this.resizeObserver.disconnect()
+        this.resizeObserver = null
+      }
+    },
   },
 
+  mounted () {
+    this.initResizeObserver()
+  },
+
+  beforeUnmount () {
+    this.destroyResizeObserver()
+  },
 }
 </script>

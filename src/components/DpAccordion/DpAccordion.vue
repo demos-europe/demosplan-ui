@@ -92,20 +92,6 @@ export default {
       default: false,
     },
 
-    // Status dot next to the title, e.g. to indicate unsaved changes
-    showStatusDot: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
-    // For screen readers
-    statusDotLabel: {
-      type: String,
-      required: false,
-      default: '',
-    },
-
     // Needed if you want to toggle the accordion from outside
     isOpen: {
       type: Boolean,
@@ -124,6 +110,23 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+
+    // Status dot next to the title, e.g. to indicate unsaved changes
+    showStatusDot: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /*
+     * For screen readers. Leave empty only if the dot is purely decorative
+     * and its meaning is already conveyed elsewhere.
+     */
+    statusDotLabel: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     // Text displayed in toggle trigger

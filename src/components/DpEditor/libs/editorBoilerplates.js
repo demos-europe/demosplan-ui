@@ -2,6 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 import DpLinkedBoilerplate from './../DpLinkedBoilerplate.vue'
 import { DOMParser as ProseMirrorDOMParser } from '@tiptap/pm/model'
+import { GapCursor } from '@tiptap/pm/gapcursor'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
 /**
@@ -44,6 +45,26 @@ export default Node.create({
    * unlinking a plain structural change (drop the wrapper, keep the paragraphs).
    */
   content: 'block+',
+
+  /*
+   * Both flags exist to make the Gapcursor extension apply to this node, which is what gives
+   * the user a cursor position directly before and after the block without a real paragraph
+   * sitting there.
+   *
+   * isolating: `GapCursor.valid()` requires `closedBefore()` and `closedAfter()`, and both
+   *   walk into the last/first child of the neighbouring node and give up as soon as that
+   *   child has inline content (prosemirror-gapcursor/dist/index.cjs:185-186, :204-205). A
+   *   boilerplate always ends in a paragraph, so without this flag the gap next to it is
+   *   never a valid gap-cursor position. It also stops two adjacent boilerplates from merging
+   *   into one — which would silently drop one of the two ids.
+   * selectable: gapcursor's `handleClick` bails out when the clicked node is selectable
+   *   (:263), so clicking next to the block would select it instead of placing a caret. The
+   *   trade-off is that the block can no longer be selected as a whole; deleting a selected
+   *   boilerplate is not an acceptance criterion of DPLAN-18271.
+   */
+  isolating: true,
+
+  selectable: false,
 
   addAttributes() {
     return {
@@ -145,15 +166,12 @@ export default Node.create({
   },
 
   /*
-   * Inserts a boilerplate node followed by an empty paragraph, and moves the cursor
-   * into that paragraph. The trailing paragraph guarantees a real, editable position
-   * right after the node — without it, ProseMirror has no valid cursor position between
-   * two adjacent boilerplate nodes, or after one that ends up being the last node in the
-   * document. Tried and rejected for that gap: `contenteditable="false"` on the node view
-   * (breaks native cursor placement at the node's edges) and prosemirror-gapcursor with
-   * `selectable: false` (no caret appears between two adjacent nodes either way). Keeping
-   * a real paragraph around is what actually works — don't replace it with either of those.
-   * 
+   * Inserts a boilerplate node followed by an empty paragraph, and moves the cursor into
+   * that paragraph — so the user can keep typing right after inserting. Getting *back* to a
+   * position next to an existing block is the Gapcursor extension's job (see the `isolating`
+   * and `selectable` flags above); this paragraph only saves the user one keystroke in the
+   * common case and can go once gap cursors are confirmed to work here.
+   *
    * Built on the built-in `insertContent` command rather than raw `tr.insert()` at a
    * hand-computed position: when the cursor sits inside an existing empty paragraph
    * (e.g. right after pressing Enter), a plain position + nodeSize offset doesn't account
@@ -194,10 +212,35 @@ export default Node.create({
 
             return true
           })
-          .insertContent([
-            { type: this.name, attrs: { boilerplateId }, content },
-            { type: 'paragraph' },
-          ])
+          .insertContent({ type: this.name, attrs: { boilerplateId }, content })
+          /*
+           * `insertContent` ends with `Selection.near`, which can only produce a text or node
+           * selection and therefore lands *inside* the boilerplate — where typing is blocked.
+           * Move the caret to the gap right behind the node instead, so the user can keep
+           * writing. Deliberately no trailing paragraph for this: it would end up in the
+           * saved HTML and as an empty line in every DOCX/PDF export.
+           */
+          .command(({ dispatch, tr }) => {
+            if (!dispatch) {
+              return true
+            }
+
+            const { $from } = tr.selection
+
+            for (let depth = $from.depth; depth > 0; depth--) {
+              if ($from.node(depth).type.name === this.name) {
+                const $after = tr.doc.resolve($from.after(depth))
+
+                if (GapCursor.valid($after)) {
+                  tr.setSelection(new GapCursor($after))
+                }
+
+                break
+              }
+            }
+
+            return true
+          })
           .run()
       },
     }

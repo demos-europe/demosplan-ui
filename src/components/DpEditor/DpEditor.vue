@@ -370,6 +370,7 @@ import {
   Bold,
   BulletList,
   Document,
+  Gapcursor,
   HardBreak,
   Heading,
   History,
@@ -871,6 +872,13 @@ export default {
 
       if (this.toolbar.boilerplate) {
         extensions.push(Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle, onUnlinkRequest: this.onUnlinkRequest }))
+
+        /*
+         * Boilerplates are block nodes holding block content, so no text cursor can sit
+         * directly before or after one. Gapcursor supplies that position. Registered here
+         * rather than globally to keep every other editor's behaviour unchanged.
+         */
+        extensions.push(Gapcursor)
       }
 
       if (this.toolbar.headings.length > 0) {

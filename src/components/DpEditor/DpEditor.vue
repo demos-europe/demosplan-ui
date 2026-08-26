@@ -1063,6 +1063,28 @@ export default {
       this.editor.chain().focus().insertBoilerplate({ boilerplateId, html }).run()
     },
 
+    /**
+     * Dissolves the link at `pos`, turning the boilerplate node back into plain paragraphs.
+     *
+     * Called via a `ref` on this component rather than through the `modal` slot: the click
+     * that triggers this comes from the editor extension's `onUnlinkRequest` option, which
+     * fires outside the slot's own render scope, so slot props aren't reachable from there.
+     *
+     * @param {Number} pos
+     */
+    unlinkBoilerplate (pos) {
+      this.editor.chain().focus().unlinkBoilerplate(pos).run()
+    },
+
+    /**
+     * Reverses the last change. Exposed the same way as unlinkBoilerplate — via `ref` — so an
+     * undo toast triggered from outside the editor (e.g. after dissolving a boilerplate link)
+     * can call it.
+     */
+    undo () {
+      this.editor.chain().focus().undo().run()
+    },
+
     insertImage (url, alt) {
       this.editor.commands.insertImage({ src: url, alt: alt })
     },

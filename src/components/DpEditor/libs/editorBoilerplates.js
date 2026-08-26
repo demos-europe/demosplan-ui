@@ -243,6 +243,29 @@ export default Node.create({
           })
           .run()
       },
+
+      /**
+       * Dissolves the link: the boilerplate node at `pos` is replaced by its own content, so
+       * the text stays in place as plain paragraphs. A structural change, which is why the
+       * node holds real paragraphs rather than an HTML string attribute in the first place.
+       *
+       * `editor.commands.undo()` is the way back — `History` is always registered, so no
+       * separate snapshot mechanism is needed here.
+       */
+      unlinkBoilerplate: pos => ({ tr, dispatch }) => {
+        const node = tr.doc.nodeAt(pos)
+
+        if (!node || node.type.name !== this.name) {
+          return false
+        }
+
+        if (dispatch) {
+          tr.setMeta('boilerplateEdit', true)
+          tr.replaceWith(pos, pos + node.nodeSize, node.content)
+        }
+
+        return true
+      },
     }
   },
 

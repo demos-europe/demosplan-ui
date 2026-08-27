@@ -18,13 +18,25 @@
         type="button"
         @click="() => toggle()"
       >
-        <span class="flex items-center gap-1">
+        <span class="flex items-center gap-1.5">
           <span
             :class="titleClasses"
             data-cy="accordion:title"
           >
-          {{ title }}
-      </span>
+            {{ title }}
+          </span>
+          <span
+            v-if="showStatusDot"
+            aria-hidden="true"
+            class="w-1 h-1 rounded-full bg-interactive"
+            data-cy="accordion:statusDot"
+          />
+          <span
+            v-if="showStatusDot && statusDotLabel !== ''"
+            class="sr-only"
+          >
+            {{ statusDotLabel }}
+          </span>
         </span>
         <dp-icon
           aria-hidden="true"
@@ -98,6 +110,20 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+
+    // Status dot next to the title, e.g. to indicate unsaved changes
+    showStatusDot: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    // For screen readers. Leave empty only if the dot's meaning is already conveyed elsewhere.
+    statusDotLabel: {
+      type: String,
+      required: false,
+      default: '',
     },
 
     // Text displayed in toggle trigger

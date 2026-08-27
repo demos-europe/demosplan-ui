@@ -69,6 +69,7 @@ export type PhosphorIconName =
   | 'dots-three'
   | 'faders'
   | 'file'
+  | 'file-xls'
   | 'folders'
   | 'highlighter'
   | 'hourglass'
@@ -92,7 +93,7 @@ export type IconName =
   | AliasedPhosphorIconName
   | IconAlias
 
-export type IconSize = 'small' | 'medium' | 'large' | 'xlarge'
+export type IconSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 
 export type IconWeight = 'light' | 'regular' | 'bold' | 'fill'
 

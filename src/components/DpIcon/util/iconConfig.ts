@@ -39,6 +39,7 @@ import {
   PhEnvelopeSimple,
   PhFaders,
   PhFile,
+  PhFileXls,
   PhFolders,
   PhGearSix,
   PhHighlighter,
@@ -94,6 +95,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'dots-three': PhDotsThree,
   'faders': PhFaders,
   'file': PhFile,
+  'file-xls': PhFileXls,
   'folders': PhFolders,
   'highlighter': PhHighlighter,
   'hourglass': PhHourglass,
@@ -209,6 +211,7 @@ export const SIZES: Record<IconSize, number> = {
   'medium': 20,
   'large': 24,
   'xlarge': 32,
+  'xxlarge': 40,
 }
 
 // Export the mapping objects for use in DpIcon stories

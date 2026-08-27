@@ -43,6 +43,7 @@ const props = defineProps({
    * Medium: 20
    * Large: 24
    * Xlarge: 32
+   * XXlarge: 40
    */
   size: {
     type: String as PropType<IconSize>,

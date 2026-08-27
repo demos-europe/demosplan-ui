@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 - ([#1562](https://github.com/demos-europe/demosplan-ui/pull/1562)) DpSlidebar: Close on Escape key press ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1563](https://github.com/demos-europe/demosplan-ui/pull/1563)) DpAccordion: Add optional status indicator to accordion's title ([@rafelddemos](https://github.com/rafelddemos))
 
 ## v0.29.0 - 2026-08-24
 

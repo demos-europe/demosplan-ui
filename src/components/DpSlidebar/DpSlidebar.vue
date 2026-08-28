@@ -12,7 +12,10 @@
       <slot name="dragHandle" />
 
       <div class="c-slidebar__scroll-container">
-        <div class="u-ml-1_5">
+        <!--
+          The flex column needed so that slot content can pin a footer to the bottom via flex-1.
+        -->
+        <div class="u-ml-1_5 flex flex-col h-full">
           <!-- The slidebar always docks to the right, so the close button sits at that outer edge. -->
           <div class="flex justify-end pt-2 pr-1">
             <button
@@ -105,14 +108,33 @@ export default {
       }
     },
 
+    handleKeydown (event) {
+      if (event.key === 'Escape' && this.isVisible()) {
+        this.hideSlideBar()
+      }
+    },
+
     hideSlideBar () {
+      if (!this.isVisible()) {
+        return
+      }
+
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
         this.$emit('close')
       }
     },
 
+    // The slidebar is open while SideNav keeps the `is-visible` class on the root element.
+    isVisible () {
+      return this.$el.classList.contains('is-visible')
+    },
+
     showSlideBar () {
+      if (this.isVisible()) {
+        return
+      }
+
       if (hasOwnProp(this.sideNav, 'showSideNav')) {
         this.sideNav.showSideNav()
       }
@@ -122,6 +144,7 @@ export default {
   mounted () {
     // Initialize SideNav
     this.sideNav = new SideNav()
+    document.addEventListener('keydown', this.handleKeydown)
 
     if (null !== this.open) {
       /*
@@ -142,6 +165,10 @@ export default {
     this.$root.$on('show-slidebar', () => {
       this.showSlideBar()
     })
+  },
+
+  beforeUnmount () {
+    document.removeEventListener('keydown', this.handleKeydown)
   },
 }
 </script>

@@ -5,6 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Added
+- ([#1562](https://github.com/demos-europe/demosplan-ui/pull/1562)) DpSlidebar: Close on Escape key press ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1564](https://github.com/demos-europe/demosplan-ui/pull/1564)) DpIcon: add `file-xls` icon and `xxlarge` icon size ([@sakutademos](https://github.com/sakutademos))
 - ([#1563](https://github.com/demos-europe/demosplan-ui/pull/1563)) DpAccordion: Add optional status indicator to accordion's title ([@rafelddemos](https://github.com/rafelddemos))
 

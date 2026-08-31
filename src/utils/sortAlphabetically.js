@@ -20,8 +20,8 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
       let sortPropertyB = b
 
       for (const prop of sortProperties) {
-        sortPropertyA = sortPropertyA !== undefined && hasOwnProp(sortPropertyA, prop) ? sortPropertyA[prop] : undefined
-        sortPropertyB = sortPropertyB !== undefined && hasOwnProp(sortPropertyB, prop) ? sortPropertyB[prop] : undefined
+        sortPropertyA = typeof sortPropertyA === 'object' && sortPropertyA !== null && hasOwnProp(sortPropertyA, prop) ? sortPropertyA[prop] : undefined
+        sortPropertyB = typeof sortPropertyB === 'object' && sortPropertyB !== null && hasOwnProp(sortPropertyB, prop) ? sortPropertyB[prop] : undefined
       }
 
       const aIsString = typeof sortPropertyA === 'string'

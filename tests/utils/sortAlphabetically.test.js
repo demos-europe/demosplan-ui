@@ -100,4 +100,18 @@ describe('sortAlphabetically', () => {
 
     expect(sortAlphabetically(mixed, 'title').map(item => item.id)).toEqual([3, 1, 2])
   })
+
+  it('does not trigger a hasOwnProp warning when the current value is a string', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const withPrimitiveMidPath = [
+      { id: 1, title: 'Zaun' },
+      { id: 2, title: 'Abwasser' },
+    ]
+
+    const result = sortAlphabetically(withPrimitiveMidPath, 'title.length')
+
+    expect(warnSpy).not.toHaveBeenCalled()
+    expect(result.map(item => item.id)).toEqual([1, 2])
+    warnSpy.mockRestore()
+  })
 })

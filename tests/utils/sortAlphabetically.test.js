@@ -86,4 +86,8 @@ describe('sortAlphabetically', () => {
 
     expect(sortAlphabetically(withWhitespace, 'title').map(item => item.title)).toEqual(['Artenschutz', ' Grundtenor'])
   })
+
+  it('returns an unchanged array of objects instead of throwing when sortBy is undefined', () => {
+    expect(sortAlphabetically(users, undefined)).toEqual(users)
+  })
 })

@@ -12,7 +12,7 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
   // Is it an array of object or strings?
   if (typeof sortedArray[0] === 'string') {
     sortedArray.sort((a, b) => a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
-  } else if (typeof array[0] === 'object' && array[0] !== null) {
+  } else if (typeof array[0] === 'object' && array[0] !== null && typeof sortBy === 'string' && sortBy.length > 0) {
     sortedArray.sort((a, b) => {
       const sortProperties = sortBy.split('.')
       let sortPropertyA = a

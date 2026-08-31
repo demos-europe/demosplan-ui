@@ -63,7 +63,7 @@ describe('sortAlphabetically', () => {
     expect(sortAlphabetically(nested, 'attributes.title').map(item => item.id)).toEqual([2, 3, 1])
   })
 
-  it('sorts an object by a two-level-deep dot-separated nested property', () => {
+  it('sorts an object by a three-level-deep dot-separated nested property', () => {
     const nested = [
       { id: 1, definition: { attributes: { name: 'Zaun' } } },
       { id: 2, definition: { attributes: { name: 'Abwasser' } } },

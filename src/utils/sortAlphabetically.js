@@ -11,8 +11,8 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
   const sortedArray = array
   // Is it an array of object or strings?
   if (typeof sortedArray[0] === 'string') {
-    sortedArray.sort((a, b) => a.localeCompare(b, 'de', { sensitivity: 'base' }))
-  } else if (typeof array[0] === 'object' && hasOwnProp(array[0], sortBy)) {
+    sortedArray.sort((a, b) => a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
+  } else if (typeof array[0] === 'object' && array[0] !== null) {
     sortedArray.sort((a, b) => {
       const sortProperties = sortBy.split('.')
       let sortPropertyA = a
@@ -24,7 +24,12 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
           sortPropertyB = sortPropertyB[prop]
         }
       }
-      return sortPropertyA.localeCompare(sortPropertyB, 'de', { sensitivity: 'base' })
+
+      if (typeof sortPropertyA !== 'string' || typeof sortPropertyB !== 'string') {
+        return 0
+      }
+
+      return sortPropertyA.trim().localeCompare(sortPropertyB.trim(), 'de', { sensitivity: 'base' })
     })
   }
 

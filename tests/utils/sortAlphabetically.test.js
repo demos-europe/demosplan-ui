@@ -52,4 +52,38 @@ describe('sortAlphabetically', () => {
 
     expect(sortAlphabetically(arrayOfString, '', 'desc')).toEqual(sortedArrayOfString)
   })
+
+  it('sorts an object by a dot-separated nested property', () => {
+    const nested = [
+      { id: 1, attributes: { title: 'Zaun' } },
+      { id: 2, attributes: { title: 'Abwasser' } },
+      { id: 3, attributes: { title: 'Muelltrennung' } },
+    ]
+
+    expect(sortAlphabetically(nested, 'attributes.title').map(item => item.id)).toEqual([2, 3, 1])
+  })
+
+  it('sorts an object by a two-level-deep dot-separated nested property', () => {
+    const nested = [
+      { id: 1, definition: { attributes: { name: 'Zaun' } } },
+      { id: 2, definition: { attributes: { name: 'Abwasser' } } },
+    ]
+
+    expect(sortAlphabetically(nested, 'definition.attributes.name').map(item => item.id)).toEqual([2, 1])
+  })
+
+  it('ignores leading/trailing whitespace when sorting strings', () => {
+    const withWhitespace = [' Grundtenor', 'Artenschutz', ' Inhaltliche Intention']
+
+    expect(sortAlphabetically(withWhitespace, '')).toEqual(['Artenschutz', ' Grundtenor', ' Inhaltliche Intention'])
+  })
+
+  it('ignores leading/trailing whitespace when sorting objects by a property', () => {
+    const withWhitespace = [
+      { title: ' Grundtenor' },
+      { title: 'Artenschutz' },
+    ]
+
+    expect(sortAlphabetically(withWhitespace, 'title').map(item => item.title)).toEqual(['Artenschutz', ' Grundtenor'])
+  })
 })

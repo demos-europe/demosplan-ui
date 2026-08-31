@@ -5,8 +5,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## UNRELEASED
 
 ### Fixed
-- ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`),
-  remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
+- ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
+  and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
 
 ## v0.30.0 - 2026-08-28
 

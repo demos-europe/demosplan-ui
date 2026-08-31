@@ -1058,9 +1058,11 @@ export default {
      *
      * @param {String} boilerplateId
      * @param {String} html
+     * @returns {Boolean} False if the insertion was refused (already linked, or would nest
+     *   inside an existing boilerplate) — hosts can use this to tell the user nothing happened.
      */
     insertBoilerplate (boilerplateId, html) {
-      this.editor.chain().focus().insertBoilerplate({ boilerplateId, html }).run()
+      return this.editor.chain().focus().insertBoilerplate({ boilerplateId, html }).run()
     },
 
     /**

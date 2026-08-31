@@ -27,6 +27,28 @@ const isInsideBoilerplate = ($pos, nodeName) => {
 }
 
 /**
+ * Whether a boilerplate with this id is already linked anywhere in the document. Inserting
+ * the same one twice makes no sense from a usage perspective (BE-Plan Decision 13) — the
+ * backend model tolerates it (the relation just dedups), but there is no reason to allow it.
+ *
+ * @param {Node} doc
+ * @param {String} nodeName
+ * @param {String} boilerplateId
+ * @return {Boolean}
+ */
+const isAlreadyLinked = (doc, nodeName, boilerplateId) => {
+  let found = false
+
+  doc.descendants(node => {
+    if (node.type.name === nodeName && node.attrs.boilerplateId === boilerplateId) {
+      found = true
+    }
+  })
+
+  return found
+}
+
+/**
  * Wraps text inserted from a boilerplate in a node that carries the boilerplate's id, so
  * the link between boilerplate and recommendation survives saving and reloading.
  *
@@ -190,6 +212,10 @@ export default Node.create({
          * inside an existing boilerplate — so refuse that case explicitly here.
          */
         if (isInsideBoilerplate(editor.state.selection.$from, this.name)) {
+          return false
+        }
+
+        if (isAlreadyLinked(editor.state.doc, this.name, boilerplateId)) {
           return false
         }
 

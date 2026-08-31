@@ -6,7 +6,7 @@ import Document from '@tiptap/extension-document'
  * setup gets this through StarterKit; this editor assembles its extensions by hand, so it has
  * to be listed explicitly.
  */
-import { Gapcursor } from '@tiptap/extensions'
+export { Gapcursor } from '@tiptap/extensions'
 import HardBreak from '@tiptap/extension-hard-break'
 import Heading from '@tiptap/extension-heading'
 import History from '@tiptap/extension-history'
@@ -28,7 +28,6 @@ export {
   Bold,
   BulletList,
   Document,
-  Gapcursor,
   HardBreak,
   Heading,
   History,

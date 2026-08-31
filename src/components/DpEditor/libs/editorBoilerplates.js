@@ -247,21 +247,19 @@ export default Node.create({
            * saved HTML and as an empty line in every DOCX/PDF export.
            */
           .command(({ dispatch, tr }) => {
-            if (!dispatch) {
-              return true
-            }
+            if (dispatch) {
+              const { $from } = tr.selection
 
-            const { $from } = tr.selection
+              for (let depth = $from.depth; depth > 0; depth--) {
+                if ($from.node(depth).type.name === this.name) {
+                  const $after = tr.doc.resolve($from.after(depth))
 
-            for (let depth = $from.depth; depth > 0; depth--) {
-              if ($from.node(depth).type.name === this.name) {
-                const $after = tr.doc.resolve($from.after(depth))
+                  if (GapCursor.valid($after)) {
+                    tr.setSelection(new GapCursor($after))
+                  }
 
-                if (GapCursor.valid($after)) {
-                  tr.setSelection(new GapCursor($after))
+                  break
                 }
-
-                break
               }
             }
 

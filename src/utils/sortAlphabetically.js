@@ -9,9 +9,11 @@ import hasOwnProp from './hasOwnProp'
 
 export default function sortAlphabetically (array, sortBy, direction = 'asc') {
   const sortedArray = array
+  const directionMultiplier = direction === 'desc' ? -1 : 1
+
   // Is it an array of objects or strings?
   if (typeof sortedArray[0] === 'string') {
-    sortedArray.sort((a, b) => a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
+    sortedArray.sort((a, b) => directionMultiplier * a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
   } else if (typeof array[0] === 'object' && array[0] !== null && typeof sortBy === 'string' && sortBy.length > 0) {
     const sortProperties = sortBy.split('.')
 
@@ -27,6 +29,7 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
       const aIsString = typeof sortPropertyA === 'string'
       const bIsString = typeof sortPropertyB === 'string'
 
+      // Items without the sort value always sort last, regardless of direction.
       if (!aIsString && !bIsString) {
         return 0
       } else if (!aIsString) {
@@ -35,12 +38,8 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
         return -1
       }
 
-      return sortPropertyA.trim().localeCompare(sortPropertyB.trim(), 'de', { sensitivity: 'base' })
+      return directionMultiplier * sortPropertyA.trim().localeCompare(sortPropertyB.trim(), 'de', { sensitivity: 'base' })
     })
-  }
-
-  if (direction === 'desc') {
-    sortedArray.reverse()
   }
 
   return sortedArray

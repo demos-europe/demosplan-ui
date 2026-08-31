@@ -101,6 +101,16 @@ describe('sortAlphabetically', () => {
     expect(sortAlphabetically(mixed, 'title').map(item => item.id)).toEqual([3, 1, 2])
   })
 
+  it('sorts objects with the given property before objects missing it, even in "desc" direction', () => {
+    const mixed = [
+      { id: 1, title: 'Zaun' },
+      { id: 2 },
+      { id: 3, title: 'Abwasser' },
+    ]
+
+    expect(sortAlphabetically(mixed, 'title', 'desc').map(item => item.id)).toEqual([1, 3, 2])
+  })
+
   it('does not trigger a hasOwnProp warning when the current value is a string', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const withPrimitiveMidPath = [

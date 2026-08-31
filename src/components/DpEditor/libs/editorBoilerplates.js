@@ -72,9 +72,9 @@ export default Node.create({
         default: null,
         keepOnSplit: false,
         // `dataset.boilerplateId` is the DOM's camelCase view of `data-boilerplate-id`.
-        parseHTML: element => element.dataset.boilerplateId,
+        parseHTML: element => element.getAttribute('boilerplate-id'),
         renderHTML: attributes => ({
-          'data-boilerplate-id': attributes.boilerplateId,
+          'boilerplate-id': attributes.boilerplateId,
         }),
       },
     }
@@ -278,7 +278,7 @@ export default Node.create({
    */
   parseHTML () {
     return [
-      { tag: 'div[data-boilerplate-id]' },
+      { tag:  'dp-boilerplate[boilerplate-id]' },
     ]
   },
 
@@ -289,7 +289,7 @@ export default Node.create({
    * is ProseMirror's "hole": the place the node's content is rendered into.
    */
   renderHTML ({ HTMLAttributes }) {
-    return ['div', mergeAttributes(HTMLAttributes), 0]
+    return ['dp-boilerplate', mergeAttributes(HTMLAttributes), 0]
   },
 
   /**

@@ -255,7 +255,7 @@ export default Node.create({
       unlinkBoilerplate: pos => ({ tr, dispatch }) => {
         const node = tr.doc.nodeAt(pos)
 
-        if (!node || node.type.name !== this.name) {
+        if (node?.type.name !== this.name) {
           return false
         }
 

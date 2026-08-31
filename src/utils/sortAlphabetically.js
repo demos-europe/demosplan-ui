@@ -19,14 +19,19 @@ export default function sortAlphabetically (array, sortBy, direction = 'asc') {
       let sortPropertyB = b
 
       for (const prop of sortProperties) {
-        if (hasOwnProp(sortPropertyA, prop) && hasOwnProp(sortPropertyB, prop)) {
-          sortPropertyA = sortPropertyA[prop]
-          sortPropertyB = sortPropertyB[prop]
-        }
+        sortPropertyA = sortPropertyA !== undefined && hasOwnProp(sortPropertyA, prop) ? sortPropertyA[prop] : undefined
+        sortPropertyB = sortPropertyB !== undefined && hasOwnProp(sortPropertyB, prop) ? sortPropertyB[prop] : undefined
       }
 
-      if (typeof sortPropertyA !== 'string' || typeof sortPropertyB !== 'string') {
+      const aIsString = typeof sortPropertyA === 'string'
+      const bIsString = typeof sortPropertyB === 'string'
+
+      if (!aIsString && !bIsString) {
         return 0
+      } else if (!aIsString) {
+        return 1
+      } else if (!bIsString) {
+        return -1
       }
 
       return sortPropertyA.trim().localeCompare(sortPropertyB.trim(), 'de', { sensitivity: 'base' })

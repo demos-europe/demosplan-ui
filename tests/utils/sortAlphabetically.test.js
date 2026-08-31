@@ -90,4 +90,14 @@ describe('sortAlphabetically', () => {
   it('returns an unchanged array of objects instead of throwing when sortBy is undefined', () => {
     expect(sortAlphabetically(users, undefined)).toEqual(users)
   })
+
+  it('sorts objects with the given property before objects missing it, regardless of input order', () => {
+    const mixed = [
+      { id: 1, title: 'Zaun' },
+      { id: 2 },
+      { id: 3, title: 'Abwasser' },
+    ]
+
+    expect(sortAlphabetically(mixed, 'title').map(item => item.id)).toEqual([3, 1, 2])
+  })
 })

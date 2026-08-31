@@ -9,12 +9,13 @@ import hasOwnProp from './hasOwnProp'
 
 export default function sortAlphabetically (array, sortBy, direction = 'asc') {
   const sortedArray = array
-  // Is it an array of object or strings?
+  // Is it an array of objects or strings?
   if (typeof sortedArray[0] === 'string') {
     sortedArray.sort((a, b) => a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
   } else if (typeof array[0] === 'object' && array[0] !== null && typeof sortBy === 'string' && sortBy.length > 0) {
+    const sortProperties = sortBy.split('.')
+
     sortedArray.sort((a, b) => {
-      const sortProperties = sortBy.split('.')
       let sortPropertyA = a
       let sortPropertyB = b
 

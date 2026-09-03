@@ -1049,17 +1049,12 @@ export default {
      * Inserts boilerplate text as a linked node. Exposed to the `modal` slot so hosts can
      * reach it from their boilerplate picker.
      *
-     * Focusing first hands focus back to the editor, which the modal held while open —
-     * otherwise the cursor position the command sets exists but stays invisible. Called as
-     * two separate commands, not chained together: the `insertBoilerplate` command builds and
-     * dispatches its own transaction internally (for the duplicate/nesting guards and the
-     * gap-cursor placement), so folding it into an outer `chain()` here would nest one
-     * dispatch inside another instead of the single, atomic one a chain implies.
-     *
-     * Note focus() alone is not enough when the picker sits in a <dialog>: closing it hands
-     * focus back to the element that opened it, and that happens after the close animation,
-     * i.e. after this ran. Hosts therefore also call focusEditor() once the modal has really
-     * closed.
+     * Focus and insert run as two separate commands rather than one chain: `insertBoilerplate`
+     * already builds and dispatches its own transaction internally, so chaining it here would
+     * nest one dispatch inside another. Focusing first is still needed so the cursor position
+     * it sets is visible — and isn't enough alone when the picker sits in a <dialog>, since
+     * closing it hands focus back to the trigger element after this already ran. Hosts
+     * therefore also call focusEditor() once the modal has really closed.
      *
      * @param {String} boilerplateId
      * @param {String} html

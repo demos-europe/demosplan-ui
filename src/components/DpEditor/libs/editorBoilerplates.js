@@ -69,20 +69,14 @@ export default Node.create({
   content: 'block+',
 
   /*
-   * Both flags exist to make the Gapcursor extension apply to this node, which is what gives
-   * the user a cursor position directly before and after the block without a real paragraph
-   * sitting there.
+   * Both flags exist so the Gapcursor extension gives a cursor position directly before/after
+   * this block, without a real paragraph sitting there.
    *
-   * isolating: `GapCursor.valid()` requires `closedBefore()` and `closedAfter()`, and both
-   *   walk into the last/first child of the neighbouring node and give up as soon as that
-   *   child has inline content (prosemirror-gapcursor/dist/index.cjs:185-186, :204-205). A
-   *   boilerplate always ends in a paragraph, so without this flag the gap next to it is
-   *   never a valid gap-cursor position. It also stops two adjacent boilerplates from merging
-   *   into one — which would silently drop one of the two ids.
-   * selectable: gapcursor's `handleClick` bails out when the clicked node is selectable
-   *   (:263), so clicking next to the block would select it instead of placing a caret. The
-   *   trade-off is that the block can no longer be selected as a whole; deleting a selected
-   *   boilerplate is not an acceptance criterion of DPLAN-18271.
+   * isolating: without it, GapCursor never considers the gap next to a boilerplate valid (a
+   *   node ending in a paragraph doesn't qualify), and deleting the paragraph between two
+   *   boilerplates would merge them, silently dropping one id.
+   * selectable: false, so a click next to the block places a caret instead of selecting the
+   *   whole node — whole-node deletion isn't in scope for DPLAN-18271.
    */
   isolating: true,
 
@@ -106,9 +100,8 @@ export default Node.create({
    * Configuration the consuming app injects via `Boilerplate.configure({ … })`, since the
    * library has no access to demosplan's store or translations.
    *
-   * getBoilerplateTitle: resolves an id to the boilerplate's current title. Looked up on every
-   *   render rather than stored as a node attribute — a stored title would go stale, and per
-   *   DPLAN-18150 editing a boilerplate can even re-link a segment to a different id.
+   * getBoilerplateTitle: resolves an id to the boilerplate's title on every render, not stored
+   *   as a node attribute — it would go stale (DPLAN-18150: editing can even re-link the id).
    * onUnlinkRequest: called when the user clicks the pencil in the node view.
    */
   addOptions() {
@@ -139,11 +132,9 @@ export default Node.create({
           }
 
           /*
-           * Transactions from undo/redo are trusted: nothing that violates this
-           * protection could have entered the history stack in the first place,
-           * since it would have been rejected here at the time it was attempted.
-           * 'history$' is the internal meta key prosemirror-history tags undo/redo
-           * transactions with (verified in prosemirror-history/dist/index.js).
+           * Undo/redo transactions are trusted: anything violating this protection would
+           * have been rejected here when first attempted, so it can't be in the history
+           * stack. 'history$' is prosemirror-history's internal meta key for these.
            */
           if (tr.getMeta('history$')) {
             return true
@@ -188,20 +179,12 @@ export default Node.create({
   },
 
   /*
-   * Inserts a boilerplate node followed by an empty paragraph, and moves the cursor into
-   * that paragraph — so the user can keep typing right after inserting. Getting *back* to a
-   * position next to an existing block is the Gapcursor extension's job (see the `isolating`
-   * and `selectable` flags above); this paragraph only saves the user one keystroke in the
-   * common case and can go once gap cursors are confirmed to work here.
-   *
    * Built on the built-in `insertContent` command rather than raw `tr.insert()` at a
-   * hand-computed position: when the cursor sits inside an existing empty paragraph
-   * (e.g. right after pressing Enter), a plain position + nodeSize offset doesn't account
-   * for ProseMirror splitting that paragraph to fit the new block, and the trailing
-   * paragraph ends up nested inside the boilerplate instead of after it. `insertContent`
-   * already handles this (replacing an empty textblock at the cursor instead of splitting
-   * it) and places the selection via `Selection.near`, which reliably lands inside the
-   * new empty paragraph.
+   * hand-computed position: if the cursor sits in an existing empty paragraph, a plain
+   * position + nodeSize offset doesn't account for ProseMirror splitting that paragraph to
+   * fit the new block, and the trailing paragraph would end up nested inside the boilerplate
+   * instead of after it. `insertContent` handles that split correctly; where the cursor ends
+   * up afterwards is fixed up below.
    */
   addCommands () {
     return {

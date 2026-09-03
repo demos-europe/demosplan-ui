@@ -6,7 +6,6 @@
 -->
 <template>
   <node-view-wrapper
-    ref="linkedBoilerplateWrapper"
     v-tooltip="de.editor.linkedBoilerplate.hint"
     as="div"
     class="mb-4 border-l-2 border-interactive hover:bg-surface-light"
@@ -41,10 +40,7 @@
       non-editable island and break cursor placement at the node's edges. The content is kept
       read-only by the extension's ProseMirror plugin instead.
     -->
-    <node-view-content
-      ref="linkedBoilerplateContent"
-      class="p-2"
-    />
+    <node-view-content class="p-2" />
   </node-view-wrapper>
 </template>
 <script setup>

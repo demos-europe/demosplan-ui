@@ -699,8 +699,8 @@ export default {
       toolbar: Object.assign({
         /**
          * If true, text inserted from a boilerplate is wrapped in its own node that carries the
-         * boilerplate id as a data attribute. Enable it where the origin of inserted text has to
-         * remain identifiable after saving and reloading.
+         * boilerplate id as a `boilerplate-id` attribute. Enable it where the origin of inserted
+         * text has to remain identifiable after saving and reloading.
          */
         boilerplate: false,
         /**

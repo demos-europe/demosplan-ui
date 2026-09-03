@@ -93,7 +93,7 @@ export default Node.create({
       boilerplateId: {
         default: null,
         keepOnSplit: false,
-        // `dataset.boilerplateId` is the DOM's camelCase view of `data-boilerplate-id`.
+        // Not a `data-*` attribute, so `.dataset` wouldn't see it — read it explicitly instead.
         parseHTML: element => element.getAttribute('boilerplate-id'),
         renderHTML: attributes => ({
           'boilerplate-id': attributes.boilerplateId,
@@ -294,8 +294,8 @@ export default Node.create({
   },
 
   /**
-   * Recognises a boilerplate when HTML is loaded into the editor. The attribute selector
-   * matches any div carrying the marker, whatever its id value.
+   * Recognises a boilerplate when HTML is loaded into the editor. The selector matches any
+   * `<dp-boilerplate>` tag carrying the marker attribute, whatever its id value.
    *
    * Mirror image of renderHTML below — if the two disagree, the node survives editing but
    * silently disappears on the next reload.

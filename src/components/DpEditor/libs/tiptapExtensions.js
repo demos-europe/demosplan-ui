@@ -1,6 +1,12 @@
 import Bold from '@tiptap/extension-bold'
 import BulletList from '@tiptap/extension-bullet-list'
 import Document from '@tiptap/extension-document'
+/*
+ * Tiptap's built-in answer to block nodes that no text cursor can sit next to. A stock tiptap
+ * setup gets this through StarterKit; this editor assembles its extensions by hand, so it has
+ * to be listed explicitly.
+ */
+export { Gapcursor } from '@tiptap/extensions'
 import HardBreak from '@tiptap/extension-hard-break'
 import Heading from '@tiptap/extension-heading'
 import History from '@tiptap/extension-history'

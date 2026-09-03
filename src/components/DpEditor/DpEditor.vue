@@ -1049,13 +1049,17 @@ export default {
      * Inserts boilerplate text as a linked node. Exposed to the `modal` slot so hosts can
      * reach it from their boilerplate picker.
      *
-     * Chaining focus() first hands focus back to the editor, which the modal held while open —
-     * otherwise the cursor position the command sets exists but stays invisible. Same pattern
-     * as every toolbar command in this file, e.g. toggleBold() above.
+     * Focusing first hands focus back to the editor, which the modal held while open —
+     * otherwise the cursor position the command sets exists but stays invisible. Called as
+     * two separate commands, not chained together: the `insertBoilerplate` command builds and
+     * dispatches its own transaction internally (for the duplicate/nesting guards and the
+     * gap-cursor placement), so folding it into an outer `chain()` here would nest one
+     * dispatch inside another instead of the single, atomic one a chain implies.
      *
-     * Note this alone is not enough when the picker sits in a <dialog>: closing it hands focus
-     * back to the element that opened it, and that happens after the close animation, i.e.
-     * after this ran. Hosts therefore also call focusEditor() once the modal has really closed.
+     * Note focus() alone is not enough when the picker sits in a <dialog>: closing it hands
+     * focus back to the element that opened it, and that happens after the close animation,
+     * i.e. after this ran. Hosts therefore also call focusEditor() once the modal has really
+     * closed.
      *
      * @param {String} boilerplateId
      * @param {String} html
@@ -1063,7 +1067,9 @@ export default {
      *   inside an existing boilerplate) — hosts can use this to tell the user nothing happened.
      */
     insertBoilerplate (boilerplateId, html) {
-      return this.editor.chain().focus().insertBoilerplate({ boilerplateId, html }).run()
+      this.editor.commands.focus()
+
+      return this.editor.commands.insertBoilerplate({ boilerplateId, html })
     },
 
     /**

@@ -9,27 +9,37 @@ import hasOwnProp from './hasOwnProp'
 
 export default function sortAlphabetically (array, sortBy, direction = 'asc') {
   const sortedArray = array
-  // Is it an array of object or strings?
+  const directionMultiplier = direction === 'desc' ? -1 : 1
+
+  // Is it an array of objects or strings?
   if (typeof sortedArray[0] === 'string') {
-    sortedArray.sort((a, b) => a.localeCompare(b, 'de', { sensitivity: 'base' }))
-  } else if (typeof array[0] === 'object' && hasOwnProp(array[0], sortBy)) {
+    sortedArray.sort((a, b) => directionMultiplier * a.trim().localeCompare(b.trim(), 'de', { sensitivity: 'base' }))
+  } else if (typeof array[0] === 'object' && array[0] !== null && typeof sortBy === 'string' && sortBy.length > 0) {
+    const sortProperties = sortBy.split('.')
+
     sortedArray.sort((a, b) => {
-      const sortProperties = sortBy.split('.')
       let sortPropertyA = a
       let sortPropertyB = b
 
       for (const prop of sortProperties) {
-        if (hasOwnProp(sortPropertyA, prop) && hasOwnProp(sortPropertyB, prop)) {
-          sortPropertyA = sortPropertyA[prop]
-          sortPropertyB = sortPropertyB[prop]
-        }
+        sortPropertyA = typeof sortPropertyA === 'object' && sortPropertyA !== null && hasOwnProp(sortPropertyA, prop) ? sortPropertyA[prop] : undefined
+        sortPropertyB = typeof sortPropertyB === 'object' && sortPropertyB !== null && hasOwnProp(sortPropertyB, prop) ? sortPropertyB[prop] : undefined
       }
-      return sortPropertyA.localeCompare(sortPropertyB, 'de', { sensitivity: 'base' })
-    })
-  }
 
-  if (direction === 'desc') {
-    sortedArray.reverse()
+      const aIsString = typeof sortPropertyA === 'string'
+      const bIsString = typeof sortPropertyB === 'string'
+
+      // Items without the sort value always sort last, regardless of direction.
+      if (!aIsString && !bIsString) {
+        return 0
+      } else if (!aIsString) {
+        return 1
+      } else if (!bIsString) {
+        return -1
+      }
+
+      return directionMultiplier * sortPropertyA.trim().localeCompare(sortPropertyB.trim(), 'de', { sensitivity: 'base' })
+    })
   }
 
   return sortedArray

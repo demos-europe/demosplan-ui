@@ -23,10 +23,6 @@ describe('sortAlphabetically', () => {
     expect(sortAlphabetically(users, 'firstName')).toEqual(filteredUsersByFirstName)
   })
 
-  it('sorts an object in alphabetical order by default', () => {
-    expect(sortAlphabetically(users, 'firstName')).toEqual(filteredUsersByFirstName)
-  })
-
   it('sorts an object by the property "firstName" in reverse alphabetical order when the third "desc" parameter is provided', () => {
     const filteredUsersReverse =  [
       { id: 1067, firstName: 'Torsten', lastName: 'Wulf' },

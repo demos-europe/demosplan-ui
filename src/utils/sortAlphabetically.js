@@ -8,7 +8,7 @@ import hasOwnProp from './hasOwnProp'
  */
 
 export default function sortAlphabetically (array, sortBy, direction = 'asc') {
-  const sortedArray = array
+  const sortedArray = [...array]
   const directionMultiplier = direction === 'desc' ? -1 : 1
 
   // Is it an array of objects or strings?

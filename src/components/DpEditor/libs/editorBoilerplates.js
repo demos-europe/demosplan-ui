@@ -6,11 +6,9 @@ import { GapCursor } from '@tiptap/pm/gapcursor'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
 /**
- * Whether a resolved position sits inside a boilerplate node.
- *
- * Walks the ancestor chain instead of using `editor.isActive()`, which also reports true
- * when the cursor merely sits at a node boundary — that imprecision previously blocked
- * navigation right next to a boilerplate.
+ * Whether a resolved position sits inside a boilerplate node. Walks the ancestor chain
+ * instead of `editor.isActive()`, which also reports true at a node boundary and
+ * previously blocked navigation right next to a boilerplate.
  *
  * @param {ResolvedPos} $pos
  * @param {String} nodeName
@@ -56,11 +54,9 @@ const isAlreadyLinked = (doc, nodeName, boilerplateId) => {
 }
 
 /**
- * Wraps text inserted from a boilerplate in a node that carries the boilerplate's id, so
- * the link between boilerplate and recommendation survives saving and reloading.
- *
- * A node, not a mark: boilerplate texts contain whole paragraphs and lists, and a mark can
- * only decorate text inside a single textblock.
+ * Wraps boilerplate text in a node carrying its id, so the link survives saving and
+ * reloading. A node, not a mark: boilerplate texts contain whole paragraphs/lists, and a
+ * mark can only decorate text inside a single textblock.
  */
 export default Node.create({
   name: 'boilerplate',
@@ -76,14 +72,11 @@ export default Node.create({
   content: 'block+',
 
   /*
-   * Both flags exist so the Gapcursor extension gives a cursor position directly before/after
-   * this block, without a real paragraph sitting there.
-   *
-   * isolating: without it, GapCursor never considers the gap next to a boilerplate valid (a
-   *   node ending in a paragraph doesn't qualify), and deleting the paragraph between two
-   *   boilerplates would merge them, silently dropping one id.
-   * selectable: false, so a click next to the block places a caret instead of selecting the
-   *   whole node — whole-node deletion isn't in scope for DPLAN-18271.
+   * Both flags give Gapcursor a valid cursor position directly before/after this block,
+   * without a real paragraph sitting there. isolating: without it, deleting the paragraph
+   * between two boilerplates would merge them and silently drop one id. selectable: false
+   * makes a click next to the block place a caret instead of a node selection (whole-node
+   * deletion is out of scope for DPLAN-18271).
    */
   isolating: true,
 
@@ -105,11 +98,9 @@ export default Node.create({
 
   /**
    * Configuration the consuming app injects via `Boilerplate.configure({ … })`, since the
-   * library has no access to demosplan's store or translations.
-   *
-   * getBoilerplateTitle: resolves an id to the boilerplate's title on every render, not stored
-   *   as a node attribute — it would go stale (DPLAN-18150: editing can even re-link the id).
-   * onUnlinkRequest: called when the user clicks the pencil in the node view.
+   * library has no access to demosplan's store/translations. getBoilerplateTitle resolves
+   * an id to a title on every render rather than storing it (it would go stale — DPLAN-18150
+   * can even re-link the id). onUnlinkRequest fires when the user clicks the pencil.
    */
   addOptions() {
     return {
@@ -119,12 +110,10 @@ export default Node.create({
   },
 
   /*
-   * Rejects any transaction that would change content inside an existing boilerplate
-   * node. Deliberately not done via `contenteditable="false"` in the node view: that
-   * marks the whole DOM subtree non-editable for the browser, which also breaks native
-   * cursor placement right after the node (e.g. when it's the last node in the doc).
-   * Own commands that legitimately need to restructure a boilerplate node (e.g. unlinking
-   * it) must mark their transaction with `tr.setMeta('boilerplateEdit', true)` to bypass this.
+   * Rejects transactions that would change content inside a boilerplate node. Not done via
+   * `contenteditable="false"`: that breaks native cursor placement right after the node
+   * (e.g. as the doc's last node). Commands that legitimately restructure a boilerplate
+   * (e.g. unlinking) bypass this via `tr.setMeta('boilerplateEdit', true)`.
    */
   addProseMirrorPlugins () {
     const nodeName = this.name
@@ -150,10 +139,9 @@ export default Node.create({
           let touchesProtectedContent = false
 
           /*
-           * A transaction is a list of steps. For each one, look at the document as it was
-           * *before* that step (`tr.docs[index]`) and at the ranges the step changes
-           * (`step.getMap()`, which reports them as old/new position pairs). If a boilerplate
-           * node lies in any changed range, the edit reaches into protected content.
+           * A transaction is a list of steps; for each, `tr.docs[index]` gives the doc before
+           * that step and `step.getMap()` gives its changed range. If a boilerplate node lies
+           * in that range, the edit reaches into protected content.
            */
           tr.steps.forEach((step, index) => {
             const docBefore = tr.docs[index]
@@ -172,10 +160,9 @@ export default Node.create({
 
         props: {
           /*
-           * FilterTransaction alone rejects the change, but the browser has already
-           * written the character into the DOM by then — it stays visible while being
-           * absent from the document. Refusing the input here prevents the DOM change
-           * in the first place, so what the user sees matches what gets saved.
+           * `filterTransaction` alone rejects the change, but the browser already wrote the
+           * character into the DOM, so it stays visible while absent from the document.
+           * Refusing the input here prevents that DOM/doc mismatch.
            */
           handleTextInput (view, from) {
             return isInsideBoilerplate(view.state.doc.resolve(from), nodeName)
@@ -186,12 +173,10 @@ export default Node.create({
   },
 
   /*
-   * Built on the built-in `insertContent` command rather than raw `tr.insert()` at a
-   * hand-computed position: if the cursor sits in an existing empty paragraph, a plain
-   * position + nodeSize offset doesn't account for ProseMirror splitting that paragraph to
-   * fit the new block, and the trailing paragraph would end up nested inside the boilerplate
-   * instead of after it. `insertContent` handles that split correctly; where the cursor ends
-   * up afterwards is fixed up below.
+   * Uses `insertContent` rather than raw `tr.insert()`: at a hand-computed position, a cursor
+   * in an empty paragraph would get split incorrectly and the trailing paragraph would end up
+   * nested inside the boilerplate instead of after it. `insertContent` splits correctly; the
+   * cursor position afterwards is fixed up below.
    */
   addCommands () {
     return {
@@ -230,11 +215,10 @@ export default Node.create({
           })
           .insertContent({ type: this.name, attrs: { boilerplateId }, content })
           /*
-           * `insertContent` ends with `Selection.near`, which can only produce a text or node
-           * selection and therefore lands *inside* the boilerplate — where typing is blocked.
-           * Move the caret to the gap right behind the node instead, so the user can keep
-           * writing. Deliberately no trailing paragraph for this: it would end up in the
-           * saved HTML and as an empty line in every DOCX/PDF export.
+           * `insertContent` ends with `Selection.near`, landing *inside* the boilerplate where
+           * typing is blocked — move the caret to the gap right behind the node instead. No
+           * trailing paragraph is added for this: it would end up in the saved HTML and as an
+           * empty line in every DOCX/PDF export.
            */
           .command(({ dispatch, tr }) => {
             if (dispatch) {
@@ -260,11 +244,9 @@ export default Node.create({
 
       /**
        * Dissolves the link: the boilerplate node at `pos` is replaced by its own content, so
-       * the text stays in place as plain paragraphs. A structural change, which is why the
-       * node holds real paragraphs rather than an HTML string attribute in the first place.
-       *
-       * `editor.commands.undo()` is the way back — `History` is always registered, so no
-       * separate snapshot mechanism is needed here.
+       * the text stays as plain paragraphs — a structural change, which is why the node holds
+       * real paragraphs rather than an HTML string. `editor.commands.undo()` is the way back,
+       * since `History` is always registered.
        */
       unlinkBoilerplate: pos => ({ tr, dispatch }) => {
         const node = tr.doc.nodeAt(pos)
@@ -284,11 +266,9 @@ export default Node.create({
   },
 
   /**
-   * Recognises a boilerplate when HTML is loaded into the editor. The selector matches any
-   * `<dp-boilerplate>` tag carrying the marker attribute, whatever its id value.
-   *
-   * Mirror image of renderHTML below — if the two disagree, the node survives editing but
-   * silently disappears on the next reload.
+   * Recognises a boilerplate when HTML is loaded: matches any `<dp-boilerplate>` tag
+   * carrying the marker attribute. Mirror image of `renderHTML` below — if the two disagree,
+   * the node survives editing but silently disappears on the next reload.
    */
   parseHTML () {
     return [
@@ -298,9 +278,9 @@ export default Node.create({
 
   /**
    * Serialises the node back to HTML. `mergeAttributes(HTMLAttributes)` passes through what
-   * addAttributes produced — hardcoding an attribute object here instead (as some older
-   * extensions in this folder do) would silently drop the boilerplate id. The trailing `0`
-   * is ProseMirror's "hole": the place the node's content is rendered into.
+   * `addAttributes` produced — hardcoding an attribute object instead would silently drop
+   * the boilerplate id. The trailing `0` is ProseMirror's "hole": where the node's content
+   * is rendered.
    */
   renderHTML ({ HTMLAttributes }) {
     return ['dp-boilerplate', mergeAttributes(HTMLAttributes), 0]

@@ -1,7 +1,9 @@
 import sortAlphabetically from '~/utils/sortAlphabetically'
 
 describe('sortAlphabetically', () => {
-  const arrayOfString = [ 'copySpec', 'email2', 'showlist', 'allowedRoleIds' ]
+  const arrayOfStrings = [ 'copySpec', 'email2', 'showlist', 'allowedRoleIds' ]
+  const sortedArrayOfStrings = [ 'allowedRoleIds', 'copySpec', 'email2', 'showlist' ]
+  const reverseSortedArrayOfStrings = [ 'showlist', 'email2', 'copySpec', 'allowedRoleIds' ]
   const filteredUsersByFirstName =  [
     { id: 1031, firstName: 'Daniel', lastName: 'Ostermann' },
     { id: 1035, firstName: 'Katharina', lastName: 'Maier' },
@@ -35,22 +37,16 @@ describe('sortAlphabetically', () => {
     expect(sortAlphabetically(users, 'firstName', 'desc')).toEqual(filteredUsersReverse)
   })
 
-  it('sorts an array of string in alphabetical order by default', () => {
-    const sortedArrayOfString = arrayOfString.sort((a, b) => a - b)
-
-    expect(sortAlphabetically(arrayOfString, '')).toEqual(sortedArrayOfString)
+  it('sorts an array of strings in alphabetical order by default', () => {
+    expect(sortAlphabetically([...arrayOfStrings], '')).toEqual(sortedArrayOfStrings)
   })
 
-  it('sorts an array of string in alphabetical order when the third parameter "asc" is provided', () => {
-    const sortedArrayOfString = arrayOfString.sort((a, b) => a - b)
-
-    expect(sortAlphabetically(arrayOfString, '', 'asc')).toEqual(sortedArrayOfString)
+  it('sorts an array of strings in alphabetical order when the third parameter "asc" is provided', () => {
+    expect(sortAlphabetically([...arrayOfStrings], '', 'asc')).toEqual(sortedArrayOfStrings)
   })
 
-  it('sorts an array of string in reverse alphabetical order when the third parameter "desc" is provided', () => {
-    const sortedArrayOfString = arrayOfString.sort((a, b) => a - b).reverse()
-
-    expect(sortAlphabetically(arrayOfString, '', 'desc')).toEqual(sortedArrayOfString)
+  it('sorts an array of strings in reverse alphabetical order when the third parameter "desc" is provided', () => {
+    expect(sortAlphabetically([...arrayOfStrings], '', 'desc')).toEqual(reverseSortedArrayOfStrings)
   })
 
   it('sorts an object by a dot-separated nested property', () => {

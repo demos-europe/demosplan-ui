@@ -40,9 +40,16 @@ const isAlreadyLinked = (doc, nodeName, boilerplateId) => {
   let found = false
 
   doc.descendants(node => {
-    if (node.type.name === nodeName && node.attrs.boilerplateId === boilerplateId) {
+    if (node.type.name !== nodeName) {
+      return true
+    }
+
+    if (node.attrs.boilerplateId === boilerplateId) {
       found = true
     }
+
+    // Boilerplates never nest, so there is nothing worth checking inside this one.
+    return false
   })
 
   return found

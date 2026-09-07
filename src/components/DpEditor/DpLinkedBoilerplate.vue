@@ -18,6 +18,7 @@
     -->
     <div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 px-2 pt-2 text-interactive">
       <dp-icon
+        aria-hidden="true"
         icon="puzzle-piece"
         weight="fill"
       />
@@ -28,6 +29,7 @@
         @click="handleEditClick"
       >
         <dp-icon
+          aria-hidden="true"
           class="cursor-pointer"
           icon="pencil-simple"
           weight="fill"

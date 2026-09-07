@@ -9,9 +9,9 @@
     @animationend="onAnimationEnd"
   >
     <button
-      :class="prefixClass('btn--blank o-link--default absolute u-right-0')"
-      :aria-label="title"
-      :title="title"
+      :class="prefixClass('btn--blank o-link--default absolute right-4 top-4')"
+      :aria-label="closeLabel"
+      :title="closeLabel"
       @click.prevent.stop="close()"
     >
       <dp-icon
@@ -19,15 +19,30 @@
         size="large"
       />
     </button>
-    <div :class="prefixClass('o-modal__body ' + contentBodyClasses)">
-      <h2
-        v-if="hasHeader"
-        :class="prefixClass('font-size-h1 border--bottom u-pb-0_25 ' + contentHeaderClasses)"
+    <header
+      v-if="hasHeader"
+      :class="prefixClass(`border-b border-neutral px-4 pt-4 pb-2 ${contentHeaderClasses}`)"
+    >
+      <slot name="header" />
+    </header>
+    <div :class="prefixClass(`o-modal__body ${contentBodyClasses}`)">
+      <div
+        v-if="enableSmoothHeightTransition"
+        :class="prefixClass('o-modal__transition-wrapper')"
+        :style="{ height: contentHeight ? `${contentHeight}px` : 'auto' }"
       >
-        <slot name="header" />
-      </h2>
-      <slot name="default" />
+        <div ref="bodyContent">
+          <slot />
+        </div>
+      </div>
+      <slot v-else />
     </div>
+    <footer
+      v-if="hasFooter"
+      :class="prefixClass('border-t border-neutral p-4 ')"
+    >
+      <slot name="footer" />
+    </footer>
   </dialog>
 </template>
 
@@ -69,6 +84,12 @@ export default {
       type: String,
       default: '',
     },
+
+    enableSmoothHeightTransition: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
   },
 
   emits: [
@@ -77,14 +98,20 @@ export default {
 
   data () {
     return {
-      title: de.window.close,
+      closeLabel: de.window.close,
       isClosing: false,
+      contentHeight: 0,
+      resizeObserver: null,
     }
   },
 
   computed: {
+    hasFooter () {
+      return this.$slots.footer !== undefined
+    },
+
     hasHeader () {
-      return typeof this.$slots.header !== 'undefined'
+      return this.$slots.header !== undefined
     },
   },
 
@@ -114,6 +141,8 @@ export default {
       // Trigger opening animation by adding class after dialog is shown
       this.$nextTick(() => {
         dialog.classList.add('o-modal--opening')
+        this.updateContentHeight()
+        this.initResizeObserver()
       })
 
       this.$emit('modal:toggled', true)
@@ -184,7 +213,57 @@ export default {
         bodyElement.style.overflowY = null
       }
     },
+
+    /**
+     * Update the content height for smooth transitions
+     */
+    updateContentHeight () {
+      if (!this.enableSmoothHeightTransition) {
+        return
+      }
+
+      this.$nextTick(() => {
+        const contentEl = this.$refs.bodyContent
+
+        if (contentEl) {
+          this.contentHeight = contentEl.scrollHeight
+        }
+      })
+    },
+
+    /**
+     * Initialize ResizeObserver for automatic height updates
+     */
+    initResizeObserver () {
+      if (!this.enableSmoothHeightTransition || typeof ResizeObserver === 'undefined') {
+        return
+      }
+
+      this.resizeObserver = new ResizeObserver(() => {
+        this.updateContentHeight()
+      })
+
+      const contentEl = this.$refs.bodyContent
+
+      if (contentEl) {
+        this.resizeObserver.observe(contentEl)
+      }
+    },
+
+    destroyResizeObserver () {
+      if (this.resizeObserver) {
+        this.resizeObserver.disconnect()
+        this.resizeObserver = null
+      }
+    },
   },
 
+  mounted () {
+    this.initResizeObserver()
+  },
+
+  beforeUnmount () {
+    this.destroyResizeObserver()
+  },
 }
 </script>

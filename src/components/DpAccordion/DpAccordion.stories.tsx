@@ -22,6 +22,8 @@ type Story = StoryObj<{
   compressed: boolean
   isOpen: boolean
   title: string
+  showStatusDot: boolean
+  statusDotLabel: string
   'item:toggle': object
 }>
 
@@ -44,6 +46,17 @@ export const Compressed: Story = {
     compressed: true,
     isOpen: false,
     title: 'Compressed Accordion Title',
+  },
+  argTypes: {
+    'item:toggle': { action: 'item:toggle' }
+  }
+}
+
+export const WithStatusDot: Story = {
+  args: {
+    title: 'Accordion Title',
+    showStatusDot: true,
+    statusDotLabel: 'Unsaved changes',
   },
   argTypes: {
     'item:toggle': { action: 'item:toggle' }

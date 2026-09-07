@@ -4,12 +4,29 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+## v0.30.0 - 2026-08-28
+
 ### Added
+- ([#1562](https://github.com/demos-europe/demosplan-ui/pull/1562)) DpSlidebar: Close on Escape key press ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1564](https://github.com/demos-europe/demosplan-ui/pull/1564)) DpIcon: add `file-xls` icon and `xxlarge` icon size ([@sakutademos](https://github.com/sakutademos))
+- ([#1563](https://github.com/demos-europe/demosplan-ui/pull/1563)) DpAccordion: Add optional status indicator to accordion's title ([@rafelddemos](https://github.com/rafelddemos))
+
+## v0.29.0 - 2026-08-24
+
+### Changed
+- ([#1555](https://github.com/demos-europe/demosplan-ui/pull/1555)) DpModal: improve modal structure and transitions
+  - new regular prop in DpLabel
+  - new calendar icon
+  - flex refactoring in DpCheckbox/DpRadio ([@sakutademos](https://github.com/sakutademos))
+
+### Added
+- ([#1561](https://github.com/demos-europe/demosplan-ui/pull/1561)) Add mapping for `sliders-horizontal` icon ([@rafelddemos](https://github.com/rafelddemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpAccordion: Add `titlePrefix` slot to place content next to the title, outside the toggle button so interactive content is not nested within it ([@riechedemos](https://github.com/riechedemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpCheckbox: Accept `hide` in the `label` prop to name the checkbox for screen readers without displaying the text ([@riechedemos](https://github.com/riechedemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `cut` toolbar item to hide the cut button where content may only be altered, not removed ([@riechedemos](https://github.com/riechedemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpEditor: Add `obscureOnly` prop to let users obscure existing text without being able to alter it otherwise ([@riechedemos](https://github.com/riechedemos))
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Add `open` prop to drive visibility from outside instead of the `show-slidebar` / `hide-slidebar` root events; the events stay active while the prop is unset ([@riechedemos](https://github.com/riechedemos))
+- ([#1554](https://github.com/demos-europe/demosplan-ui/pull/1554)) UseDpValidate.js: Add validation coomposable for composition api ([@riechedemos](https://github.com/riechedemos))
 
 ### Changed
 - ([#1550](https://github.com/demos-europe/demosplan-ui/pull/1550)) DpSlidebar: Move the close button to the right, the edge the slidebar docks to, and give it an accessible name, both in line with DpModal ([@riechedemos](https://github.com/riechedemos))

@@ -96,4 +96,25 @@ describe('DpAccordion', () => {
     })
     expect(wrapper.find('[data-cy="accordion:trigger"]').classes()).toContain('bg-surface-light')
   })
+
+  it('does not render the status dot by default', () => {
+    expect(wrapper.find('[data-cy="accordion:statusDot"]').exists()).toBe(false)
+  })
+
+  it('renders the status dot if "showStatusDot" is true', async () => {
+    await wrapper.setProps({ showStatusDot: true })
+    expect(wrapper.find('[data-cy="accordion:statusDot"]').exists()).toBe(true)
+  })
+
+  it('renders the status dot label for screen readers if "statusDotLabel" is set', async () => {
+    await wrapper.setProps({ showStatusDot: true, statusDotLabel: 'Unsaved changes' })
+    const label = wrapper.find('.sr-only')
+    expect(label.exists()).toBe(true)
+    expect(label.text()).toBe('Unsaved changes')
+  })
+
+  it('does not render the status dot label if "statusDotLabel" is empty', async () => {
+    await wrapper.setProps({ showStatusDot: true })
+    expect(wrapper.find('.sr-only').exists()).toBe(false)
+  })
 })

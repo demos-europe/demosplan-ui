@@ -69,6 +69,7 @@ export type PhosphorIconName =
   | 'dots-three'
   | 'faders'
   | 'file'
+  | 'file-xls'
   | 'folders'
   | 'highlighter'
   | 'hourglass'
@@ -79,6 +80,7 @@ export type PhosphorIconName =
   | 'puzzle-piece'
   | 'question'
   | 'sign-out'
+  | 'sliders-horizontal'
   | 'tag'
   | 'user'
   | 'users-three'
@@ -92,7 +94,7 @@ export type IconName =
   | AliasedPhosphorIconName
   | IconAlias
 
-export type IconSize = 'small' | 'medium' | 'large' | 'xlarge'
+export type IconSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge'
 
 export type IconWeight = 'light' | 'regular' | 'bold' | 'fill'
 

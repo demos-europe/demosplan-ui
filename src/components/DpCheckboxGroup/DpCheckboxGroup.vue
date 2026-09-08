@@ -11,7 +11,7 @@
       :id="option.id"
       :key="`option_${idx}`"
       v-model="selected[option.id]"
-      :class="inline ? 'inline-block u-ml' : ''"
+      :class="inline ? 'inline-flex u-ml' : ''"
       :label="{
         text: option.label
       }"

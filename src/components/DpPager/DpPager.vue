@@ -11,7 +11,7 @@
         :non-sliding-size="3"
         :sliding-ending-size="1"
         :sliding-window-size="1"
-        :total="totalPages || 1"
+        :total="getTotalPages(totalItems, perPage)"
         @page-change="handlePageChange"
       />
       <div
@@ -66,7 +66,7 @@ export default {
     totalPages: {
       required: false,
       type: Number,
-      default: 1,
+      default: null,
     },
 
     perPage: {
@@ -116,6 +116,14 @@ export default {
   },
 
   methods: {
+    getTotalPages (totalItems, perPage) {
+      if (this.totalPages) {
+        return this.totalPages
+      }
+
+      return Math.max(1, Math.ceil(totalItems / perPage))
+    },
+
     handlePageChange (newPage) {
       this.$emit('page-change', newPage)
     },

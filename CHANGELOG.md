@@ -9,6 +9,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
 - ([#1572](https://github.com/demos-europe/demosplan-ui/pull/1572)) DpCheckboxGroup: fix inline alignment ([@hwiem](https://github.com/hwiem))
 
+### Added
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpEditor: Add `boilerplate` node to link boilerplates into recommendation text, with insert/unlink commands ([@riechedemos](https://github.com/riechedemos))
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpNotification: Add optional action button that emits `dp-notify-action`, for undo flows ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.30.0 - 2026-08-28
 
 ### Added

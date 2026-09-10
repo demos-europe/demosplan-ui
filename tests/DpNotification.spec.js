@@ -90,6 +90,43 @@ describe('DpNotification', () => {
     expect(wrapper.find('.c-notify__text').text()).toBe('MessageText LinkText')
   })
 
+  it('renders an action button if actionText is given, and emits dp-notify-action with the message when clicked', async () => {
+    const message = {
+      type: 'confirm',
+      text: 'MessageText',
+      actionText: 'Undo',
+    }
+
+    const wrapper = mount(DpNotification, {
+      props: {
+        message,
+      },
+    })
+
+    const action = wrapper.find('[data-cy="messageAction"]')
+
+    expect(action.exists()).toBe(true)
+    expect(action.text()).toBe('Undo')
+
+    await action.trigger('click')
+
+    expect(wrapper.emitted()).toHaveProperty('dp-notify-action')
+    expect(wrapper.emitted()['dp-notify-action'][0]).toEqual([message])
+  })
+
+  it('does not render an action button without actionText', () => {
+    const wrapper = mount(DpNotification, {
+      props: {
+        message: {
+          type: 'confirm',
+          text: 'MessageText',
+        },
+      },
+    })
+
+    expect(wrapper.find('[data-cy="messageAction"]').exists()).toBe(false)
+  })
+
   /*
    * For some reason this Test takes over 6 seconds to pass
    */

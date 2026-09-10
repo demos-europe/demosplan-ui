@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import { flushPromises } from '@vue/test-utils'
 import { ref } from 'vue'
 import { de } from '~/components/shared/translations'
@@ -15,17 +15,27 @@ function createForm (innerHTML) {
 /*
  * jsdom does not implement layout, so `offsetParent` is always null. `scrollToVisibleElement`
  * relies on it to find the closest rendered ancestor - stub it to the DOM parent so elements
- * attached to `document.body` are treated as visible.
+ * attached to `document.body` are treated as visible. Restored in afterAll() so the prototype
+ * patch does not leak into other test files.
  */
-Object.defineProperty(HTMLElement.prototype, 'offsetParent', {
-  get () {
-    return this.parentNode
-  },
+const originalOffsetParent = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetParent')
+
+beforeAll(() => {
+  Object.defineProperty(HTMLElement.prototype, 'offsetParent', {
+    configurable: true,
+    get () {
+      return this.parentNode
+    },
+  })
+})
+
+afterAll(() => {
+  Object.defineProperty(HTMLElement.prototype, 'offsetParent', originalOffsetParent)
 })
 
 beforeEach(() => {
   document.body.innerHTML = ''
-  global.dplan = { notify: { notify: vi.fn() } }
+  window.dplan = { notify: { notify: vi.fn() } }
 })
 
 describe('useDpValidate', () => {
@@ -37,7 +47,7 @@ describe('useDpValidate', () => {
 
     expect(result).toBe(true)
     expect(isValid.value).toBe(true)
-    expect(dplan.notify.notify).not.toHaveBeenCalled()
+    expect(window.dplan.notify.notify).not.toHaveBeenCalled()
   })
 
   test('validate() returns true when required field is filled', async () => {
@@ -50,7 +60,7 @@ describe('useDpValidate', () => {
 
     expect(result).toBe(true)
     expect(isValid.value).toBe(true)
-    expect(dplan.notify.notify).not.toHaveBeenCalled()
+    expect(window.dplan.notify.notify).not.toHaveBeenCalled()
     expect(form.querySelector('input').classList.contains(errorClass)).toBe(false)
   })
 
@@ -65,7 +75,8 @@ describe('useDpValidate', () => {
     expect(result).toBe(false)
     expect(isValid.value).toBe(false)
     expect(form.querySelector('input').classList.contains(errorClass)).toBe(true)
-    expect(dplan.notify.notify).toHaveBeenCalledWith('error', de.error.mandatoryFields.default)
+    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', de.error.mandatoryFields.default)
+    expect(window.dplan.notify.notify).toHaveBeenCalledTimes(1)
   })
 
   test('validate() notifies with fieldname and topic for an invalid field', async () => {
@@ -81,7 +92,7 @@ describe('useDpValidate', () => {
     validate()
 
     const expectedMessage = de.error.mandatoryFields.intro + 'E-Mail (Kontakt)' + de.error.mandatoryFields.outro
-    expect(dplan.notify.notify).toHaveBeenCalledWith('error', expectedMessage)
+    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', expectedMessage)
   })
 
   test('validate() notifies with the custom error message when data-dp-validate-error is set', async () => {
@@ -92,8 +103,8 @@ describe('useDpValidate', () => {
 
     validate()
 
-    expect(dplan.notify.notify).toHaveBeenCalledWith('error', 'Custom Fehlertext')
-    expect(dplan.notify.notify).toHaveBeenCalledTimes(1)
+    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', 'Custom Fehlertext')
+    expect(window.dplan.notify.notify).toHaveBeenCalledTimes(1)
   })
 
   test('validate() deduplicates identical fieldname/topic combinations', async () => {
@@ -110,8 +121,8 @@ describe('useDpValidate', () => {
     validate()
 
     const expectedMessage = de.error.mandatoryFields.intro + 'E-Mail (Kontakt)' + de.error.mandatoryFields.outro
-    expect(dplan.notify.notify).toHaveBeenCalledWith('error', expectedMessage)
-    expect(dplan.notify.notify).toHaveBeenCalledTimes(1)
+    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', expectedMessage)
+    expect(window.dplan.notify.notify).toHaveBeenCalledTimes(1)
   })
 
   test('assigns blur/focus handlers to inputs once the form is set', async () => {

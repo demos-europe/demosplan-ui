@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1573](https://github.com/demos-europe/demosplan-ui/pull/1573)) DpPager: add a fallback to auto calculate the total number of pages ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))

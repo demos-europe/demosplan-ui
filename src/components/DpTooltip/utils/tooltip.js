@@ -75,21 +75,26 @@ const initTooltip = (el, value, options) => {
 }
 
 const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {
-  if (!document.getElementById(wrapperEl.getAttribute('aria-describedby'))) {
-    const value = tooltips[id]
-    // This has to be in sync with the Template in DpTooltip
-    const tooltipHtml = `
-      <div class="z-tooltip cursor-help max-w-13 absolute ${classes}" role="tooltip" id="${id}">
-        <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1" data-tooltip-arrow></div>
-        <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm">${value}</div>
-      </div>`
-    const range = document.createRange()
-    const content = range.createContextualFragment(tooltipHtml)
+  const existingTooltip = document.getElementById(wrapperEl.getAttribute('aria-describedby'))
 
-    // Handle both DOM element and selector string
-    const containerEl = container instanceof Element ? container : document.querySelector(container)
-    containerEl.appendChild(content)
+  if (existingTooltip) {
+    // Don't reposition it when it already exists
+    return
   }
+
+  const value = tooltips[id]
+  // This has to be in sync with the Template in DpTooltip
+  const tooltipHtml = `
+    <div class="z-tooltip cursor-help max-w-13 absolute ${classes}" role="tooltip" id="${id}">
+      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1" data-tooltip-arrow></div>
+      <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm">${value}</div>
+    </div>`
+  const range = document.createRange()
+  const content = range.createContextualFragment(tooltipHtml)
+
+  // Handle both DOM element and selector string
+  const containerEl = container instanceof Element ? container : document.querySelector(container)
+  containerEl.appendChild(content)
 
   const tooltipEl = document.getElementById(id)
   const arrowEl = tooltipEl.querySelector('[data-tooltip-arrow]')

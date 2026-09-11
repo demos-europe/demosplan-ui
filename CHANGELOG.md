@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1575](https://github.com/demos-europe/demosplan-ui/pull/1575)) Add mapping for `export` icon ([@rafelddemos](https://github.com/rafelddemos))
+
 ### Fixed
 - ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))

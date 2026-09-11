@@ -11,6 +11,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
 - ([#1572](https://github.com/demos-europe/demosplan-ui/pull/1572)) DpCheckboxGroup: fix inline alignment ([@hwiem](https://github.com/hwiem))
+- ([#1576](https://github.com/demos-europe/demosplan-ui/pull/1576)) Dependencies: bump all `@tiptap/*` packages from
+  3.10.4 to 3.31.3 (fixes DoS and `mergeAttributes` prototype-pollution advisories) and align pinned `prosemirror-model`/
+  `-view`/`-state`/`-transform` versions with `@tiptap/pm` ([@hwiem](https://github.com/hwiem))
 
 ## v0.30.0 - 2026-08-28
 

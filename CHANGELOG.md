@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Added
 - ([#1575](https://github.com/demos-europe/demosplan-ui/pull/1575)) Add mapping for `export` icon ([@rafelddemos](https://github.com/rafelddemos))
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpApi: forward `options.signal` to `fetch` so requests can be aborted ([@mussbach](https://github.com/mussbach))
 
 ### Changed
 - ([#1573](https://github.com/demos-europe/demosplan-ui/pull/1573)) DpPager: add a fallback to auto calculate the total number of pages ([@sakutademos](https://github.com/sakutademos))
@@ -14,6 +15,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
 - ([#1572](https://github.com/demos-europe/demosplan-ui/pull/1572)) DpCheckboxGroup: fix inline alignment ([@hwiem](https://github.com/hwiem))
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpEditor: discard LanguageTool matches when the text changed during the check,
+  and abort checks that are obsolete or whose editor was destroyed ([@mussbach](https://github.com/mussbach))
 
 ## v0.30.0 - 2026-08-28
 

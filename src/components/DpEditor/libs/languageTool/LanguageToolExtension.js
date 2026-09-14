@@ -22,7 +22,7 @@ const LanguageToolExtension = Extension.create({
     return {
       matches: [],
       runCheck: null,
-      requestId: 0,
+      abortController: null,
       scheduleCheck: null,
     }
   },
@@ -49,11 +49,26 @@ const LanguageToolExtension = Extension.create({
         return
       }
 
-      const currentRequestId = ++this.storage.requestId
+      /* A check still in flight is obsolete the moment a newer one starts. */
+      this.storage.abortController?.abort()
 
-      checkTextWithLanguageTool(plainText)
+      const abortController = new AbortController()
+      this.storage.abortController = abortController
+
+      checkTextWithLanguageTool(plainText, { signal: abortController.signal })
         .then(result => {
-          if (currentRequestId !== this.storage.requestId) {
+          if (abortController !== this.storage.abortController) {
+            return
+          }
+
+          /*
+           * Match offsets refer to the text that was sent. Applying them to a
+           * document that has changed since would underline the wrong words,
+           * and editing already scheduled the next check.
+           */
+          const { plainText: currentText } = buildTextSegments(editor.state.doc)
+
+          if (currentText !== plainText) {
             return
           }
 
@@ -62,7 +77,7 @@ const LanguageToolExtension = Extension.create({
           refreshLanguageToolDecorations()
         })
         .catch(error => {
-          if (currentRequestId !== this.storage.requestId) {
+          if (error.name === 'AbortError' || abortController !== this.storage.abortController) {
             return
           }
 
@@ -78,6 +93,10 @@ const LanguageToolExtension = Extension.create({
     requestAnimationFrame(() => {
       this.storage.runCheck()
     })
+  },
+
+  onDestroy () {
+    this.storage.abortController?.abort()
   },
 
   onUpdate () {

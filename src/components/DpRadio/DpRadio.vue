@@ -13,7 +13,7 @@
       :value="value"
       :data-cy="dataCy !== '' ? dataCy : null"
       :data-dp-validate-error-fieldname="dataDpValidateErrorFieldname || label.text || null"
-      @change="$emit('change', $event.target.checked)"
+      @change="$emit('change', ($event.target as HTMLInputElement).checked)"
     ><!--
    --><dp-label
         v-if="label.text"

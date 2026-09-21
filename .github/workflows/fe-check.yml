@@ -1,11 +1,12 @@
-name: Test
+name: FE Check
 
 on:
   push:
   pull_request:
 
 jobs:
-  test:
+  fe-check:
+    name: FE check
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

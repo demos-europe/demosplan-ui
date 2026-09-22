@@ -13,8 +13,8 @@
     <!--
       Grid rather than flex, and the middle track needs the explicit `minmax(0, …)`: the title
       does not wrap (`truncate`), so without a zero minimum its intrinsic width propagates up
-      and widens the whole segment list column, which is a flex item with `min-width: auto`.
-      `min-w-0` on the title itself is needed as well — the track rule doesn't cover the item.
+      and widens the whole row inside whatever container this is placed in. `min-w-0` on the
+      title itself is needed as well — the track rule doesn't cover the item.
     -->
     <div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 px-2 pt-2 text-interactive">
       <dp-icon

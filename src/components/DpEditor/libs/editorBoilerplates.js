@@ -25,9 +25,10 @@ const isInsideBoilerplate = ($pos, nodeName) => {
 }
 
 /**
- * Whether a boilerplate with this id is already linked anywhere in the document. Inserting
- * the same one twice makes no sense from a usage perspective (BE-Plan Decision 13) — the
- * backend model tolerates it (the relation just dedups), but there is no reason to allow it.
+ * Whether a boilerplate with this id is already linked anywhere in the document. Linking the
+ * same boilerplate twice in one recommendation makes no sense from a usage perspective, so the
+ * FE prevents it — the backend model is safe either way, since its unique constraint dedups
+ * the relation.
  *
  * @param {Node} doc
  * @param {String} nodeName

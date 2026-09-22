@@ -23,18 +23,14 @@
         weight="fill"
       />
       <span class="truncate min-w-0">{{ de.editor.linkedBoilerplate.label({ title: props.extension.options.getBoilerplateTitle(props.node.attrs.boilerplateId) }) }}</span>
-      <button
-        :aria-label="de.editor.linkedBoilerplate.editLabel"
-        type="button"
+      <dp-button
+        hide-text
+        icon="pencil-simple"
+        icon-weight="fill"
+        :text="de.editor.linkedBoilerplate.editLabel"
+        variant="transparent"
         @click="handleEditClick"
-      >
-        <dp-icon
-          aria-hidden="true"
-          class="cursor-pointer"
-          icon="pencil-simple"
-          weight="fill"
-        />
-      </button>
+      />
     </div>
     <!--
       Where ProseMirror renders the node's own content. Deliberately without
@@ -47,7 +43,7 @@
 </template>
 <script setup>
 
-import { de, DpIcon } from '~/components'
+import { de, DpButton, DpIcon } from '~/components'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import { Tooltip as vTooltip } from '~/directives'
 

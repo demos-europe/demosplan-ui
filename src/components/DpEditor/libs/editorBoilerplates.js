@@ -59,7 +59,6 @@ const isAlreadyLinked = (doc, nodeName, boilerplateId) => {
 export default Node.create({
   name: 'boilerplate',
 
-  // Sits next to paragraphs and lists at the top level of the document.
   group: 'block',
 
   /*
@@ -126,7 +125,6 @@ export default Node.create({
 
           let touchesProtectedContent = false
 
-          // For each step, check whether its changed range touches a boilerplate node.
           tr.steps.forEach((step, index) => {
             const docBefore = tr.docs[index]
 
@@ -159,7 +157,6 @@ export default Node.create({
   addCommands () {
     return {
       insertBoilerplate: ({ boilerplateId, html }) => ({ editor, chain }) => {
-        // Boilerplates must not nest, and the same one must not be linked twice.
         if (isInsideBoilerplate(editor.state.selection.$from, this.name)) {
           return false
         }

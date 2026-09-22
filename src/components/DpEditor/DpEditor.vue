@@ -1066,7 +1066,7 @@ export default {
       this.editor.chain().focus().unlinkBoilerplate(pos).run()
     },
 
-    // Reverses the last change. Exposed via `ref`, like unlinkBoilerplate, for an external undo toast.
+    // Exposed via `ref`, like unlinkBoilerplate, for an external undo toast.
     undo () {
       this.editor.chain().focus().undo().run()
     },

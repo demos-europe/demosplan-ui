@@ -6,9 +6,8 @@ import { GapCursor } from '@tiptap/pm/gapcursor'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
 /**
- * Whether a resolved position sits inside a boilerplate node. Walks the ancestor chain
- * instead of `editor.isActive()`, which also reports true at a node boundary and
- * previously blocked navigation right next to a boilerplate.
+ * Whether a resolved position sits inside a boilerplate. Uses the ancestor chain, not
+ * `editor.isActive()`, which also matches at node boundaries.
  *
  * @param {ResolvedPos} $pos
  * @param {String} nodeName
@@ -25,10 +24,9 @@ const isInsideBoilerplate = ($pos, nodeName) => {
 }
 
 /**
- * Whether a boilerplate with this id is already linked anywhere in the document. Linking the
- * same boilerplate twice in one recommendation makes no sense from a usage perspective, so the
- * FE prevents it — the backend model is safe either way, since its unique constraint dedups
- * the relation.
+ * Whether a boilerplate with this id is already linked anywhere in the document. Duplicate
+ * links make no sense for users, even though the BE model tolerates them (unique constraint
+ * dedups the relation).
  *
  * @param {Node} doc
  * @param {String} nodeName
@@ -55,9 +53,8 @@ const isAlreadyLinked = (doc, nodeName, boilerplateId) => {
 }
 
 /**
- * Wraps boilerplate text in a node carrying its id, so the link survives saving and
- * reloading. A node, not a mark: boilerplate texts contain whole paragraphs/lists, and a
- * mark can only decorate text inside a single textblock.
+ * Wraps boilerplate text in a node (not a mark, since content can be whole paragraphs/lists)
+ * carrying its id, so the link survives saving and reloading.
  */
 export default Node.create({
   name: 'boilerplate',
@@ -66,17 +63,15 @@ export default Node.create({
   group: 'block',
 
   /*
-   * Holds real block nodes rather than an HTML string in an attribute. That keeps the text
-   * visible to everything that consumes the saved HTML — exports, search indexing — and makes
-   * unlinking a plain structural change (drop the wrapper, keep the paragraphs).
+   * Holds real block nodes, not an HTML string, so exports/search still see the text and
+   * unlinking is just dropping the wrapper.
    */
   content: 'block+',
 
   /*
-   * Both give Gapcursor a valid cursor position directly before/after this block, without a
-   * real paragraph sitting there. isolating prevents merging two boilerplates by deleting the
-   * paragraph between them. selectable: false turns a click next to the block into a caret
-   * instead of a node selection.
+   * Both give Gapcursor a cursor position directly before/after the block. isolating stops
+   * two boilerplates merging via a deleted paragraph; selectable: false makes a click place a
+   * caret, not a node selection.
    */
   isolating: true,
 
@@ -97,9 +92,8 @@ export default Node.create({
   },
 
   /**
-   * Configuration the consuming app injects via `Boilerplate.configure({ … })`, since the
-   * library has no access to the host's store/translations. getBoilerplateTitle resolves an
-   * id to a title on every render rather than storing it, so a re-linked title can't go stale.
+   * Injected via `Boilerplate.configure({ … })`, since the library has no access to the host's
+   * store. getBoilerplateTitle resolves live, so a re-linked title can't go stale.
    */
   addOptions() {
     return {
@@ -109,9 +103,8 @@ export default Node.create({
   },
 
   /*
-   * Rejects transactions that would change content inside a boilerplate node. Not done via
-   * `contenteditable="false"`, which breaks native cursor placement right after the node.
-   * Commands that legitimately restructure a boilerplate bypass this via
+   * Rejects transactions that edit inside a boilerplate. Not `contenteditable="false"`, which
+   * breaks cursor placement after the node; legitimate restructuring bypasses this via
    * `tr.setMeta('boilerplateEdit', true)`.
    */
   addProseMirrorPlugins () {
@@ -150,10 +143,7 @@ export default Node.create({
         },
 
         props: {
-          /*
-           * Rejects the DOM edit itself, so a blocked character can't stay visible in the DOM
-           * while it's absent from the document.
-           */
+          // Rejects the DOM edit itself, so a blocked character can't linger visually.
           handleTextInput (view, from) {
             return isInsideBoilerplate(view.state.doc.resolve(from), nodeName)
           },
@@ -163,8 +153,8 @@ export default Node.create({
   },
 
   /*
-   * Uses `insertContent` rather than raw `tr.insert()` so a cursor sitting in an empty
-   * paragraph gets split correctly instead of nesting the trailing paragraph inside the node.
+   * Uses `insertContent`, not raw `tr.insert()`, so a cursor in an empty paragraph splits
+   * correctly instead of nesting the trailing paragraph inside the node.
    */
   addCommands () {
     return {
@@ -192,8 +182,8 @@ export default Node.create({
           })
           .insertContent({ type: this.name, attrs: { boilerplateId }, content })
           /*
-           * `insertContent` ends with `Selection.near`, landing inside the boilerplate where
-           * typing is blocked — move the caret to the gap right behind the node instead.
+           * `insertContent` lands inside the boilerplate (typing blocked) — move the caret to
+           * the gap right behind the node instead.
            */
           .command(({ dispatch, tr }) => {
             if (dispatch) {
@@ -218,8 +208,8 @@ export default Node.create({
       },
 
       /*
-       * Dissolves the link: the boilerplate node at `pos` is replaced by its own content, so
-       * the text stays as plain paragraphs. `editor.commands.undo()` is the way back.
+       * Dissolves the link by replacing the node at `pos` with its own content.
+       * `editor.commands.undo()` reverses it.
        */
       unlinkBoilerplate: pos => ({ tr, dispatch }) => {
         const node = tr.doc.nodeAt(pos)
@@ -239,8 +229,8 @@ export default Node.create({
   },
 
   /*
-   * Recognises a boilerplate when HTML is loaded. Mirror image of `renderHTML` below — if the
-   * two disagree, the node survives editing but silently disappears on the next reload.
+   * Recognises a boilerplate on load; must mirror `renderHTML` below or the node silently
+   * disappears on reload.
    */
   parseHTML () {
     return [
@@ -248,18 +238,12 @@ export default Node.create({
     ]
   },
 
-  /*
-   * Serialises the node back to HTML. `mergeAttributes(HTMLAttributes)` passes through what
-   * `addAttributes` produced. The trailing `0` is ProseMirror's "hole" for the node's content.
-   */
+  // Serialises back to HTML; the trailing `0` is ProseMirror's "hole" for the node's content.
   renderHTML ({ HTMLAttributes }) {
     return ['dp-boilerplate', mergeAttributes(HTMLAttributes), 0]
   },
 
-  /*
-   * Renders the node as a Vue component for the header UI. Display only — renderHTML above is
-   * what ends up in the database.
-   */
+  // Renders as a Vue component for the header UI; renderHTML above is what's actually saved.
   addNodeView() {
     return VueNodeViewRenderer(DpLinkedBoilerplate)
   },

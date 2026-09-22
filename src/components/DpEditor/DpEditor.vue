@@ -698,9 +698,8 @@ export default {
       },
       toolbar: Object.assign({
         /**
-         * If true, text inserted from a boilerplate is wrapped in its own node that carries the
-         * boilerplate id as a `boilerplate-id` attribute. Enable it where the origin of inserted
-         * text has to remain identifiable after saving and reloading.
+         * If true, inserted boilerplate text is wrapped in its own node carrying the
+         * boilerplate id, so the origin stays identifiable after saving and reloading.
          */
         boilerplate: false,
         /**
@@ -872,9 +871,8 @@ export default {
 
       if (this.toolbar.boilerplate) {
         /*
-         * Gapcursor supplies a cursor position directly before/after a boilerplate block, where
-         * no text cursor can otherwise sit. Registered here, not globally, to keep other
-         * editors' behaviour unchanged.
+         * Gapcursor gives a cursor position before/after a boilerplate block. Registered here,
+         * not globally, to leave other editors unchanged.
          */
         extensions.push(
           Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle, onUnlinkRequest: this.onUnlinkRequest }),
@@ -996,9 +994,8 @@ export default {
     },
 
     /**
-     * Puts the caret back into the editor, at whatever position the document currently holds.
-     * Also exposed to the `modal` slot: a modal built on <dialog> hands focus back to its
-     * trigger when it closes, so hosts need a way to reclaim it afterwards.
+     * Puts the caret back into the editor. Also exposed to the `modal` slot, since a
+     * <dialog>-based modal hands focus back to its trigger when it closes.
      */
     focusEditor () {
       if (this.editor) {
@@ -1046,11 +1043,8 @@ export default {
     },
 
     /**
-     * Inserts boilerplate text as a linked node. Exposed to the `modal` slot so hosts can
-     * reach it from their boilerplate picker.
-     *
-     * Focus and insert run as two separate commands: `insertBoilerplate` already dispatches
-     * its own transaction, so chaining it here would nest one dispatch inside another.
+     * Inserts boilerplate text as a linked node, exposed to the `modal` slot. Focus and insert
+     * run separately, since `insertBoilerplate` already dispatches its own transaction.
      *
      * @param {String} boilerplateId
      * @param {String} html
@@ -1063,9 +1057,8 @@ export default {
     },
 
     /**
-     * Dissolves the link at `pos`, turning the boilerplate node back into plain paragraphs.
-     * Called via a `ref`, not the `modal` slot: the triggering click comes from the editor
-     * extension's `onUnlinkRequest` option, outside the slot's render scope.
+     * Dissolves the link at `pos` into plain paragraphs. Called via a `ref`, not the `modal`
+     * slot, since the triggering click originates outside the slot's render scope.
      *
      * @param {Number} pos
      */
@@ -1073,10 +1066,7 @@ export default {
       this.editor.chain().focus().unlinkBoilerplate(pos).run()
     },
 
-    /*
-     * Reverses the last change. Exposed via `ref`, like unlinkBoilerplate, so an undo toast
-     * triggered from outside the editor can call it.
-     */
+    // Reverses the last change. Exposed via `ref`, like unlinkBoilerplate, for an external undo toast.
     undo () {
       this.editor.chain().focus().undo().run()
     },

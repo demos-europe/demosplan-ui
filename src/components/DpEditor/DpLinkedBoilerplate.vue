@@ -1,8 +1,6 @@
 <!--
-  Node view for the `boilerplate` node (see libs/editorBoilerplates.js).
-
-  Display only: nothing rendered here is saved. What ends up in the database is produced by
-  the node's renderHTML, so the header, icons and tooltip never reach exports or the backend.
+  Node view for the `boilerplate` node (see libs/editorBoilerplates.js). Display only —
+  renderHTML there is what's actually saved.
 -->
 <template>
   <node-view-wrapper
@@ -11,10 +9,8 @@
     class="mb-4 border-l-2 border-interactive hover:bg-surface-light"
   >
     <!--
-      Grid rather than flex, and the middle track needs the explicit `minmax(0, …)`: the title
-      does not wrap (`truncate`), so without a zero minimum its intrinsic width propagates up
-      and widens the whole row inside whatever container this is placed in. `min-w-0` on the
-      title itself is needed as well — the track rule doesn't cover the item.
+      Grid, not flex: the middle track needs `minmax(0, …)` and the title needs `min-w-0`, or
+      the truncated title's intrinsic width still propagates up and widens the row.
     -->
     <div class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-1 px-2 pt-2 text-interactive">
       <dp-icon
@@ -33,10 +29,8 @@
       />
     </div>
     <!--
-      Where ProseMirror renders the node's own content. Deliberately without
-      `contenteditable="false"`: that would make the browser treat the whole subtree as a
-      non-editable island and break cursor placement at the node's edges. The content is kept
-      read-only by the extension's ProseMirror plugin instead.
+      Where ProseMirror renders the node's content. No `contenteditable="false"` — that breaks
+      cursor placement at the edges; the extension's plugin keeps it read-only instead.
     -->
     <node-view-content class="p-2" />
   </node-view-wrapper>
@@ -47,19 +41,12 @@ import { de, DpButton, DpIcon } from '~/components'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import { Tooltip as vTooltip } from '~/directives'
 
-/*
- * The fixed set of props Tiptap hands to every node view: node, editor, getPos,
- * updateAttributes, extension and a few more. Passed through as-is — without declaring them
- * they'd be treated as fallthrough attributes and end up in the DOM.
- */
+// Tiptap's fixed node view props. Declared as-is, or they'd become fallthrough attrs in the DOM.
 const props = defineProps(nodeViewProps)
 
 /**
- * Asks the consuming app to unlink this boilerplate. The node view cannot do it itself: it
- * needs a confirmation dialog and the boilerplate's title, both of which live in the app.
- *
- * `editorId` is passed along because several editors can be open at once (one per segment),
- * so the handler has to be able to tell which one this came from.
+ * Asks the host app to unlink this boilerplate — it owns the confirmation dialog and title.
+ * `editorId` identifies which editor this came from, since several can be open at once.
  */
 const handleEditClick = () => {
   props.extension.options.onUnlinkRequest({

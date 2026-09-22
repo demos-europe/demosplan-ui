@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1589](https://github.com/demos-europe/demosplan-ui/pull/1589)) BREAKING: DpDatepicker, DpTimePicker, DpDatetimePicker: Remove support for the Vue 2 `value`/`input` v-model pattern in favor of `modelValue`/`update:modelValue`
+
 ## v0.31.0 - 2026-09-15
 
 ### Added

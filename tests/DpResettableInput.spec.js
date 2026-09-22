@@ -12,7 +12,7 @@ describe('DpResettableInput', () => {
     })
   })
 
-  const testForwardsEventWithValue = async (eventName, value) => {
+  const expectForwardsEventWithValue = async (eventName, value) => {
     wrapper = shallowMount(DpResettableInput, {
       props: {
         id: 'testInput',
@@ -33,7 +33,7 @@ describe('DpResettableInput', () => {
 
   describe('Event handling', () => {
     it('emits blur event when input loses focus', async () => {
-      await testForwardsEventWithValue('blur', 'test value')
+      await expectForwardsEventWithValue('blur', 'test value')
     })
 
     it('emits input event when user types', async () => {
@@ -46,7 +46,7 @@ describe('DpResettableInput', () => {
     })
 
     it('emits enter event when user presses enter', async () => {
-      await testForwardsEventWithValue('enter', 'enter value')
+      await expectForwardsEventWithValue('enter', 'enter value')
     })
 
     it('emits focus event when input is focused', async () => {

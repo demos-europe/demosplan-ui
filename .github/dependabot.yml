@@ -31,6 +31,10 @@ updates:
       tiptap:
         patterns:
           - "@tiptap*"
+      vitest:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
       vue:
         patterns:
           - "vue"

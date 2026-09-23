@@ -67,6 +67,7 @@ export type PhosphorIconName =
   | 'clock'
   | 'copy'
   | 'dots-three'
+  | 'export'
   | 'faders'
   | 'file'
   | 'file-xls'

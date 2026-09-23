@@ -62,28 +62,15 @@ describe('DpButton', () => {
       })
     })
 
-    it('renders all variants correctly', () => {
-      const variants = ['solid', 'outline', 'subtle']
+    it.each([
+      ['solid', ['bg-interactive', 'border-interactive']],
+      ['outline', ['bg-surface', 'border-interactive']],
+      ['subtle', ['bg-surface', 'border-on-dark']],
+    ])('renders the %s variant with its classes', (variant, expectedClasses) => {
+      wrapper = createWrapper({ variant })
+      const classes = wrapper.classes().join(' ')
 
-      variants.forEach(variant => {
-        wrapper = createWrapper({ variant })
-        const classes = wrapper.classes().join(' ')
-
-        if (variant === 'solid') {
-          expect(classes).toContain('bg-interactive')
-          expect(classes).toContain('border-interactive')
-        }
-
-        if (variant === 'outline') {
-          expect(classes).toContain('bg-surface')
-          expect(classes).toContain('border-interactive')
-        }
-
-        if (variant === 'subtle') {
-          expect(classes).toContain('bg-surface')
-          expect(classes).toContain('border-on-dark')
-        }
-      })
+      expectedClasses.forEach(className => expect(classes).toContain(className))
     })
 
     it('renders as link when href is provided', () => {

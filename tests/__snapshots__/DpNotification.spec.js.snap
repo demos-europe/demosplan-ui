@@ -13,6 +13,7 @@ exports[`DpNotification > always renders with closemark 1`] = `
     </svg>
     <div class="c-notify__text break-words">
       <!--v-if-->
+      <!--v-if-->
     </div>
   </div>
 </div>"
@@ -30,6 +31,7 @@ exports[`DpNotification > always renders with closemark 2`] = `
       </g>
     </svg>
     <div class="c-notify__text break-words">
+      <!--v-if-->
       <!--v-if-->
     </div>
   </div>

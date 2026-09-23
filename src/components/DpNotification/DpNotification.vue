@@ -37,6 +37,15 @@
         >
           {{ message.linkText || message.linkUrl }}
         </a>
+        <button
+          v-if="message.actionText"
+          :class="prefixClass('c-notify__link mt-1')"
+          data-cy="messageAction"
+          type="button"
+          @click="handleAction"
+        >
+          {{ message.actionText }}
+        </button>
       </div>
     </div>
   </div>
@@ -72,6 +81,7 @@ export default {
   },
 
   emits: [
+    'dp-notify-action',
     'dp-notify-remove',
   ],
 
@@ -107,6 +117,10 @@ export default {
   },
 
   methods: {
+    handleAction () {
+      this.$emit('dp-notify-action', this.message)
+    },
+
     hide () {
       this.$emit('dp-notify-remove', this.message)
     },

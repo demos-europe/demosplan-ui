@@ -1,4 +1,5 @@
 import Anonymize from './editorAnonymize'
+import Boilerplate from './editorBoilerplates'
 import buildSuggestion from './editorBuildSuggestion'
 import CustomDelete from './editorCustomDelete'
 import CustomImage from './editorCustomImage'
@@ -13,6 +14,7 @@ import UnAnonymize from './editorUnAnonymize'
 
 export {
   Anonymize,
+  Boilerplate,
   buildSuggestion,
   CustomDelete,
   CustomImage,

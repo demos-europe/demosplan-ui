@@ -3,7 +3,7 @@ import DpDatepicker from './'
 
 interface IDpDatepicker {
     id: string
-    value?: string
+    modelValue?: string
     name?: string
     minDate?: string
     maxDate?: string
@@ -14,7 +14,7 @@ interface IDpDatepicker {
     dataDpValidateErrorFieldname?: string
     calendarsAfter?: number
     calendarsBefore?: number
-    input?: (value: string) => void
+    'onUpdate:modelValue'?: (value: string) => void
 }
 
 const meta: Meta<typeof DpDatepicker> = {
@@ -25,7 +25,7 @@ const meta: Meta<typeof DpDatepicker> = {
             control: 'text',
             description: 'ID for the datepicker component'
         },
-        value: {
+        modelValue: {
             control: 'text',
             description: 'Initial date value in ISO format (YYYY-MM-DD)'
         },
@@ -49,8 +49,8 @@ const meta: Meta<typeof DpDatepicker> = {
             control: 'boolean',
             description: 'Whether the field is disabled'
         },
-        input: {
-            action: 'input',
+        'onUpdate:modelValue': {
+            action: 'update:modelValue',
             description: 'Event fired when date value changes'
         }
     }
@@ -69,7 +69,7 @@ export const Default: Story = {
 export const WithValue: Story = {
     args: {
         id: 'with-value-datepicker',
-        value: '2023-05-15'
+        modelValue: '2023-05-15'
     }
 }
 
@@ -97,7 +97,7 @@ export const Required: Story = {
                 <label for="${args.id}" class="block mb-1">Date (required)</label>
                 <dp-datepicker
                     v-bind="args"
-                    @input="args.input"
+                    @update:model-value="args['onUpdate:modelValue']"
                 />
             </div>
         `
@@ -108,6 +108,6 @@ export const Disabled: Story = {
     args: {
         id: 'disabled-datepicker',
         disabled: true,
-        value: '2023-05-15'
+        modelValue: '2023-05-15'
     }
 }

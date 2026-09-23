@@ -74,9 +74,9 @@
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^10.0.0",
-    "@storybook/addon-docs": "10.4.0",
-    "@storybook/addon-links": "10.4.0",
-    "@storybook/vue3-vite": "10.4.0",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/addon-links": "10.6.0",
+    "@storybook/vue3-vite": "10.6.0",
     "@stylistic/eslint-plugin": "^5.0.0",
     "@tailwindcss/postcss": "^4.1.6",
     "@types/eslint": "^9",
@@ -111,14 +111,15 @@
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "storybook": "10.4.0",
+    "storybook": "10.6.0",
     "style-dictionary": "^3.9.2",
     "tailwindcss": "^4.1.6",
-    "typescript": "~5.9.2",
+    "typescript": "~6.0.3",
     "vite": "^7.3.3",
     "vitest": "^4.1.0",
     "vue": "3.5.33",
-    "vue-eslint-parser": "^10.1.1"
+    "vue-eslint-parser": "^10.1.1",
+    "vue-tsc": "^3.3.11"
   },
   "engines": {
     "node": ">= 20.19.0"
@@ -134,6 +135,7 @@
     "test": "vitest run",
     "test:watch": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "typecheck": "vue-tsc --noEmit",
     "watch": "vite build --watch",
     "lint": "eslint"
   },

@@ -54,6 +54,7 @@ import DpButton from '~/components/DpButton'
 import DpButtonRow from '~/components/DpButtonRow'
 import DpIcon from '~/components/DpIcon'
 import DpModal from '~/components/DpModal'
+import type { IconName } from '../../../types'
 import { PropType } from 'vue'
 
 type ButtonVariant = 'solid' | 'outline' | 'subtle'
@@ -103,9 +104,9 @@ export default {
      * Optional icon rendered before the header text.
      */
     icon: {
-      type: String,
+      type: String as PropType<IconName>,
       required: false,
-      default: '',
+      default: undefined,
     },
 
     message: {

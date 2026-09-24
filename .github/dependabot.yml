@@ -43,7 +43,6 @@ updates:
           - "vue"
           - "@vue/compiler-sfc"
           - "@vue/compat"
-          - "@vue/server-renderer"
       vueuse:
         patterns:
           - "@vueuse*"

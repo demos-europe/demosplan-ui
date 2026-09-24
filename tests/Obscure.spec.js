@@ -1,5 +1,5 @@
 import DpObscure from '~/components/DpObscure'
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
+import shallowMountWithGlobalMocks from './helpers/shallowMountWithGlobalMocks'
 
 window.Translator = {
   trans: vi.fn(key => key),

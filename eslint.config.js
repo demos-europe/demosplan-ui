@@ -27,7 +27,6 @@ async function getConfig () {
         '**/.storybook/**',
         '*.config.js',
         'vite.config.mjs',
-        'jest/**',
         'scripts/**'
       ]
     },

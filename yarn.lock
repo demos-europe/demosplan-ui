@@ -1594,7 +1594,7 @@ __metadata:
     eslint-plugin-vuejs-accessibility: "npm:^2.4.1"
     fscreen: "npm:^1.2.0"
     glob: "npm:^13.0.6"
-    globals: "npm:^16.0.0"
+    globals: "npm:^17.11.0"
     ismobilejs: "npm:^1.1.1"
     js-beautify: "npm:^1.14.7"
     jsdom: "npm:^29.1.0"
@@ -6386,10 +6386,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^16.0.0":
-  version: 16.3.0
-  resolution: "globals@npm:16.3.0"
-  checksum: 10c0/c62dc20357d1c0bf2be4545d6c4141265d1a229bf1c3294955efb5b5ef611145391895e3f2729f8603809e81b30b516c33e6c2597573844449978606aad6eb38
+"globals@npm:^17.11.0":
+  version: 17.11.0
+  resolution: "globals@npm:17.11.0"
+  checksum: 10c0/5e1be3d816e04d4d0d01b1cdd40e46b5fb6b5e9f15aece9a5919b060e0fb1b3f1b9e7327dce97ef19e05513a6d65872e0834999ddea251557556dddd0f5fde30
   languageName: node
   linkType: hard
 

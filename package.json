@@ -101,7 +101,7 @@
     "eslint-plugin-vue": "^10.8.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "glob": "^13.0.6",
-    "globals": "^16.0.0",
+    "globals": "^17.11.0",
     "js-beautify": "^1.14.7",
     "jsdom": "^29.1.0",
     "node-gyp": "^11.2.0",

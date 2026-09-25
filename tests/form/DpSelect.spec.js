@@ -2,7 +2,7 @@ import { de } from '~/components/shared/translations'
 import DpSelect from '~/components/DpSelect'
 import { runBooleanAttrTests } from './shared/Attributes'
 import { runLabelTests } from './shared/Label'
-import shallowMountWithGlobalMocks from '../../jest/shallowMountWithGlobalMocks'
+import shallowMountWithGlobalMocks from '../helpers/shallowMountWithGlobalMocks'
 
 
 window.Translator = {

@@ -82,9 +82,11 @@ export default {
 
       /*
        * Deliberately not hideSlideBar(): that emits `close`/`update:open`, and reaching this
-       * point means the state it announces has already been applied by whoever set the prop
+       * point means the state it announces has already been applied by whoever set the prop.
+       * suppressNextHideEmit tells the SideNav onHide callback to skip re-announcing it
        */
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
+        this.suppressNextHideEmit = true
         this.sideNav.hideSideNav()
       }
     },
@@ -97,6 +99,18 @@ export default {
       }
     },
 
+    // Fires for every close path SideNav knows about (button, escape, backdrop click, swipe).
+    handleSideNavHide () {
+      if (this.suppressNextHideEmit) {
+        this.suppressNextHideEmit = false
+
+        return
+      }
+
+      this.$emit('update:open', false)
+      this.$emit('close')
+    },
+
     hideSlideBar () {
       if (!this.isVisible()) {
         return
@@ -104,8 +118,6 @@ export default {
 
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
-        this.$emit('update:open', false)
-        this.$emit('close')
       }
     },
 
@@ -127,7 +139,8 @@ export default {
 
   mounted () {
     // Non-reactive: SideNav wraps DOM/CSS state, not something Vue needs to track.
-    this.sideNav = new SideNav()
+    this.suppressNextHideEmit = false
+    this.sideNav = new SideNav(this.handleSideNavHide)
     document.addEventListener('keydown', this.handleKeydown)
 
     /*

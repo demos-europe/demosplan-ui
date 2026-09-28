@@ -20,11 +20,14 @@
 import Detabinator from './Detabinator'
 
 class SideNav {
-  constructor () {
+  constructor (onHide) {
     //  Only init when sidenav is present
     if (!document.querySelector('[data-slidebar]')) {
       return
     }
+
+    // Notified on every visible-to-hidden transition, regardless of which close path triggered it
+    this.onHide = onHide
 
     this.showButtonElements = Array.from(document.querySelectorAll('[data-slidebar-show]'))
     this.hideButtonElements = Array.from(document.querySelectorAll('[data-slidebar-hide]'))
@@ -171,6 +174,8 @@ class SideNav {
   }
 
   hideSideNav () {
+    const wasVisible = this.sideNavEl.classList.contains(this.sideNavClassVisible)
+
     this.sideNavEl.classList.add(this.sideNavClassAnimatable)
     this.sideNavEl.classList.remove(this.sideNavClassVisible)
     this.detabinator.inert = true
@@ -179,6 +184,11 @@ class SideNav {
     this.transitionEndTime = 0.13
 
     this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd)
+
+    // Guards against double-firing when a close button is wired to both this class and a caller's own click handler
+    if (wasVisible && typeof this.onHide === 'function') {
+      this.onHide()
+    }
   }
 
   getTranslateX (element) {

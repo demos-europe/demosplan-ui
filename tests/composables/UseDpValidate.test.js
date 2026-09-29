@@ -14,6 +14,15 @@ function createForm (innerHTML) {
   return form
 }
 
+async function setup (innerHTML) {
+  const form = createForm(innerHTML)
+  const formRef = ref(form)
+  const result = useDpValidate(formRef)
+  await flushPromises()
+
+  return { form, ...result }
+}
+
 /*
  * jsdom does not implement layout, so `offsetParent` is always null. `scrollToVisibleElement`
  * relies on it to find the closest rendered ancestor - stub it to the DOM parent so elements
@@ -53,10 +62,7 @@ describe('useDpValidate', () => {
   })
 
   test('validate() returns true when required field is filled', async () => {
-    const form = createForm('<input name="email" required value="foo@bar.de">')
-    const formRef = ref(form)
-    const { isValid, validate } = useDpValidate(formRef)
-    await flushPromises()
+    const { form, isValid, validate } = await setup('<input name="email" required value="foo@bar.de">')
 
     const result = validate()
 
@@ -67,10 +73,7 @@ describe('useDpValidate', () => {
   })
 
   test('validate() returns false and notifies with generic message for an invalid field without fieldname', async () => {
-    const form = createForm('<input name="email" required value="">')
-    const formRef = ref(form)
-    const { isValid, validate } = useDpValidate(formRef)
-    await flushPromises()
+    const { form, isValid, validate } = await setup('<input name="email" required value="">')
 
     const result = validate()
 
@@ -82,14 +85,11 @@ describe('useDpValidate', () => {
   })
 
   test('validate() notifies with fieldname and topic for an invalid field', async () => {
-    const form = createForm(`
+    const { validate } = await setup(`
       <div data-dp-validate-topic="Kontakt">
         <input name="email" required value="" data-dp-validate-error-fieldname="E-Mail">
       </div>
     `)
-    const formRef = ref(form)
-    const { validate } = useDpValidate(formRef)
-    await flushPromises()
 
     validate()
 
@@ -98,10 +98,7 @@ describe('useDpValidate', () => {
   })
 
   test('validate() notifies with the custom error message when data-dp-validate-error is set', async () => {
-    const form = createForm('<input name="email" required value="" data-dp-validate-error="Custom error message">')
-    const formRef = ref(form)
-    const { validate } = useDpValidate(formRef)
-    await flushPromises()
+    const { validate } = await setup('<input name="email" required value="" data-dp-validate-error="Custom error message">')
 
     validate()
 
@@ -110,15 +107,12 @@ describe('useDpValidate', () => {
   })
 
   test('validate() deduplicates identical fieldname/topic combinations', async () => {
-    const form = createForm(`
+    const { validate } = await setup(`
       <div data-dp-validate-topic="Kontakt">
         <input name="email" required value="" data-dp-validate-error-fieldname="E-Mail">
         <input name="emailConfirm" required value="" data-dp-validate-error-fieldname="E-Mail">
       </div>
     `)
-    const formRef = ref(form)
-    const { validate } = useDpValidate(formRef)
-    await flushPromises()
 
     validate()
 
@@ -127,10 +121,7 @@ describe('useDpValidate', () => {
   })
 
   test('assigns blur/focus handlers to inputs once the form is set', async () => {
-    const form = createForm('<input name="email" required value="">')
-    const formRef = ref(form)
-    const { validate } = useDpValidate(formRef)
-    await flushPromises()
+    const { form, validate } = await setup('<input name="email" required value="">')
 
     validate()
     const input = form.querySelector('input')

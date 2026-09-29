@@ -4,6 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpApi: forward `options.signal` to `fetch` so requests can be aborted ([@mussbach](https://github.com/mussbach))
+
+### Fixed
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpEditor: discard LanguageTool matches when the text changed during the check,
+  and abort checks that are obsolete or whose editor was destroyed ([@mussbach](https://github.com/mussbach))
+
 ## v0.31.0 - 2026-09-15
 
 ### Added

@@ -48,7 +48,7 @@ export default {
       type: String,
       required: false,
       default: 'right',
-      validator: (prop) => ['right', 'left'].includes(prop),
+      validator: (prop: string) => ['right', 'left'].includes(prop),
     },
 
     /**

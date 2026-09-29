@@ -16,9 +16,6 @@ updates:
       semver-minor-days: 7
       semver-patch-days: 3
     groups:
-      babel:
-        patterns:
-          - "@babel*"
       storybook:
         patterns:
           - "@storybook*"
@@ -35,12 +32,14 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+        # @vitest/eslint-plugin is versioned independently of the vitest monorepo
+        exclude-patterns:
+          - "@vitest/eslint-plugin"
       vue:
         patterns:
           - "vue"
           - "@vue/compiler-sfc"
           - "@vue/compat"
-          - "@vue/server-renderer"
       vueuse:
         patterns:
           - "@vueuse*"

@@ -26,10 +26,7 @@ async function getConfig () {
         '**/dist/**',
         '**/.storybook/**',
         '*.config.js',
-        'babel.config.js',
-        'jest.config.js',
         'vite.config.mjs',
-        'jest/**',
         'scripts/**'
       ]
     },

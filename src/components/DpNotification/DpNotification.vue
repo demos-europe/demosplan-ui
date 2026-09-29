@@ -20,30 +20,41 @@
       />
     </button>
 
-    <div :class="prefixClass('flex items-start gap-1')">
-      <dp-icon
-        :class="prefixClass('c-notify__icon shrink-0 mt-[2px]')"
-        :icon="messageIcon"
-        aria-hidden="true"
-        weight="fill"
-      />
-      <div :class="prefixClass('c-notify__text break-words')">
-        {{ message.text }}
-        <a
-          v-if="message.linkUrl"
-          :class="prefixClass('c-notify__link mt-1')"
-          :href="message.linkUrl"
-          data-cy="messageLink"
-        >
-          {{ message.linkText || message.linkUrl }}
-        </a>
+    <div :class="prefixClass('flex flex-col gap-1')">
+      <div :class="prefixClass('flex items-start gap-1')">
+        <dp-icon
+          :class="prefixClass('c-notify__icon shrink-0 mt-[2px]')"
+          :icon="messageIcon"
+          aria-hidden="true"
+          weight="fill"
+        />
+        <div :class="prefixClass('c-notify__text break-words')">
+          {{ message.text }}
+          <a
+            v-if="message.linkUrl"
+            :class="prefixClass('c-notify__link mt-1')"
+            :href="message.linkUrl"
+            data-cy="messageLink"
+          >
+            {{ message.linkText || message.linkUrl }}
+          </a>
+        </div>
       </div>
+      <dp-button
+        v-if="message.actionText"
+        :class="prefixClass('c-notify__link self-end')"
+        data-cy="messageAction"
+        :text="message.actionText"
+        variant="outline"
+        @click="handleAction"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { de } from '~/components/shared/translations'
+import DpButton from '~/components/DpButton/DpButton.vue'
 import DpIcon from '~/components/DpIcon/DpIcon'
 import { prefixClassMixin } from '~/mixins'
 
@@ -51,6 +62,7 @@ export default {
   name: 'DpNotification',
 
   components: {
+    DpButton,
     DpIcon,
   },
 
@@ -72,6 +84,7 @@ export default {
   },
 
   emits: [
+    'dp-notify-action',
     'dp-notify-remove',
   ],
 
@@ -107,6 +120,10 @@ export default {
   },
 
   methods: {
+    handleAction () {
+      this.$emit('dp-notify-action', this.message)
+    },
+
     hide () {
       this.$emit('dp-notify-remove', this.message)
     },

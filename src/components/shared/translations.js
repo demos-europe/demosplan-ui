@@ -60,6 +60,13 @@ const de = {
       insert: 'Link einfügen',
       hint: 'URLs sollten mit \'https://\' beginnen.',
     },
+    linkedBoilerplate: {
+      editLabel: 'Textbaustein bearbeiten',
+      hint: 'Um den Textbaustein zu bearbeiten, klicken Sie auf das Stift-Icon. Die Verknüpfung zum Original wird dabei gelöst.',
+      label ({ title }) {
+        return title ? `Textbaustein: ${title}` : 'Textbaustein'
+      },
+    },
     mark: {
       delete: 'Als entfernt markieren',
       element: 'Markieren',

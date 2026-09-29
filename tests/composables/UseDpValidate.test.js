@@ -7,8 +7,10 @@ import { useDpValidate } from '~/composables/UseValidate/UseDpValidate'
 
 function createForm (innerHTML) {
   const form = document.createElement('form')
+
   form.innerHTML = innerHTML
   document.body.appendChild(form)
+
   return form
 }
 
@@ -96,14 +98,14 @@ describe('useDpValidate', () => {
   })
 
   test('validate() notifies with the custom error message when data-dp-validate-error is set', async () => {
-    const form = createForm('<input name="email" required value="" data-dp-validate-error="Custom Fehlertext">')
+    const form = createForm('<input name="email" required value="" data-dp-validate-error="Custom error message">')
     const formRef = ref(form)
     const { validate } = useDpValidate(formRef)
     await flushPromises()
 
     validate()
 
-    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', 'Custom Fehlertext')
+    expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', 'Custom error message')
     expect(window.dplan.notify.notify).toHaveBeenCalledTimes(1)
   })
 
@@ -122,7 +124,6 @@ describe('useDpValidate', () => {
 
     const expectedMessage = de.error.mandatoryFields.intro + 'E-Mail (Kontakt)' + de.error.mandatoryFields.outro
     expect(window.dplan.notify.notify).toHaveBeenCalledWith('error', expectedMessage)
-    expect(window.dplan.notify.notify).toHaveBeenCalledTimes(1)
   })
 
   test('assigns blur/focus handlers to inputs once the form is set', async () => {

@@ -5,6 +5,7 @@ const globals = require('globals')
 const eslintJs = require('@eslint/js')
 const pluginVue = require('eslint-plugin-vue')
 const pluginVueA11y = require('eslint-plugin-vuejs-accessibility')
+const pluginVitest = require('@vitest/eslint-plugin')
 // Const stylistic = import('@stylistic/eslint-plugin')
 const tsEslint = require('typescript-eslint')
 const vueEslintParser = require('vue-eslint-parser')
@@ -25,10 +26,7 @@ async function getConfig () {
         '**/dist/**',
         '**/.storybook/**',
         '*.config.js',
-        'babel.config.js',
-        'jest.config.js',
         'vite.config.mjs',
-        'jest/**',
         'scripts/**'
       ]
     },
@@ -111,12 +109,20 @@ async function getConfig () {
     },
     {
       files: ["**/*.spec.js", "**/*.test.js", "tests/**/*.js"],
+      plugins: {
+        vitest: pluginVitest
+      },
       languageOptions: {
         globals: {
           ...globals.browser,
           ...globals.node,
-          ...globals.vitest
+          ...pluginVitest.configs.env.languageOptions.globals
         }
+      },
+      rules: {
+        ...pluginVitest.configs.recommended.rules,
+        // Specs wrap assertions in expect* helpers (expectTextContent, expectButtonLength, ...)
+        'vitest/expect-expect': ['error', { assertFunctionNames: ['expect', 'expect*'] }]
       }
     }
   ]

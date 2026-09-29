@@ -34,7 +34,7 @@
       :autocomplete="autocomplete !== '' ? autocomplete : null"
       :size="(size && size > 0) ? size : null"
       :value="modelValue"
-      @blur="emit('blur', $event.target.value)"
+      @blur="emit('blur', ($event.target as HTMLInputElement).value)"
       @focus="emit('focus')"
       @input="onInput"
       @keydown="emit('keydown', $event)"

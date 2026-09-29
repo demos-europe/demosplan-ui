@@ -1,11 +1,11 @@
-import { vi } from 'vitest'
 import { shallowMount } from '@vue/test-utils'
+import { vi } from 'vitest'
 
 const globalMocks = {
   hasPermission: vi.fn(() => true),
   Translator: {
-    trans: vi.fn(key => key)
-  }
+    trans: vi.fn(key => key),
+  },
 }
 
 /**
@@ -22,8 +22,8 @@ const shallowMountWithGlobalMocks = (component, options) => {
     ...options,
     global: {
       mocks: globalMocks,
-    }
-  }
+    },
+  },
   )
 }
 

@@ -1,5 +1,5 @@
 import DpModal from '~/components/DpModal'
-import shallowMountWithGlobalMocks from '../jest/shallowMountWithGlobalMocks'
+import shallowMountWithGlobalMocks from './helpers/shallowMountWithGlobalMocks'
 
 describe('Modal', () => {
   beforeEach(() => {

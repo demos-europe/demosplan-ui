@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpToggle from './'
 
 interface IDpToggle {
-  value: boolean
+  modelValue: boolean
   disabled: boolean
-  input: (value: boolean) => void
+  'update:modelValue': (value: boolean) => void
 }
 
 const meta: Meta<typeof DpToggle> = {
   component: DpToggle,
   title: 'Components/Toggle',
   argTypes: {
-    value: {
+    modelValue: {
       control: 'boolean',
       description: 'Current state of the toggle (true = on, false = off)',
       table: {
@@ -27,7 +27,7 @@ const meta: Meta<typeof DpToggle> = {
         defaultValue: { summary: 'false' }
       }
     },
-    input: {
+    'onUpdate:modelValue': {
       description: 'Event emitted when the toggle state changes',
       table: { type: { summary: 'event' } }
     }
@@ -39,11 +39,11 @@ type Story = StoryObj<IDpToggle>
 
 export const Default: Story = {
   args: {
-    value: false,
+    modelValue: false,
     disabled: false
   },
   argTypes: {
-    input: { action: 'input' }
+    'update:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -56,11 +56,11 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    value: false,
+    modelValue: false,
     disabled: true
   },
   argTypes: {
-    input: { action: 'input' }
+    'update:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {

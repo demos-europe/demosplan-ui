@@ -1,6 +1,6 @@
 import { dpApi } from '~/lib/DpApi'
 
-export function checkTextWithLanguageTool (text = '') {
+export function checkTextWithLanguageTool (text = '', { signal } = {}) {
   const isEmpty = !text.trim()
 
   if (isEmpty) {
@@ -12,7 +12,7 @@ export function checkTextWithLanguageTool (text = '') {
     language: 'de-DE',
   }
 
-  return dpApi.post(Routing.generate('core_spellcheck_check'), {}, data)
+  return dpApi.post(Routing.generate('core_spellcheck_check'), {}, data, { signal })
     .then(response => {
 
       return response.data

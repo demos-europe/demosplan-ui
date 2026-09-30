@@ -4,9 +4,33 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpApi: forward `options.signal` to `fetch` so requests can be aborted ([@mussbach](https://github.com/mussbach))
+
+### Fixed
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpEditor: discard LanguageTool matches when the text changed during the check,
+  and abort checks that are obsolete or whose editor was destroyed ([@mussbach](https://github.com/mussbach))
+
+## v0.31.0 - 2026-09-15
+
+### Added
+- ([#1575](https://github.com/demos-europe/demosplan-ui/pull/1575)) Add mapping for `export` icon ([@rafelddemos](https://github.com/rafelddemos))
+
+### Changed
+- ([#1573](https://github.com/demos-europe/demosplan-ui/pull/1573)) DpPager: add a fallback to auto calculate the total number of pages ([@sakutademos](https://github.com/sakutademos))
+
 ### Fixed
 - ([#1565](https://github.com/demos-europe/demosplan-ui/pull/1565)) sortAlphabetically: fix dot-path sorting (e.g. `attributes.title`)
   and remove leading/trailing whitespace before sorting ([@hwiem](https://github.com/hwiem))
+- ([#1572](https://github.com/demos-europe/demosplan-ui/pull/1572)) DpCheckboxGroup: fix inline alignment ([@hwiem](https://github.com/hwiem))
+- ([#1576](https://github.com/demos-europe/demosplan-ui/pull/1576)) Dependencies: bump all `@tiptap/*` packages from
+  3.10.4 to 3.31.3 (fixes DoS and `mergeAttributes` prototype-pollution advisories) and align pinned `prosemirror-model`/
+  `-view`/`-state`/`-transform` versions with `@tiptap/pm` ([@hwiem](https://github.com/hwiem))
+
+
+### Added
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpEditor: Add `boilerplate` node to link boilerplates into recommendation text, with insert/unlink commands ([@riechedemos](https://github.com/riechedemos))
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpNotification: Add optional action button that emits `dp-notify-action`, for undo flows ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.30.0 - 2026-08-28
 

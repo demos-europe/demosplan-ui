@@ -191,7 +191,6 @@ export default {
       const valueToEmit = date === currentVal ? date : currentVal
 
       this.$emit('update:modelValue', valueToEmit)
-      this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.setDatepickerInputValidationErrorAndLabel()
     },
 

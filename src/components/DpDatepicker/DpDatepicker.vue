@@ -114,15 +114,19 @@ export default {
     /**
      * Expects ISO date
      */
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: '',
     },
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false,
+  },
+
   emits: [
-    'input',
+    'update:modelValue',
   ],
 
   data () {
@@ -140,11 +144,11 @@ export default {
   },
 
   watch: {
-    value: function () {
-      if (this.value !== null) {
-        const isNotSet = document.getElementById(this.id).getElementsByTagName('input')[0].value !== this.value
+    modelValue: function () {
+      if (this.modelValue !== null) {
+        const isNotSet = document.getElementById(this.id).getElementsByTagName('input')[0].value !== this.modelValue
         if (this.datepicker && isNotSet) {
-          this.datepicker.setDate(this.value, true)
+          this.datepicker.setDate(this.modelValue, true)
         }
       }
     },
@@ -186,7 +190,7 @@ export default {
       const date = this.datepicker.getDateAsString()
       const valueToEmit = date === currentVal ? date : currentVal
 
-      this.$emit('input', valueToEmit)
+      this.$emit('update:modelValue', valueToEmit)
       this.$root.$emit('dp-datepicker', { id: this.id, value: valueToEmit })
       this.setDatepickerInputValidationErrorAndLabel()
     },
@@ -233,8 +237,8 @@ export default {
       ...this.localConfig,
     }
     this.datepicker = Datepicker(config)
-    if (this.value !== '') {
-      this.datepicker.setDate(this.value)
+    if (this.modelValue !== '') {
+      this.datepicker.setDate(this.modelValue)
     }
     this.setDatepickerInputValidationErrorAndLabel()
     this.setupLabelClickHandler()

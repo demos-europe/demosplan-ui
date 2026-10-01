@@ -3,7 +3,7 @@ import DpDatetimePicker from './'
 
 interface IDpDatetimePicker {
     id: string
-    value: string
+    modelValue: string
     label?: string
     hint?: string
     dataCy?: string
@@ -13,7 +13,7 @@ interface IDpDatetimePicker {
     required?: boolean
     minDate?: string
     maxDate?: string
-    input?: (value: string) => void
+    'onUpdate:modelValue'?: (value: string) => void
 }
 
 const meta: Meta<typeof DpDatetimePicker> = {
@@ -24,7 +24,7 @@ const meta: Meta<typeof DpDatetimePicker> = {
             control: 'text',
             description: 'ID for the datetime picker component'
         },
-        value: {
+        modelValue: {
             control: 'text',
             description: 'ISO datetime value (e.g., 2023-07-13T07:20:00.000Z)'
         },
@@ -60,8 +60,8 @@ const meta: Meta<typeof DpDatetimePicker> = {
             control: 'text',
             description: 'Name attribute for the hidden input field'
         },
-        input: {
-            action: 'input',
+        'onUpdate:modelValue': {
+            action: 'update:modelValue',
             description: 'Event fired when datetime value changes'
         }
     }
@@ -74,21 +74,21 @@ type Story = StoryObj<IDpDatetimePicker>
 export const Default: Story = {
     args: {
         id: 'default-datetimepicker',
-        value: '2023-07-13T07:20:00.000Z'
+        modelValue: '2023-07-13T07:20:00.000Z'
     }
 }
 
 export const WithValue: Story = {
     args: {
         id: 'with-value-datetimepicker',
-        value: new Date().toISOString()
+        modelValue: new Date().toISOString()
     }
 }
 
 export const WithRange: Story = {
     args: {
         id: 'with-range-datetimepicker',
-        value: '2023-07-13T07:20:00.000Z',
+        modelValue: '2023-07-13T07:20:00.000Z',
         minDate: '01.01.2023',
         maxDate: '31.12.2023'
     }
@@ -97,7 +97,7 @@ export const WithRange: Story = {
 export const WithLabel: Story = {
     args: {
         id: 'with-label-datetimepicker',
-        value: '2023-07-13T07:20:00.000Z',
+        modelValue: '2023-07-13T07:20:00.000Z',
         label: 'Event date and time',
         hint: 'Please select when the event will start'
     }
@@ -106,7 +106,7 @@ export const WithLabel: Story = {
 export const Required: Story = {
     args: {
         id: 'required-datetimepicker',
-        value: '2023-07-13T07:20:00.000Z',
+        modelValue: '2023-07-13T07:20:00.000Z',
         label: 'Event date and time',
         required: true
     }
@@ -115,7 +115,7 @@ export const Required: Story = {
 export const Disabled: Story = {
     args: {
         id: 'disabled-datetimepicker',
-        value: '2023-07-13T07:20:00.000Z',
+        modelValue: '2023-07-13T07:20:00.000Z',
         label: 'Event date and time',
         disabled: true
     }

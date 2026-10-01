@@ -2,7 +2,7 @@
   <span
     class="toggle-wrapper"
     role="checkbox"
-    :aria-checked="value.toString()"
+    :aria-checked="modelValue.toString()"
     :aria-disabled="disabled ? true : null"
     :aria-label="toggleAriaLabel"
     tabindex="0"
@@ -31,6 +31,8 @@ import { de } from '~/components/shared/translations'
 export default {
   name: 'DpToggle',
 
+  compatConfig: { COMPONENT_V_MODEL: false },
+
   props: {
     ariaLabel: {
       required: false,
@@ -38,7 +40,7 @@ export default {
       default: '',
     },
 
-    value: {
+    modelValue: {
       type: Boolean,
       required: false,
       default: false,
@@ -52,22 +54,22 @@ export default {
   },
 
   emits: [
-    'input',
+    'update:modelValue',
   ],
 
   computed: {
     backgroundStyles () {
       return {
-        backgroundColor: this.value ? '#3490dc' : '#dae1e7',
+        backgroundColor: this.modelValue ? '#3490dc' : '#dae1e7',
       }
     },
 
     indicatorStyles () {
-      return { transform: this.value ? 'translateX(1rem)' : 'translateX(0)' }
+      return { transform: this.modelValue ? 'translateX(1rem)' : 'translateX(0)' }
     },
 
     toggleAriaLabel () {
-      const action = this.value ? de.aria.deactivate.element : de.aria.activate.element
+      const action = this.modelValue ? de.aria.deactivate.element : de.aria.activate.element
 
       if (!this.ariaLabel) {
         return action
@@ -80,7 +82,7 @@ export default {
   methods: {
     toggle () {
       if (this.disabled === false) {
-        this.$emit('input', !this.value)
+        this.$emit('update:modelValue', !this.modelValue)
       }
     },
   },

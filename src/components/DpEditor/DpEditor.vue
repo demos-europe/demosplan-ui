@@ -23,7 +23,9 @@
     <slot
       name="modal"
       :append-text="appendText"
+      :focus-editor="focusEditor"
       :handle-insert-text="handleInsertText"
+      :insert-boilerplate="insertBoilerplate"
     />
 
     <div
@@ -368,6 +370,7 @@ import {
   Bold,
   BulletList,
   Document,
+  Gapcursor,
   HardBreak,
   Heading,
   History,
@@ -386,6 +389,7 @@ import {
 } from './libs/tiptapExtensions'
 
 import {
+  Boilerplate,
   buildSuggestion,
   CustomDelete,
   CustomImage,
@@ -476,6 +480,15 @@ export default {
     },
 
     /**
+     * Passes the name of a linked boilerplate for usage in the boilerplate link node view. The function receives the boilerplateId as parameter and should return a string.
+     */
+    getBoilerplateTitle: {
+      type: Function,
+      required: false,
+      default: () => '',
+    },
+
+    /**
      * Global path for file uploader endpoint.
      */
     tusEndpoint: {
@@ -547,6 +560,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+
+    onUnlinkRequest: {
+      type: Function,
+      required: false,
+      default: () => {},
     },
 
     readonly: {
@@ -678,6 +697,11 @@ export default {
         ],
       },
       toolbar: Object.assign({
+        /**
+         * If true, inserted boilerplate text is wrapped in its own node carrying the
+         * boilerplate id, so the origin stays identifiable after saving and reloading.
+         */
+        boilerplate: false,
         /**
          * Enables a menu button to cut out the current text selection.
          * Set to false where content may only be altered, not removed.
@@ -845,6 +869,17 @@ export default {
         extensions.push(LanguageToolExtension)
       }
 
+      if (this.toolbar.boilerplate) {
+        /*
+         * Gapcursor gives a cursor position before/after a boilerplate block. Registered here,
+         * not globally, to leave other editors unchanged.
+         */
+        extensions.push(
+          Boilerplate.configure({ getBoilerplateTitle: this.getBoilerplateTitle, onUnlinkRequest: this.onUnlinkRequest }),
+          Gapcursor,
+        )
+      }
+
       if (this.toolbar.headings.length > 0) {
         extensions.push(Heading.configure({ levels: this.toolbar.headings }))
       }
@@ -958,6 +993,10 @@ export default {
       this[menu].isOpen = false
     },
 
+    /**
+     * Puts the caret back into the editor. Also exposed to the `modal` slot, since a
+     * <dialog>-based modal hands focus back to its trigger when it closes.
+     */
     focusEditor () {
       if (this.editor) {
         this.editor.commands.focus()
@@ -1001,6 +1040,35 @@ export default {
 
       this.editor.commands.insertContent(text)
       this.currentValue = this.editor.getHTML()
+    },
+
+    /**
+     * Inserts boilerplate text as a linked node, exposed to the `modal` slot. Focus and insert
+     * run separately, since `insertBoilerplate` already dispatches its own transaction.
+     *
+     * @param {String} boilerplateId
+     * @param {String} html
+     * @returns {Boolean} False if the insertion was refused (already linked, or nested).
+     */
+    insertBoilerplate (boilerplateId, html) {
+      this.editor.commands.focus()
+
+      return this.editor.commands.insertBoilerplate({ boilerplateId, html })
+    },
+
+    /**
+     * Dissolves the link at `pos` into plain paragraphs. Called via a `ref`, not the `modal`
+     * slot, since the triggering click originates outside the slot's render scope.
+     *
+     * @param {Number} pos
+     */
+    unlinkBoilerplate (pos) {
+      this.editor.chain().focus().unlinkBoilerplate(pos).run()
+    },
+
+    // Exposed via `ref`, like unlinkBoilerplate, for an external undo toast.
+    undo () {
+      this.editor.chain().focus().undo().run()
     },
 
     insertImage (url, alt) {

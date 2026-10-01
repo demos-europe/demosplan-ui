@@ -4,6 +4,46 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1589](https://github.com/demos-europe/demosplan-ui/pull/1589)) BREAKING: DpDatepicker, DpTimePicker, DpDatetimePicker: Remove support for the Vue 2 `value`/`input` v-model pattern in favor of `modelValue`/`update:modelValue` ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+- ([#1609](https://github.com/demos-europe/demosplan-ui/pull/1609)) Build: Externalize `vue-sliding-pagination` to fix `Calling require for "vue"` error when loading the library ([@hwiem](https://github.com/hwiem))
+
+
+## v0.32.0 - 2026-09-30
+
+### Added
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpApi: forward `options.signal` to `fetch` so requests can be aborted ([@mussbach](https://github.com/mussbach))
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpEditor: Add `boilerplate` node to link boilerplates into recommendation text, with insert/unlink commands ([@riechedemos](https://github.com/riechedemos))
+- ([#1566](https://github.com/demos-europe/demosplan-ui/pull/1566)) DpNotification: Add optional action button that emits `dp-notify-action`, for undo flows ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
+- Dependencies:
+  - Remove unused @vue/server-renderer
+  - Remove unused babel dependencies:
+    - @babel/core
+    - @babel/plugin-syntax-dynamic-import
+    - @babel/preset-env
+    - @babel/preset-react
+    - @babel/preset-typescript
+    - babel-core
+    - babel-helper-vue-jsx-merge-props
+    - babel-plugin-syntax-jsx
+    - babel-plugin-transform-vue-jsx
+  - Add @vitest/eslint-plugin
+  - Add vue-tsc
+  - Bump @storybook/addon-docs, @storybook/addon-links, @storybook/vue3-vite, storybook from 10.4.0 to 10.6.0
+  - Bump @vitejs/plugin-vue from 6.0.0 to 6.0.9
+  - Bump @vue/compat, @vue/compiler-sfc, vue from 3.5.33 to 3.5.43
+  - Bump globals from 16.0.0 to 17.11.0
+  - Bump typescript from 5.9.2 to 6.0.3
+  - Bump vite from 7.3.3 to 8.2.2
+
+### Fixed
+- ([#1578](https://github.com/demos-europe/demosplan-ui/pull/1578)) DpEditor: discard LanguageTool matches when the text changed during the check,
+  and abort checks that are obsolete or whose editor was destroyed ([@mussbach](https://github.com/mussbach))
+
 ## v0.31.0 - 2026-09-15
 
 ### Added

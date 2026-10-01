@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src')
+      '~': path.resolve(import.meta.dirname, 'src')
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
@@ -34,13 +34,14 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.js'),
+      entry: path.resolve(import.meta.dirname, 'src/index.js'),
       name: '__demos_europe_demosplan_ui',
       formats: ['es']
     },
     rollupOptions: {
       external: [
         'vue',
+        'vue-sliding-pagination',
         '@braintree/sanitize-url',
         /^@uppy\/.+$/,
         'dayjs',

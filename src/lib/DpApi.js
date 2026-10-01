@@ -60,6 +60,7 @@ const appendSerializedUrlParams = (url, params) => {
  * @param {Object} options.params
  * @param {Object} options.options
  * @param {Object} options.options.messages
+ * @param {AbortSignal} options.options.signal
  *
  * @returns {Promise} Object with the following properties:
  * {
@@ -74,6 +75,10 @@ const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, opt
   const fetchOptions = {
     headers: getHeaders({ headers, url }),
     method,
+  }
+
+  if (options.signal) {
+    fetchOptions.signal = options.signal
   }
 
   if (method.toUpperCase() !== 'GET') {
@@ -106,6 +111,11 @@ const doRequest = (async ({ method = 'GET', url, data = {}, headers, params, opt
       url: response.url,
     }, options.messages)
   } catch (error) {
+    /* A caller that aborts on purpose handles it itself and must not get the generic error response. */
+    if (error.name === 'AbortError') {
+      throw error
+    }
+
     console.error('DpAPI[doRequest] failed: ', error, 'fetchOptions: ', fetchOptions)
 
     return checkResponse({

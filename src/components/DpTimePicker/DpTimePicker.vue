@@ -150,15 +150,19 @@ export default {
     },
 
     // Expects ISO datetime
-    value: {
+    modelValue: {
       type: String,
       required: false,
       default: DEFAULT_TIME,
     },
   },
 
+  compatConfig: {
+    COMPONENT_V_MODEL: false,
+  },
+
   emits: [
-    'input',
+    'update:modelValue',
   ],
 
   data: () => ({
@@ -248,8 +252,8 @@ export default {
       }
     },
 
-    value () {
-      this.updateTime(this.value)
+    modelValue () {
+      this.updateTime(this.modelValue)
     },
   },
 
@@ -330,7 +334,7 @@ export default {
       if (type === 'minute') {
         this.setMinutes(val)
       }
-      this.$emit('input', this.currentTime)
+      this.$emit('update:modelValue', this.currentTime)
     },
 
     handleKeyDown (e) {

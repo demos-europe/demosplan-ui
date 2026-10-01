@@ -4,6 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1589](https://github.com/demos-europe/demosplan-ui/pull/1589)) BREAKING: DpDatepicker, DpTimePicker, DpDatetimePicker: Remove support for the Vue 2 `value`/`input` v-model pattern in favor of `modelValue`/`update:modelValue` ([@hwiem](https://github.com/hwiem))
+
+### Fixed
+- ([#1609](https://github.com/demos-europe/demosplan-ui/pull/1609)) Build: Externalize `vue-sliding-pagination` to fix `Calling require for "vue"` error when loading the library ([@hwiem](https://github.com/hwiem))
+
+
 ## v0.32.0 - 2026-09-30
 
 ### Added

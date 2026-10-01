@@ -4,12 +4,12 @@ import DpTimePicker from './'
 interface IDpTimePicker {
   id: string
   label?: string
-  value?: string
+  modelValue?: string
   minuteSteps?: number
   minValue?: string
   disabled?: boolean
   dataCy?: string
-  input: (value: string) => void
+  'onUpdate:modelValue': (value: string) => void
 }
 
 const meta: Meta<typeof DpTimePicker> = {
@@ -32,7 +32,7 @@ const meta: Meta<typeof DpTimePicker> = {
         defaultValue: { summary: '""' }
       }
     },
-    value: {
+    modelValue: {
       control: 'text',
       description: 'Current time value in HH:MM format',
       table: {
@@ -72,7 +72,7 @@ const meta: Meta<typeof DpTimePicker> = {
         defaultValue: { summary: '"timePicker"' }
       }
     },
-    input: {
+    'onUpdate:modelValue': {
       description: 'Event emitted when the time value changes',
       table: { type: { summary: 'event' } }
     }
@@ -85,10 +85,10 @@ type Story = StoryObj<IDpTimePicker>
 export const Default: Story = {
   args: {
     id: 'timePicker1',
-    value: '09:00'
+    modelValue: '09:00'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -102,11 +102,11 @@ export const Default: Story = {
 export const CustomMinuteSteps: Story = {
   args: {
     id: 'timePicker2',
-    value: '10:30',
+    modelValue: '10:30',
     minuteSteps: 5
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -121,10 +121,10 @@ export const WithLabel: Story = {
   args: {
     id: 'timePicker3',
     label: 'Meeting Start Time',
-    value: '14:00'
+    modelValue: '14:00'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -139,11 +139,11 @@ export const WithMinValue: Story = {
   args: {
     id: 'timePicker4',
     label: 'Select Time (after 13:30)',
-    value: '14:00',
+    modelValue: '14:00',
     minValue: '13:30'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -158,11 +158,11 @@ export const Disabled: Story = {
   args: {
     id: 'timePicker5',
     label: 'Time (Disabled)',
-    value: '16:45',
+    modelValue: '16:45',
     disabled: true
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {

@@ -4,7 +4,7 @@ import lscache from 'lscache'
 import { shallowMount } from '@vue/test-utils'
 
 
-describe('', () => {
+describe('DpInlineNotification', () => {
   let wrapper
 
   const createWrapper = (props = {}) => {

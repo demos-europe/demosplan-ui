@@ -41,6 +41,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'vue',
+        'vue-sliding-pagination',
         '@braintree/sanitize-url',
         /^@uppy\/.+$/,
         'dayjs',

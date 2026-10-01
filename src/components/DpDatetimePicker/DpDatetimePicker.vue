@@ -18,7 +18,7 @@
         :max-date="maxDate"
         :min-date="minDate"
         :required="required"
-        @input="$emit('input', currentDatetime)"
+        @update:model-value="$emit('update:modelValue', currentDatetime)"
       />
       <dp-time-picker
         :id="`timePicker:${id}`"
@@ -27,7 +27,7 @@
         :data-cy="`${dataCy}:time`"
         :disabled="disabled"
         :min-value="minTime"
-        @input="$emit('input', currentDatetime)"
+        @update:model-value="$emit('update:modelValue', currentDatetime)"
       />
       <input
         v-if="hiddenInput && name"
@@ -140,13 +140,17 @@ export default {
     },
 
     // Expects ISO datetime
-    value: {
+    modelValue: {
       type: String,
       required: true,
     },
   },
 
-  emits: ['input'],
+  compatConfig: {
+    COMPONENT_V_MODEL: false,
+  },
+
+  emits: ['update:modelValue'],
 
   data () {
     return {
@@ -175,7 +179,7 @@ export default {
   },
 
   watch: {
-    value: function (newVal) {
+    modelValue: function (newVal) {
       this.setDatetime(newVal)
     },
   },
@@ -191,7 +195,7 @@ export default {
   },
 
   mounted () {
-    this.setDatetime(this.value)
+    this.setDatetime(this.modelValue)
   },
 }
 </script>

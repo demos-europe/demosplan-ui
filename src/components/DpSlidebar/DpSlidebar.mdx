@@ -11,7 +11,7 @@ The `DpSlidebar` component creates a sliding side panel that can be opened and c
 
 - Right-side sliding panel
 - Built-in close button
-- Events for opening and closing
+- Open/closed state controlled via the `open` prop (`v-model:open`)
 - Slots for custom content
 - Optional `dragHandle` slot for a resize handle
 - Closes on Escape key press
@@ -28,6 +28,6 @@ The basic slidebar with default configuration.
 
 ## Implementation Notes
 
-- Closing happens via `data-slidebar-hide` attribute
-- Opening happens via emitted event instead of `data-slidebar-show` attribute because sidenav may be initialized before corresponding DOM elements exist
+- Bind `v-model:open` (or the `open` prop plus an `@update:open` listener) to control the slidebar; it emits `update:open` and `close` on every close path (close button, Escape, swipe)
+- Opening happens only through the `open` prop, not a `data-slidebar-show` attribute, because SideNav may be initialized before the corresponding DOM elements exist
 - Content should be placed inside the default slot

@@ -24,7 +24,7 @@
               type="button"
               class="btn--blank o-link--default"
               data-slidebar-hide
-              @click="$emit('close')"
+              @click="hideSlideBar"
             >
               <dp-icon
                 icon="close"
@@ -53,25 +53,19 @@ export default {
   },
 
   props: {
-    /**
-     * Controls the slidebar from the outside. While this is `null`, the component keeps listening
-     * for `show-slidebar` / `hide-slidebar` on the application event bus, so existing usages are
-     * unaffected. Pass a boolean to drive it from your own state and opt out of those root events.
-     */
     open: {
       type: Boolean,
-      required: false,
-      default: null,
+      default: false,
     },
   },
 
   emits: [
     'close',
+    'update:open',
   ],
 
   data () {
     return {
-      sideNav: {},
       translations: {
         close: de.window.close,
       },
@@ -80,19 +74,6 @@ export default {
 
   watch: {
     open (isOpen) {
-      this.applyOpenState(isOpen)
-    },
-  },
-
-  methods: {
-    /**
-     * Ignores the initial `null`, which means "nobody is controlling me, listen on the bus".
-     */
-    applyOpenState (isOpen) {
-      if (null === isOpen) {
-        return
-      }
-
       if (isOpen) {
         this.showSlideBar()
 
@@ -100,18 +81,34 @@ export default {
       }
 
       /*
-       * Deliberately not hideSlideBar(): that emits `close`, and reaching this point means the
-       * state it announces has already been applied by whoever set the prop to false.
+       * Deliberately not hideSlideBar(): that emits `close`/`update:open`, and reaching this
+       * point means the state it announces has already been applied by whoever set the prop.
+       * suppressNextHideEmit tells the SideNav onHide callback to skip re-announcing it
        */
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
+        this.suppressNextHideEmit = true
         this.sideNav.hideSideNav()
       }
     },
+  },
 
+  methods: {
     handleKeydown (event) {
       if (event.key === 'Escape' && this.isVisible()) {
         this.hideSlideBar()
       }
+    },
+
+    // Fires for every close path SideNav knows about (button, escape, backdrop click, swipe).
+    handleSideNavHide () {
+      if (this.suppressNextHideEmit) {
+        this.suppressNextHideEmit = false
+
+        return
+      }
+
+      this.$emit('update:open', false)
+      this.$emit('close')
     },
 
     hideSlideBar () {
@@ -121,7 +118,6 @@ export default {
 
       if (hasOwnProp(this.sideNav, 'hideSideNav')) {
         this.sideNav.hideSideNav()
-        this.$emit('close')
       }
     },
 
@@ -142,29 +138,18 @@ export default {
   },
 
   mounted () {
-    // Initialize SideNav
-    this.sideNav = new SideNav()
+    // Non-reactive: SideNav wraps DOM/CSS state, not something Vue needs to track.
+    this.suppressNextHideEmit = false
+    this.sideNav = new SideNav(this.handleSideNavHide)
     document.addEventListener('keydown', this.handleKeydown)
 
-    if (null !== this.open) {
-      /*
-       * The slidebar starts closed, so only an initially open state needs applying. Calling
-       * hideSlideBar() here would emit `close` while the surrounding page is still mounting.
-       */
-      if (this.open) {
-        this.showSlideBar()
-      }
-
-      return
-    }
-
-    this.$root.$on('hide-slidebar', () => {
-      this.hideSlideBar()
-    })
-
-    this.$root.$on('show-slidebar', () => {
+    /*
+     * The slidebar starts closed, so only an initially open state needs applying. Calling
+     * hideSlideBar() here would emit `close` while the surrounding page is still mounting.
+     */
+    if (this.open) {
       this.showSlideBar()
-    })
+    }
   },
 
   beforeUnmount () {

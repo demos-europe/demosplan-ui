@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Fixed
+- ([#1611](https://github.com/demos-europe/demosplan-ui/pull/1611)) DpTooltip, Tooltip directive: Hide tooltip on click so it no longer stays on screen when its trigger disappears ([@hwiem](https://github.com/hwiem))
+
 ## v0.33.0 - 2026-10-01
 
 ### Changed

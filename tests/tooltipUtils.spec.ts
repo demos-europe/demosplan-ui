@@ -51,6 +51,30 @@ describe('tooltip utils', () => {
     expect(tooltipFor(el)).toBeNull()
   })
 
+  it('does not re-show the tooltip for the focus caused by a mouse click', () => {
+    const el = createTrigger('Hint')
+
+    hover(el)
+    // The browser dispatches focus synchronously right after mousedown on a focusable trigger
+    el.dispatchEvent(new Event('mousedown'))
+    el.dispatchEvent(new Event('focus'))
+
+    expect(tooltipFor(el)).toBeNull()
+  })
+
+  it('shows the tooltip again on keyboard focus after a click', async () => {
+    const el = createTrigger('Hint')
+
+    el.dispatchEvent(new Event('mousedown'))
+    el.dispatchEvent(new Event('focus'))
+    el.dispatchEvent(new Event('blur'))
+    await new Promise(resolve => setTimeout(resolve, 0))
+
+    el.dispatchEvent(new Event('focus'))
+
+    expect(tooltipFor(el)?.textContent).toContain('Hint')
+  })
+
   it('detaches only the destroyed trigger when several tooltips exist', () => {
     const first = createTrigger('First')
     const second = createTrigger('Second')

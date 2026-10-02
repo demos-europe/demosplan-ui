@@ -28,7 +28,7 @@ const destroyTooltip = (wrapperEl) => {
     wrapperEl.removeEventListener('focus', listeners.create)
     wrapperEl.removeEventListener('mouseleave', listeners.remove)
     wrapperEl.removeEventListener('blur', listeners.remove)
-    wrapperEl.removeEventListener('mousedown', listeners.remove)
+    wrapperEl.removeEventListener('mousedown', listeners.onMouseDown)
     listenersByElement.delete(wrapperEl)
   }
 
@@ -67,25 +67,38 @@ const initTooltip = (el, value, options) => {
 
   el.setAttribute('aria-describedby', id)
 
-  const create = () => createTooltip(
-    id,
-    el,
-    options,
-    zIndex,
-  )
-  const remove = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
+  // Set during a mouse press so the focus it causes does not bring the tooltip straight back
+  let pointerDown = false
 
-  listenersByElement.set(el, { create, remove })
+  const create = () => {
+    if (pointerDown) {
+      return
+    }
+
+    createTooltip(id, el, options, zIndex)
+  }
+  const remove = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
+  /*
+   * A click hides the tooltip, like a native title. This also covers triggers hidden by their
+   * own click (e.g. a dropdown option list toggled via v-show), where no mouseleave ever fires
+   * and the tooltip would otherwise be orphaned. The flag is cleared on the next macrotask,
+   * after the focus event that follows mousedown synchronously.
+   */
+  const onMouseDown = () => {
+    pointerDown = true
+    remove()
+    setTimeout(() => {
+      pointerDown = false
+    }, 0)
+  }
+
+  listenersByElement.set(el, { create, remove, onMouseDown })
 
   el.addEventListener('mouseenter', create)
   el.addEventListener('focus', create)
   el.addEventListener('mouseleave', remove)
   el.addEventListener('blur', remove)
-  /*
-   * A click may hide the trigger without it ever leaving the pointer (e.g. a dropdown option
-   * list toggled via v-show), in which case no mouseleave fires and the tooltip would be orphaned.
-   */
-  el.addEventListener('mousedown', remove)
+  el.addEventListener('mousedown', onMouseDown)
 }
 
 const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {

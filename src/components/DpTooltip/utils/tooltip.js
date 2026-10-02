@@ -75,7 +75,8 @@ const initTooltip = (el, value, options) => {
       return
     }
 
-    createTooltip(id, el, options, zIndex)
+    // Positioning happens asynchronously inside; nothing here depends on it
+    void createTooltip(id, el, options, zIndex)
   }
   const remove = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
   /*

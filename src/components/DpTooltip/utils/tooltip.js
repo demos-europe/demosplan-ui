@@ -1,15 +1,16 @@
 import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { v4 as uuid } from 'uuid'
 
-// We need empty Variables for our show/hide methods, so we can destroy them later on.
-let handleCreateTooltip = null
-let handleRemoveTooltip = null
+// Listeners per trigger element, so destroyTooltip() removes the ones that were actually attached
+const listenersByElement = new WeakMap()
 let tooltips = {}
 
-// Floor for the inline z-index: matches the `tooltip` design token (tokens/src/zIndex.json).
-// The inline z-index lifts the tooltip above its trigger's stacking context; without a floor,
-// triggers in containers with no numeric z-index (e.g. native <dialog>) produce values that
-// lose to sibling elements with small explicit z-index utilities.
+/*
+ * Floor for the inline z-index: matches the `tooltip` design token (tokens/src/zIndex.json).
+ * The inline z-index lifts the tooltip above its trigger's stacking context; without a floor,
+ * triggers in containers with no numeric z-index (e.g. native <dialog>) produce values that
+ * lose to sibling elements with small explicit z-index utilities.
+ */
 const TOOLTIP_Z_INDEX_FLOOR = 2000
 
 const deleteTooltip = (tooltipEl) => {
@@ -19,14 +20,20 @@ const deleteTooltip = (tooltipEl) => {
 }
 
 const destroyTooltip = (wrapperEl) => {
-  const tooltipEl = document.getElementById(wrapperEl.getAttribute('aria-describedby'))
+  const id = wrapperEl.getAttribute('aria-describedby')
+  const listeners = listenersByElement.get(wrapperEl)
 
-  wrapperEl.removeEventListener('mouseenter', handleCreateTooltip)
-  wrapperEl.removeEventListener('focus', handleCreateTooltip)
-  wrapperEl.removeEventListener('mouseleave', handleRemoveTooltip)
-  wrapperEl.removeEventListener('blur', handleRemoveTooltip)
+  if (listeners) {
+    wrapperEl.removeEventListener('mouseenter', listeners.create)
+    wrapperEl.removeEventListener('focus', listeners.create)
+    wrapperEl.removeEventListener('mouseleave', listeners.remove)
+    wrapperEl.removeEventListener('blur', listeners.remove)
+    wrapperEl.removeEventListener('mousedown', listeners.remove)
+    listenersByElement.delete(wrapperEl)
+  }
 
-  deleteTooltip(tooltipEl)
+  delete tooltips[id]
+  deleteTooltip(document.getElementById(id))
 }
 
 const getZIndex = (element) => {
@@ -60,18 +67,25 @@ const initTooltip = (el, value, options) => {
 
   el.setAttribute('aria-describedby', id)
 
-  handleCreateTooltip = () => createTooltip(
+  const create = () => createTooltip(
     id,
     el,
     options,
     zIndex,
   )
-  handleRemoveTooltip = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
+  const remove = () => deleteTooltip(document.getElementById(el.getAttribute('aria-describedby')))
 
-  el.addEventListener('mouseenter', handleCreateTooltip)
-  el.addEventListener('focus', handleCreateTooltip)
-  el.addEventListener('mouseleave', handleRemoveTooltip)
-  el.addEventListener('blur', handleRemoveTooltip)
+  listenersByElement.set(el, { create, remove })
+
+  el.addEventListener('mouseenter', create)
+  el.addEventListener('focus', create)
+  el.addEventListener('mouseleave', remove)
+  el.addEventListener('blur', remove)
+  /*
+   * A click may hide the trigger without it ever leaving the pointer (e.g. a dropdown option
+   * list toggled via v-show), in which case no mouseleave fires and the tooltip would be orphaned.
+   */
+  el.addEventListener('mousedown', remove)
 }
 
 const createTooltip = async (id, wrapperEl, { place = 'top', container = 'body', classes = '' }, zIndex)  => {

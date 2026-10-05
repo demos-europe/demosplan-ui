@@ -25,9 +25,19 @@ updates:
         patterns:
           - "react"
           - "react-dom"
+      # tailwindcss, @tailwindcss/postcss, -node and -oxide pin each other to the exact same version
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
       tiptap:
         patterns:
           - "@tiptap*"
+      # The plugin peer-requires the matching @typescript-eslint/parser version
+      typescript-eslint:
+        patterns:
+          - "typescript-eslint"
+          - "@typescript-eslint/*"
       vitest:
         patterns:
           - "vitest"

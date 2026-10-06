@@ -26,7 +26,10 @@
         @change="broadcastSelection(value, !selectedColumns.has(value))"
       />
     </div>
-    <div class="border-t-2 border-neutral-light-3 p-2">
+    <div
+      v-if="hasSelectAllOption || hasResetOption"
+      class="border-t-2 border-neutral-light-3 p-2"
+    >
       <button
         v-if="hasSelectAllOption"
         class="btn--blank o-link--default mb-1"

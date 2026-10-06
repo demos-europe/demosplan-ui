@@ -12,6 +12,7 @@ export default meta
 type Story = StoryObj<{
   text: string,
   color: string,
+  icon?: string,
   size: string
 }>
 
@@ -27,6 +28,7 @@ export const Default: Story = {
       control: 'select',
       options: ['default', 'confirm', 'error', 'info', 'warning']
     },
+    icon: { control: 'text' },
     size: {
       control: 'select',
       options: ['smaller', 'small', 'medium', 'large']
@@ -96,5 +98,14 @@ export const SizeLarge: Story = {
     text: 'Large Badge',
     color: 'default',
     size: 'large'
+  }
+}
+
+export const WithIcon: Story = {
+  args: {
+    text: 'Archived',
+    color: 'default',
+    icon: 'archive',
+    size: 'medium'
   }
 }

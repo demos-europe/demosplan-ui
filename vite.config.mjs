@@ -2,8 +2,33 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
+/*
+ * vue-sliding-pagination ships only a UMD that calls require('vue'). Rolldown's own handling leaves either a
+ * `__require` shim that throws in browsers or a facade reading `vue["module.exports"]`, which webpack consumers
+ * reject as a missing export. Rewriting the UMD into an ES module here avoids both.
+ */
+const vueSlidingPaginationUmdToEsm = () => ({
+  name: 'vue-sliding-pagination-umd-to-esm',
+  transform (code, id) {
+    if (!id.endsWith('vue-sliding-pagination/dist/vue-sliding-pagination.umd.js')) {
+      return
+    }
+
+    return {
+      code: [
+        "import * as vue from 'vue'",
+        'const module = { exports: {} }',
+        'const exports = module.exports',
+        code.replace(/require\("vue"\)/g, 'vue'),
+        'export default module.exports.default'
+      ].join('\n'),
+      map: null
+    }
+  }
+})
+
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), vueSlidingPaginationUmdToEsm()],
   resolve: {
     alias: {
       '~': path.resolve(import.meta.dirname, 'src')
@@ -38,10 +63,9 @@ export default defineConfig({
       name: '__demos_europe_demosplan_ui',
       formats: ['es']
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         'vue',
-        'vue-sliding-pagination',
         '@braintree/sanitize-url',
         /^@uppy\/.+$/,
         'dayjs',

@@ -49,7 +49,8 @@ export type AliasedPhosphorIconName =
   | 'warning-diamond'
 
 export type PhosphorIconName =
-  'arrow-down'
+  'archive'
+  | 'arrow-down'
   | 'arrow-left'
   | 'arrow-right'
   | 'arrow-square-out'

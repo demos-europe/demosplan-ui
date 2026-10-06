@@ -6,6 +6,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ### Fixed
 - ([#1611](https://github.com/demos-europe/demosplan-ui/pull/1611)) DpTooltip, Tooltip directive: Hide tooltip on click so it no longer stays on screen when its trigger disappears ([@hwiem](https://github.com/hwiem))
+- ([#1620](https://github.com/demos-europe/demosplan-ui/pull/1620)) Build: Bundle `vue-sliding-pagination` again and rewrite its UMD to ESM during the build, so DpSlidingPagination renders in consumers ([@hwiem](https://github.com/hwiem))
 
 ## v0.33.0 - 2026-10-01
 

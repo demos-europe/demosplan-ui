@@ -19,7 +19,7 @@ const vueSlidingPaginationUmdToEsm = () => ({
         "import * as vue from 'vue'",
         'const module = { exports: {} }',
         'const exports = module.exports',
-        code.replace(/require\("vue"\)/g, 'vue'),
+        code.replaceAll('require("vue")', 'vue'),
         'export default module.exports.default'
       ].join('\n'),
       map: null

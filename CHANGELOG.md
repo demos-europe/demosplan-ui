@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Changed
+- ([#1619](https://github.com/demos-europe/demosplan-ui/pull/1619)) DpColumnSelector: update layout and move reset action into the dropdown menu ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.33.0 - 2026-10-01
 
 ### Changed

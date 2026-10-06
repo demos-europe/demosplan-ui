@@ -3,22 +3,17 @@
     :appearance="appearance"
     :data-cy="dataCy"
     :has-menu="false"
+    :padded="false"
     @close="trackSelection"
   >
     <template v-slot:trigger>
       <span v-text="triggerText" />
       <i
-        class="fa fa-caret-down u-ml-0_25"
+        class="fa fa-caret-down ml-2"
         aria-hidden="true"
       />
     </template>
-    <div class="space-stack-xs u-pv-0_25">
-      <button
-        v-if="hasSelectAllOption"
-        class="btn--blank o-link--default ml-auto mb-1"
-        @click="toggleSelectAll"
-        v-text="labelToggleAll"
-      />
+    <div class="space-stack-xs p-2">
       <dp-checkbox
         v-for="([value, label]) in selectableColumns"
         :id="`columnSelector:${value}`"
@@ -29,6 +24,25 @@
           text: label
         }"
         @change="broadcastSelection(value, !selectedColumns.has(value))"
+      />
+    </div>
+    <div
+      v-if="hasSelectAllOption || hasResetOption"
+      class="border-t-2 border-neutral-light-3 p-2"
+    >
+      <button
+        v-if="hasSelectAllOption"
+        class="btn--blank o-link--default mb-1"
+        data-cy="columnSelector:toggleAll"
+        @click="toggleSelectAll"
+        v-text="labelToggleAll"
+      />
+      <button
+        v-if="hasResetOption"
+        class="btn--blank o-link--default ml-auto"
+        data-cy="columnSelector:reset"
+        @click="$emit('reset')"
+        v-text="labelReset"
       />
     </div>
   </dp-flyout>
@@ -59,6 +73,12 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    hasResetOption: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     hasSelectAllOption: {
@@ -92,10 +112,14 @@ export default {
     },
   },
 
-  emits: ['selection-changed'],
+  emits: [
+    'reset',
+    'selection-changed',
+  ],
 
   data () {
     return {
+      labelReset: de.operations.reset,
       labelToggleAll: de.operations.toggle.all,
       selectedColumns: new Set(),
       triggerText: de.table.colsSelect,

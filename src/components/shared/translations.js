@@ -162,7 +162,7 @@ const de = {
       placeholder: 'Bitte wählen Sie einen Eintrag aus.',
     },
     toggle: {
-      all: 'Alle an/abwählen',
+      all: 'Alle an-/abwählen',
     },
     update: 'Aktualisierung',
   },

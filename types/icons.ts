@@ -1,5 +1,6 @@
 export type IconAlias =
   'ai' // Alias for 'sparkle'
+  | 'bookmark'
   | 'cancel' // Alias for 'xmark' -> 'x'
   | 'chevron-down' // Alias for 'caret-down'
   | 'chevron-left' // Alias for 'caret-left'

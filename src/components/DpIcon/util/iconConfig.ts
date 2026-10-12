@@ -19,6 +19,7 @@ import {
   PhArrowsOutLineHorizontal,
   PhArrowSquareOut,
   PhArrowUp,
+  PhBookmarkSimple,
   PhCalendarBlank,
   PhCaretDoubleDown,
   PhCaretDoubleUp,
@@ -144,6 +145,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
 // Icon names that are used as aliases - the phosphor icon has a different name
 const mappedIconAliases: Record<IconAlias, Component> = {
   'ai': PhSparkle,
+  'bookmark': PhBookmarkSimple,
   'cancel': PhX,
   'chevron-down': PhCaretDown,
   'chevron-left': PhCaretLeft,

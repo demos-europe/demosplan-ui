@@ -8,6 +8,7 @@ import {
 } from '../../../../types'
 
 import {
+  PhArchive,
   PhArrowDown,
   PhArrowLeft,
   PhArrowRight,
@@ -77,6 +78,7 @@ import type { Component } from 'vue'
 
 // icon names that are used and already correspond to the phosphor icon name
 const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component> = {
+  'archive': PhArchive,
   'arrow-down': PhArrowDown,
   'arrow-left': PhArrowLeft,
   'arrow-right': PhArrowRight,
@@ -173,6 +175,7 @@ const mappedIconAliases: Record<IconAlias, Component> = {
 // ICON PROPORTIONS
 
 const iconsProportions: Record<string, IconProportion> = {
+  'archive': 'landscape',
   'arrow-down': 'portrait',
   'arrow-left': 'landscape',
   'arrow-right': 'landscape',

@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## UNRELEASED
 
+### Added
+- ([#1621](https://github.com/demos-europe/demosplan-ui/pull/1621)) DpBadge: Add optional icon prop ([@hwiem](https://github.com/hwiem))
+- ([#1621](https://github.com/demos-europe/demosplan-ui/pull/1621)) DpIcon: Add `archive` icon ([@hwiem](https://github.com/hwiem))
+
+
 ## v0.34.0 - 2026-10-06
 
 ### Changed

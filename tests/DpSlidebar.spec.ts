@@ -87,4 +87,21 @@ describe('DpSlidebar', () => {
     expect(wrapper.emitted('update:open')).toBeUndefined()
     expect(wrapper.emitted('close')).toBeUndefined()
   })
+
+  it('emits close again after the parent applies the closed state and reopens', async () => {
+    // The test harness plays the parent: apply the emitted state as the new open prop.
+    wrapper = createWrapper(true)
+
+    await wrapper.find('[data-slidebar-hide]').trigger('click')
+    expect(wrapper.emitted('close')).toHaveLength(1)
+    expect(wrapper.emitted('update:open')).toEqual([[false]])
+
+    await wrapper.setProps({ open: false })
+    await wrapper.setProps({ open: true })
+    expect(isVisible(wrapper)).toBe(true)
+
+    await wrapper.find('[data-slidebar-hide]').trigger('click')
+    expect(wrapper.emitted('close')).toHaveLength(2)
+    expect(wrapper.emitted('update:open')).toEqual([[false], [false]])
+  })
 })

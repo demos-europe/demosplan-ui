@@ -2,6 +2,11 @@
 
 Since v0.0.10, this Changelog is formatted according to the [Common Changelog][common-changelog] recommendations.
 
+## Unreleased
+
+### Fixed
+- ([#1625](https://github.com/demos-europe/demosplan-ui/pull/1625)) DpSlidebar: Emit `close`/`update:open` again after the parent closes it via `v-model:open`, so it can be reopened ([@rafelddemos](https://github.com/rafelddemos))
+
 ## v0.35.0 - 2026-10-12
 
 ### Added

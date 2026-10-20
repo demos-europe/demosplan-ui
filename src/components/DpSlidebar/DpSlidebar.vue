@@ -83,12 +83,15 @@ export default {
       /*
        * Deliberately not hideSlideBar(): that emits `close`/`update:open`, and reaching this
        * point means the state it announces has already been applied by whoever set the prop.
-       * suppressNextHideEmit tells the SideNav onHide callback to skip re-announcing it
+       * suppressNextHideEmit is only set while visible, because only then does hideSideNav()
+       * call onHide, which skips re-announcing and resets the flag.
        */
-      if (hasOwnProp(this.sideNav, 'hideSideNav')) {
-        this.suppressNextHideEmit = true
-        this.sideNav.hideSideNav()
+      if (!this.isVisible() || !hasOwnProp(this.sideNav, 'hideSideNav')) {
+        return
       }
+
+      this.suppressNextHideEmit = true
+      this.sideNav.hideSideNav()
     },
   },
 

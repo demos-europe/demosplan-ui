@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+## v0.36.0 - 2026-10-20
+
 ### Fixed
 - ([#1625](https://github.com/demos-europe/demosplan-ui/pull/1625)) DpSlidebar: Fix slidebar not reopening after being closed twice via close button or Escape ([@rafelddemos](https://github.com/rafelddemos))
 

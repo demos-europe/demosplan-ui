@@ -16,6 +16,7 @@
   >
     <dp-icon
       v-if="icon"
+      class="shrink-0"
       aria-hidden="true"
       :icon="icon"
       :size="iconSize"
@@ -23,10 +24,12 @@
     />
     <span
       v-if="!hideText"
+      :class="{ 'truncate' : textTruncate }"
       v-text="text"
     />
     <dp-icon
       v-if="iconAfter"
+      class="shrink-0"
       aria-hidden="true"
       :icon="iconAfter"
       :size="iconSize"
@@ -144,6 +147,12 @@ const props = defineProps({
     type: String,
     required: false,
     default: 'save',
+  },
+
+  textTruncate: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 
   /**

@@ -19,6 +19,7 @@ import {
   PhArrowsOutLineHorizontal,
   PhArrowSquareOut,
   PhArrowUp,
+  PhBookmarkSimple,
   PhCalendarBlank,
   PhCaretDoubleDown,
   PhCaretDoubleUp,
@@ -51,6 +52,7 @@ import {
   PhLockSimpleOpen,
   PhMagnifyingGlass,
   PhMapPin,
+  PhMinus,
   PhPencilSimple,
   PhPhone,
   PhPlus,
@@ -106,6 +108,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
   'hourglass': PhHourglass,
   'info': PhInfo,
   'map-pin': PhMapPin,
+  'minus': PhMinus,
   'plus': PhPlus,
   'phone': PhPhone,
   'prohibit': PhProhibit,
@@ -144,6 +147,7 @@ const mappedIcons: Record<PhosphorIconName | AliasedPhosphorIconName, Component>
 // Icon names that are used as aliases - the phosphor icon has a different name
 const mappedIconAliases: Record<IconAlias, Component> = {
   'ai': PhSparkle,
+  'bookmark': PhBookmarkSimple,
   'cancel': PhX,
   'chevron-down': PhCaretDown,
   'chevron-left': PhCaretLeft,

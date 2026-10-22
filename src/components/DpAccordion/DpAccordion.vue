@@ -68,9 +68,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DpIcon from '~/components/DpIcon'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
+import { IconWeight } from '../../../types'
+import { PropType } from 'vue'
 
 export default {
   name: 'DpAccordion',
@@ -113,10 +115,10 @@ export default {
     },
 
     iconWeight: {
-      type: String,
+      type: String as PropType<IconWeight>,
       required: false,
       default: 'regular',
-      validator: (prop) => ['light', 'regular', 'bold', 'fill'].includes(prop),
+      validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop),
     },
 
     interactive: {

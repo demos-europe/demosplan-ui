@@ -1,6 +1,7 @@
 const { spawn } = require('child_process')
 const fs = require('fs')
 const os = require('os')
+const path = require('path')
 
 // Storybook >= 10.6.2 listens on loopback only; inside a container the host browser needs the container's own address
 const getContainerAddress = () => {
@@ -23,9 +24,9 @@ if (address && !userArgs.includes('--host')) {
   args.push('--host', address)
 }
 
-const child = spawn('storybook', [...args, ...userArgs], {
-  shell: process.platform === 'win32',
-  stdio: 'inherit'
-})
+const storybookPackagePath = require.resolve('storybook/package.json')
+const storybookBin = path.join(path.dirname(storybookPackagePath), require(storybookPackagePath).bin)
+
+const child = spawn(process.execPath, [storybookBin, ...args, ...userArgs], { stdio: 'inherit' })
 
 child.on('exit', code => process.exit(code ?? 1))

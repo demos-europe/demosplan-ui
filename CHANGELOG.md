@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Fixed
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Apply borders and density to the expand column header ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Reduce min width of the expand column ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.36.0 - 2026-10-20
 
 ### Fixed

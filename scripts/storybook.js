@@ -1,0 +1,31 @@
+const { spawn } = require('child_process')
+const fs = require('fs')
+const os = require('os')
+
+// Storybook >= 10.6.2 listens on loopback only; inside a container the host browser needs the container's own address
+const getContainerAddress = () => {
+  if (!fs.existsSync('/.dockerenv')) {
+    return null
+  }
+
+  const addresses = Object.values(os.networkInterfaces())
+    .flat()
+    .filter(({ family, internal }) => family === 'IPv4' && !internal)
+
+  return addresses.length > 0 ? addresses[0].address : null
+}
+
+const userArgs = process.argv.slice(2)
+const args = ['dev', '-p', '3000', '--no-open']
+const address = getContainerAddress()
+
+if (address && !userArgs.includes('--host')) {
+  args.push('--host', address)
+}
+
+const child = spawn('storybook', [...args, ...userArgs], {
+  shell: process.platform === 'win32',
+  stdio: 'inherit'
+})
+
+child.on('exit', code => process.exit(code ?? 1))

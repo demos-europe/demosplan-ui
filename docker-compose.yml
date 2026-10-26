@@ -2,7 +2,7 @@ services:
   demosplan-ui:
     build: .
     ports:
-      - "3000:3000"
+      - "127.0.0.1:6006:3000"
     volumes:
       - .:/app
     environment:

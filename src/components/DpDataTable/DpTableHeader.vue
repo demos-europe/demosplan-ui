@@ -84,6 +84,7 @@
     <th
       v-if="isExpandable"
       scope="col"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__col--expand c-data-table__cell--narrow"
       @click="toggleExpandAll()"
     >

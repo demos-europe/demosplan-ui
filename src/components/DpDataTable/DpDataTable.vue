@@ -76,6 +76,7 @@
             :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
             :fields="fields"
+            :expanded-rowspan="expandedRowspan"
             :has-borders="hasBorders"
             :has-flyout="hasFlyout"
             :header-fields="orderedHeaderFields"
@@ -119,8 +120,12 @@
             :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }"
           >
             <td
-              :class="{ 'opacity-70': isLoading }"
-              :colspan="colCount"
+              :class="[
+                { 'opacity-70': isLoading },
+                { 'border-r border-neutral-light-3': expandedRowspan && hasBorders },
+                { 'p-[16px]': expandedRowspan && density === 'spacious' },
+              ]"
+              :colspan="expandedContentColspan"
               @focus="addHoveredClass(idx)"
               @blur="removeHoveredClass(idx)"
               @mouseenter="addHoveredClass(idx)"
@@ -268,6 +273,17 @@ export default {
     },
 
     hasBorders: {
+    /**
+     * Let the flyout, expand and wrap cells span the row of the expanded content as well.
+     * The expanded content then ends before these columns, with a right border if `hasBorders` is set
+     * and with padding if `density` is "spacious".
+     */
+    expandedRowspan: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
       type: Boolean,
       required: false,
       default: false,
@@ -605,6 +621,18 @@ export default {
 
     fields () {
       return this.orderedHeaderFields.map(hf => hf.field)
+    },
+
+    /**
+     * The expanded content spans all columns, except the ones that span the expanded row themselves
+     * when `expandedRowspan` is set (flyout, expand and wrap).
+     */
+    expandedContentColspan () {
+      if (!this.expandedRowspan) {
+        return this.colCount
+      }
+
+      return this.colCount - [this.hasFlyout, this.isExpandable, this.isTruncatable].filter(Boolean).length
     },
 
     headerTranslations () {

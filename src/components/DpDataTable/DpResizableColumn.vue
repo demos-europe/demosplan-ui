@@ -3,7 +3,7 @@
     ref="resizableColumn"
     v-tooltip="headerField.tooltip || headerField.label"
     class="c-data-table__resizable break-words !overflow-visible"
-    :class="{ 'u-pr-0': isLast, 'is-resizing bg-interactive-subtle-hover !border-r-interactive border-r-2 ': isResizing }"
+    :class="{ 'u-pr-0': isLast && !hasDragHandle, 'is-resizing bg-interactive-subtle-hover !border-r-interactive border-r-2 ': isResizing }"
     :data-col-field="headerField.field"
     :data-col-idx="idx"
     @blur="setColumnHover(false)"
@@ -40,6 +40,16 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    /**
+     * The header of the column shows a handle for reordering the column.
+     * The last column keeps its right padding then, so the handle does not stick to the edge.
+     */
+    hasDragHandle: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     idx: {

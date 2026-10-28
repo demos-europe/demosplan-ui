@@ -42,6 +42,7 @@
         :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }, { 'c-data-table__col--fixed': isColumnsDraggable && hf.fixed }]"
         :column-width-storage-key="columnWidthStorageKey"
         :data-col-field="hf.field"
+        :has-drag-handle="isResizable && isColumnsDraggable && !hf.fixed ? true : null"
         :header-field="hf"
         :idx="idx"
         :is-last="headerFields.length - 1 === idx ? true : null"

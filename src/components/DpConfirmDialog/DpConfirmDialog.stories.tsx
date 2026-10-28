@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import DpConfirmDialog from './'
 
 interface IDpConfirmDialog {
+  allowHtml?: boolean
+  checkboxText?: string
   dataCy?: string
   message?: string
   'modal:toggled'?: (isOpen: boolean) => void
@@ -11,6 +13,14 @@ const meta: Meta<typeof DpConfirmDialog> = {
   component: DpConfirmDialog,
   title: 'Components/ConfirmDialog',
   argTypes: {
+    allowHtml: {
+      control: 'boolean',
+      description: 'Renders the message as sanitized HTML'
+    },
+    checkboxText: {
+      control: 'text',
+      description: 'Text of a checkbox that has to be checked before confirming'
+    },
     dataCy: {
       control: 'text',
       description: 'Data attribute for Cypress testing'
@@ -75,6 +85,60 @@ export const CustomMessage: Story = {
           class="px-4 py-2 bg-red-500 text-white rounded"
           @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
           Delete Item
+        </button>
+      </div>
+    `
+  })
+}
+
+export const WithCheckbox: Story = {
+  args: {
+    checkboxText: 'I have read the notes and want to proceed anyway.',
+    dataCy: 'checkbox',
+    message: 'Changing this setting has severe consequences.'
+  },
+  render: (args) => ({
+    components: {
+      DpConfirmDialog
+    },
+    setup() {
+      return { args }
+    },
+    template: `
+      <div>
+        <p class="mb-4">The confirm button stays disabled until the checkbox is checked.</p>
+        <dp-confirm-dialog ref="dialog" v-bind="args" />
+        <button
+          class="px-4 py-2 bg-blue-500 text-white rounded"
+          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          Open Dialog
+        </button>
+      </div>
+    `
+  })
+}
+
+export const WithHtml: Story = {
+  args: {
+    allowHtml: true,
+    dataCy: 'html',
+    message: '<strong>This is important.</strong><p>If you confirm, it will have severe consequences:</p><ul><li>Consequence A</li><li>Consequence B</li></ul>'
+  },
+  render: (args) => ({
+    components: {
+      DpConfirmDialog
+    },
+    setup() {
+      return { args }
+    },
+    template: `
+      <div>
+        <p class="mb-4">A confirm dialog with a message rendered as sanitized HTML.</p>
+        <dp-confirm-dialog ref="dialog" v-bind="args" />
+        <button
+          class="px-4 py-2 bg-blue-500 text-white rounded"
+          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          Open Dialog
         </button>
       </div>
     `

@@ -16,3 +16,17 @@ The dialog returns a Promise that resolves to `true` when confirmed or `false` w
 ## Custom message
 
 <Canvas of={DpConfirmDialogStories.CustomMessage} />
+
+## Confirmation checkbox
+
+With `checkboxText`, a checkbox is shown below the message. The confirm button stays disabled until it is checked.
+The checkbox is unchecked again each time the dialog is opened.
+
+<Canvas of={DpConfirmDialogStories.WithCheckbox} />
+
+## HTML message
+
+With `allowHtml`, the message is rendered as sanitized HTML (DOMPurify). Data inside the message, e.g. names,
+has to be escaped by the caller.
+
+<Canvas of={DpConfirmDialogStories.WithHtml} />

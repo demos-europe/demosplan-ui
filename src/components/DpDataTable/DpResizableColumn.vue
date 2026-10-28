@@ -75,6 +75,8 @@ export default {
     },
   },
 
+  emits: ['resized'],
+
   data () {
     return {
       currentHandle: '',
@@ -165,6 +167,7 @@ export default {
       document.querySelector('body').removeEventListener('mousemove', this.namedFunc)
       document.querySelector('body').removeEventListener('mouseup', this.stopResize)
       document.querySelector('body').classList.remove('resizing')
+      this.$emit('resized')
     },
 
     unmarkResizingColumn () {

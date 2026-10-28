@@ -47,6 +47,7 @@
         :idx="idx"
         :is-last="headerFields.length - 1 === idx ? true : null"
         :next-header="headerFields[idx + 1]"
+        @resized="$emit('column-resized')"
       >
         <div class="flex items-center justify-between">
           <slot
@@ -227,6 +228,7 @@ export default {
 
   emits: [
     'column-reorder',
+    'column-resized',
     'toggle-expand-all',
     'toggle-select-all',
     'toggle-wrap-all',

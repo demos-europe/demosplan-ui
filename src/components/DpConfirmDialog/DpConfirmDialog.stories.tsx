@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import DpButton from '~/components/DpButton'
 import DpConfirmDialog from './'
 
 interface IDpConfirmDialog {
@@ -46,6 +47,7 @@ export const Default: Story = {
   },
   render: (args) => ({
     components: {
+      DpButton,
       DpConfirmDialog
     },
     setup() {
@@ -58,11 +60,10 @@ export const Default: Story = {
       <div>
         <p class="mb-4">A confirm dialog component. In actual usage, you would call the <code>open()</code> method to show the dialog.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button
-          class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(showResult)">
-          Open Dialog
-        </button>
+        <dp-button
+          text="Open Dialog"
+          @click="$refs.dialog.open().then(showResult)"
+        />
       </div>
     `
   })
@@ -75,6 +76,7 @@ export const CustomMessage: Story = {
   },
   render: (args) => ({
     components: {
+      DpButton,
       DpConfirmDialog
     },
     setup() {
@@ -87,11 +89,11 @@ export const CustomMessage: Story = {
       <div>
         <p class="mb-4">A confirm dialog with a custom message.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button
-          class="px-4 py-2 bg-red-500 text-white rounded"
-          @click="$refs.dialog.open().then(showResult)">
-          Delete Item
-        </button>
+        <dp-button
+          color="warning"
+          text="Delete Item"
+          @click="$refs.dialog.open().then(showResult)"
+        />
       </div>
     `
   })
@@ -105,6 +107,7 @@ export const WithCheckbox: Story = {
   },
   render: (args) => ({
     components: {
+      DpButton,
       DpConfirmDialog
     },
     setup() {
@@ -117,11 +120,10 @@ export const WithCheckbox: Story = {
       <div>
         <p class="mb-4">The confirm button stays disabled until the checkbox is checked.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button
-          class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(showResult)">
-          Open Dialog
-        </button>
+        <dp-button
+          text="Open Dialog"
+          @click="$refs.dialog.open().then(showResult)"
+        />
       </div>
     `
   })
@@ -135,6 +137,7 @@ export const WithHtml: Story = {
   },
   render: (args) => ({
     components: {
+      DpButton,
       DpConfirmDialog
     },
     setup() {
@@ -147,11 +150,10 @@ export const WithHtml: Story = {
       <div>
         <p class="mb-4">A confirm dialog with a message rendered as sanitized HTML.</p>
         <dp-confirm-dialog ref="dialog" v-bind="args" />
-        <button
-          class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(showResult)">
-          Open Dialog
-        </button>
+        <dp-button
+          text="Open Dialog"
+          @click="$refs.dialog.open().then(showResult)"
+        />
       </div>
     `
   })

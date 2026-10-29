@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1643](https://github.com/demos-europe/demosplan-ui/pull/1643)) DpConfirmDialog: Add optional confirmation checkbox and HTML support ([@hwiem](https://github.com/hwiem))
+
 ## v0.36.0 - 2026-10-20
 
 ### Fixed

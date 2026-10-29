@@ -49,7 +49,10 @@ export const Default: Story = {
       DpConfirmDialog
     },
     setup() {
-      return { args }
+      // Templates have no access to window globals like alert
+      const showResult = (result: boolean) => window.alert('Dialog result: ' + result)
+
+      return { args, showResult }
     },
     template: `
       <div>
@@ -57,7 +60,7 @@ export const Default: Story = {
         <dp-confirm-dialog ref="dialog" v-bind="args" />
         <button
           class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          @click="$refs.dialog.open().then(showResult)">
           Open Dialog
         </button>
       </div>
@@ -75,7 +78,10 @@ export const CustomMessage: Story = {
       DpConfirmDialog
     },
     setup() {
-      return { args }
+      // Templates have no access to window globals like alert
+      const showResult = (result: boolean) => window.alert('Dialog result: ' + result)
+
+      return { args, showResult }
     },
     template: `
       <div>
@@ -83,7 +89,7 @@ export const CustomMessage: Story = {
         <dp-confirm-dialog ref="dialog" v-bind="args" />
         <button
           class="px-4 py-2 bg-red-500 text-white rounded"
-          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          @click="$refs.dialog.open().then(showResult)">
           Delete Item
         </button>
       </div>
@@ -102,7 +108,10 @@ export const WithCheckbox: Story = {
       DpConfirmDialog
     },
     setup() {
-      return { args }
+      // Templates have no access to window globals like alert
+      const showResult = (result: boolean) => window.alert('Dialog result: ' + result)
+
+      return { args, showResult }
     },
     template: `
       <div>
@@ -110,7 +119,7 @@ export const WithCheckbox: Story = {
         <dp-confirm-dialog ref="dialog" v-bind="args" />
         <button
           class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          @click="$refs.dialog.open().then(showResult)">
           Open Dialog
         </button>
       </div>
@@ -129,7 +138,10 @@ export const WithHtml: Story = {
       DpConfirmDialog
     },
     setup() {
-      return { args }
+      // Templates have no access to window globals like alert
+      const showResult = (result: boolean) => window.alert('Dialog result: ' + result)
+
+      return { args, showResult }
     },
     template: `
       <div>
@@ -137,7 +149,7 @@ export const WithHtml: Story = {
         <dp-confirm-dialog ref="dialog" v-bind="args" />
         <button
           class="px-4 py-2 bg-blue-500 text-white rounded"
-          @click="$refs.dialog.open().then(result => alert('Dialog result: ' + result))">
+          @click="$refs.dialog.open().then(showResult)">
           Open Dialog
         </button>
       </div>

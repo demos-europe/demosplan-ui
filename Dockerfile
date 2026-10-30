@@ -1,5 +1,5 @@
-# Node20 + Yarn 4 image for standalone local development
-FROM node:20
+# Node24 + Yarn 4 image for standalone local development
+FROM node:24.22.1
 
 # Set the working directory
 WORKDIR /app

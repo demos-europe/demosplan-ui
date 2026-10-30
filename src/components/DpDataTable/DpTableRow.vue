@@ -83,6 +83,7 @@
 
     <td
       v-if="hasFlyout"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__col--flyout overflow-visible min-w-[50px]"
     >
       <slot
@@ -93,6 +94,7 @@
 
     <td
       v-if="isExpandable"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__col--expand c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
@@ -106,6 +108,7 @@
 
     <td
       v-if="isTruncatable"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
       :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
@@ -161,6 +164,15 @@ export default {
      * Is the expandable content currently expanded?
      */
     expanded: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /**
+     * Let the flyout, expand and wrap cells span the row of the expanded content as well.
+     */
+    expandedRowspan: {
       type: Boolean,
       required: false,
       default: false,
@@ -341,6 +353,13 @@ export default {
 
         return style
       }
+    },
+
+    /**
+     * Whether the cells right of the data columns also span the row of the expanded content
+     */
+    spansExpandedRow () {
+      return this.expandedRowspan && this.expanded
     },
   },
 

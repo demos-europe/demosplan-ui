@@ -42,6 +42,7 @@
           :is-truncatable="isTruncatable"
           :translations="headerTranslations"
           @column-reorder="applyReorder"
+          @column-resized="absorbFreeSpace"
           @toggle-expand-all="toggleExpandAll"
           @toggle-select-all="toggleSelectAll"
           @toggle-wrap-all="toggleWrapAll"
@@ -75,6 +76,7 @@
             :checked="elementSelections[item[trackBy]] || false"
             :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
+            :expanded-rowspan="expandedRowspan"
             :fields="fields"
             :has-borders="hasBorders"
             :has-flyout="hasFlyout"
@@ -119,8 +121,12 @@
             :class="{ 'is-expanded-content': expandedElements[item[trackBy]] }"
           >
             <td
-              :class="{ 'opacity-70': isLoading }"
-              :colspan="colCount"
+              :class="[
+                { 'opacity-70': isLoading },
+                { 'border-r border-neutral-light-3': expandedRowspan && hasBorders },
+                { 'p-[16px]': expandedRowspan && density === 'spacious' },
+              ]"
+              :colspan="expandedContentColspan"
               @focus="addHoveredClass(idx)"
               @blur="removeHoveredClass(idx)"
               @mouseenter="addHoveredClass(idx)"
@@ -265,6 +271,17 @@ export default {
       required: false,
       default: 'compact',
       validator: (prop) => ['compact', 'spacious'].includes(prop),
+    },
+
+    /**
+     * Let the flyout, expand and wrap cells span the row of the expanded content as well.
+     * The expanded content then ends before these columns, with a right border if `hasBorders` is set
+     * and with padding if `density` is "spacious".
+     */
+    expandedRowspan: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     hasBorders: {
@@ -524,8 +541,11 @@ export default {
 
   data () {
     return {
+      // Field of the last data column, whose width currently includes the free space of the table
+      absorbedField: null,
       allExpanded: false,
       allWrapped: false,
+      containerObserver: null,
       currentItems: [],
       defaultTranslations: {
         footerSelectedElement: de.entrySelected,
@@ -603,6 +623,18 @@ export default {
       return `${Math.max(parsed, flyoutMinWidth)}px`
     },
 
+    /**
+     * The expanded content spans all columns, except the ones that span the expanded row themselves
+     * when `expandedRowspan` is set (flyout, expand and wrap).
+     */
+    expandedContentColspan () {
+      if (!this.expandedRowspan) {
+        return this.colCount
+      }
+
+      return this.colCount - [this.hasFlyout, this.isExpandable, this.isTruncatable].filter(Boolean).length
+    },
+
     fields () {
       return this.orderedHeaderFields.map(hf => hf.field)
     },
@@ -656,6 +688,7 @@ export default {
             this.setColsWidth(tableHeaderElements)
             this.fillContainerWidth(tableHeaderElements)
             this.setColsWidth(tableHeaderElements)
+            this.absorbFreeSpace()
           })
         }
       },
@@ -668,6 +701,61 @@ export default {
   },
 
   methods: {
+    /**
+     * Give the free space of a resizable table to its last data column.
+     *
+     * The table layout is fixed. If the columns do not fill the table, the browser distributes the free space
+     * over all columns, which widens the sticky columns (flyout, expand) as well. The width of the last data
+     * column is not stored, so it can shrink again when the other columns get wider.
+     * Only applies if there are sticky columns.
+     */
+    absorbFreeSpace () {
+      const containerWidth = this.tableEl?.parentElement?.clientWidth
+      const firstRow = this.tableEl?.getElementsByTagName('tr')[0]
+
+      if (!this.isResizable || !(this.hasFlyout || this.isExpandable) || !containerWidth || !firstRow) {
+        return
+      }
+
+      const cells = Array.from(firstRow.children).filter(cell => cell.nodeType === 1)
+      const dataCells = cells.filter(cell => cell.dataset.colField && !this.getFixedColWidth(cell.dataset.colField))
+      const lastDataCell = dataCells[dataCells.length - 1]
+
+      if (!lastDataCell) {
+        return
+      }
+
+      const field = lastDataCell.dataset.colField
+
+      // The former last column, e.g. after reordering, gets its own width back
+      if (this.absorbedField && this.absorbedField !== field) {
+        const formerCell = dataCells.find(cell => cell.dataset.colField === this.absorbedField)
+
+        if (formerCell) {
+          formerCell.style.width = `${this.getBaseColWidth(this.absorbedField)}px`
+        }
+      }
+
+      const otherCellsWidth = cells.reduce((sum, cell) => {
+        return cell === lastDataCell ? sum : sum + (Number.parseFloat(cell.style.width) || cell.getBoundingClientRect().width)
+      }, 0)
+
+      const baseWidth = this.getBaseColWidth(field)
+      let width = Math.max(baseWidth, Math.floor(containerWidth - otherCellsWidth))
+
+      lastDataCell.style.width = `${width}px`
+
+      // Other cells can be wider than their set width, e.g. because of their padding. Take that back from the last column.
+      const overflow = this.tableEl.getBoundingClientRect().width - containerWidth
+
+      if (overflow > 0) {
+        width = Math.max(baseWidth, Math.floor(width - overflow))
+        lastDataCell.style.width = `${width}px`
+      }
+
+      this.absorbedField = field
+    },
+
     addHoveredClass(idx) {
       const tableRow = this.$refs[`tableRows[${idx}]`]
 
@@ -739,6 +827,18 @@ export default {
       this.selectedElements = this.filterElementSelections()
     },
 
+    /**
+     * The width of a data column without free space of the table: stored width, `colWidth`, `initialMinWidth` or 50px.
+     */
+    getBaseColWidth (field) {
+      const headerField = this.headerFields.find(hf => hf.field === field)
+
+      return Number.parseFloat(this.readStoredColWidth(field))
+        || Number.parseFloat(this.getColWidthFromHeaderField(field))
+        || headerField?.initialMinWidth
+        || 50
+    },
+
     getColWidthFromHeaderField (field) {
       const headerField = this.headerFields.find(headerField => headerField.field === field)
 
@@ -792,6 +892,21 @@ export default {
       } catch {
         this.orderedHeaderFields = [...this.headerFields]
       }
+    },
+
+    /**
+     * Distribute the free space of the table again whenever the width of the table container changes,
+     * e.g. when the window is resized or the fullscreen mode is toggled.
+     */
+    observeContainerWidth () {
+      const container = this.tableEl?.parentElement
+
+      if (!container || typeof ResizeObserver === 'undefined') {
+        return
+      }
+
+      this.containerObserver = new ResizeObserver(() => this.absorbFreeSpace())
+      this.containerObserver.observe(container)
     },
 
     removeHoveredClass(idx) {
@@ -1046,6 +1161,7 @@ export default {
 
       this.fillContainerWidth(tableHeaderElements)
       this.setColsWidth(tableHeaderElements)
+      this.absorbFreeSpace()
 
       // Remove styles set by initialMaxWidth and initialWidth after copying rendered width into th styles
       if (this.isResizable) {
@@ -1056,6 +1172,8 @@ export default {
             th.firstChild.style.minWidth = null
           }
         })
+
+        this.observeContainerWidth()
       }
     }
 
@@ -1071,6 +1189,10 @@ export default {
     this.forceElementSelections(this.shouldBeSelectedItems)
 
     this.headerCellCount = this.headerFields.length
+  },
+
+  beforeUnmount () {
+    this.containerObserver?.disconnect()
   },
 }
 </script>

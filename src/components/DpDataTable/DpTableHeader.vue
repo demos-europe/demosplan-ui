@@ -42,10 +42,12 @@
         :class="[{ 'border-r border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }, { 'c-data-table__col--fixed': isColumnsDraggable && hf.fixed }]"
         :column-width-storage-key="columnWidthStorageKey"
         :data-col-field="hf.field"
+        :has-drag-handle="isResizable && isColumnsDraggable && !hf.fixed ? true : null"
         :header-field="hf"
         :idx="idx"
         :is-last="headerFields.length - 1 === idx ? true : null"
         :next-header="headerFields[idx + 1]"
+        @resized="$emit('column-resized')"
       >
         <div class="flex items-center justify-between">
           <slot
@@ -84,6 +86,7 @@
     <th
       v-if="isExpandable"
       scope="col"
+      :class="[{ 'border-b-2 border-neutral-light-3': hasBorders }, { 'p-[16px]': density === 'spacious' }]"
       class="c-data-table__col--expand c-data-table__cell--narrow"
       @click="toggleExpandAll()"
     >
@@ -225,6 +228,7 @@ export default {
 
   emits: [
     'column-reorder',
+    'column-resized',
     'toggle-expand-all',
     'toggle-select-all',
     'toggle-wrap-all',

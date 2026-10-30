@@ -4,6 +4,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `expandedRowspan` to let the flyout, expand and wrap cells span the expanded content row ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Apply borders and density to the expand column header ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Keep the right padding of the last column if its header has a handle for reordering ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Keep the width of the flyout and expand columns of a resizable table by giving the free space of the table to the last data column, also when the width of the table container changes ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.36.0 - 2026-10-20
 
 ### Fixed

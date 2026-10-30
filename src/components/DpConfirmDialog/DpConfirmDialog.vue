@@ -20,14 +20,32 @@
         <span>{{ header }}</span>
       </span>
     </template>
+    <!-- A div, so the message can contain lists (inside a p, lists are not allowed) -->
+    <div
+      v-if="allowHtml"
+      id="dialogDescription"
+      v-cleanhtml="message"
+      class="font-normal break-words mb-3"
+    />
     <p
+      v-else
       id="dialogDescription"
       class="font-normal break-words whitespace-pre-line mb-3"
     >
       {{ message }}
     </p>
+    <dp-checkbox
+      v-if="checkboxText"
+      :id="checkboxId"
+      :checked="isChecked"
+      class="mb-3"
+      :data-cy="`confirmDialog:${dataCy}:checkbox`"
+      :label="{ text: checkboxText }"
+      @change="isChecked = $event"
+    />
     <div class="flex flex-col items-end gap-3">
       <dp-button-row
+        :disabled="{ primary: isConfirmDisabled }"
         primary
         :primary-text="confirmButtonText"
         :primary-btn-variant="primaryBtnVariant"
@@ -49,13 +67,15 @@
 </template>
 
 <script lang="ts">
+import { PropType, useId } from 'vue'
+import { CleanHtml } from '~/directives/CleanHtml/CleanHtml'
 import { de } from '~/components/shared/translations'
 import DpButton from '~/components/DpButton'
 import DpButtonRow from '~/components/DpButtonRow'
+import DpCheckbox from '~/components/DpCheckbox'
 import DpIcon from '~/components/DpIcon'
 import DpModal from '~/components/DpModal'
 import type { IconName } from '../../../types'
-import { PropType } from 'vue'
 
 type ButtonVariant = 'solid' | 'outline' | 'subtle'
 
@@ -65,11 +85,34 @@ export default {
   components: {
     DpButton,
     DpButtonRow,
+    DpCheckbox,
     DpIcon,
     DpModal,
   },
 
+  directives: {
+    cleanhtml: CleanHtml,
+  },
+
   props: {
+    /**
+     * Renders the message as sanitized HTML. Data inside the message, e.g. names, has to be escaped by the caller
+     */
+    allowHtml: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /**
+     * If set, a checkbox with this text is shown, and the confirm button stays disabled until it is checked
+     */
+    checkboxText: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     confirmButtonText: {
       type: String,
       required: false,
@@ -141,11 +184,25 @@ export default {
     'tertiary-action',
   ],
 
+  setup () {
+    return {
+      checkboxId: useId(),
+    }
+  },
+
   data () {
     return {
+      isChecked: false,
       resolvePromise: null as ((result: boolean) => void) | null,
     }
   },
+
+  computed: {
+    isConfirmDisabled (): boolean {
+      return this.checkboxText !== '' && !this.isChecked
+    },
+  },
+
   methods: {
     handleConfirm (isConfirmed: boolean): void {
       if (this.resolvePromise) {
@@ -171,6 +228,8 @@ export default {
     },
 
     open (): Promise<boolean> {
+      // Each confirmation has to be checked again
+      this.isChecked = false
       this.$refs.confirmDialog.toggle()
 
       return new Promise(resolve => {

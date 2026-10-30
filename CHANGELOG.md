@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1643](https://github.com/demos-europe/demosplan-ui/pull/1643)) DpConfirmDialog: Add optional confirmation checkbox and HTML support ([@hwiem](https://github.com/hwiem))
+
 ### Changed
 - ([#1644](https://github.com/demos-europe/demosplan-ui/pull/1644)) Bump node.js to 24.22.1 for CI, the local Docker image and `engines` (October 2026 security release) ([@hwiem](https://github.com/hwiem))
 

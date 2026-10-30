@@ -4,11 +4,22 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+## v0.37.0 - 2026-10-30
+
 ### Added
 - ([#1643](https://github.com/demos-europe/demosplan-ui/pull/1643)) DpConfirmDialog: Add optional confirmation checkbox and HTML support ([@hwiem](https://github.com/hwiem))
 
 ### Changed
 - ([#1644](https://github.com/demos-europe/demosplan-ui/pull/1644)) Bump node.js to 24.22.1 for CI, the local Docker image and `engines` (October 2026 security release) ([@hwiem](https://github.com/hwiem))
+- Dependency updates:
+  - @tailwindcss/postcss from 4.1.11 to 4.3.3
+  - @vitest/coverage-v8 from 4.1.11 to 5.0.5
+  - @vitest/ui from 4.1.11 to 5.0.5
+  - dompurify from 3.4.16 to 3.4.17
+  - tailwindcss from 4.1.11 to 4.3.3
+  - vite from 8.3.1 to 8.3.5
+  - vitest from 4.1.11 to 5.0.5
+
 
 ## v0.36.0 - 2026-10-20
 

@@ -38,4 +38,9 @@ yarn install
 yarn sb
 ```
 
-Once started, Storybook will be available at http://localhost:3000 by default.
+Storybook only listens on loopback by default, which is not reachable from the host browser inside a container.
+`yarn sb` therefore binds to the container's own address when it runs in a container. The URL depends on where it runs:
+
+- Host: http://localhost:3000
+- demosplan-ui container: http://localhost:6006
+- demosplan-core container: http://172.22.255.2:3000

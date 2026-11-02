@@ -4,6 +4,11 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) DpAccordion: add new props ([@sakutademos](https://github.com/sakutademos))
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) DpButton: add a new prop ([@sakutademos](https://github.com/sakutademos))
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) Add new icons ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.37.0 - 2026-10-30
 
 ### Added

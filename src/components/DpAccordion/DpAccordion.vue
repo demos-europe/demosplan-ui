@@ -12,7 +12,7 @@
       -->
       <slot name="titlePrefix" />
       <button
-        :aria-expanded="isVisible.toString()"
+        :aria-expanded="isVisible"
         :data-cy="dataCy"
         class="flex items-center grow text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
         :class="[
@@ -223,7 +223,7 @@ export default {
   },
 
   methods: {
-    toggle (state) {
+    toggle (state?: boolean) {
       this.isVisible = (typeof state === 'undefined') ? !this.isVisible : state
       this.$emit('item:toggle', this.isVisible)
     },

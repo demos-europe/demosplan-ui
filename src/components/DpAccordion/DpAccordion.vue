@@ -224,7 +224,7 @@ export default {
 
   methods: {
     toggle (state?: boolean) {
-      this.isVisible = (typeof state === 'undefined') ? !this.isVisible : state
+      this.isVisible = (state === undefined) ? !this.isVisible : state
       this.$emit('item:toggle', this.isVisible)
     },
   },

@@ -50,18 +50,27 @@ describe('DpDataTable expanded row', () => {
       expect(wrapper.find('td.c-data-table__col--flyout').attributes('rowspan')).toBeUndefined()
       expect(wrapper.find('td.c-data-table__col--expand').attributes('rowspan')).toBeUndefined()
     })
+
+    it('adds neither border nor padding to the expanded content', async () => {
+      wrapper = await mountTable({ density: 'spacious', hasBorders: true })
+
+      const classes = wrapper.find('tr.is-expanded-content td').classes()
+
+      expect(classes).not.toContain('border-r')
+      expect(classes).not.toContain('p-[16px]')
+    })
   })
 
-  describe('with expandedRowspan', () => {
+  describe('with hasStickyColumnsWhenExpanded', () => {
     it('lets the flyout and expand cells span the row of the expanded content', async () => {
-      wrapper = await mountTable({ expandedRowspan: true })
+      wrapper = await mountTable({ hasStickyColumnsWhenExpanded: true })
 
       expect(wrapper.find('td.c-data-table__col--flyout').attributes('rowspan')).toBe('2')
       expect(wrapper.find('td.c-data-table__col--expand').attributes('rowspan')).toBe('2')
     })
 
     it('ends the expanded content before the flyout and expand columns', async () => {
-      wrapper = await mountTable({ expandedRowspan: true })
+      wrapper = await mountTable({ hasStickyColumnsWhenExpanded: true })
 
       const expandedCell = wrapper.find('tr.is-expanded-content td')
 
@@ -70,7 +79,7 @@ describe('DpDataTable expanded row', () => {
     })
 
     it('does not span the expanded row while the row is collapsed', async () => {
-      wrapper = await mountTable({ expandedRowspan: true })
+      wrapper = await mountTable({ hasStickyColumnsWhenExpanded: true })
       wrapper.vm.toggleExpand('1')
       await nextTick()
 
@@ -80,30 +89,19 @@ describe('DpDataTable expanded row', () => {
     })
 
     it('adds a right border to the expanded content with hasBorders', async () => {
-      wrapper = await mountTable({ expandedRowspan: true, hasBorders: true })
+      wrapper = await mountTable({ hasStickyColumnsWhenExpanded: true, hasBorders: true })
 
       expect(wrapper.find('tr.is-expanded-content td').classes()).toContain('border-r')
     })
 
     it('adds padding to the expanded content with density spacious', async () => {
-      wrapper = await mountTable({ density: 'spacious', expandedRowspan: true })
+      wrapper = await mountTable({ density: 'spacious', hasStickyColumnsWhenExpanded: true })
 
       expect(wrapper.find('tr.is-expanded-content td').classes()).toContain('p-[16px]')
     })
 
     it('does not add border or padding without hasBorders and density spacious', async () => {
-      wrapper = await mountTable({ expandedRowspan: true })
-
-      const classes = wrapper.find('tr.is-expanded-content td').classes()
-
-      expect(classes).not.toContain('border-r')
-      expect(classes).not.toContain('p-[16px]')
-    })
-  })
-
-  describe('without expandedRowspan', () => {
-    it('adds neither border nor padding to the expanded content', async () => {
-      wrapper = await mountTable({ density: 'spacious', hasBorders: true })
+      wrapper = await mountTable({ hasStickyColumnsWhenExpanded: true })
 
       const classes = wrapper.find('tr.is-expanded-content td').classes()
 
@@ -134,7 +132,7 @@ describe('DpDataTable last header column', () => {
     expect(lastHeaderCell().classes()).not.toContain('u-pr-0')
   })
 
-  it('has no right padding if it is fixed and has no handle for reordering', async () => {
+  it('has no right padding if it is fixed and has no drag handle', async () => {
     wrapper = await mountTable({
       headerFields: [headerFields[0], { ...headerFields[1], fixed: true }],
       isColumnsDraggable: true,

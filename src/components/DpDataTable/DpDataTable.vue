@@ -76,10 +76,10 @@
             :checked="elementSelections[item[trackBy]] || false"
             :density="density"
             :expanded="expandedElements[item[trackBy]] || false"
-            :expanded-rowspan="expandedRowspan"
             :fields="fields"
             :has-borders="hasBorders"
             :has-flyout="hasFlyout"
+            :has-sticky-columns-when-expanded="hasStickyColumnsWhenExpanded"
             :header-fields="orderedHeaderFields"
             :is-draggable="isDraggable"
             :is-expandable="isExpandable"
@@ -123,8 +123,8 @@
             <td
               :class="[
                 { 'opacity-70': isLoading },
-                { 'border-r border-neutral-light-3': expandedRowspan && hasBorders },
-                { 'p-[16px]': expandedRowspan && density === 'spacious' },
+                { 'border-r border-neutral-light-3': hasStickyColumnsWhenExpanded && hasBorders },
+                { 'p-[16px]': hasStickyColumnsWhenExpanded && density === 'spacious' },
               ]"
               :colspan="expandedContentColspan"
               @focus="addHoveredClass(idx)"
@@ -273,17 +273,6 @@ export default {
       validator: (prop) => ['compact', 'spacious'].includes(prop),
     },
 
-    /**
-     * Let the flyout, expand and wrap cells span the row of the expanded content as well.
-     * The expanded content then ends before these columns, with a right border if `hasBorders` is set
-     * and with padding if `density` is "spacious".
-     */
-    expandedRowspan: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
     hasBorders: {
       type: Boolean,
       required: false,
@@ -292,6 +281,16 @@ export default {
 
     // Adds flyout menu
     hasFlyout: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    /**
+     * Keep sticky columns visible next to expanded content of a row.
+     * Makes the expanded content a bit narrower.
+     */
+    hasStickyColumnsWhenExpanded: {
       type: Boolean,
       required: false,
       default: false,
@@ -624,11 +623,11 @@ export default {
     },
 
     /**
-     * The expanded content spans all columns, except the ones that span the expanded row themselves
-     * when `expandedRowspan` is set (flyout, expand and wrap).
+     * The expanded content spans all columns, except the sticky columns at the end of the row
+     * (flyout, expand and wrap) if the table is horizontally scrollable
      */
     expandedContentColspan () {
-      if (!this.expandedRowspan) {
+      if (!this.hasStickyColumnsWhenExpanded) {
         return this.colCount
       }
 

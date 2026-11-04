@@ -169,15 +169,6 @@ export default {
       default: false,
     },
 
-    /**
-     * Let the flyout, expand and wrap cells span the row of the expanded content as well.
-     */
-    expandedRowspan: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-
     hasBorders: {
       type: Boolean,
       required: false,
@@ -187,6 +178,16 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
+    },
+
+    /**
+     * Keep sticky columns visible next to expanded content of a row.
+     * Makes the expanded content a bit narrower.
+     */
+    hasStickyColumnsWhenExpanded: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     /**
@@ -359,7 +360,7 @@ export default {
      * Whether the cells right of the data columns also span the row of the expanded content
      */
     spansExpandedRow () {
-      return this.expandedRowspan && this.expanded
+      return this.hasStickyColumnsWhenExpanded && this.expanded
     },
   },
 

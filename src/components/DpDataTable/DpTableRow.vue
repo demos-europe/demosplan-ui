@@ -55,7 +55,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders && !expanded }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-idx="`${idx}`"
     >
       <div

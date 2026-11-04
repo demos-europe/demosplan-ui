@@ -111,6 +111,28 @@ describe('DpDataTable expanded row', () => {
   })
 })
 
+describe('DpDataTable row borders', () => {
+  let wrapper
+
+  afterEach(() => {
+    wrapper?.unmount()
+  })
+
+  it('has no borders in the cells of an expanded row', async () => {
+    wrapper = await mountTable({ hasBorders: true })
+
+    expect(wrapper.find('tr.is-expanded-row td[data-col-idx="0"]').classes()).not.toContain('border-r')
+  })
+
+  it('has borders in the cells of a collapsed row', async () => {
+    wrapper = await mountTable({ hasBorders: true })
+    wrapper.vm.toggleExpand('1')
+    await nextTick()
+
+    expect(wrapper.find('tr.row td[data-col-idx="0"]').classes()).toContain('border-r')
+  })
+})
+
 describe('DpDataTable last header column', () => {
   let wrapper
 

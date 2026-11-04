@@ -11,6 +11,29 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Fix header borders, padding and column widths of resizable tables ([@riechedemos](https://github.com/riechedemos))
 
+## v0.38.0 - 2026-11-03
+
+### Added
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) DpAccordion: add new props ([@sakutademos](https://github.com/sakutademos))
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) DpButton: add a new prop ([@sakutademos](https://github.com/sakutademos))
+- ([#1629](https://github.com/demos-europe/demosplan-ui/pull/1629)) Add new icons ([@sakutademos](https://github.com/sakutademos))
+
+## v0.37.0 - 2026-10-30
+
+### Added
+- ([#1643](https://github.com/demos-europe/demosplan-ui/pull/1643)) DpConfirmDialog: Add optional confirmation checkbox and HTML support ([@hwiem](https://github.com/hwiem))
+
+### Changed
+- ([#1644](https://github.com/demos-europe/demosplan-ui/pull/1644)) Bump node.js to 24.22.1 for CI, the local Docker image and `engines` (October 2026 security release) ([@hwiem](https://github.com/hwiem))
+- Dependency updates:
+  - @tailwindcss/postcss from 4.1.11 to 4.3.3
+  - @vitest/coverage-v8 from 4.1.11 to 5.0.5
+  - @vitest/ui from 4.1.11 to 5.0.5
+  - dompurify from 3.4.16 to 3.4.17
+  - tailwindcss from 4.1.11 to 4.3.3
+  - vite from 8.3.1 to 8.3.5
+  - vitest from 4.1.11 to 5.0.5
+
 ## v0.36.0 - 2026-10-20
 
 ### Fixed

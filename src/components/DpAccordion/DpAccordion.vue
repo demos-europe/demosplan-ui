@@ -12,12 +12,24 @@
       -->
       <slot name="titlePrefix" />
       <button
-        :aria-expanded="isVisible.toString()"
+        :aria-expanded="isVisible"
         :data-cy="dataCy"
-        class="flex items-center justify-between grow text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+        class="flex items-center grow text-default hover:text-interactive hover:cursor-pointer active:text-interactive-hover"
+        :class="[
+          iconLeft ? 'justify-start' : 'justify-between',
+          { 'text-interactive': interactive }
+        ]"
         type="button"
         @click="() => toggle()"
       >
+        <dp-icon
+          v-if="iconLeft"
+          class="mb-1 mr-1"
+          aria-hidden="true"
+          :icon="isVisible ? 'caret-up' : 'caret-down'"
+          :size="iconSize"
+          :weight="iconWeight"
+        />
         <span class="flex items-center gap-1.5">
           <span
             :class="titleClasses"
@@ -39,9 +51,11 @@
           </span>
         </span>
         <dp-icon
+          v-if="!iconLeft"
           aria-hidden="true"
           :icon="isVisible ? 'caret-up' : 'caret-down'"
           :size="iconSize"
+          :weight="iconWeight"
         />
       </button>
     </div>
@@ -54,9 +68,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import DpIcon from '~/components/DpIcon'
 import DpTransitionExpand from '~/components/DpTransitionExpand'
+import { IconWeight } from '../../../types'
+import { PropType } from 'vue'
 
 export default {
   name: 'DpAccordion',
@@ -89,6 +105,25 @@ export default {
     // Adds background color to a toggled trigger
     highlightToggledTrigger: {
       type: Boolean,
+      default: false,
+    },
+
+    iconLeft: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    iconWeight: {
+      type: String as PropType<IconWeight>,
+      required: false,
+      default: 'regular',
+      validator: (prop: IconWeight) => ['light', 'regular', 'bold', 'fill'].includes(prop),
+    },
+
+    interactive: {
+      type: Boolean,
+      required: false,
       default: false,
     },
 
@@ -188,8 +223,8 @@ export default {
   },
 
   methods: {
-    toggle (state) {
-      this.isVisible = (typeof state === 'undefined') ? !this.isVisible : state
+    toggle (state?: boolean) {
+      this.isVisible = (state === undefined) ? !this.isVisible : state
       this.$emit('item:toggle', this.isVisible)
     },
   },

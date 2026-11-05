@@ -4,6 +4,10 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+- ([#1649](https://github.com/demos-europe/demosplan-ui/pull/1649)) Bump vue-sliding-pagination to v3.0.1
+  - The new version provides both ESM and UMD modules
+  - Remove the no-longer-needed ESM transformation logic from the config file ([@sakutademos](https://github.com/sakutademos))
+
 ## v0.38.0 - 2026-11-03
 
 ### Added

@@ -4,9 +4,17 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
+
+### Changed
 - ([#1649](https://github.com/demos-europe/demosplan-ui/pull/1649)) Bump vue-sliding-pagination to v3.0.1
   - The new version provides both ESM and UMD modules
-  - Remove the no-longer-needed ESM transformation logic from the config file ([@sakutademos](https://github.com/sakutademos))
+  - Remove the no-longer-needed ESM transformation logic
+
+### Fixed
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Fix header borders, padding and column widths of resizable tables ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.38.0 - 2026-11-03
 

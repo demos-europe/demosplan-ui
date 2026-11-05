@@ -55,7 +55,7 @@
     <td
       v-for="(field, idx) in fields"
       :key="`${field}:${idx}`"
-      :class="[{ 'border-r border-neutral-light-3': hasBorders }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
+      :class="[{ 'border-r border-neutral-light-3': hasBorders && !expanded }, { 'c-data-table__resizable': isTruncatable }, { 'break-words': isResizable }, { 'p-[16px]': density === 'spacious' }]"
       :data-col-idx="`${idx}`"
     >
       <div
@@ -83,6 +83,7 @@
 
     <td
       v-if="hasFlyout"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__col--flyout overflow-visible min-w-[50px]"
     >
       <slot
@@ -93,6 +94,7 @@
 
     <td
       v-if="isExpandable"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__col--expand c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': expanded }"
       :title="expanded ? translations.ariaCollapse : translations.ariaExpand"
@@ -106,6 +108,7 @@
 
     <td
       v-if="isTruncatable"
+      :rowspan="spansExpandedRow ? 2 : null"
       class="c-data-table__cell--narrow overflow-hidden min-w-[50px]"
       :class="{ 'is-open': wrapped }"
       :title="wrapped ? translations.ariaCollapse : translations.ariaExpand"
@@ -175,6 +178,16 @@ export default {
     hasFlyout: {
       type: Boolean,
       required: true,
+    },
+
+    /**
+     * Keep sticky columns visible next to expanded content of a row.
+     * Makes the expanded content a bit narrower.
+     */
+    hasStickyColumnsWhenExpanded: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
 
     /**
@@ -341,6 +354,13 @@ export default {
 
         return style
       }
+    },
+
+    /**
+     * Whether the cells right of the data columns also span the row of the expanded content
+     */
+    spansExpandedRow () {
+      return this.hasStickyColumnsWhenExpanded && this.expanded
     },
   },
 

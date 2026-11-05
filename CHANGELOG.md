@@ -4,6 +4,13 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
+
+### Fixed
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
+- ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Fix header borders, padding and column widths of resizable tables ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.38.0 - 2026-11-03
 
 ### Added
@@ -26,7 +33,6 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
   - tailwindcss from 4.1.11 to 4.3.3
   - vite from 8.3.1 to 8.3.5
   - vitest from 4.1.11 to 5.0.5
-
 
 ## v0.36.0 - 2026-10-20
 

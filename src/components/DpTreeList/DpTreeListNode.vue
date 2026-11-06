@@ -139,6 +139,12 @@ export default {
     tooltip: Tooltip,
   },
 
+  inject: {
+    treeListAllExpanded: {
+      default: false,
+    },
+  },
+
   props: {
     checkBranch: {
       type: Function,
@@ -322,6 +328,12 @@ export default {
     },
   },
 
+  watch: {
+    treeListAllExpanded (expanded) {
+      this.isExpanded = expanded
+    },
+  },
+
   methods: {
     bubbleChangeEvent (payload) {
       this.$emit('tree:change', payload)
@@ -338,10 +350,6 @@ export default {
     handleSelectionToggle () {
       this.$emit('node-selected', this.nodeId)
     },
-  },
-
-  mounted () {
-    this.$root.$on('treelist:toggle-all', (expanded) => (this.isExpanded = expanded))
   },
 }
 </script>

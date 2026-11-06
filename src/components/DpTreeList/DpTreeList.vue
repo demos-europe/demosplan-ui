@@ -103,6 +103,7 @@
 </template>
 
 <script>
+import { computed } from 'vue'
 import { deepMerge } from '~/utils'
 import DpDraggable from '../DpDraggable/DpDraggable'
 import DpTreeListCheckbox from './DpTreeListCheckbox'
@@ -120,6 +121,12 @@ export default {
     DpTreeListCheckbox,
     DpTreeListNode,
     DpTreeListToggle,
+  },
+
+  provide () {
+    return {
+      treeListAllExpanded: computed(() => this.allElementsExpanded),
+    }
   },
 
   props: {
@@ -399,7 +406,6 @@ export default {
     },
 
     toggleAll () {
-      this.$root.$emit('treelist:toggle-all', !this.allElementsExpanded)
       this.allElementsExpanded = !this.allElementsExpanded
     },
 

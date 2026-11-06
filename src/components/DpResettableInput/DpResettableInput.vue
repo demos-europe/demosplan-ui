@@ -65,6 +65,8 @@ import DpInput from '~/components/DpInput'
 export default {
   name: 'DpResettableInput',
 
+  compatConfig: { COMPONENT_V_MODEL: false },
+
   components: {
     DpIcon,
     DpInput,
@@ -106,6 +108,12 @@ export default {
       default: () => ({}),
     },
 
+    modelValue: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     pattern: {
       type: String,
       required: false,
@@ -132,26 +140,20 @@ export default {
       default: 'full',
       validator: (prop) => ['full', 'left', 'right'].includes(prop),
     },
-
-    value: {
-      type: String,
-      required: false,
-      default: '',
-    },
   },
 
   emits: [
     'blur',
     'enter',
     'focus',
-    'input',
     'keydown',
     'reset',
+    'update:modelValue',
   ],
 
   data () {
     return {
-      currentValue: this.value,
+      currentValue: this.modelValue,
       translations: {
         reset: de.operations.reset,
       },
@@ -219,15 +221,15 @@ export default {
   },
 
   watch: {
-    value: function () {
-      this.currentValue = this.value
+    modelValue: function () {
+      this.currentValue = this.modelValue
     },
   },
 
   methods: {
     handleUpdate (val) {
       this.currentValue = val
-      this.$emit('input', val)
+      this.$emit('update:modelValue', val)
     },
 
     resetValue () {

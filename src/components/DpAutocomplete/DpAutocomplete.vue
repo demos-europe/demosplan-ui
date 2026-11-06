@@ -19,10 +19,10 @@
       :rounded="rounded"
       @blur="handleBlur"
       @focus="handleFocus"
-      @input="handleInput"
       @keydown="handleKeydown"
       @keyup="handleKeyup"
       @reset="handleReset"
+      @update:model-value="handleInput"
     >
       <template v-if="searchButton">
         <dp-button

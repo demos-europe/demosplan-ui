@@ -181,7 +181,7 @@ describe('DpDataTable free space of the table', () => {
       ...props,
     })
 
-    Object.defineProperty(wrapper.vm.tableEl.parentElement, 'clientWidth', { configurable: true, value: containerWidth })
+    vi.spyOn(wrapper.vm.tableEl.parentElement, 'getBoundingClientRect').mockReturnValue({ width: containerWidth })
 
     const cells = () => wrapper.findAll('thead tr:first-child > th')
     const setWidth = (cell, width) => { cell.element.style.width = `${width}px` }
@@ -214,6 +214,15 @@ describe('DpDataTable free space of the table', () => {
     expect(cell('b').style.width).toBe('690px')
     expect(cell('a').style.width).toBe('100px')
     expect(cell('flyout').style.width).toBe('60px')
+  })
+
+  it('does not exceed a container with a fractional width', async () => {
+    const { cell } = await prepare({ containerWidth: 900.5 })
+
+    wrapper.vm.absorbFreeSpace()
+
+    // floor(900.5 - (a 100 + flyout 60 + expand 50)), so the table is never wider than the container
+    expect(cell('b').style.width).toBe('690px')
   })
 
   it('does not widen the last data column if the columns overflow the table', async () => {
@@ -333,12 +342,12 @@ describe('DpDataTable width of the container', () => {
     })
     const lastCell = wrapper.find('thead tr:first-child > th[data-col-field="b"]').element
 
-    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 900 })
+    vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({ width: 900 })
     observers[0].callback()
     // 900 - (a 100 + flyout 60 + expand 50)
     expect(lastCell.style.width).toBe('690px')
 
-    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 700 })
+    vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({ width: 700 })
     observers[0].callback()
     expect(lastCell.style.width).toBe('490px')
   })

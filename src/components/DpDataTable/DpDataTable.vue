@@ -709,7 +709,8 @@ export default {
      * Only applies if there are sticky columns.
      */
     absorbFreeSpace () {
-      const containerWidth = this.tableEl?.parentElement?.clientWidth
+      // Use the exact width, clientWidth is rounded and can exceed a fractional container by up to 0.5px
+      const containerWidth = this.tableEl?.parentElement?.getBoundingClientRect().width
       const firstRow = this.tableEl?.getElementsByTagName('tr')[0]
 
       if (!this.isResizable || !(this.hasFlyout || this.isExpandable) || !containerWidth || !firstRow) {
@@ -987,7 +988,8 @@ export default {
      * to their minimum width — other columns are left untouched.
      */
     fillContainerWidth (headers) {
-      const containerWidth = this.tableEl.parentElement.clientWidth
+      // Use the exact width, clientWidth is rounded and can exceed a fractional container by up to 0.5px
+      const containerWidth = this.tableEl.parentElement.getBoundingClientRect().width
       if (!containerWidth) {
         return
       }

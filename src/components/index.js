@@ -35,6 +35,7 @@ import DpMultistepNav from './DpMultistepNav'
 import DpNotification from './DpNotification'
 import DpObscure from './DpObscure'
 import DpPager from './DpPager'
+import DpPopover from './DpPopover'
 import DpProgressBar from './DpProgressBar'
 import DpRadio from './DpRadio'
 import DpResettableInput from './DpResettableInput'
@@ -102,6 +103,7 @@ export {
   DpNotification,
   DpObscure,
   DpPager,
+  DpPopover,
   DpProgressBar,
   DpRadio,
   DpResettableInput,

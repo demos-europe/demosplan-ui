@@ -1,0 +1,16 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as DpPopoverStories from './DpPopover.stories'
+
+<Meta of={DpPopoverStories} />
+
+# Popover
+
+The Popover component renders a button that toggles a panel with additional information.
+
+The panel is teleported to the `body` and positioned with `position: fixed` (via [FloatingUI](https://floating-ui.com/)),
+so it is not clipped by scroll containers like tables with `overflow-x: auto`.
+It closes on click outside and on `Escape`.
+
+Use the `Flyout` component for menus with actions instead.
+
+<Canvas of={DpPopoverStories.Default} />

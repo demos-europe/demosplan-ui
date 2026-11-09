@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## Unreleased
 
 ### Added
-- ([#NNN](https://github.com/demos-europe/demosplan-ui/pull/NNN)) DpPopover: Add component that toggles a panel which is not clipped by scroll containers ([@riechedemos](https://github.com/riechedemos))
+- ([#1652](https://github.com/demos-europe/demosplan-ui/pull/1652)) DpPopover: Add component that toggles a panel which is not clipped by scroll containers ([@riechedemos](https://github.com/riechedemos))
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
 
 ### Changed

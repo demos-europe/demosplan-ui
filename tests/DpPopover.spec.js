@@ -1,0 +1,115 @@
+import { flushPromises, mount } from '@vue/test-utils'
+import DpPopover from '~/components/DpPopover/DpPopover.vue'
+import { nextTick } from 'vue'
+
+const floating = vi.hoisted(() => ({ computePosition: vi.fn() }))
+
+vi.mock('@floating-ui/dom', () => ({
+  // Runs the update once, like the real one when it starts tracking
+  autoUpdate: vi.fn((trigger, panel, update) => {
+    update()
+
+    return vi.fn()
+  }),
+  computePosition: floating.computePosition,
+  flip: vi.fn(),
+  offset: vi.fn(),
+  shift: vi.fn(),
+}))
+
+describe('DpPopover', () => {
+  let wrapper
+
+  const mountPopover = (props = {}) => mount(DpPopover, {
+    attachTo: document.body,
+    props: { panelLabel: 'Details', ...props },
+    slots: { default: '<p>Content</p>', trigger: '+5' },
+  })
+
+  const panel = () => document.body.querySelector('[role="dialog"]')
+
+  const open = async () => {
+    await wrapper.find('button').trigger('click')
+    await nextTick()
+  }
+
+  beforeEach(() => {
+    floating.computePosition.mockResolvedValue({ x: 10, y: 20 })
+  })
+
+  afterEach(() => {
+    wrapper?.unmount()
+    wrapper = null
+  })
+
+  it('gives the panel its accessible name', async () => {
+    wrapper = mountPopover()
+    await open()
+
+    expect(panel().getAttribute('aria-label')).toBe('Details')
+  })
+
+  it('moves the focus into the panel when it opens', async () => {
+    wrapper = mountPopover()
+    await open()
+
+    expect(document.activeElement).toBe(panel())
+  })
+
+  it('moves the focus back to the trigger when the panel is closed with Escape', async () => {
+    wrapper = mountPopover()
+    await open()
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+    await nextTick()
+
+    expect(panel()).toBeNull()
+    expect(document.activeElement).toBe(wrapper.find('button').element)
+  })
+
+  it('positions the panel', async () => {
+    wrapper = mountPopover()
+    await open()
+    await flushPromises()
+
+    expect(panel().style.left).toBe('10px')
+    expect(panel().style.top).toBe('20px')
+  })
+
+  it('does not throw if the panel is closed while its position is computed', async () => {
+    let resolvePosition
+    floating.computePosition.mockReturnValue(new Promise(resolve => { resolvePosition = resolve }))
+    const unhandled = vi.fn()
+    process.on('unhandledRejection', unhandled)
+
+    wrapper = mountPopover()
+    await open()
+    await wrapper.find('button').trigger('click')
+    await nextTick()
+    expect(panel()).toBeNull()
+
+    resolvePosition({ x: 10, y: 20 })
+    await flushPromises()
+
+    expect(unhandled).not.toHaveBeenCalled()
+    process.off('unhandledRejection', unhandled)
+  })
+
+  it('does not apply an old position to a panel that was opened again', async () => {
+    let resolveFirst
+    floating.computePosition.mockReturnValueOnce(new Promise(resolve => { resolveFirst = resolve }))
+    floating.computePosition.mockResolvedValue({ x: 30, y: 40 })
+
+    wrapper = mountPopover()
+    await open()
+    await wrapper.find('button').trigger('click')
+    await open()
+    await flushPromises()
+
+    resolveFirst({ x: 10, y: 20 })
+    await flushPromises()
+
+    expect(panel().style.left).toBe('30px')
+    expect(panel().style.top).toBe('40px')
+  })
+})

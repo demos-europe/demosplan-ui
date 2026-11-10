@@ -4,6 +4,7 @@ import DpPopover from './'
 interface IDpPopover {
     ariaLabel: string
     buttonClass: string
+    panelLabel: string
 }
 
 const meta: Meta<typeof DpPopover> = {
@@ -42,6 +43,7 @@ type Story = StoryObj<IDpPopover>
 export const Default: Story = {
     args: {
         ariaLabel: 'Show more',
-        buttonClass: 'cursor-pointer rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive'
+        buttonClass: 'cursor-pointer rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive',
+        panelLabel: 'Popover title'
     }
 }

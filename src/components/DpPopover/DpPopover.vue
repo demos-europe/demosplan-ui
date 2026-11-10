@@ -19,10 +19,11 @@
       :id="panelId"
       ref="panel"
       v-on-click-outside="[close, { ignore: [trigger] }]"
-      :aria-label="panelLabel !== '' ? panelLabel : undefined"
+      :aria-label="panelLabel"
       :data-cy="dataCy !== '' ? `${dataCy}:panel` : null"
       class="fixed z-flyout bg-surface shadow-md text-left"
       role="dialog"
+      tabindex="-1"
     >
       <slot />
     </div>
@@ -53,10 +54,10 @@ defineProps({
     default: '',
   },
 
+  // Accessible name of the panel, which is a dialog
   panelLabel: {
     type: String,
-    required: false,
-    default: '',
+    required: true,
   },
 })
 
@@ -88,18 +89,25 @@ const handleKeydown = (event: KeyboardEvent): void => {
 
 // Below the trigger, flipped above if there is no space. Fixed positioning avoids clipping by scroll containers.
 const updatePosition = async (): Promise<void> => {
-  if (!trigger.value || !panel.value) {
+  const panelEl = panel.value
+
+  if (!trigger.value || !panelEl) {
     return
   }
 
-  const { x, y } = await computePosition(trigger.value, panel.value, {
+  const { x, y } = await computePosition(trigger.value, panelEl, {
     middleware: [offset(OFFSET), flip(), shift({ padding: VIEWPORT_PADDING })],
     placement: 'bottom-start',
     strategy: 'fixed',
   })
 
-  panel.value.style.left = `${x}px`
-  panel.value.style.top = `${y}px`
+  // The panel may have been closed or replaced while the position was computed
+  if (panel.value !== panelEl) {
+    return
+  }
+
+  panelEl.style.left = `${x}px`
+  panelEl.style.top = `${y}px`
 }
 
 const stopTracking = (): void => {
@@ -120,6 +128,8 @@ watch(isOpen, async (open) => {
 
   if (trigger.value && panel.value) {
     stopAutoUpdate = autoUpdate(trigger.value, panel.value, updatePosition)
+    // The panel is teleported to the end of the body, so keyboard and screen reader users have to be moved into it
+    panel.value.focus()
   }
 })
 

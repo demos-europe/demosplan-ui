@@ -144,17 +144,37 @@ describe('DpTreeList', () => {
 
   describe('toggle all', () => {
     const stubs = {
-      DpDraggable: true,
+      // Keeps the slot, which holds the nested nodes
+      DpDraggable: { template: '<div><slot /></div>' },
       DpIcon: true,
       DpTreeListCheckbox: true,
       DpTreeListToggle: true,
     }
 
+    const createNestedTreeData = () => [
+      {
+        id: 'folder-1',
+        type: 'Elements',
+        children: [
+          {
+            id: 'folder-1-1',
+            type: 'Elements',
+            children: [{ id: 'doc-1', type: 'SingleDocument', children: [] }],
+          },
+        ],
+      },
+      {
+        id: 'folder-2',
+        type: 'Elements',
+        children: [{ id: 'doc-2', type: 'SingleDocument', children: [] }],
+      },
+    ]
+
     // Both tree lists share one app, so a $root-wide event would reach both
     const mountTwoTreeLists = async () => {
       const page = mount({
         components: { DpTreeList },
-        data: () => ({ first: createTreeData(), second: createTreeData() }),
+        data: () => ({ first: createNestedTreeData(), second: createNestedTreeData() }),
         methods: { branchIdentifier: ({ node }) => node.type === 'Elements' },
         template: `
           <div>
@@ -169,25 +189,25 @@ describe('DpTreeList', () => {
       return page
     }
 
-    const topLevelNodes = treeList => treeList
+    const branchNodes = treeList => treeList
       .findAllComponents({ name: 'DpTreeListNode' })
-      .filter(node => node.props('level') === 0)
+      .filter(node => node.vm.isBranch)
 
-    it('expands and collapses all nodes of the tree list', async () => {
+    it('expands and collapses all folders of the tree list, including nested ones', async () => {
       const page = await mountTwoTreeLists()
       const treeList = page.findAllComponents(DpTreeList)[0]
 
-      expect(topLevelNodes(treeList)).toHaveLength(2)
+      expect(branchNodes(treeList).map(node => node.props('nodeId'))).toEqual(['folder-1', 'folder-1-1', 'folder-2'])
 
       treeList.vm.toggleAll()
       await page.vm.$nextTick()
 
-      expect(topLevelNodes(treeList).every(node => node.vm.isExpanded)).toBe(true)
+      expect(branchNodes(treeList).every(node => node.vm.isExpanded)).toBe(true)
 
       treeList.vm.toggleAll()
       await page.vm.$nextTick()
 
-      expect(topLevelNodes(treeList).every(node => !node.vm.isExpanded)).toBe(true)
+      expect(branchNodes(treeList).every(node => !node.vm.isExpanded)).toBe(true)
 
       page.unmount()
     })
@@ -196,12 +216,12 @@ describe('DpTreeList', () => {
       const page = await mountTwoTreeLists()
       const [toggledTreeList, otherTreeList] = page.findAllComponents(DpTreeList)
 
-      expect(topLevelNodes(otherTreeList)).toHaveLength(2)
+      expect(branchNodes(otherTreeList)).toHaveLength(3)
 
       toggledTreeList.vm.toggleAll()
       await page.vm.$nextTick()
 
-      expect(topLevelNodes(otherTreeList).every(node => !node.vm.isExpanded)).toBe(true)
+      expect(branchNodes(otherTreeList).every(node => !node.vm.isExpanded)).toBe(true)
 
       page.unmount()
     })

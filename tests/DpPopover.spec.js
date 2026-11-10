@@ -67,6 +67,30 @@ describe('DpPopover', () => {
     expect(document.activeElement).toBe(wrapper.find('button').element)
   })
 
+  it('keeps the panel within a dialog around the trigger, so it stays interactive in a modal', async () => {
+    const dialog = document.createElement('dialog')
+    document.body.appendChild(dialog)
+    wrapper = mount(DpPopover, {
+      attachTo: dialog,
+      props: { panelLabel: 'Details' },
+      slots: { default: '<p>Content</p>', trigger: '+5' },
+    })
+    await open()
+
+    expect(panel().closest('dialog')).toBe(dialog)
+
+    wrapper.unmount()
+    wrapper = null
+    dialog.remove()
+  })
+
+  it('puts the panel into the body without a dialog around the trigger', async () => {
+    wrapper = mountPopover()
+    await open()
+
+    expect(panel().parentElement).toBe(document.body)
+  })
+
   it('positions the panel', async () => {
     wrapper = mountPopover()
     await open()

@@ -13,7 +13,7 @@
     <slot name="trigger" />
   </button>
 
-  <Teleport to="body">
+  <Teleport :to="teleportTarget">
     <div
       v-if="isOpen"
       :id="panelId"
@@ -68,6 +68,8 @@ const VIEWPORT_PADDING = 8
 const isOpen = ref<boolean>(false)
 const panel = ref<HTMLElement | null>(null)
 const panelId = `popover-${useId()}`
+// Inside a modal dialog everything outside of the dialog is inert, so the panel has to stay within the dialog
+const teleportTarget = ref<HTMLElement | string>('body')
 const trigger = ref<HTMLElement | null>(null)
 
 let stopAutoUpdate: (() => void) | null = null
@@ -77,6 +79,10 @@ const close = (): void => {
 }
 
 const toggle = (): void => {
+  if (!isOpen.value) {
+    teleportTarget.value = trigger.value?.closest('dialog') ?? 'body'
+  }
+
   isOpen.value = !isOpen.value
 }
 
@@ -128,7 +134,7 @@ watch(isOpen, async (open) => {
 
   if (trigger.value && panel.value) {
     stopAutoUpdate = autoUpdate(trigger.value, panel.value, updatePosition)
-    // The panel is teleported to the end of the body, so keyboard and screen reader users have to be moved into it
+    // The panel is teleported away from the trigger, so keyboard and screen reader users have to be moved into it
     panel.value.focus()
   }
 })

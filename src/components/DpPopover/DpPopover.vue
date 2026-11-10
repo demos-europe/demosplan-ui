@@ -24,6 +24,7 @@
       class="fixed z-flyout bg-surface shadow-md text-left"
       role="dialog"
       tabindex="-1"
+      @keydown.esc.stop.prevent="closeAndFocusTrigger"
     >
       <slot />
     </div>
@@ -86,10 +87,15 @@ const toggle = (): void => {
   isOpen.value = !isOpen.value
 }
 
+const closeAndFocusTrigger = (): void => {
+  close()
+  trigger.value?.focus()
+}
+
+// Fallback for Escape while the focus is outside of the panel. Within the panel, Escape is stopped by the panel itself.
 const handleKeydown = (event: KeyboardEvent): void => {
   if (event.key === 'Escape') {
-    close()
-    trigger.value?.focus()
+    closeAndFocusTrigger()
   }
 }
 

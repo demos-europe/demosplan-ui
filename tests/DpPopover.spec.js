@@ -84,6 +84,30 @@ describe('DpPopover', () => {
     dialog.remove()
   })
 
+  it('closes only the popover, not the dialog around it, when Escape is pressed in the panel', async () => {
+    const dialog = document.createElement('dialog')
+    const dialogKeydown = vi.fn()
+    dialog.addEventListener('keydown', dialogKeydown)
+    document.body.appendChild(dialog)
+    wrapper = mount(DpPopover, {
+      attachTo: dialog,
+      props: { panelLabel: 'Details' },
+      slots: { default: '<p>Content</p>', trigger: '+5' },
+    })
+    await open()
+
+    panel().dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Escape' }))
+    await nextTick()
+
+    expect(panel()).toBeNull()
+    expect(dialogKeydown).not.toHaveBeenCalled()
+    expect(document.activeElement).toBe(wrapper.find('button').element)
+
+    wrapper.unmount()
+    wrapper = null
+    dialog.remove()
+  })
+
   it('puts the panel into the body without a dialog around the trigger', async () => {
     wrapper = mountPopover()
     await open()

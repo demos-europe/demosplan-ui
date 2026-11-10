@@ -225,6 +225,19 @@ describe('DpDataTable free space of the table', () => {
     expect(cell('b').style.width).toBe('690px')
   })
 
+  it('does not count the borders and the scrollbar of the container', async () => {
+    const { cell } = await prepare({ containerWidth: 915.5 })
+    const container = wrapper.vm.tableEl.parentElement
+
+    // 15px scrollbar: the outer width is 916 and the inner width is 901 (both rounded)
+    Object.defineProperty(container, 'offsetWidth', { configurable: true, value: 916 })
+    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 901 })
+    wrapper.vm.absorbFreeSpace()
+
+    // floor(915.5 - 15 - (a 100 + flyout 60 + expand 50))
+    expect(cell('b').style.width).toBe('690px')
+  })
+
   it('does not widen the last data column if the columns overflow the table', async () => {
     const { cell } = await prepare({ containerWidth: 200, storedWidthOfB: '100px' })
 

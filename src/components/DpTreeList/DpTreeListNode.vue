@@ -303,7 +303,7 @@ export default {
     },
 
     isLeaf () {
-      return this.isBranch === false
+      return !this.isBranch
     },
 
     isSelectable () {

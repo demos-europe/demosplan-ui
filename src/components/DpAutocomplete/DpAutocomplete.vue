@@ -3,7 +3,6 @@
     <dp-resettable-input
       :id="id"
       ref="suggestionInput"
-      v-model="currentQuery"
       :input-attributes="{
         placeholder: placeholder,
         'aria-labelledby': ariaLabelledby,
@@ -15,6 +14,7 @@
         autocomplete: 'off',
       }"
       :default-value="defaultValue"
+      :model-value="currentQuery"
       :required="required"
       :rounded="rounded"
       @blur="handleBlur"

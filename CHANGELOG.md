@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Changed
+- ([#1651](https://github.com/demos-europe/demosplan-ui/pull/1651)) BREAKING: DpResettableInput: use `modelValue`/`update:modelValue` instead of `value`/`input` ([@hwiem](https://github.com/hwiem))
+
 ## v0.39.0 - 2026-11-05
 
 ### Added

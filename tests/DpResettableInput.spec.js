@@ -16,7 +16,7 @@ describe('DpResettableInput', () => {
     wrapper = shallowMount(DpResettableInput, {
       props: {
         id: 'testInput',
-        value,
+        modelValue: value,
       },
     })
     const dpInput = wrapper.findComponent({ name: 'DpInput' })
@@ -36,13 +36,20 @@ describe('DpResettableInput', () => {
       await expectForwardsEventWithValue('blur', 'test value')
     })
 
-    it('emits input event when user types', async () => {
+    it('emits update:modelValue when user types', async () => {
       const dpInput = wrapper.findComponent({ name: 'DpInput' })
 
       await dpInput.vm.$emit('update:model-value', 'new value')
 
-      expect(wrapper.emitted('input')).toBeTruthy()
-      expect(wrapper.emitted('input')[0]).toEqual(['new value'])
+      expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+      expect(wrapper.emitted('update:modelValue')[0]).toEqual(['new value'])
+      expect(wrapper.emitted('input')).toBeUndefined()
+    })
+
+    it('updates the input when modelValue changes', async () => {
+      await wrapper.setProps({ modelValue: 'from parent' })
+
+      expect(wrapper.findComponent({ name: 'DpInput' }).props('modelValue')).toBe('from parent')
     })
 
     it('emits enter event when user presses enter', async () => {
@@ -61,7 +68,7 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          value: 'some value',
+          modelValue: 'some value',
         },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')
@@ -132,7 +139,7 @@ describe('DpResettableInput', () => {
       wrapper = shallowMount(DpResettableInput, {
         props: {
           id: 'testInput',
-          value: 'some value',
+          modelValue: 'some value',
         },
       })
       const resetButton = wrapper.find('[data-cy="resetButton"]')

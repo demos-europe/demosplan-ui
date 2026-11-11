@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+## v0.39.0 - 2026-11-05
+
 ### Added
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
 

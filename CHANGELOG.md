@@ -4,13 +4,15 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Changed
+- ([#1651](https://github.com/demos-europe/demosplan-ui/pull/1651)) BREAKING: DpResettableInput: use `modelValue`/`update:modelValue` instead of `value`/`input` ([@hwiem](https://github.com/hwiem))
+
 ## v0.39.0 - 2026-11-05
 
 ### Added
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
 
 ### Changed
-- ([#1651](https://github.com/demos-europe/demosplan-ui/pull/1651)) BREAKING: DpResettableInput: use `modelValue`/`update:modelValue` instead of `value`/`input` ([@hwiem](https://github.com/hwiem))
 - ([#1649](https://github.com/demos-europe/demosplan-ui/pull/1649)) Bump vue-sliding-pagination to v3.0.1
   - The new version provides both ESM and UMD modules
   - Remove the no-longer-needed ESM transformation logic

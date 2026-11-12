@@ -1,4 +1,4 @@
-import { errorClass, scrollToVisibleElement } from '~/lib/validation/utils/helpers'
+import { errorClass, getAllInputsArray, scrollToVisibleElement, toggleErrorClass } from '~/lib/validation/utils/helpers'
 import { ref, watch } from 'vue'
 import { assignHandlersForInputs } from '~/lib/validation/utils/assignHandlersForInputs'
 import assignObserver from '~/lib/validation/utils/assignObserver'
@@ -67,6 +67,18 @@ export function useDpValidate (formRef) {
     return formValidation.valid
   }
 
+  // Remove error markers set by validate(), e.g. after the form values were reset
+  function reset () {
+    const form = formRef.value
+
+    if (!form) {
+      return
+    }
+
+    getAllInputsArray(form).forEach(input => toggleErrorClass(input, false))
+    isValid.value = true
+  }
+
   watch(formRef, (form) => {
     if (!form) {
       return
@@ -76,5 +88,5 @@ export function useDpValidate (formRef) {
     assignObserver(form)
   }, { flush: 'post', immediate: true })
 
-  return { isValid, validate }
+  return { isValid, reset, validate }
 }

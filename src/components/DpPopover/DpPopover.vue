@@ -1,9 +1,9 @@
 <template>
   <button
     ref="trigger"
-    :aria-controls="isOpen ? panelId : undefined"
+    :aria-controls="isOpen ? panelId : null"
     :aria-expanded="isOpen"
-    :aria-label="ariaLabel !== '' ? ariaLabel : undefined"
+    :aria-label="ariaLabel"
     :class="buttonClass"
     :data-cy="dataCy !== '' ? dataCy : null"
     aria-haspopup="dialog"
@@ -36,11 +36,16 @@ import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/d
 import { nextTick, onBeforeUnmount, ref, useId, watch } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 
+// In compat mode, an attribute set to `false` is removed, but `aria-expanded="false"` has to be rendered
+defineOptions({
+  compatConfig: { ATTR_FALSE_VALUE: false },
+})
+
 defineProps({
+  // Accessible name of the trigger button, which has to announce what the button does
   ariaLabel: {
     type: String,
-    required: false,
-    default: '',
+    required: true,
   },
 
   buttonClass: {

@@ -12,7 +12,6 @@ interface IDpResettableInput {
   modelValue?: string
   'update:modelValue'?: (value: string) => void
   'reset'?: () => void
-  'input'?: (value: string) => void
   'blur'?: (value: string) => void
   'enter'?: (value: string) => void
   'focus'?: () => void
@@ -40,6 +39,7 @@ const meta: Meta<typeof DpResettableInput> = {
         :id="args.id"
         :button-variant="args.buttonVariant"
         :input-attributes="args.inputAttributes"
+        :model-value="args.modelValue"
         :required="args.required"
         :rounded="args.rounded"
         :pattern="args.pattern"
@@ -59,7 +59,7 @@ export const Default: Story = {
     }
   },
   argTypes: {
-    'input': { action: 'input' },
+    'update:modelValue': { action: 'update:modelValue' },
     'reset': { action: 'reset' },
     'blur': { action: 'blur' },
     'enter': { action: 'enter' },

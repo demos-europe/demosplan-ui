@@ -15,6 +15,7 @@
   </button>
 
   <Teleport :to="teleportTarget">
+    <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -- Keyboard handling of the dialog (Escape, Tab) -->
     <div
       v-if="isOpen"
       :id="panelId"
@@ -37,13 +38,6 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { computed, nextTick, onBeforeUnmount, type PropType, ref, useId, watch } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
-
-// In compat mode, an attribute set to `false` is removed, but `aria-expanded="false"` has to be rendered
-defineOptions({
-  compatConfig: { ATTR_FALSE_VALUE: false },
-  // Attributes like `class` belong to the trigger button, not to the fragment root
-  inheritAttrs: false,
-})
 
 const props = defineProps({
   // Accessible name of the trigger button, which has to announce what the button does
@@ -71,6 +65,13 @@ const props = defineProps({
     default: 'outline',
     validator: (prop: PopoverVariant) => ['outline'].includes(prop),
   },
+})
+
+// In compat mode, an attribute set to `false` is removed, but `aria-expanded="false"` has to be rendered
+defineOptions({
+  compatConfig: { ATTR_FALSE_VALUE: false },
+  // Attributes like `class` belong to the trigger button, not to the fragment root
+  inheritAttrs: false,
 })
 
 type PopoverVariant = 'outline'

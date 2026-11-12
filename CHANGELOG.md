@@ -5,7 +5,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ## Unreleased
 
 ### Added
-- ([#1652](https://github.com/demos-europe/demosplan-ui/pull/1652)) DpPopover: Add component that toggles a panel which is not clipped by scroll containers ([@riechedemos](https://github.com/riechedemos))
+- ([#1652](https://github.com/demos-europe/demosplan-ui/pull/1652)) DpPopover: Add component that toggles a panel which is not clipped by scroll containers, with the trigger variant `outline` ([@riechedemos](https://github.com/riechedemos))
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Add prop `hasStickyColumnsWhenExpanded` to keep sticky columns visible next to expanded content ([@riechedemos](https://github.com/riechedemos))
 
 ### Changed
@@ -16,7 +16,7 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Fixed
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpColumnSelector: Fix error when tracking the selection ([@riechedemos](https://github.com/riechedemos))
 - ([#1635](https://github.com/demos-europe/demosplan-ui/pull/1635)) DpDataTable: Fix header borders, padding and column widths of resizable tables ([@riechedemos](https://github.com/riechedemos))
-- ([#NNN](https://github.com/demos-europe/demosplan-ui/pull/NNN)) DpDataTable: Fix the table being wider than a container with a fractional width, which hid the border next to the sticky flyout column ([@riechedemos](https://github.com/riechedemos))
+- ([#1652](https://github.com/demos-europe/demosplan-ui/pull/1652)) DpDataTable: Fix the table being wider than a container with a fractional width, which hid the border next to the sticky flyout column ([@riechedemos](https://github.com/riechedemos))
 
 ## v0.38.0 - 2026-11-03
 

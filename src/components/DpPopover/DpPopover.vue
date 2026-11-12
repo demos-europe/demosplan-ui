@@ -1,10 +1,11 @@
 <template>
   <button
     ref="trigger"
+    v-bind="$attrs"
     :aria-controls="isOpen ? panelId : null"
     :aria-expanded="isOpen"
     :aria-label="ariaLabel"
-    :class="buttonClass"
+    :class="variantClasses"
     :data-cy="dataCy !== '' ? dataCy : null"
     aria-haspopup="dialog"
     type="button"
@@ -21,10 +22,11 @@
       v-on-click-outside="[close, { ignore: [trigger] }]"
       :aria-label="panelLabel"
       :data-cy="dataCy !== '' ? `${dataCy}:panel` : null"
-      class="fixed z-flyout bg-surface shadow-md text-left"
+      class="fixed z-flyout bg-surface shadow-md text-left outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#005eb1]/50"
       role="dialog"
       tabindex="-1"
       @keydown.esc.stop.prevent="closeAndFocusTrigger"
+      @keydown.tab="handleTab"
     >
       <slot />
     </div>
@@ -33,25 +35,21 @@
 
 <script setup lang="ts">
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
-import { nextTick, onBeforeUnmount, ref, useId, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, type PropType, ref, useId, watch } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 
 // In compat mode, an attribute set to `false` is removed, but `aria-expanded="false"` has to be rendered
 defineOptions({
   compatConfig: { ATTR_FALSE_VALUE: false },
+  // Attributes like `class` belong to the trigger button, not to the fragment root
+  inheritAttrs: false,
 })
 
-defineProps({
+const props = defineProps({
   // Accessible name of the trigger button, which has to announce what the button does
   ariaLabel: {
     type: String,
     required: true,
-  },
-
-  buttonClass: {
-    type: String,
-    required: false,
-    default: '',
   },
 
   dataCy: {
@@ -65,7 +63,23 @@ defineProps({
     type: String,
     required: true,
   },
+
+  // Visual style of the trigger button. Layout classes can be passed with `class`.
+  variant: {
+    type: String as PropType<PopoverVariant>,
+    required: false,
+    default: 'outline',
+    validator: (prop: PopoverVariant) => ['outline'].includes(prop),
+  },
 })
+
+type PopoverVariant = 'outline'
+
+const VARIANT_CLASSES: Record<PopoverVariant, string> = {
+  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive hover:bg-interactive-subtle-hover aria-expanded:bg-interactive-subtle-active',
+}
+
+const variantClasses = computed<string>(() => VARIANT_CLASSES[props.variant])
 
 // Distance between trigger and panel, and minimal distance to the viewport edge (in px)
 const OFFSET = 4
@@ -95,6 +109,31 @@ const toggle = (): void => {
 const closeAndFocusTrigger = (): void => {
   close()
   trigger.value?.focus()
+}
+
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+/*
+ * The panel is teleported away from the trigger. Leaving it with Tab or Shift+Tab closes it and continues from the
+ * trigger, which is where the panel belongs in the reading order. The event is not prevented, so the browser then
+ * moves the focus from the trigger to the next or previous element.
+ */
+const handleTab = (event: KeyboardEvent): void => {
+  const panelEl = panel.value
+
+  if (!panelEl) {
+    return
+  }
+
+  const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+  const edge = event.shiftKey ? focusable[0] : focusable[focusable.length - 1]
+  const isLeavingPanel = event.shiftKey
+    ? event.target === panelEl || event.target === edge
+    : focusable.length === 0 || event.target === edge
+
+  if (isLeavingPanel) {
+    closeAndFocusTrigger()
+  }
 }
 
 // Fallback for Escape while the focus is outside of the panel. Within the panel, Escape is stopped by the panel itself.

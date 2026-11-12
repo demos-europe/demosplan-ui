@@ -20,10 +20,10 @@ vi.mock('@floating-ui/dom', () => ({
 describe('DpPopover', () => {
   let wrapper
 
-  const mountPopover = (props = {}) => mount(DpPopover, {
+  const mountPopover = (props = {}, content = '<p>Content</p>') => mount(DpPopover, {
     attachTo: document.body,
-    props: { panelLabel: 'Details', ...props },
-    slots: { default: '<p>Content</p>', trigger: '+5' },
+    props: { ariaLabel: 'Show more', panelLabel: 'Details', ...props },
+    slots: { default: content, trigger: '+5' },
   })
 
   const panel = () => document.body.querySelector('[role="dialog"]')
@@ -40,13 +40,6 @@ describe('DpPopover', () => {
   afterEach(() => {
     wrapper?.unmount()
     wrapper = null
-  })
-
-  it('gives the panel its accessible name', async () => {
-    wrapper = mountPopover()
-    await open()
-
-    expect(panel().getAttribute('aria-label')).toBe('Details')
   })
 
   it('moves the focus into the panel when it opens', async () => {
@@ -67,12 +60,48 @@ describe('DpPopover', () => {
     expect(document.activeElement).toBe(wrapper.find('button').element)
   })
 
+  it('closes the panel and moves the focus to the trigger when Shift+Tab is pressed in the panel', async () => {
+    wrapper = mountPopover()
+    await open()
+
+    panel().dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab', shiftKey: true }))
+    await nextTick()
+
+    expect(panel()).toBeNull()
+    expect(document.activeElement).toBe(wrapper.find('button').element)
+  })
+
+  it('closes the panel and moves the focus to the trigger when Tab is pressed on the last element of the panel', async () => {
+    wrapper = mountPopover({}, '<button type="button">Action</button>')
+    await open()
+    const action = panel().querySelector('button')
+    action.focus()
+
+    action.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab' }))
+    await nextTick()
+
+    expect(panel()).toBeNull()
+    expect(document.activeElement).toBe(wrapper.find('button').element)
+  })
+
+  it('keeps the panel open when Tab moves between elements within the panel', async () => {
+    wrapper = mountPopover({}, '<button type="button" id="first">First</button><button type="button">Second</button>')
+    await open()
+    const first = panel().querySelector('#first')
+    first.focus()
+
+    first.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab' }))
+    await nextTick()
+
+    expect(panel()).not.toBeNull()
+  })
+
   it('keeps the panel within a dialog around the trigger, so it stays interactive in a modal', async () => {
     const dialog = document.createElement('dialog')
     document.body.appendChild(dialog)
     wrapper = mount(DpPopover, {
       attachTo: dialog,
-      props: { panelLabel: 'Details' },
+      props: { ariaLabel: 'Show more', panelLabel: 'Details' },
       slots: { default: '<p>Content</p>', trigger: '+5' },
     })
     await open()
@@ -91,7 +120,7 @@ describe('DpPopover', () => {
     document.body.appendChild(dialog)
     wrapper = mount(DpPopover, {
       attachTo: dialog,
-      props: { panelLabel: 'Details' },
+      props: { ariaLabel: 'Show more', panelLabel: 'Details' },
       slots: { default: '<p>Content</p>', trigger: '+5' },
     })
     await open()

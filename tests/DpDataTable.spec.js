@@ -221,7 +221,7 @@ describe('DpDataTable free space of the table', () => {
 
     wrapper.vm.absorbFreeSpace()
 
-    // floor(900.5 - (a 100 + flyout 60 + expand 50)), so the table is never wider than the container
+    // Floor of (900.5 - (a 100 + flyout 60 + expand 50)), so the table is never wider than the container
     expect(cell('b').style.width).toBe('690px')
   })
 
@@ -234,7 +234,7 @@ describe('DpDataTable free space of the table', () => {
     Object.defineProperty(container, 'clientWidth', { configurable: true, value: 901 })
     wrapper.vm.absorbFreeSpace()
 
-    // floor(915.5 - 15 - (a 100 + flyout 60 + expand 50))
+    // Floor of (915.5 - 15 - (a 100 + flyout 60 + expand 50))
     expect(cell('b').style.width).toBe('690px')
   })
 

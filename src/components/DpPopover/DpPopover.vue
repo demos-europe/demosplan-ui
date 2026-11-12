@@ -76,7 +76,7 @@ const props = defineProps({
 type PopoverVariant = 'outline'
 
 const VARIANT_CLASSES: Record<PopoverVariant, string> = {
-  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive hover:bg-interactive-subtle-hover aria-expanded:bg-interactive-subtle-active',
+  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive outline-4 outline-offset-0 outline-transparent hover:bg-interactive-subtle-hover focus-visible:outline-[#005eb1]/50 aria-expanded:bg-interactive-subtle-active',
 }
 
 const variantClasses = computed<string>(() => VARIANT_CLASSES[props.variant])

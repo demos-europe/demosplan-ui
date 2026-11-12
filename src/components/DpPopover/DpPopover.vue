@@ -112,7 +112,20 @@ const closeAndFocusTrigger = (): void => {
   trigger.value?.focus()
 }
 
-const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+// Elements that can receive the focus with Tab. Elements with `tabindex="-1"` and hidden inputs cannot.
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled]):not([type="hidden"])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]',
+]
+  .map(selector => `${selector}:not([tabindex="-1"])`)
+  .join(', ')
+
+// `checkVisibility` is not available everywhere (e.g. jsdom), the element then counts as visible
+const isVisible = (element: HTMLElement): boolean => element.checkVisibility?.({ visibilityProperty: true }) ?? true
 
 /*
  * The panel is teleported away from the trigger. Leaving it with Tab or Shift+Tab closes it and continues from the
@@ -127,6 +140,7 @@ const handleTab = (event: KeyboardEvent): void => {
   }
 
   const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
+    .filter(isVisible)
   const edge = event.shiftKey ? focusable[0] : focusable[focusable.length - 1]
   const isLeavingPanel = event.shiftKey
     ? event.target === panelEl || event.target === edge

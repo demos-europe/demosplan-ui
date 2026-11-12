@@ -84,6 +84,19 @@ describe('DpPopover', () => {
     expect(document.activeElement).toBe(wrapper.find('button').element)
   })
 
+  it('ignores hidden inputs and elements with tabindex -1 when determining the last element of the panel', async () => {
+    wrapper = mountPopover({}, '<button type="button" id="last">Last</button><input type="hidden"><button type="button" tabindex="-1">Skipped</button>')
+    await open()
+    const last = panel().querySelector('#last')
+    last.focus()
+
+    last.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab' }))
+    await nextTick()
+
+    expect(panel()).toBeNull()
+    expect(document.activeElement).toBe(wrapper.find('button').element)
+  })
+
   it('keeps the panel open when Tab moves between elements within the panel', async () => {
     wrapper = mountPopover({}, '<button type="button" id="first">First</button><button type="button">Second</button>')
     await open()

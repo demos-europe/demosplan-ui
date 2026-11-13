@@ -64,11 +64,14 @@ describe('DpPopover', () => {
     wrapper = mountPopover()
     await open()
 
-    panel().dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab', shiftKey: true }))
+    const event = new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Tab', shiftKey: true })
+    panel().dispatchEvent(event)
     await nextTick()
 
     expect(panel()).toBeNull()
     expect(document.activeElement).toBe(wrapper.find('button').element)
+    // The trigger is the previous element, so the browser must not move the focus past it
+    expect(event.defaultPrevented).toBe(true)
   })
 
   it('closes the panel and moves the focus to the trigger when Tab is pressed on the last element of the panel', async () => {
@@ -77,11 +80,14 @@ describe('DpPopover', () => {
     const action = panel().querySelector('button')
     action.focus()
 
-    action.dispatchEvent(new KeyboardEvent('keydown', { bubbles: true, key: 'Tab' }))
+    const event = new KeyboardEvent('keydown', { bubbles: true, cancelable: true, key: 'Tab' })
+    action.dispatchEvent(event)
     await nextTick()
 
     expect(panel()).toBeNull()
     expect(document.activeElement).toBe(wrapper.find('button').element)
+    // The browser moves the focus on from the trigger to the next element
+    expect(event.defaultPrevented).toBe(false)
   })
 
   it('ignores hidden inputs and elements with tabindex -1 when determining the last element of the panel', async () => {

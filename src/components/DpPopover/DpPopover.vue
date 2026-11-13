@@ -128,9 +128,9 @@ const FOCUSABLE_SELECTOR = [
 const isVisible = (element: HTMLElement): boolean => element.checkVisibility?.({ visibilityProperty: true }) ?? true
 
 /*
- * The panel is teleported away from the trigger. Leaving it with Tab or Shift+Tab closes it and continues from the
- * trigger, which is where the panel belongs in the reading order. The event is not prevented, so the browser then
- * moves the focus from the trigger to the next or previous element.
+ * The panel is teleported away from the trigger. Leaving it closes it and continues from the trigger, which is where
+ * the panel belongs in the reading order. With Tab, the browser then moves the focus on to the next element.
+ * With Shift+Tab, the trigger itself is the previous element, so the browser must not move the focus any further.
  */
 const handleTab = (event: KeyboardEvent): void => {
   const panelEl = panel.value
@@ -146,9 +146,15 @@ const handleTab = (event: KeyboardEvent): void => {
     ? event.target === panelEl || event.target === edge
     : focusable.length === 0 || event.target === edge
 
-  if (isLeavingPanel) {
-    closeAndFocusTrigger()
+  if (!isLeavingPanel) {
+    return
   }
+
+  if (event.shiftKey) {
+    event.preventDefault()
+  }
+
+  closeAndFocusTrigger()
 }
 
 // Fallback for Escape while the focus is outside of the panel. Within the panel, Escape is stopped by the panel itself.

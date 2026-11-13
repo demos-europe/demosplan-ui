@@ -23,7 +23,7 @@
       v-on-click-outside="[close, { ignore: [trigger] }]"
       :aria-label="panelLabel"
       :data-cy="dataCy !== '' ? `${dataCy}:panel` : null"
-      class="fixed z-flyout bg-surface shadow-md text-left outline-4 outline-offset-0 outline-transparent focus-visible:outline-[#005eb1]/50"
+      class="fixed z-flyout bg-surface shadow-md text-left outline-4 outline-offset-0 outline-transparent focus-visible:outline-interactive-hover/50"
       role="dialog"
       tabindex="-1"
       @keydown.esc.stop.prevent="closeAndFocusTrigger"
@@ -77,7 +77,7 @@ defineOptions({
 type PopoverVariant = 'outline'
 
 const VARIANT_CLASSES: Record<PopoverVariant, string> = {
-  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive outline-4 outline-offset-0 outline-transparent hover:bg-interactive-subtle-hover focus-visible:outline-[#005eb1]/50 aria-expanded:bg-interactive-subtle-active',
+  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive outline-4 outline-offset-0 outline-transparent hover:bg-interactive-subtle-hover focus-visible:outline-interactive-hover/50 aria-expanded:bg-interactive-subtle-active',
 }
 
 const variantClasses = computed<string>(() => VARIANT_CLASSES[props.variant])

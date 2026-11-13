@@ -181,7 +181,7 @@ describe('DpDataTable free space of the table', () => {
       ...props,
     })
 
-    Object.defineProperty(wrapper.vm.tableEl.parentElement, 'clientWidth', { configurable: true, value: containerWidth })
+    vi.spyOn(wrapper.vm.tableEl.parentElement, 'getBoundingClientRect').mockReturnValue({ width: containerWidth })
 
     const cells = () => wrapper.findAll('thead tr:first-child > th')
     const setWidth = (cell, width) => { cell.element.style.width = `${width}px` }
@@ -214,6 +214,28 @@ describe('DpDataTable free space of the table', () => {
     expect(cell('b').style.width).toBe('690px')
     expect(cell('a').style.width).toBe('100px')
     expect(cell('flyout').style.width).toBe('60px')
+  })
+
+  it('does not exceed a container with a fractional width', async () => {
+    const { cell } = await prepare({ containerWidth: 900.5 })
+
+    wrapper.vm.absorbFreeSpace()
+
+    // Floor of (900.5 - (a 100 + flyout 60 + expand 50)), so the table is never wider than the container
+    expect(cell('b').style.width).toBe('690px')
+  })
+
+  it('does not count the borders and the scrollbar of the container', async () => {
+    const { cell } = await prepare({ containerWidth: 915.5 })
+    const container = wrapper.vm.tableEl.parentElement
+
+    // 15px scrollbar: the outer width is 916 and the inner width is 901 (both rounded)
+    Object.defineProperty(container, 'offsetWidth', { configurable: true, value: 916 })
+    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 901 })
+    wrapper.vm.absorbFreeSpace()
+
+    // Floor of (915.5 - 15 - (a 100 + flyout 60 + expand 50))
+    expect(cell('b').style.width).toBe('690px')
   })
 
   it('does not widen the last data column if the columns overflow the table', async () => {
@@ -333,12 +355,12 @@ describe('DpDataTable width of the container', () => {
     })
     const lastCell = wrapper.find('thead tr:first-child > th[data-col-field="b"]').element
 
-    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 900 })
+    vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({ width: 900 })
     observers[0].callback()
     // 900 - (a 100 + flyout 60 + expand 50)
     expect(lastCell.style.width).toBe('690px')
 
-    Object.defineProperty(container, 'clientWidth', { configurable: true, value: 700 })
+    vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({ width: 700 })
     observers[0].callback()
     expect(lastCell.style.width).toBe('490px')
   })

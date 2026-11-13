@@ -709,7 +709,7 @@ export default {
      * Only applies if there are sticky columns.
      */
     absorbFreeSpace () {
-      const containerWidth = this.tableEl?.parentElement?.clientWidth
+      const containerWidth = this.getContainerInnerWidth()
       const firstRow = this.tableEl?.getElementsByTagName('tr')[0]
 
       if (!this.isResizable || !(this.hasFlyout || this.isExpandable) || !containerWidth || !firstRow) {
@@ -753,6 +753,23 @@ export default {
       }
 
       this.absorbedField = field
+    },
+
+    /**
+     * The width of the table container without borders and scrollbar.
+     *
+     * clientWidth has no borders and scrollbar, but is rounded and can exceed a fractional container by up to 0.5px.
+     * getBoundingClientRect() is exact, but includes borders and scrollbar. The latter are the difference between
+     * offsetWidth and clientWidth, so they are taken off to get an exact inner width.
+     */
+    getContainerInnerWidth () {
+      const container = this.tableEl?.parentElement
+
+      if (!container) {
+        return 0
+      }
+
+      return container.getBoundingClientRect().width - (container.offsetWidth - container.clientWidth)
     },
 
     addHoveredClass(idx) {
@@ -987,7 +1004,7 @@ export default {
      * to their minimum width — other columns are left untouched.
      */
     fillContainerWidth (headers) {
-      const containerWidth = this.tableEl.parentElement.clientWidth
+      const containerWidth = this.getContainerInnerWidth()
       if (!containerWidth) {
         return
       }

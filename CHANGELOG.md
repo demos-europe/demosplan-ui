@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1653](https://github.com/demos-europe/demosplan-ui/pull/1653)) useDpValidate: Add `reset()` to remove validation error markers from a form ([@riechedemos](https://github.com/riechedemos))
+
 ### Changed
 - ([#1651](https://github.com/demos-europe/demosplan-ui/pull/1651)) BREAKING: DpResettableInput: use `modelValue`/`update:modelValue` instead of `value`/`input` ([@hwiem](https://github.com/hwiem))
 

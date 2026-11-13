@@ -4,6 +4,8 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+## v0.40.0 - 2026-11-13
+
 ### Added
 - ([#1653](https://github.com/demos-europe/demosplan-ui/pull/1653)) useDpValidate: Add `reset()` to remove validation error markers from a form ([@riechedemos](https://github.com/riechedemos))
 - ([#1652](https://github.com/demos-europe/demosplan-ui/pull/1652)) DpPopover: Add component that toggles a panel which is not clipped by scroll containers, with the trigger variant `outline` ([@riechedemos](https://github.com/riechedemos))

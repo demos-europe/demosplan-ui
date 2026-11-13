@@ -141,7 +141,7 @@ const handleTab = (event: KeyboardEvent): void => {
 
   const focusable = Array.from(panelEl.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR))
     .filter(isVisible)
-  const edge = event.shiftKey ? focusable[0] : focusable[focusable.length - 1]
+  const edge = event.shiftKey ? focusable[0] : focusable.at(-1)
   const isLeavingPanel = event.shiftKey
     ? event.target === panelEl || event.target === edge
     : focusable.length === 0 || event.target === edge

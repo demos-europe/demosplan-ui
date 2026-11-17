@@ -7,6 +7,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 ### Changed
 - ([#1654](https://github.com/demos-europe/demosplan-ui/pull/1654)) BREAKING: DpTextArea: use `modelValue`/`update:modelValue` instead of `value`/`input` ([@hwiem](https://github.com/hwiem))
 
+### Fixed
+- ([#1656](https://github.com/demos-europe/demosplan-ui/pull/1656)) DpDatepicker, DpDatetimePicker: Fix stray required marker and label spacing ([@hwiem](https://github.com/hwiem))
+
 ## v0.40.0 - 2026-11-13
 
 ### Added

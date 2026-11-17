@@ -4,7 +4,7 @@ import DpTextArea from './'
 interface IDpTextArea {
   id: string
   label: string
-  value: string
+  modelValue: string
   hint?: string
   maxlength?: number
   disabled?: boolean
@@ -14,7 +14,7 @@ interface IDpTextArea {
   attributes?: string[]
   dataDpValidateIf?: boolean | string
   dataDpValidateErrorFieldname?: string
-  input: (value: string) => void
+  'onUpdate:modelValue': (value: string) => void
 }
 
 const meta: Meta<typeof DpTextArea> = {
@@ -45,7 +45,7 @@ const meta: Meta<typeof DpTextArea> = {
         defaultValue: { summary: '' }
       }
     },
-    value: {
+    modelValue: {
       control: 'text',
       description: 'Current value of the textarea',
       table: {
@@ -117,7 +117,7 @@ const meta: Meta<typeof DpTextArea> = {
         defaultValue: { summary: '' }
       }
     },
-    input: {
+    'update:modelValue': {
       description: 'Event emitted when the input value changes',
       table: { type: { summary: 'event' } }
     }
@@ -132,10 +132,10 @@ export const Default: Story = {
   args: {
     id: 'textAreaId',
     label: 'Enter some text',
-    value: ''
+    modelValue: ''
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -153,10 +153,10 @@ export const WithHint: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     hint: 'A hint explaining what to enter in the textarea',
-    value: ''
+    modelValue: ''
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -172,10 +172,10 @@ export const WithMaxlength: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     maxlength: 100,
-    value: 'This is some sample text that demonstrates the maxlength feature'
+    modelValue: 'This is some sample text that demonstrates the maxlength feature'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -191,10 +191,10 @@ export const Required: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     required: true,
-    value: ''
+    modelValue: ''
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -210,10 +210,10 @@ export const Disabled: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     disabled: true,
-    value: 'This textarea is disabled and cannot be edited'
+    modelValue: 'This textarea is disabled and cannot be edited'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -229,10 +229,10 @@ export const ReducedHeight: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     reducedHeight: true,
-    value: 'This textarea has reduced height (60px)'
+    modelValue: 'This textarea has reduced height (60px)'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -248,10 +248,10 @@ export const WithAttributes: Story = {
     id: 'textAreaId',
     label: 'Enter some text',
     attributes: ['rows=5', 'cols=40'],
-    value: 'This textarea has custom rows and columns attributes'
+    modelValue: 'This textarea has custom rows and columns attributes'
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {
@@ -269,10 +269,10 @@ export const WithValidation: Story = {
     required: true,
     dataDpValidateIf: '#someOtherField',
     dataDpValidateErrorFieldname: 'Comments',
-    value: ''
+    modelValue: ''
   },
   argTypes: {
-    input: { action: 'input' }
+    'onUpdate:modelValue': { action: 'update:modelValue' }
   },
   parameters: {
     docs: {

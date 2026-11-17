@@ -18,7 +18,7 @@
       :disabled="disabled"
       :maxlength="maxlength"
       :required="required"
-      @input="$emit('input', currentValue)"
+      @input="$emit('update:modelValue', currentValue)"
     />
   </div>
 </template>
@@ -30,6 +30,8 @@ import { maxlengthHint } from '~/utils'
 
 export default {
   name: 'DpTextArea',
+
+  compatConfig: { COMPONENT_V_MODEL: false },
 
   components: {
     DpLabel,
@@ -94,6 +96,12 @@ export default {
 
     maxlength: length,
 
+    modelValue: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
     name: {
       type: String,
       required: false,
@@ -120,21 +128,15 @@ export default {
       required: false,
       default: '',
     },
-
-    value: {
-      type: String,
-      required: false,
-      default: '',
-    },
   },
 
   emits: [
-    'input',
+    'update:modelValue',
   ],
 
   data () {
     return {
-      currentValue: this.value,
+      currentValue: this.modelValue,
     }
   },
 
@@ -162,8 +164,8 @@ export default {
   },
 
   watch: {
-    value () {
-      this.currentValue = this.value
+    modelValue () {
+      this.currentValue = this.modelValue
     },
   },
 }

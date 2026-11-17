@@ -4,6 +4,9 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#XXXX](https://github.com/demos-europe/demosplan-ui/pull/XXXX)) DpTableScrollbar: Add component that renders a custom scrollbar below a horizontally scrollable table ([@riechedemos](https://github.com/riechedemos))
+
 ## v0.40.0 - 2026-11-13
 
 ### Added

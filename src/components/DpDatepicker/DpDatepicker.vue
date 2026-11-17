@@ -1,7 +1,7 @@
 <template>
   <div>
     <dp-label
-      v-if="label"
+      v-if="label.text"
       class="mb-0.5"
       :for="id"
       :hint="label.hint"

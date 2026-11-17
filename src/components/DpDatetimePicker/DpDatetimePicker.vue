@@ -2,6 +2,7 @@
   <div>
     <dp-label
       v-if="label !== ''"
+      class="mb-0.5"
       :for="`datePicker:${id}`"
       :hint="hint"
       :required="required"

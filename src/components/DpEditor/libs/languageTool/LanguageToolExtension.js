@@ -15,6 +15,25 @@ const getMatchSuggestions = (match) => {
     .map(replacement => replacement.value)
 }
 
+/**
+ * Resolves the document range of a rendered error element.
+ * Returns null if the element was detached by a decoration redraw or the range is invalid.
+ */
+export const getErrorElementRange = (view, errorEl) => {
+  if (!errorEl.isConnected) {
+    return null
+  }
+
+  const from = view.posAtDOM(errorEl, 0)
+  const to = from + (errorEl.textContent?.length || 0)
+
+  if (from < 0 || to <= from || to > view.state.doc.content.size) {
+    return null
+  }
+
+  return { from, to }
+}
+
 const LanguageToolExtension = Extension.create({
   name: 'languageTool',
 
@@ -139,14 +158,13 @@ const LanguageToolExtension = Extension.create({
     }
 
     const applySelectedSuggestion = (view, errorEl, selectedSuggestion) => {
-      // Use the current DOM position to avoid stale offsets if multiple replacements
-      const from = view.posAtDOM(errorEl, 0)
-      const textLength = errorEl.textContent?.length || 0
-      const to = from + textLength
+      const range = getErrorElementRange(view, errorEl)
 
-      if (to <= from) {
+      if (!range) {
         return
       }
+
+      const { from, to } = range
 
       const tr = view.state.tr.replaceWith(
         from,

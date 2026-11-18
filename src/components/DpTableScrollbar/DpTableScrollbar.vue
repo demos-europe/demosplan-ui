@@ -5,6 +5,7 @@
   >
     <div
       :aria-controls="controls"
+      aria-orientation="horizontal"
       :aria-valuenow="scrollPercent"
       :style="thumbStyle"
       aria-valuemax="100"

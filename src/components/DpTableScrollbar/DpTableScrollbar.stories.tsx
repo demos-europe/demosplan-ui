@@ -122,7 +122,7 @@ export const Default: Story = {
         <div
           :id="args.controls"
           ref="scrollContainer"
-          class="overflow-x-auto"
+          class="overflow-x-auto scrollbar-none"
           @scroll="updateThumb">
           <table class="w-full whitespace-nowrap">
             <thead>

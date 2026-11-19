@@ -48,6 +48,7 @@ import DpSlidingPagination from './DpSlidingPagination'
 import DpSplitButton from './DpSplitButton'
 import DpStickyElement from './DpStickyElement'
 import DpTab from './DpTabs/DpTab'
+import DpTableScrollbar from './DpTableScrollbar'
 import DpTabs from './DpTabs/DpTabs'
 import DpTextArea from './DpTextArea'
 import DpTimePicker from './DpTimePicker'
@@ -116,6 +117,7 @@ export {
   DpSplitButton,
   DpStickyElement,
   DpTab,
+  DpTableScrollbar,
   DpTabs,
   DpTextArea,
   DpTimePicker,

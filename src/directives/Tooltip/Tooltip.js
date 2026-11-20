@@ -1,42 +1,4 @@
 import { destroyTooltip, initTooltip, updateTooltip } from '~/components/DpTooltip/utils/tooltip'
-import { VPopover as Popover } from 'v-tooltip'
-
-/**
- * @deprecated Use DpTooltip instead
- *
- * @type {VueConstructor<Vue>}
- */
-const VPopover = Popover
-
-/*
- * Merge custom config into default options for tooltip config.
- */
-const tooltipConfig = {
-  defaultHtml: true,
-  defaultBoundariesElement: 'scrollParent',
-  defaultDelay: {
-    show: 300,
-    hide: 100,
-  },
-  defaultOffset: 12,
-  defaultTemplate: `
-    <div class="z-tooltip cursor-help max-w-13 absolute" role="tooltip">
-      <div class="absolute bg-surface-dark z-below-zero h-2 w-2 transform rotate-45 -my-1"></div>
-      <div class="px-1.5 py-1 text-sm text-on-dark font-system-ui font-normal text-left relative whitespace-normal bg-surface-dark rounded-sm"></div>
-    </div>`,
-  popover: {
-    defaultPlacement: 'top',
-    defaultBaseClass: 'tooltip',
-    defaultInnerClass: 'tooltip__inner',
-    defaultArrowClass: 'tooltip__arrow',
-    defaultDelay: {
-      show: 300,
-      hide: 100,
-    },
-    defaultTrigger: 'hover',
-  },
-}
-VPopover.options = { ...VPopover.options, ...tooltipConfig }
 
 /**
  * V-tooltip directive
@@ -89,4 +51,4 @@ const Tooltip = {
   },
 }
 
-export { VPopover, Tooltip }
+export { Tooltip }

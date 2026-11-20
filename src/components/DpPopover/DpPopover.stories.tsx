@@ -45,5 +45,16 @@ export const Default: Story = {
         ariaLabel: 'Show more',
         panelLabel: 'Popover title',
         variant: 'outline'
+    },
+    argTypes: {
+        variant: { control: 'select', options: ['outline', 'subtle'] }
+    }
+}
+
+export const Subtle: Story = {
+    args: {
+        ariaLabel: 'Show more',
+        panelLabel: 'Popover title',
+        variant: 'subtle'
     }
 }

@@ -42,6 +42,24 @@ describe('DpPopover', () => {
     wrapper = null
   })
 
+  it('renders the subtle trigger without a visible border', () => {
+    wrapper = mountPopover({ variant: 'subtle' })
+
+    const classes = wrapper.find('button').classes()
+
+    expect(classes).toContain('border-transparent')
+    expect(classes).not.toContain('border-interactive')
+  })
+
+  it('renders the outline trigger with a visible border', () => {
+    wrapper = mountPopover()
+
+    const classes = wrapper.find('button').classes()
+
+    expect(classes).toContain('border-interactive')
+    expect(classes).not.toContain('border-transparent')
+  })
+
   it('moves the focus into the panel when it opens', async () => {
     wrapper = mountPopover()
     await open()

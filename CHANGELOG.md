@@ -4,6 +4,12 @@ Since v0.0.10, this Changelog is formatted according to the [Common Changelog][c
 
 ## Unreleased
 
+### Added
+- ([#1658](https://github.com/demos-europe/demosplan-ui/pull/1658)) DpPopover: Add variant `subtle` ([@hwiem](https://github.com/hwiem))
+
+### Removed
+- ([#1658](https://github.com/demos-europe/demosplan-ui/pull/1658)) BREAKING: Remove deprecated VPopover, use DpPopover instead ([@hwiem](https://github.com/hwiem))
+
 ## v0.41.0 - 2026-11-19
 
 ### Added

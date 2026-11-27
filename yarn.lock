@@ -368,7 +368,6 @@ __metadata:
     vite: "npm:^8.2.2"
     vitest: "npm:^5.0.5"
     vue: "npm:3.5.43"
-    vue-click-outside: "npm:^1.1.0"
     vue-eslint-parser: "npm:^10.1.1"
     vue-multiselect: "npm:^3.1.0"
     vue-sliding-pagination: "npm:^v3.0.1"
@@ -8001,13 +8000,6 @@ __metadata:
   version: 3.1.0
   resolution: "vscode-uri@npm:3.1.0"
   checksum: 10c0/5f6c9c10fd9b1664d71fab4e9fbbae6be93c7f75bb3a1d9d74399a88ab8649e99691223fd7cef4644376cac6e94fa2c086d802521b9a8e31c5af3e60f0f35624
-  languageName: node
-  linkType: hard
-
-"vue-click-outside@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "vue-click-outside@npm:1.1.0"
-  checksum: 10c0/5312c7ab3cda35d5799f8be2a6977a53ecef7928f80731dd9c842a7d2d158800983bb6547e5f7b208573dd35443843248ae0937594326219cdfa1dfa3f5f693c
   languageName: node
   linkType: hard
 

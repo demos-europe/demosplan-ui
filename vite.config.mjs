@@ -49,7 +49,6 @@ export default defineConfig({
         'plyr',
         'tippy.js',
         'uuid',
-        'v-tooltip',
         'vue-multiselect',
         'vuedraggable'
       ],

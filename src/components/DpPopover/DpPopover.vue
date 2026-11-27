@@ -5,7 +5,7 @@
     :aria-controls="isOpen ? panelId : null"
     :aria-expanded="isOpen"
     :aria-label="ariaLabel"
-    :class="variantClasses"
+    :class="[BASE_CLASSES, VARIANT_CLASSES[variant]]"
     :data-cy="dataCy !== '' ? dataCy : null"
     aria-haspopup="dialog"
     type="button"
@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
-import { computed, nextTick, onBeforeUnmount, type PropType, ref, useId, watch } from 'vue'
+import { autoUpdate, computePosition, flip, hide, type Middleware, offset, shift } from '@floating-ui/dom'
+import { nextTick, onBeforeUnmount, type PropType, ref, useId, watch } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 
 const props = defineProps({
@@ -58,12 +58,23 @@ const props = defineProps({
     required: true,
   },
 
+  /**
+   * Element above which the panel must not be placed, e.g. a sticky header that would otherwise be covered.
+   * A function is resolved on every position update, for elements that do not exist yet when the popover renders.
+   * The panel then gets a maximum height, and it is hidden while its trigger is below the boundary.
+   */
+  topBoundary: {
+    type: [Object, Function] as PropType<HTMLElement | (() => HTMLElement | null | undefined) | null>,
+    required: false,
+    default: null,
+  },
+
   // Visual style of the trigger button. Layout classes can be passed with `class`.
   variant: {
     type: String as PropType<PopoverVariant>,
     required: false,
     default: 'outline',
-    validator: (prop: PopoverVariant) => ['outline'].includes(prop),
+    validator: (prop: PopoverVariant) => ['outline', 'subtle'].includes(prop),
   },
 })
 
@@ -74,13 +85,15 @@ defineOptions({
   inheritAttrs: false,
 })
 
-type PopoverVariant = 'outline'
+type PopoverVariant = 'outline' | 'subtle'
+
+// The subtle border is transparent, so both variants have the same size
+const BASE_CLASSES = 'inline-flex cursor-pointer items-center rounded-md border px-1.5 py-0.5 text-xs text-interactive outline-4 outline-offset-0 outline-transparent hover:bg-interactive-subtle-hover focus-visible:outline-interactive-hover/50 aria-expanded:bg-interactive-subtle-active'
 
 const VARIANT_CLASSES: Record<PopoverVariant, string> = {
-  outline: 'inline-flex cursor-pointer items-center rounded-md border border-interactive px-1.5 py-0.5 text-xs text-interactive outline-4 outline-offset-0 outline-transparent hover:bg-interactive-subtle-hover focus-visible:outline-interactive-hover/50 aria-expanded:bg-interactive-subtle-active',
+  outline: 'border-interactive',
+  subtle: 'border-transparent',
 }
-
-const variantClasses = computed<string>(() => VARIANT_CLASSES[props.variant])
 
 // Distance between trigger and panel, and minimal distance to the viewport edge (in px)
 const OFFSET = 4
@@ -164,6 +177,39 @@ const handleKeydown = (event: KeyboardEvent): void => {
   }
 }
 
+const resolveTopBoundary = (): HTMLElement | null => {
+  const boundary = typeof props.topBoundary === 'function' ? props.topBoundary() : props.topBoundary
+
+  return boundary ?? null
+}
+
+// Only the area below the bottom edge of the boundary is available, as if the viewport started there
+const getMiddleware = (): Middleware[] => {
+  const boundary = resolveTopBoundary()
+
+  if (!boundary) {
+    return [flip(), shift({ padding: VIEWPORT_PADDING })]
+  }
+
+  // Padding is measured from the edges of the boundary, so the area has to be passed in viewport coordinates
+  const top = Math.max(boundary.getBoundingClientRect().bottom, 0)
+  const detectOverflowOptions = {
+    boundary: {
+      x: 0,
+      y: top,
+      width: document.documentElement.clientWidth,
+      height: Math.max(window.innerHeight - top, 0),
+    },
+    padding: VIEWPORT_PADDING,
+  }
+
+  return [
+    flip(detectOverflowOptions),
+    shift(detectOverflowOptions),
+    hide(detectOverflowOptions),
+  ]
+}
+
 // Below the trigger, flipped above if there is no space. Fixed positioning avoids clipping by scroll containers.
 const updatePosition = async (): Promise<void> => {
   const panelEl = panel.value
@@ -172,8 +218,8 @@ const updatePosition = async (): Promise<void> => {
     return
   }
 
-  const { x, y } = await computePosition(trigger.value, panelEl, {
-    middleware: [offset(OFFSET), flip(), shift({ padding: VIEWPORT_PADDING })],
+  const { x, y, middlewareData } = await computePosition(trigger.value, panelEl, {
+    middleware: [offset(OFFSET), ...getMiddleware()],
     placement: 'bottom-start',
     strategy: 'fixed',
   })
@@ -185,6 +231,8 @@ const updatePosition = async (): Promise<void> => {
 
   panelEl.style.left = `${x}px`
   panelEl.style.top = `${y}px`
+  // Hidden instead of closed, so the focus inside the panel is kept until the trigger is visible again
+  panelEl.style.visibility = middlewareData.hide?.referenceHidden ? 'hidden' : ''
 }
 
 const stopTracking = (): void => {
